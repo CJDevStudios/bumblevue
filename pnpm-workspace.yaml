@@ -3,14 +3,14 @@ packages:
     - 'apps/*'
 
 catalog:
-    '@primeuix/styled': ^0.7.4
-    '@primeuix/utils': ^0.6.2
-    '@primeuix/forms': ^0.1.0
-    '@primeuix/styles': ^2.0.3
-    '@primeuix/themes': ^2.0.3
-    '@primeuix/mcp': ^1.0.0
-    'tailwindcss-primeui': ^0.6.1
-    'primeicons': ^7.0.0
+    '@cjdevstudios/bumbleuix-styled': ^0.7.4
+    '@cjdevstudios/bumbleuix-utils': ^0.6.2
+    '@cjdevstudios/bumbleuix-forms': ^0.1.0
+    '@cjdevstudios/bumbleuix-styles': ^2.0.3
+    '@cjdevstudios/bumbleuix-themes': ^2.0.3
+    '@cjdevstudios/bumbleuix-mcp': ^1.0.0
+    '@cjdevstudios/tailwindcss-bumblevue': ^0.6.1
+    '@cjdevstudios/bumbleicons': ^7.0.0
 
 catalogs:
     app:

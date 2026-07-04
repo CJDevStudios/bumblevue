@@ -1,35 +1,35 @@
 {
 	"publishedPackages": [
 		{
-			"name": "@primevue/core",
+			"name": "@cjdevstudios/bumblevue-core",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/mcp",
+			"name": "@cjdevstudios/bumblevue-mcp",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/metadata",
+			"name": "@cjdevstudios/bumblevue-metadata",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/auto-import-resolver",
+			"name": "@cjdevstudios/bumblevue-auto-import-resolver",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/forms",
+			"name": "@cjdevstudios/bumblevue-forms",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/icons",
+			"name": "@cjdevstudios/bumblevue-icons",
 			"version": "4.5.5"
 		},
 		{
-			"name": "primevue",
+			"name": "@cjdevstudios/bumblevue",
 			"version": "4.5.5"
 		},
 		{
-			"name": "@primevue/nuxt-module",
+			"name": "@cjdevstudios/bumblevue-nuxt-module",
 			"version": "4.5.5"
 		}
 	]

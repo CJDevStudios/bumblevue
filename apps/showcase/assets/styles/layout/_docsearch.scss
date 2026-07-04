@@ -53,12 +53,12 @@
                 align-items: center;
                 font-size: 0.75rem;
                 position: relative;
-                
+
                 &::before {
                     content: "\e90d";
                     display: flex;
                     color: var(--text-color);
-                    font-family: "primeicons";
+                    font-family: "bumbleicons";
                     font-size: .4rem;
                     opacity: .7;
                     margin-right: 2px;
@@ -68,7 +68,7 @@
 
                 }
             }
-        }        
+        }
     }
 }
 

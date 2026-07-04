@@ -1,7 +1,7 @@
-import { css as Css, Theme, dt } from '@primeuix/styled';
-import { style } from '@primeuix/styles/base';
-import { isNotEmpty, minifyCSS, resolve } from '@primeuix/utils/object';
-import { useStyle } from '@primevue/core/usestyle';
+import { css as Css, Theme, dt } from '@cjdevstudios/bumbleuix-styled';
+import { style } from '@cjdevstudios/bumbleuix-styles/base';
+import { isNotEmpty, minifyCSS, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import { useStyle } from '@cjdevstudios/bumblevue-core/usestyle';
 
 const css = ({ dt }) => `
 .p-hidden-accessible {
@@ -68,7 +68,7 @@ export default {
                 .reduce((acc, [k, v]) => acc.push(`${k}="${v}"`) && acc, [])
                 .join(' ');
 
-            return isNotEmpty(_style) ? `<style type="text/css" data-primevue-style-id="${this.name}" ${_props}>${_style}</style>` : '';
+            return isNotEmpty(_style) ? `<style type="text/css" data-bumble-style-id="${this.name}" ${_props}>${_style}</style>` : '';
         }
 
         return '';
@@ -87,7 +87,7 @@ export default {
                 .reduce((acc, [k, v]) => acc.push(`${k}="${v}"`) && acc, [])
                 .join(' ');
 
-            isNotEmpty(_style) && css.push(`<style type="text/css" data-primevue-style-id="${name}" ${_props}>${_style}</style>`);
+            isNotEmpty(_style) && css.push(`<style type="text/css" data-bumble-style-id="${name}" ${_props}>${_style}</style>`);
         }
 
         return css.join('');

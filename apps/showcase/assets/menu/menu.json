@@ -74,21 +74,6 @@
             ]
         },
         {
-            "name": "AI Tools",
-            "icon": "pi pi-sparkles",
-            "badge": "NEW",
-            "children": [
-                {
-                    "name": "LLMs.txt",
-                    "to": "/llms"
-                },
-                {
-                    "name": "MCP Server",
-                    "to": "/mcp"
-                }
-            ]
-        },
-        {
             "name": "Components",
             "icon": "pi pi-compass",
             "children": [
@@ -544,14 +529,6 @@
                     "to": "/passthrough"
                 },
                 {
-                    "name": "PrimeFlex",
-                    "to": "/guides/primeflex"
-                },
-                {
-                    "name": "PrimeTV",
-                    "href": "https://www.youtube.com/channel/UCTgmp69aBOlLnPEqlUyetWw"
-                },
-                {
                     "name": "RTL",
                     "to": "/guides/rtl"
                 }
@@ -567,7 +544,7 @@
             "icon": "pi pi-eye",
             "children": [
                 {
-                    "name": "Prime Icons",
+                    "name": "Bumble Icons",
                     "to": "/icons"
                 },
                 {
@@ -577,81 +554,12 @@
             ]
         },
         {
-            "name": "Volt UI",
-            "icon": "pi pi-bolt",
-            "href": "https://volt.primevue.org"
-        },
-        {
-            "name": "Figma UI Kit",
-            "icon": "pi pi-pencil",
-            "children": [
-                {
-                    "name": "Overview",
-                    "to": "/uikit"
-                },
-                {
-                    "name": "Guide v4",
-                    "to": "/uikit/guide/v4"
-                },
-                {
-                    "name": "Guide v3",
-                    "to": "/uikit/guide/v3"
-                }
-            ]
-        },
-        {
-            "name": "Theme Designer",
-            "icon": "pi pi-sparkles",
-            "children": [
-                {
-                    "name": "Overview",
-                    "to": "/designer"
-                },
-                {
-                    "name": "Guide",
-                    "to": "/designer/guide"
-                },
-                {
-                    "name": "Figma Plugin",
-                    "href": "https://www.figma.com/community/plugin/1592914021886732603"
-                },
-                {
-                    "name": "CI Pipeline",
-                    "to": "/designer/ci"
-                }
-            ]
-        },
-        {
-            "name": "Templates",
-            "icon": "pi pi-heart",
-            "to": "/templates"
-        },
-        {
-            "name": "PrimeBlocks",
-            "icon": "pi pi-server",
-            "href": "https://primeblocks.org"
-        },
-        {
-            "name": "Store",
-            "href": "https://primeui.store",
-            "icon": "pi pi-shopping-bag",
-            "badge": "NEW"
-        },
-        {
             "name": "Support",
             "icon": "pi pi-question",
             "children": [
                 {
-                    "name": "Discord",
-                    "href": "https://discord.gg/gzKFYnpmCY"
-                },
-                {
                     "name": "Forum",
-                    "href": "https://github.com/orgs/primefaces/discussions"
-                },
-                {
-                    "name": "PRO Support",
-                    "to": "/support"
+                    "href": "https://github.com/CJDevStudios/bumblevue/discussions"
                 }
             ]
         },
@@ -669,28 +577,11 @@
                 },
                 {
                     "name": "Source Code",
-                    "href": "https://github.com/primefaces/primevue"
+                    "href": "https://github.com/CJDevStudios/bumblevue"
                 },
                 {
                     "name": "Changelog",
-                    "href": "https://github.com/primefaces/primevue/blob/master/CHANGELOG.md"
-                },
-                {
-                    "name": "Contribution",
-                    "to": "/contribution",
-                    "icon": "pi pi-users"
-                },
-                {
-                    "name": "Twitter",
-                    "href": "https://twitter.com/primevue"
-                },
-                {
-                    "name": "Newsletter",
-                    "href": "https://www.primefaces.org/newsletter"
-                },
-                {
-                    "name": "PrimeGear",
-                    "href": "https://gear.primefaces.org"
+                    "href": "https://github.com/CJDevStudios/bumblevue/blob/master/CHANGELOG.md"
                 }
             ]
         }

@@ -28,7 +28,6 @@ import NextStepsDoc from '@/doc/vite/NextStepsDoc.vue';
 import PluginDoc from '@/doc/vite/PluginDoc.vue';
 import ThemeDoc from '@/doc/vite/ThemeDoc.vue';
 import VerifyDoc from '@/doc/vite/VerifyDoc.vue';
-import VideoDoc from '@/doc/vite/VideoDoc.vue';
 
 export default {
     components: { DocCopyMarkdown },
@@ -59,11 +58,6 @@ export default {
                     id: 'examples',
                     label: 'Examples',
                     component: ExamplesDoc
-                },
-                {
-                    id: 'video',
-                    label: 'Video',
-                    component: VideoDoc
                 },
                 {
                     id: 'nextsteps',

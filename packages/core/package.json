@@ -1,17 +1,25 @@
 {
-    "name": "@primevue/core",
+    "name": "@cjdevstudios/bumblevue-core",
     "version": "4.5.5",
-    "author": "PrimeTek Informatics",
+    "author": "CJ Development Studios",
+    "contributors": [
+        {
+            "name": "CJ Development Studios"
+        },
+        {
+            "name": "PrimeTek Informatics"
+        }
+    ],
     "description": "",
-    "homepage": "https://primevue.org/",
+    "homepage": "https://bumblevue.org/",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git",
+        "url": "https://github.com/CJDevStudios/bumblevue.git",
         "directory": "packages/core"
     },
     "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
+        "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "main": "./src/index.js",
     "module": "./src/index.js",
@@ -60,8 +68,8 @@
         "dev:link": "pnpm link --global && npm link"
     },
     "dependencies": {
-        "@primeuix/styled": "catalog:",
-        "@primeuix/utils": "catalog:"
+        "@cjdevstudios/bumbleuix-styled": "catalog:",
+        "@cjdevstudios/bumbleuix-utils": "catalog:"
     },
     "peerDependencies": {
         "vue": "^3.5.0"

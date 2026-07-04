@@ -3186,7 +3186,7 @@
         }
     },
     "animateonscroll": {
-        "description": "AnimateOnScroll manages CSS classes declaratively to during enter/leave animations on scroll or on page load.\n\n[Live Demo](https://primevue.org/animateonscroll)",
+        "description": "AnimateOnScroll manages CSS classes declaratively to during enter/leave animations on scroll or on page load.\n\n[Live Demo](https://bumblevue.org/animateonscroll)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -3347,7 +3347,7 @@
         }
     },
     "animateonscrollstyle": {
-        "description": "AnimateOnScroll manages CSS classes declaratively to during enter/leave animations on scroll or on page load.\n\n[Live Demo](https://primevue.org/animateonscroll)",
+        "description": "AnimateOnScroll manages CSS classes declaratively to during enter/leave animations on scroll or on page load.\n\n[Live Demo](https://bumblevue.org/animateonscroll)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -4984,7 +4984,7 @@
         }
     },
     "avatar": {
-        "description": "Avatar represents people using icons, labels and images.\n\n- [Live Demo](https://primevue.org/avatar)",
+        "description": "Avatar represents people using icons, labels and images.\n\n- [Live Demo](https://bumblevue.org/avatar)",
         "components": {
             "default": {
                 "description": "Avatar represents people using icons, labels and images.",
@@ -5284,7 +5284,7 @@
         }
     },
     "avatarstyle": {
-        "description": "Avatar represents people using icons, labels and images.\n\n- [Live Demo](https://primevue.org/avatar)",
+        "description": "Avatar represents people using icons, labels and images.\n\n- [Live Demo](https://bumblevue.org/avatar)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -5835,7 +5835,7 @@
         }
     },
     "badgedirective": {
-        "description": "Badge directive is a small status indicator for another element.\n\n[Live Demo](https://primevue.org/badge)",
+        "description": "Badge directive is a small status indicator for another element.\n\n[Live Demo](https://bumblevue.org/badge)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -6146,7 +6146,7 @@
         }
     },
     "badgedirectivestyle": {
-        "description": "Badge directive is a small status indicator for another element.\n\n[Live Demo](https://primevue.org/badge)",
+        "description": "Badge directive is a small status indicator for another element.\n\n[Live Demo](https://bumblevue.org/badge)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -27080,7 +27080,7 @@
         }
     },
     "divider": {
-        "description": "Divider is used to separate contents.\n\n[Live Demo](https://primevue.org/divider)",
+        "description": "Divider is used to separate contents.\n\n[Live Demo](https://bumblevue.org/divider)",
         "components": {
             "default": {
                 "description": "Divider is used to separate contents.",
@@ -27311,7 +27311,7 @@
         }
     },
     "dividerstyle": {
-        "description": "Divider is used to separate contents.\n\n[Live Demo](https://primevue.org/divider)",
+        "description": "Divider is used to separate contents.\n\n[Live Demo](https://bumblevue.org/divider)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -27984,7 +27984,7 @@
         }
     },
     "drawer": {
-        "description": "Drawer is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://primevue.org/drawer)",
+        "description": "Drawer is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://bumblevue.org/drawer)",
         "components": {
             "default": {
                 "description": "Drawer is a panel component displayed as an overlay.",
@@ -28496,7 +28496,7 @@
         }
     },
     "drawerstyle": {
-        "description": "Drawer is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://primevue.org/drawer)",
+        "description": "Drawer is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://bumblevue.org/drawer)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -28768,7 +28768,7 @@
         }
     },
     "dynamicdialog": {
-        "description": "DynamicDialogs can be created dynamically with any component as the content using a DialogService.\n\n[Live Demo](https://primevue.org/dynamicdialog)",
+        "description": "DynamicDialogs can be created dynamically with any component as the content using a DialogService.\n\n[Live Demo](https://bumblevue.org/dynamicdialog)",
         "components": {
             "default": {
                 "description": "DynamicDialogs can be created dynamically with any component as the content using a DialogService.",
@@ -28840,7 +28840,7 @@
         }
     },
     "dynamicdialogstyle": {
-        "description": "DynamicDialogs can be created dynamically with any component as the content using a DialogService.\n\n[Live Demo](https://primevue.org/dynamicdialog)",
+        "description": "DynamicDialogs can be created dynamically with any component as the content using a DialogService.\n\n[Live Demo](https://bumblevue.org/dynamicdialog)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -31908,7 +31908,7 @@
         }
     },
     "focustrap": {
-        "description": "Focus Trap keeps focus within a certain DOM element while tabbing.\n\n[Live Demo](https://primevue.org/focustrap)",
+        "description": "Focus Trap keeps focus within a certain DOM element while tabbing.\n\n[Live Demo](https://bumblevue.org/focustrap)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -32091,7 +32091,7 @@
         }
     },
     "focustrapstyle": {
-        "description": "Focus Trap keeps focus within a certain DOM element while tabbing.\n\n[Live Demo](https://primevue.org/focustrap)",
+        "description": "Focus Trap keeps focus within a certain DOM element while tabbing.\n\n[Live Demo](https://bumblevue.org/focustrap)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -40973,7 +40973,7 @@
         }
     },
     "keyfilter": {
-        "description": "A keyfilter is a directive used to block individual keystrokes based on a pattern.\n\n[Live Demo](https://primevue.org/keyfilter)",
+        "description": "A keyfilter is a directive used to block individual keystrokes based on a pattern.\n\n[Live Demo](https://bumblevue.org/keyfilter)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -41239,7 +41239,7 @@
         }
     },
     "keyfilterstyle": {
-        "description": "A keyfilter is a directive used to block individual keystrokes based on a pattern.\n\n[Live Demo](https://primevue.org/keyfilter)",
+        "description": "A keyfilter is a directive used to block individual keystrokes based on a pattern.\n\n[Live Demo](https://bumblevue.org/keyfilter)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -45980,7 +45980,7 @@
         }
     },
     "metergroup": {
-        "description": "MeterGroup is a group of process status indicators.\n\n[Live Demo](https://primevue.org/metergroup)",
+        "description": "MeterGroup is a group of process status indicators.\n\n[Live Demo](https://bumblevue.org/metergroup)",
         "components": {
             "default": {
                 "description": "MeterGroup is a group of process status indicators.",
@@ -46415,7 +46415,7 @@
         }
     },
     "metergroupstyle": {
-        "description": "MeterGroup is a group of process status indicators.\n\n[Live Demo](https://primevue.org/metergroup)",
+        "description": "MeterGroup is a group of process status indicators.\n\n[Live Demo](https://bumblevue.org/metergroup)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -48164,7 +48164,7 @@
         }
     },
     "orderlist": {
-        "description": "OrderList is used to managed the order of a collection.\n\n[Live Demo](https://primevue.org/orderlist)",
+        "description": "OrderList is used to managed the order of a collection.\n\n[Live Demo](https://bumblevue.org/orderlist)",
         "components": {
             "default": {
                 "description": "OrderList is used to sort a collection.",
@@ -48816,7 +48816,7 @@
         }
     },
     "orderliststyle": {
-        "description": "OrderList is used to managed the order of a collection.\n\n[Live Demo](https://primevue.org/orderlist)",
+        "description": "OrderList is used to managed the order of a collection.\n\n[Live Demo](https://bumblevue.org/orderlist)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -48863,7 +48863,7 @@
         }
     },
     "organizationchart": {
-        "description": "OrganizationChart visualizes hierarchical organization data.\n\n[Live Demo](https://primevue.org/organizationchart)",
+        "description": "OrganizationChart visualizes hierarchical organization data.\n\n[Live Demo](https://bumblevue.org/organizationchart)",
         "components": {
             "default": {
                 "description": "OrganizationChart visualizes hierarchical organization data.",
@@ -49532,7 +49532,7 @@
         }
     },
     "organizationchartstyle": {
-        "description": "OrganizationChart visualizes hierarchical organization data.\n\n[Live Demo](https://primevue.org/organizationchart)",
+        "description": "OrganizationChart visualizes hierarchical organization data.\n\n[Live Demo](https://bumblevue.org/organizationchart)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -49919,7 +49919,7 @@
         }
     },
     "overlaypanel": {
-        "description": "OverlayPanel is a container component positioned as connected to its target.\n\n[Live Demo](https://primevue.org/popover)",
+        "description": "OverlayPanel is a container component positioned as connected to its target.\n\n[Live Demo](https://bumblevue.org/popover)",
         "components": {
             "default": {
                 "description": "",
@@ -50105,7 +50105,7 @@
         }
     },
     "overlaypanelstyle": {
-        "description": "OverlayPanel is a container component positioned as connected to its target.\n\n[Live Demo](https://primevue.org/popover)",
+        "description": "OverlayPanel is a container component positioned as connected to its target.\n\n[Live Demo](https://bumblevue.org/popover)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -50130,7 +50130,7 @@
         }
     },
     "paginator": {
-        "description": "Paginator is a generic component to display content in paged format.\n\n[Live Demo](https://primevue.org/paginator)",
+        "description": "Paginator is a generic component to display content in paged format.\n\n[Live Demo](https://bumblevue.org/paginator)",
         "components": {
             "default": {
                 "description": "Paginator is a generic widget to display content in paged format.",
@@ -50870,7 +50870,7 @@
         }
     },
     "paginatorstyle": {
-        "description": "Paginator is a generic component to display content in paged format.\n\n[Live Demo](https://primevue.org/paginator)",
+        "description": "Paginator is a generic component to display content in paged format.\n\n[Live Demo](https://bumblevue.org/paginator)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -54988,7 +54988,7 @@
         }
     },
     "picklist": {
-        "description": "PickList is used to reorder items between different lists.\n\n[Live Demo](https://primevue.org/picklist)",
+        "description": "PickList is used to reorder items between different lists.\n\n[Live Demo](https://bumblevue.org/picklist)",
         "components": {
             "default": {
                 "description": "PickList is used to reorder items between different lists.",
@@ -56096,7 +56096,7 @@
         }
     },
     "pickliststyle": {
-        "description": "PickList is used to reorder items between different lists.\n\n[Live Demo](https://primevue.org/picklist)",
+        "description": "PickList is used to reorder items between different lists.\n\n[Live Demo](https://bumblevue.org/picklist)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -56171,7 +56171,7 @@
         }
     },
     "popover": {
-        "description": "Popover is a container component positioned as connected to its target.\n\n[Live Demo](https://primevue.org/popover)",
+        "description": "Popover is a container component positioned as connected to its target.\n\n[Live Demo](https://bumblevue.org/popover)",
         "components": {
             "default": {
                 "description": "Popover is a container component that can overlay other components on page.",
@@ -56568,7 +56568,7 @@
         }
     },
     "popoverstyle": {
-        "description": "Popover is a container component positioned as connected to its target.\n\n[Live Demo](https://primevue.org/popover)",
+        "description": "Popover is a container component positioned as connected to its target.\n\n[Live Demo](https://bumblevue.org/popover)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -56679,7 +56679,7 @@
         }
     },
     "portalstyle": {
-        "description": "[Live Demo](https://primevue.org/)",
+        "description": "[Live Demo](https://bumblevue.org/)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -58699,7 +58699,7 @@
         }
     },
     "ripple": {
-        "description": "Ripple directive adds ripple effect to the host element.\n\n[Live Demo](https://primevue.org/ripple)",
+        "description": "Ripple directive adds ripple effect to the host element.\n\n[Live Demo](https://bumblevue.org/ripple)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -58858,7 +58858,7 @@
         }
     },
     "ripplestyle": {
-        "description": "Ripple directive adds ripple effect to the host element.\n\n[Live Demo](https://primevue.org/ripple)",
+        "description": "Ripple directive adds ripple effect to the host element.\n\n[Live Demo](https://bumblevue.org/ripple)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -61899,7 +61899,7 @@
         }
     },
     "sidebar": {
-        "description": "Sidebar is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://primevue.org/drawer)",
+        "description": "Sidebar is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://bumblevue.org/drawer)",
         "components": {
             "default": {
                 "description": "",
@@ -62019,7 +62019,7 @@
         }
     },
     "sidebarstyle": {
-        "description": "Sidebar is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://primevue.org/drawer)",
+        "description": "Sidebar is a panel component displayed as an overlay at the edges of the screen.\n\n[Live Demo](https://bumblevue.org/drawer)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -67034,7 +67034,7 @@
         }
     },
     "styleclass": {
-        "description": "StyleClass manages CSS classes declaratively to during enter/leave animations or just to toggle classes on an element.\n\n[Live Demo](https://primevue.org/styleclass)",
+        "description": "StyleClass manages CSS classes declaratively to during enter/leave animations or just to toggle classes on an element.\n\n[Live Demo](https://bumblevue.org/styleclass)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -67248,7 +67248,7 @@
         }
     },
     "styleclassstyle": {
-        "description": "StyleClass manages css classes declaratively to during enter/leave animations or just to toggle classes on an element.\n\n[Live Demo](https://primevue.org/styleclass)",
+        "description": "StyleClass manages css classes declaratively to during enter/leave animations or just to toggle classes on an element.\n\n[Live Demo](https://bumblevue.org/styleclass)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -72990,7 +72990,7 @@
         }
     },
     "timeline": {
-        "description": "Timeline visualizes a series of chained events.\n\n[Live Demo](https://primevue.org/timeline)",
+        "description": "Timeline visualizes a series of chained events.\n\n[Live Demo](https://bumblevue.org/timeline)",
         "components": {
             "default": {
                 "description": "Timeline visualizes a series of chained events.",
@@ -73351,7 +73351,7 @@
         }
     },
     "timelinestyle": {
-        "description": "Timeline visualizes a series of chained events.\n\n[Live Demo](https://primevue.org/timeline)",
+        "description": "Timeline visualizes a series of chained events.\n\n[Live Demo](https://bumblevue.org/timeline)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -75551,7 +75551,7 @@
         }
     },
     "tooltip": {
-        "description": "Tooltip directive provides advisory information for a component.\n\n[Live Demo](https://primevue.org/tooltip)",
+        "description": "Tooltip directive provides advisory information for a component.\n\n[Live Demo](https://bumblevue.org/tooltip)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",
@@ -75942,7 +75942,7 @@
         }
     },
     "tooltipstyle": {
-        "description": "Tooltip directive provides advisory information for a component.\n\n[Live Demo](https://primevue.org/tooltip)",
+        "description": "Tooltip directive provides advisory information for a component.\n\n[Live Demo](https://bumblevue.org/tooltip)",
         "interfaces": {
             "description": "Defines the custom interfaces used by the module.",
             "eventDescription": "Defines the custom events used by the component's emit.",

@@ -1,17 +1,25 @@
 {
-    "name": "@primevue/themes",
+    "name": "@cjdevstudios/bumblevue-themes",
     "version": "4.5.5",
-    "author": "PrimeTek Informatics",
+    "author": "CJ Development Studios",
+    "contributors": [
+        {
+            "name": "CJ Development Studios"
+        },
+        {
+            "name": "PrimeTek Informatics"
+        }
+    ],
     "description": "",
-    "homepage": "https://primevue.org/",
+    "homepage": "https://bumblevue.org/",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git",
+        "url": "https://github.com/CJDevStudios/bumblevue.git",
         "directory": "packages/themes"
     },
     "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
+        "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "private": true,
     "main": "./src/index.js",
@@ -83,8 +91,8 @@
         "dev:link": "pnpm link --global && npm link"
     },
     "dependencies": {
-        "@primeuix/styled": "catalog:",
-        "@primeuix/themes": "catalog:"
+        "@cjdevstudios/bumbleuix-styled": "catalog:",
+        "@cjdevstudios/bumbleuix-themes": "catalog:"
     },
     "engines": {
         "node": ">=12.11.0"

@@ -11,9 +11,6 @@
                 <slot></slot>
             </div>
         </div>
-        <ClientOnly fallback-tag="div" fallback="Theme Designer">
-            <AppDesigner />
-        </ClientOnly>
         <AppFooter />
         <Toast />
         <Toast position="top-left" group="tl" />
@@ -59,15 +56,6 @@ export default {
             this.sidebarActive = false;
             unblockBodyScroll('blocked-scroll');
         },
-        isOutdatedIE() {
-            let ua = window.navigator.userAgent;
-
-            if (ua.indexOf('MSIE ') > 0 || ua.indexOf('Trident/') > 0) {
-                return true;
-            }
-
-            return false;
-        }
     },
     computed: {
         containerClass() {

@@ -1,5 +1,5 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>For more information visit <PrimeVueNuxtLink to="/dialog/#pt.viewer">Dialog PT</PrimeVueNuxtLink>.</p>
+        <p>For more information visit <BumbleVueNuxtLink to="/dialog/#pt.viewer">Dialog PT</BumbleVueNuxtLink>.</p>
     </DocSectionText>
 </template>

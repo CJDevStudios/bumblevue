@@ -1,14 +1,10 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>
-            PrimeVue is a complete UI suite for Vue.js consisting of a rich set of UI components, icons, blocks, and application templates. The project's primary goal is to boost developer productivity by offering reusable solutions that are easy to
-            tune and customize as an in-house library.
-        </p>
+        <p>BumbleVue is a community-driven, free and open-source UI component library for Vue.js, providing a wide range of customizable and responsive components to help developers build modern web applications with ease.</p>
         <p class="mb-0">
-            The project has been created by <a href="https://www.primetek.com.tr">PrimeTek</a> a world-renowned vendor of popular UI Component suites, including <a href="https://primefaces.org">PrimeFaces</a>,
-            <a href="https://primeng.org">PrimeNG</a>, and <a href="https://primereact.org">PrimeReact.</a> All the members in <NuxtLink to="/team">our team</NuxtLink> are full time employees of PrimeTek who share the same passion and vision for open
-            source to create awesome UI libraries. Depending on a 3rd party library may introduce risks if the library maintainers decide not to work on the project, however, this is not the case with PrimeVue as the track record of PrimeTek shows.
-            For example, PrimeFaces has been maintained actively since 2008.
+            The project forked from PrimeVue, created by <a href="https://www.primetek.com.tr">PrimeTek</a>.
+            In June 2026, PrimeTek archived PrimeVue and its other open-source projects and transferred to a closed-source, dual-license model with a limited free community license.
+            Thus, BumbleVue was created to continue the development of the open-source version of PrimeVue and to provide a community-driven alternative for developers who prefer open-source software and transparency.
         </p>
     </DocSectionText>
 </template>

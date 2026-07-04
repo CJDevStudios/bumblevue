@@ -16,8 +16,8 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
-            "@primevue/icons/*": ["./src/*"],
-            "@primevue/core/*": ["../../packages/core/src/*"]
+            "@cjdevstudios/bumblevue-icons/*": ["./src/*"],
+            "@cjdevstudios/bumblevue-core/*": ["../../packages/core/src/*"]
         }
     },
     "include": ["**/*.ts", "src/*"],

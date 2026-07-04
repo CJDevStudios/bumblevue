@@ -178,7 +178,7 @@ export default {
                             description4: `
                     Diamond uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can
                 <a href="https://www.figma.com/design/PUKCTdB0YbqY2NVRGRgdEB/Preview-%7C%C2%A0Diamond-%7C%C2%A03.0.0?node-id=0-1&t=4iPjWVN9cs4g6XTA-1 target="_blank" rel="noopener noreferrer"">preview the Figma file</a> before the purchase. Note that PrimeVue UI components are excluded from the Diamond Figma file as they
-                are available in <PrimeVueNuxtLink to="/uikit">PrimeOne for Figma</PrimeVueNuxtLink> only.`
+                are available in <BumbleVueNuxtLink to="/uikit">PrimeOne for Figma</BumbleVueNuxtLink> only.`
                         }
                     },
                     {

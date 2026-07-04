@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-import PrimeUI from 'tailwindcss-primeui';
+import BumbleVue from '@cjdevstudios/tailwindcss-bumblevue';
 
 export default {
     darkMode: ['selector', '[class="p-dark"]'],
     content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.{js,vue,ts}', './doc/**/*.{js,vue,ts}', './error.vue'],
-    plugins: [PrimeUI],
+    plugins: [BumbleVue],
     theme: {
         screens: {
             sm: '576px',

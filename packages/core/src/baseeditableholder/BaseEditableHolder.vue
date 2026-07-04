@@ -1,6 +1,6 @@
 <script>
-import { isNotEmpty } from '@primeuix/utils';
-import BaseComponent from '@primevue/core/basecomponent';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 
 export default {
     name: 'BaseEditableHolder',
@@ -97,7 +97,7 @@ export default {
 
             this.formField.onChange?.({ originalEvent: event, value });
         },
-        // @todo move to @primeuix/utils
+        // @todo move to @cjdevstudios/bumbleuix-utils
         findNonEmpty(...values) {
             return values.find(isNotEmpty);
         }

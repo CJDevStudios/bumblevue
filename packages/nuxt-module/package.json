@@ -1,17 +1,25 @@
 {
-    "name": "@primevue/nuxt-module",
+    "name": "@cjdevstudios/bumblevue-nuxt-module",
     "version": "4.5.5",
-    "author": "PrimeTek Informatics",
+    "author": "CJ Development Studios",
+    "contributors": [
+        {
+            "name": "CJ Development Studios"
+        },
+        {
+            "name": "PrimeTek Informatics"
+        }
+    ],
     "description": "Nuxt module for PrimeVue",
-    "homepage": "https://primevue.org/",
+    "homepage": "https://bumblevue.org/",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git",
+        "url": "https://github.com/CJDevStudios/bumblevue.git",
         "directory": "packages/nuxt-module"
     },
     "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
+        "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "keywords": [
         "vue",
@@ -37,9 +45,9 @@
             "@primevue/metadata",
             "@primevue/auto-import-resolver",
             "unplugin-vue-components",
-            "@primeuix/utils",
-            "@primeuix/utils/object",
-            "@primeuix/utils/dom"
+            "@cjdevstudios/bumbleuix-utils",
+            "@cjdevstudios/bumbleuix-utils/object",
+            "@cjdevstudios/bumbleuix-utils/dom"
         ]
     },
     "publishConfig": {
@@ -69,17 +77,17 @@
     },
     "dependencies": {
         "@nuxt/kit": "^3",
-        "@primeuix/styled": "catalog:",
-        "@primeuix/utils": "catalog:",
-        "primevue": "workspace:*",
-        "@primevue/auto-import-resolver": "workspace:*",
-        "@primevue/metadata": "workspace:*",
-        "@primevue/forms": "workspace:*",
+        "@cjdevstudios/bumbleuix-styled": "catalog:",
+        "@cjdevstudios/bumbleuix-utils": "catalog:",
+        "@cjdevstudios/bumblevue": "workspace:*",
+        "@cjdevstudios/bumblevue-auto-import-resolver": "workspace:*",
+        "@cjdevstudios/bumblevue-metadata": "workspace:*",
+        "@cjdevstudios/bumblevue-forms": "workspace:*",
         "unplugin-vue-components": "28.4.1",
         "pathe": "^1.1.2"
     },
     "devDependencies": {
-        "@primeuix/themes": "catalog:",
+        "@cjdevstudios/bumbleuix-themes": "catalog:",
         "@nuxt/devtools": "^2.1.0",
         "@nuxt/eslint-config": "^1.1.0",
         "@nuxt/module-builder": "^0.8.4",

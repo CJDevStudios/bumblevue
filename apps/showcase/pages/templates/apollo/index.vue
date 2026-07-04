@@ -202,7 +202,7 @@ export default {
                     Apollo uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can
                     <a href="https://www.figma.com/design/p2G3F7XAaZZrlbfLY30P8s/Preview-%7C-Apollo-%7C%C2%A02.0.0?node-id=138-5712&t=aL4nSTPYv133sC0f-1" target="_blank" rel="noopener noreferrer">preview the Figma file</a>
                     before the purchase. Note that PrimeVue UI components are excluded from the Apollo Figma file as they are available in
-                    <PrimeVueNuxtLink to="/uikit">PrimeOne for Figma</PrimeVueNuxtLink> only.`
+                    <BumbleVueNuxtLink to="/uikit">PrimeOne for Figma</BumbleVueNuxtLink> only.`
                         }
                     },
                     {

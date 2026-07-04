@@ -3,14 +3,14 @@
         <div class="flex flex-col items-center">
             <h1 class="text-5xl font-bold text-center xl:text-left leading-tight">The Next-Gen UI Suite for <span class="font-bold text-primary">Vue.js</span></h1>
             <p class="text-center mt-0 mb-8 text-surface-500 dark:text-surface-400 font-medium text-xl leading-relaxed lg:px-56">
-                Enhance your web applications with PrimeVue's comprehensive suite of customizable, feature-rich UI components. With PrimeVue, turning your development vision into reality has never been easier.
+                BumbleVue is a community-driven, free and open-source UI component library for Vue.js, providing a wide range of customizable and responsive components to help developers build modern web applications with ease.
             </p>
             <div class="flex items-center gap-4">
-                <PrimeVueNuxtLink to="/setup" class="linkbox linkbox-primary" @click="onGetStartedClick">
+                <BumbleVueNuxtLink to="/setup" class="linkbox linkbox-primary" @click="onGetStartedClick">
                     <span>Get Started </span>
                     <i class="pi pi-arrow-right ms-4"></i>
-                </PrimeVueNuxtLink>
-                <a href="https://github.com/primefaces/primevue" target="_blank" rel="noopener noreferrer" class="linkbox">
+                </BumbleVueNuxtLink>
+                <a href="https://github.com/CJDevStudios/bumblevue" target="_blank" rel="noopener noreferrer" class="linkbox">
                     <span>Give a Star</span>
                     <i class="pi pi-star-fill ms-4 text-yellow-500"></i>
                 </a>
@@ -444,37 +444,37 @@ export default {
             opportunities: [
                 {
                     title: 'Apollo',
-                    link: 'https://primevue.org/templates/apollo/',
+                    link: 'https://bumblevue.org/templates/apollo/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/apollo-vue.jpg',
                     text: 'Keep your application fresh with Apollo, the newest and most modern template available.'
                 },
                 {
                     title: 'Ultima',
-                    link: 'https://primevue.org/templates/ultima/',
+                    link: 'https://bumblevue.org/templates/ultima/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/ultima-vue.jpg',
                     text: "Elevate your application's intuitiveness with Ultima's premium Material Design interface."
                 },
                 {
                     title: 'Diamond',
-                    link: 'https://primevue.org/templates/diamond/',
+                    link: 'https://bumblevue.org/templates/diamond/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/diamond-remastered-vue.jpg',
                     text: "Handle complex operations with elegance with Diamond's robust and powerful premium design."
                 },
                 {
                     title: 'Atlantis',
-                    link: 'https://primevue.org/templates/atlantis/',
+                    link: 'https://bumblevue.org/templates/atlantis/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/atlantis-vue.jpg',
                     text: "Boost your application's capabilities, customization with the Atlantis template."
                 },
                 {
                     title: 'Verona',
-                    link: 'https://primevue.org/templates/verona/',
+                    link: 'https://bumblevue.org/templates/verona/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/verona-vue.jpg',
                     text: "Achieve sophistication and subtlety with Verona's minimalistic, content-focused design."
                 },
                 {
                     title: 'Freya',
-                    link: 'https://primevue.org/templates/freya/',
+                    link: 'https://bumblevue.org/templates/freya/',
                     image: 'https://primefaces.org/cdn/primevue/images/layouts/freya-vue.png',
                     text: "Give your application a sleek, updated look with Freya's chic and modern premium template."
                 }

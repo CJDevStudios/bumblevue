@@ -51,7 +51,7 @@ export declare namespace FilterService {
 }
 
 // Icons
-export interface PrimeIconsOptions {
+export interface BumbleIconsOptions {
     readonly ADDRESS_BOOK: string;
     readonly ALIGN_CENTER: string;
     readonly ALIGN_JUSTIFY: string;
@@ -360,7 +360,7 @@ export interface PrimeIconsOptions {
     readonly YOUTUBE: string;
 }
 
-export declare const PrimeIcons: PrimeIconsOptions;
+export declare const BumbleIcons: BumbleIconsOptions;
 
 // Severity
 export interface ToastSeverityOptions {

@@ -16,9 +16,9 @@
                         <a href="https://genesis.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/genesis" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/genesis" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -35,9 +35,9 @@
                         <a href="https://sakai.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/sakai" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/sakai" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -50,9 +50,9 @@
                         <a href="https://poseidon.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/poseidon" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/poseidon" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -65,9 +65,9 @@
                         <a href="https://apollo.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/apollo" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/apollo" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -80,9 +80,9 @@
                         <a href="https://diamond.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/diamond" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/diamond" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -95,9 +95,9 @@
                         <a href="https://avalon.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/avalon" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/avalon" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -110,9 +110,9 @@
                         <a href="https://atlantis.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/atlantis" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/atlantis" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -125,9 +125,9 @@
                         <a href="https://ultima.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/ultima" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/ultima" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -140,9 +140,9 @@
                         <a href="https://freya.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/freya" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/freya" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>
@@ -155,9 +155,9 @@
                         <a href="https://verona.primevue.org" class="p-button flex-1" rel="noopener noreferrer" target="_blank">
                             <span class="p-button-label">Preview</span>
                         </a>
-                        <PrimeVueNuxtLink to="/templates/verona" class="p-button p-button-outlined flex-1">
+                        <BumbleVueNuxtLink to="/templates/verona" class="p-button p-button-outlined flex-1">
                             <span class="p-button-label">Learn More</span>
-                        </PrimeVueNuxtLink>
+                        </BumbleVueNuxtLink>
                     </div>
                 </div>
             </div>

@@ -27,6 +27,5 @@
     "search.exclude": {
         "**/dist": true,
         "**/node_modules": true,
-        "apps/volt/**": true
     }
 }

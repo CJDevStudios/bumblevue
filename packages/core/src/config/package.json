@@ -1,5 +1,5 @@
 {
-    "main": "./PrimeVue.js",
-    "module": "./PrimeVue.js",
-    "types": "./PrimeVue.d.ts"
+    "main": "BumbleVue.js",
+    "module": "BumbleVue.js",
+    "types": "./BumbleVue.d.ts"
 }
