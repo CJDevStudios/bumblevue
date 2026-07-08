@@ -31,10 +31,6 @@
         transition: outline-color .2s;
         outline-color: transparent;
         @include focus-visible();
-
-        svg {
-            width: 120px;
-        }
     }
 
     .layout-topbar-logo {

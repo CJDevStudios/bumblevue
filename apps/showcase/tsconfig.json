@@ -17,6 +17,7 @@
         "jsx": "preserve",
         "incremental": true
     },
-    "include": ["../../packages/primevue/src/**/*.d.ts", "../../packages/forms/src/**/*.d.ts", "../../node_modules/@primeuix/styles/**/*.d.ts", "../../node_modules/@primeuix/themes/**/*.d.ts"],
+    "include": [
+        "../../packages/bumblevue/src/**/*.d.ts", "../../packages/forms/src/**/*.d.ts", "../../node_modules/@cjdevstudios/bumbleuix-styles/**/*.d.ts", "../../node_modules/@cjdevstudios/bumbleuix-themes/**/*.d.ts"],
     "exclude": ["node_modules", "**/node_modules", "**/dist", "**/*.spec.ts", "**/*.test.ts"]
 }

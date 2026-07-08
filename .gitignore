@@ -20,6 +20,7 @@ logs
 .eslintcache
 coverage
 **/.DS_Store
+**/.tsbuildinfo
 
 # Local env files
 .env

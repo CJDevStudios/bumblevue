@@ -1,14 +1,14 @@
-import { Theme, ThemeService } from '@primeuix/styled';
-import { getKeyValue, isArray, isEmpty, isFunction, isObject, isString, resolve, toCapitalCase, toFlatCase } from '@primeuix/utils/object';
-import { uuid } from '@primeuix/utils/uuid';
-import Base from '@primevue/core/base';
-import BaseStyle from '@primevue/core/base/style';
-import PrimeVueService from '@primevue/core/service';
+import { Theme, ThemeService } from '@cjdevstudios/bumbleuix-styled';
+import { getKeyValue, isArray, isEmpty, isFunction, isObject, isString, resolve, toCapitalCase, toFlatCase } from '@cjdevstudios/bumble-utils/object';
+import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
+import Base from '@cjdevstudios/bumblevue-core/base';
+import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BumbleVueService from '@cjdevstudios/bumblevue-core/service';
 import { mergeProps } from 'vue';
 
 const BaseDirective = {
     _getMeta: (...args) => [isObject(args[0]) ? undefined : args[0], resolve(isObject(args[0]) ? args[0] : args[1])],
-    _getConfig: (binding, vnode) => (binding?.instance?.$primevue || vnode?.ctx?.appContext?.config?.globalProperties?.$primevue)?.config,
+    _getConfig: (binding, vnode) => (binding?.instance?.$bumblevue || vnode?.ctx?.appContext?.config?.globalProperties?.$bumblevue)?.config,
     _getOptionValue: getKeyValue,
     _getPTValue: (instance = {}, obj = {}, key = '', params = {}, searchInDefaultPT = true) => {
         const getValue = (...args) => {
@@ -17,7 +17,7 @@ const BaseDirective = {
             return isString(value) || isArray(value) ? { class: value } : value;
         };
 
-        const { mergeSections = true, mergeProps: useMergeProps = false } = instance.binding?.value?.ptOptions || instance.$primevueConfig?.ptOptions || {};
+        const { mergeSections = true, mergeProps: useMergeProps = false } = instance.binding?.value?.ptOptions || instance.$bumblevueConfig?.ptOptions || {};
         const global = searchInDefaultPT ? BaseDirective._useDefaultPT(instance, instance.defaultPT(), getValue, key, params) : undefined;
         const self = BaseDirective._usePT(instance, BaseDirective._getPT(obj, instance.$name), getValue, key, { ...params, global: global || {} });
         const datasets = BaseDirective._getPTDatasets(instance, key);
@@ -52,7 +52,7 @@ const BaseDirective = {
         const fn = (value) => callback(value, key, params);
 
         if (pt && Object.hasOwn(pt, '_usept')) {
-            const { mergeSections = true, mergeProps: useMergeProps = false } = pt['_usept'] || instance.$primevueConfig?.ptOptions || {};
+            const { mergeSections = true, mergeProps: useMergeProps = false } = pt['_usept'] || instance.$bumblevueConfig?.ptOptions || {};
             const originalValue = fn(pt.originalValue);
             const value = fn(pt.value);
 
@@ -175,12 +175,12 @@ const BaseDirective = {
                 $value: binding?.value,
                 $el: $prevInstance['$el'] || el || undefined,
                 $style: { classes: undefined, inlineStyles: undefined, load: () => {}, loadCSS: () => {}, loadStyle: () => {}, ...options?.style },
-                $primevueConfig: config,
+                $bumblevueConfig: config,
                 $attrSelector: el.$pd?.[name]?.attrSelector,
                 /* computed instance variables */
                 defaultPT: () => BaseDirective._getPT(config?.pt, undefined, (value) => value?.directives?.[name]),
                 isUnstyled: () => (el._$instances[name]?.$binding?.value?.unstyled !== undefined ? el._$instances[name]?.$binding?.value?.unstyled : config?.unstyled),
-                theme: () => el._$instances[name]?.$primevueConfig?.theme,
+                theme: () => el._$instances[name]?.$bumblevueConfig?.theme,
                 preset: () => el._$instances[name]?.$binding?.value?.dt,
                 /* instance's methods */
                 ptm: (key = '', params = {}) => BaseDirective._getPTValue(el._$instances[name], el._$instances[name]?.$binding?.value?.pt, key, { ...params }),
@@ -210,20 +210,20 @@ const BaseDirective = {
             instance.$watchersCallback = { config: handleWatchConfig, 'config.ripple': handleWatchConfigRipple };
 
             // for 'config'
-            watchers?.['config']?.call(instance, instance?.$primevueConfig);
-            PrimeVueService.on('config:change', handleWatchConfig);
+            watchers?.['config']?.call(instance, instance?.$bumblevueConfig);
+            BumbleVueService.on('config:change', handleWatchConfig);
 
             // for 'config.ripple'
-            watchers?.['config.ripple']?.call(instance, instance?.$primevueConfig?.ripple);
-            PrimeVueService.on('config:ripple:change', handleWatchConfigRipple);
+            watchers?.['config.ripple']?.call(instance, instance?.$bumblevueConfig?.ripple);
+            BumbleVueService.on('config:ripple:change', handleWatchConfigRipple);
         };
 
         const stopWatchers = (el) => {
             const watchers = el._$instances[name].$watchersCallback;
 
             if (watchers) {
-                PrimeVueService.off('config:change', watchers.config);
-                PrimeVueService.off('config:ripple:change', watchers['config.ripple']);
+                BumbleVueService.off('config:change', watchers.config);
+                BumbleVueService.off('config:ripple:change', watchers['config.ripple']);
                 el._$instances[name].$watchersCallback = undefined;
             }
         };

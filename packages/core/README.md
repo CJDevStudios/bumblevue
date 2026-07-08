@@ -1,1 +1,1 @@
-# PrimeVue Core
+# BumbleVue Core

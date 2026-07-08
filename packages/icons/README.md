@@ -1,1 +1,1 @@
-# PrimeVue Icons
+# BumbleVue Icons

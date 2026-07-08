@@ -1,7 +1,7 @@
-import { uuid } from '@primeuix/utils/uuid';
+import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
 
 /**
- * @deprecated since v4.3.0. Use `uuid` from @primeuix/utils instead.
+ * @deprecated since v4.3.0. Use `uuid` from @cjdevstudios/bumbleuix-utils instead.
  * @param {string} prefix
  * @return {string}
  */

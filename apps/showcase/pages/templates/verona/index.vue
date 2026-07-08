@@ -162,7 +162,7 @@ export default {
                 template and requires a separate purchase.`,
                             description4: `Verona uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can
                 <a href="https://www.figma.com/design/9V43wXgKud8vXF9ZkbF83s/Preview-%7C-Verona-%7C%C2%A02.0.0?node-id=1303-749&t=0tlndOYlFeA9OaVc-1" target="_blank" rel="noopener noreferrer">preview the Figma file</a> before the purchase. Note that PrimeVue UI components are excluded from the Verona Figma file as they
-                are available in <PrimeVueNuxtLink to="/uikit">PrimeOne for Figma</PrimeVueNuxtLink> only.`
+                are available in <BumbleVueNuxtLink to="/uikit">PrimeOne for Figma</BumbleVueNuxtLink> only.`
                         }
                     },
                     {

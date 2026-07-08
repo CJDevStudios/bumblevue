@@ -29,7 +29,6 @@ import ArchitectureDoc from '@/doc/theming/unstyled/ArchitectureDoc.vue';
 import ExampleDoc from '@/doc/theming/unstyled/ExampleDoc.vue';
 import GlobalDoc from '@/doc/theming/unstyled/GlobalDoc.vue';
 import SetupDoc from '@/doc/theming/unstyled/SetupDoc.vue';
-import VoltDoc from '@/doc/theming/unstyled/VoltDoc.vue';
 
 export default {
     components: { DocCopyMarkdown },
@@ -56,11 +55,6 @@ export default {
                     label: 'Global',
                     component: GlobalDoc
                 },
-                {
-                    id: 'volt',
-                    label: 'Volt',
-                    component: VoltDoc
-                }
             ]
         };
     }
