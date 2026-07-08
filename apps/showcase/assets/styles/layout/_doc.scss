@@ -195,7 +195,7 @@
 
 .doc-section-nav {
     list-style: none;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 
     >.navbar-item {

@@ -1,1 +1,1 @@
-# PrimeVue AutoImportResolver
+# BumbleVue AutoImportResolver

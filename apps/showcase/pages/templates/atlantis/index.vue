@@ -172,7 +172,7 @@ export default {
                             description4: `
                     Atlantis uses Figma as the design tool. It will be possible to download the Figma file after your purchase. You can
                 <a href="https://www.figma.com/design/2aOISJWanQAd4Kzu8BLYe7/Preview-%7C%C2%A0Atlantis-%7C-2.0.0?node-id=1303-749&t=PVvmnN9FxL8FMgZf-1" target="_blank" rel="noopener noreferrer">preview the Figma file</a> before the purchase. Note that PrimeVue UI components are excluded from the
-                Atlantis Figma file as they are available in <PrimeVueNuxtLink to="/uikit">PrimeOne for Figma</PrimeVueNuxtLink> only.`
+                Atlantis Figma file as they are available in <BumbleVueNuxtLink to="/uikit">PrimeOne for Figma</BumbleVueNuxtLink> only.`
                         }
                     },
                     {

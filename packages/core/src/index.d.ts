@@ -45,17 +45,17 @@ export declare type NoInfer<T> = [T][T extends any ? 0 : never];
 /**
  * Modules
  */
-export * from '@primevue/core/api';
-export * from '@primevue/core/base/style';
-export * from '@primevue/core/basecomponent';
-export * from '@primevue/core/basecomponent/style';
-export * from '@primevue/core/basedirective';
-export * from '@primevue/core/baseeditableholder';
-export * from '@primevue/core/baseinput';
-export * from '@primevue/core/config';
-export { default as PrimeVue } from '@primevue/core/config';
-export * from '@primevue/core/service';
-export * from '@primevue/core/useattrselector';
-export * from '@primevue/core/useid';
-export * from '@primevue/core/usestyle';
-export * from '@primevue/core/utils';
+export * from '@cjdevstudios/bumblevue-core/api';
+export * from '@cjdevstudios/bumblevue-core/base/style';
+export * from '@cjdevstudios/bumblevue-core/basecomponent';
+export * from '@cjdevstudios/bumblevue-core/basecomponent/style';
+export * from '@cjdevstudios/bumblevue-core/basedirective';
+export * from '@cjdevstudios/bumblevue-core/baseeditableholder';
+export * from '@cjdevstudios/bumblevue-core/baseinput';
+export * from '@cjdevstudios/bumblevue-core/config';
+export { default as BumbleVue } from '@cjdevstudios/bumblevue-core/config';
+export * from '@cjdevstudios/bumblevue-core/service';
+export * from '@cjdevstudios/bumblevue-core/useattrselector';
+export * from '@cjdevstudios/bumblevue-core/useid';
+export * from '@cjdevstudios/bumblevue-core/usestyle';
+export * from '@cjdevstudios/bumblevue-core/utils';

@@ -4,8 +4,8 @@ on:
     push:
         branches: [master]
         paths:
-            - 'packages/primevue/src/**/*.d.ts'
-            - 'packages/primevue/src/**/style/*.js'
+            - '../../packages/bumblevue/src/**/*.d.ts'
+            - '../../packages/bumblevue/src/**/style/*.js'
             - 'packages/themes/src/presets/**/**/index.js'
 
 permissions:

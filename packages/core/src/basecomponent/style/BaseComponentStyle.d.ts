@@ -1,11 +1,11 @@
 /**
  *
- * [Live Demo](https://primevue.org/)
+ * [Live Demo](https://bumblevue.org/)
  *
  * @module basecomponentstyle
  *
  */
-import { BaseStyle } from '@primevue/core/base/style';
+import { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
 
 export enum BaseComponentClasses {}
 

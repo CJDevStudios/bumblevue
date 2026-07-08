@@ -1,5 +1,5 @@
 name: Bug report
-description: Create a report to help PrimeVue improve.
+description: Create a report to help BumbleVue improve.
 title: Issue Title
 labels:
   - 'Status: Needs Triage'
@@ -10,14 +10,9 @@ body:
         ## Overview
 
 
-        PrimeVue receives close to 1 million downloads per month. As any other popular OSS project, you may understand that the core team does not have the bandwidth to review each and every issue in detail in their daily routines. We have established strict guidelines for issue creation to ensure we can effectively address issues. It will help us prioritize and manage our workload efficiently.
-
-
-        Adhering to these guidelines, you help us maintain and improve the project more effectively. If you'd like to get our detailed attention, consider PrimeVue PRO Support instead, which provides support within one business day. Thank you for your cooperation and contributions!
-
-        ## Prioritization
-
-        Our team uses several metrics, including the number of comments and reactions, to prioritize issue tickets. As a result, issues with the highest demand receive more attention and information.
+        BumbleVue is a free community-driven project that is maintained by volunteers rather than a paid, dedicated team.
+          By following the bug report template, you can help us identify and resolve issues more efficiently.
+          This will allow us to focus on the most critical problems and improve the overall quality of BumbleVue.
 
         ## Issue Creation Guidelines
 
@@ -25,18 +20,10 @@ body:
         To help us assist you better, please follow these mandatory requirements when creating an issue:
 
 
-        **Important:** Our bot will automatically close issues that do not follow these guidelines.
-
-
         ### Reproducer
 
 
-        Provide a clear and concise executable example that reproduces the issue based on our StackBlitz template.
-
-
-        ### PrimeVue Version
-
-        Ensure that you are using PrimeVue version v4.
+        Provide a clear and concise executable example that reproduces the issue.
 
 
         ### Provide a Pull Request
@@ -51,16 +38,11 @@ body:
           6. Push to the branch (`git push origin feature/YourFeatureName`).
           7. Open a pull request.
 
-        ### Reason for No PR
-
-
-        If you are unable to provide a PR, please explain why. Understanding the reasons can help us improve and assist you in contributing.
-
 
         ### Discussions and Questions
 
 
-        Please refrain from creating issue tickets for questions or support requests. Instead, use the GitHub Discussions or join the PrimeLand  Discord server for assistance.
+        Please refrain from creating issue tickets for questions or support requests. Instead, use the GitHub Discussions for assistance.
 
 
         ## New Issue Report
@@ -102,12 +84,6 @@ body:
     id: reproducer
     attributes:
       label: Reproducer
-      placeholder: 'https://stackblitz.com/edit/primevue-4-vite-issue-template'
-      description: >-
-        Issues **without** a StackBlitz example will be closed automatically.
-        Please fork one of the issue template [PrimeVue Issue
-        Template](https://stackblitz.com/edit/primevue-4-vite-issue-template)
-        and create a case demonstrating your bug report.
     validations:
       required: true
   - type: textarea
@@ -125,9 +101,9 @@ body:
     validations:
       required: true
   - type: input
-    id: primevue-version
+    id: bumblevue-version
     attributes:
-      label: PrimeVue version
+      label: BumbleVue version
       placeholder: 4.x.x
       description: >-
         Only issues related to v4 are valid.

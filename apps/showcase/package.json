@@ -1,9 +1,17 @@
 {
     "name": "showcase",
     "version": "4.5.5",
-    "author": "PrimeTek Informatics",
+    "author": "CJ Development Studios",
+    "contributors": [
+        {
+            "name": "CJ Development Studios"
+        },
+        {
+            "name": "PrimeTek Informatics"
+        }
+    ],
     "description": "",
-    "homepage": "https://primevue.org/",
+    "homepage": "https://bumblevue.org/",
     "type": "module",
     "license": "MIT",
     "repository": {
@@ -12,7 +20,7 @@
         "directory": "packages/showcase"
     },
     "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
+        "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "keywords": [
         "primevue",
@@ -36,17 +44,16 @@
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "build:prebuild": "node ./scripts/prebuild.mjs",
-        "build:apidoc": "node ./scripts/build-apidoc.cjs",
-        "build:llmdocs": "node ./scripts/build-llm-docs.mjs"
+        "build:apidoc": "node ./scripts/build-apidoc.cjs"
     },
     "dependencies": {
         "@docsearch/js": "catalog:app",
-        "@primeuix/themes": "catalog:",
-        "@primevue/core": "workspace:*",
-        "@primevue/forms": "workspace:*",
-        "@primevue/nuxt-module": "workspace:*",
-        "primeicons": "catalog:",
-        "primevue": "workspace:*",
+        "@cjdevstudios/bumbleuix-themes": "catalog:",
+        "@cjdevstudios/bumblevue-core": "workspace:*",
+        "@cjdevstudios/bumblevue-forms": "workspace:*",
+        "@cjdevstudios/bumblevue-nuxt-module": "workspace:*",
+        "@cjdevstudios/bumbleicons": "catalog:",
+        "@cjdevstudios/bumblevue": "workspace:*",
         "chart.js": "catalog:app",
         "quill": "catalog:app",
         "superstruct": "^2.0.2",
@@ -63,7 +70,7 @@
         "sass": "catalog:app",
         "sass-loader": "catalog:app",
         "tailwindcss": "^3",
-        "tailwindcss-primeui": "catalog:",
+        "@cjdevstudios/tailwindcss-bumblevue": "catalog:",
         "typedoc": "0.23.23",
         "vite": "catalog:app"
     },

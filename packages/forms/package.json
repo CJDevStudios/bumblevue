@@ -1,17 +1,25 @@
 {
-    "name": "@primevue/forms",
+    "name": "@cjdevstudios/bumblevue-forms",
     "version": "4.5.5",
-    "author": "PrimeTek Informatics",
+    "author": "CJ Development Studios",
+    "contributors": [
+        {
+            "name": "CJ Development Studios"
+        },
+        {
+            "name": "PrimeTek Informatics"
+        }
+    ],
     "description": "",
-    "homepage": "https://primevue.org/",
+    "homepage": "https://bumblevue.org/",
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git",
+        "url": "https://github.com/CJDevStudios/bumblevue.git",
         "directory": "packages/forms"
     },
     "bugs": {
-        "url": "https://github.com/primefaces/primevue/issues"
+        "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "main": "./src/index.js",
     "module": "./src/index.js",
@@ -52,9 +60,9 @@
         "dev:link": "pnpm link --global && npm link"
     },
     "dependencies": {
-        "@primeuix/utils": "catalog:",
-        "@primeuix/forms": "catalog:",
-        "@primevue/core": "workspace:*"
+        "@cjdevstudios/bumbleuix-utils": "catalog:",
+        "@cjdevstudios/bumbleuix-forms": "catalog:",
+        "@cjdevstudios/bumblevue-core": "workspace:*"
     },
     "engines": {
         "node": ">=12.11.0"
