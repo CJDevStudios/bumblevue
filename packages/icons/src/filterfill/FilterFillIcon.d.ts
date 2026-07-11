@@ -1,5 +1,5 @@
-import type { DefineComponent } from '@primevue/core';
-import type { Icon } from '@primevue/icons/baseicon';
+import type { DefineComponent } from '@cjdevstudios/bumblevue-core';
+import type { Icon } from '@cjdevstudios/bumblevue-icons/baseicon';
 
 declare class FilterFillIcon extends Icon {}
 

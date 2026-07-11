@@ -1,11 +1,11 @@
 // Form
-export * from '@primevue/forms/form';
-export { default as Form } from '@primevue/forms/form';
-export * from '@primevue/forms/form/style';
-export { default as FormStyle } from '@primevue/forms/form/style';
+export * from '@cjdevstudios/bumblevue-forms/form';
+export { default as Form } from '@cjdevstudios/bumblevue-forms/form';
+export * from '@cjdevstudios/bumblevue-forms/form/style';
+export { default as FormStyle } from '@cjdevstudios/bumblevue-forms/form/style';
 
 // FormField
-export * from '@primevue/forms/formfield';
-export { default as FormField } from '@primevue/forms/formfield';
-export * from '@primevue/forms/formfield/style';
-export { default as FormFieldStyle } from '@primevue/forms/formfield/style';
+export * from '@cjdevstudios/bumblevue-forms/formfield';
+export { default as FormField } from '@cjdevstudios/bumblevue-forms/formfield';
+export * from '@cjdevstudios/bumblevue-forms/formfield/style';
+export { default as FormFieldStyle } from '@cjdevstudios/bumblevue-forms/formfield/style';
