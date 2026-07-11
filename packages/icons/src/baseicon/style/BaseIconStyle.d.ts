@@ -5,7 +5,7 @@
  * @module baseiconstyle
  *
  */
-import { BaseStyle } from '@primevue/core/base/style';
+import { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
 
 export enum BaseIconClasses {
     root = 'p-icon'

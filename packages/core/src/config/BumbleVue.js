@@ -1,8 +1,8 @@
 import { Theme, ThemeService } from '@cjdevstudios/bumbleuix-styled';
 import { mergeKeys } from '@cjdevstudios/bumbleuix-utils';
 import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
-import BaseStyle from '@cjdevstudios/bumblevue-/base/style';
-import BumbleVueService from '@cjdevstudios/bumblevue-/service';
+import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BumbleVueService from '@cjdevstudios/bumblevue-core/service';
 import { inject, reactive, ref, watch } from 'vue';
 
 export const defaultOptions = {

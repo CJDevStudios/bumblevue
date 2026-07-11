@@ -1,6 +1,6 @@
 <script>
-import BaseComponent from '@primevue/core/basecomponent';
-import FormStyle from '@primevue/forms/form/style';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import FormStyle from '@cjdevstudios/bumblevue-forms/form/style';
 
 export default {
     name: 'BaseForm',

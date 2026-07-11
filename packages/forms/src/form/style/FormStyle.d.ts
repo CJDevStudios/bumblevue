@@ -5,7 +5,7 @@
  * @module formstyle
  *
  */
-import type { BaseStyle } from '@primevue/core/base/style';
+import type { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
 
 export enum FormClasses {
     /**

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { omit } from '@primeuix/utils';
-import { useForm } from '@primevue/forms/useform';
+import { omit } from '@cjdevstudios/bumbleuix-/utils';
+import { useForm } from '@cjdevstudios/bumblevue-forms/useform';
 import { ref } from 'vue';
 import BaseForm from './BaseForm.vue';
 
