@@ -1,6 +1,6 @@
-import { createStyleAsString } from '@primeuix/utils/dom';
-import { isFunction } from '@primeuix/utils/object';
-import type { MetaType } from '@primevue/metadata';
+import { createStyleAsString } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isFunction } from '@cjdevstudios/bumbleuix-utils/object';
+import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
 import type { ConstructsType, ResolvePathOptions } from './types';
 
 export const Utils = {
@@ -14,7 +14,7 @@ export const Utils = {
         createStyleAsString(css: string, options = { name: '' }) {
             const { name, ...rest } = options;
 
-            return createStyleAsString(css, { 'data-primevue-style-id': name, ...rest });
+            return createStyleAsString(css, { 'data-bumblevue-style-id': name, ...rest });
         }
     }
 };

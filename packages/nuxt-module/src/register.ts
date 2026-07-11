@@ -1,7 +1,7 @@
 import { addComponent, addImports } from '@nuxt/kit';
-import { isNotEmpty, isString, resolve } from '@primeuix/utils/object';
-import type { MetaType } from '@primevue/metadata';
-import { components, composables, directives } from '@primevue/metadata';
+import { isNotEmpty, isString, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
+import { components, composables, directives } from '@cjdevstudios/bumblevue-metadata';
 import type { PrimeVueConfiguration } from 'primevue/config';
 import type { ConstructsType, ModuleOptions, ResolvePathOptions } from './types';
 import { Utils } from './utils';
@@ -108,7 +108,7 @@ function registerStyles(resolvePath: any, registered: any, moduleOptions: Module
         {
             name: 'BaseStyle',
             as: 'BaseStyle',
-            from: resolvePath({ name: 'BaseStyle', as: 'BaseStyle', from: '@primevue/core/base/style', type: 'style' })
+            from: resolvePath({ name: 'BaseStyle', as: 'BaseStyle', from: '@cjdevstudios/bumblevue-core/base/style', type: 'style' })
         }
     ];
 
@@ -118,7 +118,7 @@ function registerStyles(resolvePath: any, registered: any, moduleOptions: Module
             styles.push({
                 name: 'BaseComponentStyle',
                 as: 'BaseComponentStyle',
-                from: resolvePath({ name: 'BaseComponentStyle', as: 'BaseComponentStyle', from: '@primevue/core/basecomponent/style', type: 'style' })
+                from: resolvePath({ name: 'BaseComponentStyle', as: 'BaseComponentStyle', from: '@cjdevstudios/bumblevue-core/basecomponent/style', type: 'style' })
             });
         }
 

@@ -76,15 +76,15 @@
         "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
     },
     "dependencies": {
-        "@nuxt/kit": "^3",
         "@cjdevstudios/bumbleuix-styled": "catalog:",
         "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
         "@cjdevstudios/bumblevue-auto-import-resolver": "workspace:*",
-        "@cjdevstudios/bumblevue-metadata": "workspace:*",
         "@cjdevstudios/bumblevue-forms": "workspace:*",
-        "unplugin-vue-components": "28.4.1",
-        "pathe": "^1.1.2"
+        "@cjdevstudios/bumblevue-metadata": "workspace:*",
+        "@nuxt/kit": "^3",
+        "pathe": "^1.1.2",
+        "unplugin-vue-components": "28.4.1"
     },
     "devDependencies": {
         "@cjdevstudios/bumbleuix-themes": "catalog:",

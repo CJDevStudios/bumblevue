@@ -1,7 +1,7 @@
 import { components, directives, MetaType } from '@cjdevstudios/bumblevue-metadata';
 import type { ComponentResolver, ComponentResolveResult } from 'unplugin-vue-components/types';
 
-export interface PrimeVueResolverOptions {
+export interface BumbleVueResolverOptions {
     components?: {
         prefix?: string;
     };
@@ -11,7 +11,7 @@ export interface PrimeVueResolverOptions {
     resolve?: (meta: MetaType, type: string) => ComponentResolveResult;
 }
 
-export function PrimeVueResolver(options: PrimeVueResolverOptions = {}): ComponentResolver[] {
+export function BumbleVueResolver(options: BumbleVueResolverOptions = {}): ComponentResolver[] {
     const getName = (name: string, prefix?: string) => {
         if (prefix) {
             if (!name.startsWith(prefix)) return;

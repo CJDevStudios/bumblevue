@@ -1,4 +1,4 @@
-import type { PrimeVueConfiguration } from 'primevue/config';
+import type { BumbleVueConfiguration } from 'bumblevue/config';
 
 export interface ConstructsType {
     prefix?: string | undefined;
@@ -8,20 +8,20 @@ export interface ConstructsType {
 }
 
 export interface ModuleOptions {
-    usePrimeVue?: boolean;
+    useBumbleVue?: boolean;
     autoImport?: boolean;
     resolvePath?: any;
     /*cssLayerOrder?: string;*/
     importPT?: ImportOptions;
     importTheme?: ImportOptions;
     loadStyles?: boolean;
-    options?: PrimeVueOptions;
+    options?: BumbleVueOptions;
     components?: ConstructsType;
     directives?: ConstructsType;
     composables?: Omit<ConstructsType, 'prefix'>;
 }
 
-export interface PrimeVueOptions extends PrimeVueConfiguration {}
+export interface BumbleVueOptions extends BumbleVueConfiguration {}
 
 export interface ImportOptions {
     as?: string;
@@ -37,9 +37,9 @@ export interface ResolvePathOptions {
 
 declare module '@nuxt/schema' {
     interface NuxtConfig {
-        primevue?: ModuleOptions;
+        bumblevue?: ModuleOptions;
     }
     interface NuxtOptions {
-        primevue?: ModuleOptions;
+        bumblevue?: ModuleOptions;
     }
 }

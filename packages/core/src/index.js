@@ -19,8 +19,8 @@ export { default as BaseEditableHolder } from '@cjdevstudios/bumblevue-core/base
 export { default as BaseInput } from '@cjdevstudios/bumblevue-core/baseinput';
 
 // BumbleVue
-export * from '@cjdevstudios/bumblevue-core/config/BumbleVue';
-export { default as BumbleVue } from '@cjdevstudios/bumblevue-core/config/BumbleVue';
+export * from '@cjdevstudios/bumblevue-core/config';
+export { default as BumbleVue } from '@cjdevstudios/bumblevue-core/config';
 
 // BumbleVueService
 export { default as BumbleVueService } from '@cjdevstudios/bumblevue-core/service';

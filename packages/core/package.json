@@ -34,8 +34,8 @@
         "./basedirective": "./src/basedirective/BaseDirective.js",
         "./baseeditableholder": "./src/baseeditableholder/BaseEditableHolder.vue",
         "./baseinput": "./src/baseinput/BaseInput.vue",
-        "./config": "./src/config/PrimeVue.js",
-        "./service": "./src/service/PrimeVueService.js",
+        "./config": "./src/config/BumbleVue.js",
+        "./service": "./src/service/BumbleVueService.js",
         "./useattrselector": "./src/useattrselector/UseAttrSelector.js",
         "./usestyle": "./src/usestyle/UseStyle.js",
         "./utils": "./src/utils/Utils.js"
