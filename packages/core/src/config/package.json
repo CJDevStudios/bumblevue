@@ -1,5 +1,5 @@
 {
-    "main": "BumbleVue.js",
-    "module": "BumbleVue.js",
+    "main": "./BumbleVue.js",
+    "module": "./BumbleVue.js",
     "types": "./BumbleVue.d.ts"
 }

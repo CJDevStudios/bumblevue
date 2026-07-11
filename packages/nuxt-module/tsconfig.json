@@ -4,9 +4,9 @@
         "moduleResolution": "Node",
         "baseUrl": ".",
         "paths": {
-            "primevue/*": ["../../packages/primevue/src/*"],
-            "@primevue/metadata/*": ["../../packages/metadata/src/*"],
-            "@primevue/auto-import-resolver/*": ["../../packages/auto-import-resolver/src/*"]
+            "bumblevue/*": ["../../packages/bumblevue/src/*"],
+            "@cjdevstudios/bumblevue-metadata/*": ["../../packages/metadata/src/*"],
+            "@cjdevstudios/bumblevue-auto-import-resolver/*": ["../../packages/auto-import-resolver/src/*"]
         }
     },
     "exclude": ["dist", "node_modules", "playground"]

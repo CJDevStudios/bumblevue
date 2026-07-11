@@ -19,13 +19,13 @@ const GLOBALS = {
 
 // externals
 const GLOBAL_EXTERNALS = ['vue'];
-const INLINE_EXTERNALS = ['@primeuix/styled'];
+const INLINE_EXTERNALS = ['@cjdevstudios/bumbleuix-styled'];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 
 // alias
 const ALIAS_ENTRIES = [
     {
-        find: /^primevue\/core\/(.*)$/,
+        find: /^bumblevue\/core\/(.*)$/,
         replacement: path.resolve(__dirname, './src/$1'),
         customResolver(source, importer) {
             const basedir = path.dirname(importer);
@@ -141,7 +141,7 @@ const ENTRY = {
                 output: [
                     {
                         format: 'umd',
-                        name: name ?? 'PrimeVue',
+                        name: name ?? 'BumbleVue',
                         file: `${output}${minify ? '.min' : ''}.js`,
                         globals: GLOBALS,
                         exports: 'auto'
@@ -175,8 +175,8 @@ const ENTRY = {
 
 function addCore() {
     ENTRY.format.es({ input: process.env.INPUT_DIR + 'index.js', output: process.env.OUTPUT_DIR + 'index' });
-    ENTRY.format.es({ input: process.env.INPUT_DIR + 'config/PrimeVue.js', output: process.env.OUTPUT_DIR + 'config/index' });
-    ENTRY.format.es({ input: process.env.INPUT_DIR + 'service/PrimeVueService.js', output: process.env.OUTPUT_DIR + 'service/index' });
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'config/BumbleVue.js', output: process.env.OUTPUT_DIR + 'config/index' });
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'service/BumbleVueService.js', output: process.env.OUTPUT_DIR + 'service/index' });
 }
 
 function addFile() {
