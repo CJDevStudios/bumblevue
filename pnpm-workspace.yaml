@@ -8,9 +8,8 @@ catalog:
     '@cjdevstudios/bumbleuix-forms': ^0.1.0
     '@cjdevstudios/bumbleuix-styles': ^2.0.3
     '@cjdevstudios/bumbleuix-themes': ^2.0.3
-    '@cjdevstudios/bumbleuix-mcp': ^1.0.0
-    '@cjdevstudios/tailwindcss-bumblevue': ^0.6.1
-    '@cjdevstudios/bumbleicons': ^7.0.0
+    '@cjdevstudios/tailwindcss-bumblevue': 1.0.0-beta.1
+    '@cjdevstudios/bumbleicons': 1.0.0-beta.1
 
 catalogs:
     app:
