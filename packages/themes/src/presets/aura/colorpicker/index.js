@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/colorpicker';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/colorpicker';

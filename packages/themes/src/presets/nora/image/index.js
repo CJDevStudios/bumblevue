@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/image';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/image';

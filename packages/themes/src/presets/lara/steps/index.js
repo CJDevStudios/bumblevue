@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/steps';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/steps';

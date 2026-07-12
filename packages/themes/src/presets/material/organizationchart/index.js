@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/organizationchart';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/organizationchart';

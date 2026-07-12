@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/rating';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/rating';

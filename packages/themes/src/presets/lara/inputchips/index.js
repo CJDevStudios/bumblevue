@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/inputchips';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/inputchips';

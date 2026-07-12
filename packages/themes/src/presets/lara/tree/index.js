@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/tree';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/tree';

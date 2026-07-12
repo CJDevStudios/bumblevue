@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/inlinemessage';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/inlinemessage';

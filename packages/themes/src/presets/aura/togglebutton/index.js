@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/togglebutton';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/togglebutton';

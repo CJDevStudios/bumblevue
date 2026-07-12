@@ -16,7 +16,7 @@
         "incremental": true,
         "baseUrl": ".",
         "paths": {
-            "@primevue/themes/*": ["./src/*"]
+            "@cjdevstudios/bumblevue-themes/*": ["./src/*"]
         }
     },
     "include": ["**/*.ts", "src/*"],

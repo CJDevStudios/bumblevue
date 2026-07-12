@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/confirmdialog';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/confirmdialog';

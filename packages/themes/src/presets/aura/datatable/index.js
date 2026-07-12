@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/datatable';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/datatable';

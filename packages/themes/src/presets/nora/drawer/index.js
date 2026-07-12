@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/drawer';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/drawer';

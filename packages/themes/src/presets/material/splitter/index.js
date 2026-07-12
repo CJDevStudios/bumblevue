@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/splitter';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/splitter';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/dialog';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/dialog';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/tieredmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/tieredmenu';

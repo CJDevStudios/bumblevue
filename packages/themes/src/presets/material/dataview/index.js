@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/dataview';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/dataview';

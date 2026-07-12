@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/toggleswitch';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/toggleswitch';

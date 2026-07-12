@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/tabmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/tabmenu';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/steps';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/steps';

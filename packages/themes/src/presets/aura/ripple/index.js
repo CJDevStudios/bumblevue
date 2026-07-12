@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/ripple';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/ripple';

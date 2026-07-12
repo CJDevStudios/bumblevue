@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/password';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/password';

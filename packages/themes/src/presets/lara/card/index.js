@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/card';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/card';

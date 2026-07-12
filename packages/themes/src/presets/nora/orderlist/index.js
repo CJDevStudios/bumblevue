@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/orderlist';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/orderlist';

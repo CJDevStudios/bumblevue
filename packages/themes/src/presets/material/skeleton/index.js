@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/skeleton';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/skeleton';

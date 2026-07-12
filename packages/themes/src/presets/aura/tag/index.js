@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/tag';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/tag';

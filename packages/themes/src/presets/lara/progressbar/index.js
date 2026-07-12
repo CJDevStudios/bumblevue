@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/progressbar';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/progressbar';

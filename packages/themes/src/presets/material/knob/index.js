@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/knob';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/knob';

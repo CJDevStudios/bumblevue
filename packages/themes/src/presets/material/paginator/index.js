@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/paginator';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/paginator';

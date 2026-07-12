@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/tooltip';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/tooltip';

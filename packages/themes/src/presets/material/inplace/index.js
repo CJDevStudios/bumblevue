@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/inplace';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/inplace';

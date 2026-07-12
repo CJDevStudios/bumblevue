@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/datepicker';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/datepicker';

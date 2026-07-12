@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/datatable';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/datatable';

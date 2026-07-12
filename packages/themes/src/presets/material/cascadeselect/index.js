@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/cascadeselect';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/cascadeselect';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/dataview';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/dataview';

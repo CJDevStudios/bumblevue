@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/autocomplete';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/autocomplete';

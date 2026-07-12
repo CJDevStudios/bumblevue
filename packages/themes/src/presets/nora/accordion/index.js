@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/accordion';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/accordion';

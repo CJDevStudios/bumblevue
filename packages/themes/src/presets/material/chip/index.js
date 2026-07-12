@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/chip';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/chip';

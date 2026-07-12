@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/terminal';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/terminal';

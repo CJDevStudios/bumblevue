@@ -1,1 +1,1 @@
-export * from '@primeuix/styled';
+export * from '@cjdevstudios/bumbleuix-styled';

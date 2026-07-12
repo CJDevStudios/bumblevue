@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/contextmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/contextmenu';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/speeddial';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/speeddial';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/dialog';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/dialog';

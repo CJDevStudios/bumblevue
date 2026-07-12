@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/megamenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/megamenu';

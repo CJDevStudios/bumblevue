@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/panelmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/panelmenu';
