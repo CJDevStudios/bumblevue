@@ -14,9 +14,9 @@ const core_dependencies = {
     '@vitejs/plugin-vue': '^4.0.0',
     vite: '^4.0.0',
     primevue: pkg.version || PrimeVue.version || 'latest',
-    '@primeuix/themes': 'latest',
-    '@primevue/auto-import-resolver': pkg.version || PrimeVue.version || 'latest',
-    '@primevue/forms': pkg.version || PrimeVue.version || 'latest',
+    '@cjdevstudios/bumbleuix-themes': 'latest',
+    '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || PrimeVue.version || 'latest',
+    '@cjdevstudios/bumblevue-forms': pkg.version || PrimeVue.version || 'latest',
     '@cjdevstudios/bumbleicons': app_dependencies['@cjdevstudios/bumbleicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
     autoprefixer: app_dependencies['autoprefixer'] || 'latest',
@@ -73,7 +73,7 @@ const getVueApp = (props = {}, sourceType) => {
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
-import {PrimeVueResolver} from '@primevue/auto-import-resolver';
+import {PrimeVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -237,10 +237,10 @@ app.mount("#app");
 </template>
 
 <script>
-import { $t, updatePreset, updateSurfacePalette } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
-import Lara from '@primeuix/themes/lara';
-import Nora from '@primeuix/themes/nora';
+import { $t, updatePreset, updateSurfacePalette } from '@cjdevstudios/bumbleuix-themes';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Lara from '@cjdevstudios/bumbleuix-themes/lara';
+import Nora from '@cjdevstudios/bumbleuix-themes/nora';
 
 const presets = {
     Aura,
@@ -843,8 +843,8 @@ export default {
         `
         },
         [`${path}presets/Noir.js`]: {
-            content: `import { definePreset } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
+            content: `import { definePreset } from '@cjdevstudios/bumbleuix-themes';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const Noir = definePreset(Aura, {
     semantic: {

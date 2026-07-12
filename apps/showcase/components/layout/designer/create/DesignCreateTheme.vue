@@ -67,8 +67,8 @@
                     </svg>
                     <span class="font-semibold">Sync with Figma</span>
                 </div>
-                <span class="text-muted-color leading-6">Generate and synchronize theme code directly from Figma to your remote repository 
-using the Figma plugin. This automated workflow eliminates manual export/import 
+                <span class="text-muted-color leading-6">Generate and synchronize theme code directly from Figma to your remote repository
+using the Figma plugin. This automated workflow eliminates manual export/import
 steps, optimizes the theme generation process.
                 </span>
                 <div class="flex justify-end">
@@ -80,11 +80,11 @@ steps, optimizes the theme generation process.
 </template>
 
 <script>
-import { usePreset } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
-import Lara from '@primeuix/themes/lara';
-import Material from '@primeuix/themes/material';
-import Nora from '@primeuix/themes/nora';
+import { usePreset } from '@cjdevstudios/bumbleuix-themes';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Lara from '@cjdevstudios/bumbleuix-themes/lara';
+import Material from '@cjdevstudios/bumbleuix-themes/material';
+import Nora from '@cjdevstudios/bumbleuix-themes/nora';
 
 const presets = {
     Aura,

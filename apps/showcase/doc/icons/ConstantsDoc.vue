@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { PrimeIcons } from '@primevue/core/api';
+import { PrimeIcons } from '@cjdevstudios/bumblevue-core/api';
 
 export default {
     data() {
@@ -32,7 +32,7 @@ export default {
 </template>
 
 <script>
-import { PrimeIcons } from '@primevue/core/api';
+import { PrimeIcons } from '@cjdevstudios/bumblevue-core/api';
 
 export default {
     data() {

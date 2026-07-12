@@ -1,4 +1,4 @@
-import type { BumbleVueConfiguration } from 'bumblevue/config';
+import type { BumbleVueConfiguration } from '@cjdevstudios/bumblevue/config';
 
 export interface ConstructsType {
     prefix?: string | undefined;

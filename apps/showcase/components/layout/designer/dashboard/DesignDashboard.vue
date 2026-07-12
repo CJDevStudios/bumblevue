@@ -83,8 +83,8 @@
 </template>
 
 <script>
-import { usePreset } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
+import { usePreset } from '@cjdevstudios/bumbleuix-themes';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 export default {
     scrollListener: null,

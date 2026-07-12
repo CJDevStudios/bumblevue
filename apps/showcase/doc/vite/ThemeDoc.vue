@@ -12,8 +12,8 @@ export default {
             code: {
                 basic: `
 import { createApp } from 'vue';
-import PrimeVue from 'primevue/config';
-import Aura from '@primeuix/themes/aura';
+import PrimeVue from '@cjdevstudios/bumblevue/config';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const app = createApp(App);
 app.use(PrimeVue, {

@@ -2,7 +2,7 @@ import { addComponent, addImports } from '@nuxt/kit';
 import { isNotEmpty, isString, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
 import { components, composables, directives } from '@cjdevstudios/bumblevue-metadata';
-import type { PrimeVueConfiguration } from 'primevue/config';
+import type { BumbleVueConfiguration } from '@cjdevstudios/bumblevue/config';
 import type { ConstructsType, ModuleOptions, ResolvePathOptions } from './types';
 import { Utils } from './utils';
 
@@ -23,9 +23,9 @@ function registerItems(items: any[] = [], options: ConstructsType = {}, params: 
 function registerConfig(resolvePath: any) {
     return [
         {
-            name: 'PrimeVue',
-            as: 'PrimeVue',
-            from: resolvePath({ name: 'PrimeVue', as: 'PrimeVue', from: `primevue/config`, type: 'config' })
+            name: 'BumbleVue',
+            as: 'BumbleVue',
+            from: resolvePath({ name: 'BumbleVue', as: 'BumbleVue', from: `@cjdevstudios/bumblevue/config`, type: 'config' })
         }
     ];
 }
@@ -97,12 +97,12 @@ function registerServices(resolvePath: any, registered: any) {
     return [...services].map((service) => ({
         name: service,
         as: service,
-        from: resolvePath({ name: service, as: service, from: `primevue/${service.toLowerCase()}`, type: 'service' })
+        from: resolvePath({ name: service, as: service, from: `@cjdevstudios/bumblevue/${service.toLowerCase()}`, type: 'service' })
     }));
 }
 
 function registerStyles(resolvePath: any, registered: any, moduleOptions: ModuleOptions) {
-    const options: PrimeVueConfiguration = moduleOptions.options || {};
+    const options: BumbleVueConfiguration = moduleOptions.options || {};
 
     const styles: MetaType[] = [
         {

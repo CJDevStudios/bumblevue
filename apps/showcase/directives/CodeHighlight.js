@@ -1,4 +1,4 @@
-import { isClient } from '@primeuix/utils/dom';
+import { isClient } from '@cjdevstudios/bumbleuix-utils/dom';
 
 const CodeHighlight = {
     mounted(el, binding) {

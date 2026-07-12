@@ -14,7 +14,7 @@ export default {
         return {
             code: {
                 basic: `
-import { FormField } from '@primevue/forms';
+import { FormField } from '@cjdevstudios/bumblevue-forms';
 `
             }
         };

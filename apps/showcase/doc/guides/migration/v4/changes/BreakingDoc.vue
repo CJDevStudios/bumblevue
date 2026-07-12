@@ -19,7 +19,7 @@
 
         <h4>Relocated APIs</h4>
         <ul class="flex flex-col gap-2 leading-normal">
-            <li>Imports from <i class="mark">primevue/api</i> have been relocated to <i class="mark">@primevue/core/api</i>.</li>
+            <li>Imports from <i class="mark">primevue/api</i> have been relocated to <i class="mark">@cjdevstudios/bumblevue-core/api</i>.</li>
         </ul>
 
         <h4>Removed Files</h4>
@@ -56,7 +56,7 @@
         <h4>Nuxt Module</h4>
         <p>
             The <a href="https://www.npmjs.com/package/nuxt-primevue" target="_blank" rel="noopener noreferrer" class="doc-link">nuxt-primevue</a> module has been replaced with the new
-            <a href="https://www.npmjs.com/package/@primevue/nuxt-module" target="_blank" rel="noopener noreferrer" class="doc-link">@primevue/nuxt-module</a>. The old module is still maintained for v3 users.
+            <a href="https://www.npmjs.com/package/@cjdevstudios/bumblevue-nuxt-module" target="_blank" rel="noopener noreferrer" class="doc-link">@cjdevstudios/bumblevue-nuxt-module</a>. The old module is still maintained for v3 users.
         </p>
     </DocSectionText>
 </template>

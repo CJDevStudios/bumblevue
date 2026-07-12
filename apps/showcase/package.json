@@ -1,6 +1,6 @@
 {
     "name": "showcase",
-    "version": "4.5.5",
+    "version": "1.0.0-beta.1",
     "author": "CJ Development Studios",
     "contributors": [
         {
@@ -16,7 +16,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/primefaces/primevue.git",
+        "url": "https://github.com/CJDevStudios/bumblevue.git",
         "directory": "packages/showcase"
     },
     "bugs": {
@@ -38,7 +38,7 @@
         "passthrough"
     ],
     "scripts": {
-        "build": "pnpm run build:prebuild && pnpm run build:llmdocs && nuxt build",
+        "build": "pnpm run build:prebuild && nuxt build",
         "dev": "nuxt dev",
         "generate": "nuxt generate",
         "preview": "nuxt preview",

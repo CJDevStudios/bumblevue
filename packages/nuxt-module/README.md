@@ -10,7 +10,7 @@
 1. Add `@cjdevstudios/bumblevue-nuxt-module` dependency to your project
 
 ```bash
-npx nuxi@latest module add primevue
+npx nuxi@latest module add bumblevue
 ```
 
 2. Add `@cjdevstudios/bumblevue-nuxt-module` to the `modules` section of `nuxt.config.{ts,js}`

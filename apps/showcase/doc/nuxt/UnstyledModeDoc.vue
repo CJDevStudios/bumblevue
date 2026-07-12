@@ -16,7 +16,7 @@ export default {
                 basic: `
 export default defineNuxtConfig({
     modules: [
-        '@primevue/nuxt-module'
+        '@cjdevstudios/bumblevue-nuxt-module'
     ],
     primevue: {
         options: {

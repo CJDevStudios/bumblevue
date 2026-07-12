@@ -48,7 +48,7 @@
 <script>
 import { NodeService } from '@/service/NodeService';
 import { PhotoService } from '@/service/PhotoService';
-import TerminalService from 'primevue/terminalservice';
+import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
 
 export default {
     data() {
@@ -296,7 +296,7 @@ export default {
 </template>
 
 <script>
-import TerminalService from 'primevue/terminalservice';
+import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
 import { NodeService } from '@/service/NodeService';
 import { PhotoService } from '@/service/PhotoService';
 

@@ -1,10 +1,10 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>With <i>@primevue/icons</i> for icons and <i>primevue</i> for components (except Editor and Chart), multiple items can be imported together.</p>
+        <p>With <i>@cjdevstudios/bumblevue-icons</i> for icons and <i>primevue</i> for components (except Editor and Chart), multiple items can be imported together.</p>
     </DocSectionText>
     <pre v-code.script><code>
 import { Button, InputText } from 'primevue';
-import { SearchIcon, BellIcon } from '@primevue/icons';
+import { SearchIcon, BellIcon } from '@cjdevstudios/bumblevue-icons';
 
 </code></pre>
     <div class="doc-section-description mt-4">
