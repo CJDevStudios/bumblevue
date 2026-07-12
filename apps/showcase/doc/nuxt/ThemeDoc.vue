@@ -11,11 +11,11 @@ export default {
         return {
             code: {
                 basic: `
-import Aura from '@primeuix/themes/aura';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 export default defineNuxtConfig({
     modules: [
-        '@primevue/nuxt-module'
+        '@cjdevstudios/bumblevue-nuxt-module'
     ],
     primevue: {
         options: {

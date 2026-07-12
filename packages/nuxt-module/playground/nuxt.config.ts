@@ -1,12 +1,12 @@
-import Aura from '@primeuix/themes/aura';
+import Aura from '@cjdevstudios/primeuix-themes/aura';
 import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
     compatibilityDate: '2025-02-27',
     devtools: { enabled: true },
     modules: ['../src/module'],
-    primevue: {
-        usePrimeVue: true,
+    bumblevue: {
+        useBumbleVue: true,
         options: {
             // ripple, inputStyle etc.
             ripple: true,

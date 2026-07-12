@@ -12,7 +12,7 @@
 
 <script>
 import { getPTOptions } from '@/components/doc/helpers';
-import { zodResolver } from '@primevue/forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
 import { z } from 'zod';
 
 export default {

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { palette } from '@primeuix/themes';
+import { palette } from '@cjdevstudios/bumbleuix-themes';
 
 export default {
     inject: ['designerService'],

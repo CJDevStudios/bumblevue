@@ -10,7 +10,7 @@
             "name": "PrimeTek Informatics"
         }
     ],
-    "description": "Nuxt module for PrimeVue",
+    "description": "Nuxt module for BumbleVue",
     "homepage": "https://bumblevue.org/",
     "license": "MIT",
     "repository": {
@@ -28,9 +28,7 @@
         "nuxt",
         "nuxt3",
         "primevue",
-        "primevue nuxt module",
-        "primevue nuxt3",
-        "primevue 4"
+        "bumblevue"
     ],
     "type": "module",
     "sideEffects": false,
@@ -41,9 +39,9 @@
     ],
     "build": {
         "externals": [
-            "primevue",
-            "@primevue/metadata",
-            "@primevue/auto-import-resolver",
+            "@cjdevstudios/bumblevue",
+            "@cjdevstudios/bumblevue-metadata",
+            "@cjdevstudios/bumblevue-auto-import-resolver",
             "unplugin-vue-components",
             "@cjdevstudios/bumbleuix-utils",
             "@cjdevstudios/bumbleuix-utils/object",

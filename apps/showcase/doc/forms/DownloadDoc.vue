@@ -12,13 +12,13 @@ export default {
             code: {
                 basic: `
 # Using npm
-npm install @primevue/forms
+npm install @cjdevstudios/bumblevue-forms
 
 # Using yarn
-yarn add @primevue/forms
+yarn add @cjdevstudios/bumblevue-forms
 
 # Using pnpm
-pnpm add @primevue/forms
+pnpm add @cjdevstudios/bumblevue-forms
 `
             }
         };

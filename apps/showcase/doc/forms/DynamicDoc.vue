@@ -360,8 +360,8 @@ const onFormSubmit = (text, { valid }) => {
 
 <script setup>
 import { ref, computed, provide } from 'vue';
-import { isNotEmpty } from '@primeuix/utils';
-import { zodResolver } from '@primevue/forms/resolvers/zod';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
 import DynamicFormField from './DynamicFormField.vue';
@@ -475,7 +475,7 @@ const htmlFor = computed(() => $fcDynamicFormField?.groupId);
 </template>
 
 <script setup>
-import { isNotEmpty } from '@primeuix/utils';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
 import { computed, inject } from 'vue';
 
 const props = defineProps({
@@ -547,8 +547,8 @@ const props = defineProps({
 
 <script setup>
 import { ref, computed, provide } from 'vue';
-import { isNotEmpty } from '@primeuix/utils';
-import { zodResolver } from '@primevue/forms/resolvers/zod';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
 import DynamicFormField from './DynamicFormField.vue';
@@ -662,7 +662,7 @@ const htmlFor = computed(() => $fcDynamicFormField?.groupId);
 </template>
 
 <script setup>
-import { isNotEmpty } from '@primeuix/utils';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
 import { computed, inject } from 'vue';
 
 const props = defineProps({

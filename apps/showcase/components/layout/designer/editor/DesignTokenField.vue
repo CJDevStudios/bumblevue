@@ -53,8 +53,8 @@
 </template>
 
 <script>
-import { $dt } from '@primeuix/themes';
-import { uuid } from '@primeuix/utils';
+import { $dt } from '@cjdevstudios/bumbleuix-themes';
+import { uuid } from '@cjdevstudios/bumbleuix-utils';
 
 export default {
     emits: ['update:modelValue'],

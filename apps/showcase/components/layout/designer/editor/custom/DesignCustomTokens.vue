@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { usePreset } from '@primeuix/themes';
+import { usePreset } from '@cjdevstudios/bumbleuix-themes';
 
 export default {
     inject: ['designerService'],

@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@primeuix/utils/dom';
-import { isNotEmpty } from '@primeuix/utils/object';
+import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
 
 export default {
     props: ['docs'],

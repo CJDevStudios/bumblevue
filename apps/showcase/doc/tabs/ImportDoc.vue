@@ -9,11 +9,11 @@ export default {
         return {
             code: {
                 basic: `
-import Tabs from 'primevue/tabs';
-import TabList from 'primevue/tablist';
-import Tab from 'primevue/tab';
-import TabPanels from 'primevue/tabpanels';
-import TabPanel from 'primevue/tabpanel';
+import Tabs from '@cjdevstudios/bumblevue/tabs';
+import TabList from '@cjdevstudios/bumblevue/tablist';
+import Tab from '@cjdevstudios/bumblevue/tab';
+import TabPanels from '@cjdevstudios/bumblevue/tabpanels';
+import TabPanel from '@cjdevstudios/bumblevue/tabpanel';
 `
             }
         };

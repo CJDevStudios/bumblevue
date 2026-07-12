@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { addClass, find, removeClass } from '@primeuix/utils/dom';
-import { defaultOptions } from '@primevue/core/config';
+import { addClass, find, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { defaultOptions } from '@cjdevstudios/bumblevue-core/config';
 
 export default {
     props: ['docs'],

@@ -3,9 +3,9 @@ import path from 'path';
 const baseUrl = '/';
 
 const alias = {
-    primevue: path.resolve(__dirname, '../../packages/primevue/src'),
-    '@primevue/core': path.resolve(__dirname, '../../packages/core/src'),
-    '@primevue/icons': path.resolve(__dirname, '../../packages/icons/src')
+    primevue: path.resolve(__dirname, '../../packages/@cjdevstudios/bumblevue/src'),
+    '@cjdevstudios/bumblevue-core': path.resolve(__dirname, '../../packages/core/src'),
+    '@cjdevstudios/bumblevue-icons': path.resolve(__dirname, '../../packages/icons/src')
 };
 
 let PROCESS_ENV = {};
@@ -20,7 +20,7 @@ try {
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
     devtools: { enabled: false },
-    modules: ['@primevue/nuxt-module'],
+    modules: ['@cjdevstudios/bumblevue-nuxt-module'],
     components: [
         {
             path: '~/components',
@@ -33,7 +33,7 @@ export default defineNuxtConfig({
             include: ['quill', 'yup']
         },
         resolve: {
-            dedupe: ['vue', '@primeuix/styles', '@primeuix/themes', '@primeuix/utils'],
+            dedupe: ['vue', '@cjdevstudios/bumbleuix-styles', '@cjdevstudios/bumbleuix-themes', '@cjdevstudios/bumbleuix-utils'],
             alias
         }
     },

@@ -12,8 +12,8 @@ export default {
             code: {
                 basic: `
 import PrimeVue from 'primevue/config';
-import { definePreset } from '@primeuix/themes';
-import Aura from '@primeuix/themes/aura';
+import { definePreset } from '@cjdevstudios/bumbleuix-themes';
+import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const MyPreset = definePreset(Aura, {
     //Your customizations, see the following sections for examples
