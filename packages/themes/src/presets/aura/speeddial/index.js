@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/speeddial';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/speeddial';

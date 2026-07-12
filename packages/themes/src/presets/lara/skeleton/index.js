@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/skeleton';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/skeleton';

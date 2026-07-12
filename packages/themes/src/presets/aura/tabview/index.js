@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/tabview';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/tabview';

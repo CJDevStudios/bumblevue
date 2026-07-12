@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/fieldset';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/fieldset';

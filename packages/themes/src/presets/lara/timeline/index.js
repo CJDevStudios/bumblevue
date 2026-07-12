@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/timeline';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/timeline';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/iftalabel';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/iftalabel';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/picklist';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/picklist';

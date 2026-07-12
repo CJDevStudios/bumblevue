@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/textarea';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/textarea';

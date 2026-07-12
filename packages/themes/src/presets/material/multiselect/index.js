@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/multiselect';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/multiselect';

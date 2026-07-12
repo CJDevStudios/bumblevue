@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/ripple';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/ripple';

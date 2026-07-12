@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/carousel';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/carousel';

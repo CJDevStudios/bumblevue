@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/inputnumber';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/inputnumber';

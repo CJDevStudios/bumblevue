@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/tag';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/tag';

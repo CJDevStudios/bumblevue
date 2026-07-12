@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/breadcrumb';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/breadcrumb';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/button';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/button';

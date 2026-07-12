@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/overlaybadge';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/overlaybadge';

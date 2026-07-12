@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/inputgroup';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/inputgroup';

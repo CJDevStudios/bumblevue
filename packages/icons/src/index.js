@@ -1,195 +1,195 @@
-/***************** PrimeVue Icons (Auto-Generated) *****************/
+/***************** BumbleVue Icons (Auto-Generated) *****************/
 
 // AngleDoubleDownIcon
-export * from '@primevue/icons/angledoubledown';
-export { default as AngleDoubleDownIcon } from '@primevue/icons/angledoubledown';
+export * from '@cjdevstudios/bumblevue-icons/angledoubledown';
+export { default as AngleDoubleDownIcon } from '@cjdevstudios/bumblevue-icons/angledoubledown';
 
 // AngleDoubleLeftIcon
-export * from '@primevue/icons/angledoubleleft';
-export { default as AngleDoubleLeftIcon } from '@primevue/icons/angledoubleleft';
+export * from '@cjdevstudios/bumblevue-icons/angledoubleleft';
+export { default as AngleDoubleLeftIcon } from '@cjdevstudios/bumblevue-icons/angledoubleleft';
 
 // AngleDoubleRightIcon
-export * from '@primevue/icons/angledoubleright';
-export { default as AngleDoubleRightIcon } from '@primevue/icons/angledoubleright';
+export * from '@cjdevstudios/bumblevue-icons/angledoubleright';
+export { default as AngleDoubleRightIcon } from '@cjdevstudios/bumblevue-icons/angledoubleright';
 
 // AngleDoubleUpIcon
-export * from '@primevue/icons/angledoubleup';
-export { default as AngleDoubleUpIcon } from '@primevue/icons/angledoubleup';
+export * from '@cjdevstudios/bumblevue-icons/angledoubleup';
+export { default as AngleDoubleUpIcon } from '@cjdevstudios/bumblevue-icons/angledoubleup';
 
 // AngleDownIcon
-export * from '@primevue/icons/angledown';
-export { default as AngleDownIcon } from '@primevue/icons/angledown';
+export * from '@cjdevstudios/bumblevue-icons/angledown';
+export { default as AngleDownIcon } from '@cjdevstudios/bumblevue-icons/angledown';
 
 // AngleLeftIcon
-export * from '@primevue/icons/angleleft';
-export { default as AngleLeftIcon } from '@primevue/icons/angleleft';
+export * from '@cjdevstudios/bumblevue-icons/angleleft';
+export { default as AngleLeftIcon } from '@cjdevstudios/bumblevue-icons/angleleft';
 
 // AngleRightIcon
-export * from '@primevue/icons/angleright';
-export { default as AngleRightIcon } from '@primevue/icons/angleright';
+export * from '@cjdevstudios/bumblevue-icons/angleright';
+export { default as AngleRightIcon } from '@cjdevstudios/bumblevue-icons/angleright';
 
 // AngleUpIcon
-export * from '@primevue/icons/angleup';
-export { default as AngleUpIcon } from '@primevue/icons/angleup';
+export * from '@cjdevstudios/bumblevue-icons/angleup';
+export { default as AngleUpIcon } from '@cjdevstudios/bumblevue-icons/angleup';
 
 // ArrowDownIcon
-export * from '@primevue/icons/arrowdown';
-export { default as ArrowDownIcon } from '@primevue/icons/arrowdown';
+export * from '@cjdevstudios/bumblevue-icons/arrowdown';
+export { default as ArrowDownIcon } from '@cjdevstudios/bumblevue-icons/arrowdown';
 
 // ArrowUpIcon
-export * from '@primevue/icons/arrowup';
-export { default as ArrowUpIcon } from '@primevue/icons/arrowup';
+export * from '@cjdevstudios/bumblevue-icons/arrowup';
+export { default as ArrowUpIcon } from '@cjdevstudios/bumblevue-icons/arrowup';
 
 // BanIcon
-export * from '@primevue/icons/ban';
-export { default as BanIcon } from '@primevue/icons/ban';
+export * from '@cjdevstudios/bumblevue-icons/ban';
+export { default as BanIcon } from '@cjdevstudios/bumblevue-icons/ban';
 
 // BarsIcon
-export * from '@primevue/icons/bars';
-export { default as BarsIcon } from '@primevue/icons/bars';
+export * from '@cjdevstudios/bumblevue-icons/bars';
+export { default as BarsIcon } from '@cjdevstudios/bumblevue-icons/bars';
 
 // BaseIcon
-export * from '@primevue/icons/baseicon';
-export { default as BaseIcon } from '@primevue/icons/baseicon';
-export * from '@primevue/icons/baseicon/style';
-export { default as BaseIconStyle } from '@primevue/icons/baseicon/style';
+export * from '@cjdevstudios/bumblevue-icons/baseicon';
+export { default as BaseIcon } from '@cjdevstudios/bumblevue-icons/baseicon';
+export * from '@cjdevstudios/bumblevue-icons/baseicon/style';
+export { default as BaseIconStyle } from '@cjdevstudios/bumblevue-icons/baseicon/style';
 
 // BlankIcon
-export * from '@primevue/icons/blank';
-export { default as BlankIcon } from '@primevue/icons/blank';
+export * from '@cjdevstudios/bumblevue-icons/blank';
+export { default as BlankIcon } from '@cjdevstudios/bumblevue-icons/blank';
 
 // CalendarIcon
-export * from '@primevue/icons/calendar';
-export { default as CalendarIcon } from '@primevue/icons/calendar';
+export * from '@cjdevstudios/bumblevue-icons/calendar';
+export { default as CalendarIcon } from '@cjdevstudios/bumblevue-icons/calendar';
 
 // CheckIcon
-export * from '@primevue/icons/check';
-export { default as CheckIcon } from '@primevue/icons/check';
+export * from '@cjdevstudios/bumblevue-icons/check';
+export { default as CheckIcon } from '@cjdevstudios/bumblevue-icons/check';
 
 // ChevronDownIcon
-export * from '@primevue/icons/chevrondown';
-export { default as ChevronDownIcon } from '@primevue/icons/chevrondown';
+export * from '@cjdevstudios/bumblevue-icons/chevrondown';
+export { default as ChevronDownIcon } from '@cjdevstudios/bumblevue-icons/chevrondown';
 
 // ChevronLeftIcon
-export * from '@primevue/icons/chevronleft';
-export { default as ChevronLeftIcon } from '@primevue/icons/chevronleft';
+export * from '@cjdevstudios/bumblevue-icons/chevronleft';
+export { default as ChevronLeftIcon } from '@cjdevstudios/bumblevue-icons/chevronleft';
 
 // ChevronRightIcon
-export * from '@primevue/icons/chevronright';
-export { default as ChevronRightIcon } from '@primevue/icons/chevronright';
+export * from '@cjdevstudios/bumblevue-icons/chevronright';
+export { default as ChevronRightIcon } from '@cjdevstudios/bumblevue-icons/chevronright';
 
 // ChevronUpIcon
-export * from '@primevue/icons/chevronup';
-export { default as ChevronUpIcon } from '@primevue/icons/chevronup';
+export * from '@cjdevstudios/bumblevue-icons/chevronup';
+export { default as ChevronUpIcon } from '@cjdevstudios/bumblevue-icons/chevronup';
 
 // ExclamationTriangleIcon
-export * from '@primevue/icons/exclamationtriangle';
-export { default as ExclamationTriangleIcon } from '@primevue/icons/exclamationtriangle';
+export * from '@cjdevstudios/bumblevue-icons/exclamationtriangle';
+export { default as ExclamationTriangleIcon } from '@cjdevstudios/bumblevue-icons/exclamationtriangle';
 
 // EyeIcon
-export * from '@primevue/icons/eye';
-export { default as EyeIcon } from '@primevue/icons/eye';
+export * from '@cjdevstudios/bumblevue-icons/eye';
+export { default as EyeIcon } from '@cjdevstudios/bumblevue-icons/eye';
 
 // EyeSlashIcon
-export * from '@primevue/icons/eyeslash';
-export { default as EyeSlashIcon } from '@primevue/icons/eyeslash';
+export * from '@cjdevstudios/bumblevue-icons/eyeslash';
+export { default as EyeSlashIcon } from '@cjdevstudios/bumblevue-icons/eyeslash';
 
 // FilterIcon
-export * from '@primevue/icons/filter';
-export { default as FilterIcon } from '@primevue/icons/filter';
+export * from '@cjdevstudios/bumblevue-icons/filter';
+export { default as FilterIcon } from '@cjdevstudios/bumblevue-icons/filter';
 
 // FilterFillIcon
-export * from '@primevue/icons/filterfill';
-export { default as FilterFillIcon } from '@primevue/icons/filterfill';
+export * from '@cjdevstudios/bumblevue-icons/filterfill';
+export { default as FilterFillIcon } from '@cjdevstudios/bumblevue-icons/filterfill';
 
 // FilterSlashIcon
-export * from '@primevue/icons/filterslash';
-export { default as FilterSlashIcon } from '@primevue/icons/filterslash';
+export * from '@cjdevstudios/bumblevue-icons/filterslash';
+export { default as FilterSlashIcon } from '@cjdevstudios/bumblevue-icons/filterslash';
 
 // InfoCircleIcon
-export * from '@primevue/icons/infocircle';
-export { default as InfoCircleIcon } from '@primevue/icons/infocircle';
+export * from '@cjdevstudios/bumblevue-icons/infocircle';
+export { default as InfoCircleIcon } from '@cjdevstudios/bumblevue-icons/infocircle';
 
 // MinusIcon
-export * from '@primevue/icons/minus';
-export { default as MinusIcon } from '@primevue/icons/minus';
+export * from '@cjdevstudios/bumblevue-icons/minus';
+export { default as MinusIcon } from '@cjdevstudios/bumblevue-icons/minus';
 
 // PencilIcon
-export * from '@primevue/icons/pencil';
-export { default as PencilIcon } from '@primevue/icons/pencil';
+export * from '@cjdevstudios/bumblevue-icons/pencil';
+export { default as PencilIcon } from '@cjdevstudios/bumblevue-icons/pencil';
 
 // PlusIcon
-export * from '@primevue/icons/plus';
-export { default as PlusIcon } from '@primevue/icons/plus';
+export * from '@cjdevstudios/bumblevue-icons/plus';
+export { default as PlusIcon } from '@cjdevstudios/bumblevue-icons/plus';
 
 // RefreshIcon
-export * from '@primevue/icons/refresh';
-export { default as RefreshIcon } from '@primevue/icons/refresh';
+export * from '@cjdevstudios/bumblevue-icons/refresh';
+export { default as RefreshIcon } from '@cjdevstudios/bumblevue-icons/refresh';
 
 // SearchIcon
-export * from '@primevue/icons/search';
-export { default as SearchIcon } from '@primevue/icons/search';
+export * from '@cjdevstudios/bumblevue-icons/search';
+export { default as SearchIcon } from '@cjdevstudios/bumblevue-icons/search';
 
 // SearchMinusIcon
-export * from '@primevue/icons/searchminus';
-export { default as SearchMinusIcon } from '@primevue/icons/searchminus';
+export * from '@cjdevstudios/bumblevue-icons/searchminus';
+export { default as SearchMinusIcon } from '@cjdevstudios/bumblevue-icons/searchminus';
 
 // SearchPlusIcon
-export * from '@primevue/icons/searchplus';
-export { default as SearchPlusIcon } from '@primevue/icons/searchplus';
+export * from '@cjdevstudios/bumblevue-icons/searchplus';
+export { default as SearchPlusIcon } from '@cjdevstudios/bumblevue-icons/searchplus';
 
 // SortAltIcon
-export * from '@primevue/icons/sortalt';
-export { default as SortAltIcon } from '@primevue/icons/sortalt';
+export * from '@cjdevstudios/bumblevue-icons/sortalt';
+export { default as SortAltIcon } from '@cjdevstudios/bumblevue-icons/sortalt';
 
 // SortAmountDownIcon
-export * from '@primevue/icons/sortamountdown';
-export { default as SortAmountDownIcon } from '@primevue/icons/sortamountdown';
+export * from '@cjdevstudios/bumblevue-icons/sortamountdown';
+export { default as SortAmountDownIcon } from '@cjdevstudios/bumblevue-icons/sortamountdown';
 
 // SortAmountUpAltIcon
-export * from '@primevue/icons/sortamountupalt';
-export { default as SortAmountUpAltIcon } from '@primevue/icons/sortamountupalt';
+export * from '@cjdevstudios/bumblevue-icons/sortamountupalt';
+export { default as SortAmountUpAltIcon } from '@cjdevstudios/bumblevue-icons/sortamountupalt';
 
 // SpinnerIcon
-export * from '@primevue/icons/spinner';
-export { default as SpinnerIcon } from '@primevue/icons/spinner';
+export * from '@cjdevstudios/bumblevue-icons/spinner';
+export { default as SpinnerIcon } from '@cjdevstudios/bumblevue-icons/spinner';
 
 // StarIcon
-export * from '@primevue/icons/star';
-export { default as StarIcon } from '@primevue/icons/star';
+export * from '@cjdevstudios/bumblevue-icons/star';
+export { default as StarIcon } from '@cjdevstudios/bumblevue-icons/star';
 
 // StarFillIcon
-export * from '@primevue/icons/starfill';
-export { default as StarFillIcon } from '@primevue/icons/starfill';
+export * from '@cjdevstudios/bumblevue-icons/starfill';
+export { default as StarFillIcon } from '@cjdevstudios/bumblevue-icons/starfill';
 
 // ThLargeIcon
-export * from '@primevue/icons/thlarge';
-export { default as ThLargeIcon } from '@primevue/icons/thlarge';
+export * from '@cjdevstudios/bumblevue-icons/thlarge';
+export { default as ThLargeIcon } from '@cjdevstudios/bumblevue-icons/thlarge';
 
 // TimesIcon
-export * from '@primevue/icons/times';
-export { default as TimesIcon } from '@primevue/icons/times';
+export * from '@cjdevstudios/bumblevue-icons/times';
+export { default as TimesIcon } from '@cjdevstudios/bumblevue-icons/times';
 
 // TimesCircleIcon
-export * from '@primevue/icons/timescircle';
-export { default as TimesCircleIcon } from '@primevue/icons/timescircle';
+export * from '@cjdevstudios/bumblevue-icons/timescircle';
+export { default as TimesCircleIcon } from '@cjdevstudios/bumblevue-icons/timescircle';
 
 // TrashIcon
-export * from '@primevue/icons/trash';
-export { default as TrashIcon } from '@primevue/icons/trash';
+export * from '@cjdevstudios/bumblevue-icons/trash';
+export { default as TrashIcon } from '@cjdevstudios/bumblevue-icons/trash';
 
 // UndoIcon
-export * from '@primevue/icons/undo';
-export { default as UndoIcon } from '@primevue/icons/undo';
+export * from '@cjdevstudios/bumblevue-icons/undo';
+export { default as UndoIcon } from '@cjdevstudios/bumblevue-icons/undo';
 
 // UploadIcon
-export * from '@primevue/icons/upload';
-export { default as UploadIcon } from '@primevue/icons/upload';
+export * from '@cjdevstudios/bumblevue-icons/upload';
+export { default as UploadIcon } from '@cjdevstudios/bumblevue-icons/upload';
 
 // WindowMaximizeIcon
-export * from '@primevue/icons/windowmaximize';
-export { default as WindowMaximizeIcon } from '@primevue/icons/windowmaximize';
+export * from '@cjdevstudios/bumblevue-icons/windowmaximize';
+export { default as WindowMaximizeIcon } from '@cjdevstudios/bumblevue-icons/windowmaximize';
 
 // WindowMinimizeIcon
-export * from '@primevue/icons/windowminimize';
-export { default as WindowMinimizeIcon } from '@primevue/icons/windowminimize';
+export * from '@cjdevstudios/bumblevue-icons/windowminimize';
+export { default as WindowMinimizeIcon } from '@cjdevstudios/bumblevue-icons/windowminimize';

@@ -2,7 +2,7 @@
  *
  * Form provides validation functionality and manages form state.
  *
- * [Live Demo](https://www.primevue.org/forms/)
+ * [Live Demo](https://www.bumblevue.org/forms/)
  *
  * @module form
  *
@@ -317,13 +317,11 @@ export interface FormInstance {
 }
 
 /**
- * **PrimeVue - Form**
+ * **BumbleVue - Form**
  *
  * _Form provides validation functionality and manages form state._
  *
- * [Live Demo](https://www.primevue.org/forms/)
- * --- ---
- * ![PrimeVue](https://primefaces.org/cdn/primevue/images/logo-100.png)
+ * [Live Demo](https://www.bumblevue.org/forms/)
  *
  * @group Component
  *

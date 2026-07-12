@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/colorpicker';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/colorpicker';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/scrollpanel';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/scrollpanel';

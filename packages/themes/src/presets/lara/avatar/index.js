@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/avatar';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/avatar';

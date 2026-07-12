@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/fieldset';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/fieldset';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/colorpicker';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/colorpicker';

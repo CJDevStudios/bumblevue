@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/drawer';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/drawer';

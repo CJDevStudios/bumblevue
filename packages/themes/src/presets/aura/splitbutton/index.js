@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/splitbutton';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/splitbutton';

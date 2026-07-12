@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/splitbutton';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/splitbutton';

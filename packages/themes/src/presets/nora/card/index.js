@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/card';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/card';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/inputotp';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/inputotp';

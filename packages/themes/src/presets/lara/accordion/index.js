@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/accordion';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/accordion';

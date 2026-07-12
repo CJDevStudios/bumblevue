@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/progressspinner';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/progressspinner';

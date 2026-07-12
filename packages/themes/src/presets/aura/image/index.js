@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/image';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/image';

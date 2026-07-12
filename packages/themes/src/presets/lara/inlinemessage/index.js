@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/inlinemessage';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/inlinemessage';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/imagecompare';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/imagecompare';

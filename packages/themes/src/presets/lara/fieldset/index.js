@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/fieldset';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/fieldset';

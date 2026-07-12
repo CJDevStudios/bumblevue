@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/panelmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/panelmenu';

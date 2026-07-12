@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/inputchips';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/inputchips';

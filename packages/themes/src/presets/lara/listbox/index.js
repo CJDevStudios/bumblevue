@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/listbox';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/listbox';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/checkbox';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/checkbox';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/knob';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/knob';

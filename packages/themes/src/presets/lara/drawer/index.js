@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/drawer';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/drawer';

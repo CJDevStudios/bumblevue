@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/datepicker';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/datepicker';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/datatable';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/datatable';

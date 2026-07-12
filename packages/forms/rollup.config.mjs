@@ -19,13 +19,13 @@ const GLOBALS = {
 
 // externals
 const GLOBAL_EXTERNALS = ['vue'];
-const INLINE_EXTERNALS = [/@primevue\/core\/.*/, /@primeuix\/.*/];
+const INLINE_EXTERNALS = [/@cjdevstudios\/bumblevue-core\/.*/, /@@cjdevstudios\/bumbleuix-.*/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 
 // alias
 const ALIAS_ENTRIES = [
     {
-        find: /^@primevue\/forms\/(.*)$/,
+        find: /^@cjdevstudios\/bumblevue-forms\/(.*)$/,
         replacement: path.resolve(__dirname, './src/$1'),
         customResolver(source, importer) {
             const basedir = path.dirname(importer);
@@ -43,7 +43,7 @@ const ALIAS_ENTRIES = [
             return targetFile ? path.join(folderPath, targetFile) : null;
         }
     },
-    { find: '@primevue/forms/useform', replacement: path.resolve(__dirname, './src/useform/index.js') }
+    { find: '@cjdevstudios/bumblevue-forms/useform', replacement: path.resolve(__dirname, './src/useform/index.js') }
 ];
 
 // plugins
@@ -142,7 +142,7 @@ const ENTRY = {
                 output: [
                     {
                         format: 'umd',
-                        name: name ?? 'PrimeVue',
+                        name: name ?? 'BumbleVue',
                         file: `${output}${minify ? '.min' : ''}.js`,
                         globals: GLOBALS,
                         exports: 'auto'

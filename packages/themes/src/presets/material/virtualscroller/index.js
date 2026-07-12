@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/virtualscroller';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/virtualscroller';

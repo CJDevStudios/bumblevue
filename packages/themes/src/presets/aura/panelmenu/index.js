@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/aura/panelmenu';
+export { default } from '@cjdevstudios/bumbleuix-themes/aura/panelmenu';

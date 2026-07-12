@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/avatar';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/avatar';

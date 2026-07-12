@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/inputtext';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/inputtext';

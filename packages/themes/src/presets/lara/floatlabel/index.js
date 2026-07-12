@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/floatlabel';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/floatlabel';

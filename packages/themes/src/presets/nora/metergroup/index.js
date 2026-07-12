@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/metergroup';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/metergroup';

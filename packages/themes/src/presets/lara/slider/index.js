@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/slider';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/slider';

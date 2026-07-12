@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/lara/datatable';
+export { default } from '@cjdevstudios/bumbleuix-themes/lara/datatable';

@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/material/togglebutton';
+export { default } from '@cjdevstudios/bumbleuix-themes/material/togglebutton';

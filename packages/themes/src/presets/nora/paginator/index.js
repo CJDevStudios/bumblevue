@@ -1,1 +1,1 @@
-export { default } from '@primeuix/themes/nora/paginator';
+export { default } from '@cjdevstudios/bumbleuix-themes/nora/paginator';
