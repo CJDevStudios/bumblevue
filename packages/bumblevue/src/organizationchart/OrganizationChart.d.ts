@@ -10,7 +10,7 @@
 import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
 import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
-import { VNode } from 'vue';
+import { AllowedComponentProps, ComponentCustomProps, VNode, VNodeProps } from 'vue';
 
 export declare type OrganizationChartPassThroughOptionType = OrganizationChartPassThroughAttributes | ((options: OrganizationChartPassThroughMethodOptions) => OrganizationChartPassThroughAttributes | string) | string | null | undefined;
 
@@ -231,11 +231,11 @@ export interface OrganizationChartContext {
 /**
  * Defines valid properties in OrganizationChart component.
  */
-export interface OrganizationChartProps {
+export interface OrganizationChartProps<T extends OrganizationChartNode = OrganizationChartNode> {
     /**
      * Value of the component.
      */
-    value?: OrganizationChartNode;
+    value?: T;
     /**
      * A map instance of key-value pairs to represented the selected nodes.
      */
@@ -277,7 +277,7 @@ export interface OrganizationChartProps {
 /**
  * Defines valid slots in OrganizationChart component.
  */
-export interface OrganizationChartSlots {
+export interface OrganizationChartSlots<T extends OrganizationChartNode = OrganizationChartNode> {
     /**
      * Custom content template.
      */
@@ -285,7 +285,7 @@ export interface OrganizationChartSlots {
         /**
          * Current node
          */
-        node: any;
+        node: T;
     }): VNode[];
     /**
      * Dynamic content template.
@@ -363,11 +363,19 @@ export declare type OrganizationChartEmits = EmitFn<OrganizationChartEmitsOption
  * @group Component
  *
  */
-declare const OrganizationChart: DefineComponent<OrganizationChartProps, OrganizationChartSlots, OrganizationChartEmits>;
+declare const OrganizationChart: {
+    new <T extends OrganizationChartNode = OrganizationChartNode>(
+        props: OrganizationChartProps<T>
+    ): {
+        $props: OrganizationChartProps<T> & VNodeProps & AllowedComponentProps & ComponentCustomProps;
+        $slots: OrganizationChartSlots<T>;
+        $emit: EmitFn<OrganizationChartEmitsOptions>;
+    };
+};
 
 declare module 'vue' {
     export interface GlobalComponents {
-        OrganizationChart: DefineComponent<OrganizationChartProps, OrganizationChartSlots, OrganizationChartEmits>;
+        OrganizationChart: typeof OrganizationChart;
     }
 }
 
