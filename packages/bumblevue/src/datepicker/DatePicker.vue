@@ -1,5 +1,5 @@
 <template>
-    <span ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
+    <button ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
         <InputText
             v-if="!inline"
             :ref="inputRef"
@@ -37,7 +37,9 @@
             :pt="ptm('pcInputText')"
         />
         <slot v-if="showClear && !inline" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <TimesIcon ref="clearIcon" :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
+            <button ref="clearIcon" type="button" :class="cx('clearIcon')" :aria-label="$bumblevue.config.locale.clear" @click="onClearClick" v-bind="ptm('clearIcon')">
+                <TimesIcon aria-hidden="true" />
+            </button>
         </slot>
         <slot v-if="showIcon && iconDisplay === 'button' && !inline" name="dropdownbutton" :toggleCallback="onButtonClick">
             <button
@@ -57,11 +59,14 @@
             </button>
         </slot>
         <template v-else-if="showIcon && iconDisplay === 'input' && !inline">
-            <span v-if="$slots.inputicon || showIcon" :class="cx('inputIconContainer')" :data-p="inputIconDataP" v-bind="ptm('inputIconContainer')">
+            <button v-if="$slots.inputicon || showIcon" v-bind="ptm('inputIconContainer')" :class="cx('inputIconContainer')"
+                    :data-p="inputIconDataP" type="button" :disabled="disabled" @click="onButtonClick"
+                    :aria-label="$bumblevue.config.locale.chooseDate" aria-haspopup="dialog"
+                    :aria-expanded="overlayVisible" :aria-controls="overlayVisible ? panelId : undefined">
                 <slot name="inputicon" :class="cx('inputIcon')" :clickCallback="onButtonClick">
-                    <component :is="icon ? 'i' : 'CalendarIcon'" :class="[icon, cx('inputIcon')]" @click="onButtonClick" v-bind="ptm('inputicon')" />
+                    <component :is="icon ? 'i' : 'CalendarIcon'" :class="[icon, cx('inputIcon')]" v-bind="ptm('inputicon')" />
                 </slot>
-            </span>
+            </button>
         </template>
         <Portal :appendTo="appendTo" :disabled="inline">
             <transition name="p-anchored-overlay" @enter="onOverlayEnter($event)" @after-enter="onOverlayEnterComplete" @after-leave="onOverlayAfterLeave" @leave="onOverlayLeave" v-bind="ptm('transition')">
@@ -115,7 +120,7 @@
                                                 @keydown="onContainerButtonKeydown"
                                                 :class="cx('selectYear')"
                                                 :disabled="switchViewButtonDisabled"
-                                                :aria-label="$bumblevue.config.locale.chooseYear"
+                                                :aria-label="getYearButtonAriaLabel(month)"
                                                 v-bind="ptm('selectYear')"
                                                 data-pc-group-section="view"
                                             >
@@ -128,7 +133,7 @@
                                                 @keydown="onContainerButtonKeydown"
                                                 :class="cx('selectMonth')"
                                                 :disabled="switchViewButtonDisabled"
-                                                :aria-label="$bumblevue.config.locale.chooseMonth"
+                                                :aria-label="getMonthButtonAriaLabel(month)"
                                                 v-bind="ptm('selectMonth')"
                                                 data-pc-group-section="view"
                                             >
@@ -143,7 +148,7 @@
                                                 @keydown="onContainerButtonKeydown"
                                                 :class="cx('selectMonth')"
                                                 :disabled="switchViewButtonDisabled"
-                                                :aria-label="$bumblevue.config.locale.chooseMonth"
+                                                :aria-label="getMonthButtonAriaLabel(month)"
                                                 v-bind="ptm('selectMonth')"
                                                 data-pc-group-section="view"
                                             >
@@ -156,7 +161,7 @@
                                                 @keydown="onContainerButtonKeydown"
                                                 :class="cx('selectYear')"
                                                 :disabled="switchViewButtonDisabled"
-                                                :aria-label="$bumblevue.config.locale.chooseYear"
+                                                :aria-label="getYearButtonAriaLabel(month)"
                                                 v-bind="ptm('selectYear')"
                                                 data-pc-group-section="view"
                                             >
@@ -189,7 +194,8 @@
                                         </Button>
                                     </slot>
                                 </div>
-                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')">
+                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')"
+                                       :aria-label="getCalendarAriaLabel(month)">
                                     <thead v-bind="ptm('tableHeader')">
                                         <tr v-bind="ptm('tableHeaderRow')">
                                             <th v-if="showWeek" scope="col" :class="cx('weekHeader')" v-bind="ptm('weekHeader', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tableheadercell">
@@ -217,8 +223,15 @@
                                             <td
                                                 v-for="date of week"
                                                 :key="date.day + '' + date.month"
-                                                :aria-label="date.day"
+                                                :aria-label="getDateAriaLabel(date)"
+                                                role="gridcell"
                                                 :class="cx('dayCell', { date })"
+                                                :aria-selected="isSelected(date)"
+                                                :aria-disabled="!date.selectable"
+                                                :data-p-disabled="!date.selectable"
+                                                :data-p-selected="isSelected(date)"
+                                                @click="onDateSelect($event, date)"
+                                                @keydown="onDateCellKeydown($event, date, groupIndex)"
                                                 v-bind="
                                                     ptm('dayCell', {
                                                         context: {
@@ -238,11 +251,7 @@
                                                     v-if="showOtherMonths || !date.otherMonth"
                                                     v-ripple
                                                     :class="cx('day', { date })"
-                                                    @click="onDateSelect($event, date)"
                                                     draggable="false"
-                                                    @keydown="onDateCellKeydown($event, date, groupIndex)"
-                                                    :aria-selected="isSelected(date)"
-                                                    :aria-disabled="!date.selectable"
                                                     v-bind="
                                                         ptm('day', {
                                                             context: {
@@ -269,9 +278,10 @@
                             </div>
                         </div>
                         <div v-if="currentView === 'month'" :class="cx('monthView')" v-bind="ptm('monthView')">
-                            <span
+                            <button
                                 v-for="(m, i) of monthPickerValues"
                                 :key="m"
+                                type="button"
                                 v-ripple
                                 @click="onMonthSelect($event, { month: m, index: i })"
                                 @keydown="onMonthCellKeydown($event, { month: m, index: i })"
@@ -293,12 +303,13 @@
                                 <div v-if="isMonthSelected(i)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenMonth')" :data-p-hidden-accessible="true">
                                     {{ m.value }}
                                 </div>
-                            </span>
+                            </button>
                         </div>
                         <div v-if="currentView === 'year'" :class="cx('yearView')" v-bind="ptm('yearView')">
-                            <span
+                            <button
                                 v-for="y of yearPickerValues"
                                 :key="y.value"
+                                type="button"
                                 v-ripple
                                 @click="onYearSelect($event, y)"
                                 @keydown="onYearCellKeydown($event, y)"
@@ -319,7 +330,7 @@
                                 <div v-if="isYearSelected(y.value)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenYear')" :data-p-hidden-accessible="true">
                                     {{ y.value }}
                                 </div>
-                            </span>
+                            </button>
                         </div>
                     </template>
                     <div v-if="(showTime || timeOnly) && currentView === 'date'" :class="cx('timePicker')" :data-p="timePickerDataP" v-bind="ptm('timePicker')">
@@ -583,6 +594,7 @@ import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import BaseDatePicker from './BaseDatePicker.vue';
+import { nextTick } from 'vue';
 
 export default {
     name: 'DatePicker',
@@ -621,7 +633,8 @@ export default {
             queryMatches: false,
             queryOrientation: null,
             focusedDateIndex: 0,
-            rawValue: null
+            rawValue: null,
+            suppressFocusOpen: false,
         };
     },
     watch: {
@@ -637,9 +650,7 @@ export default {
 
                 this.typeUpdate = false;
 
-                if (this.$refs.clearIcon?.$el?.style) {
-                    this.$refs.clearIcon.$el.style.display = isEmpty(newValue) ? 'none' : 'block';
-                }
+                this.updateClearIconVisibility(!isEmpty(newValue));
             }
         },
         showTime() {
@@ -699,9 +710,7 @@ export default {
                 this.input.value = this.inputFieldValue;
             }
 
-            if (this.$refs.clearIcon?.$el?.style) {
-                this.$refs.clearIcon.$el.style.display = !this.$filled ? 'none' : 'block';
-            }
+            this.updateClearIconVisibility(this.$filled);
         }
     },
     updated() {
@@ -1228,11 +1237,7 @@ export default {
                 return;
             }
 
-            find(this.overlay, 'table td span:not([data-p-disabled="true"])').forEach((cell) => (cell.tabIndex = -1));
-
-            if (event) {
-                event.currentTarget.focus();
-            }
+            find(this.overlay, 'table td[role="gridcell"]:not([data-p-disabled="true"])').forEach((cell) => (cell.tabIndex = -1));
 
             if (this.isMultipleSelection() && this.isSelected(dateMeta)) {
                 let newValue = this.rawValue.filter((date) => !this.isDateEquals(this.parseValueForComparison(date), dateMeta));
@@ -1257,6 +1262,10 @@ export default {
 
                 setTimeout(() => {
                     this.overlayVisible = false;
+                    if (this.input) {
+                        this.suppressFocusOpen = true;
+                        nextTick(() => this.input?.focus());
+                    }
                 }, 150);
             }
         },
@@ -2211,7 +2220,7 @@ export default {
 
             switch (event.code) {
                 case 'ArrowDown': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
 
                     let nextRow = cell.parentElement.nextElementSibling;
 
@@ -2221,13 +2230,13 @@ export default {
                         const nextTableRows = tableRows.slice(tableRowIndex + 1);
 
                         let hasNextFocusableDate = nextTableRows.find((el) => {
-                            let focusCell = el.children[cellIndex].children[0];
+                            let focusCell = el.children[cellIndex];
 
                             return !getAttribute(focusCell, 'data-p-disabled');
                         });
 
                         if (hasNextFocusableDate) {
-                            let focusCell = hasNextFocusableDate.children[cellIndex].children[0];
+                            let focusCell = hasNextFocusableDate.children[cellIndex];
 
                             focusCell.tabIndex = '0';
                             focusCell.focus();
@@ -2245,7 +2254,7 @@ export default {
                 }
 
                 case 'ArrowUp': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
 
                     if (event.altKey) {
                         this.overlayVisible = false;
@@ -2259,13 +2268,13 @@ export default {
                             const prevTableRows = tableRows.slice(0, tableRowIndex).reverse();
 
                             let hasNextFocusableDate = prevTableRows.find((el) => {
-                                let focusCell = el.children[cellIndex].children[0];
+                                let focusCell = el.children[cellIndex];
 
                                 return !getAttribute(focusCell, 'data-p-disabled');
                             });
 
                             if (hasNextFocusableDate) {
-                                let focusCell = hasNextFocusableDate.children[cellIndex].children[0];
+                                let focusCell = hasNextFocusableDate.children[cellIndex];
 
                                 focusCell.tabIndex = '0';
                                 focusCell.focus();
@@ -2284,7 +2293,7 @@ export default {
                 }
 
                 case 'ArrowLeft': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
                     let prevCell = cell.previousElementSibling;
 
                     if (prevCell) {
@@ -2292,13 +2301,13 @@ export default {
                         const prevCells = cells.slice(0, cellIndex).reverse();
 
                         let hasNextFocusableDate = prevCells.find((el) => {
-                            let focusCell = el.children[0];
+                            let focusCell = el;
 
                             return !getAttribute(focusCell, 'data-p-disabled');
                         });
 
                         if (hasNextFocusableDate) {
-                            let focusCell = hasNextFocusableDate.children[0];
+                            let focusCell = hasNextFocusableDate;
 
                             focusCell.tabIndex = '0';
                             focusCell.focus();
@@ -2314,20 +2323,20 @@ export default {
                 }
 
                 case 'ArrowRight': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = '-1';
                     let nextCell = cell.nextElementSibling;
 
                     if (nextCell) {
                         const cells = Array.from(cell.parentElement.children);
                         const nextCells = cells.slice(cellIndex + 1);
                         let hasNextFocusableDate = nextCells.find((el) => {
-                            let focusCell = el.children[0];
+                            let focusCell = el;
 
                             return !getAttribute(focusCell, 'data-p-disabled');
                         });
 
                         if (hasNextFocusableDate) {
-                            let focusCell = hasNextFocusableDate.children[0];
+                            let focusCell = hasNextFocusableDate;
 
                             focusCell.tabIndex = '0';
                             focusCell.focus();
@@ -2366,9 +2375,9 @@ export default {
                 }
 
                 case 'Home': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
                     let currentRow = cell.parentElement;
-                    let focusCell = currentRow.children[0].children[0];
+                    let focusCell = currentRow.children[0];
 
                     if (getAttribute(focusCell, 'data-p-disabled')) {
                         this.navigateToMonth(event, true, groupIndex);
@@ -2382,9 +2391,9 @@ export default {
                 }
 
                 case 'End': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
                     let currentRow = cell.parentElement;
-                    let focusCell = currentRow.children[currentRow.children.length - 1].children[0];
+                    let focusCell = currentRow.children[currentRow.children.length - 1];
 
                     if (getAttribute(focusCell, 'data-p-disabled')) {
                         this.navigateToMonth(event, false, groupIndex);
@@ -2398,7 +2407,7 @@ export default {
                 }
 
                 case 'PageUp': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
                     if (event.shiftKey) {
                         this.navigationState = { backward: true };
                         this.navBackward(event);
@@ -2409,7 +2418,7 @@ export default {
                 }
 
                 case 'PageDown': {
-                    cellContent.tabIndex = '-1';
+                    cell.tabIndex = -1;
                     if (event.shiftKey) {
                         this.navigationState = { backward: false };
                         this.navForward(event);
@@ -2431,7 +2440,7 @@ export default {
                     this.navBackward(event);
                 } else {
                     let prevMonthContainer = this.overlay.children[groupIndex - 1];
-                    let cells = find(prevMonthContainer, 'table td span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                    let cells = find(prevMonthContainer, 'table td[role="gridcell"]:not([data-p-disabled="true"])');
                     let focusCell = cells[cells.length - 1];
 
                     focusCell.tabIndex = '0';
@@ -2443,7 +2452,7 @@ export default {
                     this.navForward(event);
                 } else {
                     let nextMonthContainer = this.overlay.children[groupIndex + 1];
-                    let focusCell = findSingle(nextMonthContainer, 'table td span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                    let focusCell = findSingle(nextMonthContainer, 'table td[role="gridcell"]:not([data-p-disabled="true"])');
 
                     focusCell.tabIndex = '0';
                     focusCell.focus();
@@ -2659,7 +2668,7 @@ export default {
                         } else if (this.currentView === 'year') {
                             cells = find(this.overlay, '[data-pc-section="yearview"] [data-pc-section="year"]:not([data-p-disabled="true"])');
                         } else {
-                            cells = find(this.overlay, 'table td span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                            cells = find(this.overlay, 'table td[role="gridcell"]:not([data-p-disabled="true"])');
                         }
 
                         if (cells && cells.length > 0) {
@@ -2671,7 +2680,7 @@ export default {
                         } else if (this.currentView === 'year') {
                             cell = findSingle(this.overlay, '[data-pc-section="yearview"] [data-pc-section="year"]:not([data-p-disabled="true"])');
                         } else {
-                            cell = findSingle(this.overlay, 'table td span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                            cell = findSingle(this.overlay, 'table td[role="gridcell"]:not([data-p-disabled="true"])');
                         }
                     }
 
@@ -2702,13 +2711,19 @@ export default {
                 cells.forEach((cell) => (cell.tabIndex = -1));
                 cell = selectedCell || cells[0];
             } else {
-                cell = findSingle(this.overlay, 'span[data-p-selected="true"]');
+                let cells = find(this.overlay, 'table td[role="gridcell"]');
+
+                cells.forEach((gridCell) => (gridCell.tabIndex = -1));
+                cell = findSingle(this.overlay, 'td[role="gridcell"][data-p-selected="true"]');
 
                 if (!cell) {
-                    let todayCell = findSingle(this.overlay, 'td[data-p-today="true"] span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                    let todayCell = findSingle(this.overlay, 'td[role="gridcell"][data-p-today="true"]:not([data-p-disabled="true"])');
 
-                    if (todayCell) cell = todayCell;
-                    else cell = findSingle(this.overlay, '.p-datepicker-calendar td span:not([data-p-disabled="true"]):not([data-p-ink="true"])');
+                    if (todayCell) {
+                        cell = todayCell;
+                    } else {
+                        cell = findSingle(this.overlay, 'table td[role="gridcell"]:not([data-p-disabled="true"])');
+                    }
                 }
             }
 
@@ -2740,10 +2755,14 @@ export default {
                             if (this.timeOnly) {
                                 focusableElements[0].focus();
                             } else {
-                                let elementIndex = focusableElements.findIndex((el) => el.tagName === 'SPAN');
+                                let elementIndex = focusableElements.findIndex((el) => el.tagName === 'TD');
 
                                 if (elementIndex === -1) {
                                     elementIndex = focusableElements.findIndex((el) => el.tagName === 'BUTTON');
+                                }
+
+                                if (elementIndex === -1) {
+                                    elementIndex = focusableElements.findIndex((el) => el.tagName === 'SPAN');
                                 }
 
                                 if (elementIndex !== -1) {
@@ -2779,14 +2798,22 @@ export default {
 
             this.$emit('keydown', event);
         },
+        getClearIconElement() {
+            return this.$refs.clearIcon?.$el || this.$refs.clearIcon;
+        },
+        updateClearIconVisibility(visible) {
+            const clearIconEl = this.getClearIconElement();
+
+            if (clearIconEl?.style) {
+                clearIconEl.style.display = visible ? 'block' : 'none';
+            }
+        },
         onInput(event) {
             try {
                 this.selectionStart = this.input.selectionStart;
                 this.selectionEnd = this.input.selectionEnd;
 
-                if (this.$refs.clearIcon?.$el?.style) {
-                    this.$refs.clearIcon.$el.style.display = isEmpty(event.target.value) ? 'none' : 'block';
-                }
+                this.updateClearIconVisibility(!isEmpty(event.target.value));
 
                 let value = this.parseValue(event.target.value);
 
@@ -2807,7 +2834,9 @@ export default {
             }
         },
         onFocus(event) {
-            if (this.showOnFocus && this.isEnabled()) {
+            if (this.suppressFocusOpen) {
+                this.suppressFocusOpen = false;
+            } else if (this.showOnFocus && this.isEnabled()) {
                 this.overlayVisible = true;
             }
 
@@ -2821,9 +2850,7 @@ export default {
             this.focused = false;
             event.target.value = this.formatValue(this.rawValue);
 
-            if (this.$refs.clearIcon?.$el?.style) {
-                this.$refs.clearIcon.$el.style.display = isEmpty(event.target.value) ? 'none' : 'block';
-            }
+            this.updateClearIconVisibility(!isEmpty(event.target.value));
         },
         onKeyDown(event) {
             if (event.code === 'ArrowDown' && this.overlay) {
@@ -2845,16 +2872,23 @@ export default {
                     this.overlayVisible = false;
                 }
             } else if (event.code === 'Enter') {
+                let handled = false;
+
                 if (this.manualInput && event.target.value !== null && event.target.value?.trim() !== '') {
                     try {
                         let value = this.parseValue(event.target.value);
 
                         if (this.isValidSelection(value)) {
                             this.overlayVisible = false;
+                            handled = true;
                         }
                     } catch (err) {
                         /* NoOp */
                     }
+                }
+
+                if (handled) {
+                    event.preventDefault();
                 }
 
                 this.$emit('keydown', event);
@@ -2875,12 +2909,33 @@ export default {
         getMonthName(index) {
             return this.$bumblevue.config.locale.monthNames[index];
         },
+        getCalendarAriaLabel(month) {
+            return `${this.getMonthName(month.month)} ${month.year} calendar`;
+        },
+        getDateAriaLabel(dateMeta) {
+            const date = new Date(dateMeta.year, dateMeta.month, dateMeta.day);
+            const dayName = this.$primevue.config.locale.dayNames[date.getDay()];
+            const monthName = this.$primevue.config.locale.monthNames[dateMeta.month];
+
+            return `${dayName}, ${monthName} ${dateMeta.day}, ${dateMeta.year}`;
+        },
+        getMonthButtonAriaLabel(month) {
+            return `${this.$primevue.config.locale.chooseMonth}: ${this.getMonthName(month.month)} ${month.year}`;
+        },
+        getYearButtonAriaLabel(month) {
+            return `${this.$primevue.config.locale.chooseYear}: ${this.getYear(month)}`;
+        },
         getYear(month) {
             return this.currentView === 'month' ? this.currentYear : month.year;
         },
         onClearClick() {
             this.updateModel(null);
             this.overlayVisible = false;
+
+            if (this.input) {
+                this.suppressFocusOpen = true;
+                nextTick(() => this.input?.focus());
+            }
         },
         onOverlayClick(event) {
             event.stopPropagation();
@@ -2979,14 +3034,18 @@ export default {
                         propValue = propValue[0];
                     } else {
                         const start = this.parseValueForComparison(propValue[0]);
-                        let lastVisibleMonth = new Date(start.getFullYear(), start.getMonth() + this.numberOfMonths, 1);
+                        const end = this.parseValueForComparison(propValue[1]);
 
-                        if (!propValue[1] || propValue[1] < lastVisibleMonth) {
-                            propValue = propValue[0];
+                        if (this.showTime) {
+                            propValue = end;
                         } else {
-                            const end = this.parseValueForComparison(propValue[1]);
+                            const lastVisibleMonth = new Date(start.getFullYear(), start.getMonth() + this.numberOfMonths, 1);
 
-                            propValue = new Date(end.getFullYear(), end.getMonth() - this.numberOfMonths + 1, 1);
+                            if (propValue[1] < lastVisibleMonth) {
+                                propValue = propValue[0];
+                            } else {
+                                propValue = new Date(end.getFullYear(), end.getMonth() - this.numberOfMonths + 1, 1);
+                            }
                         }
                     }
                 } else if (this.isMultipleSelection()) {
