@@ -618,15 +618,15 @@ export default {
             }
 
             event.preventDefault();
-            let data = (event.clipboardData || window['clipboardData']).getData('Text');
-            if (this.inputId === 'integeronly' && /[^\d-]/.test(data)) {
-                return;
-            }
+            const data = (event.clipboardData || window['clipboardData']).getData('Text');
 
             if (data) {
-                let filteredData = this.parseValue(data);
+                const filteredData = this.parseValue(data);
 
                 if (filteredData != null) {
+                    if (this.inputId === 'integeronly' && !Number.isInteger(filteredData)) {
+                        return;
+                    }
                     this.insert(event, filteredData.toString());
                 }
             }
