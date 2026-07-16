@@ -3,13 +3,13 @@ packages:
     - 'apps/*'
 
 catalog:
-    '@cjdevstudios/bumbleuix-styled': 1.0.0-beta.1
-    '@cjdevstudios/bumbleuix-utils': 1.0.0-beta.1
-    '@cjdevstudios/bumbleuix-forms': 1.0.0-beta.1
-    '@cjdevstudios/bumbleuix-styles': 1.0.0-beta.1
-    '@cjdevstudios/bumbleuix-themes': 1.0.0-beta.1
-    '@cjdevstudios/tailwindcss-bumblevue': 1.0.0-beta.1
-    '@cjdevstudios/bumbleicons': 1.0.0-beta.1
+    '@cjdevstudios/bumbleuix-styled': 1.0.0-beta.2
+    '@cjdevstudios/bumbleuix-utils': 1.0.0-beta.2
+    '@cjdevstudios/bumbleuix-forms': 1.0.0-beta.2
+    '@cjdevstudios/bumbleuix-styles': 1.0.0-beta.2
+    '@cjdevstudios/bumbleuix-themes': 1.0.0-beta.2
+    '@cjdevstudios/tailwindcss-bumblevue': 1.0.0-beta.2
+    '@cjdevstudios/bumbleicons': 1.0.0-beta.2
 
 catalogs:
     app:

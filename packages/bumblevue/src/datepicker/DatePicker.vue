@@ -1,5 +1,5 @@
 <template>
-    <button ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
+    <span ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
         <InputText
             v-if="!inline"
             :ref="inputRef"
