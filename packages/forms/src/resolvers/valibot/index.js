@@ -1,1 +1,1 @@
-export * from '@cjdevstudios/bumbleuix-/forms/resolvers/valibot';
+export * from '@cjdevstudios/bumbleuix-forms/resolvers/valibot';
