@@ -9,7 +9,7 @@ export default {
         return {
             code: {
                 basic: `
-import ToggleButton from 'primevue/togglebutton';
+import ToggleButton from '@cjdevstudios/bumblevue/togglebutton';
 `
             }
         };

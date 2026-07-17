@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>PrimeIcons is available at npm, run the following command to download it to your project.</p>
+        <p>BumbleIcons is available at npm, run the following command to download it to your project.</p>
     </DocSectionText>
     <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
 </template>
@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-npm install primeicons
+npm install @cjdevstudios/bumbleicons
 `
             }
         };

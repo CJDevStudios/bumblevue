@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Editor integrates seamlessly with the <NuxtLink to="/forms">PrimeVue Forms</NuxtLink> library.</p>
+        <p>Editor integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
     </DocSectionText>
     <div class="card">
         <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">

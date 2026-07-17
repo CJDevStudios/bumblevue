@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>PrimeVue plugin is required to be installed as an application plugin to set up the default <NuxtLink to="/configuration">configuration</NuxtLink>.</p>
+        <p>BumbleVue plugin is required to be installed as an application plugin to set up the default <NuxtLink to="/configuration">configuration</NuxtLink>.</p>
     </DocSectionText>
     <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
 </template>
@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-app.use(PrimeVue.Config);
+app.use(BumbleVue.Config);
 `
             }
         };

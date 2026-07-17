@@ -12,10 +12,10 @@ export default {
             code: {
                 basic: `
 import { createApp } from "vue";
-import PrimeVue from "primevue/config";
+import BumbleVue from "@cjdevstudios/bumblevue/config";
 const app = createApp(App);
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     pt: {
         slider: {
             handle: { class: 'bg-primary text-primary-contrast' }

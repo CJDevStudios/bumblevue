@@ -1,3 +1,37 @@
+<script setup lang="ts">
+const features = [
+    {
+        icon: 'objects-column',
+        color: 'text-purple-500',
+        title: '80+ UI Components',
+        description: '80+ free, ready to use UI components for your web applications.'
+    },
+    {
+        icon: 'palette',
+        color: 'text-red-500',
+        title: 'Styled or Unstyled',
+        description: 'Choose from a variety of pre-built themes or implement your design systems with the CSS library of your choice like TailwindCSS.'
+    },
+    {
+        icon: 'users',
+        color: 'text-cyan-500',
+        title: 'Accessibility',
+        description: 'Compliant with the Web Content Accessibility Guidelines (WCAG 2.2, Level AA).'
+    },
+    {
+        icon: 'mobile',
+        color: 'text-sky-500',
+        title: 'Mobile',
+        description: 'Responsive components that work seamlessly on mobile devices and tablets.'
+    },
+    {
+        icon: 'check-circle',
+        color: 'text-blue-800',
+        title: 'Typescript',
+        description: 'Typescript support for all components and directives.'
+    }
+];
+</script>
 <template>
     <section class="landing-features py-20">
         <div class="section-header">Features</div>
@@ -5,39 +39,11 @@
         <div class="mt-16 px-8 lg:px-20">
             <div class="features-container">
                 <div class="grid grid-cols-12 gap-4">
-                    <div class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
+                    <div v-for="(feature, index) in features" :key="index" class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
                         <div v-animateonscroll.once="{ enterClass: 'animate-fadein' }" class="box p-6 w-full animate-duration-500">
-                            <img src="https://primefaces.org/cdn/primevue/images/landing/features/icon-components.svg" alt="components icon" class="block mb-4" />
-                            <div class="font-semibold mb-4 text-lg">80+ UI Components</div>
-                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">The ultimate set of UI Components to assist you with 80+ impressive Vue Components.</p>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
-                        <div v-animateonscroll.once="{ enterClass: 'animate-fadein' }" class="box p-6 w-full animate-duration-500">
-                            <img src="https://primefaces.org/cdn/primevue/images/landing/features/icon-theme.svg" alt="components icon" class="block mb-4" />
-                            <div class="font-semibold mb-4 text-lg">Styled or Unstyled</div>
-                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">Choose from a variety of pre-built themes or implement your design systems with the CSS library of your choice like TailwindCSS.</p>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
-                        <div v-animateonscroll.once="{ enterClass: 'animate-fadein' }" class="box p-6 w-full animate-duration-500">
-                            <img src="https://primefaces.org/cdn/primevue/images/landing/features/icon-accessibility.svg" alt="components icon" class="block mb-4" />
-                            <div class="font-semibold mb-4 text-lg">Accessibility</div>
-                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">Compliant with the Web Content Accessibility Guidelines (WCAG 2.0).</p>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
-                        <div v-animateonscroll.once="{ enterClass: 'animate-fadein' }" class="box p-6 w-full animate-duration-500">
-                            <img src="https://primefaces.org/cdn/primevue/images/landing/features/icon-mobile.svg" alt="components icon" class="block mb-4" />
-                            <div class="font-semibold mb-4 text-lg">Mobile</div>
-                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">First class support for responsive design led by touch optimized elements.</p>
-                        </div>
-                    </div>
-                    <div class="col-span-12 md:col-span-6 xl:col-span-3 flex justify-center">
-                        <div v-animateonscroll.once="{ enterClass: 'animate-fadein' }" class="box p-6 w-full animate-duration-500">
-                            <img src="https://primefaces.org/cdn/primevue/images/landing/features/icon-ts.svg" alt="components icon" class="block mb-4" />
-                            <div class="font-semibold mb-4 text-lg">Typescript</div>
-                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">Top-notch support for Typescript with types and tooling assistance.</p>
+                            <i :class="['pi', `pi-${feature.icon}`, 'text-xl mb-4 me-2', feature.color]"></i>
+                            <span class="font-semibold mb-4 text-lg">{{ feature.title }}</span>
+                            <p class="m-0 text-surface-500 dark:text-surface-400 font-medium">{{ feature.description }}</p>
                         </div>
                     </div>
                 </div>

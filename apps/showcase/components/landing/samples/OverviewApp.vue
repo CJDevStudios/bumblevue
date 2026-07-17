@@ -82,7 +82,7 @@
                         <Column header="Name" class="w-1/4">
                             <template #body="slotProps">
                                 <div class="flex items-center">
-                                    <Avatar :label="slotProps.data.name.label" class="mr-2 text-xs font-medium" style="background-color: #ece9fc; color: #2a1261" shape="circle" />
+                                    <Avatar :label="slotProps.data.name.label" class="mr-2 text-xs font-medium" :style="`background-color: ${slotProps.data.name.color}; color: #2a1261`" shape="circle" />
                                     <div class="leading-6 text-muted-color flex-1">{{ slotProps.data.name.text }}</div>
                                 </div>
                             </template>
@@ -172,12 +172,12 @@ export default {
                 }
             ],
             sampleAppsTableDatas: [
-                { id: '#1254', name: { text: 'Amy Yelsner', label: 'AY', color: 'blue' }, coin: 'btc', date: 'May 5th', process: { type: 'success', value: 'Buy' }, amount: '3.005 BTC' },
-                { id: '#2355', name: { text: 'Anna Fali', label: 'AF', color: '#ECFCCB' }, coin: 'eth', date: 'Mar 17th', process: { type: 'success', value: 'Buy' }, amount: '0.050 ETH' },
-                { id: '#1235', name: { text: 'Stepen Shaw', label: 'SS', color: '#ECFCCB' }, coin: 'btc', date: 'May 24th', process: { type: 'danger', value: 'Sell' }, amount: '3.050 BTC' },
-                { id: '#2355', name: { text: 'Anna Fali', label: 'AF', color: '#ECFCCB' }, coin: 'eth', date: 'Mar 17th', process: { type: 'danger', value: 'Sell' }, amount: '0.050 ETH' },
-                { id: '#2355', name: { text: 'Anna Fali', label: 'AF', color: '#ECFCCB' }, coin: 'eth', date: 'Mar 17th', process: { type: 'danger', value: 'Sell' }, amount: '0.050 ETH' },
-                { id: '#7896', name: { text: 'John Doe', label: 'JD', color: 'green' }, coin: 'btc', date: 'Jun 12th', process: { type: 'success', value: 'Buy' }, amount: '2.500 BTC' },
+                { id: '#1254', name: { text: 'Amy Yelsner', label: 'AY', color: '#ECECFF' }, coin: 'btc', date: 'May 5th', process: { type: 'success', value: 'Buy' }, amount: '3.005 BTC' },
+                { id: '#2355', name: { text: 'Anna Fali', label: 'AF', color: '#cbfcf6' }, coin: 'eth', date: 'Mar 17th', process: { type: 'success', value: 'Buy' }, amount: '0.050 ETH' },
+                { id: '#1235', name: { text: 'Stepen Shaw', label: 'SS', color: '#f1cbfc' }, coin: 'btc', date: 'May 24th', process: { type: 'danger', value: 'Sell' }, amount: '3.050 BTC' },
+                { id: '#2355', name: { text: 'Rory Williams', label: 'RW', color: '#fccbcb' }, coin: 'eth', date: 'Mar 17th', process: { type: 'danger', value: 'Sell' }, amount: '0.050 ETH' },
+                { id: '#2355', name: { text: 'Anna Fali', label: 'AF', color: '#cbfcf6' }, coin: 'eth', date: 'Mar 17th', process: { type: 'danger', value: 'Sell' }, amount: '0.050 ETH' },
+                { id: '#7896', name: { text: 'John Doe', label: 'JD', color: '#cbfcd5' }, coin: 'btc', date: 'Jun 12th', process: { type: 'success', value: 'Buy' }, amount: '2.500 BTC' },
                 { id: '#5648', name: { text: 'Jane Smith', label: 'JS', color: '#FFDDC1' }, coin: 'eth', date: 'Feb 23rd', process: { type: 'success', value: 'Buy' }, amount: '1.200 ETH' },
                 { id: '#3265', name: { text: 'Michael Johnson', label: 'MJ', color: '#FFD700' }, coin: 'btc', date: 'Apr 30th', process: { type: 'danger', value: 'Sell' }, amount: '4.000 BTC' },
                 { id: '#1423', name: { text: 'Emily Davis', label: 'ED', color: '#FFCCCB' }, coin: 'btc', date: 'Jan 15th', process: { type: 'danger', value: 'Sell' }, amount: '5.050 LTC' },
@@ -250,11 +250,11 @@ export default {
         setChartData(timeUnit) {
             const datasets = this.createDatasets(timeUnit);
             const documentStyle = getComputedStyle(document.documentElement);
-            const primary200 = documentStyle.getPropertyValue('--p-primary-200');
-            const primary300 = documentStyle.getPropertyValue('--p-primary-300');
-            const primary400 = documentStyle.getPropertyValue('--p-primary-400');
-            const primary500 = documentStyle.getPropertyValue('--p-primary-500');
-            const primary600 = documentStyle.getPropertyValue('--p-primary-600');
+            const primary200 = documentStyle.getPropertyValue('--p-yellow-400');
+            const primary300 = documentStyle.getPropertyValue('--p-yellow-500');
+            const primary400 = documentStyle.getPropertyValue('--p-yellow-600');
+            const primary500 = documentStyle.getPropertyValue('--p-yellow-700');
+            const primary600 = documentStyle.getPropertyValue('--p-yellow-800');
 
             return {
                 labels: datasets.labels,

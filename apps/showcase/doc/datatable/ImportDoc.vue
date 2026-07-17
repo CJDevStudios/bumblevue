@@ -9,10 +9,10 @@ export default {
         return {
             code: {
                 basic: `
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';   // optional
-import Row from 'primevue/row';                   // optional
+import DataTable from '@cjdevstudios/bumblevue/datatable';
+import Column from '@cjdevstudios/bumblevue/column';
+import ColumnGroup from '@cjdevstudios/bumblevue/columngroup';   // optional
+import Row from '@cjdevstudios/bumblevue/row';                   // optional
 `
             }
         };

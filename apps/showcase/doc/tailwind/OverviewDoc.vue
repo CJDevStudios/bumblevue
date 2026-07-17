@@ -5,8 +5,8 @@
             Bootstrap, Tailwind offers primitive classes like <i>bg-blue-500</i>, <i>rounded</i> and <i>p-4</i> to apply a button.
         </p>
         <p>
-            Tailwind is an outstanding CSS library, however it lacks a true comprehensive UI suite when combined with Vue.js, this is where PrimeVue comes in by providing a wide range of highly accessible and feature rich UI component library. The
-            core of PrimeVue does not depend on Tailwind CSS, instead we provide an unstyled mode in BumbleVue where you may add your own Tailwind styles via passthrough.
+            Tailwind is an outstanding CSS library, however it lacks a true comprehensive UI suite when combined with Vue.js, this is where BumbleVue comes in by providing a wide range of highly accessible and feature rich UI component library. The
+            core of BumbleVue does not depend on Tailwind CSS, instead we provide an unstyled mode in BumbleVue where you may add your own Tailwind styles via passthrough.
         </p>
     </DocSectionText>
 </template>

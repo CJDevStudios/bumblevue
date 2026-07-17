@@ -1,11 +1,11 @@
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
-            The <a href="https://github.com/unplugin/unplugin-vue-components" target="_blank" rel="noopener noreferrer">unplugin-vue-components</a> library can automatically import and register PrimeVue components with the help of
+            The <a href="https://github.com/unplugin/unplugin-vue-components" target="_blank" rel="noopener noreferrer">unplugin-vue-components</a> library can automatically import and register BumbleVue components with the help of
             <i>@cjdevstudios/bumblevue-auto-import-resolver</i>. Begin with installing the packages as dev dependencies.
         </p>
         <DocSectionCode :code="code1" hideToggleCode importCode hideStackBlitz />
-        <p>Next step would be adding the <i>PrimeVueResolver</i> at vite.config using the <i>Components</i> plugin.</p>
+        <p>Next step would be adding the <i>BumbleVueResolver</i> at vite.config using the <i>Components</i> plugin.</p>
         <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
         <p>
             That's it, now the initialization code can be refactored as the following. For configuration like namespacing, visit the
@@ -30,7 +30,7 @@ npm i @cjdevstudios/bumblevue-auto-import-resolver -D
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite';
-import {PrimeVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
+import {BumbleVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -38,7 +38,7 @@ export default defineConfig({
     vue(),
     Components({
       resolvers: [
-        PrimeVueResolver()
+        BumbleVueResolver()
       ]
     })
   ]
@@ -48,11 +48,11 @@ export default defineConfig({
             code3: {
                 basic: `
 import { createApp } from "vue";
-import PrimeVue from "primevue/config";
+import BumbleVue from "@cjdevstudios/bumblevue/config";
 import App from './App.vue'
 const app = createApp(App);
 
-app.use(PrimeVue);
+app.use(BumbleVue);
 `
             }
         };

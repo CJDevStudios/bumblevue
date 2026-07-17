@@ -3,9 +3,10 @@ import path from 'path';
 const baseUrl = '/';
 
 const alias = {
-    primevue: path.resolve(__dirname, '../../packages/@cjdevstudios/bumblevue/src'),
+    '@cjdevstudios/bumblevue': path.resolve(__dirname, '../../packages/bumblevue/src'),
+    // bumblevue: path.resolve(__dirname, '../../packages/bumblevue/src'),
     '@cjdevstudios/bumblevue-core': path.resolve(__dirname, '../../packages/core/src'),
-    '@cjdevstudios/bumblevue-icons': path.resolve(__dirname, '../../packages/icons/src')
+    '@cjdevstudios/bumblevue-icons': path.resolve(__dirname, '../../packages/icons/src'),
 };
 
 let PROCESS_ENV = {};
@@ -44,9 +45,9 @@ export default defineNuxtConfig({
         '/accessibility': { redirect: { to: '/guides/accessibility', statusCode: 301 } },
         '/installation': { redirect: { to: '/vite', statusCode: 301 } },
     },
-    primevue: {
-        usePrimeVue: process.env.DEV_ENV !== 'hot',
-        autoImport: true, // When enabled, the module automatically imports PrimeVue components and directives used throughout the application.
+    bumblevue: {
+        useBumbleVue: process.env.DEV_ENV !== 'hot',
+        autoImport: true, // When enabled, the module automatically imports BumbleVue components and directives used throughout the application.
         importTheme: { from: '@/themes/app-theme.js' }
     },
     app: {
@@ -62,7 +63,6 @@ export default defineNuxtConfig({
                 { property: 'og:title', content: 'BumbleVue | Vue UI Component Library' },
                 { property: 'og:url', content: 'https://bumblevue.org/' },
                 { property: 'og:description', content: 'The ultimate collection of design-agnostic, flexible and accessible Vue UI Components.' },
-                { property: 'og:image', content: 'https://www.primefaces.org/static/social/primevue-preview.jpg' },
                 { property: 'og:ttl', content: '604800' }
             ],
             link: [

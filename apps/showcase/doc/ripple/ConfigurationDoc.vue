@@ -21,11 +21,11 @@ mounted() {
 }
 `,
                 composition: `
-import { usePrimeVue } from 'primevue/config';
+import { useBumbleVue } from '@cjdevstudios/bumblevue/config';
 
-const PrimeVue = usePrimeVue();
+const BumbleVue = useBumbleVue();
 
-PrimeVue.config.ripple = true;
+BumbleVue.config.ripple = true;
 `
             }
         };

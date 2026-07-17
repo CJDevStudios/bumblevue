@@ -12,7 +12,6 @@
 import DocApiTable from '@/components/doc/DocApiTable.vue';
 import DocStyledPreset from '@/components/doc/DocStyledPreset.vue';
 import { getStyleOptions, getTokenOptions } from '@/components/doc/helpers';
-import TailwindDoc from './TailwindDoc.vue';
 
 export default {
     data() {
@@ -54,18 +53,6 @@ export default {
                             label: 'OverlayBadge Preset',
                             component: DocStyledPreset,
                             data: 'overlaybadge'
-                        }
-                    ]
-                },
-                {
-                    id: 'theming.unstyled',
-                    label: 'Unstyled',
-                    description: 'Theming is implemented with the pass through properties in unstyled mode.',
-                    children: [
-                        {
-                            id: 'theming.tailwind',
-                            label: 'Tailwind',
-                            component: TailwindDoc
                         }
                     ]
                 }

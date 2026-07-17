@@ -23,7 +23,7 @@ const props = defineProps({
     }
 });
 
-const $pcForm = inject('$pcForm', undefined); // Inject PrimeVue Form component
+const $pcForm = inject('$pcForm', undefined); // Inject BumbleVue Form component
 const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
 const fieldName = computed(() => $fcDynamicFormField?.name);

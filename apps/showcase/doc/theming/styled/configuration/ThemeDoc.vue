@@ -11,12 +11,12 @@ export default {
         return {
             code: {
                 basic: `
-import PrimeVue from 'primevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const app = createApp(App);
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     // Default theme configuration
     theme: {
         preset: Aura,

@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { PrimeIcons } from '@cjdevstudios/bumblevue-core/api';
+import { BumbleIcons } from '@cjdevstudios/bumblevue-core/api';
 
 export default {
     data() {
@@ -18,8 +18,8 @@ export default {
                 {
                     label: 'File',
                     items: [
-                        { label: 'New', icon: PrimeIcons.PLUS },
-                        { label: 'Open', icon: PrimeIcons.DOWNLOAD }
+                        { label: 'New', icon: BumbleIcons.PLUS },
+                        { label: 'Open', icon: BumbleIcons.DOWNLOAD }
                     ]
                 }
             ],
@@ -32,7 +32,7 @@ export default {
 </template>
 
 <script>
-import { PrimeIcons } from '@cjdevstudios/bumblevue-core/api';
+import { BumbleIcons } from '@cjdevstudios/bumblevue-core/api';
 
 export default {
     data() {
@@ -41,8 +41,8 @@ export default {
                 {
                     label: 'File',
                     items: [
-                        { label: 'New', icon: PrimeIcons.PLUS },
-                        { label: 'Open', icon: PrimeIcons.DOWNLOAD }
+                        { label: 'New', icon: BumbleIcons.PLUS },
+                        { label: 'Open', icon: BumbleIcons.DOWNLOAD }
                     ]
                 }
             ]

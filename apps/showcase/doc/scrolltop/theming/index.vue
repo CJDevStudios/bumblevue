@@ -11,7 +11,6 @@
 <script>
 import DocApiTable from '@/components/doc/DocApiTable.vue';
 import { getStyleOptions } from '@/components/doc/helpers';
-import TailwindDoc from './TailwindDoc.vue';
 
 export default {
     data() {
@@ -27,18 +26,6 @@ export default {
                             description: 'List of class names used in the styled mode.',
                             component: DocApiTable,
                             data: getStyleOptions('ScrollTop')
-                        }
-                    ]
-                },
-                {
-                    id: 'theming.unstyled',
-                    label: 'Unstyled',
-                    description: 'Theming is implemented with the pass through properties in unstyled mode.',
-                    children: [
-                        {
-                            id: 'theming.tailwind',
-                            label: 'Tailwind',
-                            component: TailwindDoc
                         }
                     ]
                 }

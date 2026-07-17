@@ -11,7 +11,7 @@
             <DynamicForm @submit="onFormSubmit('Form 1', $event)">
                 <DynamicFormField groupId="userId_1" name="username">
                     <DynamicFormLabel>Username</DynamicFormLabel>
-                    <DynamicFormControl defaultValue="PrimeVue" fluid :schema="userNameSchema" />
+                    <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
                     <DynamicFormMessage />
                 </DynamicFormField>
                 <DynamicFormField groupId="passId_1" name="password">
@@ -68,7 +68,7 @@ export default {
                 username: {
                     groupId: 'userId_2',
                     label: 'Username',
-                    defaultValue: 'PrimeVue',
+                    defaultValue: 'BumbleVue',
                     fluid: true,
                     schema: z.string().min(1, { message: 'Username is required.' })
                 },
@@ -104,7 +104,7 @@ export default {
     <DynamicForm @submit="onFormSubmit('Form 1', $event)">
         <DynamicFormField groupId="userId_1" name="username">
             <DynamicFormLabel>Username</DynamicFormLabel>
-            <DynamicFormControl defaultValue="PrimeVue" fluid :schema="userNameSchema" />
+            <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
             <DynamicFormMessage />
         </DynamicFormField>
         <DynamicFormField groupId="passId_1" name="password">
@@ -133,7 +133,7 @@ export default {
             <DynamicForm @submit="onFormSubmit('Form 1', $event)">
                 <DynamicFormField groupId="userId_1" name="username">
                     <DynamicFormLabel>Username</DynamicFormLabel>
-                    <DynamicFormControl defaultValue="PrimeVue" fluid :schema="userNameSchema" />
+                    <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
                     <DynamicFormMessage />
                 </DynamicFormField>
                 <DynamicFormField groupId="passId_1" name="password">
@@ -189,7 +189,7 @@ export default {
                 username: {
                     groupId: 'userId_2',
                     label: 'Username',
-                    defaultValue: 'PrimeVue',
+                    defaultValue: 'BumbleVue',
                     fluid: true,
                     schema: z.string().min(1, { message: 'Username is required.' })
                 },
@@ -248,7 +248,7 @@ export default {
             <DynamicForm @submit="onFormSubmit('Form 1', $event)">
                 <DynamicFormField groupId="userId_1" name="username">
                     <DynamicFormLabel>Username</DynamicFormLabel>
-                    <DynamicFormControl defaultValue="PrimeVue" fluid :schema="userNameSchema" />
+                    <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
                     <DynamicFormMessage />
                 </DynamicFormField>
                 <DynamicFormField groupId="passId_1" name="password">
@@ -273,7 +273,7 @@ export default {
 <script setup>
 import { reactive } from 'vue';
 import { z } from 'zod';
-import { useToast } from 'primevue/usetoast';
+import { useToast } from '@cjdevstudios/bumblevue/usetoast';
 import DynamicForm from './dynamic/DynamicForm.vue';
 import DynamicFormControl from './dynamic/DynamicFormControl.vue';
 import DynamicFormField from './dynamic/DynamicFormField.vue';
@@ -306,7 +306,7 @@ const fields = reactive({
     username: {
         groupId: 'userId_2',
         label: 'Username',
-        defaultValue: 'PrimeVue',
+        defaultValue: 'BumbleVue',
         fluid: true,
         schema: userNameSchema
     },
@@ -398,7 +398,7 @@ provide('$fcDynamicForm', {
 </template>
 
 <script setup>
-import * as PrimeVue from 'primevue';
+import * as BumbleVue from '@cjdevstudios/bumblevue';
 import { computed, inject } from 'vue';
 
 const props = defineProps({
@@ -417,7 +417,7 @@ const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
 const id = computed(() => $fcDynamicFormField?.groupId);
 const name = computed(() => $fcDynamicFormField?.name);
-const component = computed(() => PrimeVue[props.as] ?? props.as);
+const component = computed(() => BumbleVue[props.as] ?? props.as);
 
 $fcDynamicForm?.addField(name.value, props.schema, props.defaultValue);
 <\/script>
@@ -493,7 +493,7 @@ const props = defineProps({
     }
 });
 
-const $pcForm = inject('$pcForm', undefined); // Inject PrimeVue Form component
+const $pcForm = inject('$pcForm', undefined); // Inject BumbleVue Form component
 const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
 const fieldName = computed(() => $fcDynamicFormField?.name);
@@ -512,7 +512,7 @@ const visible = computed(() => invalid.value && (error.value || props.errorType 
 </template>
 
 <script setup>
-import Button from 'primevue/button';
+import Button from '@cjdevstudios/bumblevue/button';
 
 const props = defineProps({
     severity: {
@@ -585,7 +585,7 @@ provide('$fcDynamicForm', {
 </template>
 
 <script setup>
-import * as PrimeVue from 'primevue';
+import * as BumbleVue from '@cjdevstudios/bumblevue';
 import { computed, inject } from 'vue';
 
 const props = defineProps({
@@ -604,7 +604,7 @@ const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
 const id = computed(() => $fcDynamicFormField?.groupId);
 const name = computed(() => $fcDynamicFormField?.name);
-const component = computed(() => PrimeVue[props.as] ?? props.as);
+const component = computed(() => BumbleVue[props.as] ?? props.as);
 
 $fcDynamicForm?.addField(name.value, props.schema, props.defaultValue);
 <\/script>
@@ -680,7 +680,7 @@ const props = defineProps({
     }
 });
 
-const $pcForm = inject('$pcForm', undefined); // Inject PrimeVue Form component
+const $pcForm = inject('$pcForm', undefined); // Inject BumbleVue Form component
 const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
 const fieldName = computed(() => $fcDynamicFormField?.name);
@@ -699,7 +699,7 @@ const visible = computed(() => invalid.value && (error.value || props.errorType 
 </template>
 
 <script setup>
-import Button from 'primevue/button';
+import Button from '@cjdevstudios/bumblevue/button';
 
 const props = defineProps({
     severity: {

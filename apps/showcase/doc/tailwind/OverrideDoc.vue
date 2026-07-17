@@ -43,12 +43,12 @@ export default {
             },
             code3: {
                 basic: `
-import PrimeVue from 'primevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const app = createApp(App);
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     theme: {
         preset: Aura,
         options: {
@@ -69,12 +69,12 @@ app.use(PrimeVue, {
             },
             code5: {
                 basic: `
-import PrimeVue from 'primevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const app = createApp(App);
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     theme: {
         preset: Aura,
         options: {

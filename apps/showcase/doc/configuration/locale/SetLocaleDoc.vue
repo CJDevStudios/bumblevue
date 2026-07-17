@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Second parameter of the use function can be used to initiate the locale during PrimeVue installation.</p>
+        <p>Second parameter of the use function can be used to initiate the locale during BumbleVue installation.</p>
 
         <DocSectionCode :code="code1" hideToggleCode importCode hideStackBlitz />
 
@@ -16,7 +16,7 @@ export default {
         return {
             code1: {
                 basic: `
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     locale: {
         accept: 'Aceptar',
         reject: 'Rechazar',
@@ -28,14 +28,14 @@ app.use(PrimeVue, {
             code2: {
                 basic: `
 import { defineComponent, onMounted } from "vue";
-import { usePrimeVue } from "primevue/config";
+import { useBumbleVue } from "@cjdevstudios/bumblevue/config";
 
 export default defineComponent({
     setup() {
         const changeToSpanish = () => {
-            const primevue = usePrimeVue();
-            primevue.config.locale.accept = "Aceptar";
-            primevue.config.locale.reject = "Rechazar";
+            const bumblevue = useBumbleVue();
+            bumblevue.config.locale.accept = "Aceptar";
+            bumblevue.config.locale.reject = "Rechazar";
         }
 
         onMounted(() => {

@@ -9,8 +9,8 @@ export default {
         return {
             code: {
                 basic: `
-import RadioButton from 'primevue/radiobutton';
-import RadioButtonGroup from 'primevue/radiobuttongroup';
+import RadioButton from '@cjdevstudios/bumblevue/radiobutton';
+import RadioButtonGroup from '@cjdevstudios/bumblevue/radiobuttongroup';
 `
             }
         };

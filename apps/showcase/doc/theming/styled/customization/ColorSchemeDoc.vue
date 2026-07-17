@@ -11,7 +11,7 @@
         <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
         <div class="font-bold mb-4">Best Practices</div>
         <ul class="leading-normal list-disc list-inside mb-4">
-            <li>Check how tokens are defined in the preset before customizing from the <a href="https://github.com/primefaces/primeuix/tree/main/packages/themes/src/presets" target="_blank" rel="noopener noreferrer">source</a>.</li>
+            <li>Check how tokens are defined in the preset before customizing from the <a href="https://github.com/CJDevStudios/bumbleuix/tree/main/packages/themes/src/presets" target="_blank" rel="noopener noreferrer">source</a>.</li>
             <li>Always maintain the same structure (direct value or colorScheme) as the original preset.</li>
             <li>Consider both light and dark mode values when overriding scheme-dependent tokens.</li>
         </ul>
@@ -26,7 +26,7 @@ export default {
         return {
             code1: {
                 basic: `
-import PrimeVue from 'primevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import { definePreset } from '@cjdevstudios/bumbleuix-themes';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
@@ -43,7 +43,7 @@ const MyPreset = definePreset(Aura, {
     }
 });
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     theme: {
         preset: MyPreset
     }

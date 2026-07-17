@@ -16,10 +16,10 @@ export default {
             code: {
                 basic: `
 import { createApp } from "vue";
-import PrimeVue from "primevue/config";
+import BumbleVue from "@cjdevstudios/bumblevue/config";
 const app = createApp(App);
 
-app.use(PrimeVue, { unstyled: true });
+app.use(BumbleVue, { unstyled: true });
 `
             }
         };

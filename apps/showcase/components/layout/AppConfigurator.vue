@@ -299,7 +299,7 @@ export default {
             EventBus.emit('theme-palette-change');
         },
         onRippleChange(value) {
-            this.$primevue.config.ripple = value;
+            this.$bumblevue.config.ripple = value;
         },
         onPresetChange(value) {
             this.$appState.preset = value;
@@ -329,7 +329,7 @@ export default {
     },
     computed: {
         rippleActive() {
-            return this.$primevue.config.ripple;
+            return this.$bumblevue.config.ripple;
         },
         selectedPrimaryColor() {
             return this.$appState.primary;

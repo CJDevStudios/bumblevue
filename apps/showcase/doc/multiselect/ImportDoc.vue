@@ -9,7 +9,7 @@ export default {
         return {
             code: {
                 basic: `
-import MultiSelect from 'primevue/multiselect';
+import MultiSelect from '@cjdevstudios/bumblevue/multiselect';
 `
             }
         };

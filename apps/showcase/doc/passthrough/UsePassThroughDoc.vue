@@ -20,7 +20,7 @@ export default {
             code1: {
                 basic: `
 import { createApp } from "vue";
-import PrimeVue from "primevue/config";
+import BumbleVue from "@cjdevstudios/bumblevue/config";
 import { usePassThrough } from "primevue/passthrough";
 import BasePreset from "./basepreset";
 
@@ -41,7 +41,7 @@ const CustomPreset = usePassThrough(
     }
 );
 
-app.use(PrimeVue, { unstyled: true, pt: CustomPreset });
+app.use(BumbleVue, { unstyled: true, pt: CustomPreset });
 `
             },
             code2: {

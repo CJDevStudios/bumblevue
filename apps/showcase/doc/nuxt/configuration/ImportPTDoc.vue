@@ -13,7 +13,7 @@ export default {
         return {
             code1: {
                 basic: `
-primevue: {
+bumblevue: {
     importPT: { from: '@/passthrough/mycustompt.js' }
 }
 `

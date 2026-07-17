@@ -9,8 +9,8 @@ export default {
         return {
             code: {
                 basic: `
-import TreeTable from 'primevue/treetable';
-import Column from 'primevue/column';
+import TreeTable from '@cjdevstudios/bumblevue/treetable';
+import Column from '@cjdevstudios/bumblevue/column';
 `
             }
         };

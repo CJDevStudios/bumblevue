@@ -9,8 +9,8 @@ export default {
         return {
             code: {
                 basic: `
-import Splitter from 'primevue/splitter';
-import SplitterPanel from 'primevue/splitterpanel';
+import Splitter from '@cjdevstudios/bumblevue/splitter';
+import SplitterPanel from '@cjdevstudios/bumblevue/splitterpanel';
 `
             }
         };

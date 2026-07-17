@@ -701,7 +701,7 @@ export default {
 <script setup>
 import { ref, onMounted } from 'vue';
 import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
-import { useToast } from 'primevue/usetoast';
+import { useToast } from '@cjdevstudios/bumblevue/usetoast';
 import { ProductService } from '@/service/ProductService';
 
 onMounted(() => {

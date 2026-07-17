@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>PrimeVue is available for download on <a href="https://www.npmjs.com/package/primevue">npm registry</a>.</p>
+        <p>BumbleVue is available for download on <a href="https://www.npmjs.com/package/@cjdevstudios/bumblevue">npm registry</a>.</p>
     </DocSectionText>
     <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
 </template>
@@ -12,13 +12,13 @@ export default {
             code: {
                 basic: `
 # Using npm
-npm install primevue @cjdevstudios/bumbleuix-themes
+npm install @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
 
 # Using yarn
-yarn add primevue @cjdevstudios/bumbleuix-themes
+yarn add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
 
 # Using pnpm
-pnpm add primevue @cjdevstudios/bumbleuix-themes
+pnpm add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
 `
             }
         };

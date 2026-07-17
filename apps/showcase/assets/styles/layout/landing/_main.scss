@@ -2,6 +2,20 @@
     scroll-behavior: smooth;
     padding-top: 4rem;
     background-color: var(--ground-background);
+    min-height: 100vh;
+
+    .landing-bg-image {
+        background-image: url("/images/HiveCellBackground.webp");
+        background-repeat: repeat;
+        background-size: auto;
+        background-attachment: fixed;
+        opacity: 0.1;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
 
     .box {
         border: 1px solid var(--border-color);

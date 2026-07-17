@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <Title>Introduction - PrimeVue</Title>
+        <Title>Introduction - BumbleVue</Title>
         <Meta name="description" content="Next-generation UI Component suite for Vue." />
     </Head>
     <div class="doc">

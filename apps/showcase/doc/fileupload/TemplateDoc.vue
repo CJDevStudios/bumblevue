@@ -308,10 +308,10 @@ export default {
 
 <script setup>
 import { ref } from 'vue';
-import { usePrimeVue } from 'primevue/config';
+import { useBumbleVue } from '@cjdevstudios/bumblevue/config';
 import { useToast } from "primevue/usetoast";
 
-const $primevue = usePrimeVue();
+const $primevue = useBumbleVue();
 const toast = useToast();
 
 const totalSize = ref(0);

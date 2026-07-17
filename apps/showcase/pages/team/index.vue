@@ -5,7 +5,7 @@
             <p>
                 <a href="https://www.primetek.com.tr"> PrimeTek </a> is a world renowned vendor of popular UI Component suites including <a href="https://primefaces.org"> PrimeFaces </a>, <a href="https://primeng.org"> PrimeNG </a>,
                 <a href="https://primereact.org"> PrimeReact </a> and
-                <a href="https://primevue.org"> PrimeVue </a>
+                <a href="https://BumbleVue.org"> BumbleVue </a>
                 . All the members in our team are full time employees of PrimeTek who share the same passion and vision for open source to create awesome UI libraries.
             </p>
         </div>

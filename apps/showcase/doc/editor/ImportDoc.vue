@@ -9,7 +9,7 @@ export default {
         return {
             code: {
                 basic: `
-import Editor from 'primevue/editor';
+import Editor from '@cjdevstudios/bumblevue/editor';
 `
             }
         };

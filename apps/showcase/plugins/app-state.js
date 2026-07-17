@@ -1,5 +1,5 @@
 import AppTheme from '@/themes/app-theme';
-import PrimeVue from 'primevue/config';
+import PrimeVue from '@cjdevstudios/bumblevue/config';
 import { reactive } from 'vue';
 
 const $appState = {

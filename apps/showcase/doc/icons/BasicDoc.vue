@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>PrimeIcons use the <i>pi pi-&#123;icon&#125;</i> syntax such as <i>pi pi-check</i>. A standalone icon can be displayed using an element such as <i>i</i> or <i>span</i></p>
+        <p>BumbleIcons use the <i>pi pi-&#123;icon&#125;</i> syntax such as <i>pi pi-check</i>. A standalone icon can be displayed using an element such as <i>i</i> or <i>span</i></p>
     </DocSectionText>
     <div class="card flex justify-center gap-4">
         <i class="pi pi-check"></i>

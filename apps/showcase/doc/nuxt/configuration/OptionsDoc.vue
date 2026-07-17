@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Main configuration settings of PrimeVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
+        <p>Main configuration settings of BumbleVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
     </DocSectionText>
     <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
 </template>
@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     modules: [
         '@cjdevstudios/bumblevue-nuxt-module'
     ],
-    primevue: {
+    bumblevue: {
         options: {
             ripple: true,
             inputVariant: 'filled',

@@ -69,9 +69,9 @@
         <div class="w-8/12 xl:w-6/12 border-x border-surface flex flex-col">
             <div class="flex items-center p-4 gap-7 border-b border-surface">
                 <div class="flex items-center">
-                    <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar-primetek.png" class="mr-2 av" size="large" shape="circle" />
+                    <Avatar image="/images/BumbleVue-Avatar.webp" class="mr-2 av" size="large" shape="circle" />
                     <div class="flex-1">
-                        <div class="text-color leading-6 cursor-pointer hover:text-muted-color-emphasis transition-colors">PrimeTek</div>
+                        <div class="text-color leading-6 cursor-pointer hover:text-muted-color-emphasis transition-colors">BumbleVue</div>
                         <div class="text-muted-color leading-5 line-clamp-1 mt-1">Cody Fisher, Esther Howard, Jerome Bell, Kristin Watson, Ronald Richards, Darrell Steward</div>
                     </div>
                 </div>
@@ -125,9 +125,9 @@
         </div>
         <div class="w-3/12 xl:block hidden min-w-40 py-6 px-3 overflow-auto">
             <div class="flex flex-col items-center justify-center">
-                <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar-primetek.png" class="w-32 h-32" size="xlarge" shape="circle" />
-                <div class="leading-6 font-medium text-color mt-4 w-full text-center">PrimeTek</div>
-                <div class="leading-5 text-sm text-muted-color mt-1 w-full text-center">@primetek</div>
+                <Avatar image="/images/BumbleVue-Avatar.webp" class="w-32 h-32" size="xlarge" shape="circle" />
+                <div class="leading-6 font-medium text-color mt-4 w-full text-center">BumbleVue</div>
+                <div class="leading-5 text-sm text-muted-color mt-1 w-full text-center">@bumblevue</div>
                 <div class="flex items-center justify-center flex-wrap gap-1 mt-4">
                     <Button icon="pi pi-phone text-muted-color" severity="secondary" text />
                     <Button icon="pi pi-video text-muted-color" severity="secondary" text />
@@ -231,7 +231,7 @@ export default {
             options: ['Chat', 'Call'],
             media: 'Media',
             mediaOptions: ['Media', 'Link', 'Docs'],
-            activeChat: 'PrimeTek Team',
+            activeChat: 'BumbleVue Team',
             menuItems: [
                 {
                     label: 'Group Info',
@@ -250,16 +250,16 @@ export default {
                     active: true,
                     unreadMessageCount: 8,
                     time: '12.30',
-                    lastMessage: "Hey there! I've heard about PrimeVue. Any cool tips for getting started?"
+                    lastMessage: "Hey there! I've heard about BumbleVue. Any cool tips for getting started?"
                 },
                 {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar-primetek.png',
-                    name: 'PrimeTek Team',
+                    image: '/images/BumbleVue-Avatar.webp',
+                    name: 'BumbleVue Team',
                     capName: 'PT',
                     active: undefined,
                     unreadMessageCount: 0,
                     time: '11.15',
-                    lastMessage: "Let's implement PrimeVue. Elevating our UI game! 🚀"
+                    lastMessage: "Let's implement BumbleVue. Elevating our UI game! 🚀"
                 },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar2.png',
@@ -268,7 +268,7 @@ export default {
                     active: true,
                     unreadMessageCount: 4,
                     time: '11.15',
-                    lastMessage: "Absolutely! PrimeVue's documentation is gold—simplifies our UI work."
+                    lastMessage: "Absolutely! BumbleVue's documentation is gold—simplifies our UI work."
                 },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar12.jpg',
@@ -277,7 +277,7 @@ export default {
                     active: false,
                     unreadMessageCount: 0,
                     time: '11.15',
-                    lastMessage: "Interesting! PrimeVue sounds amazing. What's your favorite feature?"
+                    lastMessage: "Interesting! BumbleVue sounds amazing. What's your favorite feature?"
                 },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar13.jpg',
@@ -286,7 +286,7 @@ export default {
                     active: true,
                     unreadMessageCount: 9,
                     time: '11.15',
-                    lastMessage: 'Quick one, team! Anyone using PrimeVue for mobile app development?'
+                    lastMessage: 'Quick one, team! Anyone using BumbleVue for mobile app development?'
                 },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar9.jpg',
@@ -295,7 +295,7 @@ export default {
                     active: false,
                     unreadMessageCount: 0,
                     time: '11.15',
-                    lastMessage: "Just explored PrimeVue's themes. Can we talk about those stunning designs? 😍"
+                    lastMessage: "Just explored BumbleVue's themes. Can we talk about those stunning designs? 😍"
                 },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar6.png',
@@ -304,10 +304,10 @@ export default {
                     active: false,
                     unreadMessageCount: 0,
                     time: '11.15',
-                    lastMessage: 'PrimeVue is a game-changer, right? What are your thoughts, folks?'
+                    lastMessage: 'BumbleVue is a game-changer, right? What are your thoughts, folks?'
                 },
-                { image: '', name: 'Ronald Richards', capName: 'RR', active: false, unreadMessageCount: 0, time: '11.15', lastMessage: "Jumping in! PrimeVue's community forum is buzzing. Any engaging discussions?" },
-                { image: '', name: 'Kristin Watson', capName: 'KW', active: false, unreadMessageCount: 0, time: '11.15', lastMessage: 'Sharing a quick win-PrimeVue tutorials are leveling up my UI skills. 👩‍💻' },
+                { image: '', name: 'Ronald Richards', capName: 'RR', active: false, unreadMessageCount: 0, time: '11.15', lastMessage: "Jumping in! BumbleVue's community forum is buzzing. Any engaging discussions?" },
+                { image: '', name: 'Kristin Watson', capName: 'KW', active: false, unreadMessageCount: 0, time: '11.15', lastMessage: 'Sharing a quick win-BumbleVue tutorials are leveling up my UI skills. 👩‍💻' },
                 {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar7.png',
                     name: 'Darrell Steward',
@@ -315,12 +315,12 @@ export default {
                     active: false,
                     unreadMessageCount: 0,
                     time: '11.15',
-                    lastMessage: "Reflecting on PrimeVue's impact on our workflow. What's your take?"
+                    lastMessage: "Reflecting on BumbleVue's impact on our workflow. What's your take?"
                 }
             ],
             chatMessages: [
                 { id: 1, attachment: '', name: '', image: '', capName: 'OS', type: 'received', message: "Awesome! What's the standout feature?" },
-                { id: 2, attachment: '', name: '', image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar8.png', capName: 'A', type: 'received', message: 'PrimeVue rocks! Simplifies UI dev with versatile components.' },
+                { id: 2, attachment: '', name: '', image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar8.png', capName: 'A', type: 'received', message: 'BumbleVue rocks! Simplifies UI dev with versatile components.' },
                 { id: 3, attachment: '', name: '', image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg', capName: 'A', type: 'received', message: 'Intriguing! Tell us more about its impact.' },
                 {
                     id: 4,
@@ -404,7 +404,7 @@ export default {
                     image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar5.png',
                     capName: 'H',
                     type: 'sent',
-                    message: "That's great advice. It's amazing how much detail and thought has gone into making PrimeVue such a powerful tool for developers."
+                    message: "That's great advice. It's amazing how much detail and thought has gone into making BumbleVue such a powerful tool for developers."
                 }
             ],
             chatMedia: [

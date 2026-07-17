@@ -5,7 +5,7 @@
     <div class="mb-4 p-8 flex items-center justify-center">
         <Card style="width: 25rem; overflow: hidden">
             <template #header>
-                <img alt="user header" class="w-full" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" />
+                <img alt="user header" class="w-full" src="/images/HiveCellBackgroundSmall.webp" />
             </template>
             <template #title>Advanced Card</template>
             <template #subtitle>Card subtitle</template>
@@ -56,7 +56,7 @@ export default {
 <template>
     <Card style="width: 25rem; overflow: hidden">
         <template #header>
-            <img alt="user header" src="https://primefaces.org/cdn/primevue/images/usercard.png" />
+            <img alt="user header" src="/images/HiveCellBackgroundSmall.webp" />
         </template>
         <template #title>Advanced Card</template>
         <template #subtitle>Card subtitle</template>
@@ -82,7 +82,7 @@ export default {
 <template>
     <Card style="width: 25rem; overflow: hidden">
         <template #header>
-            <img alt="user header" src="https://primefaces.org/cdn/primevue/images/usercard.png" />
+            <img alt="user header" src="/images/HiveCellBackgroundSmall.webp" />
         </template>
         <template #title>Advanced Card</template>
         <template #subtitle>Card subtitle</template>

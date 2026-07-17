@@ -1,16 +1,16 @@
 <template>
     <div>
         <Head>
-            <Title>Install PrimeVue with Nuxt</Title>
-            <Meta name="description" content="Setting up PrimeVue in a Nuxt project" />
+            <Title>Install BumbleVue with Nuxt</Title>
+            <Meta name="description" content="Setting up BumbleVue in a Nuxt project" />
         </Head>
         <div class="doc">
             <div class="doc-main">
                 <div class="doc-intro">
                     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                         <div class="flex-1">
-                            <h1>Install PrimeVue with Nuxt</h1>
-                            <p>Setting up PrimeVue in a Nuxt project.</p>
+                            <h1>Install BumbleVue with Nuxt</h1>
+                            <p>Setting up BumbleVue in a Nuxt project.</p>
                         </div>
                         <DocCopyMarkdown docType="page" class="flex-shrink-0" />
                     </div>
@@ -26,7 +26,6 @@
 import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
 import AutoImportDoc from '@/doc/nuxt/AutoImportDoc.vue';
 import DownloadDoc from '@/doc/nuxt/DownloadDoc.vue';
-import ExamplesDoc from '@/doc/nuxt/ExamplesDoc.vue';
 import ModuleDoc from '@/doc/nuxt/ModuleDoc.vue';
 import NextStepsDoc from '@/doc/nuxt/NextStepsDoc.vue';
 import ThemeDoc from '@/doc/nuxt/ThemeDoc.vue';
@@ -37,7 +36,7 @@ import DirectivesDoc from '@/doc/nuxt/configuration/DirectivesDoc.vue';
 import ImportPTDoc from '@/doc/nuxt/configuration/ImportPTDoc.vue';
 import ImportThemeDoc from '@/doc/nuxt/configuration/ImportThemeDoc.vue';
 import OptionsDoc from '@/doc/nuxt/configuration/OptionsDoc.vue';
-import UsePrimeVueDoc from '@/doc/nuxt/configuration/UsePrimeVueDoc.vue';
+import UseBumbleVueDoc from '@/doc/nuxt/configuration/UseBumbleVueDoc.vue';
 
 export default {
     components: { DocCopyMarkdown },
@@ -69,9 +68,9 @@ export default {
                     label: 'Configuration',
                     children: [
                         {
-                            id: 'useprimevue',
-                            label: 'usePrimeVue',
-                            component: UsePrimeVueDoc
+                            id: 'usebumblevue',
+                            label: 'useBumbleVue',
+                            component: UseBumbleVueDoc
                         },
                         {
                             id: 'options',
@@ -109,11 +108,6 @@ export default {
                             component: ComposablesDoc
                         }
                     ]
-                },
-                {
-                    id: 'examples',
-                    label: 'Examples',
-                    component: ExamplesDoc
                 },
                 {
                     id: 'nextsteps',

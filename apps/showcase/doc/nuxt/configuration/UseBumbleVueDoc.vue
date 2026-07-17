@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>The module installs the PrimeVue plugin by default. Disable this option if you prefer to configure PrimeVue manually e.g. with a Nuxt plugin.</p>
+        <p>The module installs the BumbleVue plugin by default. Disable this option if you prefer to configure BumbleVue manually e.g. with a Nuxt plugin.</p>
     </DocSectionText>
     <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
 </template>
@@ -11,8 +11,8 @@ export default {
         return {
             code: {
                 basic: `
-primevue: {
-    usePrimeVue: true | false
+bumblevue: {
+    useBumbleVue: true | false
 }
 `
             }

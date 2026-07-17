@@ -1,10 +1,10 @@
 import pkg from '../../../package.json';
 import { services } from './services';
 
-const PrimeVue = {
+const BumbleVue = {
     version: '^4.0.0',
     description:
-        'PrimeVue is an open source UI library for Vue featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support. In addition, it integrates with PrimeBlock, which has 500+ ready to use UI blocks to build spectacular applications in no time.'
+        'BumbleVue is an open source UI library for Vue featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support.'
 };
 
 const app_dependencies = pkg ? pkg.devDependencies : {};
@@ -13,10 +13,10 @@ const core_dependencies = {
     vue: '^3.2.45',
     '@vitejs/plugin-vue': '^4.0.0',
     vite: '^4.0.0',
-    primevue: pkg.version || PrimeVue.version || 'latest',
+    bumblevue: pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumbleuix-themes': 'latest',
-    '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || PrimeVue.version || 'latest',
-    '@cjdevstudios/bumblevue-forms': pkg.version || PrimeVue.version || 'latest',
+    '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || BumbleVue.version || 'latest',
+    '@cjdevstudios/bumblevue-forms': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumbleicons': app_dependencies['@cjdevstudios/bumbleicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
     autoprefixer: app_dependencies['autoprefixer'] || 'latest',
@@ -28,7 +28,7 @@ const core_dependencies = {
 // create-vue -> https://github.com/vuejs/create-vue
 const getVueApp = (props = {}, sourceType) => {
     const path = 'src/';
-    const { code: sources, title = 'primevue_demo', description = '', service, dependencies: deps, component, extFiles } = props;
+    const { code: sources, title = 'bumblevue_demo', description = '', service, dependencies: deps, component, extFiles } = props;
     const dependencies = { ...core_dependencies, ...deps };
 
     const fileExtension = '.vue';
@@ -40,7 +40,7 @@ const getVueApp = (props = {}, sourceType) => {
         themeSwitchCode;
 
     if (deps !== null && component !== null) {
-        imports += `import ${component} from 'primevue/${component.toLowerCase()}';
+        imports += `import ${component} from '@cjdevstudios/bumblevue/${component.toLowerCase()}';
 `;
         element += `app.component('${component}', ${component});
 `;
@@ -57,7 +57,7 @@ const getVueApp = (props = {}, sourceType) => {
         'package.json': {
             content: {
                 name: title.toLowerCase().replaceAll(' ', '_'),
-                description: `**${description}** ${PrimeVue.description}`,
+                description: `**${description}** ${BumbleVue.description}`,
                 keywords: [],
                 scripts: {
                     dev: 'vite',
@@ -73,7 +73,7 @@ const getVueApp = (props = {}, sourceType) => {
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
-import {PrimeVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
+import {BumbleVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -81,7 +81,7 @@ export default defineConfig({
         vue(),
         Components({
             resolvers: [
-                PrimeVueResolver()
+                BumbleVueResolver()
             ]
         })
     ],
@@ -99,10 +99,10 @@ export default defineConfig({
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
-        <meta name="description" content="**${description}** ${PrimeVue.description}" />
+        <meta name="description" content="**${description}** ${BumbleVue.description}" />
         <!-- Added to show icons in the editor -->
         <link rel="stylesheet" href="https://unpkg.com/@cjdevstudios/bumbleicons@${dependencies['@cjdevstudios/bumbleicons'].replace(/[\^|~]/gi, '')}/bumbleicons.css">
-        <title>PrimeVue App</title>
+        <title>BumbleVue App</title>
     </head>
     <body>
         <div id="app"></div>
@@ -135,10 +135,10 @@ import "./style.css";
 import "./flags.css";
 
 import { createApp } from "vue";
-import PrimeVue from "primevue/config";
-import ConfirmationService from 'primevue/confirmationservice'
-import DialogService from 'primevue/dialogservice'
-import ToastService from 'primevue/toastservice';
+import BumbleVue from "@cjdevstudios/bumblevue/config";
+import ConfirmationService from '@cjdevstudios/bumblevue/confirmationservice'
+import DialogService from '@cjdevstudios/bumblevue/dialogservice'
+import ToastService from '@cjdevstudios/bumblevue/toastservice';
 
 import App from "./App.vue";
 import AppState from './plugins/appState.js';
@@ -148,7 +148,7 @@ ${imports}
 
 const app = createApp(App);
 
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     theme: {
         preset: Noir,
         options: {
@@ -805,7 +805,7 @@ export default {
             }
         },
         onRippleChange(value) {
-            this.$primevue.config.ripple = value;
+            this.$bumblevue.config.ripple = value;
         },
         onPresetChange(value) {
             this.$appState.theme = value;
@@ -823,7 +823,7 @@ export default {
     },
     computed: {
         rippleActive() {
-            return this.$primevue.config.ripple;
+            return this.$bumblevue.config.ripple;
         }
     }
 };

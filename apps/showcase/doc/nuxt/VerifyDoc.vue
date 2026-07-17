@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>The nuxt-primevue module registers the components automatically with tree-shaking support so you may start using them instantly.</p>
+        <p>The nuxt-bumblevue module registers the components automatically with tree-shaking support so you may start using them instantly.</p>
     </DocSectionText>
     <div class="card flex justify-center">
         <Button label="Verify" />

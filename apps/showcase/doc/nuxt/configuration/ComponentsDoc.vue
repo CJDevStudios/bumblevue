@@ -23,7 +23,7 @@ export default {
         return {
             code1: {
                 basic: `
-primevue: {
+bumblevue: {
     components: {
         include: ['Button', 'DataTable']
     }
@@ -32,7 +32,7 @@ primevue: {
             },
             code2: {
                 basic: `
-primevue: {
+bumblevue: {
     components: {
         include: '*',
         exclude: ['Galleria', 'Carousel']
@@ -42,7 +42,7 @@ primevue: {
             },
             code3: {
                 basic: `
-primevue: {
+bumblevue: {
     components: {
         exclude: []
     }
@@ -51,17 +51,17 @@ primevue: {
             },
             code4: {
                 basic: `
-primevue: {
+bumblevue: {
     components: {
-        prefix: 'Prime'
-        include: ['Button', 'DataTable']    /* Used as <PrimeButton /> and <PrimeDataTable /> */
+        prefix: 'Bumble'
+        include: ['Button', 'DataTable']    /* Used as <BumbleButton /> and <BumbleDataTable /> */
     }
 }
 `
             },
             code5: {
                 basic: `
-primevue: {
+bumblevue: {
     components: {
         name: ({ name, as, from }) => {
             return name === 'Button' ? \`My\${name}\` : name;

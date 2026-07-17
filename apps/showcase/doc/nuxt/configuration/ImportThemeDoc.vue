@@ -13,7 +13,7 @@ export default {
         return {
             code1: {
                 basic: `
-primevue: {
+bumblevue: {
     importTheme: { from: '@/themes/mytheme.js' },
 }
 `

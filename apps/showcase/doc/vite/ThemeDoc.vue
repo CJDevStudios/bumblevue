@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Configure PrimeVue to use a theme like Aura.</p>
+        <p>Configure BumbleVue to use a theme like Aura.</p>
         <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
     </DocSectionText>
 </template>
@@ -12,11 +12,11 @@ export default {
             code: {
                 basic: `
 import { createApp } from 'vue';
-import PrimeVue from '@cjdevstudios/bumblevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 
 const app = createApp(App);
-app.use(PrimeVue, {
+app.use(BumbleVue, {
     theme: {
         preset: Aura
     }

@@ -3,7 +3,7 @@
         <p>Image filter implementation using multiple sliders.</p>
     </DocSectionText>
     <div class="card flex flex-col items-center justify-center">
-        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" :style="filterStyle" />
+        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
         <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
         <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
     </div>
@@ -23,14 +23,14 @@ export default {
             ],
             code: {
                 basic: `
-<img alt="user header" class="w-full md:w-80 rounded mb-6" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" :style="filterStyle" />
+<img alt="user header" class="w-full md:w-80 rounded mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
 <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
 <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
 `,
                 options: `
 <template>
     <div class="card flex flex-col items-center justify-center">
-        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" :style="filterStyle" />
+        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
         <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
         <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
     </div>
@@ -62,7 +62,7 @@ export default {
                 composition: `
 <template>
     <div class="card flex flex-col items-center justify-center">
-        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="https://primefaces.org/cdn/primevue/images/card-vue.jpg" :style="filterStyle" />
+        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
         <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
         <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
     </div>

@@ -279,7 +279,7 @@ export default {
             </Dock>
 
             <Dialog v-model:visible="displayTerminal" header="Terminal" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
-                <Terminal welcomeMessage="Welcome to PrimeVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
+                <Terminal welcomeMessage="Welcome to BumbleVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
             </Dialog>
 
             <Dialog v-model:visible="displayFinder" header="Finder" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
@@ -583,7 +583,7 @@ export default {
                 </Dock>
 
                 <Dialog v-model:visible="displayTerminal" header="Terminal" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
-                    <Terminal welcomeMessage="Welcome to PrimeVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
+                    <Terminal welcomeMessage="Welcome to BumbleVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
                 </Dialog>
 
                 <Dialog v-model:visible="displayFinder" header="Finder" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
@@ -602,8 +602,8 @@ export default {
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue';
-import { useToast } from 'primevue/usetoast';
-import TerminalService from 'primevue/terminalservice';
+import { useToast } from '@cjdevstudios/bumblevue/usetoast';
+import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
 import { NodeService } from '@/service/NodeService';
 import { PhotoService } from '@/service/PhotoService';
 

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     modules: [
         '@cjdevstudios/bumblevue-nuxt-module'
     ],
-    primevue: {
+    bumblevue: {
         options: {
             theme: {
                 preset: Aura

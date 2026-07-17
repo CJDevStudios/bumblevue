@@ -11,10 +11,6 @@
                 {
                     "name": "Setup",
                     "to": "/setup"
-                },
-                {
-                    "name": "Playground",
-                    "to": "/playground"
                 }
             ]
         },

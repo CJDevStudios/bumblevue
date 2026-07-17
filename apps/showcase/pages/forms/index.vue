@@ -2,7 +2,7 @@
     <DocComponent
         title="Vue Form Library"
         header="Forms"
-        description="The PrimeVue Forms library provides comprehensive form state management with built-in validation support."
+        description="The BumbleVue Forms library provides comprehensive form state management with built-in validation support."
         :componentDocs="docs"
         :apiDocs="['Form', 'FormField']"
         :ptTabComponent="ptComponent"
@@ -78,7 +78,7 @@ export default {
                         },
                         {
                             id: 'formfield-non-primevue',
-                            label: 'Non PrimeVue',
+                            label: 'Non BumbleVue',
                             component: NonPrimeVueDoc
                         },
                         {

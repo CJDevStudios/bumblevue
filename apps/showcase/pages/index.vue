@@ -1,12 +1,14 @@
 <template>
     <div :class="containerClass">
-<!--        <AppNews />-->
+        <!--        <AppNews />-->
         <AppTopBar :showMenuButton="false" />
-        <HeroSection />
-        <FeaturesSection />
-        <ThemeSection />
-        <FooterSection />
-        <Toast />
+        <div class="landing-bg-image"></div>
+        <div class="z-10 relative">
+            <HeroSection />
+            <FeaturesSection />
+            <FooterSection />
+            <Toast />
+        </div>
     </div>
 </template>
 
@@ -14,7 +16,6 @@
 import FeaturesSection from '@/components/landing/FeaturesSection.vue';
 import FooterSection from '@/components/landing/FooterSection.vue';
 import HeroSection from '@/components/landing/HeroSection.vue';
-import ThemeSection from '@/components/landing/ThemeSection.vue';
 
 export default {
     setup() {
@@ -49,7 +50,6 @@ export default {
     },
     components: {
         HeroSection,
-        ThemeSection,
         FeaturesSection,
         FooterSection
     }

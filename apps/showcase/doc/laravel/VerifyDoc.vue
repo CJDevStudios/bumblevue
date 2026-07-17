@@ -17,7 +17,7 @@ export default {
         return {
             code: {
                 basic: `
-import Button from "primevue/button"
+import Button from "@cjdevstudios/bumblevue/button"
 
 const app = createApp(App);
 app.component('Button', Button);

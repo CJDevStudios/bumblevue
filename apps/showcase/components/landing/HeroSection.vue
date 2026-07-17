@@ -1,10 +1,15 @@
 <template>
     <section class="landing-hero py-20 px-8 lg:px-20">
         <div class="flex flex-col items-center">
-            <h1 class="text-5xl font-bold text-center xl:text-left leading-tight">The Next-Gen UI Suite for <span class="font-bold text-primary">Vue.js</span></h1>
+            <h1 class="text-5xl font-bold text-center xl:text-left leading-tight">The Sweetest Framework for Rapid Vue Development</h1>
             <p class="text-center mt-0 mb-8 text-surface-500 dark:text-surface-400 font-medium text-xl leading-relaxed lg:px-56">
                 BumbleVue is a community-driven, free and open-source UI component library for Vue.js, providing a wide range of customizable and responsive components to help developers build modern web applications with ease.
             </p>
+            <div class="flex gap-2 my-2 flex-wrap">
+                <img src="https://img.shields.io/npm/last-update/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Last Update" />
+                <img src="https://img.shields.io/npm/dw/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Downloads" />
+                <img src="https://img.shields.io/github/stars/CJDevStudios/bumblevue?style=for-the-badge" alt="GitHub Stars" />
+            </div>
             <div class="flex items-center gap-4">
                 <BumbleVueNuxtLink to="/setup" class="linkbox linkbox-primary" @click="onGetStartedClick">
                     <span>Get Started </span>
@@ -16,43 +21,14 @@
                 </a>
             </div>
         </div>
-        <div class="w-full flex lg:hidden items-center justify-center mt-16 mb-4">
-            <SelectButton v-model="selectedSampleOption" :options="sampleOptions" optionLabel="title" class="dark:border dark:border-white/20">
-                <template #option="slotProps">
-                    <i :class="slotProps.option.icon"></i>
-                    <div class="hidden sm:flex flex-1 text-sm font-medium leading-5">{{ slotProps.option.title }}</div>
-                </template>
-            </SelectButton>
-        </div>
-        <div class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full rounded-3xl p-0 flex lg:hidden items-start gap-6 overflow-hidden">
-            <template v-for="sampleOption of sampleOptions" :key="sampleOption.title">
-                <img v-if="selectedSampleOption.title === sampleOption.title" :src="sampleOption.src + (isDark() ? '-dark.jpg' : '.jpg')" class="w-full" />
-            </template>
-        </div>
-        <div class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] rounded-3xl p-6 hidden lg:flex lg:mt-20 items-start gap-6 overflow-hidden">
+        <div class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] rounded-3xl p-6 flex mt-20 items-start gap-6 overflow-hidden">
             <div :class="isSlimMenu ? 'w-auto' : 'w-72'" class="rounded-2xl p-5 bg-surface-50 dark:bg-surface-900 h-full flex flex-col justify-between">
                 <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
                     <div class="flex items-center gap-3">
                         <div class="w-11 h-11 border border-primary rounded-xl flex items-center justify-center">
-                            <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.65 11.0645L13.1283 10.7253L14.3119 12.4216V17.6803L18.3698 14.2876V8.52002L16.5099 9.19856L14.65 11.0645Z" fill="var(--p-primary-color)" />
-                                <path d="M5.18078 11.0645L6.70251 10.7253L5.51894 12.4216V17.6803L1.46098 14.2876V8.52002L3.32088 9.19856L5.18078 11.0645Z" fill="var(--p-primary-color)" />
-                                <path
-                                    fill-rule="evenodd"
-                                    clip-rule="evenodd"
-                                    d="M6.02649 12.7634L7.37914 10.7278L8.22455 11.2367H11.6062L12.4516 10.7278L13.8042 12.7634V20.397L12.7898 21.9237L11.6062 23.1111H8.22455L7.04098 21.9237L6.02649 20.397V12.7634Z"
-                                    fill="var(--p-primary-color)"
-                                />
-                                <path d="M14.311 20.9058L16.5091 18.7005V16.4952L14.311 18.3612V20.9058Z" fill="var(--p-primary-color)" />
-                                <path d="M5.51868 20.9058L3.32062 18.7005V16.4952L5.51868 18.3612V20.9058Z" fill="var(--p-primary-color)" />
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9.578 0.888672H7.7177L6.36505 4.11174L8.56311 10.5579H11.4375L13.4665 4.11174L12.1138 0.888672H10.2543V10.5578H9.578V0.888672Z" fill="var(--p-primary-color)" />
-                                <path d="M8.56283 10.5575L1.29232 7.84329L0.277832 3.60242L6.53385 4.11132L8.73191 10.5575H8.56283Z" fill="var(--p-primary-color)" />
-                                <path d="M11.4372 10.5575L18.7077 7.84329L19.7222 3.60242L13.2971 4.11132L11.2681 10.5575H11.4372Z" fill="var(--p-primary-color)" />
-                                <path d="M13.8041 3.60283L17.3548 3.26356L14.9876 0.888672H12.6205L13.8041 3.60283Z" fill="var(--p-primary-color)" />
-                                <path d="M6.02676 3.60283L2.47604 3.26356L4.84318 0.888672H7.21033L6.02676 3.60283Z" fill="var(--p-primary-color)" />
-                            </svg>
+                            <img :size="32" src="/logo-icon.webp" class="block dark:hidden" aria-hidden="true" />
                         </div>
-                        <div :class="isSlimMenu ? 'hidden' : 'block'" class="text-surface-950 dark:text-surface-0 font-medium text-3xl">Prime</div>
+                        <div :class="isSlimMenu ? 'hidden' : 'block'" class="text-surface-950 dark:text-surface-0 font-medium text-3xl">BumbleVue</div>
                     </div>
                     <div class="mt-10 flex flex-col gap-2">
                         <div
@@ -78,7 +54,6 @@
                 <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
                     <div class="mt-10 flex flex-col gap-2">
                         <div
-                            v-if="false"
                             v-tooltip="isSlimMenu ? 'Expanded Mode' : null"
                             class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none text-muted-color hover:bg-emphasis"
                             :class="[
@@ -259,20 +234,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div v-if="selectedSidebarOption === 'Opportunities'" class="grid grid-cols-2 gap-6 p-6">
-                            <div v-for="(data, i) of opportunities" :key="i" class="flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="flex items-start justify-between gap-2">
-                                    <div class="font-medium text-color mt-0.5">{{ data.title }}</div>
-                                    <NuxtLink :to="data.link" target="_blank" rel="noopener">
-                                        <Button icon="pi pi-arrow-up-right text-sm !leading-none" class="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900" severity="secondary" text />
-                                    </NuxtLink>
-                                </div>
-                                <img class="w-full rounded-lg mt-2 block" :src="data.image" alt="Opportunutiy Image" />
-                                <div class="flex-1 mt-2 p-2 rounded-lg bg-surface-0 dark:bg-surface-900 text-xs text-color">
-                                    {{ data.text }}
-                                </div>
-                            </div>
-                        </div>
                         <div v-if="selectedSidebarOption === 'Statistics'" class="h-[calc(100%-160px)] p-6">
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
@@ -345,18 +306,9 @@ export default {
             selectedSampleAppsSidebarNav: 'Overview',
             isSlimMenu: true,
             isSlimMenuSelected: false,
-            sampleOptions: [
-                { icon: 'pi pi-home', title: 'Overview', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/overview' },
-                { icon: 'pi pi-comment', title: 'Chat', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/chat' },
-                { icon: 'pi pi-inbox', title: 'Inbox', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/mail' },
-                { icon: 'pi pi-th-large', title: 'Cards', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/cards' },
-                { icon: 'pi pi-user', title: 'Customers', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/customers' },
-                { icon: 'pi pi-video', title: 'Movies', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/movies' }
-            ],
-            selectedSampleOption: { icon: 'pi pi-home', title: 'Overview', src: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/sampleshots/overview' },
             visibleRight: false,
             selectedSidebarOption: 'Statistics',
-            sidebarOptions: ['Interaction Logs', 'Preferences', 'Statistics', 'Opportunities'],
+            sidebarOptions: ['Interaction Logs', 'Preferences', 'Statistics'],
             callLogs: [
                 { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar6.png', name: 'Brook Simmons', time: '02.02.2024 | 45 min' },
                 { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar12.jpg', name: 'Jacob Jones', time: '02.02.2024 | 45 min' },
@@ -439,44 +391,6 @@ export default {
                         { icon: 'pi pi-box', title: 'Share Data with 3rd Parties', checked: true },
                         { icon: 'pi pi-file', title: 'Cookies', checked: false }
                     ]
-                }
-            ],
-            opportunities: [
-                {
-                    title: 'Apollo',
-                    link: 'https://bumblevue.org/templates/apollo/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/apollo-vue.jpg',
-                    text: 'Keep your application fresh with Apollo, the newest and most modern template available.'
-                },
-                {
-                    title: 'Ultima',
-                    link: 'https://bumblevue.org/templates/ultima/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/ultima-vue.jpg',
-                    text: "Elevate your application's intuitiveness with Ultima's premium Material Design interface."
-                },
-                {
-                    title: 'Diamond',
-                    link: 'https://bumblevue.org/templates/diamond/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/diamond-remastered-vue.jpg',
-                    text: "Handle complex operations with elegance with Diamond's robust and powerful premium design."
-                },
-                {
-                    title: 'Atlantis',
-                    link: 'https://bumblevue.org/templates/atlantis/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/atlantis-vue.jpg',
-                    text: "Boost your application's capabilities, customization with the Atlantis template."
-                },
-                {
-                    title: 'Verona',
-                    link: 'https://bumblevue.org/templates/verona/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/verona-vue.jpg',
-                    text: "Achieve sophistication and subtlety with Verona's minimalistic, content-focused design."
-                },
-                {
-                    title: 'Freya',
-                    link: 'https://bumblevue.org/templates/freya/',
-                    image: 'https://primefaces.org/cdn/primevue/images/layouts/freya-vue.png',
-                    text: "Give your application a sleek, updated look with Freya's chic and modern premium template."
                 }
             ],
             customerSatisfaction: 56,
