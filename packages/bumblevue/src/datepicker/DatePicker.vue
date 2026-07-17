@@ -59,10 +59,19 @@
             </button>
         </slot>
         <template v-else-if="showIcon && iconDisplay === 'input' && !inline">
-            <button v-if="$slots.inputicon || showIcon" v-bind="ptm('inputIconContainer')" :class="cx('inputIconContainer')"
-                    :data-p="inputIconDataP" type="button" :disabled="disabled" @click="onButtonClick"
-                    :aria-label="$bumblevue.config.locale.chooseDate" aria-haspopup="dialog"
-                    :aria-expanded="overlayVisible" :aria-controls="overlayVisible ? panelId : undefined">
+            <button
+                v-if="$slots.inputicon || showIcon"
+                v-bind="ptm('inputIconContainer')"
+                :class="cx('inputIconContainer')"
+                :data-p="inputIconDataP"
+                type="button"
+                :disabled="disabled"
+                @click="onButtonClick"
+                :aria-label="$bumblevue.config.locale.chooseDate"
+                aria-haspopup="dialog"
+                :aria-expanded="overlayVisible"
+                :aria-controls="overlayVisible ? panelId : undefined"
+            >
                 <slot name="inputicon" :class="cx('inputIcon')" :clickCallback="onButtonClick">
                     <component :is="icon ? 'i' : 'CalendarIcon'" :class="[icon, cx('inputIcon')]" v-bind="ptm('inputicon')" />
                 </slot>
@@ -194,8 +203,7 @@
                                         </Button>
                                     </slot>
                                 </div>
-                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')"
-                                       :aria-label="getCalendarAriaLabel(month)">
+                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')" :aria-label="getCalendarAriaLabel(month)">
                                     <thead v-bind="ptm('tableHeader')">
                                         <tr v-bind="ptm('tableHeaderRow')">
                                             <th v-if="showWeek" scope="col" :class="cx('weekHeader')" v-bind="ptm('weekHeader', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tableheadercell">
@@ -634,7 +642,7 @@ export default {
             queryOrientation: null,
             focusedDateIndex: 0,
             rawValue: null,
-            suppressFocusOpen: false,
+            suppressFocusOpen: false
         };
     },
     watch: {
@@ -2914,16 +2922,16 @@ export default {
         },
         getDateAriaLabel(dateMeta) {
             const date = new Date(dateMeta.year, dateMeta.month, dateMeta.day);
-            const dayName = this.$primevue.config.locale.dayNames[date.getDay()];
-            const monthName = this.$primevue.config.locale.monthNames[dateMeta.month];
+            const dayName = this.$bumblevue.config.locale.dayNames[date.getDay()];
+            const monthName = this.$bumblevue.config.locale.monthNames[dateMeta.month];
 
             return `${dayName}, ${monthName} ${dateMeta.day}, ${dateMeta.year}`;
         },
         getMonthButtonAriaLabel(month) {
-            return `${this.$primevue.config.locale.chooseMonth}: ${this.getMonthName(month.month)} ${month.year}`;
+            return `${this.$bumblevue.config.locale.chooseMonth}: ${this.getMonthName(month.month)} ${month.year}`;
         },
         getYearButtonAriaLabel(month) {
-            return `${this.$primevue.config.locale.chooseYear}: ${this.getYear(month)}`;
+            return `${this.$bumblevue.config.locale.chooseYear}: ${this.getYear(month)}`;
         },
         getYear(month) {
             return this.currentView === 'month' ? this.currentYear : month.year;
