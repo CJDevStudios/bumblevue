@@ -1102,7 +1102,7 @@ export default {
                 disabled: this.disabled,
                 editable: this.editable,
                 [this.size]: this.size,
-                empty: !this.editable && !this.$slots['value'] && (this.label === 'p-emptylabel' || this.label.length === 0)
+                empty: !this.editable && !this.$slots['value'] && (this.label === 'p-emptylabel' || this.label === undefined || this.label.length === 0)
             });
         },
         dropdownIconDataP() {
