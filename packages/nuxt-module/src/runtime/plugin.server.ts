@@ -1,6 +1,6 @@
 import type { NitroApp } from 'nitropack/types';
 // @ts-expect-error
-import { styles, stylesToTop, themes } from '#bumble-style';
+import { styles, stylesToTop, themes } from '#bumblevue-style';
 //import { useRuntimeConfig } from '#imports';
 
 type NitroAppPlugin = (nitro: NitroApp) => void;

@@ -55,7 +55,7 @@ export function useStyle(css, options = {}) {
                 nonce: _nonce
             });
             first ? document.head.prepend(styleRef.value) : document.head.appendChild(styleRef.value);
-            setAttribute(styleRef.value, 'data-bumble-style-id', _name);
+            setAttribute(styleRef.value, 'data-bumblevue-style-id', _name);
             setAttributes(styleRef.value, _styleProps);
             styleRef.value.onload = (event) => onStyleLoaded?.(event, { name: _name });
             onStyleMounted?.(_name);
