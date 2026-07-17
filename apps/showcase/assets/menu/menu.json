@@ -516,10 +516,6 @@
                     "to": "/guides/dynamicimports"
                 },
                 {
-                    "name": "Migration to V4",
-                    "to": "/guides/migration/v4"
-                },
-                {
                     "name": "Pass Through",
                     "icon": "pi pi-directions",
                     "to": "/passthrough"
