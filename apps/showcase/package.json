@@ -44,7 +44,9 @@
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
         "build:prebuild": "node ./scripts/prebuild.mjs",
-        "build:apidoc": "node ./scripts/build-apidoc.cjs"
+        "build:apidoc": "node ./scripts/build-apidoc.cjs",
+        "build:cloudflare": "nuxi build --preset=cloudflare_pages",
+        "dev:cloudflare": "npx wrangler pages dev dist"
     },
     "dependencies": {
         "@docsearch/js": "catalog:app",

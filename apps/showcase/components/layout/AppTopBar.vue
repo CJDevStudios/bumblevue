@@ -28,6 +28,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="https://discord.gg/rPHsTnU34X" target="_blank" rel="noopener noreferrer" class="topbar-item">
+                        <i class="pi pi-discord"></i>
+                    </a>
+                </li>
+                <li>
                     <button type="button" class="topbar-item" @click="toggleDarkMode">
                         <i :class="['pi', { 'pi-moon': $appState.darkTheme, 'pi-sun': !$appState.darkTheme }]"></i>
                     </button>

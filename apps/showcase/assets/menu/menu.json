@@ -516,6 +516,10 @@
                     "to": "/guides/dynamicimports"
                 },
                 {
+                    "name": "Migration from PrimeVue v4",
+                    "to": "/guides/migration/primevue/v4"
+                },
+                {
                     "name": "Pass Through",
                     "icon": "pi pi-directions",
                     "to": "/passthrough"
