@@ -71,7 +71,8 @@ const BABEL_PLUGIN_OPTIONS = {
     plugins: [],
     skipPreflightCheck: true,
     babelHelpers: 'runtime',
-    babelrc: false
+    babelrc: false,
+    targets: 'defaults'
 };
 
 const ALIAS_PLUGIN_OPTIONS = {
