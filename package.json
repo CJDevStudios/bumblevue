@@ -57,7 +57,7 @@
     "devDependencies": {
         "@babel/preset-env": "^7.21.5",
         "@rollup/plugin-alias": "^5.1.0",
-        "@rollup/plugin-babel": "^6.0.3",
+        "@rollup/plugin-babel": "^7.1.0",
         "@rollup/plugin-node-resolve": "^15.2.3",
         "@rollup/plugin-terser": "^0.4.4",
         "eslint": "^9.19.0",
