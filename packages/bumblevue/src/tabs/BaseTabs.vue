@@ -29,6 +29,11 @@ export default {
         selectOnFocus: {
             type: Boolean,
             default: false
+        },
+        orientation: {
+            type: String,
+            default: 'horizontal',
+            validator: (value) => ['horizontal', 'vertical'].includes(value)
         }
     },
     style: TabsStyle,

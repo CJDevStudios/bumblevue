@@ -22,6 +22,7 @@ import TabMenuDoc from '@/doc/tabs/TabMenuDoc.vue';
 import TemplateDoc from '@/doc/tabs/TemplateDoc.vue';
 import PTComponent from '@/doc/tabs/pt/index.vue';
 import ThemingDoc from '@/doc/tabs/theming/index.vue';
+import VerticalDoc from '@/doc/tabs/VerticalDoc.vue';
 
 export default {
     data() {
@@ -51,6 +52,11 @@ export default {
                     id: 'scrollable',
                     label: 'Scrollable',
                     component: ScrollableDoc
+                },
+                {
+                    id: 'vertical',
+                    label: 'Vertical',
+                    component: VerticalDoc
                 },
                 {
                     id: 'disabled',
