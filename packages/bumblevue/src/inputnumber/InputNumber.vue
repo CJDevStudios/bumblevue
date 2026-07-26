@@ -427,7 +427,37 @@ export default {
                 return;
             }
 
+            const code = event.code || event.key;
+
             if (event.altKey || event.ctrlKey || event.metaKey) {
+                // handle shortcut that deletes all content to the left of the cursor
+                if (code === 'Backspace' && (event.ctrlKey || event.metaKey)) {
+                    const selectionStart = event.target.selectionStart;
+                    const selectionEnd = event.target.selectionEnd;
+
+                    if (selectionStart === selectionEnd) {
+                        const inputValue = event.target.value;
+                        const newValueStr = this.deleteRange(inputValue, 0, selectionStart);
+                        this.updateValue(event, newValueStr, null, 'delete-range');
+                        event.preventDefault();
+                        return;
+                    }
+                }
+
+                // handle shortcut that deletes all content to the right of the cursor
+                if (code === 'Delete' && (event.ctrlKey || event.metaKey)) {
+                    const selectionStart = event.target.selectionStart;
+                    const selectionEnd = event.target.selectionEnd;
+
+                    if (selectionStart === selectionEnd) {
+                        const inputValue = event.target.value;
+                        const newValueStr = this.deleteRange(inputValue, selectionStart, inputValue.length);
+                        this.updateValue(event, newValueStr, null, 'delete-range');
+                        event.preventDefault();
+                        return;
+                    }
+                }
+
                 this.isSpecialChar = true;
                 this.lastValue = this.$refs.input.$el.value;
 
@@ -441,7 +471,6 @@ export default {
             let selectionRange = selectionEnd - selectionStart;
             let inputValue = event.target.value;
             let newValueStr = null;
-            const code = event.code || event.key;
 
             switch (code) {
                 case 'ArrowUp':

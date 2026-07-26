@@ -92,4 +92,48 @@ describe('InputNumber.vue', () => {
 
         expect(wrapper.find('input.p-inputnumber-input').element._value).toBe('%20');
     });
+
+    it('ctrl + backspace should delete the digits to the left of the cursor', async () => {
+        await wrapper.setProps({ modelValue: 12345, mode: 'decimal', prefix: null });
+        const input = wrapper.find('input.p-inputnumber-input');
+
+        await wrapper.vm.onInputKeyDown({ code: 'Backspace', ctrlKey: true, metaKey: false, target: { value: '12345', selectionStart: 3, selectionEnd: 3 }, preventDefault: () => {} });
+        // blur the input to trigger the value update
+        await input.trigger('blur');
+
+        expect(wrapper.find('input.p-inputnumber-input').element._value).toBe('45');
+    });
+
+    it('meta + backspace should delete the digits to the left of the cursor', async () => {
+        await wrapper.setProps({ modelValue: 12345, mode: 'decimal', prefix: null });
+        const input = wrapper.find('input.p-inputnumber-input');
+
+        await wrapper.vm.onInputKeyDown({ code: 'Backspace', ctrlKey: false, metaKey: true, target: { value: '12345', selectionStart: 3, selectionEnd: 3 }, preventDefault: () => {} });
+        // blur the input to trigger the value update
+        await input.trigger('blur');
+
+        expect(wrapper.find('input.p-inputnumber-input').element._value).toBe('45');
+    });
+
+    it('ctrl + delete should delete the digits to the right of the cursor', async () => {
+        await wrapper.setProps({ modelValue: 12345, mode: 'decimal', prefix: null });
+        const input = wrapper.find('input.p-inputnumber-input');
+
+        await wrapper.vm.onInputKeyDown({ code: 'Delete', ctrlKey: true, metaKey: false, target: { value: '12345', selectionStart: 2, selectionEnd: 2 }, preventDefault: () => {} });
+        // blur the input to trigger the value update
+        await input.trigger('blur');
+
+        expect(wrapper.find('input.p-inputnumber-input').element._value).toBe('12');
+    });
+
+    it('meta + delete should delete the digits to the right of the cursor', async () => {
+        await wrapper.setProps({ modelValue: 12345, mode: 'decimal', prefix: null });
+        const input = wrapper.find('input.p-inputnumber-input');
+
+        await wrapper.vm.onInputKeyDown({ code: 'Delete', ctrlKey: false, metaKey: true, target: { value: '12345', selectionStart: 2, selectionEnd: 2 }, preventDefault: () => {} });
+        // blur the input to trigger the value update
+        await input.trigger('blur');
+
+        expect(wrapper.find('input.p-inputnumber-input').element._value).toBe('12');
+    });
 });

@@ -38,6 +38,22 @@
                         <td><i>end</i></td>
                         <td>Set the maximum value if provided.</td>
                     </tr>
+                    <tr>
+                        <td><i>control</i> + <i>backspace</i></td>
+                        <td>Delete all content to the left of the cursor.</td>
+                    </tr>
+                    <tr>
+                        <td><i>⌘</i> + <i>backspace</i></td>
+                        <td>Delete all content to the left of the cursor.</td>
+                    </tr>
+                    <tr>
+                        <td><i>control</i> + <i>delete</i></td>
+                        <td>Delete all content to the right of the cursor.</td>
+                    </tr>
+                    <tr>
+                        <td><i>⌘</i> + <i>delete</i></td>
+                        <td>Delete all content to the right of the cursor.</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
