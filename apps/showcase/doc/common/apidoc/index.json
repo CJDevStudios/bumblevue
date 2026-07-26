@@ -25402,7 +25402,7 @@
                                 {
                                     "name": "value",
                                     "optional": false,
-                                    "type": "undefined | null | Date | Date[] | (null | Date)[]",
+                                    "type": "null | Date | Date[] | (null | Date)[]",
                                     "description": "New value."
                                 }
                             ],
@@ -25415,7 +25415,7 @@
                                 {
                                     "name": "value",
                                     "optional": false,
-                                    "type": "undefined | null | Date | Date[] | (null | Date)[]",
+                                    "type": "null | Date | Date[] | (null | Date)[]",
                                     "description": "New value."
                                 }
                             ],
@@ -40863,7 +40863,7 @@
                                 {
                                     "name": "value",
                                     "optional": false,
-                                    "type": "undefined | string",
+                                    "type": "string",
                                     "description": "New value."
                                 }
                             ],
@@ -40876,7 +40876,7 @@
                                 {
                                     "name": "value",
                                     "optional": false,
-                                    "type": "undefined | string",
+                                    "type": "string",
                                     "description": "New value."
                                 }
                             ],
