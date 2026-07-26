@@ -17,23 +17,6 @@ export default {
                 basic: `
 <InputNumber v-model="value" fluid mode="currency" currency="USD" locale="en-US" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <InputNumber v-model="value" fluid mode="currency" currency="USD" locale="en-US" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -36,23 +36,6 @@ export default {
                 basic: `
 <DatePicker v-model="date" dateFormat="dd/mm/yy" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" dateFormat="dd/mm/yy" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            date: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

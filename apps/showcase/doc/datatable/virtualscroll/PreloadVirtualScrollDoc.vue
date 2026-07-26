@@ -37,34 +37,6 @@ export default {
     <Column field="color" header="Color" style="width: 20%; height: 44px"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 44 }" tableStyle="min-width: 50rem">
-            <Column field="id" header="Id" style="width: 20%; height: 44px"></Column>
-            <Column field="vin" header="Vin" style="width: 20%; height: 44px"></Column>
-            <Column field="year" header="Year" style="width: 20%; height: 44px"></Column>
-            <Column field="brand" header="Brand" style="width: 20%; height: 44px"></Column>
-            <Column field="color" header="Color" style="width: 20%; height: 44px"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { CarService } from '@/service/CarService';
-
-export default {
-    data() {
-        return {
-            cars: null
-        };
-    },
-    mounted() {
-        this.cars = Array.from({ length: 100000 }).map((_, i) => CarService.generateCar(i + 1));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

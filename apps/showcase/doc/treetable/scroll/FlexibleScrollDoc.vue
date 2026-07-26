@@ -46,39 +46,6 @@ export default {
     </template>
 </Dialog>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
-        <Dialog v-model:visible="dialogVisible" header="Flex Scroll" :style="{ width: '75vw' }" maximizable modal :contentStyle="{ height: '300px' }">
-            <TreeTable :value="nodes" :scrollable="true" scrollHeight="flex" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" :expander="true" style="min-width: 200px"></Column>
-                <Column field="size" header="Size" style="min-width: 200px"></Column>
-                <Column field="type" header="Type" style="min-width: 200px"></Column>
-            </TreeTable>
-            <template #footer>
-                <Button label="Ok" icon="pi pi-check" @click="dialogVisible = false" />
-            </template>
-        </Dialog>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            dialogVisible: false
-        };
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

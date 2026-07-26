@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Checkbox v-model="checked" binary />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Checkbox v-model="checked" binary />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            checked: false
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

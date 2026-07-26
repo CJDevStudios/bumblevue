@@ -23,26 +23,6 @@ export default {
     <label for="description">Description</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <Textarea id="description" v-model="value" rows="5" cols="30" style="resize: none" />
-            <label for="description">Description</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

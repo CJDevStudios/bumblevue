@@ -17,23 +17,6 @@ export default {
                 basic: `
 <RadioButton v-model="value" value="1" :invalid="value === null" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <RadioButton v-model="value" value="1" :invalid="value === null" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

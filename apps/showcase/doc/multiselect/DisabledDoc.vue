@@ -16,17 +16,6 @@ export default {
                 basic: `
 <MultiSelect disabled placeholder="Select Cities" class="w-full md:w-80" />
 `,
-                options: `
-<template>
-    <div class="flex justify-center">
-        <MultiSelect disabled placeholder="Select Cities" class="w-full md:w-80" />
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="flex justify-center">

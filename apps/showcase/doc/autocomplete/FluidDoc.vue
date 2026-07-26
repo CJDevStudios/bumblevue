@@ -18,29 +18,6 @@ export default {
                 basic: `
 <AutoComplete v-model="value" :suggestions="items" fluid @complete="search" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <AutoComplete v-model="value" :suggestions="items" fluid @complete="search" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: []
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -18,17 +18,6 @@ export default {
 <Button type="button" label="Emails" badge="2" />
 <Button type="button" label="Messages" icon="pi pi-users" badge="2" badgeSeverity="contrast" variant="outlined"  />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center flex-wrap gap-4">
-        <Button type="button" label="Emails" badge="2" />
-        <Button type="button" label="Messages" icon="pi pi-users" badge="2" badgeSeverity="contrast" variant="outlined"  />
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center flex-wrap gap-4">

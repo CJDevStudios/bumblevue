@@ -26,21 +26,6 @@ export default {
 <Message severity="secondary">Secondary Message</Message>
 <Message severity="contrast">Contrast Message</Message>
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap gap-4 justify-center">
-        <Message severity="success">Success Message</Message>
-        <Message severity="info">Info Message</Message>
-        <Message severity="warn">Warn Message</Message>
-        <Message severity="error">Error Message</Message>
-        <Message severity="secondary">Secondary Message</Message>
-        <Message severity="contrast">Contrast Message</Message>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap gap-4 justify-center">

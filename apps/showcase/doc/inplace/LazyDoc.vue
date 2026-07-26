@@ -39,40 +39,6 @@ export default {
     </template>
 </Inplace>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Inplace @open="loadData">
-            <template #display> View Data </template>
-            <template #content>
-                <DataTable :value="products">
-                    <Column field="code" header="Code"></Column>
-                    <Column field="name" header="Name"></Column>
-                    <Column field="category" header="Category"></Column>
-                    <Column field="quantity" header="Quantity"></Column>
-                </DataTable>
-            </template>
-        </Inplace>
-    </div>
-</template>
-
-<script>
-import {ProductService} from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null
-        }
-    },
-    methods: {
-        loadData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

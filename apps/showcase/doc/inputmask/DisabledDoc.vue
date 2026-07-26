@@ -17,24 +17,6 @@ export default {
                 basic: `
 <InputMask mask="99-999999" placeholder="Disabled" disabled />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputMask mask="99-999999" placeholder="Disabled" disabled />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-}
-<\/script>
-        
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

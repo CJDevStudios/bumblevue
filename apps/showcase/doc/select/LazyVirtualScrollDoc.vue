@@ -27,40 +27,7 @@ export default {
                 basic: `
 <Select v-model="selectedItem" :options="items" optionLabel="label" optionValue="value" class="w-full md:w-56"
     :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item" />
-`,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Select v-model="selectedItem" :options="items" optionLabel="label" optionValue="value" class="w-full md:w-56"
-            :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedItem: null,
-            items: Array.from({ length: 100000 }),
-            loading: false
-        };
-    },
-    loadLazyTimeout: null,
-    methods: {
-        onLazyLoad(event) {
-            this.loading = true;
-
-            if (this.loadLazyTimeout) {
-                clearTimeout(this.loadLazyTimeout);
-            }
-
-            //imitate delay of a backend call
-            this.loadLazyTimeout = setTimeout(() => {
-                const { first, last } = event;
-                const _items = [...this.items];
-
-                for (let i = first; i < last; i++) {
-                    _items[i] = { label: \`Item #\${i}\`, value: i };
+`, value: i };
                 }
 
                 this.items = _items;

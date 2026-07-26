@@ -19,32 +19,6 @@ export default {
     Content
 </Panel>
 `,
-                options: `
-<template>
-    <Panel header="Header" :pt="panelPT">
-        Content
-    </Panel>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            panelPT: {
-                hooks: {
-                    onMounted: () => {
-                        //panel mounted
-                    },
-                    onUnmounted: () => {
-                        //panel unmounted
-                    }
-                }
-            }
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <Panel header="Header" :pt="panelPT">

@@ -35,35 +35,6 @@ export default {
     <Column field="size" header="Size 3" style="min-width: 200px"></Column>
 </TreeTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <TreeTable :value="nodes" scrollable scrollHeight="300px">
-            <Column field="name" header="Name" expander style="min-width: 250px"></Column>
-            <Column field="size" header="Size" style="min-width: 200px"></Column>
-            <Column field="type" header="Type 2" style="min-width: 200px"></Column>
-            <Column field="size" header="Size 2" style="min-width: 200px"></Column>
-            <Column field="type" header="Type 3" style="min-width: 200px"></Column>
-            <Column field="size" header="Size 3" style="min-width: 200px"></Column>
-        </TreeTable>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-        }
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -20,24 +20,6 @@ export default {
 <Toast />
 <Button label="Show" @click="show()" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Toast />
-        <Button label="Show" @click="show()" />
-    </div>
-</template>
-
-<script>
-export default {
-    methods: {
-        show() {
-            this.$toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

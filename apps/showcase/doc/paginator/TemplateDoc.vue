@@ -39,27 +39,6 @@ export default {
     <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded w-full sm:w-[30rem]" />
 </div>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
-
-        <div class="p-4 text-center">
-            <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded w-full sm:w-[30rem]" />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            first: 0
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

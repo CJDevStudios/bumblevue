@@ -39,52 +39,6 @@ export default {
     </Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable :value="products" :rowClass="rowClass" :rowStyle="rowStyle" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity">
-                <template #body="slotProps">
-                    <Badge :value="slotProps.data.quantity" :severity="stockSeverity(slotProps.data)" />
-                </template>
-            </Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data));
-    },
-    methods: {
-        rowClass(data) {
-            return [{ '!bg-primary !text-primary-contrast': data.category === 'Fitness' }];
-        },
-        rowStyle(data) {
-            if (data.quantity === 0) {
-                return { fontWeight: 'bold', fontStyle: 'italic' };
-            }
-        },
-        stockSeverity(data) {
-            if (data.quantity === 0) return 'danger';
-            else if (data.quantity > 0 && data.quantity < 10) return 'warn';
-            else return 'success';
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

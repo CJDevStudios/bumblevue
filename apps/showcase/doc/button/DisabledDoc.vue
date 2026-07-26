@@ -16,16 +16,6 @@ export default {
                 basic: `
 <Button label="Submit" disabled />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Button label="Submit" disabled />
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

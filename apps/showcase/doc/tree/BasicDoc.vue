@@ -19,28 +19,6 @@ export default {
                 basic: `
 <Tree :value="nodes" class="w-full md:w-[30rem]"></Tree>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Tree :value="nodes" class="w-full md:w-[30rem]"></Tree>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -46,43 +46,6 @@ export default {
     </template>
 </Dialog>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
-
-        <Dialog v-model:visible="dialogVisible" header="Flex Scroll" :style="{ width: '75vw' }" maximizable modal :contentStyle="{ height: '300px' }">
-            <DataTable :value="customers" scrollable scrollHeight="flex" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name"></Column>
-                <Column field="country.name" header="Country"></Column>
-                <Column field="representative.name" header="Representative"></Column>
-                <Column field="company" header="Company"></Column>
-            </DataTable>
-            <template #footer>
-                <Button label="Ok" icon="pi pi-check" @click="dialogVisible = false" />
-            </template>
-        </Dialog>
-    </div>
-</template>
-
-<script>
-import { CustomerService } from '@/service/CustomerService';
-
-export default {
-    data() {
-        return {
-            customers: null,
-            dialogVisible: false
-        };
-    },
-    mounted() {
-        CustomerService.getCustomersMedium().then((data) => {
-            this.customers = data;
-        });
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -20,32 +20,6 @@ export default {
                 basic: `
 <Breadcrumb :home="home" :model="items" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Breadcrumb :home="home" :model="items" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            home: {
-                icon: 'pi pi-home'
-            },
-            items: [
-                { label: 'Electronics' },
-                { label: 'Computer' },
-                { label: 'Accessories' },
-                { label: 'Keyboard' },
-                { label: 'Wireless' }
-            ]
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

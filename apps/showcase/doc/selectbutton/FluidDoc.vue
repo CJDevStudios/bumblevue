@@ -18,24 +18,6 @@ export default {
                 basic: `
 <SelectButton v-model="value" :options="options" fluid />
 `,
-                options: `
-<template>
-    <div class="card">
-        <SelectButton v-model="value" :options="options" fluid />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 'One-Way',
-            options: ['One-Way', 'Return']
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

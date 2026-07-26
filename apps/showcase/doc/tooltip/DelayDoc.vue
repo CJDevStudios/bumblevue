@@ -16,13 +16,6 @@ export default {
                 basic: `
 <Button v-tooltip="{ value: 'Confirm to proceed', showDelay: 1000, hideDelay: 300 }" label="Save" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center">
-        <Button v-tooltip="{ value: 'Confirm to proceed', showDelay: 1000, hideDelay: 300 }" label="Save" />
-    </div>
-</template>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center">

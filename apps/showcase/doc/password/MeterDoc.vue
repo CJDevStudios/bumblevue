@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Password v-model="value" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Password v-model="value" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

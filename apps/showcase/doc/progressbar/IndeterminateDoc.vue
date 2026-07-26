@@ -16,17 +16,6 @@ export default {
                 basic: `
 <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 `,
-                options: `
-<template>
-    <div class="card">
-        <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -41,44 +41,6 @@ export default {
     </Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable :value="products" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
-            <Column class="w-24 !text-end">
-                <template #body="{ data }">
-                    <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
-                </template>
-            </Column>
-        </DataTable>
-        <Toast/>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    },
-    methods: {
-        selectRow(data) {
-            this.$toast.add({ severity: 'info', summary: data.name, detail: data.inventoryStatus + ' | $' + data.price, life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

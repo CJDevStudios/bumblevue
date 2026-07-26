@@ -18,28 +18,6 @@ export default {
 <FileUpload ref="fileupload" mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" />
 <Button label="Upload" @click="upload" severity="secondary" />
 `,
-                options: `
-<template>
-    <Toast />
-    <div class="card flex flex-wrap gap-6 items-center justify-between">
-        <FileUpload ref="fileupload" mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" />
-        <Button label="Upload" @click="upload" severity="secondary" />
-    </div>
-</template>
-
-<script>
-export default {
-    methods: {
-        upload() {
-            this.$refs.fileupload.upload();
-        },
-        onUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <Toast />

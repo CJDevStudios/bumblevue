@@ -16,16 +16,6 @@ export default {
                 basic: `
 <MultiSelect placeholder="Loading..." loading class="w-full md:w-80"></MultiSelect>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <MultiSelect placeholder="Loading..." loading class="w-full md:w-80"></MultiSelect>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

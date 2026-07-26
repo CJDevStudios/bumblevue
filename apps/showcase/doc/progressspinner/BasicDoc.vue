@@ -16,16 +16,6 @@ export default {
                 basic: `
 <ProgressSpinner />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <ProgressSpinner />
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

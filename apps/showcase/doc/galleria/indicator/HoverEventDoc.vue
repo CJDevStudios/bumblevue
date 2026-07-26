@@ -30,33 +30,6 @@ export default {
     </template>
 </Galleria>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px"
-            :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="true">
-            <template #item="slotProps">
-                <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-            </template>
-        </Galleria>
-    </div>
-</template>
-
-<script>
-import { PhotoService } from '@/service/PhotoService';
-
-export default {
-    data() {
-        return {
-            images: null
-        };
-    },
-    mounted() {
-        PhotoService.getImages().then((data) => (this.images = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -16,17 +16,6 @@ export default {
                 basic: `
 <CascadeSelect disabled placeholder="Disabled" class="w-56" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <CascadeSelect disabled placeholder="Disabled" class="w-56" />
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

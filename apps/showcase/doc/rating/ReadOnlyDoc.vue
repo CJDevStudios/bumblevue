@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Rating v-model="value" readonly />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Rating v-model="value" readonly />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 3
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

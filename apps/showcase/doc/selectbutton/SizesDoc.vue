@@ -24,28 +24,6 @@ export default {
 <SelectButton v-model="value2" :options="options" />
 <SelectButton v-model="value3" :options="options" size="large" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center gap-4">
-        <SelectButton v-model="value1" :options="options" size="small" />
-        <SelectButton v-model="value2" :options="options" />
-        <SelectButton v-model="value3" :options="options" size="large" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: 'Beginner',
-            value3: 'Expert',
-            options: ['Beginner', 'Expert'],
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">

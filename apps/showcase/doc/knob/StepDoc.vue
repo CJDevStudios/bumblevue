@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Knob v-model="value5" :step="10" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Knob v-model="value" :step="10" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 40
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

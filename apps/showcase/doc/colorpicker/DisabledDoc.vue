@@ -17,23 +17,6 @@ export default {
                 basic: `
 <ColorPicker v-model="color" disabled />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <ColorPicker v-model="color" disabled />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            color: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -20,18 +20,6 @@ export default {
 <Message icon="pi pi-user">Normal Message</Message>
 <Message size="large" icon="pi pi-check">Large Message</Message>
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center gap-4">
-        <Message size="small" icon="pi pi-send">Small Message</Message>
-        <Message icon="pi pi-user">Normal Message</Message>
-        <Message size="large" icon="pi pi-check">Large Message</Message>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">

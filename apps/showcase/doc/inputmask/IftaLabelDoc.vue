@@ -23,26 +23,6 @@ export default {
     <label for="ssn">SSN</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <InputMask id="ssn" v-model="value" mask="999-99-9999" variant="filled" />
-            <label for="ssn">SSN</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

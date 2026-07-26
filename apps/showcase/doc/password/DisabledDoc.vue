@@ -17,17 +17,6 @@ export default {
                 basic: `
 <Password disabled placeholder="Disabled" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Password disabled placeholder="Disabled" />
-    </div>
-</template>
-
-<script>
-export default {};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Slider v-model="value" range class="w-56" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Slider v-model="value" range class="w-56" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: [20, 80]
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

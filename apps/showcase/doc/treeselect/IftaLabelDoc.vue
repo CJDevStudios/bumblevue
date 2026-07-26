@@ -26,32 +26,6 @@ export default {
     <label for="t_file">File</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel class="w-full md:w-80">
-            <TreeSelect v-model="selectedValue" inputId="t_file" :options="nodes" class="w-full" variant="filled" />
-            <label for="t_file">File</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-import { NodeService } from './service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-        }
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

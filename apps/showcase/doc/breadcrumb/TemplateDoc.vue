@@ -32,31 +32,6 @@ export default {
     <template #separator> / </template>
 </Breadcrumb>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Breadcrumb :home="home" :model="items">
-            <template #item="{ item }">
-                <a class="cursor-pointer" :href="item.url">
-                    <span :class="item.icon"></span>
-                </a>
-            </template>
-            <template #separator> / </template>
-        </Breadcrumb>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            home: { icon: 'pi pi-home' },
-            items: [{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'pi pi-wallet' }, { icon: 'pi pi-shopping-bag' }, { icon: 'pi pi-calculator' }]
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

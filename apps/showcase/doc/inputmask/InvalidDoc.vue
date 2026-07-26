@@ -20,26 +20,6 @@ export default {
 <InputMask v-model="value1" mask="99-999999" placeholder="Serial Key" :invalid="!value1" />
 <InputMask v-model="value2" mask="99-999999" placeholder="Serial Key" :invalid="!value2" variant="filled" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <InputMask v-model="value1" mask="99-999999" placeholder="Serial Key" :invalid="!value1" />
-        <InputMask v-model="value2" mask="99-999999" placeholder="Serial Key" :invalid="!value2" variant="filled" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: '',
-            value2: ''
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">

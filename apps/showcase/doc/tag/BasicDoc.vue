@@ -16,17 +16,6 @@ export default {
                 basic: `
 <Tag value="New"></Tag>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Tag value="New"></Tag>
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

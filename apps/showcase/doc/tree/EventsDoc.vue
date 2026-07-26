@@ -30,44 +30,6 @@ export default {
 <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="false"
     @nodeSelect="onNodeSelect" @nodeUnselect="onNodeUnselect" @nodeExpand="onNodeExpand" @nodeCollapse="onNodeCollapse" class="w-full md:w-[30rem]"></Tree>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Toast />
-        <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="false"
-            @nodeSelect="onNodeSelect" @nodeUnselect="onNodeUnselect" @nodeExpand="onNodeExpand" @nodeCollapse="onNodeCollapse" class="w-full md:w-[30rem]"></Tree>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    },
-    methods: {
-        onNodeSelect(node) {
-            this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.label, life: 3000 });
-        },
-        onNodeUnselect(node) {
-            this.$toast.add({ severity: 'warn', summary: 'Node Unselected', detail: node.label, life: 3000 });
-        },
-        onNodeExpand(node) {
-            this.$toast.add({ severity: 'info', summary: 'Node Expanded', detail: node.label, life: 3000 });
-        },
-        onNodeCollapse(node) {
-            this.$toast.add({ severity: 'info', summary: 'Node Collapsed', detail: node.label, life: 3000 });
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

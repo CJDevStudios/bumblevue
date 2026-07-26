@@ -21,30 +21,6 @@ export default {
 <Button @click="showSticky" label="Sticky" />
 <Button label="Clear" severity="secondary" @click="clear()" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Toast />
-        <div class="flex flex-wrap gap-2">
-            <Button @click="showSticky" label="Sticky" />
-            <Button label="Clear" severity="secondary" @click="clear()" />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    methods: {
-        showSticky() {
-            this.$toast.add({ severity: 'info', summary: 'Sticky Message', detail: 'Message Content'});
-        },
-        clear() {
-            this.$toast.removeAllGroups();
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

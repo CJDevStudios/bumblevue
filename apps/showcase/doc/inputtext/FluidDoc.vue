@@ -17,24 +17,6 @@ export default {
                 basic: `
 <InputText type="text" v-model="value" fluid />
 `,
-                options: `
-<template>
-    <div class="card">
-        <InputText type="text" v-model="value" fluid />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card">

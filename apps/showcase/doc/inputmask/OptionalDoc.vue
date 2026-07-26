@@ -17,24 +17,6 @@ export default {
                 basic: `
 <InputMask v-model="value" mask="(999) 999-9999? x99999" placeholder="(999) 999-9999? x99999" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputMask v-model="value" mask="(999) 999-9999? x99999"  placeholder="(999) 999-9999? x99999" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-}
-<\/script>
-        
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

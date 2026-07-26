@@ -41,42 +41,6 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <div class="flex justify-center mb-6">
-            <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
-        </div>
-        <DataTable :value="products" :size="size.value" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null,
-            size: { label: 'Normal', value: 'null' },
-            sizeOptions: [
-                { label: 'Small', value: 'small' },
-                { label: 'Normal', value: 'null' },
-                { label: 'Large', value: 'large' }
-            ]
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

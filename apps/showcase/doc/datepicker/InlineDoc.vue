@@ -17,23 +17,6 @@ export default {
                 basic: `
 <DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            date: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

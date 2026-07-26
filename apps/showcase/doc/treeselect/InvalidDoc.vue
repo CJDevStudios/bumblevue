@@ -23,31 +23,6 @@ export default {
 <TreeSelect v-model="selectedValue1" :invalid="Object.keys(selectedValue1).length === 0" class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
 <TreeSelect v-model="selectedValue2" :invalid="Object.keys(selectedValue2).length === 0" class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" variant="filled" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <TreeSelect v-model="selectedValue1" :invalid="Object.keys(selectedValue1).length === 0" class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
-        <TreeSelect v-model="selectedValue2" :invalid="Object.keys(selectedValue2).length === 0" class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" variant="filled" />
-    </div>
-</template>
-
-<script>
-import { NodeService } from './service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue1: {},
-            selectedValue2: {},
-        }
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">

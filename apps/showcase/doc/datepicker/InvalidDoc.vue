@@ -20,25 +20,6 @@ export default {
 <DatePicker v-model="date1" :invalid="!date1" placeholder="Date" />
 <DatePicker v-model="date2" :invalid="!date2" variant="filled" placeholder="Date" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <DatePicker v-model="date1" :invalid="!date1" placeholder="Date" />
-        <DatePicker v-model="date2" :invalid="!date2" variant="filled" placeholder="Date" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            date1: null,
-            date2: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">

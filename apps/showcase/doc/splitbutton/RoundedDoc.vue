@@ -53,58 +53,6 @@ export default {
 <SplitButton label="Save" :model="items" @click="save" rounded severity="danger"></SplitButton>
 <SplitButton label="Save" :model="items" @click="save" rounded severity="contrast"></SplitButton>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center flex-wrap gap-4">
-        <Toast />
-        <SplitButton label="Save" :model="items" @click="save" rounded></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="secondary"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="success"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="info"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="warn"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="help"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="danger"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="contrast"></SplitButton>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Delete',
-                    command: () => {
-                        this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Quit',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ]
-        };
-    },
-    methods: {
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center flex-wrap gap-4">

@@ -26,37 +26,6 @@ export default {
 <Button label="Bottom Left" @click="showBottomLeft" />
 <Button label="Bottom Right" @click="showBottomRight" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Toast position="top-left" group="tl" />
-        <Toast position="bottom-left" group="bl" />
-        <Toast position="bottom-right" group="br" />
-
-        <div class="flex flex-wrap gap-2">
-            <Button label="Top Left" @click="showTopLeft" />
-            <Button label="Bottom Left" @click="showBottomLeft" />
-            <Button label="Bottom Right" @click="showBottomRight" />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    methods: {
-        showTopLeft() {
-            this.$toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', group: 'tl', life: 3000 });
-        },
-        showBottomLeft() {
-            this.$toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', group: 'bl', life: 3000 });
-        },
-        showBottomRight() {
-            this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', group: 'br', life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

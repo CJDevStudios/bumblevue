@@ -19,24 +19,6 @@ export default {
 <RadioButton v-model="value" :value="1" disabled />
 <RadioButton v-model="value" :value="2" disabled />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center gap-2">
-        <RadioButton v-model="value" :value="1" disabled />
-        <RadioButton v-model="value" :value="2" disabled />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 2
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center gap-2">

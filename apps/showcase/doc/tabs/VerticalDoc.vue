@@ -16,30 +16,7 @@ const code = {
                 </TabPanel>
             </TabPanels>
         </Tabs>
-    `,
-    options: `
-<template>
-    <div class="card">
-        <Tabs value="0" orientation="vertical">
-            <TabList>
-                <Tab v-for="tab in verticalTabs" :key="tab.title" :value="tab.value">
-                    {{ tab.title }}
-                </Tab>
-            </TabList>
-            <TabPanels>
-                <TabPanel v-for="tab in verticalTabs" :key="tab.content" :value="tab.value">
-                    <p class="m-0">{{ tab.content }}</p>
-                </TabPanel>
-            </TabPanels>
-        </Tabs>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            verticalTabs: Array.from({ length: 10 }, (_, i) => ({ title: \`Tab \${i + 1}\`, content: \`Tab \${i + 1} Content\`, value: \`\${i}\` }))
+    `, content: \`Tab \${i + 1} Content\`, value: \`\${i}\` }))
         };
     }
 };

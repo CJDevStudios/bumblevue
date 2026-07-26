@@ -20,25 +20,6 @@ export default {
 <Checkbox v-model="checked1" binary disabled />
 <Checkbox v-model="checked2" binary disabled />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center gap-2">
-        <Checkbox v-model="checked1" binary disabled />
-        <Checkbox v-model="checked2" binary disabled />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            checked1: false,
-            checked2: true,
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center gap-2">

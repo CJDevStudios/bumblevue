@@ -23,27 +23,6 @@ export default {
     <label for="username">Username</label>
 </FloatLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <FloatLabel>
-            <InputText id="username" v-model="value" />
-            <label for="username">Username</label>
-        </FloatLabel>
-    </div>
-</template>
-
-<script setup>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

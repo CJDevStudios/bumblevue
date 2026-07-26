@@ -17,23 +17,6 @@ export default {
                 basic: `
 <ToggleButton v-model="checked" onLabel="On" offLabel="Off" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <ToggleButton v-model="checked" fluid onLabel="On" offLabel="Off" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            checked: false
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

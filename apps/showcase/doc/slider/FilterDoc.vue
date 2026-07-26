@@ -27,38 +27,6 @@ export default {
 <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
 <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center justify-center">
-        <img alt="user header" class="w-full md:w-80 rounded mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
-        <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
-        <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            filter: 0,
-            filterValues: [100, 100, 0],
-            filterOptions: [
-                { label: 'Contrast', value: 0 },
-                { label: 'Brightness', value: 1 },
-                { label: 'Sepia', value: 2 }
-            ]
-        }
-    },
-    computed: {
-        filterStyle() {
-            return {
-                filter: \`contrast(\${filterValues.value[0]}%) brightness(\${filterValues.value[1]}%) sepia(\${filterValues.value[2]}%)\`
-            };
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center justify-center">

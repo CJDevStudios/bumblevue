@@ -18,6 +18,10 @@
 - Paginator: Add `selectAppendTo` prop that is passed to the Select child-components [\#44](https://github.com/CJDevStudios/bumblevue/pull/44)
 - Tabs: Add `orientation` prop to control the orientation of the tabs list [\#41](https://github.com/CJDevStudios/bumblevue/pull/41)
 
+**Deprecations:**
+- Vue Options API: BumbleVue will be migrating to the Composition API in future releases.
+  While this does not prevent you from using BumbleVue with the Options API, even after the migration, it will no longer be an option when viewing the demos on the BumbleVue website [\#45](https://github.com/CJDevStudios/bumblevue/pull/45).
+
 **Fixed bugs:**
 
 - DatePicker: Improve input value handling for form scenarios [\#2](https://github.com/CJDevStudios/bumblevue/pull/2)

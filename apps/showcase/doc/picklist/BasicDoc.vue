@@ -27,31 +27,6 @@ export default {
     </template>
 </PickList>
 `,
-                options: `
-<template>
-    <div class="card">
-        <PickList v-model="products" dataKey="id" breakpoint="1400px">
-            <template #option="{ option  }">
-                {{ option.name }}
-            </template>
-        </PickList>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService'
-export default {
-    data() {
-        return {
-            products: null
-        }
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = [data, []]));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

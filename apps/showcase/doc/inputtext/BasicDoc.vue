@@ -17,24 +17,6 @@ export default {
                 basic: `
 <InputText type="text" v-model="value" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputText type="text" v-model="value" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-        
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

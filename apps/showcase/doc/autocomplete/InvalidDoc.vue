@@ -21,31 +21,6 @@ export default {
 <AutoComplete v-model="value1" :suggestions="items" @complete="search" :invalid="!value1" placeholder="Code" />
 <AutoComplete v-model="value2" :suggestions="items" @complete="search" :invalid="!value2" variant="filled" placeholder="Code" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <AutoComplete v-model="value1" :suggestions="items" @complete="search" :invalid="!value1" placeholder="Code" />
-        <AutoComplete v-model="value2" :suggestions="items" @complete="search" :invalid="!value2" variant="filled" placeholder="Code" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: '',
-                value2: '',
-            items: []
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">

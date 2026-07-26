@@ -18,49 +18,6 @@ export default {
                 basic: `
 <ProgressBar :value="value"></ProgressBar>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Toast></Toast>
-        <ProgressBar :value="value1" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: 0,
-            interval: null
-        };
-    },
-    mounted() {
-        this.startProgress();
-    },
-    beforeUnmount() {
-        this.endProgress();
-    },
-    methods: {
-        startProgress() {
-            this.interval = setInterval(() => {
-                let newValue = this.value1 + Math.floor(Math.random() * 10) + 1;
-
-                if (newValue >= 100) {
-                    newValue = 100;
-                    this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Process Completed', life: 1000 });
-                }
-
-                this.value1 = newValue;
-            }, 2000);
-        },
-        endProgress() {
-            clearInterval(this.interval);
-            this.interval = null;
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

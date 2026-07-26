@@ -39,23 +39,6 @@ export default {
     </template>
 </Image>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Image alt="Image" preview>
-            <template #previewicon>
-                <i class="pi pi-search"></i>
-            </template>
-            <template #image>
-                <img src="https://primefaces.org/cdn/primevue/images/galleria/galleria11.jpg" alt="image" width="250" />
-            </template>
-            <template #preview="slotProps">
-                <img src="https://primefaces.org/cdn/primevue/images/galleria/galleria11.jpg" alt="preview" :style="slotProps.style" @click="slotProps.onClick" />
-            </template>
-        </Image>
-    </div>
-</template>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

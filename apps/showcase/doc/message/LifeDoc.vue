@@ -19,33 +19,6 @@ export default {
 <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
 <Message v-if="visible" severity="success" :life="3000">Auto Disappear Message</Message>
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center justify-center">
-        <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
-        <Message v-if="visible" severity="success" :life="3000">Auto Disappear Message</Message>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            visible: false
-        };
-    },
-    methods: {
-        showMessage() {
-            this.visible = true;
-
-            setTimeout(() => {
-                this.visible = false;
-            }, 3500);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center justify-center">

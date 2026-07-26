@@ -39,47 +39,6 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-            <div class="flex flex-col gap-4">
-                <Slider name="slider" />
-                <Message v-if="$form.slider?.invalid" severity="error" size="small" variant="simple">{{ $form.slider.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-</template>
-
-<script>
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
-import { z } from 'zod';
-
-export default {
-    data() {
-        return {
-            initialValues: {
-                slider: 0
-            },
-            resolver: zodResolver(
-                z.object({
-                    slider: z.number().gt(25, { message: 'Must be greater than 25.' }).lt(75, { message: 'Must be less than 75.' })
-                })
-            ),
-        }
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
-            }
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

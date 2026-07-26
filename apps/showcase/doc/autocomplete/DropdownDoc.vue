@@ -21,31 +21,6 @@ export default {
                 basic: `
 <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: []
-        };
-    },
-    methods: {
-        search(event) {
-            let _items = [...Array(10).keys()];
-
-            this.items = event.query ? [...Array(10).keys()].map((item) => event.query + '-' + item) : _items;
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">
