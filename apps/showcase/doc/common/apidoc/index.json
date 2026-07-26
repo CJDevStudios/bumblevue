@@ -69309,6 +69309,14 @@
                             "description": "When enabled, the focused tab is activated."
                         },
                         {
+                            "name": "orientation",
+                            "optional": true,
+                            "readonly": false,
+                            "type": "HintedString<\"horizontal\" | \"vertical\">",
+                            "default": "horizontal",
+                            "description": "Orientation of the tabs list."
+                        },
+                        {
                             "name": "dt",
                             "optional": true,
                             "readonly": false,

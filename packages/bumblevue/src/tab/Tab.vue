@@ -28,11 +28,27 @@ export default {
         onKeydown(event) {
             switch (event.code) {
                 case 'ArrowRight':
-                    this.onArrowRightKey(event);
+                    if (this.$pcTabs.orientation === 'horizontal') {
+                        this.onArrowRightKey(event);
+                    }
+                    break;
+
+                case 'ArrowDown':
+                    if (this.$pcTabs.orientation === 'vertical') {
+                        this.onArrowRightKey(event);
+                    }
                     break;
 
                 case 'ArrowLeft':
-                    this.onArrowLeftKey(event);
+                    if (this.$pcTabs.orientation === 'horizontal') {
+                        this.onArrowLeftKey(event);
+                    }
+                    break;
+
+                case 'ArrowUp':
+                    if (this.$pcTabs.orientation === 'vertical') {
+                        this.onArrowLeftKey(event);
+                    }
                     break;
 
                 case 'Home':

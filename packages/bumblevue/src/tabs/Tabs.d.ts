@@ -7,7 +7,7 @@
  * @module tabs
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue-core';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
 import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { VNode } from 'vue';
@@ -114,6 +114,11 @@ export interface TabsProps {
      * @defaultValue false
      */
     selectOnFocus?: boolean | undefined;
+    /**
+     * Orientation of the tabs list.
+     * @defaultValue 'horizontal'
+     */
+    orientation?: HintedString<'horizontal' | 'vertical'>;
     /**
      * It generates scoped CSS variables using design tokens for the component.
      */

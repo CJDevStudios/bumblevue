@@ -16,6 +16,7 @@
 **Enhancements:**
 - InputNumber: Add keyboard shortcuts for deleting content to the left and right of the cursor [\#43](https://github.com/CJDevStudios/bumblevue/pull/43)
 - Paginator: Add `selectAppendTo` prop that is passed to the Select child-components [\#44](https://github.com/CJDevStudios/bumblevue/pull/44)
+- Tabs: Add `orientation` prop to control the orientation of the tabs list [\#41](https://github.com/CJDevStudios/bumblevue/pull/41)
 
 **Fixed bugs:**
 
