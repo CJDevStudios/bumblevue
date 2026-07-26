@@ -13,6 +13,7 @@ import type { DropdownPassThroughOptions } from '@cjdevstudios/bumblevue/dropdow
 import type { InputNumberPassThroughOptions } from '@cjdevstudios/bumblevue/inputnumber';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { VNode } from 'vue';
+import { SelectProps } from '@cjdevstudios/bumblevue/select';
 
 export declare type PaginatorPassThroughOptionType<T = any> = PaginatorPassThroughAttributes | ((options: PaginatorPassThroughMethodOptions<T>) => PaginatorPassThroughAttributes | string) | string | null | undefined;
 
@@ -284,6 +285,11 @@ export interface PaginatorProps<PS extends number = number> {
      * @type {PassThroughOptions}
      */
     ptOptions?: PassThroughOptions;
+    /**
+     * A valid query selector or an HTMLElement to specify where the select overlays get attached.
+     * @defaultValue body
+     */
+    selectAppendTo?: SelectProps['appendTo'];
 }
 
 /**

@@ -37,6 +37,10 @@ export default {
         alwaysShow: {
             type: Boolean,
             default: true
+        },
+        selectAppendTo: {
+            type: [String, Object],
+            default: 'body'
         }
     },
     style: PaginatorStyle,

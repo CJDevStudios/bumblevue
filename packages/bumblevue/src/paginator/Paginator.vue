@@ -84,6 +84,7 @@
                             :templates="$slots"
                             :unstyled="unstyled"
                             :pt="pt"
+                            :appendTo="selectAppendTo"
                         />
                         <JumpToPageDropdown
                             v-else-if="item === 'JumpToPageDropdown'"
@@ -95,6 +96,7 @@
                             :templates="$slots"
                             :unstyled="unstyled"
                             :pt="pt"
+                            :appendTo="selectAppendTo"
                         />
                         <JumpToPageInput v-else-if="item === 'JumpToPageInput'" :page="currentPage" @page-change="changePage($event)" :disabled="empty" :unstyled="unstyled" :pt="pt" />
                     </template>
