@@ -26,38 +26,6 @@ export default {
     <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" :expander="col.expander"></Column>
 </TreeTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-            <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" :expander="col.expander"></Column>
-        </TreeTable>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            columns: null
-        }
-    },
-    created() {
-        this.columns = [
-            { field: 'name', header: 'Name', expander: true },
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
-        ];
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

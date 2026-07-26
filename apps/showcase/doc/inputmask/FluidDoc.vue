@@ -17,23 +17,6 @@ export default {
                 basic: `
 <InputMask v-model="value" fluid mask="99-999999" placeholder="99-999999" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <InputMask v-model="value" fluid mask="99-999999" placeholder="99-999999" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -42,54 +42,6 @@ export default {
                 basic: `
 <SplitButton label="Save" icon="pi pi-check" dropdownIcon="pi pi-cog" @click="save" :model="items" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Toast />
-        <SplitButton label="Save" icon="pi pi-check" dropdownIcon="pi pi-cog" @click="save" :model="items" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    icon: 'pi pi-refresh',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-times',
-                    command: () => {
-                        this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Quit',
-                    icon: 'pi pi-power-off',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ]
-        };
-    },
-    methods: {
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

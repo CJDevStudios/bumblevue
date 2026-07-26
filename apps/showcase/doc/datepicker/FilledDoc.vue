@@ -17,23 +17,6 @@ export default {
                 basic: `
 <DatePicker v-model="date" variant="filled" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" variant="filled" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            date: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

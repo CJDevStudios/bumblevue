@@ -17,23 +17,6 @@ export default {
                 basic: `
 <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

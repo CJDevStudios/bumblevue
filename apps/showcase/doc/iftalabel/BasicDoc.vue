@@ -23,27 +23,6 @@ export default {
     <label for="username">Username</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <InputText id="username" v-model="value" />
-            <label for="username">Username</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

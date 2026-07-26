@@ -21,26 +21,6 @@ export default {
 <InputText v-model.number="value" />
 <Slider v-model="value" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <div class="w-56">
-            <InputText v-model.number="value" class="w-full mb-4" />
-            <Slider v-model="value" class="w-full" />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 50
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

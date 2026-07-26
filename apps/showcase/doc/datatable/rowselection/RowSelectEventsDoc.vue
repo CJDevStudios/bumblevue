@@ -35,44 +35,6 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable v-model:selection="selectedProduct" :value="products" selectionMode="single" dataKey="id" :metaKeySelection="false"
-                @rowSelect="onRowSelect" @rowUnselect="onRowUnselect" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
-        </DataTable>
-        <Toast/>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProduct: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    },
-    methods: {
-        onRowSelect(event) {
-            this.$toast.add({ severity: 'info', summary: 'Product Selected', detail: 'Name: ' + event.data.name, life: 3000 });
-        },
-        onRowUnselect(event) {
-            this.$toast.add({ severity: 'warn', summary: 'Product Unselected', detail: 'Name: ' + event.data.name, life: 3000 });
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -24,45 +24,17 @@ export default {
             ],
             code: {
                 basic: `
-<MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
+<MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities"
         :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
-<MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
+<MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities"
         :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
-`,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
-                :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
-        <MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
-                :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedCities1: [],
-            selectedCities2: [],
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ]
-        };
-    }
-};
-<\/script>
 `,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
-        <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
+        <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities"
                 :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
-        <MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities" 
+        <MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities"
                 :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
     </div>
 </template>

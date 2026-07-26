@@ -37,25 +37,6 @@ export default {
     :totalRecords="120">
 </Paginator>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Paginator
-            :template="{
-                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
-            }"
-            :rows="10"
-            :totalRecords="120">
-        </Paginator>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

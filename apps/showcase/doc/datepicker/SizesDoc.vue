@@ -23,27 +23,6 @@ export default {
 <DatePicker v-model="value2" placeholder="Normal" showIcon iconDisplay="input" />
 <DatePicker v-model="value3" size="large" placeholder="Large" showIcon iconDisplay="input" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center gap-4">
-        <DatePicker v-model="value1" size="small" placeholder="Small" showIcon iconDisplay="input" />
-        <DatePicker v-model="value2" placeholder="Normal" showIcon iconDisplay="input" />
-        <DatePicker v-model="value3" size="large" placeholder="Large" showIcon iconDisplay="input" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">

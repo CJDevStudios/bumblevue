@@ -38,41 +38,6 @@ export default {
 <InputNumber v-model="value3" inputId="expiry" prefix="Expires in " suffix=" days" fluid />
 <InputNumber v-model="value4" inputId="temperature" prefix="&uarr; " suffix="℃" :min="0" :max="40" fluid />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap gap-4">
-        <div class="flex-auto">
-            <label for="mile" class="font-bold block mb-2"> Mile </label>
-            <InputNumber v-model="value1" inputId="mile" suffix=" mi" fluid />
-        </div>
-        <div class="flex-auto">
-            <label for="percent" class="font-bold block mb-2"> Percent </label>
-            <InputNumber v-model="value2" inputId="percent" prefix="%" fluid />
-        </div>
-        <div class="flex-auto">
-            <label for="expiry" class="font-bold block mb-2"> Expiry </label>
-            <InputNumber v-model="value3" inputId="expiry" prefix="Expires in " suffix=" days" fluid />
-        </div>
-        <div class="flex-auto">
-            <label for="temperature" class="font-bold block mb-2"> Temperature </label>
-            <InputNumber v-model="value4" inputId="temperature" prefix="&uarr; " suffix="℃" :min="0" :max="40" fluid />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: 20,
-            value2: 50,
-            value3: 10,
-            value4: 20
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap gap-4">

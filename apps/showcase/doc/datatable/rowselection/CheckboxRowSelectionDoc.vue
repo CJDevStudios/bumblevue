@@ -36,36 +36,6 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable v-model:selection="selectedProducts" :value="products" dataKey="id" tableStyle="min-width: 50rem">
-            <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProducts: null,
-            metaKey: true
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

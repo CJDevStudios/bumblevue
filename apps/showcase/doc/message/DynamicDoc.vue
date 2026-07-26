@@ -28,43 +28,6 @@ export default {
     <Message v-for="msg of messages" :key="msg.id" :severity="msg.severity" class="mt-4">{{ msg.content }}</Message>
 </transition-group>
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center justify-center gap-4">
-        <div class="flex gap-2">
-            <Button label="Show" @click="addMessages()" />
-            <Button label="Clear" severity="secondary" @click="clearMessages()" />
-        </div>
-        <transition-group name="p-message" tag="div" class="flex flex-col">
-            <Message v-for="msg of messages" :key="msg.id" :severity="msg.severity" class="mt-4">{{ msg.content }}</Message>
-        </transition-group>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            messages: [],
-            count: 0
-        };
-    },
-    methods: {
-        addMessages() {
-            this.messages = [
-                { severity: 'info', content: 'Dynamic Info Message', id: this.count++ },
-                { severity: 'success', content: 'Dynamic Success Message', id: this.count++ },
-                { severity: 'warn', content: 'Dynamic Warn Message', id: this.count++ }
-            ];
-        },
-        clearMessages() {
-            this.messages = [];
-        }
-    }
-};
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center justify-center gap-4">

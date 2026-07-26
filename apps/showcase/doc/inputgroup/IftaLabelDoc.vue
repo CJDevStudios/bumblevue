@@ -33,31 +33,6 @@ export default {
     </IftaLabel>
 </InputGroup>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputGroup class="md:w-80">
-            <InputGroupAddon>
-                <i class="pi pi-shopping-cart"></i>
-            </InputGroupAddon>
-            <IftaLabel>
-                <InputNumber v-model="value" inputId="price" mode="currency" currency="USD" locale="en-US" />
-                <label for="price">Price</label>
-            </IftaLabel>
-        </InputGroup>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 10
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

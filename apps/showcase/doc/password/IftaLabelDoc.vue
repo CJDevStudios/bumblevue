@@ -23,26 +23,6 @@ export default {
     <label for="password">Password</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <Password v-model="value" inputId="password" variant="filled" />
-            <label for="password">Password</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

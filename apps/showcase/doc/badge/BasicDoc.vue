@@ -18,18 +18,6 @@ export default {
 <Badge value="2"></Badge>
 <Badge>10</Badge>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center gap-2">
-        <Badge value="2"></Badge>
-        <Badge>10</Badge>
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center gap-2">

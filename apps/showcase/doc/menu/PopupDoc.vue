@@ -33,38 +33,6 @@ export default {
 <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
 <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Refresh',
-                    icon: 'pi pi-refresh'
-                },
-                {
-                    label: 'Export',
-                    icon: 'pi pi-upload'
-                }
-            ]
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.menu.toggle(event);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

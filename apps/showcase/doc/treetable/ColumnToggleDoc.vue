@@ -39,51 +39,6 @@ export default {
     <Column v-for="col of selectedColumns" :field="col.field" :header="col.header" :key="col.field"></Column>
 </TreeTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-            <template #header>
-                <div style="text-align:left">
-                    <MultiSelect :modelValue="selectedColumns" @update:modelValue="onToggle" :options="columns" optionLabel="header" class="w-full sm:w-64" display="chip"/>
-                </div>
-            </template>
-            <Column field="name" header="Name" :expander="true"></Column>
-            <Column v-for="col of selectedColumns" :field="col.field" :header="col.header" :key="col.field"></Column>
-        </TreeTable>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedColumns: null,
-            columns: null,
-        }
-    },
-    created() {
-        this.columns = [
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
-        ];
-
-        this.selectedColumns = this.columns;
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    },
-    methods: {
-        onToggle(value) {
-            this.selectedColumns = this.columns.filter(col => value.includes(col));
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

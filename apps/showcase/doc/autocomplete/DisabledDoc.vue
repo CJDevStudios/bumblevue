@@ -16,17 +16,6 @@ export default {
                 basic: `
 <AutoComplete disabled placeholder="Disabled" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <AutoComplete disabled placeholder="Disabled" />
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

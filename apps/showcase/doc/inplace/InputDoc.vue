@@ -37,33 +37,6 @@ export default {
     </template>
 </Inplace>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Inplace>
-            <template #display>
-                {{ text || 'Click to Edit' }}
-            </template>
-            <template #content="{ closeCallback }">
-                <span class="inline-flex items-center gap-2">
-                    <InputText v-model="text" autofocus />
-                    <Button icon="pi pi-times" text severity="danger" @click="closeCallback" />
-                </span>
-            </template>
-        </Inplace>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            text: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

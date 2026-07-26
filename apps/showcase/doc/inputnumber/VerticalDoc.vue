@@ -31,30 +31,6 @@ export default {
     </template>
 </InputNumber>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
-            <template #incrementbuttonicon>
-                <span class="pi pi-plus" />
-            </template>
-            <template #decrementbuttonicon>
-                <span class="pi pi-minus" />
-            </template>
-        </InputNumber>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 50
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

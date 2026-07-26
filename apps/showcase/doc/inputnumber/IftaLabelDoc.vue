@@ -23,26 +23,6 @@ export default {
     <label for="price_input">Price</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <InputNumber v-model="value" inputId="price_input" mode="currency" currency="USD" locale="en-US" variant="filled" />
-            <label for="price_input">Price</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 1
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -56,59 +56,6 @@ export default {
     </template>
 </Galleria>
 `,
-                options: `
-<template>
-    <div class="card">
-        <div class="mb-4">
-            <Button icon="pi pi-minus" @click="prev" />
-            <Button icon="pi pi-plus" @click="next" severity="secondary" class="ml-2" />
-        </div>
-
-        <Galleria v-model:activeIndex="activeIndex" :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px">
-            <template #item="slotProps">
-                <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
-            </template>
-            <template #thumbnail="slotProps">
-                <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" />
-            </template>
-        </Galleria>
-    </div>
-</template>
-
-<script>
-import { PhotoService } from '@/service/PhotoService';
-
-export default {
-    data() {
-        return {
-            images: null,
-            activeIndex: 2,
-            responsiveOptions: [
-                {
-                    breakpoint: '1300px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ]
-        };
-    },
-    mounted() {
-        PhotoService.getImages().then((data) => (this.images = data));
-    },
-    methods: {
-        next() {
-            this.activeIndex = this.activeIndex === this.images.length - 1 ? this.images.length - 1 : this.activeIndex + 1;
-        },
-        prev() {
-            this.activeIndex = this.activeIndex === 0 ? 0 : this.activeIndex - 1;
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

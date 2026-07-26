@@ -1,11 +1,6 @@
 <template>
     <div v-if="!embedded" class="doc-section-code">
         <div class="doc-section-code-buttons animate-scalein animate-duration-300">
-            <template v-if="codeMode !== 'basic' && !hideToggleCode">
-                <button :class="['py-0 px-2 rounded h-2rem', { 'code-active': codeLang === 'composition' }]" @click="codeLang = 'composition'">Composition API</button>
-                <button :class="['py-0 px-2 rounded h-2rem', { 'code-active': codeLang === 'options' }]" @click="codeLang = 'options'">Options API</button>
-            </template>
-
             <template v-if="!hideToggleCode">
                 <button v-tooltip.bottom="{ value: 'Toggle Full Code', class: 'doc-section-code-tooltip' }" type="button" @click="toggleCodeMode('composition')" class="h-8 w-8 p-0 inline-flex items-center justify-center">
                     <i class="pi pi-code"></i>
@@ -47,12 +42,7 @@
 </code></pre>
             </template>
 
-            <template v-if="codeMode !== 'basic' && codeLang === 'options'">
-                <pre v-code><code>{{ code.options }}
-</code></pre>
-            </template>
-
-            <template v-if="codeMode !== 'basic' && codeLang === 'composition'">
+            <template v-if="codeMode !== 'basic' && codeLang !== 'data'">
                 <pre v-code><code>{{ code.composition }}
 </code></pre>
             </template>

@@ -17,23 +17,6 @@ export default {
                 basic: `
 <ProgressBar :value="40"> {{ value }}/100 </ProgressBar>
 `,
-                options: `
-<template>
-    <div class="card">
-        <ProgressBar :value="40"> {{ value }}/100 </ProgressBar>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 40
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

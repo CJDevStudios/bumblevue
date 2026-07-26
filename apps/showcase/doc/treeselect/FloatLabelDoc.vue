@@ -48,44 +48,6 @@ export default {
     <label for="on_label">On Label</label>
 </FloatLabel>
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <FloatLabel class="w-full md:w-80">
-            <TreeSelect v-model="value1" inputId="over_label" :options="nodes" class="w-full" />
-            <label for="over_label">Over Label</label>
-        </FloatLabel>
-
-        <FloatLabel class="w-full md:w-80" variant="in">
-            <TreeSelect v-model="value2" inputId="in_label" :options="nodes" class="w-full" variant="filled" />
-            <label for="in_label">In Label</label>
-        </FloatLabel>
-
-        <FloatLabel class="w-full md:w-80" variant="on">
-            <TreeSelect v-model="value3" inputId="on_label" :options="nodes" class="w-full" />
-            <label for="on_label">On Label</label>
-        </FloatLabel>
-    </div>
-</template>
-
-<script>
-import { NodeService } from './service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            value1: null,
-            value2: null,
-            value3: null
-        }
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">

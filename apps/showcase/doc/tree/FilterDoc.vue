@@ -24,28 +24,6 @@ export default {
 <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-[30rem]"></Tree>
 <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-[30rem]"></Tree>
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-8">
-        <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-[30rem]"></Tree>
-        <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-[30rem]"></Tree>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-export default {
-    data() {
-        return {
-            nodes: null
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then(data => this.nodes = data);
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-8">

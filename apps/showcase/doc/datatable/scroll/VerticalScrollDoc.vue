@@ -31,35 +31,6 @@ export default {
     <Column field="company" header="Company"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable :value="customers" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
-            <Column field="name" header="Name"></Column>
-            <Column field="country.name" header="Country"></Column>
-            <Column field="representative.name" header="Representative"></Column>
-            <Column field="company" header="Company"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { CustomerService } from '@/service/CustomerService';
-
-export default {
-    data() {
-        return {
-            customers: null
-        };
-    },
-    mounted() {
-        CustomerService.getCustomersMedium().then((data) => {
-            this.customers = data;
-        });
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -30,32 +30,6 @@ export default {
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <TreeTable :value="nodes" :loading="true" tableStyle="min-width: 50rem">
-            <Column field="name" header="Name" expander style="width: 34%"></Column>
-            <Column field="size" header="Size" style="width: 33%"></Column>
-            <Column field="type" header="Type" style="width: 33%"></Column>
-        </TreeTable>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null
-        };
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

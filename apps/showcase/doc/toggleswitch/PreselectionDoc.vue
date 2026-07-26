@@ -17,23 +17,6 @@ export default {
                 basic: `
 <ToggleSwitch v-model="checked" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <ToggleSwitch v-model="checked" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            checked: true
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -20,23 +20,6 @@ export default {
                 basic: `
 <Password v-model="value" promptLabel="Choose a password" weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Password v-model="value" promptLabel="Choose a password" weakLabel="Too simple" mediumLabel="Average complexity" strongLabel="Complex password" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -39,31 +39,6 @@ export default {
     <InputText v-model="value" placeholder="Search" />
 </IconField>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IconField>
-            <InputIcon>
-                <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="..." fill="var(--p-primary-color)" />
-                    <path d="..." fill="var(--p-text-color)" />
-                </svg>
-            </InputIcon>
-            <InputText v-model="value" placeholder="Search" />
-        </IconField>
-    </div>
-</template>
-
-<script setup>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

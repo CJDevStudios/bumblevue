@@ -22,16 +22,6 @@ import Button from "@cjdevstudios/bumblevue/button"
 const app = createApp(App);
 app.component('Button', Button);
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Button label="Verify" />
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

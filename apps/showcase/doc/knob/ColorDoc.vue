@@ -20,23 +20,6 @@ export default {
                 basic: `
 <Knob v-model="value" valueColor="SlateGray" rangeColor="MediumTurquoise" />
 `,
-                options: `
-<template>
-  <div class="card flex justify-center">
-      <Knob v-model="value" valueColor="SlateGray" rangeColor="MediumTurquoise" />
-  </div>
-</template>
-
-<script>
-export default {
-  data() {
-      return {
-          value: 50
-      }
-  }
-};
-<\/script>
-`,
                 composition: `
 <template>
   <div class="card flex justify-center">

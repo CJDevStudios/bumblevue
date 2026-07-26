@@ -18,14 +18,6 @@ export default {
 <InputText v-tooltip.bottom="{ value: 'Enter your username', autoHide: false }" type="text" placeholder="autoHide: false" />
 <InputText v-tooltip.bottom="'Enter your username'" type="text" placeholder="autoHide: true" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-2">
-        <InputText v-tooltip.bottom="{ value: 'Enter your username', autoHide: false }" type="text" placeholder="autoHide: false" />
-        <InputText v-tooltip.bottom="'Enter your username'" type="text" placeholder="autoHide: true" />
-    </div>
-</template>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-2">

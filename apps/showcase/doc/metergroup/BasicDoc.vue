@@ -17,23 +17,6 @@ export default {
                 basic: `
 <MeterGroup :value="value" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <MeterGroup :value="value" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: [{ label: 'Space used', value: 15, color: 'var(--p-primary-color)' }],
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

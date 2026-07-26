@@ -24,20 +24,6 @@ export default {
     <RouterLink to="/" :class="slotProps.class">Router</RouterLink>
 </Button>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center gap-4">
-        <Button label="Link" variant="link" />
-        <Button as="a" label="External" href="https://vuejs.org/" target="_blank" rel="noopener" />
-        <Button asChild v-slot="slotProps">
-            <RouterLink to="/" :class="slotProps.class">Router</RouterLink>
-        </Button>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center gap-4">

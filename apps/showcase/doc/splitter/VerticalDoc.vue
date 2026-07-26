@@ -22,19 +22,6 @@ export default {
     <SplitterPanel class="flex items-center justify-center"> Panel 2 </SplitterPanel>
 </Splitter>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Splitter style="height: 300px" layout="vertical">
-            <SplitterPanel class="flex items-center justify-center"> Panel 1 </SplitterPanel>
-            <SplitterPanel class="flex items-center justify-center"> Panel 2 </SplitterPanel>
-        </Splitter>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

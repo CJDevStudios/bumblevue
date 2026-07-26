@@ -26,24 +26,6 @@ export default {
 <Paginator :rows="10" :totalRecords="120" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <Paginator :rows="10" :totalRecords="120" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            first: 0
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -29,29 +29,6 @@ export default {
     <label for="username">Username</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <IconField>
-                <InputIcon class="pi pi-user" />
-                <InputText id="username" v-model="value" variant="filled" />
-            </IconField>
-            <label for="username">Username</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script setup>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

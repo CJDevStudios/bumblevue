@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Editor v-model="value" editorStyle="height: 320px" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <Editor v-model="value" editorStyle="height: 320px" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

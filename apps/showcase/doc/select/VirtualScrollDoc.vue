@@ -21,21 +21,7 @@ export default {
                 basic: `
 <Select v-model="selectedItem" :options="items" optionLabel="label" optionValue="value"
     :virtualScrollerOptions="{ itemSize: 38 }" placeholder="Select Item" class="w-full md:w-56" />
-`,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Select v-model="selectedItem" :options="items" optionLabel="label" optionValue="value"
-            :virtualScrollerOptions="{ itemSize: 38 }" placeholder="Select Item" class="w-full md:w-56" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedItem: null,
-            items: Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
+`, value: i }))
         };
     }
 };

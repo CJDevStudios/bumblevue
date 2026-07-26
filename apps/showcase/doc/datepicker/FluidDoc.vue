@@ -17,23 +17,6 @@ export default {
                 basic: `
 <DatePicker v-model="date" fluid />
 `,
-                options: `
-<template>
-    <div class="card">
-        <DatePicker v-model="date" fluid />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            date: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

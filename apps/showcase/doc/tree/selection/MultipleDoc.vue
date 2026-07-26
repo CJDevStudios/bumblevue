@@ -30,34 +30,6 @@ export default {
 <Tree v-model:selectionKeys="selectedKeys" :value="nodes"
     selectionMode="multiple" :metaKeySelection="checked"></Tree>
 `,
-                options: `
-<template>
-    <div class="card">
-        <div class="flex items-center mb-6 gap-2">
-            <ToggleSwitch v-model="checked" inputId="input-metakey" />
-            <label for="input-metakey">MetaKey</label>
-        </div>
-        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-[30rem]"></Tree>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            checked: false,
-            nodes: null,
-            selectedKeys: null
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

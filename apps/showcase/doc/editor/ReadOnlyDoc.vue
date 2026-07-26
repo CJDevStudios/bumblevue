@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Editor v-model="value" editorStyle="height: 320px" readonly />
 `,
-                options: `
-<template>
-    <div class="card">
-        <Editor v-model="value" editorStyle="height: 320px" readonly />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 'Always bet on Prime'
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

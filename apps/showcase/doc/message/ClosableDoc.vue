@@ -16,16 +16,6 @@ export default {
                 basic: `
 <Message closable>Closable Message</Message>
 `,
-                options: `
-<template>
-    <div class="card">
-        <Message closable>Closable Message</Message>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

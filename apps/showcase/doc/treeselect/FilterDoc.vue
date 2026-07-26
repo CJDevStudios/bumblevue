@@ -27,31 +27,6 @@ export default {
 <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
 <TreeSelect v-model="selectedValue" filter filterMode="strict" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-        <TreeSelect v-model="selectedValue" filter filterMode="strict" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-    </div>
-</template>
-
-<script>
-import { NodeService } from './service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            selectedValue2: null,
-        }
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">

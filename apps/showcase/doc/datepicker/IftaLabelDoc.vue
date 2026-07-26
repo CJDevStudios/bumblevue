@@ -23,26 +23,6 @@ export default {
     <label for="date">Date</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <DatePicker v-model="value" inputId="date" showIcon iconDisplay="input" variant="filled" />
-            <label for="date">Date</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

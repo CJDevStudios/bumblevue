@@ -31,30 +31,6 @@ export default {
     </template>
 </Rating>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Rating v-model="value">
-            <template #onicon>
-                <img src="https://primefaces.org/cdn/primevue/images/rating/custom-onicon.png" height="24" width="24" />
-            </template>
-            <template #officon>
-                <img src="https://primefaces.org/cdn/primevue/images/rating/custom-officon.png" height="24" width="24" />
-            </template>
-        </Rating>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

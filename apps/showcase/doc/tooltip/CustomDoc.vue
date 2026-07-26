@@ -43,27 +43,6 @@ export default {
     label="Button"
 />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center">
-        <Button
-            v-tooltip.bottom="{
-                value: 'BumbleVue Rocks',
-                pt: {
-                    arrow: {
-                        style: {
-                            borderBottomColor: 'var(--p-primary-color)'
-                        }
-                    },
-                    text: '!bg-primary !text-primary-contrast !font-medium'
-                }
-            }"
-            severity="secondary"
-            label="Button"
-        />
-    </div>
-</template>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center">

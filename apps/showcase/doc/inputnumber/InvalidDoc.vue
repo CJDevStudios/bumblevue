@@ -20,25 +20,6 @@ export default {
 <InputNumber v-model="value1" :invalid="value1 === null" mode="decimal" :minFractionDigits="2" placeholder="Amount" />
 <InputNumber v-model="value2" :invalid="value2 === null" mode="decimal" :minFractionDigits="2" variant="filled" placeholder="Amount" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <InputNumber v-model="value1" :invalid="value1 === null" mode="decimal" :minFractionDigits="2" placeholder="Amount" />
-        <InputNumber v-model="value2" :invalid="value2 === null" mode="decimal" :minFractionDigits="2" variant="filled" placeholder="Amount" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">

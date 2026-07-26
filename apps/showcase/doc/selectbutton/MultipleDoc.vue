@@ -22,28 +22,6 @@ export default {
                 basic: `
 <SelectButton v-model="value" :options="options" optionLabel="name" multiple aria-labelledby="multiple" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <SelectButton v-model="value" :options="options" optionLabel="name" multiple aria-labelledby="multiple" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null,
-            options: [
-                { name: 'Option 1', value: 1 },
-                { name: 'Option 2', value: 2 },
-                { name: 'Option 3', value: 3 }
-            ]
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

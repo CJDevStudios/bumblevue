@@ -32,33 +32,6 @@ export default {
     <Column field="quantity" header="Quantity" style="width: 25%"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <DataTable :value="products" :loading="true" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code" style="width: 25%"></Column>
-            <Column field="name" header="Name" style="width: 25%"></Column>
-            <Column field="category" header="Category" style="width: 25%"></Column>
-            <Column field="quantity" header="Quantity" style="width: 25%"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -24,43 +24,6 @@ export default {
                 basic: `
 <AutoComplete v-model="selectedCountry" forceSelection optionLabel="name" :suggestions="filteredCountries" @complete="search" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="selectedCountry" forceSelection optionLabel="name" :suggestions="filteredCountries" @complete="search" />
-    </div>
-</template>
-
-<script>
-import { CountryService } from '@/service/CountryService';
-
-export default {
-    data() {
-        return {
-            countries: null,
-            selectedCountry: null,
-            filteredCountries: null
-        };
-    },
-    mounted() {
-        CountryService.getCountries().then((data) => (this.countries = data));
-    },
-    methods: {
-        search(event) {
-            setTimeout(() => {
-                if (!event.query.trim().length) {
-                    this.filteredCountries = [...this.countries];
-                } else {
-                    this.filteredCountries = this.countries.filter((country) => {
-                        return country.name.toLowerCase().startsWith(event.query.toLowerCase());
-                    });
-                }
-            }, 250);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

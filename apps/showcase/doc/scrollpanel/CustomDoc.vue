@@ -57,25 +57,6 @@ export default {
     ...
 </ScrollPanel>
 `,
-                options: `
-<template>
-    <div class="card">
-        <ScrollPanel
-            style="width: 100%; height: 200px"
-            :dt="{
-                bar: {
-                    background: '{primary.color}'
-                }
-            }"
-        >
-            ...
-        </ScrollPanel>
-    </div>
-</template>
-
-<script>
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

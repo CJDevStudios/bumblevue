@@ -17,23 +17,6 @@ export default {
                 basic: `
 <InputNumber v-model="value" variant="filled" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputNumber v-model="value" variant="filled" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -21,21 +21,7 @@ export default {
                 basic: `
 <Listbox v-model="selectedItem" :options="items" optionLabel="label" optionValue="value"
     :virtualScrollerOptions="{ itemSize: 38 }" class="w-full md:w-56" listStyle="height:250px" striped />
-`,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Listbox v-model="selectedItem" :options="items" optionLabel="label" optionValue="value"
-            :virtualScrollerOptions="{ itemSize: 38 }" class="w-full md:w-56" listStyle="height:250px" striped />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedItem: null,
-            items: Array.from({ length: 100000 }, (_, i) => ({ label: \`Item #\${i}\`, value: i }))
+`, value: i }))
         };
     }
 };

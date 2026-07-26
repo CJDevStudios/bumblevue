@@ -25,30 +25,6 @@ export default {
 <SelectButton v-model="value" :options="options" disabled />
 <SelectButton v-model="value" :options="options2" optionDisabled="constant" optionLabel="name" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center flex-wrap gap-4">
-        <SelectButton v-model="value" :options="options" disabled />
-        <SelectButton v-model="value" :options="options2" optionDisabled="constant" optionLabel="name" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 'Off',
-            value2: null,
-            options1: ['Off', 'On'],
-            options2: [
-                { name: 'Option 1', value: 1, constant: false },
-                { name: 'Option 2', value: 2, constant: true }
-            ]
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center flex-wrap gap-4">

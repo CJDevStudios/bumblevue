@@ -39,47 +39,6 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
-            <div class="flex flex-col items-center gap-1">
-                <ToggleButton name="consent" class="w-48" onLabel="Accept All" offLabel="Reject All" />
-                <Message v-if="$form.consent?.invalid" severity="error" variant="simple">{{ $form.consent.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-</template>
-
-<script>
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
-import { z } from 'zod';
-
-export default {
-    data() {
-        return {
-            initialValues: {
-                consent: false
-            },
-            resolver: zodResolver(
-                z.object({
-                    consent: z.boolean().refine((val) => val === true, { message: 'Consent is mandatory.' })
-                })
-            ),
-        }
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
-            }
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -17,31 +17,6 @@ export default {
                 basic: `
 <Button type="button" label="Search" icon="pi pi-search" :loading="loading" @click="load" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Button type="button" label="Search" icon="pi pi-search" :loading="loading" @click="load" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            loading: false
-        };
-    },
-    methods: {
-        load() {
-            this.loading = true;
-            setTimeout(() => {
-                this.loading = false;
-            }, 2000);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

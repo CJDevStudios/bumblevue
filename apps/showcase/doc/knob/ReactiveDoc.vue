@@ -25,27 +25,6 @@ export default {
     <Button icon="pi pi-minus" @click="value--" :disabled="value <= 0" />
 </div>
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center gap-2">
-        <Knob v-model="value" :size="150" readonly />
-        <div class="flex gap-2">
-            <Button icon="pi pi-plus" @click="value++" :disabled="value >= 100" />
-            <Button icon="pi pi-minus" @click="value--" :disabled="value <= 0" />
-        </div>
-    </div>
-</template>
-
-<script>
-export default {
-  data() {
-      return {
-          value: 0
-      }
-  }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center gap-2">

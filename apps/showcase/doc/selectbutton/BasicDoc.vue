@@ -21,24 +21,6 @@ export default {
                 basic: `
 <SelectButton v-model="value" :options="options" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <SelectButton v-model="value" :options="options" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: 'One-Way',
-            options: ['One-Way', 'Return']
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

@@ -16,17 +16,6 @@ export default {
                 basic: `
 <Select disabled placeholder="Select a City" class="w-full md:w-56" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Select disabled placeholder="Select a City" class="w-full md:w-56" />
-    </div>
-</template>
-
-<script>
-
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

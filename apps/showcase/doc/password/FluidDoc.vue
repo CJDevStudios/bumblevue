@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Password v-model="value" :feedback="false" fluid />
 `,
-                options: `
-<template>
-    <div class="card">
-        <Password v-model="value" :feedback="false" fluid />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

@@ -46,39 +46,6 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <div class="flex justify-center items-center mb-6 gap-2">
-            <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
-            <label for="input-metakey">MetaKey</label>
-        </div>
-        <DataTable v-model:selection="selectedProduct" :value="products" selectionMode="single" :metaKeySelection="metaKey" dataKey="id" tableStyle="min-width: 50rem">
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
-        </DataTable>
-    </div>
-</template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProduct: null,
-            metaKey: true
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

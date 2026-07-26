@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Textarea v-model="value" rows="5" cols="30" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Textarea v-model="value" rows="5" cols="30" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

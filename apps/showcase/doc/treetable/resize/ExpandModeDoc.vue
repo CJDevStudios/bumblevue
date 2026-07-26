@@ -29,32 +29,6 @@ export default {
     <Column field="type" header="Type"></Column>
 </TreeTable>
 `,
-                options: `
-<template>
-    <div class="card">
-        <TreeTable :value="nodes" :resizableColumns="true" columnResizeMode="expand" showGridlines tableStyle="min-width: 50rem">
-            <Column field="name" header="Name" expander></Column>
-            <Column field="size" header="Size"></Column>
-            <Column field="type" header="Type"></Column>
-        </TreeTable>
-    </div>
-</template>
-
-<script>
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-        }
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

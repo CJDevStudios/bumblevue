@@ -16,13 +16,6 @@ export default {
                 basic: `
 <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
 `,
-                options: `
-<template>
-    <div class="card flex flex-wrap justify-center">
-        <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
-    </div>
-</template>
-`,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center">

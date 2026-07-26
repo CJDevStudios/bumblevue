@@ -17,23 +17,6 @@ export default {
                 basic: `
 <InputOtp v-model="value" integerOnly />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <InputOtp v-model="value" integerOnly />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

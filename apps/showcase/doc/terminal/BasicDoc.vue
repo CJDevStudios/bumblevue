@@ -26,57 +26,6 @@ export default {
     aria-label="BumbleVue Terminal Service"
 />
 `,
-                options: `
-<template>
-    <div>
-        <p>Enter "date" to display the current date, "greet {0}" for a message and "random" to get a random number.</p>
-        <Terminal
-            welcomeMessage="Welcome to BumbleVue"
-            prompt="primevue $"
-            aria-label="BumbleVue Terminal Service"
-        />
-    </div>
-</template>
-
-<script>
-import TerminalService from "@cjdevstudios/bumblevue/terminalservice";
-
-export default {
-    methods: {
-        commandHandler(text) {
-            let response;
-            let argsIndex = text.indexOf(' ');
-            let command = argsIndex !== -1 ? text.substring(0, argsIndex) : text;
-
-            switch(command) {
-                case "date":
-                    response = 'Today is ' + new Date().toDateString();
-                    break;
-
-                case "greet":
-                    response = 'Hola ' + text.substring(argsIndex + 1);
-                    break;
-
-                case "random":
-                    response = Math.floor(Math.random() * 100);
-                    break;
-
-                default:
-                    response = "Unknown command: " + command;
-            }
-
-            TerminalService.emit('response', response);
-        }
-    },
-    mounted() {
-        TerminalService.on('command', this.commandHandler);
-    },
-    beforeUnmount() {
-        TerminalService.off('command', this.commandHandler);
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div>

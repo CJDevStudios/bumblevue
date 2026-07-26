@@ -24,32 +24,6 @@ export default {
     <label for="ac">Identifier</label>
 </IftaLabel>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
-            <label for="ac">Identifier</label>
-        </IftaLabel>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: []
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

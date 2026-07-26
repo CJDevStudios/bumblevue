@@ -51,40 +51,6 @@ export default {
     </template>
 </Timeline>
 `,
-                options: `
-<template>
-    <div class="card flex flex-col gap-4">
-        <Timeline :value="events" layout="horizontal" align="top">
-            <template #content="slotProps">
-                {{ slotProps.item }}
-            </template>
-        </Timeline>
-
-        <Timeline :value="events" layout="horizontal" align="bottom">
-            <template #content="slotProps">
-                {{ slotProps.item }}
-            </template>
-        </Timeline>
-
-        <Timeline :value="events" layout="horizontal" align="alternate">
-            <template #opposite> &nbsp; </template>
-            <template #content="slotProps">
-                {{ slotProps.item }}
-            </template>
-        </Timeline>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            events: ['2020', '2021', '2022', '2023']
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col gap-4">

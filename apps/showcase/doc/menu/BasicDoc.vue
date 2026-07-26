@@ -20,26 +20,6 @@ export default {
                 basic: `
 <Menu :model="items" />
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Menu :model="items" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            items: [
-                { label: 'New', icon: 'pi pi-plus' },
-                { label: 'Search', icon: 'pi pi-search' }
-            ]
-        };
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

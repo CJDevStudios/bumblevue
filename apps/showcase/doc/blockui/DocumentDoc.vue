@@ -19,33 +19,6 @@ export default {
 <BlockUI :blocked="blocked" fullScreen />
 <Button label="Block" @click="blocked = true" />
 `,
-                options: `
-<template>
-    <div class="card">
-        <BlockUI :blocked="blocked" fullScreen />
-        <Button label="Block" @click="blockDocument" />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            blocked: false
-        }
-    },
-    methods: {
-        blockDocument() {
-            this.blocked = true;
-
-            setTimeout(() => {
-                this.blocked = false;
-            }, 3000);
-        }
-    }
-}
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">

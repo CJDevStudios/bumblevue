@@ -24,33 +24,6 @@ export default {
 <AutoComplete v-model="value2" :suggestions="items" @complete="search" placeholder="Normal" dropdown />
 <AutoComplete v-model="value3" :suggestions="items" @complete="search" size="large" placeholder="Large" dropdown />
 `,
-                options: `
-<template>
-    <div class="card flex flex-col items-center gap-4">
-        <AutoComplete v-model="value1" :suggestions="items" @complete="search" size="small" placeholder="Small" dropdown />
-        <AutoComplete v-model="value2" :suggestions="items" @complete="search" placeholder="Normal" dropdown />
-        <AutoComplete v-model="value3" :suggestions="items" @complete="search" size="large" placeholder="Large" dropdown />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            items: [],
-        };
-    },
-    methods: {
-        search() {
-            this.items = [];
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">

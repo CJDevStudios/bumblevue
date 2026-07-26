@@ -41,49 +41,6 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full md:w-80">
-            <div class="flex flex-col gap-1">
-                <TreeSelect name="node" :options="nodes" placeholder="Select Item" fluid />
-                <Message v-if="$form.node?.invalid" severity="error" size="small" variant="simple">{{ $form.node.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-</template>
-
-<script>
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
-import { z } from 'zod';
-import { NodeService } from '/service/NodeService';
-
-export default {
-    data() {
-        return {
-            initialValues: {
-                node: null
-            },
-            resolver: zodResolver(
-                z.object({
-                    node: z.union([z.record(z.boolean()), z.literal(null)]).refine((obj) => obj !== null && Object.keys(obj).length > 0, { message: 'Selection is required.' })
-                })
-            ),
-            nodes: null,
-        }
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
-            }
-        }
-    }
-}
-<\/script>
-
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

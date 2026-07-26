@@ -15,11 +15,6 @@ mounted() {
     this.$primevue.config.ripple = true;
 }
 `,
-                options: `
-mounted() {
-    this.$primevue.config.ripple = true;
-}
-`,
                 composition: `
 import { useBumbleVue } from '@cjdevstudios/bumblevue/config';
 

@@ -31,33 +31,6 @@ export default {
     </template>
 </SelectButton>
 `,
-                options: `
-<template>
-    <div class="card flex justify-center">
-        <SelectButton v-model="value" :options="options" optionLabel="value" dataKey="value" aria-labelledby="custom">
-            <template #option="slotProps">
-                <i :class="slotProps.option.icon"></i>
-            </template>
-        </SelectButton>
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: null,
-            options: [
-                { icon: 'pi pi-align-left', value: 'Left' },
-                { icon: 'pi pi-align-right', value: 'Right' },
-                { icon: 'pi pi-align-center', value: 'Center' },
-                { icon: 'pi pi-align-justify', value: 'Justify' }
-            ]
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card flex justify-center">

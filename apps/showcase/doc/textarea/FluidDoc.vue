@@ -17,23 +17,6 @@ export default {
                 basic: `
 <Textarea v-model="value" rows="5" fluid />
 `,
-                options: `
-<template>
-    <div class="card">
-        <Textarea v-model="value" rows="5" fluid />
-    </div>
-</template>
-
-<script>
-export default {
-    data() {
-        return {
-            value: ''
-        }
-    }
-};
-<\/script>
-`,
                 composition: `
 <template>
     <div class="card">
