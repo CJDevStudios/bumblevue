@@ -13,6 +13,9 @@
   - @primevue/metadata -> @cjdevstudios/bumblevue-metadata
   - @primevue/nuxt-module -> @cjdevstudios/bumblevue-nuxt-module
 
+**Enhancements:**
+- InputNumber: Add keyboard shortcuts for deleting content to the left and right of the cursor [\#43](https://github.com/CJDevStudios/bumblevue/pull/43)
+
 **Fixed bugs:**
 
 - DatePicker: Improve input value handling for form scenarios [\#2](https://github.com/CJDevStudios/bumblevue/pull/2)
