@@ -100,7 +100,7 @@ export default {
 <script setup>
 import { ref } from 'vue';
 import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
-import { useToast } from "primevue/usetoast";
+import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 import { z } from 'zod';
 import { NodeService } from '/service/NodeService';
 

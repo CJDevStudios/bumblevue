@@ -39,7 +39,7 @@ export default {
 </template>
 
 <script>
-import TerminalService from "primevue/terminalservice";
+import TerminalService from "@cjdevstudios/bumblevue/terminalservice";
 
 export default {
     methods: {
@@ -91,7 +91,7 @@ export default {
 
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue';
-import TerminalService from "primevue/terminalservice";
+import TerminalService from "@cjdevstudios/bumblevue/terminalservice";
 
 onMounted(() => {
     TerminalService.on('command', commandHandler);

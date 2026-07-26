@@ -309,7 +309,7 @@ export default {
 <script setup>
 import { ref } from 'vue';
 import { useBumbleVue } from '@cjdevstudios/bumblevue/config';
-import { useToast } from "primevue/usetoast";
+import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 
 const $primevue = useBumbleVue();
 const toast = useToast();

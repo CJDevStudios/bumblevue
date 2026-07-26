@@ -113,7 +113,7 @@ export default {
 </template>
 
 <script setup>
-import { useToast } from "primevue/usetoast";
+import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 const toast = useToast();
 
 const items = [

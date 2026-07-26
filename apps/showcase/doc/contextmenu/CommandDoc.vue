@@ -193,7 +193,7 @@ export default {
 
 <script setup>
 import { ref } from 'vue';
-import { useToast } from "primevue/usetoast";
+import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 
 const toast = useToast();
 const selectedUser = ref();

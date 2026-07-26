@@ -277,7 +277,7 @@ export default {
 
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
-import { useToast } from "primevue/usetoast";
+import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 import { ProductService } from '@/service/ProductService';
 
 onMounted(() => {
