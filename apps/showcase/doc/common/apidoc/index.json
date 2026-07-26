@@ -50558,6 +50558,14 @@
                             "description": "Whether to show the paginator even there is only one page."
                         },
                         {
+                            "name": "selectAppendTo",
+                            "optional": true,
+                            "readonly": false,
+                            "type": "string | object",
+                            "default": "body",
+                            "description": "A valid query selector or an HTMLElement to specify where the select overlays get attached."
+                        },
+                        {
                             "name": "dt",
                             "optional": true,
                             "readonly": false,

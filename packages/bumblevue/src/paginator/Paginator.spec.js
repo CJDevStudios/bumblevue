@@ -5,11 +5,16 @@ import Paginator from './Paginator.vue';
 describe('Paginator.vue', () => {
     let wrapper;
 
+    beforeAll(() => {
+        document.body.appendChild(document.createElement('div')).setAttribute('id', 'test_container');
+    });
+
     beforeEach(() => {
         wrapper = mount(Paginator, {
             global: {
                 plugins: [BumbleVue]
             },
+            attachTo: '#test_container',
             props: {
                 rows: 10,
                 totalRecords: 120,
@@ -47,5 +52,20 @@ describe('Paginator.vue', () => {
         await wrapper.setProps({ rows: 20 });
 
         expect(wrapper.find('.p-select-label').text()).toBe('20');
+    });
+
+    it('selectAppendTo should be passed to the rows and jump selects', async () => {
+        await wrapper.setProps({
+            selectAppendTo: '#test_container',
+            rows: 10,
+            totalRecords: 120,
+            rowsPerPageOptions: [10, 20, 30],
+            template: {
+                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown JumpToPageDropdown'
+            }
+        });
+
+        expect(wrapper.getComponent({ name: "RowsPerPageDropdown" }).props().appendTo).toBe('#test_container');
+        expect(wrapper.getComponent({ name: "JumpToPageDropdown" }).props().appendTo).toBe('#test_container');
     });
 });
