@@ -1,3 +1,18 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import ArchitectureDoc from '@/doc/theming/unstyled/ArchitectureDoc.vue';
+    import ExampleDoc from '@/doc/theming/unstyled/ExampleDoc.vue';
+    import GlobalDoc from '@/doc/theming/unstyled/GlobalDoc.vue';
+    import SetupDoc from '@/doc/theming/unstyled/SetupDoc.vue';
+
+    const docs = [
+        { id: 'architecture', label: 'Architecture', component: ArchitectureDoc },
+        { id: 'setup', label: 'Setup', component: SetupDoc },
+        { id: 'example', label: 'Example', component: ExampleDoc },
+        { id: 'global', label: 'Global', component: GlobalDoc }
+    ];
+</script>
+
 <template>
     <div>
         <Head>
@@ -22,41 +37,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import ArchitectureDoc from '@/doc/theming/unstyled/ArchitectureDoc.vue';
-import ExampleDoc from '@/doc/theming/unstyled/ExampleDoc.vue';
-import GlobalDoc from '@/doc/theming/unstyled/GlobalDoc.vue';
-import SetupDoc from '@/doc/theming/unstyled/SetupDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'architecture',
-                    label: 'Architecture',
-                    component: ArchitectureDoc
-                },
-                {
-                    id: 'setup',
-                    label: 'Setup',
-                    component: SetupDoc
-                },
-                {
-                    id: 'example',
-                    label: 'Example',
-                    component: ExampleDoc
-                },
-                {
-                    id: 'global',
-                    label: 'Global',
-                    component: GlobalDoc
-                },
-            ]
-        };
-    }
-};
-</script>

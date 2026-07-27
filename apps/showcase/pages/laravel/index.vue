@@ -1,3 +1,20 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import DownloadDoc from '@/doc/laravel/DownloadDoc.vue';
+    import NextStepsDoc from '@/doc/laravel/NextStepsDoc.vue';
+    import PluginDoc from '@/doc/laravel/PluginDoc.vue';
+    import ThemeDoc from '@/doc/laravel/ThemeDoc.vue';
+    import VerifyDoc from '@/doc/laravel/VerifyDoc.vue';
+
+    const docs = [
+        { id: 'download', label: 'Download', component: DownloadDoc },
+        { id: 'plugin', label: 'Plugin', component: PluginDoc },
+        { id: 'theme', label: 'Theme', component: ThemeDoc },
+        { id: 'verify', label: 'Verify', component: VerifyDoc },
+        { id: 'nextsteps', label: 'Next Steps', component: NextStepsDoc }
+    ];
+</script>
+
 <template>
     <Head>
         <Title>Install BumbleVue with Laravel</Title>
@@ -19,47 +36,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import DownloadDoc from '@/doc/laravel/DownloadDoc.vue';
-import NextStepsDoc from '@/doc/laravel/NextStepsDoc.vue';
-import PluginDoc from '@/doc/laravel/PluginDoc.vue';
-import ThemeDoc from '@/doc/laravel/ThemeDoc.vue';
-import VerifyDoc from '@/doc/laravel/VerifyDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'download',
-                    label: 'Download',
-                    component: DownloadDoc
-                },
-                {
-                    id: 'theme',
-                    label: 'Plugin',
-                    component: PluginDoc
-                },
-                {
-                    id: 'theme',
-                    label: 'Theme',
-                    component: ThemeDoc
-                },
-                {
-                    id: 'verify',
-                    label: 'Verify',
-                    component: VerifyDoc
-                },
-                {
-                    id: 'nextsteps',
-                    label: 'Next Steps',
-                    component: NextStepsDoc
-                }
-            ]
-        };
-    }
-};
-</script>

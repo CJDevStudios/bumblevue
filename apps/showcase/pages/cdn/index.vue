@@ -1,3 +1,18 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import CreateAppDoc from '@/doc/cdn/CreateAppDoc.vue';
+    import PluginDoc from '@/doc/cdn/PluginDoc.vue';
+    import ScriptDoc from '@/doc/cdn/ScriptDoc.vue';
+    import ThemingDoc from '@/doc/cdn/ThemingDoc.vue';
+
+    const docs = [
+        { id: 'script', label: 'Script', component: ScriptDoc },
+        { id: 'createapp', label: 'CreateApp', component: CreateAppDoc },
+        { id: 'plugin', label: 'Plugin', component: PluginDoc },
+        { id: 'theming', label: 'Theming', component: ThemingDoc }
+    ];
+</script>
+
 <template>
     <Head>
         <Title>Install BumbleVue with CDN</Title>
@@ -19,41 +34,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import CreateAppDoc from '@/doc/cdn/CreateAppDoc.vue';
-import PluginDoc from '@/doc/cdn/PluginDoc.vue';
-import ScriptDoc from '@/doc/cdn/ScriptDoc.vue';
-import ThemingDoc from '@/doc/cdn/ThemingDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'script',
-                    label: 'Script',
-                    component: ScriptDoc
-                },
-                {
-                    id: 'createapp',
-                    label: 'CreateApp',
-                    component: CreateAppDoc
-                },
-                {
-                    id: 'plugin',
-                    label: 'Plugin',
-                    component: PluginDoc
-                },
-                {
-                    id: 'theming',
-                    label: 'Theming',
-                    component: ThemingDoc
-                }
-            ]
-        };
-    }
-};
-</script>

@@ -1,36 +1,22 @@
 import AppTheme from '@/themes/app-theme';
-import PrimeVue from '@cjdevstudios/bumblevue/config';
+import BumbleVue from '@cjdevstudios/bumblevue/config';
 import { reactive } from 'vue';
 
 const $appState = {
     install: (Vue) => {
-        Vue.config.globalProperties.$appState = reactive({
+        const appState = reactive({
             preset: 'Aura',
             primary: 'noir',
-            surface: null,
             darkTheme: false,
             codeSandbox: false,
-            sourceType: 'options-api',
             newsActive: false,
             announcement: null,
-            storageKey: 'primevue',
-            designer: {
-                verified: false,
-                csrfToken: null,
-                themeLimit: null,
-                active: false,
-                activeView: 'dashboard',
-                activeTab: '0',
-                theme: {
-                    key: null,
-                    name: null,
-                    preset: null,
-                    config: null
-                },
-                acTokens: [],
-                themes: []
-            }
+            storageKey: 'bumblevue',
         });
+
+        Vue.config.globalProperties.$appState = appState;
+        // provide the appState as well for composition API usage
+        Vue.provide('appState', appState);
     }
 };
 
@@ -40,7 +26,7 @@ export default defineNuxtPlugin(async (nuxtApp) => {
     nuxtApp.vueApp.use($appState);
 
     if (runtimeConfig.public.DEV_ENV === 'hot') {
-        nuxtApp.vueApp.use(PrimeVue, {
+        nuxtApp.vueApp.use(BumbleVue, {
             theme: AppTheme
         });
     }

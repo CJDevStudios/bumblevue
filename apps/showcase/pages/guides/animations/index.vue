@@ -1,3 +1,22 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import AnchoredOverlaysDoc from '@/doc/guides/animations/AnchoredOverlaysDoc.vue';
+    import CollapsiblesDoc from '@/doc/guides/animations/CollapsiblesDoc.vue';
+    import DialogDoc from '@/doc/guides/animations/DialogDoc.vue';
+    import DisableDoc from '@/doc/guides/animations/DisableDoc.vue';
+    import IntroductionDoc from '@/doc/guides/animations/IntroductionDoc.vue';
+    import ReferenceDoc from '@/doc/guides/animations/ReferenceDoc.vue';
+
+    const docs = [
+        { id: 'introduction', label: 'Introduction', component: IntroductionDoc },
+        { id: 'anchoredoverlays', label: 'Anchored Overlays', component: AnchoredOverlaysDoc },
+        { id: 'collapsibles', label: 'Collapsibles', component: CollapsiblesDoc },
+        { id: 'dialog', label: 'Dialog', component: DialogDoc },
+        { id: 'disable', label: 'Disable', component: DisableDoc },
+        { id: 'reference', label: 'Reference', component: ReferenceDoc }
+    ];
+</script>
+
 <template>
     <div>
         <Head>
@@ -25,54 +44,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import AnchoredOverlaysDoc from '@/doc/guides/animations/AnchoredOverlaysDoc.vue';
-import CollapsiblesDoc from '@/doc/guides/animations/CollapsiblesDoc.vue';
-import DialogDoc from '@/doc/guides/animations/DialogDoc.vue';
-import DisableDoc from '@/doc/guides/animations/DisableDoc.vue';
-import IntroductionDoc from '@/doc/guides/animations/IntroductionDoc.vue';
-import ReferenceDoc from '@/doc/guides/animations/ReferenceDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            checked: false,
-            docs: [
-                {
-                    id: 'introduction',
-                    label: 'Introduction',
-                    component: IntroductionDoc
-                },
-                {
-                    id: 'anchoredoverlays',
-                    label: 'Anchored Overlays',
-                    component: AnchoredOverlaysDoc
-                },
-                {
-                    id: 'collapsibles',
-                    label: 'Collapsibles',
-                    component: CollapsiblesDoc
-                },
-                {
-                    id: 'dialog',
-                    label: 'Dialog',
-                    component: DialogDoc
-                },
-                {
-                    id: 'disable',
-                    label: 'Disable',
-                    component: DisableDoc
-                },
-                {
-                    id: 'reference',
-                    label: 'Reference',
-                    component: ReferenceDoc
-                }
-            ]
-        };
-    }
-};
-</script>

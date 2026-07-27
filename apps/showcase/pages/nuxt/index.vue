@@ -1,3 +1,42 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import AutoImportDoc from '@/doc/nuxt/AutoImportDoc.vue';
+    import DownloadDoc from '@/doc/nuxt/DownloadDoc.vue';
+    import ModuleDoc from '@/doc/nuxt/ModuleDoc.vue';
+    import NextStepsDoc from '@/doc/nuxt/NextStepsDoc.vue';
+    import ThemeDoc from '@/doc/nuxt/ThemeDoc.vue';
+    import VerifyDoc from '@/doc/nuxt/VerifyDoc.vue';
+    import ComponentsDoc from '@/doc/nuxt/configuration/ComponentsDoc.vue';
+    import ComposablesDoc from '@/doc/nuxt/configuration/ComposablesDoc.vue';
+    import DirectivesDoc from '@/doc/nuxt/configuration/DirectivesDoc.vue';
+    import ImportPTDoc from '@/doc/nuxt/configuration/ImportPTDoc.vue';
+    import ImportThemeDoc from '@/doc/nuxt/configuration/ImportThemeDoc.vue';
+    import OptionsDoc from '@/doc/nuxt/configuration/OptionsDoc.vue';
+    import UseBumbleVueDoc from '@/doc/nuxt/configuration/UseBumbleVueDoc.vue';
+
+    const docs = [
+        { id: 'download', label: 'Download', component: DownloadDoc },
+        { id: 'module', label: 'Module', component: ModuleDoc },
+        { id: 'theme', label: 'Theme', component: ThemeDoc },
+        { id: 'verify', label: 'Verify', component: VerifyDoc },
+        {
+            id: 'configuration',
+            label: 'Configuration',
+            children: [
+                { id: 'usebumblevue', label: 'useBumbleVue', component: UseBumbleVueDoc },
+                { id: 'options', label: 'options', component: OptionsDoc },
+                { id: 'autoimport', label: 'autoImport', component: AutoImportDoc },
+                { id: 'importpt', label: 'importPT', component: ImportPTDoc },
+                { id: 'importtheme', label: 'importTheme', component: ImportThemeDoc },
+                { id: 'components', label: 'components', component: ComponentsDoc },
+                { id: 'directives', label: 'directives', component: DirectivesDoc },
+                { id: 'composables', label: 'composables', component: ComposablesDoc }
+            ]
+        },
+        { id: 'nextsteps', label: 'Next Steps', component: NextStepsDoc }
+    ];
+</script>
+
 <template>
     <div>
         <Head>
@@ -21,101 +60,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import AutoImportDoc from '@/doc/nuxt/AutoImportDoc.vue';
-import DownloadDoc from '@/doc/nuxt/DownloadDoc.vue';
-import ModuleDoc from '@/doc/nuxt/ModuleDoc.vue';
-import NextStepsDoc from '@/doc/nuxt/NextStepsDoc.vue';
-import ThemeDoc from '@/doc/nuxt/ThemeDoc.vue';
-import VerifyDoc from '@/doc/nuxt/VerifyDoc.vue';
-import ComponentsDoc from '@/doc/nuxt/configuration/ComponentsDoc.vue';
-import ComposablesDoc from '@/doc/nuxt/configuration/ComposablesDoc.vue';
-import DirectivesDoc from '@/doc/nuxt/configuration/DirectivesDoc.vue';
-import ImportPTDoc from '@/doc/nuxt/configuration/ImportPTDoc.vue';
-import ImportThemeDoc from '@/doc/nuxt/configuration/ImportThemeDoc.vue';
-import OptionsDoc from '@/doc/nuxt/configuration/OptionsDoc.vue';
-import UseBumbleVueDoc from '@/doc/nuxt/configuration/UseBumbleVueDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'download',
-                    label: 'Download',
-                    component: DownloadDoc
-                },
-                {
-                    id: 'module',
-                    label: 'Module',
-                    component: ModuleDoc
-                },
-                {
-                    id: 'theme',
-                    label: 'Theme',
-                    component: ThemeDoc
-                },
-                {
-                    id: 'verify',
-                    label: 'Verify',
-                    component: VerifyDoc
-                },
-                {
-                    id: 'configuration',
-                    label: 'Configuration',
-                    children: [
-                        {
-                            id: 'usebumblevue',
-                            label: 'useBumbleVue',
-                            component: UseBumbleVueDoc
-                        },
-                        {
-                            id: 'options',
-                            label: 'options',
-                            component: OptionsDoc
-                        },
-                        {
-                            id: 'autoimport',
-                            label: 'autoImport',
-                            component: AutoImportDoc
-                        },
-                        {
-                            id: 'importpt',
-                            label: 'importPT',
-                            component: ImportPTDoc
-                        },
-                        {
-                            id: 'importtheme',
-                            label: 'importTheme',
-                            component: ImportThemeDoc
-                        },
-                        {
-                            id: 'components',
-                            label: 'components',
-                            component: ComponentsDoc
-                        },
-                        {
-                            id: 'directives',
-                            label: 'directives',
-                            component: DirectivesDoc
-                        },
-                        {
-                            id: 'composables',
-                            label: 'composables',
-                            component: ComposablesDoc
-                        }
-                    ]
-                },
-                {
-                    id: 'nextsteps',
-                    label: 'Next Steps',
-                    component: NextStepsDoc
-                }
-            ]
-        };
-    }
-};
-</script>
