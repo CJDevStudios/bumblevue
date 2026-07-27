@@ -1,3 +1,18 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import FontAwesomeDoc from '@/doc/customicons/FontAwesomeDoc.vue';
+    import ImageDoc from '@/doc/customicons/ImageDoc.vue';
+    import MaterialDoc from '@/doc/customicons/MaterialDoc.vue';
+    import SVGDoc from '@/doc/customicons/SVGDoc.vue';
+
+    const docs = [
+        { id: 'material', label: 'Material', component: MaterialDoc },
+        { id: 'fontawesome', label: 'FontAwesome', component: FontAwesomeDoc },
+        { id: 'svg', label: 'SVG', component: SVGDoc },
+        { id: 'image', label: 'Image', component: ImageDoc }
+    ];
+</script>
+
 <template>
     <div>
         <Head>
@@ -22,41 +37,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import FontAwesomeDoc from '@/doc/customicons/FontAwesomeDoc.vue';
-import ImageDoc from '@/doc/customicons/ImageDoc.vue';
-import MaterialDoc from '@/doc/customicons/MaterialDoc.vue';
-import SVGDoc from '@/doc/customicons/SVGDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'material',
-                    label: 'Material',
-                    component: MaterialDoc
-                },
-                {
-                    id: 'fontawesome',
-                    label: 'FontAwesome',
-                    component: FontAwesomeDoc
-                },
-                {
-                    id: 'svg',
-                    label: 'SVG',
-                    component: SVGDoc
-                },
-                {
-                    id: 'image',
-                    label: 'Image',
-                    component: ImageDoc
-                }
-            ]
-        };
-    }
-};
-</script>

@@ -1,3 +1,18 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import AccessibilityDoc from '@/doc/introduction/AccessibilityDoc.vue';
+    import OverviewDoc from '@/doc/introduction/OverviewDoc.vue';
+    import PassThroughDoc from '@/doc/introduction/PassThroughDoc.vue';
+    import ThemingDoc from '@/doc/introduction/ThemingDoc.vue';
+
+    const docs = [
+        { id: 'overview', label: 'Overview', component: OverviewDoc },
+        { id: 'theming', label: 'Theming', component: ThemingDoc },
+        { id: 'passthrough', label: 'Pass Through', component: PassThroughDoc },
+        { id: 'accessibility', label: 'Accessibility', component: AccessibilityDoc }
+    ];
+</script>
+
 <template>
     <Head>
         <Title>Introduction - BumbleVue</Title>
@@ -19,41 +34,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import AccessibilityDoc from '@/doc/introduction/AccessibilityDoc.vue';
-import OverviewDoc from '@/doc/introduction/OverviewDoc.vue';
-import PassThroughDoc from '@/doc/introduction/PassThroughDoc.vue';
-import ThemingDoc from '@/doc/introduction/ThemingDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'overview',
-                    label: 'Overview',
-                    component: OverviewDoc
-                },
-                {
-                    id: 'theming',
-                    label: 'Theming',
-                    component: ThemingDoc
-                },
-                {
-                    id: 'passthrough',
-                    label: 'Pass Through',
-                    component: PassThroughDoc
-                },
-                {
-                    id: 'accessibility',
-                    label: 'Accessibility',
-                    component: AccessibilityDoc
-                }
-            ]
-        };
-    },
-};
-</script>

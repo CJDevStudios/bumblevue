@@ -1,3 +1,10 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import OverviewDoc from '@/doc/guides/dynamicimports/OverviewDoc.vue';
+
+    const docs = [{ id: 'overview', label: 'Overview', component: OverviewDoc }];
+</script>
+
 <template>
     <Head>
         <Title>BumbleVue - Dynamic Imports</Title>
@@ -19,23 +26,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import OverviewDoc from '@/doc/guides/dynamicimports/OverviewDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'overview',
-                    label: 'Overview',
-                    component: OverviewDoc
-                }
-            ]
-        };
-    }
-};
-</script>

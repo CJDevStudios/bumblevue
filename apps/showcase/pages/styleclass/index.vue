@@ -1,3 +1,17 @@
+<script setup lang="ts">
+    import AnimationDoc from '@/doc/styleclass/AnimationDoc.vue';
+    import HideOnResizeDoc from '@/doc/styleclass/HideOnResizeDoc.vue';
+    import ImportDoc from '@/doc/styleclass/ImportDoc.vue';
+    import ToggleClass from '@/doc/styleclass/ToggleClassDoc.vue';
+
+    const docs = [
+        { id: 'import', label: 'Import', component: ImportDoc },
+        { id: 'toggleClass', label: 'Toggle Class', component: ToggleClass },
+        { id: 'animation', label: 'Animation', component: AnimationDoc },
+        { id: 'hideOnResize', label: 'Hide On Resize', component: HideOnResizeDoc }
+    ];
+</script>
+
 <template>
     <DocComponent
         title="Vue StyleClass Directive"
@@ -7,39 +21,3 @@
         :apiDocs="['StyleClass']"
     />
 </template>
-
-<script>
-import AnimationDoc from '@/doc/styleclass/AnimationDoc.vue';
-import HideOnResizeDoc from '@/doc/styleclass/HideOnResizeDoc.vue';
-import ImportDoc from '@/doc/styleclass/ImportDoc.vue';
-import ToggleClass from '@/doc/styleclass/ToggleClassDoc.vue';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'import',
-                    label: 'Import',
-                    component: ImportDoc
-                },
-                {
-                    id: 'toggleClass',
-                    label: 'Toggle Class',
-                    component: ToggleClass
-                },
-                {
-                    id: 'animation',
-                    label: 'Animation',
-                    component: AnimationDoc
-                },
-                {
-                    id: 'hideOnResize',
-                    label: 'Hide On Resize',
-                    component: HideOnResizeDoc
-                }
-            ]
-        };
-    }
-};
-</script>

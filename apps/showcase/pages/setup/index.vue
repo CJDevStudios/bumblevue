@@ -1,3 +1,10 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import GuidesDoc from '@/doc/setup/GuidesDoc.vue';
+
+    const docs = [{ id: 'guides', label: 'Guides', component: GuidesDoc }];
+</script>
+
 <template>
     <Head>
         <Title>Setup - BumbleVue</Title>
@@ -19,23 +26,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import GuidesDoc from '@/doc/setup/GuidesDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'guides',
-                    label: 'Guides',
-                    component: GuidesDoc
-                }
-            ]
-        };
-    }
-};
-</script>

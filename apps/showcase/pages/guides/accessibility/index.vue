@@ -1,3 +1,22 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import ColorsDoc from '@/doc/guides/accessibility/ColorsDoc.vue';
+    import FormControlsDoc from '@/doc/guides/accessibility/FormControlsDoc.vue';
+    import IntroductionDoc from '@/doc/guides/accessibility/IntroductionDoc.vue';
+    import SemanticHTMLDoc from '@/doc/guides/accessibility/SemanticHTMLDoc.vue';
+    import WAIAriaDoc from '@/doc/guides/accessibility/WAIAriaDoc.vue';
+    import WCAGDoc from '@/doc/guides/accessibility/WCAGDoc.vue';
+
+    const docs = [
+        { id: 'introduction', label: 'Introduction', component: IntroductionDoc },
+        { id: 'wcag', label: 'WCAG', component: WCAGDoc },
+        { id: 'formcontrols', label: 'Form Controls', component: FormControlsDoc },
+        { id: 'semantichtml', label: 'Semantic HTML', component: SemanticHTMLDoc },
+        { id: 'waiaria', label: 'WAI ARIA', component: WAIAriaDoc },
+        { id: 'colors', label: 'Colors', component: ColorsDoc }
+    ];
+</script>
+
 <template>
     <div>
         <Head>
@@ -22,54 +41,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import ColorsDoc from '@/doc/guides/accessibility/ColorsDoc.vue';
-import FormControlsDoc from '@/doc/guides/accessibility/FormControlsDoc.vue';
-import IntroductionDoc from '@/doc/guides/accessibility/IntroductionDoc.vue';
-import SemanticHTMLDoc from '@/doc/guides/accessibility/SemanticHTMLDoc.vue';
-import WAIAriaDoc from '@/doc/guides/accessibility/WAIAriaDoc.vue';
-import WCAGDoc from '@/doc/guides/accessibility/WCAGDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            checked: false,
-            docs: [
-                {
-                    id: 'introduction',
-                    label: 'Introduction',
-                    component: IntroductionDoc
-                },
-                {
-                    id: 'wcag',
-                    label: 'WCAG',
-                    component: WCAGDoc
-                },
-                {
-                    id: 'formcontrols',
-                    label: 'Form Controls',
-                    component: FormControlsDoc
-                },
-                {
-                    id: 'semantichtml',
-                    label: 'Semantic HTML',
-                    component: SemanticHTMLDoc
-                },
-                {
-                    id: 'waiaria',
-                    label: 'WAI ARIA',
-                    component: WAIAriaDoc
-                },
-                {
-                    id: 'colors',
-                    label: 'Colors',
-                    component: ColorsDoc
-                }
-            ]
-        };
-    }
-};
-</script>

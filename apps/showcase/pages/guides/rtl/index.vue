@@ -1,3 +1,14 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import ConfigurationDoc from '@/doc/guides/rtl/ConfigurationDoc.vue';
+    import LimitationsDoc from '@/doc/guides/rtl/LimitationsDoc.vue';
+
+    const docs = [
+        { id: 'configuration', label: 'Configuration', component: ConfigurationDoc },
+        { id: 'tailwindcss', label: 'Limitations', component: LimitationsDoc }
+    ];
+</script>
+
 <template>
     <Head>
         <Title>RTL - BumbleVue</Title>
@@ -19,29 +30,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import ConfigurationDoc from '@/doc/guides/rtl/ConfigurationDoc.vue';
-import LimitationsDoc from '@/doc/guides/rtl/LimitationsDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'configuration',
-                    label: 'Configuration',
-                    component: ConfigurationDoc
-                },
-                {
-                    id: 'tailwindcss',
-                    label: 'Limitations',
-                    component: LimitationsDoc
-                }
-            ]
-        };
-    }
-};
-</script>

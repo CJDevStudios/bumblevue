@@ -1,3 +1,14 @@
+<script setup lang="ts">
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import OverviewDoc from '@/doc/autoimport/OverviewDoc.vue';
+    import UnpluginDoc from '@/doc/autoimport/UnpluginDoc.vue';
+
+    const docs = [
+        { id: 'overview', label: 'Overview', component: OverviewDoc },
+        { id: 'unplugin', label: 'Unplugin', component: UnpluginDoc }
+    ];
+</script>
+
 <template>
     <Head>
         <Title>Auto Import - BumbleVue</Title>
@@ -19,29 +30,3 @@
         <DocSectionNav :docs="docs" />
     </div>
 </template>
-
-<script>
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import OverviewDoc from '@/doc/autoimport/OverviewDoc.vue';
-import UnpluginDoc from '@/doc/autoimport/UnpluginDoc.vue';
-
-export default {
-    components: { DocCopyMarkdown },
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'overview',
-                    label: 'Overview',
-                    component: OverviewDoc
-                },
-                {
-                    id: 'unplugin',
-                    label: 'Unplugin',
-                    component: UnpluginDoc
-                }
-            ]
-        };
-    }
-};
-</script>
