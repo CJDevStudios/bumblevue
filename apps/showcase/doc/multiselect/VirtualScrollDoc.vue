@@ -35,20 +35,6 @@ export default {
                 basic: `
 <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" optionLabel="label" optionValue="value"
     @selectall-change="onSelectAllChange($event)" @change="onChange($event)" :virtualScrollerOptions="{ itemSize: 44 }" filter placeholder="Select Item" class="w-full md:w-80" />
-`, value: i }))
-        };
-    },
-    methods: {
-        onSelectAllChange(event) {
-            this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
-            this.selectAll = event.checked;
-        },
-        onChange(event) {
-            this.selectAll = event.value.length === this.items.length;
-        }
-    }
-};
-<\/script>
 `,
                 composition: `
 <template>

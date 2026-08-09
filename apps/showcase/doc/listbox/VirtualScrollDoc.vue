@@ -21,11 +21,6 @@ export default {
                 basic: `
 <Listbox v-model="selectedItem" :options="items" optionLabel="label" optionValue="value"
     :virtualScrollerOptions="{ itemSize: 38 }" class="w-full md:w-56" listStyle="height:250px" striped />
-`, value: i }))
-        };
-    }
-};
-<\/script>
 `,
                 composition: `
 <template>

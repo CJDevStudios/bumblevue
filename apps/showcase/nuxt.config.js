@@ -39,11 +39,12 @@ export default defineNuxtConfig({
         }
     },
     nitro: {
-        alias
+        alias,
+        preset: 'cloudflare-pages'
     },
     routeRules: {
         '/accessibility': { redirect: { to: '/guides/accessibility', statusCode: 301 } },
-        '/installation': { redirect: { to: '/vite', statusCode: 301 } },
+        '/installation': { redirect: { to: '/vite', statusCode: 301 } }
     },
     bumblevue: {
         useBumbleVue: process.env.DEV_ENV !== 'hot',
@@ -63,7 +64,8 @@ export default defineNuxtConfig({
                 { property: 'og:title', content: 'BumbleVue | Vue UI Component Library' },
                 { property: 'og:url', content: 'https://bumblevue.org/' },
                 { property: 'og:description', content: 'The ultimate collection of design-agnostic, flexible and accessible Vue UI Components.' },
-                { property: 'og:ttl', content: '604800' }
+                { property: 'og:ttl', content: '604800' },
+                { name: 'algolia-site-verification', content: 'B0FB4FCB80ACD3B7' }
             ],
             link: [
                 { rel: 'icon', href: baseUrl + 'favicon.png' },

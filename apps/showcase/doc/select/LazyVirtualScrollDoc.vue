@@ -27,16 +27,6 @@ export default {
                 basic: `
 <Select v-model="selectedItem" :options="items" optionLabel="label" optionValue="value" class="w-full md:w-56"
     :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }" placeholder="Select Item" />
-`, value: i };
-                }
-
-                this.items = _items;
-                this.loading = false;
-            }, Math.random() * 1000 + 250);
-        }
-    }
-};
-<\/script>
 `,
                 composition: `
 <template>

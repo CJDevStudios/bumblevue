@@ -38,11 +38,6 @@ export default {
         </TabPanel>
     </TabPanels>
 </Tabs>
-`, content: \`Tab \${i + 1} Content\`, value: \`\${i}\` }))
-        };
-    }
-};
-<\/script>
 `,
                 composition: `
 <template>

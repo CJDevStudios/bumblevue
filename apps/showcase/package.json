@@ -46,16 +46,16 @@
         "build:prebuild": "node ./scripts/prebuild.mjs",
         "build:apidoc": "node ./scripts/build-apidoc.cjs",
         "build:cloudflare": "nuxi build --preset=cloudflare_pages",
-        "dev:cloudflare": "npx wrangler pages dev dist"
+        "dev:cloudflare": "npx wrangler pages dev dist --compatibility-date 2026-08-08"
     },
     "dependencies": {
-        "@docsearch/js": "catalog:app",
+        "@cjdevstudios/bumbleicons": "catalog:",
         "@cjdevstudios/bumbleuix-themes": "catalog:",
+        "@cjdevstudios/bumblevue": "workspace:*",
         "@cjdevstudios/bumblevue-core": "workspace:*",
         "@cjdevstudios/bumblevue-forms": "workspace:*",
         "@cjdevstudios/bumblevue-nuxt-module": "workspace:*",
-        "@cjdevstudios/bumbleicons": "catalog:",
-        "@cjdevstudios/bumblevue": "workspace:*",
+        "@docsearch/js": "catalog:app",
         "chart.js": "catalog:app",
         "quill": "catalog:app",
         "superstruct": "^2.0.2",
@@ -64,6 +64,7 @@
         "zod": "^3.25.76"
     },
     "devDependencies": {
+        "@cjdevstudios/tailwindcss-bumblevue": "catalog:",
         "@stackblitz/sdk": "^1.8.2",
         "autoprefixer": "^10",
         "jsdom": "^19.0.0",
@@ -72,9 +73,9 @@
         "sass": "catalog:app",
         "sass-loader": "catalog:app",
         "tailwindcss": "^3",
-        "@cjdevstudios/tailwindcss-bumblevue": "catalog:",
         "typedoc": "0.23.23",
-        "vite": "catalog:app"
+        "vite": "catalog:app",
+        "wrangler": "^4.120.0"
     },
     "engines": {
         "node": ">=12.11.0"

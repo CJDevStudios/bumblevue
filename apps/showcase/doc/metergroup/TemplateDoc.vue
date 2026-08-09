@@ -93,7 +93,6 @@ export default {
         </div>
     </template>
 </MeterGroup>
-`, color: '#ffffff' }">
                                         <i :class="val.icon" />
                                     </span>
                                 </div>
