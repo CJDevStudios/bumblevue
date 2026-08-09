@@ -79,112 +79,112 @@
 </template>
 
 <script>
-import EventBus from '@/app/AppEventBus';
-import docsearch from '@docsearch/js';
+    import EventBus from '@/app/AppEventBus';
+    import docsearch from '@docsearch/js';
 
-export default {
-    emits: ['menubutton-click'],
-    outsideClickListener: null,
-    props: {
-        showMenuButton: {
-            type: Boolean,
-            default: true
-        }
-    },
-    data() {
-        return {
-            versions: [
-                {
-                    name: 'v4',
-                    url: '/'
-                }
-            ]
-        };
-    },
-    scrollListener: null,
-    container: null,
-    mounted() {
-        this.bindScrollListener();
-
-        docsearch({
-            container: '#docsearch',
-            appId: '01CMUF4W4R',
-            indexName: 'primevue',
-            apiKey: '9bb5939e36897b26ff7de5b7b64d6c43',
-            transformItems: (items) => {
-                const isLocalhost = process.env.NODE_ENV !== 'production';
-
-                return items.map((item) => {
-                    if (isLocalhost) {
-                        const url = new URL(item.url);
-
-                        url.protocol = window.location.protocol;
-                        url.hostname = window.location.hostname;
-                        url.port = window.location.port;
-                        item.url = url.toString();
+    export default {
+        emits: ['menubutton-click'],
+        outsideClickListener: null,
+        props: {
+            showMenuButton: {
+                type: Boolean,
+                default: true
+            }
+        },
+        data() {
+            return {
+                versions: [
+                    {
+                        name: 'v4',
+                        url: '/'
                     }
+                ]
+            };
+        },
+        scrollListener: null,
+        container: null,
+        mounted() {
+            this.bindScrollListener();
 
-                    return item;
-                });
-            }
-        });
-    },
-    beforeUnmount() {
-        if (this.scrollListener) {
-            this.unbindScrollListener();
-        }
-    },
-    methods: {
-        onMenuButtonClick(event) {
-            this.$emit('menubutton-click', event);
-        },
-        toggleDarkMode() {
-            EventBus.emit('dark-mode-toggle', { dark: !this.$appState.darkTheme });
-        },
-        bindScrollListener() {
-            if (!this.scrollListener) {
-                if (this.container) {
-                    this.scrollListener = () => {
-                        if (window.scrollY > 0) this.container.classList.add('layout-topbar-sticky');
-                        else this.container.classList.remove('layout-topbar-sticky');
-                    };
+            docsearch({
+                container: '#docsearch',
+                appId: 'Y6QOTGMRZL',
+                indexName: 'bumblevue showcase',
+                apiKey: '0f3bcb8df619b70eef2dd0b21f4c0b5e',
+                transformItems: (items) => {
+                    const isLocalhost = process.env.NODE_ENV !== 'production';
+
+                    return items.map((item) => {
+                        if (isLocalhost) {
+                            const url = new URL(item.url);
+
+                            url.protocol = window.location.protocol;
+                            url.hostname = window.location.hostname;
+                            url.port = window.location.port;
+                            item.url = url.toString();
+                        }
+
+                        return item;
+                    });
                 }
-            }
-
-            window.addEventListener('scroll', this.scrollListener);
+            });
         },
-        unbindScrollListener() {
+        beforeUnmount() {
             if (this.scrollListener) {
-                window.removeEventListener('scroll', this.scrollListener);
-                this.scrollListener = null;
+                this.unbindScrollListener();
             }
         },
-        bindOutsideClickListener() {
-            if (!this.outsideClickListener) {
-                this.outsideClickListener = (event) => {
-                    if (this.isOutsideTopbarMenuClicked(event)) {
-                        this.unbindOutsideClickListener();
+        methods: {
+            onMenuButtonClick(event) {
+                this.$emit('menubutton-click', event);
+            },
+            toggleDarkMode() {
+                EventBus.emit('dark-mode-toggle', { dark: !this.$appState.darkTheme });
+            },
+            bindScrollListener() {
+                if (!this.scrollListener) {
+                    if (this.container) {
+                        this.scrollListener = () => {
+                            if (window.scrollY > 0) this.container.classList.add('layout-topbar-sticky');
+                            else this.container.classList.remove('layout-topbar-sticky');
+                        };
                     }
-                };
+                }
 
-                document.addEventListener('click', this.outsideClickListener);
+                window.addEventListener('scroll', this.scrollListener);
+            },
+            unbindScrollListener() {
+                if (this.scrollListener) {
+                    window.removeEventListener('scroll', this.scrollListener);
+                    this.scrollListener = null;
+                }
+            },
+            bindOutsideClickListener() {
+                if (!this.outsideClickListener) {
+                    this.outsideClickListener = (event) => {
+                        if (this.isOutsideTopbarMenuClicked(event)) {
+                            this.unbindOutsideClickListener();
+                        }
+                    };
+
+                    document.addEventListener('click', this.outsideClickListener);
+                }
+            },
+            unbindOutsideClickListener() {
+                if (this.outsideClickListener) {
+                    document.removeEventListener('click', this.outsideClickListener);
+                    this.outsideClickListener = null;
+                }
+            },
+            isOutsideTopbarMenuClicked(event) {
+                return !(this.$refs.topbarMenu.isSameNode(event.target) || this.$refs.topbarMenu.contains(event.target));
+            },
+            containerRef(el) {
+                this.container = el;
+            },
+            toggleDesigner() {
+                this.$appState.designer.active = !this.$appState.designer.active;
             }
-        },
-        unbindOutsideClickListener() {
-            if (this.outsideClickListener) {
-                document.removeEventListener('click', this.outsideClickListener);
-                this.outsideClickListener = null;
-            }
-        },
-        isOutsideTopbarMenuClicked(event) {
-            return !(this.$refs.topbarMenu.isSameNode(event.target) || this.$refs.topbarMenu.contains(event.target));
-        },
-        containerRef(el) {
-            this.container = el;
-        },
-        toggleDesigner() {
-            this.$appState.designer.active = !this.$appState.designer.active;
         }
-    }
-};
+    };
 </script>
