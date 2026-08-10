@@ -1,6 +1,6 @@
 {
     "name": "showcase",
-    "version": "1.0.0-beta.4",
+    "version": "1.0.0-rc.1",
     "author": "CJ Development Studios",
     "contributors": [
         {
@@ -23,7 +23,6 @@
         "url": "https://github.com/CJDevStudios/bumblevue/issues"
     },
     "keywords": [
-        "primevue",
         "vue",
         "vue.js",
         "vue2",

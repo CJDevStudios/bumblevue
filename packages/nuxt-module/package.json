@@ -1,6 +1,6 @@
 {
     "name": "@cjdevstudios/bumblevue-nuxt-module",
-    "version": "1.0.0-beta.4",
+    "version": "1.0.0-rc.1",
     "author": "CJ Development Studios",
     "contributors": [
         {
@@ -27,7 +27,6 @@
         "vue3",
         "nuxt",
         "nuxt3",
-        "primevue",
         "bumblevue"
     ],
     "type": "module",
