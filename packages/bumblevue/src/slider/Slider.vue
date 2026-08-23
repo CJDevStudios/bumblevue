@@ -112,7 +112,6 @@
                 let newValue = (this.max - this.min) * (handleValue / 100) + this.min;
 
                 if (this.step) {
-                    const oldValue = this.range ? this.value[this.handleIndex] : this.value;
                     newValue = Math.round(newValue / this.step) * this.step;
                 } else {
                     newValue = Math.round(newValue);
