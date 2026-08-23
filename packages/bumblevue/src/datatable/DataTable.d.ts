@@ -1703,10 +1703,4 @@ declare const DataTable: {
     } & DataTableMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        DataTable: typeof DataTable;
-    }
-}
-
 export default DataTable;

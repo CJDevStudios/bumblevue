@@ -415,10 +415,4 @@ declare const ContextMenu: {
     } & ContextMenuMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        ContextMenu: typeof ContextMenu;
-    }
-}
-
 export default ContextMenu;

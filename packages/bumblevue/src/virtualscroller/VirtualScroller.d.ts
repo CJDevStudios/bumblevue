@@ -534,10 +534,4 @@ declare const VirtualScroller: {
     } & VirtualScrollerMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        VirtualScroller: typeof VirtualScroller;
-    }
-}
-
 export default VirtualScroller;

@@ -844,10 +844,4 @@ declare const Select: {
     } & SelectMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Select: typeof Select;
-    }
-}
-
 export default Select;

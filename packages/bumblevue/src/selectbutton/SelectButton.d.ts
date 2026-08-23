@@ -283,10 +283,4 @@ declare const SelectButton: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        SelectButton: typeof SelectButton;
-    }
-}
-
 export default SelectButton;

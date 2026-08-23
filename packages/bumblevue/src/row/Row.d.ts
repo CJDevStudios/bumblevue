@@ -115,10 +115,5 @@ export declare type RowEmits = EmitFn<RowEmitsOptions>;
  */
 declare const Row: DefineComponent<RowProps, RowSlots, RowEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Row: DefineComponent<RowProps, RowSlots, RowEmits>;
-    }
-}
 
 export default Row;

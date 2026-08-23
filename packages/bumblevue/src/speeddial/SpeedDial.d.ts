@@ -424,10 +424,4 @@ declare const SpeedDial: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        SpeedDial: typeof SpeedDial;
-    }
-}
-
 export default SpeedDial;

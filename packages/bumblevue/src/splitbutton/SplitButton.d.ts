@@ -344,10 +344,4 @@ declare const SplitButton: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        SplitButton: typeof SplitButton;
-    }
-}
-
 export default SplitButton;

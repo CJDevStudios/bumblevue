@@ -658,10 +658,4 @@ declare const Listbox: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Listbox: typeof Listbox;
-    }
-}
-
 export default Listbox;

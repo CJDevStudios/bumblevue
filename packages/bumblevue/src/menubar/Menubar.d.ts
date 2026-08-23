@@ -418,10 +418,4 @@ declare const Menubar: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Menubar: typeof Menubar;
-    }
-}
-
 export default Menubar;

@@ -119,10 +119,4 @@ export declare type FluidEmits = EmitFn<FluidEmitsOptions>;
  */
 declare const Fluid: DefineComponent<FluidProps, FluidSlots, FluidEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Fluid: DefineComponent<FluidProps, FluidSlots, FluidEmits>;
-    }
-}
-
 export default Fluid;

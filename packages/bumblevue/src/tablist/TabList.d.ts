@@ -137,10 +137,4 @@ export declare type TabListEmits = EmitFn<TabListEmitsOptions>;
  */
 declare const TabList: DefineComponent<TabListProps, TabListSlots, TabListEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        TabList: DefineComponent<TabListProps, TabListSlots, TabListEmits>;
-    }
-}
-
 export default TabList;

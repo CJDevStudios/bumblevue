@@ -137,10 +137,4 @@ export declare type DeferredContentEmits = EmitFn<DeferredContentEmitsOptions>;
  */
 declare const DeferredContent: DefineComponent<DeferredContentProps, DeferredContentSlots, DeferredContentEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        DeferredContent: DefineComponent<DeferredContentProps, DeferredContentSlots, DeferredContentEmits>;
-    }
-}
-
 export default DeferredContent;

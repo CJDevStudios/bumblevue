@@ -612,10 +612,4 @@ declare const TreeSelect: {
     } & TreeSelectMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        TreeSelect: typeof TreeSelect;
-    }
-}
-
 export default TreeSelect;

@@ -141,10 +141,4 @@ export declare type OverlayBadgeEmits = EmitFn<OverlayBadgeEmitsOptions>;
  */
 declare const OverlayBadge: DefineComponent<OverlayBadgeProps, OverlayBadgeSlots, OverlayBadgeEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        OverlayBadge: DefineComponent<OverlayBadgeProps, OverlayBadgeSlots, OverlayBadgeEmits>;
-    }
-}
-
 export default OverlayBadge;

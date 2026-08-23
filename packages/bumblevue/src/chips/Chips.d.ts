@@ -79,10 +79,4 @@ export declare type ChipsEmits = EmitFn<ChipsEmitsOptions> & InputChips.InputChi
  */
 declare const Chips: DefineComponent<ChipsProps, ChipsSlots, ChipsEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Chips: DefineComponent<ChipsProps, ChipsSlots, ChipsEmits>;
-    }
-}
-
 export default Chips;

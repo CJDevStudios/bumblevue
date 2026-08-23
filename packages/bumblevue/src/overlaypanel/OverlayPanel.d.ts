@@ -99,10 +99,4 @@ export interface OverlayPanelMethods {
  */
 declare const OverlayPanel: DefineComponent<OverlayPanelProps, OverlayPanelSlots, OverlayPanelEmits, OverlayPanelMethods>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        OverlayPanel: DefineComponent<OverlayPanelProps, OverlayPanelSlots, OverlayPanelEmits, OverlayPanelMethods>;
-    }
-}
-
 export default OverlayPanel;

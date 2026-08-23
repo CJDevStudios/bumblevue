@@ -169,10 +169,4 @@ export declare type TerminalEmits = EmitFn<TerminalEmitsOptions>;
  */
 declare const Terminal: DefineComponent<TerminalProps, TerminalSlots, TerminalEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Terminal: DefineComponent<TerminalProps, TerminalSlots, TerminalEmits>;
-    }
-}
-
 export default Terminal;

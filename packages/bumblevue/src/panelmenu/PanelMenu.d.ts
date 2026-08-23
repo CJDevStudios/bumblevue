@@ -411,10 +411,4 @@ declare const PanelMenu: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        PanelMenu: typeof PanelMenu;
-    }
-}
-
 export default PanelMenu;

@@ -389,10 +389,4 @@ declare const Menu: {
     } & MenuMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Menu: typeof Menu;
-    }
-}
-
 export default Menu;

@@ -546,10 +546,4 @@ declare const Galleria: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Galleria: typeof Galleria;
-    }
-}
-
 export default Galleria;

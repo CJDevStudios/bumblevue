@@ -397,10 +397,4 @@ declare const OrderList: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        OrderList: typeof OrderList;
-    }
-}
-
 export default OrderList;
