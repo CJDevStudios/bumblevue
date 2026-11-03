@@ -733,12 +733,6 @@ export { default as Tabs } from '../tabs/Tabs.vue';
 export * from '../tabs/style/TabsStyle.js';
 export { default as TabsStyle } from '../tabs/style/TabsStyle.js';
 
-// TabView
-export * from '../tabview/TabView.vue';
-export { default as TabView } from '../tabview/TabView.vue';
-export * from '../tabview/style/TabViewStyle.js';
-export { default as TabViewStyle } from '../tabview/style/TabViewStyle.js';
-
 // Tag
 export * from '../tag/Tag.vue';
 export { default as Tag } from '../tag/Tag.vue';

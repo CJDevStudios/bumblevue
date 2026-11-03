@@ -5,6 +5,10 @@
 **Implemented New Features and Enhancements:**
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
+**Breaking Changes:**
+- TabView: Removed deprecated component. Use Tabs with TabList, Tab, TabPanels and TabPanel instead.
+  The TabView-only TabPanel props (`header`, `headerStyle`, `headerClass`, `headerProps`, `headerActionProps`, `contentStyle`, `contentClass`, `contentProps`, `disabled`), pass-through options and `header` slot were removed along with it.
+
 ## [1.0.0]
 
 **Implemented New Features and Enhancements:**

@@ -72,7 +72,6 @@ import stepper from '@cjdevstudios/bumblevue-themes/lara/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/lara/steps';
 import tabmenu from '@cjdevstudios/bumblevue-themes/lara/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/lara/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/lara/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/lara/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/lara/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/lara/textarea';
@@ -164,7 +163,6 @@ export default {
         steps,
         tabmenu,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,

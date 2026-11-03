@@ -711,12 +711,6 @@ export { default as Tabs } from '@cjdevstudios/bumblevue/tabs';
 export * from '@cjdevstudios/bumblevue/tabs/style';
 export { default as TabsStyle } from '@cjdevstudios/bumblevue/tabs/style';
 
-// TabView
-export * from '@cjdevstudios/bumblevue/tabview';
-export { default as TabView } from '@cjdevstudios/bumblevue/tabview';
-export * from '@cjdevstudios/bumblevue/tabview/style';
-export { default as TabViewStyle } from '@cjdevstudios/bumblevue/tabview/style';
-
 // Tag
 export * from '@cjdevstudios/bumblevue/tag';
 export { default as Tag } from '@cjdevstudios/bumblevue/tag';

@@ -17061,15 +17061,6 @@
                             "default": ""
                         },
                         {
-                            "name": "tabview",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4. Use tabs instead."
-                        },
-                        {
                             "name": "tag",
                             "optional": true,
                             "readonly": false,
@@ -68510,42 +68501,6 @@
                             "description": "Used to pass attributes to the root's DOM element."
                         },
                         {
-                            "name": "header",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "TabPanelPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the header's DOM element.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerAction",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "TabPanelPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the header action's DOM element.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerTitle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "TabPanelPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the title's DOM element.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "content",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "TabPanelPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the list's DOM element.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
                             "name": "hooks",
                             "optional": true,
                             "readonly": false,
@@ -68597,87 +68552,6 @@
                             "description": "When enabled, it changes the default rendered element for the one passed as a child element."
                         },
                         {
-                            "name": "header",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Orientation of tab headers.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Inline style of the tab header.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Style class of the tab header.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "LiHTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLLiElement to the tab header.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "headerActionProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AnchorHTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLAnchorElement to the focusable anchor element inside the tab header.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "contentStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Inline style of the tab content.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "contentClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Style class of the tab content.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "contentProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "HTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLDivElement to the tab content.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "disabled",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "false",
-                            "description": "Whether the tab is disabled.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
                             "name": "dt",
                             "optional": true,
                             "readonly": false,
@@ -68709,42 +68583,6 @@
                     "relatedProp": "",
                     "props": [
                         {
-                            "name": "index",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Current index of the tab.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "count",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Count of tabs",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "first",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "",
-                            "description": "Whether the tab is first.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
-                            "name": "last",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "",
-                            "description": "Whether the tab is last.",
-                            "deprecated": "since v4. Only supported by TabView."
-                        },
-                        {
                             "name": "active",
                             "optional": false,
                             "readonly": false,
@@ -68771,13 +68609,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom content template. Slot attributes can be used when asChild prop is true."
-                        },
-                        {
-                            "name": "header",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Custom header template.",
-                            "deprecated": "since v4. Only supported by TabView."
                         }
                     ]
                 },
@@ -69477,123 +69308,6 @@
                             "readonly": false,
                             "value": "\"p-tabs\"",
                             "description": "Class name of the root element"
-                        }
-                    ]
-                }
-            }
-        }
-    },
-    "tabview": {
-        "description": "",
-        "interfaces": {
-            "description": "Defines the custom interfaces used by the module.",
-            "eventDescription": "Defines the custom events used by the component's emit.",
-            "methodDescription": "Defines methods that can be accessed by the component's reference.",
-            "typeDescription": "Defines the custom types used by the module.",
-            "values": {
-                "TabViewStyle": {
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                }
-            }
-        },
-        "tokens": {
-            "description": "Define design tokens used by the component.",
-            "values": {
-                "TabViewStyle": {
-                    "props": []
-                }
-            }
-        },
-        "enumerations": {
-            "values": {
-                "TabViewClasses": {
-                    "members": [
-                        {
-                            "name": "root",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview\"",
-                            "description": "Class name of the root element"
-                        },
-                        {
-                            "name": "navContainer",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tablist-container\"",
-                            "description": "Class name of the nav container element"
-                        },
-                        {
-                            "name": "prevButton",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-prev-button\"",
-                            "description": "Class name of the previous button element"
-                        },
-                        {
-                            "name": "navContent",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tablist-scroll-container\"",
-                            "description": "Class name of the nav content element"
-                        },
-                        {
-                            "name": "nav",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tablist\"",
-                            "description": "Class name of the nav element"
-                        },
-                        {
-                            "name": "tabHeader",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tablist-item\"",
-                            "description": "Class name of the tab header element"
-                        },
-                        {
-                            "name": "tabHeaderAction",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tab-header\"",
-                            "description": "Class name of the tab header action element"
-                        },
-                        {
-                            "name": "tabHeaderTitle",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-tab-title\"",
-                            "description": "Class name of the tab header title element"
-                        },
-                        {
-                            "name": "tabContent",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-panel\"",
-                            "description": "Class name of the tab content element"
-                        },
-                        {
-                            "name": "inkbar",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-ink-bar\"",
-                            "description": "Class name of the inkbar element"
-                        },
-                        {
-                            "name": "nextButton",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-next-button\"",
-                            "description": "Class name of the next button element"
-                        },
-                        {
-                            "name": "panelContainer",
-                            "optional": false,
-                            "readonly": false,
-                            "value": "\"p-tabview-panels\"",
-                            "description": "Class name of the panel container element"
                         }
                     ]
                 }

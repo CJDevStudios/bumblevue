@@ -1,57 +1,21 @@
 const TabPanelProps = [
     {
-        name: 'header',
-        type: 'string',
+        name: 'value',
+        type: 'string|number',
         default: 'null',
-        description: 'Orientation of tab headers.'
+        description: 'Value of tabpanel.'
     },
     {
-        name: 'headerStyle',
-        type: 'any',
-        default: 'null',
-        description: 'Inline style of the tab header.'
+        name: 'as',
+        type: 'string|object',
+        default: 'DIV',
+        description: 'Use to change the HTML tag of root element.'
     },
     {
-        name: 'headerClass',
-        type: 'any',
-        default: 'null',
-        description: 'Style class of the tab header.'
-    },
-    {
-        name: 'headerProps',
-        type: 'any',
-        default: 'null',
-        description: 'Used to pass all properties of the HTMLLiElement to the tab header.'
-    },
-    {
-        name: 'headerActionProps',
-        type: 'any',
-        default: 'null',
-        description: 'Used to pass all properties of the HTMLAnchorElement to the focusable anchor element inside the tab header.'
-    },
-    {
-        name: 'contentStyle',
-        type: 'any',
-        default: 'null',
-        description: 'Inline style of the tab content.'
-    },
-    {
-        name: 'contentClass',
-        type: 'any',
-        default: 'null',
-        description: 'Style class of the tab content.'
-    },
-    {
-        name: 'contentProps',
-        type: 'any',
-        default: 'null',
-        description: 'Used to pass all properties of the HTMLDivElement to the tab content.'
-    },
-    {
-        name: 'disabled',
+        name: 'asChild',
         type: 'boolean',
-        default: 'null',
-        description: 'Whether the tab is disabled.'
+        default: 'false',
+        description: 'When enabled, it changes the default rendered element for the one passed as a child element.'
     },
     {
         name: 'pt',
@@ -61,47 +25,11 @@ const TabPanelProps = [
     }
 ];
 
-const TabPanelEvents = [
-    {
-        name: 'tab-change',
-        description: 'Callback to invoke when an active tab is changed.',
-        arguments: [
-            {
-                name: 'event.originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'event.index',
-                type: 'number',
-                description: 'Index of the selected tab'
-            }
-        ]
-    },
-    {
-        name: 'tab-click',
-        description: 'Callback to invoke when an active tab is clicked.',
-        arguments: [
-            {
-                name: 'event.originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'event.index',
-                type: 'number',
-                description: 'Index of the selected tab'
-            }
-        ]
-    }
-];
-
 module.exports = {
     tabpanel: {
         name: 'TabPanel',
-        description: 'TabView element consists of one or more TabPanel elements.',
-        'doc-url': 'tabview',
-        props: TabPanelProps,
-        events: TabPanelEvents
+        description: 'TabPanel is a helper component for Tabs component.',
+        'doc-url': 'tabs',
+        props: TabPanelProps
     }
 };
