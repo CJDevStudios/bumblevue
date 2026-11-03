@@ -55,6 +55,7 @@ const ALIAS_ENTRIES = [
     { find: '@cjdevstudios/bumblevue-core/config', replacement: path.resolve(__dirname, '../core/src/config/BumbleVue.js') },
     { find: '@cjdevstudios/bumblevue-core/service', replacement: path.resolve(__dirname, '../core/src/service/BumbleVueService.js') },
     { find: '@cjdevstudios/bumblevue-core/useattrselector', replacement: path.resolve(__dirname, '../core/src/useattrselector/UseAttrSelector.js') },
+    { find: '@cjdevstudios/bumblevue-core/usecomponent', replacement: path.resolve(__dirname, '../core/src/usecomponent/UseComponent.js') },
     { find: '@cjdevstudios/bumblevue-core/useid', replacement: path.resolve(__dirname, '../core/src/useid/UseId.js') },
     { find: '@cjdevstudios/bumblevue-core/usestyle', replacement: path.resolve(__dirname, '../core/src/usestyle/UseStyle.js') },
     { find: '@cjdevstudios/bumblevue-core/utils', replacement: path.resolve(__dirname, '../core/src/utils/Utils.js') },

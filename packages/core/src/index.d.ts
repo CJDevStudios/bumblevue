@@ -56,6 +56,7 @@ export * from '@cjdevstudios/bumblevue-core/config';
 export { default as BumbleVue } from '@cjdevstudios/bumblevue-core/config';
 export * from '@cjdevstudios/bumblevue-core/service';
 export * from '@cjdevstudios/bumblevue-core/useattrselector';
+export * from '@cjdevstudios/bumblevue-core/usecomponent';
 export * from '@cjdevstudios/bumblevue-core/useid';
 export * from '@cjdevstudios/bumblevue-core/usestyle';
 export * from '@cjdevstudios/bumblevue-core/utils';
