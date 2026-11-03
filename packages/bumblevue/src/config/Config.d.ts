@@ -73,7 +73,6 @@ import type { MultiSelectPassThroughOptions } from '@cjdevstudios/bumblevue/mult
 import type { OrderListPassThroughOptions } from '@cjdevstudios/bumblevue/orderlist';
 import type { OrganizationChartPassThroughOptions } from '@cjdevstudios/bumblevue/organizationchart';
 import type { OverlayBadgePassThroughOptions } from '@cjdevstudios/bumblevue/overlaybadge';
-import type { OverlayPanelPassThroughOptions } from '@cjdevstudios/bumblevue/overlaypanel';
 import type { PaginatorPassThroughOptions } from '@cjdevstudios/bumblevue/paginator';
 import type { PanelPassThroughOptions } from '@cjdevstudios/bumblevue/panel';
 import type { PanelMenuPassThroughOptions } from '@cjdevstudios/bumblevue/panelmenu';
@@ -238,7 +237,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of Popover instead.
      */
-    overlaypanel?: DefaultPassThrough<OverlayPanelPassThroughOptions>;
     paginator?: DefaultPassThrough<PaginatorPassThroughOptions>;
     panel?: DefaultPassThrough<PanelPassThroughOptions>;
     panelmenu?: DefaultPassThrough<PanelMenuPassThroughOptions>;

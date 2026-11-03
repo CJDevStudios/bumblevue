@@ -493,12 +493,6 @@ export { default as OverlayBadgeStyle } from '../overlaybadge/style/OverlayBadge
 export * from '../overlayeventbus/OverlayEventBus.js';
 export { default as OverlayEventBus } from '../overlayeventbus/OverlayEventBus.js';
 
-// OverlayPanel
-export * from '../overlaypanel/OverlayPanel.vue';
-export { default as OverlayPanel } from '../overlaypanel/OverlayPanel.vue';
-export * from '../overlaypanel/style/OverlayPanelStyle.js';
-export { default as OverlayPanelStyle } from '../overlaypanel/style/OverlayPanelStyle.js';
-
 // Paginator
 export * from '../paginator/Paginator.vue';
 export { default as Paginator } from '../paginator/Paginator.vue';
