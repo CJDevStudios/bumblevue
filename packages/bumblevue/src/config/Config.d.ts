@@ -38,7 +38,6 @@ import type { DialogPassThroughOptions } from '@cjdevstudios/bumblevue/dialog';
 import type { DividerPassThroughOptions } from '@cjdevstudios/bumblevue/divider';
 import type { DockPassThroughOptions } from '@cjdevstudios/bumblevue/dock';
 import type { DrawerPassThroughOptions } from '@cjdevstudios/bumblevue/drawer';
-import type { DropdownPassThroughOptions } from '@cjdevstudios/bumblevue/dropdown';
 import type { EditorPassThroughOptions } from '@cjdevstudios/bumblevue/editor';
 import type { FieldsetPassThroughOptions } from '@cjdevstudios/bumblevue/fieldset';
 import type { FileUploadPassThroughOptions } from '@cjdevstudios/bumblevue/fileupload';
@@ -198,7 +197,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of Select instead.
      */
-    dropdown?: DefaultPassThrough<DropdownPassThroughOptions>;
     dynamicdialog?: DefaultPassThrough<DialogPassThroughOptions>;
     editor?: DefaultPassThrough<EditorPassThroughOptions>;
     fieldset?: DefaultPassThrough<FieldsetPassThroughOptions>;

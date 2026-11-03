@@ -130,8 +130,6 @@
         "./dock/style": "./src/dock/style/DockStyle.js",
         "./drawer": "./src/drawer/Drawer.vue",
         "./drawer/style": "./src/drawer/style/DrawerStyle.js",
-        "./dropdown": "./src/dropdown/Dropdown.vue",
-        "./dropdown/style": "./src/dropdown/style/DropdownStyle.js",
         "./dynamicdialog": "./src/dynamicdialog/DynamicDialog.vue",
         "./dynamicdialog/style": "./src/dynamicdialog/style/DynamicDialogStyle.js",
         "./dynamicdialogeventbus": "./src/dynamicdialogeventbus/DynamicDialogEventBus.js",
