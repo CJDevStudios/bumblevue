@@ -329,12 +329,6 @@ export { default as ImageCompare } from '@cjdevstudios/bumblevue/imagecompare';
 export * from '@cjdevstudios/bumblevue/imagecompare/style';
 export { default as ImageCompareStyle } from '@cjdevstudios/bumblevue/imagecompare/style';
 
-// InlineMessage
-export * from '@cjdevstudios/bumblevue/inlinemessage';
-export { default as InlineMessage } from '@cjdevstudios/bumblevue/inlinemessage';
-export * from '@cjdevstudios/bumblevue/inlinemessage/style';
-export { default as InlineMessageStyle } from '@cjdevstudios/bumblevue/inlinemessage/style';
-
 // Inplace
 export * from '@cjdevstudios/bumblevue/inplace';
 export { default as Inplace } from '@cjdevstudios/bumblevue/inplace';
