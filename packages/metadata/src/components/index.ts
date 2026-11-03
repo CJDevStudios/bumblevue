@@ -49,7 +49,6 @@ export const panel: MetaType[] = toMeta([
     'AccordionPanel',
     'AccordionHeader',
     'AccordionContent',
-    'AccordionTab',
     'Card',
     'DeferredContent',
     'Divider',
