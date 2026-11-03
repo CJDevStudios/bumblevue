@@ -276,8 +276,6 @@
         "./tab/style": "./src/tab/style/TabStyle.js",
         "./tablist": "./src/tablist/TabList.vue",
         "./tablist/style": "./src/tablist/style/TabListStyle.js",
-        "./tabmenu": "./src/tabmenu/TabMenu.vue",
-        "./tabmenu/style": "./src/tabmenu/style/TabMenuStyle.js",
         "./tabpanel": "./src/tabpanel/TabPanel.vue",
         "./tabpanel/style": "./src/tabpanel/style/TabPanelStyle.js",
         "./tabpanels": "./src/tabpanels/TabPanels.vue",
