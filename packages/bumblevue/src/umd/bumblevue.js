@@ -127,12 +127,6 @@ export { default as ButtonGroup } from '../buttongroup/ButtonGroup.vue';
 export * from '../buttongroup/style/ButtonGroupStyle.js';
 export { default as ButtonGroupStyle } from '../buttongroup/style/ButtonGroupStyle.js';
 
-// Calendar
-export * from '../calendar/Calendar.vue';
-export { default as Calendar } from '../calendar/Calendar.vue';
-export * from '../calendar/style/CalendarStyle.js';
-export { default as CalendarStyle } from '../calendar/style/CalendarStyle.js';
-
 // Card
 export * from '../card/Card.vue';
 export { default as Card } from '../card/Card.vue';

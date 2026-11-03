@@ -15,7 +15,6 @@ import type { BlockUIPassThroughOptions } from '@cjdevstudios/bumblevue/blockui'
 import type { BreadcrumbPassThroughOptions } from '@cjdevstudios/bumblevue/breadcrumb';
 import type { ButtonPassThroughOptions } from '@cjdevstudios/bumblevue/button';
 import type { ButtonGroupPassThroughOptions } from '@cjdevstudios/bumblevue/buttongroup';
-import type { CalendarPassThroughOptions } from '@cjdevstudios/bumblevue/calendar';
 import type { CardPassThroughOptions } from '@cjdevstudios/bumblevue/card';
 import type { CarouselPassThroughOptions } from '@cjdevstudios/bumblevue/carousel';
 import type { CascadeSelectPassThroughOptions } from '@cjdevstudios/bumblevue/cascadeselect';
@@ -169,7 +168,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of DatePicker instead.
      */
-    calendar?: DefaultPassThrough<CalendarPassThroughOptions>;
     card?: DefaultPassThrough<CardPassThroughOptions>;
     carousel?: DefaultPassThrough<CarouselPassThroughOptions>;
     cascadeselect?: DefaultPassThrough<CascadeSelectPassThroughOptions>;
