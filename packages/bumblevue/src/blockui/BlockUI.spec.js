@@ -19,6 +19,9 @@ describe('BlockUI.vue', () => {
     });
 
     afterEach(() => {
+        wrapper?.unmount();
+        wrapper = null;
+        vi.useRealTimers();
         vi.clearAllMocks();
     });
 
@@ -67,5 +70,83 @@ describe('BlockUI.vue', () => {
 
         expect(wrapper.vm.isBlocked).toBe(false);
         expect(wrapper.emitted().unblock.length).toBe(1);
+    });
+
+    it('Has no duplicate masks', async () => {
+        vi.useFakeTimers();
+
+        wrapper = mount(BlockUI, {
+            attachTo: document.body,
+            slots: { default: '<button>test</button>' }
+        });
+
+        for (let i = 0; i < 10; i++) {
+            await wrapper.setProps({ blocked: true });
+            expect(wrapper.element.querySelectorAll('.p-blockui-mask').length).toBe(1);
+
+            vi.advanceTimersByTime(5);
+            await wrapper.setProps({ blocked: false });
+            vi.advanceTimersByTime(5);
+
+            expect(wrapper.element.querySelectorAll('.p-blockui-mask').length).toBeLessThanOrEqual(1);
+        }
+    });
+
+    it('Stops capturing pointer events before the mask is removed', async () => {
+        vi.useFakeTimers();
+
+        wrapper = mount(BlockUI, {
+            attachTo: document.body,
+            props: { blocked: true },
+            slots: { default: '<button>test</button>' }
+        });
+
+        const mask = wrapper.element.querySelector('.p-blockui-mask');
+
+        await wrapper.setProps({ blocked: false });
+        expect(mask.style.pointerEvents).toBe('none');
+        vi.advanceTimersByTime(300);
+
+        expect(wrapper.element.querySelectorAll('.p-blockui-mask').length).toBe(0);
+        expect(wrapper.vm.isBlocked).toBe(false);
+        expect(wrapper.emitted().unblock.length).toBe(1);
+    });
+
+    it('Does not drop the new mask when re-blocking during leave animation', async () => {
+        vi.useFakeTimers();
+
+        wrapper = mount(BlockUI, {
+            attachTo: document.body,
+            props: { blocked: true },
+            slots: { default: '<button>test</button>' }
+        });
+
+        await wrapper.setProps({ blocked: false });
+        await wrapper.setProps({ blocked: true });
+
+        vi.advanceTimersByTime(500);
+
+        expect(wrapper.element.querySelectorAll('.p-blockui-mask').length).toBe(1);
+        expect(wrapper.vm.isBlocked).toBe(true);
+        expect(wrapper.emitted().unblock).toBeUndefined();
+    });
+
+    it('Releases scroll lock when unmounted when blocked', async () => {
+        const maskCount = () => document.querySelectorAll('.p-blockui-mask').length;
+        const initialCount = maskCount();
+
+        wrapper = mount(BlockUI, {
+            attachTo: document.body,
+            props: { blocked: true, fullScreen: true }
+        });
+
+        expect(maskCount()).toBe(initialCount + 1);
+        expect(document.body.classList.contains('p-overflow-hidden')).toBe(true);
+
+        wrapper.unmount();
+        wrapper = null;
+
+        expect(maskCount()).toBe(initialCount);
+        expect(document.body.classList.contains('p-overflow-hidden')).toBe(false);
     });
 });
