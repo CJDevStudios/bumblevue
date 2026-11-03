@@ -28,6 +28,9 @@ export { default as BumbleVueService } from '@cjdevstudios/bumblevue-core/servic
 // UseAttrSelector
 export * from '@cjdevstudios/bumblevue-core/useattrselector';
 
+// UseComponent
+export * from '@cjdevstudios/bumblevue-core/usecomponent';
+
 // UseId
 export * from '@cjdevstudios/bumblevue-core/useid';
 

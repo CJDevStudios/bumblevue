@@ -1,6 +1,11 @@
 # Changelog
 
-## [1.0.0](https://github.com/CJDevStudios/bumblevue/) (Unreleased)
+## [2.0.0]
+
+**Implemented New Features and Enhancements:**
+- Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
+
+## [1.0.0]
 
 **Implemented New Features and Enhancements:**
 

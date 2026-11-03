@@ -37,6 +37,7 @@
         "./config": "./src/config/BumbleVue.js",
         "./service": "./src/service/BumbleVueService.js",
         "./useattrselector": "./src/useattrselector/UseAttrSelector.js",
+        "./usecomponent": "./src/usecomponent/UseComponent.js",
         "./usestyle": "./src/usestyle/UseStyle.js",
         "./utils": "./src/utils/Utils.js"
     },

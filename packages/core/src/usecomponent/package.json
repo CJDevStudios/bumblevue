@@ -1,0 +1,5 @@
+{
+    "main": "./UseComponent.js",
+    "module": "./UseComponent.js",
+    "types": "./UseComponent.d.ts"
+}
