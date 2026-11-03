@@ -36,17 +36,40 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
 import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
 import Button from '@cjdevstudios/bumblevue/button';
+import PanelStyle from '@cjdevstudios/bumblevue/panel/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BasePanel from './BasePanel.vue';
 
 export default {
     name: 'Panel',
-    extends: BasePanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        header: String,
+        toggleable: Boolean,
+        collapsed: Boolean,
+        toggleButtonProps: {
+            type: Object,
+            default: () => {
+                return {
+                    severity: 'secondary',
+                    text: true,
+                    rounded: true
+                };
+            }
+        }
+    },
     emits: ['update:collapsed', 'toggle'],
+    style: PanelStyle,
+    provide() {
+        return {
+            $pcPanel: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_collapsed: this.collapsed

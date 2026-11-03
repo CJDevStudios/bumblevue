@@ -11,13 +11,51 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseAvatar from './BaseAvatar.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import AvatarStyle from '@cjdevstudios/bumblevue/avatar/style';
 
 export default {
     name: 'Avatar',
-    extends: BaseAvatar,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        label: {
+            type: String,
+            default: null
+        },
+        icon: {
+            type: String,
+            default: null
+        },
+        image: {
+            type: String,
+            default: null
+        },
+        size: {
+            type: String,
+            default: 'normal'
+        },
+        shape: {
+            type: String,
+            default: 'square'
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['error'],
+    style: AvatarStyle,
+    provide() {
+        return {
+            $pcAvatar: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         onError(event) {
             this.$emit('error', event);

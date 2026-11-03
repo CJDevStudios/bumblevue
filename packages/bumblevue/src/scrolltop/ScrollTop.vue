@@ -13,14 +13,46 @@
 <script>
 import { getWindowScrollTop } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
 import Button from '@cjdevstudios/bumblevue/button';
-import BaseScrollTop from './BaseScrollTop.vue';
+import ScrollTopStyle from '@cjdevstudios/bumblevue/scrolltop/style';
 
 export default {
     name: 'ScrollTop',
-    extends: BaseScrollTop,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        target: {
+            type: String,
+            default: 'window'
+        },
+        threshold: {
+            type: Number,
+            default: 400
+        },
+        icon: {
+            type: String,
+            default: undefined
+        },
+        behavior: {
+            type: String,
+            default: 'smooth'
+        },
+        buttonProps: {
+            type: Object,
+            default: () => {
+                return { rounded: true };
+            }
+        }
+    },
+    style: ScrollTopStyle,
+    provide() {
+        return {
+            $pcScrollTop: this,
+            $parentInstance: this
+        };
+    },
     scrollListener: null,
     container: null,
     data() {

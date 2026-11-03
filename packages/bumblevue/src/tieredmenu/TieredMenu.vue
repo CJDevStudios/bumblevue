@@ -45,17 +45,67 @@
 import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseTieredMenu from './BaseTieredMenu.vue';
+import TieredMenuStyle from '@cjdevstudios/bumblevue/tieredmenu/style';
 import TieredMenuSub from './TieredMenuSub.vue';
 
 export default {
     name: 'TieredMenu',
-    extends: BaseTieredMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        popup: {
+            type: Boolean,
+            default: false
+        },
+        model: {
+            type: Array,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['focus', 'blur', 'before-show', 'before-hide', 'hide', 'show'],
+    style: TieredMenuStyle,
+    provide() {
+        return {
+            $pcTieredMenu: this,
+            $parentInstance: this
+        };
+    },
     outsideClickListener: null,
     matchMediaListener: null,
     scrollHandler: null,

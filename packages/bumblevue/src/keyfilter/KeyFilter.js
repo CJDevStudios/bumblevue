@@ -1,7 +1,9 @@
 import { isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseKeyFilter from './BaseKeyFilter';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import KeyFilterStyle from '@cjdevstudios/bumblevue/keyfilter/style';
 
-const KeyFilter = BaseKeyFilter.extend('keyfilter', {
+const KeyFilter = BaseDirective.extend('keyfilter', {
+    style: KeyFilterStyle,
     beforeMount(el, options) {
         let target = this.getTarget(el);
 

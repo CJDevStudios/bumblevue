@@ -28,13 +28,35 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { find, findSingle } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import StepPanelStyle from '@cjdevstudios/bumblevue/steppanel/style';
 import StepperSeparator from '../stepper/StepperSeparator.vue';
-import BaseStepPanel from './BaseStepPanel.vue';
 
 export default {
     name: 'StepPanel',
-    extends: BaseStepPanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        },
+        as: {
+            type: [String, Object],
+            default: 'DIV'
+        }
+    },
+    style: StepPanelStyle,
+    provide() {
+        return {
+            $pcStepPanel: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcStepper: { default: null },
         $pcStepItem: { default: null },

@@ -31,16 +31,42 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { focus, getFirstFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
 import BanIcon from '@cjdevstudios/bumblevue-icons/ban';
 import StarIcon from '@cjdevstudios/bumblevue-icons/star';
 import StarFillIcon from '@cjdevstudios/bumblevue-icons/starfill';
-import BaseRating from './BaseRating.vue';
+import RatingStyle from '@cjdevstudios/bumblevue/rating/style';
 
 export default {
     name: 'Rating',
-    extends: BaseRating,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        stars: {
+            type: Number,
+            default: 5
+        },
+        onIcon: {
+            type: String,
+            default: undefined
+        },
+        offIcon: {
+            type: String,
+            default: undefined
+        }
+    },
     emits: ['change', 'focus', 'blur'],
+    style: RatingStyle,
+    provide() {
+        return {
+            $pcRating: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             focusedOptionIndex: -1,

@@ -28,13 +28,53 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { equals } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseRadioButton from './BaseRadioButton.vue';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import RadioButtonStyle from '@cjdevstudios/bumblevue/radiobutton/style';
 
 export default {
     name: 'RadioButton',
-    extends: BaseRadioButton,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        value: null,
+        binary: Boolean,
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur'],
+    style: RadioButtonStyle,
+    provide() {
+        return {
+            $pcRadioButton: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcRadioButtonGroup: {
             default: undefined

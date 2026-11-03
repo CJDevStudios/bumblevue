@@ -28,14 +28,39 @@
 
 <script>
 import { findSingle, find } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import StepsStyle from '@cjdevstudios/bumblevue/steps/style';
 import { mergeProps } from 'vue';
-import BaseSteps from './BaseSteps.vue';
 
 export default {
     name: 'Steps',
-    extends: BaseSteps,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        id: {
+            type: String
+        },
+        model: {
+            type: Array,
+            default: null
+        },
+        readonly: {
+            type: Boolean,
+            default: true
+        },
+        activeStep: {
+            type: Number,
+            default: 0
+        }
+    },
     emits: ['update:activeStep', 'step-change'],
+    style: StepsStyle,
+    provide() {
+        return {
+            $pcSteps: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_activeStep: this.activeStep

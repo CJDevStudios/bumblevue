@@ -2,10 +2,12 @@ import { addClass, createElement, fadeIn, findSingle, getAttribute, getOuterHeig
 import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
 import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
-import BaseTooltip from './BaseTooltip';
+import TooltipStyle from '@cjdevstudios/bumblevue/tooltip/style';
 
-const Tooltip = BaseTooltip.extend('tooltip', {
+const Tooltip = BaseDirective.extend('tooltip', {
+    style: TooltipStyle,
     beforeMount(el, options) {
         let target = this.getTarget(el);
 

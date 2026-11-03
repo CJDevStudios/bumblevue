@@ -25,15 +25,57 @@
 
 <script>
 import { getUserAgent } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import InputMaskStyle from '@cjdevstudios/bumblevue/inputmask/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 import { mergeProps } from 'vue';
-import BaseInputMask from './BaseInputMask.vue';
 
 export default {
     name: 'InputMask',
-    extends: BaseInputMask,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        slotChar: {
+            type: String,
+            default: '_'
+        },
+        id: {
+            type: String,
+            default: null
+        },
+        class: {
+            type: [String, Object],
+            default: null
+        },
+        mask: {
+            type: String,
+            default: null
+        },
+        placeholder: {
+            type: String,
+            default: null
+        },
+        autoClear: {
+            type: Boolean,
+            default: true
+        },
+        unmask: {
+            type: Boolean,
+            default: false
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        }
+    },
     emits: ['focus', 'blur', 'keydown', 'complete', 'keypress', 'paste'],
+    style: InputMaskStyle,
+    provide() {
+        return {
+            $pcInputMask: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcFluid: { default: null }
     },

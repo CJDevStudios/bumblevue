@@ -38,18 +38,78 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { addClass, focus } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
 import Button from '@cjdevstudios/bumblevue/button';
+import DrawerStyle from '@cjdevstudios/bumblevue/drawer/style';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
-import BaseDrawer from './BaseDrawer.vue';
 
 export default {
     name: 'Drawer',
-    extends: BaseDrawer,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        visible: {
+            type: Boolean,
+            default: false
+        },
+        position: {
+            type: String,
+            default: 'left'
+        },
+        header: {
+            type: null,
+            default: null
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        dismissable: {
+            type: Boolean,
+            default: true
+        },
+        showCloseIcon: {
+            type: Boolean,
+            default: true
+        },
+        closeButtonProps: {
+            type: Object,
+            default: () => {
+                return { severity: 'secondary', text: true, rounded: true };
+            }
+        },
+        closeIcon: {
+            type: String,
+            default: undefined
+        },
+        modal: {
+            type: Boolean,
+            default: true
+        },
+        blockScroll: {
+            type: Boolean,
+            default: false
+        },
+        closeOnEscape: {
+            type: Boolean,
+            default: true
+        }
+    },
     emits: ['update:visible', 'show', 'after-show', 'hide', 'after-hide', 'before-hide'],
+    style: DrawerStyle,
+    provide() {
+        return {
+            $pcDrawer: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             containerVisible: this.visible

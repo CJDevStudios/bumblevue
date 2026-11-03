@@ -4,13 +4,24 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import TextareaStyle from '@cjdevstudios/bumblevue/textarea/style';
 import { mergeProps } from 'vue';
-import BaseTextarea from './BaseTextarea.vue';
 
 export default {
     name: 'Textarea',
-    extends: BaseTextarea,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        autoResize: Boolean
+    },
+    style: TextareaStyle,
+    provide() {
+        return {
+            $pcTextarea: this,
+            $parentInstance: this
+        };
+    },
     observer: null,
     mounted() {
         if (this.autoResize) {

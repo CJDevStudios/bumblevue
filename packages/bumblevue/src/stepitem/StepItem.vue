@@ -5,12 +5,26 @@
 </template>
 
 <script>
-import BaseStepItem from './BaseStepItem.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import StepItemStyle from '@cjdevstudios/bumblevue/stepitem/style';
 
 export default {
     name: 'StepItem',
-    extends: BaseStepItem,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        }
+    },
+    style: StepItemStyle,
+    provide() {
+        return {
+            $pcStepItem: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcStepper'],
     computed: {
         isActive() {

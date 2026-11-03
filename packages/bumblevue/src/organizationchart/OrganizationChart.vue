@@ -16,14 +16,44 @@
 </template>
 
 <script>
-import BaseOrganizationChart from './BaseOrganizationChart.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import OrganizationChartStyle from '@cjdevstudios/bumblevue/organizationchart/style';
 import OrganizationChartNode from './OrganizationChartNode.vue';
 
 export default {
     name: 'OrganizationChart',
-    extends: BaseOrganizationChart,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: null,
+            default: null
+        },
+        selectionKeys: {
+            type: null,
+            default: null
+        },
+        selectionMode: {
+            type: String,
+            default: null
+        },
+        collapsible: {
+            type: Boolean,
+            default: false
+        },
+        collapsedKeys: {
+            type: null,
+            default: null
+        }
+    },
     emits: ['node-unselect', 'node-select', 'update:selectionKeys', 'node-expand', 'node-collapse', 'update:collapsedKeys'],
+    style: OrganizationChartStyle,
+    provide() {
+        return {
+            $pcOrganizationChart: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_collapsedKeys: this.collapsedKeys || {}

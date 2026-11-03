@@ -135,21 +135,130 @@ import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, focus, getFirstFocusableElement, isElement } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
 import { FilterService } from '@cjdevstudios/bumblevue-core/api';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
 import BlankIcon from '@cjdevstudios/bumblevue-icons/blank';
 import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
 import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
 import IconField from '@cjdevstudios/bumblevue/iconfield';
 import InputIcon from '@cjdevstudios/bumblevue/inputicon';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
+import ListboxStyle from '@cjdevstudios/bumblevue/listbox/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import VirtualScroller from '@cjdevstudios/bumblevue/virtualscroller';
-import BaseListbox from './BaseListbox.vue';
 
 export default {
     name: 'Listbox',
-    extends: BaseListbox,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        options: Array,
+        optionLabel: null,
+        optionValue: null,
+        optionDisabled: null,
+        optionGroupLabel: null,
+        optionGroupChildren: null,
+        listStyle: null,
+        scrollHeight: {
+            type: String,
+            default: '14rem'
+        },
+        dataKey: null,
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        metaKeySelection: {
+            type: Boolean,
+            default: false
+        },
+        filter: Boolean,
+        filterPlaceholder: String,
+        filterLocale: String,
+        filterMatchMode: {
+            type: String,
+            default: 'contains'
+        },
+        filterFields: {
+            type: Array,
+            default: null
+        },
+        virtualScrollerOptions: {
+            type: Object,
+            default: null
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: true
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        highlightOnSelect: {
+            type: Boolean,
+            default: true
+        },
+        checkmark: {
+            type: Boolean,
+            default: false
+        },
+        filterMessage: {
+            type: String,
+            default: null
+        },
+        selectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySelectionMessage: {
+            type: String,
+            default: null
+        },
+        emptyFilterMessage: {
+            type: String,
+            default: null
+        },
+        emptyMessage: {
+            type: String,
+            default: null
+        },
+        filterIcon: {
+            type: String,
+            default: undefined
+        },
+        striped: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        fluid: {
+            type: Boolean,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur', 'filter', 'item-dblclick', 'option-dblclick'],
+    style: ListboxStyle,
+    provide() {
+        return {
+            $pcListbox: this,
+            $parentInstance: this
+        };
+    },
     list: null,
     virtualScroller: null,
     optionTouched: false,

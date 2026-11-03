@@ -7,14 +7,40 @@
 <script>
 import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BlockUIStyle from '@cjdevstudios/bumblevue/blockui/style';
 import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
-import BaseBlockUI from './BaseBlockUI.vue';
 
 export default {
     name: 'BlockUI',
-    extends: BaseBlockUI,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        blocked: {
+            type: Boolean,
+            default: false
+        },
+        fullScreen: {
+            type: Boolean,
+            default: false
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        }
+    },
     emits: ['block', 'unblock'],
+    style: BlockUIStyle,
+    provide() {
+        return {
+            $pcBlockUI: this,
+            $parentInstance: this
+        };
+    },
     mask: null,
     data() {
         return {

@@ -168,6 +168,7 @@
 <script>
 import { find, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList, isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import AngleDoubleDownIcon from '@cjdevstudios/bumblevue-icons/angledoubledown';
 import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue-icons/angledoubleleft';
 import AngleDoubleRightIcon from '@cjdevstudios/bumblevue-icons/angledoubleright';
@@ -178,14 +179,121 @@ import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
 import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
 import Button from '@cjdevstudios/bumblevue/button';
 import Listbox from '@cjdevstudios/bumblevue/listbox';
+import PickListStyle from '@cjdevstudios/bumblevue/picklist/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BasePickList from './BasePickList.vue';
 
 export default {
     name: 'PickList',
-    extends: BasePickList,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        modelValue: {
+            type: Array,
+            default: () => [[], []]
+        },
+        selection: {
+            type: Array,
+            default: () => [[], []]
+        },
+        dataKey: {
+            type: String,
+            default: null
+        },
+        listStyle: {
+            type: null,
+            default: null
+        },
+        metaKeySelection: {
+            type: Boolean,
+            default: false
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: true
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        responsive: {
+            type: Boolean,
+            default: true
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        striped: {
+            type: Boolean,
+            default: false
+        },
+        scrollHeight: {
+            type: String,
+            default: '14rem'
+        },
+        showSourceControls: {
+            type: Boolean,
+            default: true
+        },
+        showTargetControls: {
+            type: Boolean,
+            default: true
+        },
+        buttonProps: {
+            type: Object,
+            default() {
+                return { severity: 'secondary' };
+            }
+        },
+        moveUpButtonProps: {
+            type: null,
+            default: null
+        },
+        moveTopButtonProps: {
+            type: null,
+            default: null
+        },
+        moveDownButtonProps: {
+            type: null,
+            default: null
+        },
+        moveBottomButtonProps: {
+            type: null,
+            default: null
+        },
+        moveToTargetProps: {
+            type: null,
+            default: null
+        },
+        moveAllToTargetProps: {
+            type: null,
+            default: null
+        },
+        moveToSourceProps: {
+            type: null,
+            default: null
+        },
+        moveAllToSourceProps: {
+            type: null,
+            default: null
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        }
+    },
     emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'move-to-target', 'move-to-source', 'move-all-to-target', 'move-all-to-source', 'focus', 'blur'],
+    style: PickListStyle,
+    provide() {
+        return {
+            $pcPickList: this,
+            $parentInstance: this
+        };
+    },
     itemTouched: false,
     reorderDirection: null,
     styleElement: null,

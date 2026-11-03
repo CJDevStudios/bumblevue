@@ -49,7 +49,8 @@
 
 <script>
 import { isExist } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseEditor from './BaseEditor.vue';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import EditorStyle from '@cjdevstudios/bumblevue/editor/style';
 
 const QuillJS = (function () {
     try {
@@ -61,9 +62,23 @@ const QuillJS = (function () {
 
 export default {
     name: 'Editor',
-    extends: BaseEditor,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        placeholder: String,
+        readonly: Boolean,
+        formats: Array,
+        editorStyle: null,
+        modules: null
+    },
     emits: ['text-change', 'selection-change', 'load'],
+    style: EditorStyle,
+    provide() {
+        return {
+            $pcEditor: this,
+            $parentInstance: this
+        };
+    },
     quill: null,
     watch: {
         modelValue(newValue, oldValue) {

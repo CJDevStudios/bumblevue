@@ -69,20 +69,112 @@
 <script>
 import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import AngleDoubleDownIcon from '@cjdevstudios/bumblevue-icons/angledoubledown';
 import AngleDoubleUpIcon from '@cjdevstudios/bumblevue-icons/angledoubleup';
 import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
 import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
 import Button from '@cjdevstudios/bumblevue/button';
 import Listbox from '@cjdevstudios/bumblevue/listbox';
+import OrderListStyle from '@cjdevstudios/bumblevue/orderlist/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseOrderList from './BaseOrderList.vue';
 
 export default {
     name: 'OrderList',
-    extends: BaseOrderList,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        modelValue: {
+            type: Array,
+            default: null
+        },
+        selection: {
+            type: Array,
+            default: null
+        },
+        dataKey: {
+            type: String,
+            default: null
+        },
+        listStyle: {
+            type: null,
+            default: null
+        },
+        metaKeySelection: {
+            type: Boolean,
+            default: false
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: true
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        responsive: {
+            type: Boolean,
+            default: true
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        striped: {
+            type: Boolean,
+            default: false
+        },
+        scrollHeight: {
+            type: String,
+            default: '14rem'
+        },
+        buttonProps: {
+            type: Object,
+            default() {
+                return { severity: 'secondary' };
+            }
+        },
+        moveUpButtonProps: {
+            type: null,
+            default: null
+        },
+        moveTopButtonProps: {
+            type: null,
+            default: null
+        },
+        moveDownButtonProps: {
+            type: null,
+            default: null
+        },
+        moveBottomButtonProps: {
+            type: null,
+            default: null
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'focus', 'blur'],
+    style: OrderListStyle,
+    provide() {
+        return {
+            $pcOrderList: this,
+            $parentInstance: this
+        };
+    },
     itemTouched: false,
     reorderDirection: null,
     styleElement: null,

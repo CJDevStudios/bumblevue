@@ -6,12 +6,20 @@
 
 <script>
 import { uuid } from '@cjdevstudios/bumbleuix-utils';
-import BaseRadioButtonGroup from './BaseRadioButtonGroup.vue';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import RadioButtonGroupStyle from '@cjdevstudios/bumblevue/radiobuttongroup/style';
 
 export default {
     name: 'RadioButtonGroup',
-    extends: BaseRadioButtonGroup,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    style: RadioButtonGroupStyle,
+    provide() {
+        return {
+            $pcRadioButtonGroup: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             groupName: this.name

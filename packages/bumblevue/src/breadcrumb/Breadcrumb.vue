@@ -15,14 +15,32 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
-import BaseBreadcrumb from './BaseBreadcrumb.vue';
+import BreadcrumbStyle from '@cjdevstudios/bumblevue/breadcrumb/style';
 import BreadcrumbItem from './BreadcrumbItem.vue';
 
 export default {
     name: 'Breadcrumb',
-    extends: BaseBreadcrumb,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        home: {
+            type: null,
+            default: null
+        }
+    },
+    style: BreadcrumbStyle,
+    provide() {
+        return {
+            $pcBreadcrumb: this,
+            $parentInstance: this
+        };
+    },
     components: {
         BreadcrumbItem,
         ChevronRightIcon

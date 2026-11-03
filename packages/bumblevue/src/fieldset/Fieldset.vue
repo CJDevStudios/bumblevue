@@ -38,16 +38,33 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
 import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
+import FieldsetStyle from '@cjdevstudios/bumblevue/fieldset/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseFieldset from './BaseFieldset.vue';
 
 export default {
     name: 'Fieldset',
-    extends: BaseFieldset,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        legend: String,
+        toggleable: Boolean,
+        collapsed: Boolean,
+        toggleButtonProps: {
+            type: null,
+            default: null
+        }
+    },
     emits: ['update:collapsed', 'toggle'],
+    style: FieldsetStyle,
+    provide() {
+        return {
+            $pcFieldset: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_collapsed: this.collapsed

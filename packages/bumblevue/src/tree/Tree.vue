@@ -60,20 +60,122 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { isFunction, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
 import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
 import IconField from '@cjdevstudios/bumblevue/iconfield';
 import InputIcon from '@cjdevstudios/bumblevue/inputicon';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
-import BaseTree from './BaseTree.vue';
+import TreeStyle from '@cjdevstudios/bumblevue/tree/style';
 import { useTreeDragDropService } from './TreeDragDropService';
 import TreeNode from './TreeNode.vue';
 
 export default {
     name: 'Tree',
-    extends: BaseTree,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: null,
+            default: null
+        },
+        expandedKeys: {
+            type: null,
+            default: null
+        },
+        selectionKeys: {
+            type: null,
+            default: null
+        },
+        selectionMode: {
+            type: String,
+            default: null
+        },
+        metaKeySelection: {
+            type: Boolean,
+            default: false
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        loadingIcon: {
+            type: String,
+            default: undefined
+        },
+        loadingMode: {
+            type: String,
+            default: 'mask'
+        },
+        filter: {
+            type: Boolean,
+            default: false
+        },
+        filterBy: {
+            type: [String, Function],
+            default: 'label'
+        },
+        filterMode: {
+            type: String,
+            default: 'lenient'
+        },
+        filterPlaceholder: {
+            type: String,
+            default: null
+        },
+        filterLocale: {
+            type: String,
+            default: undefined
+        },
+        highlightOnSelect: {
+            type: Boolean,
+            default: false
+        },
+        scrollHeight: {
+            type: String,
+            default: null
+        },
+        level: {
+            type: Number,
+            default: 0
+        },
+        draggableNodes: {
+            type: Boolean,
+            default: null
+        },
+        droppableNodes: {
+            type: Boolean,
+            default: null
+        },
+        draggableScope: {
+            type: [String, Array],
+            default: null
+        },
+        droppableScope: {
+            type: [String, Array],
+            default: null
+        },
+        validateDrop: {
+            type: Boolean,
+            default: false
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['node-expand', 'node-collapse', 'update:expandedKeys', 'update:selectionKeys', 'node-select', 'node-unselect', 'filter', 'node-drop', 'node-dragenter', 'node-dragleave', 'update:value', 'drag-enter', 'drag-leave'],
+    style: TreeStyle,
+    provide() {
+        return {
+            $pcTree: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_expandedKeys: this.expandedKeys || {},

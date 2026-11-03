@@ -30,15 +30,41 @@
 
 <script>
 import { getAttribute, find, findSingle, getWidth, getOffset } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import TabMenuStyle from '@cjdevstudios/bumblevue/tabmenu/style';
 import { mergeProps } from 'vue';
-import BaseTabMenu from './BaseTabMenu.vue';
 
 export default {
     name: 'TabMenu',
-    extends: BaseTabMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        activeIndex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['update:activeIndex', 'tab-change'],
+    style: TabMenuStyle,
+    provide() {
+        return {
+            $pcTabMenu: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_activeIndex: this.activeIndex

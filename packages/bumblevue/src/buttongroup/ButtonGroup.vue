@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseButtonGroup from './BaseButtonGroup.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ButtonGroupStyle from '@cjdevstudios/bumblevue/buttongroup/style';
 
 export default {
     name: 'ButtonGroup',
-    extends: BaseButtonGroup,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: ButtonGroupStyle,
+    provide() {
+        return {
+            $pcButtonGroup: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseFluid from './BaseFluid.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import FluidStyle from '@cjdevstudios/bumblevue/fluid/style';
 
 export default {
     name: 'Fluid',
-    extends: BaseFluid,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: FluidStyle,
+    provide() {
+        return {
+            $pcFluid: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

@@ -23,16 +23,60 @@
 <script>
 import { absolutePosition, addClass, isTouchDevice, relativePosition, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import ColorPickerStyle from '@cjdevstudios/bumblevue/colorpicker/style';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseColorPicker from './BaseColorPicker.vue';
 
 export default {
     name: 'ColorPicker',
-    extends: BaseColorPicker,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        defaultColor: {
+            type: null,
+            default: 'ff0000'
+        },
+        inline: {
+            type: Boolean,
+            default: false
+        },
+        format: {
+            type: String,
+            default: 'hex'
+        },
+        tabindex: {
+            type: String,
+            default: null
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        panelClass: null,
+        overlayClass: null
+    },
     emits: ['change', 'show', 'hide'],
+    style: ColorPickerStyle,
+    provide() {
+        return {
+            $pcColorPicker: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             overlayVisible: false

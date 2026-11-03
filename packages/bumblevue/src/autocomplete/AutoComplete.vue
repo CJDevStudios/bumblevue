@@ -212,23 +212,201 @@ import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findLastIndex, isEmpty, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import AutoCompleteStyle from '@cjdevstudios/bumblevue/autocomplete/style';
 import Chip from '@cjdevstudios/bumblevue/chip';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import VirtualScroller from '@cjdevstudios/bumblevue/virtualscroller';
-import BaseAutoComplete from './BaseAutoComplete.vue';
 
 export default {
     name: 'AutoComplete',
-    extends: BaseAutoComplete,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        suggestions: {
+            type: Array,
+            default: null
+        },
+        optionLabel: null,
+        optionDisabled: null,
+        optionGroupLabel: null,
+        optionGroupChildren: null,
+        scrollHeight: {
+            type: String,
+            default: '14rem'
+        },
+        dropdown: {
+            type: Boolean,
+            default: false
+        },
+        dropdownMode: {
+            type: String,
+            default: 'blank'
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        placeholder: {
+            type: String,
+            default: null
+        },
+        dataKey: {
+            type: String,
+            default: null
+        },
+        minLength: {
+            type: Number,
+            default: 1
+        },
+        delay: {
+            type: Number,
+            default: 300
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        forceSelection: {
+            type: Boolean,
+            default: false
+        },
+        completeOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        showClear: {
+            type: Boolean,
+            default: false
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        panelStyle: {
+            type: Object,
+            default: null
+        },
+        panelClass: {
+            type: [String, Object],
+            default: null
+        },
+        overlayStyle: {
+            type: Object,
+            default: null
+        },
+        overlayClass: {
+            type: [String, Object],
+            default: null
+        },
+        dropdownIcon: {
+            type: String,
+            default: null
+        },
+        dropdownClass: {
+            type: [String, Object],
+            default: null
+        },
+        loader: {
+            type: String,
+            default: null
+        },
+        loadingIcon: {
+            type: String,
+            default: null
+        },
+        removeTokenIcon: {
+            type: String,
+            default: null
+        },
+        chipIcon: {
+            type: String,
+            default: null
+        },
+        virtualScrollerOptions: {
+            type: Object,
+            default: null
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: false
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        searchLocale: {
+            type: String,
+            default: undefined
+        },
+        searchMessage: {
+            type: String,
+            default: null
+        },
+        selectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySelectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySearchMessage: {
+            type: String,
+            default: null
+        },
+        showEmptyMessage: {
+            type: Boolean,
+            default: true
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        typeahead: {
+            type: Boolean,
+            default: true
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur', 'item-select', 'item-unselect', 'option-select', 'option-unselect', 'dropdown-click', 'clear', 'complete', 'before-show', 'before-hide', 'show', 'hide'],
+    style: AutoCompleteStyle,
+    provide() {
+        return {
+            $pcAutoComplete: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcFluid: { default: null }
     },

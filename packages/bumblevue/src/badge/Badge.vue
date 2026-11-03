@@ -6,12 +6,34 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseBadge from './BaseBadge.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BadgeStyle from '@cjdevstudios/bumblevue/badge/style';
 
 export default {
     name: 'Badge',
-    extends: BaseBadge,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: null
+        },
+        severity: {
+            type: String,
+            default: null
+        },
+        size: {
+            type: String,
+            default: null
+        }
+    },
+    style: BadgeStyle,
+    provide() {
+        return {
+            $pcBadge: this,
+            $parentInstance: this
+        };
+    },
     computed: {
         dataP() {
             return cn({

@@ -28,16 +28,89 @@
 </template>
 
 <script>
-import BaseKnob from './BaseKnob.vue';
+import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import KnobStyle from '@cjdevstudios/bumblevue/knob/style';
 
 // Set fix value for SSR.
 const Math_PI = 3.14159265358979;
 
 export default {
     name: 'Knob',
-    extends: BaseKnob,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        size: {
+            type: Number,
+            default: 100
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        step: {
+            type: Number,
+            default: 1
+        },
+        min: {
+            type: Number,
+            default: 0
+        },
+        max: {
+            type: Number,
+            default: 100
+        },
+        valueColor: {
+            type: String,
+            default: () => {
+                return $dt('knob.value.background').variable;
+            }
+        },
+        rangeColor: {
+            type: String,
+            default: () => {
+                return $dt('knob.range.background').variable;
+            }
+        },
+        textColor: {
+            type: String,
+            default: () => {
+                return $dt('knob.text.color').variable;
+            }
+        },
+        strokeWidth: {
+            type: Number,
+            default: 14
+        },
+        showValue: {
+            type: Boolean,
+            default: true
+        },
+        valueTemplate: {
+            type: [String, Function],
+            default: '{value}'
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change'],
+    style: KnobStyle,
+    provide() {
+        return {
+            $pcKnob: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             radius: 40,

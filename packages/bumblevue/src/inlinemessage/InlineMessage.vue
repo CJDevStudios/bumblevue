@@ -10,16 +10,34 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
 import ExclamationTriangleIcon from '@cjdevstudios/bumblevue-icons/exclamationtriangle';
 import InfoCircleIcon from '@cjdevstudios/bumblevue-icons/infocircle';
 import TimesCircleIcon from '@cjdevstudios/bumblevue-icons/timescircle';
-import BaseInlineMessage from './BaseInlineMessage.vue';
+import InlineMessageStyle from '@cjdevstudios/bumblevue/inlinemessage/style';
 
 export default {
     name: 'InlineMessage',
-    extends: BaseInlineMessage,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        severity: {
+            type: String,
+            default: 'error'
+        },
+        icon: {
+            type: String,
+            default: undefined
+        }
+    },
+    style: InlineMessageStyle,
+    provide() {
+        return {
+            $pcInlineMessage: this,
+            $parentInstance: this
+        };
+    },
     timeout: null,
     data() {
         return {

@@ -33,15 +33,71 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { contains, equals } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
 import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
-import BaseCheckbox from './BaseCheckbox.vue';
+import CheckboxStyle from '@cjdevstudios/bumblevue/checkbox/style';
 
 export default {
     name: 'Checkbox',
-    extends: BaseCheckbox,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        value: null,
+        binary: Boolean,
+        indeterminate: {
+            type: Boolean,
+            default: false
+        },
+        trueValue: {
+            type: null,
+            default: true
+        },
+        falseValue: {
+            type: null,
+            default: false
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        required: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur', 'update:indeterminate'],
+    style: CheckboxStyle,
+    provide() {
+        return {
+            $pcCheckbox: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcCheckboxGroup: {
             default: undefined

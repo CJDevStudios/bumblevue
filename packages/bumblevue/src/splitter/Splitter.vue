@@ -36,14 +36,44 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isArray, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
-import BaseSplitter from './BaseSplitter.vue';
+import SplitterStyle from '@cjdevstudios/bumblevue/splitter/style';
 
 export default {
     name: 'Splitter',
-    extends: BaseSplitter,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        layout: {
+            type: String,
+            default: 'horizontal'
+        },
+        gutterSize: {
+            type: Number,
+            default: 4
+        },
+        stateKey: {
+            type: String,
+            default: null
+        },
+        stateStorage: {
+            type: String,
+            default: 'session'
+        },
+        step: {
+            type: Number,
+            default: 5
+        }
+    },
     emits: ['resizestart', 'resizeend', 'resize'],
+    style: SplitterStyle,
+    provide() {
+        return {
+            $pcSplitter: this,
+            $parentInstance: this
+        };
+    },
     dragging: false,
     mouseMoveListener: null,
     mouseUpListener: null,

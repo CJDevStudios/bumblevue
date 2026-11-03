@@ -28,19 +28,62 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
 import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
+import AccordionStyle from '@cjdevstudios/bumblevue/accordion/style';
 import AccordionContent from '@cjdevstudios/bumblevue/accordioncontent';
 import AccordionHeader from '@cjdevstudios/bumblevue/accordionheader';
 import AccordionPanel from '@cjdevstudios/bumblevue/accordionpanel';
 import { mergeProps } from 'vue';
-import BaseAccordion from './BaseAccordion.vue';
 
 export default {
     name: 'Accordion',
-    extends: BaseAccordion,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number, Array],
+            default: undefined
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        lazy: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        expandIcon: {
+            type: String,
+            default: undefined
+        },
+        collapseIcon: {
+            type: String,
+            default: undefined
+        },
+        // @deprecated since v4.
+        activeIndex: {
+            type: [Number, Array],
+            default: null
+        }
+    },
     emits: ['update:value', 'update:activeIndex', 'tab-open', 'tab-close', 'tab-click'],
+    style: AccordionStyle,
+    provide() {
+        return {
+            $pcAccordion: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_value: this.value

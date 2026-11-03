@@ -10,13 +10,35 @@
 </template>
 
 <script>
-import BaseInplace from './BaseInplace.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import InplaceStyle from '@cjdevstudios/bumblevue/inplace/style';
 
 export default {
     name: 'Inplace',
-    extends: BaseInplace,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        active: {
+            type: Boolean,
+            default: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        displayProps: {
+            type: null,
+            default: null
+        }
+    },
     emits: ['open', 'close', 'update:active'],
+    style: InplaceStyle,
+    provide() {
+        return {
+            $pcInplace: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_active: this.active

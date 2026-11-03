@@ -92,17 +92,64 @@
 
 <script>
 import { findSingle, focus, getAttribute, getOffset, getWidth } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import TabViewStyle from '@cjdevstudios/bumblevue/tabview/style';
 import { mergeProps } from 'vue';
-import BaseTabView from './BaseTabView.vue';
 
 export default {
     name: 'TabView',
-    extends: BaseTabView,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        activeIndex: {
+            type: Number,
+            default: 0
+        },
+        lazy: {
+            type: Boolean,
+            default: false
+        },
+        scrollable: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        prevButtonProps: {
+            type: null,
+            default: null
+        },
+        nextButtonProps: {
+            type: null,
+            default: null
+        },
+        prevIcon: {
+            type: String,
+            default: undefined
+        },
+        nextIcon: {
+            type: String,
+            default: undefined
+        }
+    },
     emits: ['update:activeIndex', 'tab-change', 'tab-click'],
+    style: TabViewStyle,
+    provide() {
+        return {
+            $pcTabs: undefined, // Backwards compatible to prevent <TabPanel> component from breaking
+            $pcTabView: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_activeIndex: this.activeIndex,

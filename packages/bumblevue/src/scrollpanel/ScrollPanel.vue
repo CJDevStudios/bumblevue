@@ -41,12 +41,26 @@
 
 <script>
 import { addClass, getHeight, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseScrollPanel from './BaseScrollPanel.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ScrollPanelStyle from '@cjdevstudios/bumblevue/scrollpanel/style';
 
 export default {
     name: 'ScrollPanel',
-    extends: BaseScrollPanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        step: {
+            type: Number,
+            default: 5
+        }
+    },
+    style: ScrollPanelStyle,
+    provide() {
+        return {
+            $pcScrollPanel: this,
+            $parentInstance: this
+        };
+    },
     initialized: false,
     documentResizeListener: null,
     documentMouseMoveListener: null,

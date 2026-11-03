@@ -60,15 +60,45 @@
 import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import BarsIcon from '@cjdevstudios/bumblevue-icons/bars';
-import BaseMenubar from './BaseMenubar.vue';
+import MenubarStyle from '@cjdevstudios/bumblevue/menubar/style';
 import MenubarSub from './MenubarSub.vue';
 
 export default {
     name: 'Menubar',
-    extends: BaseMenubar,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        buttonProps: {
+            type: null,
+            default: null
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['focus', 'blur'],
+    style: MenubarStyle,
+    provide() {
+        return {
+            $pcMenubar: this,
+            $parentInstance: this
+        };
+    },
     matchMediaListener: null,
     data() {
         return {

@@ -7,12 +7,19 @@
 
 <script>
 import Badge from '@cjdevstudios/bumblevue/badge';
-import BaseOverlayBadge from './BaseOverlayBadge.vue';
+import OverlayBadgeStyle from '@cjdevstudios/bumblevue/overlaybadge/style';
 
 export default {
     name: 'OverlayBadge',
-    extends: BaseOverlayBadge,
+    extends: Badge,
     inheritAttrs: false,
+    style: OverlayBadgeStyle,
+    provide() {
+        return {
+            $pcOverlayBadge: this,
+            $parentInstance: this
+        };
+    },
     components: {
         Badge
     }

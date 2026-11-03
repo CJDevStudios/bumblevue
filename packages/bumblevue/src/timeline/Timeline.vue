@@ -22,12 +22,32 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseTimeline from './BaseTimeline.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import TimelineStyle from '@cjdevstudios/bumblevue/timeline/style';
 
 export default {
     name: 'Timeline',
-    extends: BaseTimeline,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: null,
+        align: {
+            mode: String,
+            default: 'left'
+        },
+        layout: {
+            mode: String,
+            default: 'vertical'
+        },
+        dataKey: null
+    },
+    style: TimelineStyle,
+    provide() {
+        return {
+            $pcTimeline: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         getKey(item, index) {
             return this.dataKey ? resolveFieldData(item, this.dataKey) : index;

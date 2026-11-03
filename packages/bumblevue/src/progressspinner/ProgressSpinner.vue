@@ -7,12 +7,34 @@
 </template>
 
 <script>
-import BaseProgressSpinner from './BaseProgressSpinner.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ProgressSpinnerStyle from '@cjdevstudios/bumblevue/progressspinner/style';
 
 export default {
     name: 'ProgressSpinner',
-    extends: BaseProgressSpinner,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        strokeWidth: {
+            type: String,
+            default: '2'
+        },
+        fill: {
+            type: String,
+            default: 'none'
+        },
+        animationDuration: {
+            type: String,
+            default: '2s'
+        }
+    },
+    style: ProgressSpinnerStyle,
+    provide() {
+        return {
+            $pcProgressSpinner: this,
+            $parentInstance: this
+        };
+    },
     computed: {
         svgStyle() {
             return {

@@ -202,6 +202,7 @@ import { absolutePosition, addStyle, findSingle, focus, getFirstFocusableElement
 import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
 import { FilterService } from '@cjdevstudios/bumblevue-core/api';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import BlankIcon from '@cjdevstudios/bumblevue-icons/blank';
 import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
@@ -215,14 +216,186 @@ import InputText from '@cjdevstudios/bumblevue/inputtext';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import SelectStyle from '@cjdevstudios/bumblevue/select/style';
 import VirtualScroller from '@cjdevstudios/bumblevue/virtualscroller';
-import BaseSelect from './BaseSelect.vue';
 
 export default {
     name: 'Select',
-    extends: BaseSelect,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        options: Array,
+        optionLabel: [String, Function],
+        optionValue: [String, Function],
+        optionDisabled: [String, Function],
+        optionGroupLabel: [String, Function],
+        optionGroupChildren: [String, Function],
+        scrollHeight: {
+            type: String,
+            default: '14rem'
+        },
+        filter: Boolean,
+        filterPlaceholder: String,
+        filterLocale: String,
+        filterMatchMode: {
+            type: String,
+            default: 'contains'
+        },
+        filterFields: {
+            type: Array,
+            default: null
+        },
+        editable: Boolean,
+        placeholder: {
+            type: String,
+            default: null
+        },
+        dataKey: null,
+        showClear: {
+            type: Boolean,
+            default: false
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        labelId: {
+            type: String,
+            default: null
+        },
+        labelClass: {
+            type: [String, Object],
+            default: null
+        },
+        labelStyle: {
+            type: Object,
+            default: null
+        },
+        panelClass: {
+            type: [String, Object],
+            default: null
+        },
+        overlayStyle: {
+            type: Object,
+            default: null
+        },
+        overlayClass: {
+            type: [String, Object],
+            default: null
+        },
+        panelStyle: {
+            type: Object,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        clearIcon: {
+            type: String,
+            default: undefined
+        },
+        dropdownIcon: {
+            type: String,
+            default: undefined
+        },
+        filterIcon: {
+            type: String,
+            default: undefined
+        },
+        loadingIcon: {
+            type: String,
+            default: undefined
+        },
+        resetFilterOnHide: {
+            type: Boolean,
+            default: false
+        },
+        resetFilterOnClear: {
+            type: Boolean,
+            default: false
+        },
+        virtualScrollerOptions: {
+            type: Object,
+            default: null
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: false
+        },
+        autoFilterFocus: {
+            type: Boolean,
+            default: false
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        highlightOnSelect: {
+            type: Boolean,
+            default: true
+        },
+        checkmark: {
+            type: Boolean,
+            default: false
+        },
+        filterMessage: {
+            type: String,
+            default: null
+        },
+        selectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySelectionMessage: {
+            type: String,
+            default: null
+        },
+        emptyFilterMessage: {
+            type: String,
+            default: null
+        },
+        emptyMessage: {
+            type: String,
+            default: null
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur', 'before-show', 'before-hide', 'show', 'hide', 'filter'],
+    style: SelectStyle,
+    provide() {
+        return {
+            $pcSelect: this,
+            $parentInstance: this
+        };
+    },
     outsideClickListener: null,
     scrollHandler: null,
     resizeListener: null,

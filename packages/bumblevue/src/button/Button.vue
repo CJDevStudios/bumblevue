@@ -18,16 +18,110 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
 import Badge from '@cjdevstudios/bumblevue/badge';
+import ButtonStyle from '@cjdevstudios/bumblevue/button/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { mergeProps } from 'vue';
-import BaseButton from './BaseButton.vue';
 
 export default {
     name: 'Button',
-    extends: BaseButton,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        label: {
+            type: String,
+            default: null
+        },
+        icon: {
+            type: String,
+            default: null
+        },
+        iconPos: {
+            type: String,
+            default: 'left'
+        },
+        iconClass: {
+            type: [String, Object],
+            default: null
+        },
+        badge: {
+            type: String,
+            default: null
+        },
+        badgeClass: {
+            type: [String, Object],
+            default: null
+        },
+        badgeSeverity: {
+            type: String,
+            default: 'secondary'
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        loadingIcon: {
+            type: String,
+            default: undefined
+        },
+        as: {
+            type: [String, Object],
+            default: 'BUTTON'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        },
+        link: {
+            type: Boolean,
+            default: false
+        },
+        severity: {
+            type: String,
+            default: null
+        },
+        raised: {
+            type: Boolean,
+            default: false
+        },
+        rounded: {
+            type: Boolean,
+            default: false
+        },
+        text: {
+            type: Boolean,
+            default: false
+        },
+        outlined: {
+            type: Boolean,
+            default: false
+        },
+        size: {
+            type: String,
+            default: null
+        },
+        variant: {
+            type: String,
+            default: null
+        },
+        plain: {
+            type: Boolean,
+            default: false
+        },
+        fluid: {
+            type: Boolean,
+            default: null
+        }
+    },
+    style: ButtonStyle,
+    provide() {
+        return {
+            $pcButton: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcFluid: { default: null }
     },

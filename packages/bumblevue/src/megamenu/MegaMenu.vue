@@ -62,15 +62,57 @@
 import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import BarsIcon from '@cjdevstudios/bumblevue-icons/bars';
-import BaseMegaMenu from './BaseMegaMenu.vue';
+import MegaMenuStyle from '@cjdevstudios/bumblevue/megamenu/style';
 import MegaMenuSub from './MegaMenuSub.vue';
 
 export default {
     name: 'MegaMenu',
-    extends: BaseMegaMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        orientation: {
+            type: String,
+            default: 'horizontal'
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        scrollHeight: {
+            type: String,
+            default: '20rem'
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['focus', 'blur'],
+    style: MegaMenuStyle,
+    provide() {
+        return {
+            $pcMegaMenu: this,
+            $parentInstance: this
+        };
+    },
     outsideClickListener: null,
     resizeListener: null,
     matchMediaListener: null,

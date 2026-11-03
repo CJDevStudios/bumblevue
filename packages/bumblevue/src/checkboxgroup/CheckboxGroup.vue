@@ -6,12 +6,20 @@
 
 <script>
 import { uuid } from '@cjdevstudios/bumbleuix-utils';
-import BaseCheckboxGroup from './BaseCheckboxGroup.vue';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import CheckboxGroupStyle from '@cjdevstudios/bumblevue/checkboxgroup/style';
 
 export default {
     name: 'CheckboxGroup',
-    extends: BaseCheckboxGroup,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    style: CheckboxGroupStyle,
+    provide() {
+        return {
+            $pcCheckboxGroup: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             groupName: this.name

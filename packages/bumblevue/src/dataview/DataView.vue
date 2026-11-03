@@ -102,14 +102,88 @@
 
 <script>
 import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import DataViewStyle from '@cjdevstudios/bumblevue/dataview/style';
 import Paginator from '@cjdevstudios/bumblevue/paginator';
-import BaseDataView from './BaseDataView.vue';
 
 export default {
     name: 'DataView',
-    extends: BaseDataView,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: Array,
+            default: null
+        },
+        layout: {
+            type: String,
+            default: 'list'
+        },
+        rows: {
+            type: Number,
+            default: 0
+        },
+        first: {
+            type: Number,
+            default: 0
+        },
+        totalRecords: {
+            type: Number,
+            default: 0
+        },
+        paginator: {
+            type: Boolean,
+            default: false
+        },
+        paginatorPosition: {
+            type: String,
+            default: 'bottom'
+        },
+        alwaysShowPaginator: {
+            type: Boolean,
+            default: true
+        },
+        paginatorTemplate: {
+            type: String,
+            default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+        },
+        pageLinkSize: {
+            type: Number,
+            default: 5
+        },
+        rowsPerPageOptions: {
+            type: Array,
+            default: null
+        },
+        currentPageReportTemplate: {
+            type: String,
+            default: '({currentPage} of {totalPages})'
+        },
+        sortField: {
+            type: [String, Function],
+            default: null
+        },
+        sortOrder: {
+            type: Number,
+            default: null
+        },
+        lazy: {
+            type: Boolean,
+            default: false
+        },
+        dataKey: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['update:first', 'update:rows', 'page'],
+    style: DataViewStyle,
+    provide() {
+        return {
+            $pcDataView: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_first: this.first,

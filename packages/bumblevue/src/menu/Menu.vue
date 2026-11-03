@@ -68,17 +68,59 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { absolutePosition, addStyle, find, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import MenuStyle from '@cjdevstudios/bumblevue/menu/style';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseMenu from './BaseMenu.vue';
 import Menuitem from './Menuitem.vue';
 
 export default {
     name: 'Menu',
-    extends: BaseMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        popup: {
+            type: Boolean,
+            default: false
+        },
+        model: {
+            type: Array,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['show', 'hide', 'focus', 'blur'],
+    style: MenuStyle,
+    provide() {
+        return {
+            $pcMenu: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             overlayVisible: false,

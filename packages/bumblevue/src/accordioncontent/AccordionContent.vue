@@ -14,13 +14,31 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import AccordionContentStyle from '@cjdevstudios/bumblevue/accordioncontent/style';
 import { mergeProps } from 'vue';
-import BaseAccordionContent from './BaseAccordionContent.vue';
 
 export default {
     name: 'AccordionContent',
-    extends: BaseAccordionContent,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        as: {
+            type: [String, Object],
+            default: 'DIV'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        }
+    },
+    style: AccordionContentStyle,
+    provide() {
+        return {
+            $pcAccordionContent: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcAccordion', '$pcAccordionPanel'],
     computed: {
         id() {

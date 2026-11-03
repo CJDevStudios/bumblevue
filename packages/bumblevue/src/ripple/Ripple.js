@@ -1,7 +1,9 @@
 import { addClass, createElement, getAttribute, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseRipple from './BaseRipple';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import RippleStyle from '@cjdevstudios/bumblevue/ripple/style';
 
-const Ripple = BaseRipple.extend('ripple', {
+const Ripple = BaseDirective.extend('ripple', {
+    style: RippleStyle,
     watch: {
         'config.ripple'(newValue) {
             if (newValue) {

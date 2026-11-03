@@ -20,13 +20,47 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseMeterGroup from './BaseMeterGroup.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import MeterGroupStyle from '@cjdevstudios/bumblevue/metergroup/style';
 import MeterGroupLabel from './MeterGroupLabel.vue';
 
 export default {
     name: 'MeterGroup',
-    extends: BaseMeterGroup,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: Array,
+            default: null
+        },
+        min: {
+            type: Number,
+            default: 0
+        },
+        max: {
+            type: Number,
+            default: 100
+        },
+        orientation: {
+            type: String,
+            default: 'horizontal'
+        },
+        labelPosition: {
+            type: String,
+            default: 'end'
+        },
+        labelOrientation: {
+            type: String,
+            default: 'horizontal'
+        }
+    },
+    style: MeterGroupStyle,
+    provide() {
+        return {
+            $pcMeterGroup: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         getPTOptions(key, value, index) {
             return this.ptm(key, {

@@ -96,21 +96,159 @@
 import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, isString, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import CascadeSelectStyle from '@cjdevstudios/bumblevue/cascadeselect/style';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseCascadeSelect from './BaseCascadeSelect.vue';
 import CascadeSelectSub from './CascadeSelectSub.vue';
 
 export default {
     name: 'CascadeSelect',
-    extends: BaseCascadeSelect,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        options: Array,
+        optionLabel: null,
+        optionValue: null,
+        optionDisabled: null,
+        optionGroupLabel: null,
+        optionGroupChildren: null,
+        placeholder: String,
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        dataKey: null,
+        showClear: {
+            type: Boolean,
+            default: false
+        },
+        clearIcon: {
+            type: String,
+            default: undefined
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        inputProps: {
+            type: null,
+            default: null
+        },
+        panelClass: {
+            type: [String, Object],
+            default: null
+        },
+        panelStyle: {
+            type: Object,
+            default: null
+        },
+        panelProps: {
+            type: null,
+            default: null
+        },
+        overlayClass: {
+            type: [String, Object],
+            default: null
+        },
+        overlayStyle: {
+            type: Object,
+            default: null
+        },
+        overlayProps: {
+            type: null,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        dropdownIcon: {
+            type: String,
+            default: undefined
+        },
+        loadingIcon: {
+            type: String,
+            default: undefined
+        },
+        optionGroupIcon: {
+            type: String,
+            default: undefined
+        },
+        autoOptionFocus: {
+            type: Boolean,
+            default: false
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        focusOnHover: {
+            type: Boolean,
+            default: true
+        },
+        searchLocale: {
+            type: String,
+            default: undefined
+        },
+        searchMessage: {
+            type: String,
+            default: null
+        },
+        selectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySelectionMessage: {
+            type: String,
+            default: null
+        },
+        emptySearchMessage: {
+            type: String,
+            default: null
+        },
+        emptyMessage: {
+            type: String,
+            default: null
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur', 'click', 'group-change', 'before-show', 'before-hide', 'hide', 'show'],
+    style: CascadeSelectStyle,
+    provide() {
+        return {
+            $pcCascadeSelect: this,
+            $parentInstance: this
+        };
+    },
     outsideClickListener: null,
     matchMediaListener: null,
     scrollHandler: null,

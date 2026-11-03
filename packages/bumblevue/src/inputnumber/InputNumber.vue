@@ -93,17 +93,166 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { clearSelection, getSelection } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isEmpty, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
 import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import InputNumberStyle from '@cjdevstudios/bumblevue/inputnumber/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
-import BaseInputNumber from './BaseInputNumber.vue';
 
 export default {
     name: 'InputNumber',
-    extends: BaseInputNumber,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        format: {
+            type: Boolean,
+            default: true
+        },
+        showButtons: {
+            type: Boolean,
+            default: false
+        },
+        buttonLayout: {
+            type: String,
+            default: 'stacked'
+        },
+        incrementButtonClass: {
+            type: String,
+            default: null
+        },
+        decrementButtonClass: {
+            type: String,
+            default: null
+        },
+        incrementButtonIcon: {
+            type: String,
+            default: undefined
+        },
+        incrementIcon: {
+            type: String,
+            default: undefined
+        },
+        decrementButtonIcon: {
+            type: String,
+            default: undefined
+        },
+        decrementIcon: {
+            type: String,
+            default: undefined
+        },
+        locale: {
+            type: String,
+            default: undefined
+        },
+        localeMatcher: {
+            type: String,
+            default: undefined
+        },
+        mode: {
+            type: String,
+            default: 'decimal'
+        },
+        prefix: {
+            type: String,
+            default: null
+        },
+        suffix: {
+            type: String,
+            default: null
+        },
+        currency: {
+            type: String,
+            default: undefined
+        },
+        currencyDisplay: {
+            type: String,
+            default: undefined
+        },
+        useGrouping: {
+            type: Boolean,
+            default: true
+        },
+        minFractionDigits: {
+            type: Number,
+            default: undefined
+        },
+        maxFractionDigits: {
+            type: Number,
+            default: undefined
+        },
+        roundingMode: {
+            type: String,
+            default: 'halfExpand',
+            validator(value) {
+                return ['ceil', 'floor', 'expand', 'trunc', 'halfCeil', 'halfFloor', 'halfExpand', 'halfTrunc', 'halfEven'].includes(value);
+            }
+        },
+        min: {
+            type: Number,
+            default: null
+        },
+        max: {
+            type: Number,
+            default: null
+        },
+        step: {
+            type: Number,
+            default: 1
+        },
+        allowEmpty: {
+            type: Boolean,
+            default: true
+        },
+        highlightOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        showClear: {
+            type: Boolean,
+            default: false
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        placeholder: {
+            type: String,
+            default: null
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        required: {
+            type: Boolean,
+            default: false
+        }
+    },
     emits: ['input', 'focus', 'blur'],
+    style: InputNumberStyle,
+    provide() {
+        return {
+            $pcInputNumber: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcFluid: { default: null }
     },
