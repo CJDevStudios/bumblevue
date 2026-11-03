@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseInputGroupAddon from './BaseInputGroupAddon.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import InputGroupAddonStyle from '@cjdevstudios/bumblevue/inputgroupaddon/style';
 
 export default {
     name: 'InputGroupAddon',
-    extends: BaseInputGroupAddon,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: InputGroupAddonStyle,
+    provide() {
+        return {
+            $pcInputGroupAddon: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

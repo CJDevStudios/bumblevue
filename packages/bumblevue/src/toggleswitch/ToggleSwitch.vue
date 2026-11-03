@@ -29,13 +29,59 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseToggleSwitch from './BaseToggleSwitch.vue';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import ToggleSwitchStyle from '@cjdevstudios/bumblevue/toggleswitch/style';
 
 export default {
     name: 'ToggleSwitch',
-    extends: BaseToggleSwitch,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        trueValue: {
+            type: null,
+            default: true
+        },
+        falseValue: {
+            type: null,
+            default: false
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'focus', 'blur'],
+    style: ToggleSwitchStyle,
+    provide() {
+        return {
+            $pcToggleSwitch: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         getPTOptions(key) {
             const _ptm = key === 'root' ? this.ptmi : this.ptm;

@@ -103,19 +103,82 @@
 <script>
 import { addClass, find, findSingle, getAttribute, removeClass, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { localeComparator, sort } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
 import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
 import Button from '@cjdevstudios/bumblevue/button';
+import CarouselStyle from '@cjdevstudios/bumblevue/carousel/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseCarousel from './BaseCarousel.vue';
 
 export default {
     name: 'Carousel',
-    extends: BaseCarousel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: null,
+        page: {
+            type: Number,
+            default: 0
+        },
+        numVisible: {
+            type: Number,
+            default: 1
+        },
+        numScroll: {
+            type: Number,
+            default: 1
+        },
+        responsiveOptions: Array,
+        orientation: {
+            type: String,
+            default: 'horizontal'
+        },
+        verticalViewPortHeight: {
+            type: String,
+            default: '300px'
+        },
+        contentClass: String,
+        containerClass: String,
+        indicatorsContentClass: String,
+        circular: {
+            type: Boolean,
+            default: false
+        },
+        autoplayInterval: {
+            type: Number,
+            default: 0
+        },
+        showNavigators: {
+            type: Boolean,
+            default: true
+        },
+        showIndicators: {
+            type: Boolean,
+            default: true
+        },
+        prevButtonProps: {
+            type: Object,
+            default: () => {
+                return { severity: 'secondary', text: true, rounded: true };
+            }
+        },
+        nextButtonProps: {
+            type: Object,
+            default: () => {
+                return { severity: 'secondary', text: true, rounded: true };
+            }
+        }
+    },
     emits: ['update:page'],
+    style: CarouselStyle,
+    provide() {
+        return {
+            $pcCarousel: this,
+            $parentInstance: this
+        };
+    },
     isRemainingItemsAdded: false,
     data() {
         return {

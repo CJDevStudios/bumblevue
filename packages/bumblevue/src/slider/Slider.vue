@@ -70,13 +70,55 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { getAttribute, getWindowScrollLeft, getWindowScrollTop, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseSlider from './BaseSlider.vue';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import SliderStyle from '@cjdevstudios/bumblevue/slider/style';
 
 export default {
     name: 'Slider',
-    extends: BaseSlider,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        min: {
+            type: Number,
+            default: 0
+        },
+        max: {
+            type: Number,
+            default: 100
+        },
+        orientation: {
+            type: String,
+            default: 'horizontal'
+        },
+        step: {
+            type: Number,
+            default: null
+        },
+        range: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['change', 'slideend'],
+    style: SliderStyle,
+    provide() {
+        return {
+            $pcSlider: this,
+            $parentInstance: this
+        };
+    },
     dragging: false,
     handleIndex: null,
     initX: null,

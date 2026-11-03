@@ -11,12 +11,34 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseProgressBar from './BaseProgressBar.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ProgressBarStyle from '@cjdevstudios/bumblevue/progressbar/style';
 
 export default {
     name: 'ProgressBar',
-    extends: BaseProgressBar,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: Number,
+            default: null
+        },
+        mode: {
+            type: String,
+            default: 'determinate'
+        },
+        showValue: {
+            type: Boolean,
+            default: true
+        }
+    },
+    style: ProgressBarStyle,
+    provide() {
+        return {
+            $pcProgressBar: this,
+            $parentInstance: this
+        };
+    },
     computed: {
         progressStyle() {
             return {

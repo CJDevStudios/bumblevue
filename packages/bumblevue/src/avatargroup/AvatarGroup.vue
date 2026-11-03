@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseAvatarGroup from './BaseAvatarGroup.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import AvatarGroupStyle from '@cjdevstudios/bumblevue/avatargroup/style';
 
 export default {
     name: 'AvatarGroup',
-    extends: BaseAvatarGroup,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: AvatarGroupStyle,
+    provide() {
+        return {
+            $pcAvatarGroup: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

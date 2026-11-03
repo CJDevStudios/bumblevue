@@ -15,13 +15,39 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { find, findSingle } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import StepStyle from '@cjdevstudios/bumblevue/step/style';
 import StepperSeparator from '../stepper/StepperSeparator.vue';
-import BaseStep from './BaseStep.vue';
 
 export default {
     name: 'Step',
-    extends: BaseStep,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        },
+        as: {
+            type: [String, Object],
+            default: 'DIV'
+        }
+    },
+    style: StepStyle,
+    provide() {
+        return {
+            $pcStep: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcStepper: { default: null },
         $pcStepList: { default: null },

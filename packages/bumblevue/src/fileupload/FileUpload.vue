@@ -88,21 +88,141 @@
 
 <script>
 import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
 import UploadIcon from '@cjdevstudios/bumblevue-icons/upload';
 import Button from '@cjdevstudios/bumblevue/button';
+import FileUploadStyle from '@cjdevstudios/bumblevue/fileupload/style';
 import Message from '@cjdevstudios/bumblevue/message';
 import ProgressBar from '@cjdevstudios/bumblevue/progressbar';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseFileUpload from './BaseFileUpload.vue';
 import FileContent from './FileContent.vue';
 
 export default {
     name: 'FileUpload',
-    extends: BaseFileUpload,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        name: {
+            type: String,
+            default: null
+        },
+        url: {
+            type: String,
+            default: null
+        },
+        mode: {
+            type: String,
+            default: 'advanced'
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        accept: {
+            type: String,
+            default: null
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        auto: {
+            type: Boolean,
+            default: false
+        },
+        maxFileSize: {
+            type: Number,
+            default: null
+        },
+        invalidFileSizeMessage: {
+            type: String,
+            default: '{0}: Invalid file size, file size should be smaller than {1}.'
+        },
+        invalidFileTypeMessage: {
+            type: String,
+            default: '{0}: Invalid file type, allowed file types: {1}.'
+        },
+        fileLimit: {
+            type: Number,
+            default: null
+        },
+        invalidFileLimitMessage: {
+            type: String,
+            default: 'Maximum number of files exceeded, limit is {0} at most.'
+        },
+        withCredentials: {
+            type: Boolean,
+            default: false
+        },
+        previewWidth: {
+            type: Number,
+            default: 50
+        },
+        chooseLabel: {
+            type: String,
+            default: null
+        },
+        uploadLabel: {
+            type: String,
+            default: null
+        },
+        cancelLabel: {
+            type: String,
+            default: null
+        },
+        customUpload: {
+            type: Boolean,
+            default: false
+        },
+        showUploadButton: {
+            type: Boolean,
+            default: true
+        },
+        showCancelButton: {
+            type: Boolean,
+            default: true
+        },
+        chooseIcon: {
+            type: String,
+            default: undefined
+        },
+        uploadIcon: {
+            type: String,
+            default: undefined
+        },
+        cancelIcon: {
+            type: String,
+            default: undefined
+        },
+        style: null,
+        class: null,
+        chooseButtonProps: {
+            type: null,
+            default: null
+        },
+        uploadButtonProps: {
+            type: Object,
+            default() {
+                return { severity: 'secondary' };
+            }
+        },
+        cancelButtonProps: {
+            type: Object,
+            default() {
+                return { severity: 'secondary' };
+            }
+        }
+    },
     emits: ['select', 'uploader', 'before-upload', 'progress', 'upload', 'error', 'before-send', 'clear', 'remove', 'remove-uploaded-file'],
+    style: FileUploadStyle,
+    provide() {
+        return {
+            $pcFileUpload: this,
+            $parentInstance: this
+        };
+    },
     duplicateIEEvent: false,
     data() {
         return {

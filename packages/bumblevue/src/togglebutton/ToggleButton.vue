@@ -29,14 +29,58 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseToggleButton from './BaseToggleButton.vue';
+import ToggleButtonStyle from '@cjdevstudios/bumblevue/togglebutton/style';
 
 export default {
     name: 'ToggleButton',
-    extends: BaseToggleButton,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        onIcon: String,
+        offIcon: String,
+        onLabel: {
+            type: String,
+            default: 'Yes'
+        },
+        offLabel: {
+            type: String,
+            default: 'No'
+        },
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        size: {
+            type: String,
+            default: null
+        },
+        fluid: {
+            type: Boolean,
+            default: null
+        }
+    },
     emits: ['change'],
+    style: ToggleButtonStyle,
+    provide() {
+        return {
+            $pcToggleButton: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         getPTOptions(key) {
             const _ptm = key === 'root' ? this.ptmi : this.ptm;

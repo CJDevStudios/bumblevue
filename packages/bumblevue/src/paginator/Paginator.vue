@@ -111,7 +111,8 @@
 
 <script>
 import { setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import BasePaginator from './BasePaginator.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import PaginatorStyle from '@cjdevstudios/bumblevue/paginator/style';
 import CurrrentPageReport from './CurrentPageReport.vue';
 import FirstPageLink from './FirstPageLink.vue';
 import JumpToPageDropdown from './JumpToPageDropdown.vue';
@@ -124,9 +125,54 @@ import RowsPerPageDropdown from './RowsPerPageDropdown.vue';
 
 export default {
     name: 'Paginator',
-    extends: BasePaginator,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        totalRecords: {
+            type: Number,
+            default: 0
+        },
+        rows: {
+            type: Number,
+            default: 0
+        },
+        first: {
+            type: Number,
+            default: 0
+        },
+        pageLinkSize: {
+            type: Number,
+            default: 5
+        },
+        rowsPerPageOptions: {
+            type: Array,
+            default: null
+        },
+        template: {
+            type: [Object, String],
+            default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+        },
+        currentPageReportTemplate: {
+            type: null,
+            default: '({currentPage} of {totalPages})'
+        },
+        alwaysShow: {
+            type: Boolean,
+            default: true
+        },
+        selectAppendTo: {
+            type: [String, Object],
+            default: 'body'
+        }
+    },
     emits: ['update:first', 'update:rows', 'page'],
+    style: PaginatorStyle,
+    provide() {
+        return {
+            $pcPaginator: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_first: this.first,
@@ -235,7 +281,7 @@ export default {
                         `;
                     } else {
                         innerHTML += `
-.p-paginator-${key} {
+.p-paginator-${key} {,
     display: none;
 }
 @media screen ${minValue} and (max-width: ${key}) {

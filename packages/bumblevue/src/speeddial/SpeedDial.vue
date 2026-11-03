@@ -69,20 +69,101 @@
 <script>
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { find, findSingle, focus } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
 import Button from '@cjdevstudios/bumblevue/button';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import SpeedDialStyle from '@cjdevstudios/bumblevue/speeddial/style';
 import Tooltip from '@cjdevstudios/bumblevue/tooltip';
-import BaseSpeedDial from './BaseSpeedDial.vue';
 
 // Set fix value for SSR.
 const Math_PI = 3.14159265358979;
 
 export default {
     name: 'SpeedDial',
-    extends: BaseSpeedDial,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: null,
+        visible: {
+            type: Boolean,
+            default: false
+        },
+        direction: {
+            type: String,
+            default: 'up'
+        },
+        transitionDelay: {
+            type: Number,
+            default: 30
+        },
+        type: {
+            type: String,
+            default: 'linear'
+        },
+        radius: {
+            type: Number,
+            default: 0
+        },
+        mask: {
+            type: Boolean,
+            default: false
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        hideOnClickOutside: {
+            type: Boolean,
+            default: true
+        },
+        buttonClass: null,
+        maskStyle: null,
+        maskClass: null,
+        showIcon: {
+            type: String,
+            default: undefined
+        },
+        hideIcon: {
+            type: String,
+            default: undefined
+        },
+        rotateAnimation: {
+            type: Boolean,
+            default: true
+        },
+        tooltipOptions: null,
+        style: null,
+        class: null,
+        buttonProps: {
+            type: Object,
+            default() {
+                return { rounded: true };
+            }
+        },
+        actionButtonProps: {
+            type: Object,
+            default() {
+                return { severity: 'secondary', rounded: true, size: 'small' };
+            }
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['click', 'show', 'hide', 'focus', 'blur'],
+    style: SpeedDialStyle,
+    provide() {
+        return {
+            $pcSpeedDial: this,
+            $parentInstance: this
+        };
+    },
     documentClickListener: null,
     container: null,
     list: null,

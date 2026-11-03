@@ -4,13 +4,21 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import InputTextStyle from '@cjdevstudios/bumblevue/inputtext/style';
 import { mergeProps } from 'vue';
-import BaseInputText from './BaseInputText.vue';
 
 export default {
     name: 'InputText',
-    extends: BaseInputText,
+    extends: BaseInput,
     inheritAttrs: false,
+    style: InputTextStyle,
+    provide() {
+        return {
+            $pcInputText: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         onInput(event) {
             this.writeValue(event.target.value, event);

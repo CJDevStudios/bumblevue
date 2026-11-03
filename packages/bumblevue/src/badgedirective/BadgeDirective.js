@@ -1,8 +1,10 @@
 import { addClass, createElement, hasClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
 import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
-import BaseBadgeDirective from './BaseBadgeDirective';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import BadgeDirectiveStyle from '@cjdevstudios/bumblevue/badgedirective/style';
 
-const BadgeDirective = BaseBadgeDirective.extend('badge', {
+const BadgeDirective = BaseDirective.extend('badge', {
+    style: BadgeDirectiveStyle,
     mounted(el, binding) {
         console.warn('Deprecated since v4. Use OverlayBadge component instead.');
         const id = uuid('pv_id') + '_badge';

@@ -5,13 +5,39 @@
 </template>
 
 <script>
-import BaseChart from './BaseChart.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ChartStyle from '@cjdevstudios/bumblevue/chart/style';
 
 export default {
     name: 'Chart',
-    extends: BaseChart,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        type: String,
+        data: null,
+        options: null,
+        plugins: null,
+        width: {
+            type: Number,
+            default: 300
+        },
+        height: {
+            type: Number,
+            default: 150
+        },
+        canvasProps: {
+            type: null,
+            default: null
+        }
+    },
     emits: ['select', 'loaded'],
+    style: ChartStyle,
+    provide() {
+        return {
+            $pcChart: this,
+            $parentInstance: this
+        };
+    },
     chart: null,
     watch: {
         /*

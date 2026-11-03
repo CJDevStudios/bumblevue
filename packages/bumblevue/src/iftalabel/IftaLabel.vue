@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseIftaLabel from './BaseIftaLabel.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import IftaLabelStyle from '@cjdevstudios/bumblevue/iftalabel/style';
 
 export default {
     name: 'IftaLabel',
-    extends: BaseIftaLabel,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: IftaLabelStyle,
+    provide() {
+        return {
+            $pcIftaLabel: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

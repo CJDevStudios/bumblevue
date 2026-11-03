@@ -67,24 +67,151 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
 import WindowMaximizeIcon from '@cjdevstudios/bumblevue-icons/windowmaximize';
 import WindowMinimizeIcon from '@cjdevstudios/bumblevue-icons/windowminimize';
 import Button from '@cjdevstudios/bumblevue/button';
+import DialogStyle from '@cjdevstudios/bumblevue/dialog/style';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
 import { computed } from 'vue';
-import BaseDialog from './BaseDialog.vue';
 
 export default {
     name: 'Dialog',
-    extends: BaseDialog,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        header: {
+            type: null,
+            default: null
+        },
+        footer: {
+            type: null,
+            default: null
+        },
+        visible: {
+            type: Boolean,
+            default: false
+        },
+        modal: {
+            type: Boolean,
+            default: null
+        },
+        contentStyle: {
+            type: null,
+            default: null
+        },
+        contentClass: {
+            type: String,
+            default: null
+        },
+        contentProps: {
+            type: null,
+            default: null
+        },
+        maximizable: {
+            type: Boolean,
+            default: false
+        },
+        dismissableMask: {
+            type: Boolean,
+            default: false
+        },
+        closable: {
+            type: Boolean,
+            default: true
+        },
+        closeOnEscape: {
+            type: Boolean,
+            default: true
+        },
+        showHeader: {
+            type: Boolean,
+            default: true
+        },
+        blockScroll: {
+            type: Boolean,
+            default: false
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        position: {
+            type: String,
+            default: 'center'
+        },
+        breakpoints: {
+            type: Object,
+            default: null
+        },
+        draggable: {
+            type: Boolean,
+            default: true
+        },
+        keepInViewport: {
+            type: Boolean,
+            default: true
+        },
+        minX: {
+            type: Number,
+            default: 0
+        },
+        minY: {
+            type: Number,
+            default: 0
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        closeIcon: {
+            type: String,
+            default: undefined
+        },
+        maximizeIcon: {
+            type: String,
+            default: undefined
+        },
+        minimizeIcon: {
+            type: String,
+            default: undefined
+        },
+        closeButtonProps: {
+            type: Object,
+            default: () => {
+                return {
+                    severity: 'secondary',
+                    text: true,
+                    rounded: true
+                };
+            }
+        },
+        maximizeButtonProps: {
+            type: Object,
+            default: () => {
+                return {
+                    severity: 'secondary',
+                    text: true,
+                    rounded: true
+                };
+            }
+        },
+        _instance: null
+    },
     emits: ['update:visible', 'show', 'hide', 'after-hide', 'maximize', 'unmaximize', 'dragstart', 'dragend'],
+    style: DialogStyle,
     provide() {
         return {
+            $pcDialog: this,
+            $parentInstance: this,
             dialogRef: computed(() => this._instance)
         };
     },

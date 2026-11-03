@@ -24,16 +24,34 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
+import AccordionHeaderStyle from '@cjdevstudios/bumblevue/accordionheader/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { mergeProps } from 'vue';
-import BaseAccordionHeader from './BaseAccordionHeader.vue';
 
 export default {
     name: 'AccordionHeader',
-    extends: BaseAccordionHeader,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        as: {
+            type: [String, Object],
+            default: 'BUTTON'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        }
+    },
+    style: AccordionHeaderStyle,
+    provide() {
+        return {
+            $pcAccordionHeader: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcAccordion', '$pcAccordionPanel'],
     methods: {
         onFocus() {

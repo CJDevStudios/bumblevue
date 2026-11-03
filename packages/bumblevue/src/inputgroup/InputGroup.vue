@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseInputGroup from './BaseInputGroup.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import InputGroupStyle from '@cjdevstudios/bumblevue/inputgroup/style';
 
 export default {
     name: 'InputGroup',
-    extends: BaseInputGroup,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: InputGroupStyle,
+    provide() {
+        return {
+            $pcInputGroup: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

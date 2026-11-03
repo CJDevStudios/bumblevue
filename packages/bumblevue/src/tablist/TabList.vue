@@ -40,15 +40,24 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BaseTabList from './BaseTabList.vue';
+import TabListStyle from '@cjdevstudios/bumblevue/tablist/style';
 
 export default {
     name: 'TabList',
-    extends: BaseTabList,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {},
+    style: TabListStyle,
+    provide() {
+        return {
+            $pcTabList: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcTabs'],
     data() {
         return {

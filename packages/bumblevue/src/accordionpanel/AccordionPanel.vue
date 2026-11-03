@@ -6,13 +6,39 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import AccordionPanelStyle from '@cjdevstudios/bumblevue/accordionpanel/style';
 import { mergeProps } from 'vue';
-import BaseAccordionPanel from './BaseAccordionPanel.vue';
 
 export default {
     name: 'AccordionPanel',
-    extends: BaseAccordionPanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        as: {
+            type: [String, Object],
+            default: 'DIV'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        }
+    },
+    style: AccordionPanelStyle,
+    provide() {
+        return {
+            $pcAccordionPanel: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcAccordion'],
     computed: {
         active() {

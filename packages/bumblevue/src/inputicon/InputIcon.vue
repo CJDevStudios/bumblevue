@@ -5,12 +5,23 @@
 </template>
 
 <script>
-import BaseInputIcon from './BaseInputIcon.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import InputIconStyle from '@cjdevstudios/bumblevue/inputicon/style';
 
 export default {
     name: 'InputIcon',
-    extends: BaseInputIcon,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        class: null
+    },
+    style: InputIconStyle,
+    provide() {
+        return {
+            $pcInputIcon: this,
+            $parentInstance: this
+        };
+    },
     computed: {
         containerClass() {
             return [this.cx('root'), this.class];

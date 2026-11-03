@@ -1,7 +1,9 @@
 import { addClass, getTargetElement, hasClass, isElement, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseStyleClass from './BaseStyleClass';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import StyleClassStyle from '@cjdevstudios/bumblevue/styleclass/style';
 
-const StyleClass = BaseStyleClass.extend('styleclass', {
+const StyleClass = BaseDirective.extend('styleclass', {
+    style: StyleClassStyle,
     mounted(el, binding) {
         el.setAttribute('data-pd-styleclass', true);
 

@@ -14,14 +14,23 @@
 
 <script>
 import { uuid } from '@cjdevstudios/bumbleuix-utils';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import Dialog from '@cjdevstudios/bumblevue/dialog';
+import DynamicDialogStyle from '@cjdevstudios/bumblevue/dynamicdialog/style';
 import DynamicDialogEventBus from '@cjdevstudios/bumblevue/dynamicdialogeventbus';
-import BaseDynamicDialog from './BaseDynamicDialog.vue';
 
 export default {
     name: 'DynamicDialog',
-    extends: BaseDynamicDialog,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {},
+    style: DynamicDialogStyle,
+    provide() {
+        return {
+            $pcDynamicDialog: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             instanceMap: {}

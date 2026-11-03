@@ -30,14 +30,44 @@
 
 <script>
 import { isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import InputOtpStyle from '@cjdevstudios/bumblevue/inputotp/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
-import BaseInputOtp from './BaseInputOtp.vue';
 
 export default {
     name: 'InputOtp',
-    extends: BaseInputOtp,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        readonly: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        length: {
+            type: Number,
+            default: 4
+        },
+        mask: {
+            type: Boolean,
+            default: false
+        },
+        integerOnly: {
+            type: Boolean,
+            default: false
+        }
+    },
     emits: ['change', 'focus', 'blur'],
+    style: InputOtpStyle,
+    provide() {
+        return {
+            $pcInputOtp: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             tokens: []

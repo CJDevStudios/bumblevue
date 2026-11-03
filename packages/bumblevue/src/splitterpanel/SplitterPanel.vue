@@ -5,12 +5,30 @@
 </template>
 
 <script>
-import BaseSplitterPanel from './BaseSplitterPanel.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import SplitterPanelStyle from '@cjdevstudios/bumblevue/splitterpanel/style';
 
 export default {
     name: 'SplitterPanel',
-    extends: BaseSplitterPanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        size: {
+            type: Number,
+            default: null
+        },
+        minSize: {
+            type: Number,
+            default: null
+        }
+    },
+    style: SplitterPanelStyle,
+    provide() {
+        return {
+            $pcSplitterPanel: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             nestedState: null

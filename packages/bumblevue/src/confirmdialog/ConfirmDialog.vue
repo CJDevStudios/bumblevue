@@ -57,14 +57,33 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import Button from '@cjdevstudios/bumblevue/button';
 import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
+import ConfirmDialogStyle from '@cjdevstudios/bumblevue/confirmdialog/style';
 import Dialog from '@cjdevstudios/bumblevue/dialog';
-import BaseConfirmDialog from './BaseConfirmDialog.vue';
 
 export default {
     name: 'ConfirmDialog',
-    extends: BaseConfirmDialog,
+    extends: BaseComponent,
+    props: {
+        group: String,
+        breakpoints: {
+            type: Object,
+            default: null
+        },
+        draggable: {
+            type: Boolean,
+            default: true
+        }
+    },
+    style: ConfirmDialogStyle,
+    provide() {
+        return {
+            $pcConfirmDialog: this,
+            $parentInstance: this
+        };
+    },
     confirmListener: null,
     closeListener: null,
     data() {

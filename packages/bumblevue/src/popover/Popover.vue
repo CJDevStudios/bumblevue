@@ -17,18 +17,52 @@
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { absolutePosition, addClass, addStyle, focus, getOffset, isClient, isTouchDevice, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
+import PopoverStyle from '@cjdevstudios/bumblevue/popover/style';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
-import BasePopover from './BasePopover.vue';
 
 export default {
     name: 'Popover',
-    extends: BasePopover,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        dismissable: {
+            type: Boolean,
+            default: true
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        breakpoints: {
+            type: Object,
+            default: null
+        },
+        closeOnEscape: {
+            type: Boolean,
+            default: true
+        }
+    },
     emits: ['show', 'hide'],
+    style: PopoverStyle,
+    provide() {
+        return {
+            $pcPopover: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             visible: false

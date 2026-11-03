@@ -13,11 +13,25 @@
 </template>
 
 <script>
-import BaseToolbar from './BaseToolbar.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ToolbarStyle from '@cjdevstudios/bumblevue/toolbar/style';
 
 export default {
     name: 'Toolbar',
-    extends: BaseToolbar,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    props: {
+        ariaLabelledby: {
+            type: String,
+            default: null
+        }
+    },
+    style: ToolbarStyle,
+    provide() {
+        return {
+            $pcToolbar: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

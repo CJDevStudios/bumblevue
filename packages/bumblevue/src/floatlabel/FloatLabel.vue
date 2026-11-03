@@ -5,11 +5,25 @@
 </template>
 
 <script>
-import BaseFloatLabel from './BaseFloatLabel.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import FloatLabelStyle from '@cjdevstudios/bumblevue/floatlabel/style';
 
 export default {
     name: 'FloatLabel',
-    extends: BaseFloatLabel,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    props: {
+        variant: {
+            type: String,
+            default: 'over'
+        }
+    },
+    style: FloatLabelStyle,
+    provide() {
+        return {
+            $pcFloatLabel: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

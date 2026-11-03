@@ -13,13 +13,46 @@
 
 <script>
 import { equals } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import TabPanelStyle from '@cjdevstudios/bumblevue/tabpanel/style';
 import { mergeProps } from 'vue';
-import BaseTabPanel from './BaseTabPanel.vue';
 
 export default {
     name: 'TabPanel',
-    extends: BaseTabPanel,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        // in Tabs
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        as: {
+            type: [String, Object],
+            default: 'DIV'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        },
+        // in TabView
+        header: null,
+        headerStyle: null,
+        headerClass: null,
+        headerProps: null,
+        headerActionProps: null,
+        contentStyle: null,
+        contentClass: null,
+        contentProps: null,
+        disabled: Boolean
+    },
+    style: TabPanelStyle,
+    provide() {
+        return {
+            $pcTabPanel: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcTabs'],
     computed: {
         active() {

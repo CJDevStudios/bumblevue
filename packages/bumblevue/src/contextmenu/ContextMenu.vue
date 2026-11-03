@@ -38,15 +38,61 @@
 import { addStyle, findSingle, focus, getHiddenElementOuterHeight, getHiddenElementOuterWidth, getViewport, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ContextMenuStyle from '@cjdevstudios/bumblevue/contextmenu/style';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseContextMenu from './BaseContextMenu.vue';
 import ContextMenuSub from './ContextMenuSub.vue';
 
 export default {
     name: 'ContextMenu',
-    extends: BaseContextMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        autoZIndex: {
+            type: Boolean,
+            default: true
+        },
+        baseZIndex: {
+            type: Number,
+            default: 0
+        },
+        global: {
+            type: Boolean,
+            default: false
+        },
+        breakpoint: {
+            type: String,
+            default: '960px'
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
     emits: ['focus', 'blur', 'show', 'hide', 'before-show', 'before-hide'],
+    style: ContextMenuStyle,
+    provide() {
+        return {
+            $pcContextMenu: this,
+            $parentInstance: this
+        };
+    },
     target: null,
     outsideClickListener: null,
     resizeListener: null,

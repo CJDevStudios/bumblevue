@@ -5,11 +5,20 @@
 </template>
 
 <script>
-import BaseTabPanels from './BaseTabPanels.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import TabPanelsStyle from '@cjdevstudios/bumblevue/tabpanels/style';
 
 export default {
     name: 'TabPanels',
-    extends: BaseTabPanels,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    props: {},
+    style: TabPanelsStyle,
+    provide() {
+        return {
+            $pcTabPanels: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

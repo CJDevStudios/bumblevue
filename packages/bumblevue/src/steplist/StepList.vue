@@ -5,11 +5,19 @@
 </template>
 
 <script>
-import BaseStepList from './BaseStepList.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import StepListStyle from '@cjdevstudios/bumblevue/steplist/style';
 
 export default {
     name: 'StepList',
-    extends: BaseStepList,
-    inheritAttrs: false
+    extends: BaseComponent,
+    inheritAttrs: false,
+    style: StepListStyle,
+    provide() {
+        return {
+            $pcStepList: this,
+            $parentInstance: this
+        };
+    }
 };
 </script>

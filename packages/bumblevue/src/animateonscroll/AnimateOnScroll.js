@@ -1,7 +1,9 @@
 import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseAnimateOnScroll from './BaseAnimateOnScroll';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import AnimateOnScrollStyle from '@cjdevstudios/bumblevue/animateonscroll/style';
 
-const AnimateOnScroll = BaseAnimateOnScroll.extend('animateonscroll', {
+const AnimateOnScroll = BaseDirective.extend('animateonscroll', {
+    style: AnimateOnScrollStyle,
     created() {
         this.$value = this.$value || {};
         this.$el.style.opacity = this.$value.enterClass ? '0' : '';

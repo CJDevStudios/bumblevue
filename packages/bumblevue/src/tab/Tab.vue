@@ -9,14 +9,40 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import TabStyle from '@cjdevstudios/bumblevue/tab/style';
 import { mergeProps } from 'vue';
-import BaseTab from './BaseTab.vue';
 
 export default {
     name: 'Tab',
-    extends: BaseTab,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        disabled: {
+            type: Boolean,
+            default: false
+        },
+        as: {
+            type: [String, Object],
+            default: 'BUTTON'
+        },
+        asChild: {
+            type: Boolean,
+            default: false
+        }
+    },
+    style: TabStyle,
+    provide() {
+        return {
+            $pcTab: this,
+            $parentInstance: this
+        };
+    },
     inject: ['$pcTabs', '$pcTabList'],
     methods: {
         onFocus() {

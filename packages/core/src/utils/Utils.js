@@ -11,7 +11,9 @@ export function getVNodeProp(vnode, prop) {
             let kebabProp = prop.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
             let propName = Object.prototype.hasOwnProperty.call(props, kebabProp) ? kebabProp : prop;
 
-            return vnode.type.extends.props[prop].type === Boolean && props[propName] === '' ? true : props[propName];
+            const propDef = vnode.type.props?.[prop] ?? vnode.type.extends?.props?.[prop];
+
+            return propDef?.type === Boolean && props[propName] === '' ? true : props[propName];
         }
     }
 

@@ -62,6 +62,7 @@
 <script>
 import { addClass, focus, isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import EyeIcon from '@cjdevstudios/bumblevue-icons/eye';
 import RefreshIcon from '@cjdevstudios/bumblevue-icons/refresh';
 import SearchMinusIcon from '@cjdevstudios/bumblevue-icons/searchminus';
@@ -69,15 +70,64 @@ import SearchPlusIcon from '@cjdevstudios/bumblevue-icons/searchplus';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
 import UndoIcon from '@cjdevstudios/bumblevue-icons/undo';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
+import ImageStyle from '@cjdevstudios/bumblevue/image/style';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
-import BaseImage from './BaseImage.vue';
 
 export default {
     name: 'Image',
-    extends: BaseImage,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        preview: {
+            type: Boolean,
+            default: false
+        },
+        class: {
+            type: null,
+            default: null
+        },
+        style: {
+            type: null,
+            default: null
+        },
+        imageStyle: {
+            type: null,
+            default: null
+        },
+        imageClass: {
+            type: null,
+            default: null
+        },
+        previewButtonProps: {
+            type: null,
+            default: null
+        },
+        indicatorIcon: {
+            type: String,
+            default: undefined
+        },
+        previewIcon: {
+            type: String,
+            default: undefined
+        },
+        zoomInDisabled: {
+            type: Boolean,
+            default: false
+        },
+        zoomOutDisabled: {
+            type: Boolean,
+            default: false
+        }
+    },
     emits: ['show', 'hide', 'error'],
+    style: ImageStyle,
+    provide() {
+        return {
+            $pcImage: this,
+            $parentInstance: this
+        };
+    },
     mask: null,
     data() {
         return {

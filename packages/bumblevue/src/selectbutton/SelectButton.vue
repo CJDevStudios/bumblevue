@@ -25,15 +25,47 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { equals, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
+import SelectButtonStyle from '@cjdevstudios/bumblevue/selectbutton/style';
 import ToggleButton from '@cjdevstudios/bumblevue/togglebutton';
-import BaseSelectButton from './BaseSelectButton.vue';
 
 export default {
     name: 'SelectButton',
-    extends: BaseSelectButton,
+    extends: BaseEditableHolder,
     inheritAttrs: false,
+    props: {
+        options: Array,
+        optionLabel: null,
+        optionValue: null,
+        optionDisabled: null,
+        multiple: Boolean,
+        allowEmpty: {
+            type: Boolean,
+            default: true
+        },
+        dataKey: null,
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        size: {
+            type: String,
+            default: null
+        },
+        fluid: {
+            type: Boolean,
+            default: null
+        }
+    },
     emits: ['change'],
+    style: SelectButtonStyle,
+    provide() {
+        return {
+            $pcSelectButton: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         getOptionLabel(option) {
             return this.optionLabel ? resolveFieldData(option, this.optionLabel) : option;

@@ -1,8 +1,10 @@
 import { createElement, focus, getFirstFocusableElement, getLastFocusableElement, isFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseFocusTrap from './BaseFocusTrap';
+import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import FocusTrapStyle from '@cjdevstudios/bumblevue/focustrap/style';
 
-const FocusTrap = BaseFocusTrap.extend('focustrap', {
+const FocusTrap = BaseDirective.extend('focustrap', {
+    style: FocusTrapStyle,
     mounted(el, binding) {
         const { disabled } = binding.value || {};
 

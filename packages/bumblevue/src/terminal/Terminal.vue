@@ -16,13 +16,31 @@
 </template>
 
 <script>
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import TerminalStyle from '@cjdevstudios/bumblevue/terminal/style';
 import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
-import BaseTerminal from './BaseTerminal.vue';
 
 export default {
     name: 'Terminal',
-    extends: BaseTerminal,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        welcomeMessage: {
+            type: String,
+            default: null
+        },
+        prompt: {
+            type: String,
+            default: null
+        }
+    },
+    style: TerminalStyle,
+    provide() {
+        return {
+            $pcTerminal: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             commandText: null,

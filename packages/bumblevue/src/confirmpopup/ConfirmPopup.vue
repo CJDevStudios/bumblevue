@@ -61,18 +61,29 @@
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import Button from '@cjdevstudios/bumblevue/button';
 import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
+import ConfirmPopupStyle from '@cjdevstudios/bumblevue/confirmpopup/style';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
-import BaseConfirmPopup from './BaseConfirmPopup.vue';
 
 export default {
     name: 'ConfirmPopup',
-    extends: BaseConfirmPopup,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        group: String
+    },
+    style: ConfirmPopupStyle,
+    provide() {
+        return {
+            $pcConfirmPopup: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             visible: false,

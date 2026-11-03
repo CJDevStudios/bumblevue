@@ -134,6 +134,7 @@
 import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isEmpty, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
@@ -142,13 +143,139 @@ import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import Tree from '@cjdevstudios/bumblevue/tree';
-import BaseTreeSelect from './BaseTreeSelect.vue';
+import TreeSelectStyle from '@cjdevstudios/bumblevue/treeselect/style';
 
 export default {
     name: 'TreeSelect',
-    extends: BaseTreeSelect,
+    extends: BaseInput,
     inheritAttrs: false,
+    props: {
+        options: Array,
+        scrollHeight: {
+            type: String,
+            default: '20rem'
+        },
+        placeholder: {
+            type: String,
+            default: null
+        },
+        tabindex: {
+            type: Number,
+            default: null
+        },
+        selectionMode: {
+            type: String,
+            default: 'single'
+        },
+        selectedItemsLabel: {
+            type: String,
+            default: null
+        },
+        maxSelectedLabels: {
+            type: Number,
+            default: null
+        },
+        appendTo: {
+            type: [String, Object],
+            default: 'body'
+        },
+        emptyMessage: {
+            type: String,
+            default: null
+        },
+        display: {
+            type: String,
+            default: 'comma'
+        },
+        metaKeySelection: {
+            type: Boolean,
+            default: false
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        loadingIcon: {
+            type: String,
+            default: undefined
+        },
+        loadingMode: {
+            type: String,
+            default: 'mask'
+        },
+        showClear: {
+            type: Boolean,
+            default: false
+        },
+        clearIcon: {
+            type: String,
+            default: undefined
+        },
+        filter: {
+            type: Boolean,
+            default: false
+        },
+        filterBy: {
+            type: [String, Function],
+            default: 'label'
+        },
+        filterMode: {
+            type: String,
+            default: 'lenient'
+        },
+        filterPlaceholder: {
+            type: String,
+            default: null
+        },
+        filterLocale: {
+            type: String,
+            default: undefined
+        },
+        inputId: {
+            type: String,
+            default: null
+        },
+        inputClass: {
+            type: [String, Object],
+            default: null
+        },
+        inputStyle: {
+            type: Object,
+            default: null
+        },
+        inputProps: {
+            type: null,
+            default: null
+        },
+        panelClass: {
+            type: [String, Object],
+            default: null
+        },
+        panelProps: {
+            type: null,
+            default: null
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        },
+        expandedKeys: {
+            type: null,
+            default: null
+        }
+    },
     emits: ['before-show', 'before-hide', 'change', 'show', 'hide', 'node-select', 'node-unselect', 'node-expand', 'node-collapse', 'filter', 'focus', 'blur', 'update:expandedKeys'],
+    style: TreeSelectStyle,
+    provide() {
+        return {
+            $pcTreeSelect: this,
+            $parentInstance: this
+        };
+    },
     inject: {
         $pcFluid: { default: null }
     },

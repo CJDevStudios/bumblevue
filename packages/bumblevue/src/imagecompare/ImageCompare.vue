@@ -9,11 +9,33 @@
 <script>
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { setCSSProperty } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseImageCompare from './BaseImageCompare.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import ImageCompareStyle from '@cjdevstudios/bumblevue/imagecompare/style';
 
 export default {
     name: 'ImageCompare',
-    extends: BaseImageCompare,
+    extends: BaseComponent,
+    props: {
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        ariaLabelledby: {
+            type: String,
+            default: null
+        },
+        ariaLabel: {
+            type: String,
+            default: null
+        }
+    },
+    style: ImageCompareStyle,
+    provide() {
+        return {
+            $pcImageCompare: this,
+            $parentInstance: this
+        };
+    },
     methods: {
         onSlide(event) {
             const value = event.target.value;

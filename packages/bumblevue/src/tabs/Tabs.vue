@@ -5,13 +5,52 @@
 </template>
 
 <script>
-import BaseTabs from './BaseTabs.vue';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import TabsStyle from '@cjdevstudios/bumblevue/tabs/style';
 
 export default {
     name: 'Tabs',
-    extends: BaseTabs,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        value: {
+            type: [String, Number],
+            default: undefined
+        },
+        lazy: {
+            type: Boolean,
+            default: false
+        },
+        scrollable: {
+            type: Boolean,
+            default: false
+        },
+        showNavigators: {
+            type: Boolean,
+            default: true
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        },
+        selectOnFocus: {
+            type: Boolean,
+            default: false
+        },
+        orientation: {
+            type: String,
+            default: 'horizontal',
+            validator: (value) => ['horizontal', 'vertical'].includes(value)
+        }
+    },
     emits: ['update:value'],
+    style: TabsStyle,
+    provide() {
+        return {
+            $pcTabs: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             d_value: this.value

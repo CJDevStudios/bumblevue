@@ -57,17 +57,43 @@
 <script>
 import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, isNotEmpty, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
 import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
+import PanelMenuStyle from '@cjdevstudios/bumblevue/panelmenu/style';
 import { mergeProps } from 'vue';
-import BasePanelMenu from './BasePanelMenu.vue';
 import PanelMenuList from './PanelMenuList.vue';
 
 export default {
     name: 'PanelMenu',
-    extends: BasePanelMenu,
+    extends: BaseComponent,
     inheritAttrs: false,
+    props: {
+        model: {
+            type: Array,
+            default: null
+        },
+        expandedKeys: {
+            type: Object,
+            default: null
+        },
+        multiple: {
+            type: Boolean,
+            default: false
+        },
+        tabindex: {
+            type: Number,
+            default: 0
+        }
+    },
     emits: ['update:expandedKeys', 'panel-open', 'panel-close'],
+    style: PanelMenuStyle,
+    provide() {
+        return {
+            $pcPanelMenu: this,
+            $parentInstance: this
+        };
+    },
     data() {
         return {
             activeItem: null,
