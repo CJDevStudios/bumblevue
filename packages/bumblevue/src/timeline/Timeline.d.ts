@@ -236,10 +236,4 @@ declare const Timeline: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Timeline: typeof Timeline;
-    }
-}
-
 export default Timeline;

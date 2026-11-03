@@ -238,10 +238,4 @@ declare const Breadcrumb: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Breadcrumb: typeof Breadcrumb;
-    }
-}
-
 export default Breadcrumb;

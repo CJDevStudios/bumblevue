@@ -419,10 +419,4 @@ declare const Carousel: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Carousel: typeof Carousel;
-    }
-}
-
 export default Carousel;

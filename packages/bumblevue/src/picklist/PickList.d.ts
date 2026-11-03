@@ -620,10 +620,4 @@ declare const PickList: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        PickList: typeof PickList;
-    }
-}
-
 export default PickList;

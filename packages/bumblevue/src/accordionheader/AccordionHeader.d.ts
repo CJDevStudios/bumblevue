@@ -143,10 +143,4 @@ export declare type AccordionHeaderEmits = EmitFn<AccordionHeaderEmitsOptions>;
  */
 declare const AccordionHeader: DefineComponent<AccordionHeaderProps, AccordionHeaderSlots, AccordionHeaderEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        AccordionHeader: DefineComponent<AccordionHeaderProps, AccordionHeaderSlots, AccordionHeaderEmits>;
-    }
-}
-
 export default AccordionHeader;

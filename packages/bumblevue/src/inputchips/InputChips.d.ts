@@ -346,10 +346,4 @@ declare const InputChips: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        InputChips: typeof InputChips;
-    }
-}
-
 export default InputChips;

@@ -136,10 +136,4 @@ export declare type SplitterPanelEmits = EmitFn<SplitterPanelEmitsOptions>;
  */
 declare const SplitterPanel: DefineComponent<SplitterPanelProps, SplitterPanelSlots, SplitterPanelEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        SplitterPanel: DefineComponent<SplitterPanelProps, SplitterPanelSlots, SplitterPanelEmits>;
-    }
-}
-
 export default SplitterPanel;

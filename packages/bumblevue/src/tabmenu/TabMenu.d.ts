@@ -275,10 +275,4 @@ declare const TabMenu: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        TabMenu: typeof TabMenu;
-    }
-}
-
 export default TabMenu;

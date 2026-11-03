@@ -109,10 +109,4 @@ export declare type ButtonGroupEmits = EmitFn<ButtonGroupEmitsOptions>;
  */
 declare const ButtonGroup: DefineComponent<ButtonGroupProps, ButtonGroupSlots, ButtonGroupEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        ButtonGroup: DefineComponent<ButtonGroupProps, ButtonGroupSlots, ButtonGroupEmits>;
-    }
-}
-
 export default ButtonGroup;

@@ -722,10 +722,4 @@ declare const Tree: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Tree: typeof Tree;
-    }
-}
-
 export default Tree;

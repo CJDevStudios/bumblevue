@@ -960,10 +960,4 @@ declare const MultiSelect: {
     } & MultiSelectMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        MultiSelect: typeof MultiSelect;
-    }
-}
-
 export default MultiSelect;

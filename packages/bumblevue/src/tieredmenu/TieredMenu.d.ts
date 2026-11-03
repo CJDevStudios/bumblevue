@@ -421,10 +421,4 @@ declare const TieredMenu: {
     } & TieredMenuMethods;
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        TieredMenu: typeof TieredMenu;
-    }
-}
-
 export default TieredMenu;

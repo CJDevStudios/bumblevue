@@ -176,10 +176,4 @@ export declare type StepEmits = EmitFn<StepEmitsOptions>;
  */
 declare const Step: DefineComponent<StepProps, StepSlots, StepEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Step: DefineComponent<StepProps, StepSlots, StepEmits>;
-    }
-}
-
 export default Step;

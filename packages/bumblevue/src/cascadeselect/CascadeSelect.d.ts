@@ -658,10 +658,4 @@ declare const CascadeSelect: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        CascadeSelect: typeof CascadeSelect;
-    }
-}
-
 export default CascadeSelect;

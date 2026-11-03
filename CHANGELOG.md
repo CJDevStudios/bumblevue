@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.0.0](https://github.com/CJDevStudios/bumblevue/) (Unreleased)
+## [1.1.0](https://github.com/CJDevStudios/bumblevue/)
+
+**Implemented New Features and Enhancements:**
+
+- Removed GlobalComponent type declarations as they were not automatically registered as global components in BumbleVue, so they were polluting the types seen by the Vue language server.
+
+## [1.0.0](https://github.com/CJDevStudios/bumblevue/releases/tag/1.0.0)
 
 **Implemented New Features and Enhancements:**
 

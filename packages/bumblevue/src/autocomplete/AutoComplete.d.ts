@@ -920,10 +920,4 @@ declare const AutoComplete: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        AutoComplete: typeof AutoComplete;
-    }
-}
-
 export default AutoComplete;

@@ -414,10 +414,4 @@ declare const DataView: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        DataView: typeof DataView;
-    }
-}
-
 export default DataView;

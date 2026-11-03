@@ -119,10 +119,4 @@ export declare type IftaLabelEmits = EmitFn<IftaLabelEmitsOptions>;
  */
 declare const IftaLabel: DefineComponent<IftaLabelProps, IftaLabelSlots, IftaLabelEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        IftaLabel: DefineComponent<IftaLabelProps, IftaLabelSlots, IftaLabelEmits>;
-    }
-}
-
 export default IftaLabel;

@@ -232,10 +232,4 @@ declare const Steps: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Steps: typeof Steps;
-    }
-}
-
 export default Steps;

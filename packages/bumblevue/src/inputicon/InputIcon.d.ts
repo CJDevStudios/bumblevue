@@ -113,10 +113,4 @@ export declare type InputIconEmits = EmitFn<InputIconEmitsOptions>;
  */
 declare const InputIcon: DefineComponent<InputIconProps, InputIconSlots, InputIconEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        InputIcon: DefineComponent<InputIconProps, InputIconSlots, InputIconEmits>;
-    }
-}
-
 export default InputIcon;

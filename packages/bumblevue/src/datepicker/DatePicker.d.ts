@@ -1255,10 +1255,4 @@ declare const DatePicker: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        DatePicker: typeof DatePicker;
-    }
-}
-
 export default DatePicker;

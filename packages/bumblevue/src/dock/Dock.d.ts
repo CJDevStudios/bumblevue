@@ -328,10 +328,4 @@ declare const Dock: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Dock: typeof Dock;
-    }
-}
-
 export default Dock;

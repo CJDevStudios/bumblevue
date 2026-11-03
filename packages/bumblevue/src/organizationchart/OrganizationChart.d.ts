@@ -373,10 +373,4 @@ declare const OrganizationChart: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        OrganizationChart: typeof OrganizationChart;
-    }
-}
-
 export default OrganizationChart;

@@ -125,10 +125,4 @@ export declare type BadgeEmits = EmitFn<BadgeEmitsOptions>;
  */
 declare const Badge: DefineComponent<BadgeProps, BadgeSlots, BadgeEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Badge: DefineComponent<BadgeProps, BadgeSlots, BadgeEmits>;
-    }
-}
-
 export default Badge;

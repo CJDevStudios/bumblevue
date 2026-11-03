@@ -97,10 +97,4 @@ export interface DropdownMethods {
  */
 declare const Dropdown: DefineComponent<DropdownProps, DropdownSlots, DropdownEmits, DropdownMethods>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Dropdown: DefineComponent<DropdownProps, DropdownSlots, DropdownEmits, DropdownMethods>;
-    }
-}
-
 export default Dropdown;

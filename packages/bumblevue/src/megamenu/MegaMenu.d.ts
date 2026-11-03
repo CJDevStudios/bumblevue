@@ -415,10 +415,4 @@ declare const MegaMenu: {
     };
 };
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        MegaMenu: typeof MegaMenu;
-    }
-}
-
 export default MegaMenu;

@@ -303,10 +303,4 @@ export declare type CheckboxEmits = EmitFn<CheckboxEmitsOptions>;
  */
 declare const Checkbox: DefineComponent<CheckboxProps, CheckboxSlots, CheckboxEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Checkbox: DefineComponent<CheckboxProps, CheckboxSlots, CheckboxEmits>;
-    }
-}
-
 export default Checkbox;

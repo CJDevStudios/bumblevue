@@ -183,10 +183,4 @@ export declare type TextareaEmits = EmitFn<TextareaEmitsOptions>;
  */
 declare const Textarea: DefineComponent<TextareaProps, TextareaSlots, TextareaEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        Textarea: DefineComponent<TextareaProps, TextareaSlots, TextareaEmits>;
-    }
-}
-
 export default Textarea;

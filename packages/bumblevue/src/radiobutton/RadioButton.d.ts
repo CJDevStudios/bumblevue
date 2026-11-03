@@ -250,10 +250,4 @@ export declare type RadioButtonEmits = EmitFn<RadioButtonEmitsOptions>;
  */
 declare const RadioButton: DefineComponent<RadioButtonProps, RadioButtonSlots, RadioButtonEmits>;
 
-declare module 'vue' {
-    export interface GlobalComponents {
-        RadioButton: DefineComponent<RadioButtonProps, RadioButtonSlots, RadioButtonEmits>;
-    }
-}
-
 export default RadioButton;
