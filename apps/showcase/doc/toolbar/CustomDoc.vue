@@ -16,9 +16,9 @@
                             fill="transparent"
                         />
                     </svg>
-                    <Button label="Files" text plain />
-                    <Button label="Edit" text plain />
-                    <Button label="View" text plain />
+                    <Button label="Files" text severity="contrast" />
+                    <Button label="Edit" text severity="contrast" />
+                    <Button label="View" text severity="contrast" />
                 </div>
             </template>
 
@@ -46,9 +46,9 @@ export default {
                 <path d="..." fill="var(--p-text-color)" />
                 <path d="..." fill="transparent" />
             </svg>
-            <Button label="Files" text plain />
-            <Button label="Edit" text plain />
-            <Button label="View" text plain />
+            <Button label="Files" text severity="contrast" />
+            <Button label="Edit" text severity="contrast" />
+            <Button label="View" text severity="contrast" />
         </div>
     </template>
 
@@ -76,9 +76,9 @@ export default {
                             fill="transparent"
                         />
                     </svg>
-                    <Button label="Files" text plain />
-                    <Button label="Edit" text plain />
-                    <Button label="View" text plain />
+                    <Button label="Files" text severity="contrast" />
+                    <Button label="Edit" text severity="contrast" />
+                    <Button label="View" text severity="contrast" />
                 </div>
             </template>
 

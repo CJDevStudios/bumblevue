@@ -19,6 +19,7 @@
 - InlineMessage: Removed deprecated component. Use Message instead.
 - TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 - AutoComplete: Removed deprecated `loadingIcon` prop and `loadingicon` slot (use `loader`), `removeTokenIcon` prop and `removetokenicon` slot (use `chipIcon`/`chipicon`), `dropdownbutton` slot (use `dropdown`), and `item-select`/`item-unselect` events (use `option-select`/`option-unselect`).
+- Button and SplitButton: Removed deprecated `plain` prop.
 
 ## [1.0.0]
 
