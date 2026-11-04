@@ -424,16 +424,6 @@ export interface SelectProps<T = any, C = T> {
      */
     labelClass?: string | object | undefined;
     /**
-     * @deprecated since v4.0. Use 'overlayStyle' instead.
-     * Inline style of the overlay panel.
-     */
-    panelStyle?: object | undefined;
-    /**
-     * @deprecated since v4.0. Use 'overlayClass' instead.
-     * Style class of the overlay panel.
-     */
-    panelClass?: string | object | undefined;
-    /**
      * Inline style of the overlay.
      */
     overlayStyle?: object | undefined;
