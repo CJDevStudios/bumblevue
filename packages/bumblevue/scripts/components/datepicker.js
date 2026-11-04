@@ -502,7 +502,7 @@ const DatePickerSlots = [
 ];
 
 module.exports = {
-    calendar: {
+    datepicker: {
         name: 'DatePicker',
         description: 'DatePicker is an input component to select a date.',
         props: DatePickerProps,

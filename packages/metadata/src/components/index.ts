@@ -2,7 +2,6 @@ import { MetaType, toMeta } from '../index';
 
 export const form: MetaType[] = toMeta([
     'AutoComplete',
-    'Calendar',
     'CascadeSelect',
     'Checkbox',
     'CheckboxGroup',

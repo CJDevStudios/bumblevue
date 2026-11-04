@@ -78,8 +78,6 @@
         "./button/style": "./src/button/style/ButtonStyle.js",
         "./buttongroup": "./src/buttongroup/ButtonGroup.vue",
         "./buttongroup/style": "./src/buttongroup/style/ButtonGroupStyle.js",
-        "./calendar": "./src/calendar/Calendar.vue",
-        "./calendar/style": "./src/calendar/style/CalendarStyle.js",
         "./card": "./src/card/Card.vue",
         "./card/style": "./src/card/style/CardStyle.js",
         "./carousel": "./src/carousel/Carousel.vue",

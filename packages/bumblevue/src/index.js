@@ -99,12 +99,6 @@ export { default as ButtonGroup } from '@cjdevstudios/bumblevue/buttongroup';
 export * from '@cjdevstudios/bumblevue/buttongroup/style';
 export { default as ButtonGroupStyle } from '@cjdevstudios/bumblevue/buttongroup/style';
 
-// Calendar
-export * from '@cjdevstudios/bumblevue/calendar';
-export { default as Calendar } from '@cjdevstudios/bumblevue/calendar';
-export * from '@cjdevstudios/bumblevue/calendar/style';
-export { default as CalendarStyle } from '@cjdevstudios/bumblevue/calendar/style';
-
 // Card
 export * from '@cjdevstudios/bumblevue/card';
 export { default as Card } from '@cjdevstudios/bumblevue/card';
