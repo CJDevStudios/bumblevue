@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         $variant() {
-            return this.variant ?? (this.$bumblevue.config.inputStyle || this.$bumblevue.config.inputVariant);
+            return this.variant ?? this.$bumblevue.config.inputVariant;
         },
         $fluid() {
             return this.fluid ?? !!this.$pcFluid;

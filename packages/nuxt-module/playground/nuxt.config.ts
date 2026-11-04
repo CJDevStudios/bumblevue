@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     bumblevue: {
         useBumbleVue: true,
         options: {
-            // ripple, inputStyle etc.
+            // ripple, inputVariant etc.
             ripple: true,
             theme: {
                 preset: Aura
