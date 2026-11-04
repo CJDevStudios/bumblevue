@@ -7,6 +7,7 @@
 
 **Breaking Changes:**
 - Chips and InputChips: Removed deprecated components. Use AutoComplete with `multiple` enabled and `typeahead` disabled instead.
+- InputSwitch: Removed deprecated component. Use ToggleSwitch instead.
 - Sidebar: Removed deprecated component. Use Drawer instead.
 - Calendar: Removed deprecated component. Use DatePicker instead.
 - Dropdown: Removed deprecated component. Use Select instead.

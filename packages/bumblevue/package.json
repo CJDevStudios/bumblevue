@@ -163,8 +163,6 @@
         "./inputnumber/style": "./src/inputnumber/style/InputNumberStyle.js",
         "./inputotp": "./src/inputotp/InputOtp.vue",
         "./inputotp/style": "./src/inputotp/style/InputOtpStyle.js",
-        "./inputswitch": "./src/inputswitch/InputSwitch.vue",
-        "./inputswitch/style": "./src/inputswitch/style/InputSwitchStyle.js",
         "./inputtext": "./src/inputtext/InputText.vue",
         "./inputtext/style": "./src/inputtext/style/InputTextStyle.js",
         "./keyfilter": "./src/keyfilter/KeyFilter.js",
