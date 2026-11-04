@@ -359,12 +359,6 @@ export { default as InputOtp } from '@cjdevstudios/bumblevue/inputotp';
 export * from '@cjdevstudios/bumblevue/inputotp/style';
 export { default as InputOtpStyle } from '@cjdevstudios/bumblevue/inputotp/style';
 
-// InputSwitch
-export * from '@cjdevstudios/bumblevue/inputswitch';
-export { default as InputSwitch } from '@cjdevstudios/bumblevue/inputswitch';
-export * from '@cjdevstudios/bumblevue/inputswitch/style';
-export { default as InputSwitchStyle } from '@cjdevstudios/bumblevue/inputswitch/style';
-
 // InputText
 export * from '@cjdevstudios/bumblevue/inputtext';
 export { default as InputText } from '@cjdevstudios/bumblevue/inputtext';
