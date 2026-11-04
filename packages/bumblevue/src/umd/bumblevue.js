@@ -345,12 +345,6 @@ export { default as ImageCompare } from '../imagecompare/ImageCompare.vue';
 export * from '../imagecompare/style/ImageCompareStyle.js';
 export { default as ImageCompareStyle } from '../imagecompare/style/ImageCompareStyle.js';
 
-// InlineMessage
-export * from '../inlinemessage/InlineMessage.vue';
-export { default as InlineMessage } from '../inlinemessage/InlineMessage.vue';
-export * from '../inlinemessage/style/InlineMessageStyle.js';
-export { default as InlineMessageStyle } from '../inlinemessage/style/InlineMessageStyle.js';
-
 // Inplace
 export * from '../inplace/Inplace.vue';
 export { default as Inplace } from '../inplace/Inplace.vue';
@@ -702,12 +696,6 @@ export * from '../tablist/TabList.vue';
 export { default as TabList } from '../tablist/TabList.vue';
 export * from '../tablist/style/TabListStyle.js';
 export { default as TabListStyle } from '../tablist/style/TabListStyle.js';
-
-// TabMenu
-export * from '../tabmenu/TabMenu.vue';
-export { default as TabMenu } from '../tabmenu/TabMenu.vue';
-export * from '../tabmenu/style/TabMenuStyle.js';
-export { default as TabMenuStyle } from '../tabmenu/style/TabMenuStyle.js';
 
 // TabPanel
 export * from '../tabpanel/TabPanel.vue';

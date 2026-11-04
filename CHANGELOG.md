@@ -8,6 +8,8 @@
 **Breaking Changes:**
 - AccordionTab: Removed deprecated component. Use AccordionPanel, AccordionHeader and AccordionContent instead.
   The deprecated Accordion `activeIndex` prop and `update:activeIndex`/`tab-click` events were removed along with it; use `value`/`update:value` instead.
+- InlineMessage: Removed deprecated component. Use Message instead.
+- TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 
 ## [1.0.0]
 

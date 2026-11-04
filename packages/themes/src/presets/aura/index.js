@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/aura/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/aura/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/aura/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/aura/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/aura/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/aura/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/aura/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/aura/inputgroup';
@@ -70,7 +69,6 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/aura/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/aura/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/aura/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/aura/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/aura/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/aura/tabs';
 import tabview from '@cjdevstudios/bumblevue-themes/aura/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/aura/tag';
@@ -123,7 +121,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,
@@ -162,7 +159,6 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
         tabview,
         textarea,

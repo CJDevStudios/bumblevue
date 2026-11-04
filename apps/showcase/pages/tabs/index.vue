@@ -6,7 +6,6 @@
     import DynamicDoc from '@/doc/tabs/DynamicDoc.vue';
     import ImportDoc from '@/doc/tabs/ImportDoc.vue';
     import ScrollableDoc from '@/doc/tabs/ScrollableDoc.vue';
-    import TabMenuDoc from '@/doc/tabs/TabMenuDoc.vue';
     import TemplateDoc from '@/doc/tabs/TemplateDoc.vue';
     import PTComponent from '@/doc/tabs/pt/index.vue';
     import ThemingDoc from '@/doc/tabs/theming/index.vue';
@@ -21,7 +20,6 @@
         { id: 'vertical', label: 'Vertical', component: VerticalDoc },
         { id: 'disabled', label: 'Disabled', component: DisabledDoc },
         { id: 'template', label: 'Template', component: TemplateDoc },
-        { id: 'tabmenu', label: 'Tab Menu', component: TabMenuDoc },
         { id: 'accessibility', label: 'Accessibility', component: AccessibilityDoc }
     ];
 </script>

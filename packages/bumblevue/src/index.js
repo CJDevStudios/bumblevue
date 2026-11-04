@@ -323,12 +323,6 @@ export { default as ImageCompare } from '@cjdevstudios/bumblevue/imagecompare';
 export * from '@cjdevstudios/bumblevue/imagecompare/style';
 export { default as ImageCompareStyle } from '@cjdevstudios/bumblevue/imagecompare/style';
 
-// InlineMessage
-export * from '@cjdevstudios/bumblevue/inlinemessage';
-export { default as InlineMessage } from '@cjdevstudios/bumblevue/inlinemessage';
-export * from '@cjdevstudios/bumblevue/inlinemessage/style';
-export { default as InlineMessageStyle } from '@cjdevstudios/bumblevue/inlinemessage/style';
-
 // Inplace
 export * from '@cjdevstudios/bumblevue/inplace';
 export { default as Inplace } from '@cjdevstudios/bumblevue/inplace';
@@ -680,12 +674,6 @@ export * from '@cjdevstudios/bumblevue/tablist';
 export { default as TabList } from '@cjdevstudios/bumblevue/tablist';
 export * from '@cjdevstudios/bumblevue/tablist/style';
 export { default as TabListStyle } from '@cjdevstudios/bumblevue/tablist/style';
-
-// TabMenu
-export * from '@cjdevstudios/bumblevue/tabmenu';
-export { default as TabMenu } from '@cjdevstudios/bumblevue/tabmenu';
-export * from '@cjdevstudios/bumblevue/tabmenu/style';
-export { default as TabMenuStyle } from '@cjdevstudios/bumblevue/tabmenu/style';
 
 // TabPanel
 export * from '@cjdevstudios/bumblevue/tabpanel';
