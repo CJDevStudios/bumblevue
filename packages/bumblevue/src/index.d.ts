@@ -69,12 +69,6 @@ export { default as Badge } from '@cjdevstudios/bumblevue/badge';
 export * from '@cjdevstudios/bumblevue/badge/style';
 export { default as BadgeStyle } from '@cjdevstudios/bumblevue/badge/style';
 
-// BadgeDirective
-export * from '@cjdevstudios/bumblevue/badgedirective';
-export { default as BadgeDirective } from '@cjdevstudios/bumblevue/badgedirective';
-export * from '@cjdevstudios/bumblevue/badgedirective/style';
-export { default as BadgeDirectiveStyle } from '@cjdevstudios/bumblevue/badgedirective/style';
-
 // BlockUI
 export * from '@cjdevstudios/bumblevue/blockui';
 export { default as BlockUI } from '@cjdevstudios/bumblevue/blockui';

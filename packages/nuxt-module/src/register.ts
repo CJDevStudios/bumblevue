@@ -126,10 +126,6 @@ function registerStyles(resolvePath: any, registered: any, moduleOptions: Module
             .flat()
             .reduce((acc: any[], citem: any) => (acc.some((item) => item.as.toLowerCase() === citem.as.toLowerCase()) ? acc : [...acc, citem]), [])
             .forEach((item: any) => {
-                if (item.from.toLowerCase().includes('badgedirective')) {
-                    return;
-                }
-
                 styles.push({
                     name: `${item.as}Style`,
                     as: `${item.as}Style`,

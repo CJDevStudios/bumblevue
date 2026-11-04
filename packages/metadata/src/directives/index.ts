@@ -1,7 +1,6 @@
 import { MetaType, toMeta } from '../index';
 
 export const directives: MetaType[] = toMeta([
-    { name: 'badge', as: 'BadgeDirective', from: '@cjdevstudios/bumblevue/badgedirective' },
     { name: 'tooltip', as: 'Tooltip', from: '@cjdevstudios/bumblevue/tooltip' },
     { name: 'ripple', as: 'Ripple', from: '@cjdevstudios/bumblevue/ripple' },
     { name: 'styleclass', as: 'StyleClass', from: '@cjdevstudios/bumblevue/styleclass' },

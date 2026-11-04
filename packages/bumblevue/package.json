@@ -68,8 +68,6 @@
         "./avatargroup/style": "./src/avatargroup/style/AvatarGroupStyle.js",
         "./badge": "./src/badge/Badge.vue",
         "./badge/style": "./src/badge/style/BadgeStyle.js",
-        "./badgedirective": "./src/badgedirective/BadgeDirective.js",
-        "./badgedirective/style": "./src/badgedirective/style/BadgeDirectiveStyle.js",
         "./blockui": "./src/blockui/BlockUI.vue",
         "./blockui/style": "./src/blockui/style/BlockUIStyle.js",
         "./breadcrumb": "./src/breadcrumb/Breadcrumb.vue",
