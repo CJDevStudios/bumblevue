@@ -44,29 +44,6 @@ export interface AccordionPassThroughMethodOptions {
     global: object | undefined;
 }
 /**
- * Custom tab open event.
- * @see {@link AccordionEmitsOptions.tab-open}
- */
-export interface AccordionTabOpenEvent {
-    /**
-     * Browser mouse event.
-     * @type {MouseEvent}
-     */
-    originalEvent: MouseEvent;
-    /**
-     * Opened tab index.
-     */
-    index: number;
-}
-
-/**
- * Custom tab close event.
- * @see {@link AccordionEmitsOptions.tab-close}
- * @extends {AccordionTabOpenEvent}
- */
-export interface AccordionTabCloseEvent extends AccordionTabOpenEvent {}
-
-/**
  * Custom passthrough(pt) options.
  * @see {@link AccordionProps.pt}
  */
@@ -188,18 +165,6 @@ export interface AccordionEmitsOptions {
      * @param {string | string[] | null | undefined} value - Value of new active panel.
      */
     'update:value'(value: string | string[] | null | undefined): void;
-    /**
-     * Callback to invoke when a tab gets expanded.
-     * @param {AccordionTabOpenEvent} event - Custom tab open event.
-     * @deprecated since v4.
-     */
-    'tab-open'(event: AccordionTabOpenEvent): void;
-    /**
-     * Callback to invoke when an active tab is collapsed by clicking on the header.
-     * @param {AccordionTabCloseEvent} event - Custom tab close event.
-     * @deprecated since v4.
-     */
-    'tab-close'(event: AccordionTabCloseEvent): void;
 }
 
 export declare type AccordionEmits = EmitFn<AccordionEmitsOptions>;

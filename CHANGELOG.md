@@ -20,6 +20,7 @@
 - TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 - AutoComplete: Removed deprecated `loadingIcon` prop and `loadingicon` slot (use `loader`), `removeTokenIcon` prop and `removetokenicon` slot (use `chipIcon`/`chipicon`), `dropdownbutton` slot (use `dropdown`), and `item-select`/`item-unselect` events (use `option-select`/`option-unselect`).
 - Button and SplitButton: Removed deprecated `plain` prop.
+- Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 
 ## [1.0.0]
 

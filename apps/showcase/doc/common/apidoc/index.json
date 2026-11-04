@@ -1436,54 +1436,6 @@
                     ],
                     "methods": []
                 },
-                "AccordionTabOpenEvent": {
-                    "description": "Custom tab open event.",
-                    "relatedProp": "AccordionEmitsOptions.tab-open",
-                    "props": [
-                        {
-                            "name": "originalEvent",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "MouseEvent",
-                            "default": "",
-                            "description": "Browser mouse event."
-                        },
-                        {
-                            "name": "index",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Opened tab index."
-                        }
-                    ],
-                    "methods": [],
-                    "extendedBy": "AccordionTabCloseEvent"
-                },
-                "AccordionTabCloseEvent": {
-                    "description": "Custom tab close event.",
-                    "relatedProp": "AccordionEmitsOptions.tab-close",
-                    "props": [
-                        {
-                            "name": "originalEvent",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "MouseEvent",
-                            "default": "",
-                            "description": "Browser mouse event."
-                        },
-                        {
-                            "name": "index",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Opened tab index."
-                        }
-                    ],
-                    "methods": [],
-                    "extendedTypes": "AccordionTabOpenEvent"
-                },
                 "AccordionPassThroughOptions": {
                     "description": "Custom passthrough(pt) options.",
                     "relatedProp": "AccordionProps.pt",
@@ -1680,34 +1632,6 @@
                             ],
                             "returnType": "void",
                             "description": "Emitted when the active panel changes."
-                        },
-                        {
-                            "name": "tab-open",
-                            "parameters": [
-                                {
-                                    "name": "event",
-                                    "optional": false,
-                                    "type": "AccordionTabOpenEvent",
-                                    "description": "Custom tab open event."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "Callback to invoke when a tab gets expanded.",
-                            "deprecated": "since v4."
-                        },
-                        {
-                            "name": "tab-close",
-                            "parameters": [
-                                {
-                                    "name": "event",
-                                    "optional": false,
-                                    "type": "AccordionTabCloseEvent",
-                                    "description": "Custom tab close event."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "Callback to invoke when an active tab is collapsed by clicking on the header.",
-                            "deprecated": "since v4."
                         }
                     ]
                 }
@@ -1718,14 +1642,6 @@
             "values": {
                 "AccordionPassThroughMethodOptions": {
                     "description": "Custom passthrough(pt) option method.",
-                    "props": []
-                },
-                "AccordionTabOpenEvent": {
-                    "description": "Custom tab open event.",
-                    "props": []
-                },
-                "AccordionTabCloseEvent": {
-                    "description": "Custom tab close event.",
                     "props": []
                 },
                 "AccordionPassThroughOptions": {

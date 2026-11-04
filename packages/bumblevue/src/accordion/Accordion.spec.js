@@ -76,7 +76,6 @@ describe('Accordion.vue with AccordionPanel', () => {
         expect(allPanels[0].classes()).not.toContain('p-accordionpanel-active');
         expect(allPanels[1].classes()).toContain('p-accordionpanel-active');
         expect(wrapper.emitted()['update:value'][0]).toEqual(['1']);
-        expect(wrapper.emitted()['tab-open'][0][0].index).toEqual(1);
     });
 
     it('should keep multiple panels open', async () => {
