@@ -9,7 +9,6 @@ export const form: MetaType[] = toMeta([
     'Chips',
     'ColorPicker',
     'DatePicker',
-    'Dropdown',
     'Editor',
     'FloatLabel',
     'Fluid',

@@ -247,12 +247,6 @@ export { default as Drawer } from '@cjdevstudios/bumblevue/drawer';
 export * from '@cjdevstudios/bumblevue/drawer/style';
 export { default as DrawerStyle } from '@cjdevstudios/bumblevue/drawer/style';
 
-// Dropdown
-export * from '@cjdevstudios/bumblevue/dropdown';
-export { default as Dropdown } from '@cjdevstudios/bumblevue/dropdown';
-export * from '@cjdevstudios/bumblevue/dropdown/style';
-export { default as DropdownStyle } from '@cjdevstudios/bumblevue/dropdown/style';
-
 // DynamicDialog
 export * from '@cjdevstudios/bumblevue/dynamicdialog';
 export { default as DynamicDialog } from '@cjdevstudios/bumblevue/dynamicdialog';

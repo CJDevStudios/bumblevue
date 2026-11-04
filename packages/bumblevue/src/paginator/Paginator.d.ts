@@ -9,9 +9,9 @@
  */
 import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue-core';
 import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
-import type { DropdownPassThroughOptions } from '@cjdevstudios/bumblevue/dropdown';
 import type { InputNumberPassThroughOptions } from '@cjdevstudios/bumblevue/inputnumber';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
+import type { SelectPassThroughOptions } from '@cjdevstudios/bumblevue/select';
 import { VNode } from 'vue';
 import { SelectProps } from '@cjdevstudios/bumblevue/select';
 
@@ -127,17 +127,17 @@ export interface PaginatorPassThroughOptions<T = any> {
      */
     current?: PaginatorPassThroughOptionType<T>;
     /**
-     * Used to pass attributes to the Dropdown component.
-     * @see {@link DropdownPassThroughOptions}
+     * Used to pass attributes to the Select component.
+     * @see {@link SelectPassThroughOptions}
      */
-    pcRowPerPageDropdown?: DropdownPassThroughOptions<PaginatorSharedPassThroughMethodOptions>;
+    pcRowPerPageDropdown?: SelectPassThroughOptions<PaginatorSharedPassThroughMethodOptions>;
     /**
-     * Used to pass attributes to the Dropdown component.
-     * @see {@link DropdownPassThroughOptions}
+     * Used to pass attributes to the Select component.
+     * @see {@link SelectPassThroughOptions}
      */
-    pcJumpToPageDropdown?: DropdownPassThroughOptions<PaginatorSharedPassThroughMethodOptions>;
+    pcJumpToPageDropdown?: SelectPassThroughOptions<PaginatorSharedPassThroughMethodOptions>;
     /**
-     * Used to pass attributes to the Dropdown component.
+     * Used to pass attributes to the InputNumber component.
      * @see {@link InputNumberPassThroughOptions}
      */
     pcJumpToPageInputText?: InputNumberPassThroughOptions<PaginatorSharedPassThroughMethodOptions>;

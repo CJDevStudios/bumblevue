@@ -269,12 +269,6 @@ export { default as Drawer } from '../drawer/Drawer.vue';
 export * from '../drawer/style/DrawerStyle.js';
 export { default as DrawerStyle } from '../drawer/style/DrawerStyle.js';
 
-// Dropdown
-export * from '../dropdown/Dropdown.vue';
-export { default as Dropdown } from '../dropdown/Dropdown.vue';
-export * from '../dropdown/style/DropdownStyle.js';
-export { default as DropdownStyle } from '../dropdown/style/DropdownStyle.js';
-
 // DynamicDialog
 export * from '../dynamicdialog/DynamicDialog.vue';
 export { default as DynamicDialog } from '../dynamicdialog/DynamicDialog.vue';

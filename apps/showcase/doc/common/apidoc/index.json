@@ -16056,15 +16056,6 @@
                             "default": ""
                         },
                         {
-                            "name": "dropdown",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4. Use the new structure of Select instead."
-                        },
-                        {
                             "name": "dynamicdialog",
                             "optional": true,
                             "readonly": false,
@@ -28034,203 +28025,6 @@
                             "description": "Class name of the content element"
                         }
                     ]
-                }
-            }
-        }
-    },
-    "dropdown": {
-        "description": "Dropdown also known as Select, is used to choose an item from a collection of options.\n\n[Live Demo](https://www.primevue.org/select/)",
-        "components": {
-            "default": {
-                "description": "",
-                "methods": {
-                    "description": "Defines methods that can be accessed by the component's reference.",
-                    "values": []
-                }
-            }
-        },
-        "interfaces": {
-            "description": "Defines the custom interfaces used by the module.",
-            "eventDescription": "Defines the custom events used by the component's emit.",
-            "methodDescription": "Defines methods that can be accessed by the component's reference.",
-            "typeDescription": "Defines the custom types used by the module.",
-            "values": {
-                "DropdownPassThroughMethodOptions": {
-                    "description": "Custom passthrough(pt) option method.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default<T>"
-                },
-                "DropdownChangeEvent": {
-                    "description": "Custom change event.",
-                    "relatedProp": "undefined.DropdownEmitsOptions.change",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownFilterEvent": {
-                    "description": "Custom filter event.",
-                    "relatedProp": "undefined.DropdownEmitsOptions.filter",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownPassThroughOptions": {
-                    "description": "Custom passthrough(pt) options.",
-                    "relatedProp": "undefined.DropdownProps.pt",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default<T>"
-                },
-                "DropdownPassThroughAttributes": {
-                    "description": "Custom passthrough attributes for each DOM elements",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownState": {
-                    "description": "Defines current inline state in Dropdown component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownContext": {
-                    "description": "Defines current options in Dropdown component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownProps": {
-                    "description": "Defines valid properties in Dropdown component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownSlots": {
-                    "description": "Defines valid slots in Dropdown component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                },
-                "DropdownEmitsOptions": {
-                    "description": "Defines valid emits in Dropdown component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": []
-                },
-                "DropdownMethods": {
-                    "relatedProp": "",
-                    "props": [
-                        {
-                            "name": "show",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "Function",
-                            "default": ""
-                        },
-                        {
-                            "name": "hide",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "Function",
-                            "default": ""
-                        }
-                    ],
-                    "methods": []
-                }
-            }
-        },
-        "tokens": {
-            "description": "Define design tokens used by the component.",
-            "values": {
-                "DropdownPassThroughMethodOptions": {
-                    "description": "Custom passthrough(pt) option method.",
-                    "props": []
-                },
-                "DropdownChangeEvent": {
-                    "description": "Custom change event.",
-                    "props": []
-                },
-                "DropdownFilterEvent": {
-                    "description": "Custom filter event.",
-                    "props": []
-                },
-                "DropdownPassThroughOptions": {
-                    "description": "Custom passthrough(pt) options.",
-                    "props": []
-                },
-                "DropdownPassThroughAttributes": {
-                    "description": "Custom passthrough attributes for each DOM elements",
-                    "props": []
-                },
-                "DropdownState": {
-                    "description": "Defines current inline state in Dropdown component.",
-                    "props": []
-                },
-                "DropdownContext": {
-                    "description": "Defines current options in Dropdown component.",
-                    "props": []
-                },
-                "DropdownProps": {
-                    "description": "Defines valid properties in Dropdown component.",
-                    "props": []
-                },
-                "DropdownSlots": {
-                    "description": "Defines valid slots in Dropdown component.",
-                    "props": []
-                },
-                "DropdownEmitsOptions": {
-                    "description": "Defines valid emits in Dropdown component.",
-                    "props": []
-                },
-                "DropdownMethods": {
-                    "props": []
-                }
-            }
-        },
-        "types": {
-            "description": "Defines the custom types used by the module.",
-            "values": {
-                "DropdownEmits": {
-                    "values": "EmitFn<DropdownEmitsOptions> & Select.SelectEmits"
-                }
-            }
-        }
-    },
-    "dropdownstyle": {
-        "description": "Dropdown also known as Select, is used to choose an item from a collection of options.\n\n[Live Demo](https://www.primevue.org/select/)",
-        "interfaces": {
-            "description": "Defines the custom interfaces used by the module.",
-            "eventDescription": "Defines the custom events used by the component's emit.",
-            "methodDescription": "Defines methods that can be accessed by the component's reference.",
-            "typeDescription": "Defines the custom types used by the module.",
-            "values": {
-                "DropdownStyle": {
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                }
-            }
-        },
-        "tokens": {
-            "description": "Define design tokens used by the component.",
-            "values": {
-                "DropdownStyle": {
-                    "props": []
-                }
-            }
-        },
-        "enumerations": {
-            "values": {
-                "DropdownClasses": {
-                    "members": []
                 }
             }
         }
@@ -49293,7 +49087,7 @@
                             "readonly": false,
                             "type": "any",
                             "default": "",
-                            "description": "Used to pass attributes to the Dropdown component."
+                            "description": "Used to pass attributes to the Select component."
                         },
                         {
                             "name": "pcJumpToPageDropdown",
@@ -49301,7 +49095,7 @@
                             "readonly": false,
                             "type": "any",
                             "default": "",
-                            "description": "Used to pass attributes to the Dropdown component."
+                            "description": "Used to pass attributes to the Select component."
                         },
                         {
                             "name": "pcJumpToPageInputText",
@@ -49309,7 +49103,7 @@
                             "readonly": false,
                             "type": "any",
                             "default": "",
-                            "description": "Used to pass attributes to the Dropdown component."
+                            "description": "Used to pass attributes to the InputNumber component."
                         },
                         {
                             "name": "contentEnd",

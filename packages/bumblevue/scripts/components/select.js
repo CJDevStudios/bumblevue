@@ -422,7 +422,7 @@ const SelectSlots = [
 ];
 
 module.exports = {
-    dropdown: {
+    select: {
         name: 'Select',
         description: 'Select is used to select an item from a list of options.',
         props: SelectProps,
