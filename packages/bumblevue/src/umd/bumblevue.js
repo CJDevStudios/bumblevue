@@ -577,12 +577,6 @@ export { default as SelectButton } from '../selectbutton/SelectButton.vue';
 export * from '../selectbutton/style/SelectButtonStyle.js';
 export { default as SelectButtonStyle } from '../selectbutton/style/SelectButtonStyle.js';
 
-// Sidebar
-export * from '../sidebar/Sidebar.vue';
-export { default as Sidebar } from '../sidebar/Sidebar.vue';
-export * from '../sidebar/style/SidebarStyle.js';
-export { default as SidebarStyle } from '../sidebar/style/SidebarStyle.js';
-
 // Skeleton
 export * from '../skeleton/Skeleton.vue';
 export { default as Skeleton } from '../skeleton/Skeleton.vue';

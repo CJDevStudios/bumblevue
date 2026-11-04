@@ -104,7 +104,7 @@ const DrawerSlots = [
 ];
 
 module.exports = {
-    sidebar: {
+    drawer: {
         name: 'Drawer',
         description: 'Drawer is a panel component displayed as an overlay at the edges of the screen.',
         props: DrawerProps,

@@ -232,8 +232,6 @@
         "./select/style": "./src/select/style/SelectStyle.js",
         "./selectbutton": "./src/selectbutton/SelectButton.vue",
         "./selectbutton/style": "./src/selectbutton/style/SelectButtonStyle.js",
-        "./sidebar": "./src/sidebar/Sidebar.vue",
-        "./sidebar/style": "./src/sidebar/style/SidebarStyle.js",
         "./skeleton": "./src/skeleton/Skeleton.vue",
         "./skeleton/style": "./src/skeleton/style/SkeletonStyle.js",
         "./slider": "./src/slider/Slider.vue",

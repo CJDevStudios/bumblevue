@@ -555,12 +555,6 @@ export { default as SelectButton } from '@cjdevstudios/bumblevue/selectbutton';
 export * from '@cjdevstudios/bumblevue/selectbutton/style';
 export { default as SelectButtonStyle } from '@cjdevstudios/bumblevue/selectbutton/style';
 
-// Sidebar
-export * from '@cjdevstudios/bumblevue/sidebar';
-export { default as Sidebar } from '@cjdevstudios/bumblevue/sidebar';
-export * from '@cjdevstudios/bumblevue/sidebar/style';
-export { default as SidebarStyle } from '@cjdevstudios/bumblevue/sidebar/style';
-
 // Skeleton
 export * from '@cjdevstudios/bumblevue/skeleton';
 export { default as Skeleton } from '@cjdevstudios/bumblevue/skeleton';

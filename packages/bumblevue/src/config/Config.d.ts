@@ -87,7 +87,6 @@ import type { ScrollPanelPassThroughOptions } from '@cjdevstudios/bumblevue/scro
 import type { ScrollTopPassThroughOptions } from '@cjdevstudios/bumblevue/scrolltop';
 import type { SelectPassThroughOptions } from '@cjdevstudios/bumblevue/select';
 import type { SelectButtonPassThroughOptions } from '@cjdevstudios/bumblevue/selectbutton';
-import type { SidebarPassThroughOptions } from '@cjdevstudios/bumblevue/sidebar';
 import type { SkeletonPassThroughOptions } from '@cjdevstudios/bumblevue/skeleton';
 import type { SliderPassThroughOptions } from '@cjdevstudios/bumblevue/slider';
 import type { SpeedDialPassThroughOptions } from '@cjdevstudios/bumblevue/speeddial';
@@ -244,7 +243,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of Drawer instead.
      */
-    sidebar?: DefaultPassThrough<SidebarPassThroughOptions>;
     skeleton?: DefaultPassThrough<SkeletonPassThroughOptions>;
     slider?: DefaultPassThrough<SliderPassThroughOptions>;
     speeddial?: DefaultPassThrough<SpeedDialPassThroughOptions>;

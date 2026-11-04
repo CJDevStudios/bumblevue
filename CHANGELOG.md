@@ -6,6 +6,7 @@
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
 **Breaking Changes:**
+- Sidebar: Removed deprecated component. Use Drawer instead.
 - Calendar: Removed deprecated component. Use DatePicker instead.
 - Dropdown: Removed deprecated component. Use Select instead.
 - OverlayPanel: Removed deprecated component. Use Popover instead.
