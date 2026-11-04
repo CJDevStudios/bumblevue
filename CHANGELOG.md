@@ -7,6 +7,13 @@
 
 **Breaking Changes:**
 - Dropdown: Removed deprecated component. Use Select instead.
+- OverlayPanel: Removed deprecated component. Use Popover instead.
+- TabView: Removed deprecated component. Use Tabs with TabList, Tab, TabPanels and TabPanel instead.
+  The TabView-only TabPanel props (`header`, `headerStyle`, `headerClass`, `headerProps`, `headerActionProps`, `contentStyle`, `contentClass`, `contentProps`, `disabled`), pass-through options and `header` slot were removed along with it.
+- AccordionTab: Removed deprecated component. Use AccordionPanel, AccordionHeader and AccordionContent instead.
+  The deprecated Accordion `activeIndex` prop and `update:activeIndex`/`tab-click` events were removed along with it; use `value`/`update:value` instead.
+- InlineMessage: Removed deprecated component. Use Message instead.
+- TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 
 ## [1.0.0]
 

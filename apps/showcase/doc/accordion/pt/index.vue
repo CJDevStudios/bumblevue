@@ -45,13 +45,6 @@ export default {
                     label: 'AccordionContent PT Options',
                     component: DocApiTable,
                     data: getPTOptions('AccordionContent')
-                },
-                {
-                    id: 'pt.doc.accordiontab',
-                    label: 'AccordionTab PT Options',
-                    badge: { value: 'Deprecated since v4', severity: 'warn' },
-                    component: DocApiTable,
-                    data: getPTOptions('AccordionTab')
                 }
             ]
         };
