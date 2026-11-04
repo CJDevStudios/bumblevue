@@ -70,7 +70,6 @@ import splitter from '@cjdevstudios/bumblevue-themes/material/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/material/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/material/steps';
 import tabs from '@cjdevstudios/bumblevue-themes/material/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/material/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/material/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/material/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/material/textarea';
@@ -160,7 +159,6 @@ export default {
         stepper,
         steps,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,

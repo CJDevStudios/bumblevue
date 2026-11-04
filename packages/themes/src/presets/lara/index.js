@@ -70,7 +70,6 @@ import splitter from '@cjdevstudios/bumblevue-themes/lara/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/lara/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/lara/steps';
 import tabs from '@cjdevstudios/bumblevue-themes/lara/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/lara/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/lara/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/lara/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/lara/textarea';
@@ -160,7 +159,6 @@ export default {
         stepper,
         steps,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,

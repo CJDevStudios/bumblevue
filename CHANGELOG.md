@@ -6,6 +6,8 @@
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
 **Breaking Changes:**
+- TabView: Removed deprecated component. Use Tabs with TabList, Tab, TabPanels and TabPanel instead.
+  The TabView-only TabPanel props (`header`, `headerStyle`, `headerClass`, `headerProps`, `headerActionProps`, `contentStyle`, `contentClass`, `contentProps`, `disabled`), pass-through options and `header` slot were removed along with it.
 - AccordionTab: Removed deprecated component. Use AccordionPanel, AccordionHeader and AccordionContent instead.
   The deprecated Accordion `activeIndex` prop and `update:activeIndex`/`tab-click` events were removed along with it; use `value`/`update:value` instead.
 - InlineMessage: Removed deprecated component. Use Message instead.

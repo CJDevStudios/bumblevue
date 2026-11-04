@@ -110,7 +110,6 @@ import type { TabListPassThroughOptions } from '@cjdevstudios/bumblevue/tablist'
 import type { TabPanelPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanel';
 import type { TabPanelsPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanels';
 import type { TabsPassThroughOptions } from '@cjdevstudios/bumblevue/tabs';
-import type { TabViewPassThroughOptions } from '@cjdevstudios/bumblevue/tabview';
 import type { TagPassThroughOptions } from '@cjdevstudios/bumblevue/tag';
 import type { TerminalPassThroughOptions } from '@cjdevstudios/bumblevue/terminal';
 import type { TextareaPassThroughOptions } from '@cjdevstudios/bumblevue/textarea';
@@ -275,7 +274,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use tabs instead.
      */
-    tabview?: DefaultPassThrough<TabViewPassThroughOptions>;
     tag?: DefaultPassThrough<TagPassThroughOptions>;
     terminal?: DefaultPassThrough<TerminalPassThroughOptions>;
     textarea?: DefaultPassThrough<TextareaPassThroughOptions>;

@@ -278,8 +278,6 @@
         "./tabpanels/style": "./src/tabpanels/style/TabPanelsStyle.js",
         "./tabs": "./src/tabs/Tabs.vue",
         "./tabs/style": "./src/tabs/style/TabsStyle.js",
-        "./tabview": "./src/tabview/TabView.vue",
-        "./tabview/style": "./src/tabview/style/TabViewStyle.js",
         "./tag": "./src/tag/Tag.vue",
         "./tag/style": "./src/tag/style/TagStyle.js",
         "./terminal": "./src/terminal/Terminal.vue",

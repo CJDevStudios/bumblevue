@@ -70,7 +70,6 @@ import splitter from '@cjdevstudios/bumblevue-themes/nora/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/nora/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/nora/steps';
 import tabs from '@cjdevstudios/bumblevue-themes/nora/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/nora/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/nora/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/nora/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/nora/textarea';
@@ -160,7 +159,6 @@ export default {
         stepper,
         steps,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,
