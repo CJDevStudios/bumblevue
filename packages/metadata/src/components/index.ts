@@ -86,7 +86,7 @@ export const overlay: MetaType[] = toMeta([
 
 export const file: MetaType[] = toMeta(['FileUpload']);
 
-export const menu: MetaType[] = toMeta(['Breadcrumb', 'ContextMenu', 'Dock', 'Menu', 'Menubar', 'MegaMenu', 'PanelMenu', 'Steps', 'TabMenu', 'TieredMenu']);
+export const menu: MetaType[] = toMeta(['Breadcrumb', 'ContextMenu', 'Dock', 'Menu', 'Menubar', 'MegaMenu', 'PanelMenu', 'Steps', 'TieredMenu']);
 
 export const chart: MetaType[] = toMeta(['Chart']);
 

@@ -7,6 +7,7 @@
 
 **Breaking Changes:**
 - InlineMessage: Removed deprecated component. Use Message instead.
+- TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 
 ## [1.0.0]
 

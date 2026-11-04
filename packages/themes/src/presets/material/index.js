@@ -69,7 +69,6 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/material/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/material/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/material/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/material/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/material/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/material/tabs';
 import tabview from '@cjdevstudios/bumblevue-themes/material/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/material/tag';
@@ -160,7 +159,6 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
         tabview,
         textarea,

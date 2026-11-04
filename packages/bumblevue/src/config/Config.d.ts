@@ -108,7 +108,6 @@ import type { StepsPassThroughOptions } from '@cjdevstudios/bumblevue/steps';
 import type { StyleClassDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/styleclass';
 import type { TabPassThroughOptions } from '@cjdevstudios/bumblevue/tab';
 import type { TabListPassThroughOptions } from '@cjdevstudios/bumblevue/tablist';
-import type { TabMenuPassThroughOptions } from '@cjdevstudios/bumblevue/tabmenu';
 import type { TabPanelPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanel';
 import type { TabPanelsPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanels';
 import type { TabsPassThroughOptions } from '@cjdevstudios/bumblevue/tabs';
@@ -270,7 +269,6 @@ export interface BumbleVuePTOptions {
     steppanels?: DefaultPassThrough<StepPanelsPassThroughOptions>;
     stepper?: DefaultPassThrough<StepperPassThroughOptions>;
     steps?: DefaultPassThrough<StepsPassThroughOptions>;
-    tabmenu?: DefaultPassThrough<TabMenuPassThroughOptions>;
     tabs?: DefaultPassThrough<TabsPassThroughOptions>;
     tablist?: DefaultPassThrough<TabListPassThroughOptions>;
     tab?: DefaultPassThrough<TabPassThroughOptions>;

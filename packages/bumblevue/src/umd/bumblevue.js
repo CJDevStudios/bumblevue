@@ -703,12 +703,6 @@ export { default as TabList } from '../tablist/TabList.vue';
 export * from '../tablist/style/TabListStyle.js';
 export { default as TabListStyle } from '../tablist/style/TabListStyle.js';
 
-// TabMenu
-export * from '../tabmenu/TabMenu.vue';
-export { default as TabMenu } from '../tabmenu/TabMenu.vue';
-export * from '../tabmenu/style/TabMenuStyle.js';
-export { default as TabMenuStyle } from '../tabmenu/style/TabMenuStyle.js';
-
 // TabPanel
 export * from '../tabpanel/TabPanel.vue';
 export { default as TabPanel } from '../tabpanel/TabPanel.vue';

@@ -69,7 +69,6 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/aura/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/aura/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/aura/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/aura/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/aura/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/aura/tabs';
 import tabview from '@cjdevstudios/bumblevue-themes/aura/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/aura/tag';
@@ -160,7 +159,6 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
         tabview,
         textarea,
