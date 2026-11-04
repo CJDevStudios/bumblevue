@@ -200,8 +200,6 @@
         "./overlaybadge": "./src/overlaybadge/OverlayBadge.vue",
         "./overlaybadge/style": "./src/overlaybadge/style/OverlayBadgeStyle.js",
         "./overlayeventbus": "./src/overlayeventbus/OverlayEventBus.js",
-        "./overlaypanel": "./src/overlaypanel/OverlayPanel.vue",
-        "./overlaypanel/style": "./src/overlaypanel/style/OverlayPanelStyle.js",
         "./paginator": "./src/paginator/Paginator.vue",
         "./paginator/style": "./src/paginator/style/PaginatorStyle.js",
         "./panel": "./src/panel/Panel.vue",

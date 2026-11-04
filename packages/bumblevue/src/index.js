@@ -459,12 +459,6 @@ export { default as OverlayBadgeStyle } from '@cjdevstudios/bumblevue/overlaybad
 export * from '@cjdevstudios/bumblevue/overlayeventbus';
 export { default as OverlayEventBus } from '@cjdevstudios/bumblevue/overlayeventbus';
 
-// OverlayPanel
-export * from '@cjdevstudios/bumblevue/overlaypanel';
-export { default as OverlayPanel } from '@cjdevstudios/bumblevue/overlaypanel';
-export * from '@cjdevstudios/bumblevue/overlaypanel/style';
-export { default as OverlayPanelStyle } from '@cjdevstudios/bumblevue/overlaypanel/style';
-
 // Paginator
 export * from '@cjdevstudios/bumblevue/paginator';
 export { default as Paginator } from '@cjdevstudios/bumblevue/paginator';
