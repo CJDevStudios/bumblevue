@@ -67,13 +67,6 @@ export interface AccordionTabOpenEvent {
 export interface AccordionTabCloseEvent extends AccordionTabOpenEvent {}
 
 /**
- * Custom tab open event.
- * @see {@link AccordionEmitsOptions.tab-open}
- * @extends AccordionTabOpenEvent
- */
-export interface AccordionClickEvent extends AccordionTabOpenEvent {}
-
-/**
  * Custom passthrough(pt) options.
  * @see {@link AccordionProps.pt}
  */
@@ -125,12 +118,6 @@ export interface AccordionProps {
      */
     multiple?: boolean | undefined;
     /**
-     * Index of the active tab or an array of indexes in multiple mode.
-     * @defaultValue null
-     * @deprecated since v4. Use value property instead.
-     */
-    activeIndex?: number | number[] | null | undefined;
-    /**
      * When enabled, hidden tabs are not rendered at all. Defaults to false that hides tabs with css.
      * @defaultValue false
      */
@@ -179,7 +166,7 @@ export interface AccordionProps {
  */
 export interface AccordionSlots {
     /**
-     * Default slot to detect AccordionTab components.
+     * Default slot to detect AccordionPanel components.
      */
     default(): VNode[];
     /**
@@ -202,12 +189,6 @@ export interface AccordionEmitsOptions {
      */
     'update:value'(value: string | string[] | null | undefined): void;
     /**
-     * Emitted when the active tab changes.
-     * @param {number | undefined} value - Index of new active tab.
-     * @deprecated since v4. Use update:value emit instead.
-     */
-    'update:activeIndex'(value: number | undefined): void;
-    /**
      * Callback to invoke when a tab gets expanded.
      * @param {AccordionTabOpenEvent} event - Custom tab open event.
      * @deprecated since v4.
@@ -219,12 +200,6 @@ export interface AccordionEmitsOptions {
      * @deprecated since v4.
      */
     'tab-close'(event: AccordionTabCloseEvent): void;
-    /**
-     * Callback to invoke when an active tab is clicked.
-     * @param {AccordionClickEvent} event - Custom tab click event.
-     * @deprecated since v4.
-     */
-    'tab-click'(event: AccordionClickEvent): void;
 }
 
 export declare type AccordionEmits = EmitFn<AccordionEmitsOptions>;

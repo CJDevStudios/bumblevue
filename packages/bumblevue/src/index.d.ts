@@ -39,12 +39,6 @@ export { default as AccordionPanel } from '@cjdevstudios/bumblevue/accordionpane
 export * from '@cjdevstudios/bumblevue/accordionpanel/style';
 export { default as AccordionPanelStyle } from '@cjdevstudios/bumblevue/accordionpanel/style';
 
-// AccordionTab
-export * from '@cjdevstudios/bumblevue/accordiontab';
-export { default as AccordionTab } from '@cjdevstudios/bumblevue/accordiontab';
-export * from '@cjdevstudios/bumblevue/accordiontab/style';
-export { default as AccordionTabStyle } from '@cjdevstudios/bumblevue/accordiontab/style';
-
 // AnimateOnScroll
 export * from '@cjdevstudios/bumblevue/animateonscroll';
 export { default as AnimateOnScroll } from '@cjdevstudios/bumblevue/animateonscroll';
@@ -328,12 +322,6 @@ export * from '@cjdevstudios/bumblevue/imagecompare';
 export { default as ImageCompare } from '@cjdevstudios/bumblevue/imagecompare';
 export * from '@cjdevstudios/bumblevue/imagecompare/style';
 export { default as ImageCompareStyle } from '@cjdevstudios/bumblevue/imagecompare/style';
-
-// InlineMessage
-export * from '@cjdevstudios/bumblevue/inlinemessage';
-export { default as InlineMessage } from '@cjdevstudios/bumblevue/inlinemessage';
-export * from '@cjdevstudios/bumblevue/inlinemessage/style';
-export { default as InlineMessageStyle } from '@cjdevstudios/bumblevue/inlinemessage/style';
 
 // Inplace
 export * from '@cjdevstudios/bumblevue/inplace';
@@ -681,12 +669,6 @@ export { default as TabList } from '@cjdevstudios/bumblevue/tablist';
 export * from '@cjdevstudios/bumblevue/tablist/style';
 export { default as TabListStyle } from '@cjdevstudios/bumblevue/tablist/style';
 
-// TabMenu
-export * from '@cjdevstudios/bumblevue/tabmenu';
-export { default as TabMenu } from '@cjdevstudios/bumblevue/tabmenu';
-export * from '@cjdevstudios/bumblevue/tabmenu/style';
-export { default as TabMenuStyle } from '@cjdevstudios/bumblevue/tabmenu/style';
-
 // TabPanel
 export * from '@cjdevstudios/bumblevue/tabpanel';
 export { default as TabPanel } from '@cjdevstudios/bumblevue/tabpanel';
@@ -704,12 +686,6 @@ export * from '@cjdevstudios/bumblevue/tabs';
 export { default as Tabs } from '@cjdevstudios/bumblevue/tabs';
 export * from '@cjdevstudios/bumblevue/tabs/style';
 export { default as TabsStyle } from '@cjdevstudios/bumblevue/tabs/style';
-
-// TabView
-export * from '@cjdevstudios/bumblevue/tabview';
-export { default as TabView } from '@cjdevstudios/bumblevue/tabview';
-export * from '@cjdevstudios/bumblevue/tabview/style';
-export { default as TabViewStyle } from '@cjdevstudios/bumblevue/tabview/style';
 
 // Tag
 export * from '@cjdevstudios/bumblevue/tag';
