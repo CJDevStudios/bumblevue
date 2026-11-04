@@ -75,8 +75,7 @@ export const overlay: MetaType[] = toMeta([
     'Dialog',
     'Drawer',
     { name: 'DynamicDialog', use: { as: 'DialogService' } },
-    'Popover',
-    'Sidebar'
+    'Popover'
 ]);
 
 export const file: MetaType[] = toMeta(['FileUpload']);
