@@ -687,12 +687,6 @@ export { default as TabList } from '@cjdevstudios/bumblevue/tablist';
 export * from '@cjdevstudios/bumblevue/tablist/style';
 export { default as TabListStyle } from '@cjdevstudios/bumblevue/tablist/style';
 
-// TabMenu
-export * from '@cjdevstudios/bumblevue/tabmenu';
-export { default as TabMenu } from '@cjdevstudios/bumblevue/tabmenu';
-export * from '@cjdevstudios/bumblevue/tabmenu/style';
-export { default as TabMenuStyle } from '@cjdevstudios/bumblevue/tabmenu/style';
-
 // TabPanel
 export * from '@cjdevstudios/bumblevue/tabpanel';
 export { default as TabPanel } from '@cjdevstudios/bumblevue/tabpanel';
