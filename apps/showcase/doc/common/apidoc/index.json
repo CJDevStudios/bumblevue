@@ -1458,35 +1458,11 @@
                         }
                     ],
                     "methods": [],
-                    "extendedBy": "AccordionTabCloseEvent,AccordionClickEvent"
+                    "extendedBy": "AccordionTabCloseEvent"
                 },
                 "AccordionTabCloseEvent": {
                     "description": "Custom tab close event.",
                     "relatedProp": "AccordionEmitsOptions.tab-close",
-                    "props": [
-                        {
-                            "name": "originalEvent",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "MouseEvent",
-                            "default": "",
-                            "description": "Browser mouse event."
-                        },
-                        {
-                            "name": "index",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Opened tab index."
-                        }
-                    ],
-                    "methods": [],
-                    "extendedTypes": "AccordionTabOpenEvent"
-                },
-                "AccordionClickEvent": {
-                    "description": "Custom tab open event.",
-                    "relatedProp": "AccordionEmitsOptions.tab-open",
                     "props": [
                         {
                             "name": "originalEvent",
@@ -1588,15 +1564,6 @@
                             "description": "When enabled, multiple tabs can be activated at the same time."
                         },
                         {
-                            "name": "activeIndex",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "null | number | number[]",
-                            "default": "null",
-                            "description": "Index of the active tab or an array of indexes in multiple mode.",
-                            "deprecated": "since v4. Use value property instead."
-                        },
-                        {
                             "name": "lazy",
                             "optional": true,
                             "readonly": false,
@@ -1680,7 +1647,7 @@
                             "name": "default",
                             "parameters": [],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Default slot to detect AccordionTab components."
+                            "description": "Default slot to detect AccordionPanel components."
                         },
                         {
                             "name": "collapseicon",
@@ -1715,20 +1682,6 @@
                             "description": "Emitted when the active panel changes."
                         },
                         {
-                            "name": "update:activeIndex",
-                            "parameters": [
-                                {
-                                    "name": "value",
-                                    "optional": false,
-                                    "type": "undefined | number",
-                                    "description": "Index of new active tab."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "Emitted when the active tab changes.",
-                            "deprecated": "since v4. Use update:value emit instead."
-                        },
-                        {
                             "name": "tab-open",
                             "parameters": [
                                 {
@@ -1755,20 +1708,6 @@
                             "returnType": "void",
                             "description": "Callback to invoke when an active tab is collapsed by clicking on the header.",
                             "deprecated": "since v4."
-                        },
-                        {
-                            "name": "tab-click",
-                            "parameters": [
-                                {
-                                    "name": "event",
-                                    "optional": false,
-                                    "type": "AccordionClickEvent",
-                                    "description": "Custom tab click event."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "Callback to invoke when an active tab is clicked.",
-                            "deprecated": "since v4."
                         }
                     ]
                 }
@@ -1787,10 +1726,6 @@
                 },
                 "AccordionTabCloseEvent": {
                     "description": "Custom tab close event.",
-                    "props": []
-                },
-                "AccordionClickEvent": {
-                    "description": "Custom tab open event.",
                     "props": []
                 },
                 "AccordionPassThroughOptions": {
@@ -2755,432 +2690,6 @@
                             "description": "Class name of the root element"
                         }
                     ]
-                }
-            }
-        }
-    },
-    "accordiontab": {
-        "description": "",
-        "components": {
-            "default": {
-                "description": "",
-                "methods": {
-                    "description": "Defines methods that can be accessed by the component's reference.",
-                    "values": []
-                }
-            }
-        },
-        "interfaces": {
-            "description": "Defines the custom interfaces used by the module.",
-            "eventDescription": "Defines the custom events used by the component's emit.",
-            "methodDescription": "Defines methods that can be accessed by the component's reference.",
-            "typeDescription": "Defines the custom types used by the module.",
-            "values": {
-                "AccordionTabPassThroughMethodOptions": {
-                    "description": "Custom passthrough(pt) option method.",
-                    "relatedProp": "",
-                    "props": [
-                        {
-                            "name": "instance",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Defines instance."
-                        },
-                        {
-                            "name": "props",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "AccordionTabProps",
-                            "default": "",
-                            "description": "Defines valid properties."
-                        },
-                        {
-                            "name": "attrs",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Defines valid attributes."
-                        },
-                        {
-                            "name": "parent",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Defines parent options."
-                        },
-                        {
-                            "name": "context",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "AccordionTabContext",
-                            "default": "",
-                            "description": "Defines current options."
-                        },
-                        {
-                            "name": "global",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "undefined | object",
-                            "default": "",
-                            "description": "Defines passthrough(pt) options in global config."
-                        }
-                    ],
-                    "methods": []
-                },
-                "AccordionTabPassThroughOptions": {
-                    "description": "Custom passthrough(pt) options.",
-                    "relatedProp": "AccordionTabProps.pt",
-                    "props": [
-                        {
-                            "name": "root",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the root's DOM element."
-                        },
-                        {
-                            "name": "header",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the header's DOM element."
-                        },
-                        {
-                            "name": "headerAction",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the headeraction's DOM element."
-                        },
-                        {
-                            "name": "headerIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the headericon's DOM element."
-                        },
-                        {
-                            "name": "headerTitle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the headertitle's DOM element."
-                        },
-                        {
-                            "name": "toggleableContent",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the toggleablecontent's DOM element."
-                        },
-                        {
-                            "name": "content",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughOptionType",
-                            "default": "",
-                            "description": "Used to pass attributes to the content's DOM element."
-                        },
-                        {
-                            "name": "transition",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AccordionTabPassThroughTransitionType",
-                            "default": "",
-                            "description": "Used to control Vue Transition API."
-                        }
-                    ],
-                    "methods": []
-                },
-                "AccordionTabPassThroughAttributes": {
-                    "description": "Custom passthrough attributes for each DOM elements",
-                    "relatedProp": "",
-                    "props": [
-                        {
-                            "name": "[key: string]",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "any"
-                        }
-                    ],
-                    "methods": []
-                },
-                "AccordionTabProps": {
-                    "description": "Defines valid properties in AccordionTab component.",
-                    "relatedProp": "",
-                    "props": [
-                        {
-                            "name": "header",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Orientation of tab headers."
-                        },
-                        {
-                            "name": "headerStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Inline style of the tab header."
-                        },
-                        {
-                            "name": "headerClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Style class of the tab header."
-                        },
-                        {
-                            "name": "headerProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "HTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLDivElement to the tab header."
-                        },
-                        {
-                            "name": "headerActionProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "AnchorHTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLAnchorElement to the focusable anchor element inside the tab header."
-                        },
-                        {
-                            "name": "contentStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Inline style of the tab content."
-                        },
-                        {
-                            "name": "contentClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Style class of the tab content."
-                        },
-                        {
-                            "name": "contentProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "HTMLAttributes",
-                            "default": "",
-                            "description": "Used to pass all properties of the HTMLDivElement to the tab content."
-                        },
-                        {
-                            "name": "disabled",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "false",
-                            "description": "Whether the tab is disabled."
-                        },
-                        {
-                            "name": "dt",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "It generates scoped CSS variables using design tokens for the component."
-                        },
-                        {
-                            "name": "pt",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "PassThrough<AccordionTabPassThroughOptions>",
-                            "default": "",
-                            "description": "Used to pass attributes to DOM elements inside the component."
-                        },
-                        {
-                            "name": "ptOptions",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "Used to configure passthrough(pt) options of the component."
-                        }
-                    ],
-                    "methods": []
-                },
-                "AccordionTabContext": {
-                    "description": "Defines current options in AccordionTab component.",
-                    "relatedProp": "",
-                    "props": [
-                        {
-                            "name": "index",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Current index of the tab."
-                        },
-                        {
-                            "name": "count",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "number",
-                            "default": "",
-                            "description": "Count of tabs"
-                        },
-                        {
-                            "name": "first",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "",
-                            "description": "Whether the tab is first."
-                        },
-                        {
-                            "name": "last",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "",
-                            "description": "Whether the tab is last."
-                        },
-                        {
-                            "name": "active",
-                            "optional": false,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "",
-                            "description": "Whether the tab is active."
-                        }
-                    ],
-                    "methods": []
-                },
-                "AccordionTabSlots": {
-                    "description": "Defines valid slots in AcordionTab slots.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [
-                        {
-                            "name": "default",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Default slot for content."
-                        },
-                        {
-                            "name": "header",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Custom content for the title section of a AccordionTab is defined using the header template."
-                        },
-                        {
-                            "name": "headericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">index</span>: <span class=\"doc-option-parameter-type\">number</span>, <span class=\"doc-option-parameter-type\">// Index of the tab</span>\n \t <span class=\"ml-3 doc-option-parameter-name\">active</span>: <span class=\"doc-option-parameter-type\">(<span class=\"doc-option-parameter-name\">index</span>: number) &rArr; void</span>, <span class=\"doc-option-parameter-type\">// Whether the tab is active</span>\n}",
-                                    "description": "header slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Custom icon for the header section of a AccordionTab is defined using the headericon template."
-                        }
-                    ]
-                },
-                "AccordionTabEmitsOptions": {
-                    "description": "Defines valid emits in AcordionTab component.",
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": []
-                }
-            }
-        },
-        "tokens": {
-            "description": "Define design tokens used by the component.",
-            "values": {
-                "AccordionTabPassThroughMethodOptions": {
-                    "description": "Custom passthrough(pt) option method.",
-                    "props": []
-                },
-                "AccordionTabPassThroughOptions": {
-                    "description": "Custom passthrough(pt) options.",
-                    "props": []
-                },
-                "AccordionTabPassThroughAttributes": {
-                    "description": "Custom passthrough attributes for each DOM elements",
-                    "props": []
-                },
-                "AccordionTabProps": {
-                    "description": "Defines valid properties in AccordionTab component.",
-                    "props": []
-                },
-                "AccordionTabContext": {
-                    "description": "Defines current options in AccordionTab component.",
-                    "props": []
-                },
-                "AccordionTabSlots": {
-                    "description": "Defines valid slots in AcordionTab slots.",
-                    "props": []
-                },
-                "AccordionTabEmitsOptions": {
-                    "description": "Defines valid emits in AcordionTab component.",
-                    "props": []
-                }
-            }
-        },
-        "types": {
-            "description": "Defines the custom types used by the module.",
-            "values": {
-                "AccordionTabPassThroughOptionType": {
-                    "values": "AccordionTabPassThroughAttributes | (options: AccordionTabPassThroughMethodOptions) => undefined | string | null | undefined"
-                },
-                "AccordionTabPassThroughTransitionType": {
-                    "values": "TransitionProps | (options: AccordionTabPassThroughMethodOptions) => TransitionProps | undefined"
-                },
-                "AccordionTabEmits": {
-                    "values": "EmitFn<AccordionTabEmitsOptions>"
-                }
-            }
-        }
-    },
-    "accordiontabstyle": {
-        "description": "",
-        "interfaces": {
-            "description": "Defines the custom interfaces used by the module.",
-            "eventDescription": "Defines the custom events used by the component's emit.",
-            "methodDescription": "Defines methods that can be accessed by the component's reference.",
-            "typeDescription": "Defines the custom types used by the module.",
-            "values": {
-                "AccordionTabStyle": {
-                    "relatedProp": "",
-                    "props": [],
-                    "methods": [],
-                    "extendedTypes": "default"
-                }
-            }
-        },
-        "tokens": {
-            "description": "Define design tokens used by the component.",
-            "values": {
-                "AccordionTabStyle": {
-                    "props": []
-                }
-            }
-        },
-        "enumerations": {
-            "values": {
-                "AccordionTabClasses": {
-                    "members": []
                 }
             }
         }
@@ -16324,15 +15833,6 @@
                             "readonly": false,
                             "type": "any",
                             "default": ""
-                        },
-                        {
-                            "name": "accordiontab",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "any",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4. Use the new structure of Accordion instead."
                         },
                         {
                             "name": "autocomplete",

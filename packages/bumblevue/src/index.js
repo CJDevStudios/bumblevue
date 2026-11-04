@@ -39,12 +39,6 @@ export { default as AccordionPanel } from '@cjdevstudios/bumblevue/accordionpane
 export * from '@cjdevstudios/bumblevue/accordionpanel/style';
 export { default as AccordionPanelStyle } from '@cjdevstudios/bumblevue/accordionpanel/style';
 
-// AccordionTab
-export * from '@cjdevstudios/bumblevue/accordiontab';
-export { default as AccordionTab } from '@cjdevstudios/bumblevue/accordiontab';
-export * from '@cjdevstudios/bumblevue/accordiontab/style';
-export { default as AccordionTabStyle } from '@cjdevstudios/bumblevue/accordiontab/style';
-
 // AnimateOnScroll
 export * from '@cjdevstudios/bumblevue/animateonscroll';
 export { default as AnimateOnScroll } from '@cjdevstudios/bumblevue/animateonscroll';

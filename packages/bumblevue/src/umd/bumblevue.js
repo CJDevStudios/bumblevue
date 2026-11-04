@@ -61,12 +61,6 @@ export { default as AccordionPanel } from '../accordionpanel/AccordionPanel.vue'
 export * from '../accordionpanel/style/AccordionPanelStyle.js';
 export { default as AccordionPanelStyle } from '../accordionpanel/style/AccordionPanelStyle.js';
 
-// AccordionTab
-export * from '../accordiontab/AccordionTab.vue';
-export { default as AccordionTab } from '../accordiontab/AccordionTab.vue';
-export * from '../accordiontab/style/AccordionTabStyle.js';
-export { default as AccordionTabStyle } from '../accordiontab/style/AccordionTabStyle.js';
-
 // AnimateOnScroll
 export * from '../animateonscroll/AnimateOnScroll.js';
 export { default as AnimateOnScroll } from '../animateonscroll/AnimateOnScroll.js';

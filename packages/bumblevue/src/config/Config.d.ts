@@ -4,7 +4,6 @@ import type { AccordionPassThroughOptions } from '@cjdevstudios/bumblevue/accord
 import type { AccordionContentPassThroughOptions } from '@cjdevstudios/bumblevue/accordioncontent';
 import type { AccordionHeaderPassThroughOptions } from '@cjdevstudios/bumblevue/accordionheader';
 import type { AccordionPanelPassThroughOptions } from '@cjdevstudios/bumblevue/accordionpanel';
-import type { AccordionTabPassThroughOptions } from '@cjdevstudios/bumblevue/accordiontab';
 import type { AnimateOnScrollDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/animateonscroll';
 import type { AutoCompletePassThroughOptions } from '@cjdevstudios/bumblevue/autocomplete';
 import type { AvatarPassThroughOptions } from '@cjdevstudios/bumblevue/avatar';
@@ -155,7 +154,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of Accordion instead.
      */
-    accordiontab?: DefaultPassThrough<AccordionTabPassThroughOptions>;
     autocomplete?: DefaultPassThrough<AutoCompletePassThroughOptions>;
     avatar?: DefaultPassThrough<AvatarPassThroughOptions>;
     avatargroup?: DefaultPassThrough<AvatarGroupPassThroughOptions>;

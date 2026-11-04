@@ -58,8 +58,6 @@
         "./accordionheader/style": "./src/accordionheader/style/AccordionHeaderStyle.js",
         "./accordionpanel": "./src/accordionpanel/AccordionPanel.vue",
         "./accordionpanel/style": "./src/accordionpanel/style/AccordionPanelStyle.js",
-        "./accordiontab": "./src/accordiontab/AccordionTab.vue",
-        "./accordiontab/style": "./src/accordiontab/style/AccordionTabStyle.js",
         "./animateonscroll": "./src/animateonscroll/AnimateOnScroll.js",
         "./animateonscroll/style": "./src/animateonscroll/style/AnimateOnScrollStyle.js",
         "./autocomplete": "./src/autocomplete/AutoComplete.vue",
