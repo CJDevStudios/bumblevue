@@ -67,7 +67,7 @@
         </div>
         <Portal :appendTo="appendTo">
             <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div v-if="overlayVisible" :ref="overlayRef" :class="[cx('overlay'), panelClass, overlayClass]" :style="[panelStyle, overlayStyle]" @click="onOverlayClick" @keydown="onOverlayKeyDown" :data-p="overlayDataP" v-bind="ptm('overlay')">
+                <div v-if="overlayVisible" :ref="overlayRef" :class="[cx('overlay'), overlayClass]" :style="overlayStyle" @click="onOverlayClick" @keydown="onOverlayKeyDown" :data-p="overlayDataP" v-bind="ptm('overlay')">
                     <span
                         ref="firstHiddenFocusableElementOnOverlay"
                         role="presentation"
@@ -279,20 +279,12 @@ export default {
             type: Object,
             default: null
         },
-        panelClass: {
-            type: [String, Object],
-            default: null
-        },
         overlayStyle: {
             type: Object,
             default: null
         },
         overlayClass: {
             type: [String, Object],
-            default: null
-        },
-        panelStyle: {
-            type: Object,
             default: null
         },
         appendTo: {

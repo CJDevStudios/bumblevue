@@ -144,24 +144,6 @@ const SelectProps = [
         description: 'Used to pass all properties of the HTMLInputElement/HTMLSpanElement to the focusable input element inside the component.'
     },
     {
-        name: 'panelStyle',
-        type: 'object',
-        default: 'null',
-        description: 'Inline style of the overlay panel.'
-    },
-    {
-        name: 'panelClass',
-        type: 'string',
-        default: 'null',
-        description: 'Style class of the overlay panel.'
-    },
-    {
-        name: 'panelProps',
-        type: 'object',
-        default: 'null',
-        description: 'Used to pass all properties of the HTMLDivElement to the overlay panel inside the component.'
-    },
-    {
         name: 'filterInputProps',
         type: 'object',
         default: 'null',

@@ -10000,33 +10000,6 @@
                             "description": "Used to pass all properties of the HTMLInputElement to the focusable input element inside the component."
                         },
                         {
-                            "name": "panelStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "object",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'overlayStyle' prop.\nInline style of the overlay overlay."
-                        },
-                        {
-                            "name": "panelClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string | object",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'overlayClass' prop.\nStyle class of the overlay overlay."
-                        },
-                        {
-                            "name": "panelProps",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "HTMLAttributes",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'overlayProps' prop.\nUsed to pass all properties of the HTMLDivElement to the overlay overlay inside the component."
-                        },
-                        {
                             "name": "overlayStyle",
                             "optional": true,
                             "readonly": false,
@@ -57509,24 +57482,6 @@
                             "type": "string | object",
                             "default": "",
                             "description": "Style class of the label field."
-                        },
-                        {
-                            "name": "panelStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "object",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'overlayStyle' instead.\nInline style of the overlay panel."
-                        },
-                        {
-                            "name": "panelClass",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string | object",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'overlayClass' instead.\nStyle class of the overlay panel."
                         },
                         {
                             "name": "overlayStyle",

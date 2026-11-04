@@ -357,21 +357,6 @@ export interface CascadeSelectProps<T = any> {
      */
     inputProps?: InputHTMLAttributes | undefined;
     /**
-     * @deprecated since v4.0. Use 'overlayStyle' prop.
-     * Inline style of the overlay overlay.
-     */
-    panelStyle?: object | undefined;
-    /**
-     * @deprecated since v4.0. Use 'overlayClass' prop.
-     * Style class of the overlay overlay.
-     */
-    panelClass?: string | object | undefined;
-    /**
-     * @deprecated since v4.0. Use 'overlayProps' prop.
-     * Used to pass all properties of the HTMLDivElement to the overlay overlay inside the component.
-     */
-    panelProps?: HTMLAttributes | undefined;
-    /**
      * Inline style of the overlay overlay.
      */
     overlayStyle?: object | undefined;

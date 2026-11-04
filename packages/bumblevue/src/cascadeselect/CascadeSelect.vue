@@ -50,11 +50,11 @@
                 <div
                     v-if="overlayVisible"
                     :ref="overlayRef"
-                    :class="[cx('overlay'), panelClass, overlayClass]"
-                    :style="[panelStyle, overlayStyle]"
+                    :class="[cx('overlay'), overlayClass]"
+                    :style="overlayStyle"
                     @click="onOverlayClick"
                     @keydown="onOverlayKeyDown"
-                    v-bind="{ ...panelProps, ...overlayProps, ...ptm('overlay') }"
+                    v-bind="{ ...overlayProps, ...ptm('overlay') }"
                 >
                     <slot name="header" :value="d_value" :options="options" />
                     <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
@@ -145,18 +145,6 @@ export default {
             default: null
         },
         inputProps: {
-            type: null,
-            default: null
-        },
-        panelClass: {
-            type: [String, Object],
-            default: null
-        },
-        panelStyle: {
-            type: Object,
-            default: null
-        },
-        panelProps: {
             type: null,
             default: null
         },
