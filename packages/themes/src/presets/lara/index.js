@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/lara/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/lara/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/lara/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/lara/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/lara/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/lara/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/lara/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/lara/inputgroup';
@@ -70,9 +69,7 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/lara/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/lara/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/lara/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/lara/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/lara/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/lara/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/lara/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/lara/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/lara/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/lara/textarea';
@@ -123,7 +120,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,
@@ -162,9 +158,7 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,

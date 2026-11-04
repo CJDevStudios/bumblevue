@@ -2,7 +2,7 @@
  *
  * TabPanels is a helper component for Tabs component.
  *
- * [Live Demo](https://www.bumblevue.org/tabview/)
+ * [Live Demo](https://www.bumblevue.org/tabs/)
  *
  * @module tabpanels
  *

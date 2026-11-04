@@ -61,12 +61,6 @@ export { default as AccordionPanel } from '../accordionpanel/AccordionPanel.vue'
 export * from '../accordionpanel/style/AccordionPanelStyle.js';
 export { default as AccordionPanelStyle } from '../accordionpanel/style/AccordionPanelStyle.js';
 
-// AccordionTab
-export * from '../accordiontab/AccordionTab.vue';
-export { default as AccordionTab } from '../accordiontab/AccordionTab.vue';
-export * from '../accordiontab/style/AccordionTabStyle.js';
-export { default as AccordionTabStyle } from '../accordiontab/style/AccordionTabStyle.js';
-
 // AnimateOnScroll
 export * from '../animateonscroll/AnimateOnScroll.js';
 export { default as AnimateOnScroll } from '../animateonscroll/AnimateOnScroll.js';
@@ -269,12 +263,6 @@ export { default as Drawer } from '../drawer/Drawer.vue';
 export * from '../drawer/style/DrawerStyle.js';
 export { default as DrawerStyle } from '../drawer/style/DrawerStyle.js';
 
-// Dropdown
-export * from '../dropdown/Dropdown.vue';
-export { default as Dropdown } from '../dropdown/Dropdown.vue';
-export * from '../dropdown/style/DropdownStyle.js';
-export { default as DropdownStyle } from '../dropdown/style/DropdownStyle.js';
-
 // DynamicDialog
 export * from '../dynamicdialog/DynamicDialog.vue';
 export { default as DynamicDialog } from '../dynamicdialog/DynamicDialog.vue';
@@ -344,12 +332,6 @@ export * from '../imagecompare/ImageCompare.vue';
 export { default as ImageCompare } from '../imagecompare/ImageCompare.vue';
 export * from '../imagecompare/style/ImageCompareStyle.js';
 export { default as ImageCompareStyle } from '../imagecompare/style/ImageCompareStyle.js';
-
-// InlineMessage
-export * from '../inlinemessage/InlineMessage.vue';
-export { default as InlineMessage } from '../inlinemessage/InlineMessage.vue';
-export * from '../inlinemessage/style/InlineMessageStyle.js';
-export { default as InlineMessageStyle } from '../inlinemessage/style/InlineMessageStyle.js';
 
 // Inplace
 export * from '../inplace/Inplace.vue';
@@ -486,12 +468,6 @@ export { default as OverlayBadgeStyle } from '../overlaybadge/style/OverlayBadge
 // OverlayEventBus
 export * from '../overlayeventbus/OverlayEventBus.js';
 export { default as OverlayEventBus } from '../overlayeventbus/OverlayEventBus.js';
-
-// OverlayPanel
-export * from '../overlaypanel/OverlayPanel.vue';
-export { default as OverlayPanel } from '../overlaypanel/OverlayPanel.vue';
-export * from '../overlaypanel/style/OverlayPanelStyle.js';
-export { default as OverlayPanelStyle } from '../overlaypanel/style/OverlayPanelStyle.js';
 
 // Paginator
 export * from '../paginator/Paginator.vue';
@@ -703,12 +679,6 @@ export { default as TabList } from '../tablist/TabList.vue';
 export * from '../tablist/style/TabListStyle.js';
 export { default as TabListStyle } from '../tablist/style/TabListStyle.js';
 
-// TabMenu
-export * from '../tabmenu/TabMenu.vue';
-export { default as TabMenu } from '../tabmenu/TabMenu.vue';
-export * from '../tabmenu/style/TabMenuStyle.js';
-export { default as TabMenuStyle } from '../tabmenu/style/TabMenuStyle.js';
-
 // TabPanel
 export * from '../tabpanel/TabPanel.vue';
 export { default as TabPanel } from '../tabpanel/TabPanel.vue';
@@ -726,12 +696,6 @@ export * from '../tabs/Tabs.vue';
 export { default as Tabs } from '../tabs/Tabs.vue';
 export * from '../tabs/style/TabsStyle.js';
 export { default as TabsStyle } from '../tabs/style/TabsStyle.js';
-
-// TabView
-export * from '../tabview/TabView.vue';
-export { default as TabView } from '../tabview/TabView.vue';
-export * from '../tabview/style/TabViewStyle.js';
-export { default as TabViewStyle } from '../tabview/style/TabViewStyle.js';
 
 // Tag
 export * from '../tag/Tag.vue';

@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/nora/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/nora/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/nora/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/nora/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/nora/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/nora/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/nora/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/nora/inputgroup';
@@ -70,9 +69,7 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/nora/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/nora/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/nora/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/nora/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/nora/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/nora/tabs';
-import tabview from '@cjdevstudios/bumblevue-themes/nora/tabview';
 import tag from '@cjdevstudios/bumblevue-themes/nora/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/nora/terminal';
 import textarea from '@cjdevstudios/bumblevue-themes/nora/textarea';
@@ -123,7 +120,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,
@@ -162,9 +158,7 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
-        tabview,
         textarea,
         tieredmenu,
         tag,

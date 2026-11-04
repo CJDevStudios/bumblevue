@@ -90,7 +90,7 @@ const PopoverEvents = [
 ];
 
 module.exports = {
-    overlaypanel: {
+    popover: {
         name: 'Popover',
         description: 'Popover is a container component positioned as connected to its target.',
         props: PopoverProps,

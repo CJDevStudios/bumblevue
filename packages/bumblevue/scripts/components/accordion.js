@@ -6,12 +6,6 @@ const AccordionProps = [
         description: 'When enabled, multiple tabs can be activated at the same time.'
     },
     {
-        name: 'activeIndex',
-        type: 'number|array',
-        default: 'null',
-        description: 'Index of the active tab or an array of indexes in multiple mode.'
-    },
-    {
         name: 'lazy',
         type: 'boolean',
         default: 'false',
@@ -85,22 +79,6 @@ const AccordionEvents = [
                 name: 'index',
                 type: 'number',
                 description: 'Closed tab index'
-            }
-        ]
-    },
-    {
-        name: 'tab-click',
-        description: 'Callback to invoke when an active tab is clicked.',
-        arguments: [
-            {
-                name: 'originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'index',
-                type: 'number',
-                description: 'Index of the clicked tab'
             }
         ]
     }
