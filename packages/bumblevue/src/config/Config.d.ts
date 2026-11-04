@@ -21,7 +21,6 @@ import type { ChartPassThroughOptions } from '@cjdevstudios/bumblevue/chart';
 import type { CheckboxPassThroughOptions } from '@cjdevstudios/bumblevue/checkbox';
 import type { CheckboxGroupPassThroughOptions } from '@cjdevstudios/bumblevue/checkboxgroup';
 import type { ChipPassThroughOptions } from '@cjdevstudios/bumblevue/chip';
-import type { ChipsPassThroughOptions } from '@cjdevstudios/bumblevue/chips';
 import type { ColorPickerPassThroughOptions } from '@cjdevstudios/bumblevue/colorpicker';
 import type { ColumnPassThroughOptions } from '@cjdevstudios/bumblevue/column';
 import type { ColumnGroupPassThroughOptions } from '@cjdevstudios/bumblevue/columngroup';
@@ -48,7 +47,6 @@ import type { IftaLabelPassThroughOptions } from '@cjdevstudios/bumblevue/iftala
 import type { ImagePassThroughOptions } from '@cjdevstudios/bumblevue/image';
 import type { ImageComparePassThroughOptions } from '@cjdevstudios/bumblevue/imagecompare';
 import type { InplacePassThroughOptions } from '@cjdevstudios/bumblevue/inplace';
-import type { InputChipsPassThroughOptions } from '@cjdevstudios/bumblevue/inputchips';
 import type { InputGroupPassThroughOptions } from '@cjdevstudios/bumblevue/inputgroup';
 import type { InputGroupAddonPassThroughOptions } from '@cjdevstudios/bumblevue/inputgroupaddon';
 import type { InputIconPassThroughOptions } from '@cjdevstudios/bumblevue/inputicon';
@@ -166,10 +164,6 @@ export interface BumbleVuePTOptions {
     checkbox?: DefaultPassThrough<CheckboxPassThroughOptions>;
     checkboxgroup?: DefaultPassThrough<CheckboxGroupPassThroughOptions>;
     chip?: DefaultPassThrough<ChipPassThroughOptions>;
-    /**
-     * @deprecated since v4. Use the new structure of InputChips instead.
-     */
-    chips?: DefaultPassThrough<ChipsPassThroughOptions>;
     colorpicker?: DefaultPassThrough<ColorPickerPassThroughOptions>;
     column?: DefaultPassThrough<ColumnPassThroughOptions>;
     columngroup?: DefaultPassThrough<ColumnGroupPassThroughOptions>;
@@ -199,7 +193,6 @@ export interface BumbleVuePTOptions {
     image?: DefaultPassThrough<ImagePassThroughOptions>;
     imagecompare?: DefaultPassThrough<ImageComparePassThroughOptions>;
     inplace?: DefaultPassThrough<InplacePassThroughOptions>;
-    inputchips?: DefaultPassThrough<InputChipsPassThroughOptions>;
     inputgroup?: DefaultPassThrough<InputGroupPassThroughOptions>;
     inputgroupaddon?: DefaultPassThrough<InputGroupAddonPassThroughOptions>;
     inputicon?: DefaultPassThrough<InputIconPassThroughOptions>;

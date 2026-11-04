@@ -6,6 +6,7 @@
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
 **Breaking Changes:**
+- Chips and InputChips: Removed deprecated components. Use AutoComplete with `multiple` enabled and `typeahead` disabled instead.
 - InputSwitch: Removed deprecated component. Use ToggleSwitch instead.
 - Sidebar: Removed deprecated component. Use Drawer instead.
 - Calendar: Removed deprecated component. Use DatePicker instead.
