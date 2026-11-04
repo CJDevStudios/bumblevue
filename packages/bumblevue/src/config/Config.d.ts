@@ -50,7 +50,6 @@ import type { IconFieldPassThroughOptions } from '@cjdevstudios/bumblevue/iconfi
 import type { IftaLabelPassThroughOptions } from '@cjdevstudios/bumblevue/iftalabel';
 import type { ImagePassThroughOptions } from '@cjdevstudios/bumblevue/image';
 import type { ImageComparePassThroughOptions } from '@cjdevstudios/bumblevue/imagecompare';
-import type { InlineMessagePassThroughOptions } from '@cjdevstudios/bumblevue/inlinemessage';
 import type { InplacePassThroughOptions } from '@cjdevstudios/bumblevue/inplace';
 import type { InputChipsPassThroughOptions } from '@cjdevstudios/bumblevue/inputchips';
 import type { InputGroupPassThroughOptions } from '@cjdevstudios/bumblevue/inputgroup';
@@ -209,7 +208,6 @@ export interface BumbleVuePTOptions {
     iftalabel?: DefaultPassThrough<IftaLabelPassThroughOptions>;
     image?: DefaultPassThrough<ImagePassThroughOptions>;
     imagecompare?: DefaultPassThrough<ImageComparePassThroughOptions>;
-    inlinemessage?: DefaultPassThrough<InlineMessagePassThroughOptions>;
     inplace?: DefaultPassThrough<InplacePassThroughOptions>;
     inputchips?: DefaultPassThrough<InputChipsPassThroughOptions>;
     inputgroup?: DefaultPassThrough<InputGroupPassThroughOptions>;

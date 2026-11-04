@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/nora/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/nora/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/nora/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/nora/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/nora/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/nora/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/nora/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/nora/inputgroup';
@@ -122,7 +121,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,

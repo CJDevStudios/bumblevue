@@ -90,7 +90,7 @@ export const menu: MetaType[] = toMeta(['Breadcrumb', 'ContextMenu', 'Dock', 'Me
 
 export const chart: MetaType[] = toMeta(['Chart']);
 
-export const messages: MetaType[] = toMeta(['Message', 'InlineMessage', { name: 'Toast', use: { as: 'ToastService' } }]);
+export const messages: MetaType[] = toMeta(['Message', { name: 'Toast', use: { as: 'ToastService' } }]);
 
 export const media: MetaType[] = toMeta(['Carousel', 'Galleria', 'Image', 'ImageCompare']);
 

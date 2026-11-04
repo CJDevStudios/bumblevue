@@ -351,12 +351,6 @@ export { default as ImageCompare } from '../imagecompare/ImageCompare.vue';
 export * from '../imagecompare/style/ImageCompareStyle.js';
 export { default as ImageCompareStyle } from '../imagecompare/style/ImageCompareStyle.js';
 
-// InlineMessage
-export * from '../inlinemessage/InlineMessage.vue';
-export { default as InlineMessage } from '../inlinemessage/InlineMessage.vue';
-export * from '../inlinemessage/style/InlineMessageStyle.js';
-export { default as InlineMessageStyle } from '../inlinemessage/style/InlineMessageStyle.js';
-
 // Inplace
 export * from '../inplace/Inplace.vue';
 export { default as Inplace } from '../inplace/Inplace.vue';

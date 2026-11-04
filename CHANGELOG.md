@@ -6,6 +6,7 @@
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
 **Breaking Changes:**
+- InlineMessage: Removed deprecated component. Use Message instead.
 - TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
 
 ## [1.0.0]

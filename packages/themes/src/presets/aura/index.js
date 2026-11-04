@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/aura/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/aura/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/aura/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/aura/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/aura/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/aura/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/aura/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/aura/inputgroup';
@@ -122,7 +121,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,
