@@ -65,11 +65,10 @@
                 v-bind="ptm('chipItem')"
             >
                 <slot name="chip" :class="cx('pcChip')" :value="option" :index="i" :removeCallback="(event) => removeOption(event, i)" v-bind="ptm('pcChip')">
-                    <!-- TODO: removetokenicon and removeTokenIcon  deprecated since v4.0. Use chipicon slot and chipIcon prop-->
                     <Chip
                         :class="cx('pcChip')"
                         :label="getOptionLabel(option)"
-                        :removeIcon="chipIcon || removeTokenIcon"
+                        :removeIcon="chipIcon"
                         removable
                         :unstyled="unstyled"
                         @remove="removeOption($event, i)"
@@ -77,7 +76,7 @@
                         :pt="ptm('pcChip')"
                     >
                         <template #removeicon>
-                            <slot :name="$slots.chipicon ? 'chipicon' : 'removetokenicon'" :class="cx('chipIcon')" :index="i" :removeCallback="(event) => removeOption(event, i)" />
+                            <slot name="chipicon" :class="cx('chipIcon')" :index="i" :removeCallback="(event) => removeOption(event, i)" />
                         </template>
                     </Chip>
                 </slot>
@@ -111,11 +110,11 @@
                 />
             </li>
         </ul>
-        <slot v-if="searching || loading" :class="cx('loader')" :name="$slots.loader ? 'loader' : 'loadingicon'">
-            <i v-if="loader || loadingIcon" :class="['pi-spin', cx('loader'), loader, loadingIcon]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
+        <slot v-if="searching || loading" :class="cx('loader')" name="loader">
+            <i v-if="loader" :class="['pi-spin', cx('loader'), loader]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
             <SpinnerIcon v-else-if="loading" :class="cx('loader')" spin aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
         </slot>
-        <slot :name="$slots.dropdown ? 'dropdown' : 'dropdownbutton'" :toggleCallback="(event) => onDropdownClick(event)">
+        <slot name="dropdown" :toggleCallback="(event) => onDropdownClick(event)">
             <button
                 v-if="dropdown"
                 ref="dropdownButton"
@@ -330,14 +329,6 @@ export default {
             type: String,
             default: null
         },
-        loadingIcon: {
-            type: String,
-            default: null
-        },
-        removeTokenIcon: {
-            type: String,
-            default: null
-        },
         chipIcon: {
             type: String,
             default: null
@@ -399,7 +390,7 @@ export default {
             default: null
         }
     },
-    emits: ['change', 'focus', 'blur', 'item-select', 'item-unselect', 'option-select', 'option-unselect', 'dropdown-click', 'clear', 'complete', 'before-show', 'before-hide', 'show', 'hide'],
+    emits: ['change', 'focus', 'blur', 'option-select', 'option-unselect', 'dropdown-click', 'clear', 'complete', 'before-show', 'before-hide', 'show', 'hide'],
     style: AutoCompleteStyle,
     provide() {
         return {
@@ -756,7 +747,6 @@ export default {
                 this.updateModel(event, value);
             }
 
-            this.$emit('item-select', { originalEvent: event, value: option });
             this.$emit('option-select', { originalEvent: event, value: option });
 
             isHide && this.hide(true);
@@ -953,7 +943,6 @@ export default {
                     const newValue = this.d_value.slice(0, -1);
 
                     this.writeValue(newValue, event);
-                    this.$emit('item-unselect', { originalEvent: event, value: removedValue });
                     this.$emit('option-unselect', { originalEvent: event, value: removedValue });
                 }
 
@@ -1139,7 +1128,6 @@ export default {
             const value = this.d_value.filter((_, i) => i !== index).map((option) => this.getOptionValue(option));
 
             this.updateModel(event, value);
-            this.$emit('item-unselect', { originalEvent: event, value: removedOption });
             this.$emit('option-unselect', { originalEvent: event, value: removedOption });
             this.dirty = true;
             focus(this.multiple ? this.$refs.focusInput : this.$refs.focusInput.$el);

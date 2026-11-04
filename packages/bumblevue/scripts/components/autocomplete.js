@@ -192,18 +192,6 @@ const AutoCompleteProps = [
         description: 'Style class of the dropdown button.'
     },
     {
-        name: 'loadingIcon',
-        type: 'string',
-        default: 'null',
-        description: 'Icon to display in loading state.'
-    },
-    {
-        name: 'removeTokenIcon',
-        type: 'string',
-        default: 'null',
-        description: 'Icon to display in chip remove action.'
-    },
-    {
         name: 'virtualScrollerOptions',
         type: 'object',
         default: 'null',
@@ -323,38 +311,6 @@ const AutoCompleteEvents = [
         ]
     },
     {
-        name: 'item-select',
-        description: 'Callback to invoke when a suggestion is selected.',
-        arguments: [
-            {
-                name: 'originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'value',
-                type: 'object',
-                description: 'Selected item'
-            }
-        ]
-    },
-    {
-        name: 'item-unselect',
-        description: 'Callback to invoke when a selected value is removed.',
-        arguments: [
-            {
-                name: 'originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'value',
-                type: 'object',
-                description: 'Unselected item'
-            }
-        ]
-    },
-    {
         name: 'dropdown-click',
         description: 'Callback to invoke to when dropdown button is clicked.',
         arguments: [
@@ -448,14 +404,6 @@ const AutoCompleteSlots = [
     {
         name: 'dropdownicon',
         description: 'Custom dropdown icon template.'
-    },
-    {
-        name: 'removetokenicon',
-        description: 'Custom remove token icon template.'
-    },
-    {
-        name: 'loadingicon',
-        description: 'Custom loading icon template.'
     }
 ];
 

@@ -18,6 +18,7 @@
   The deprecated Accordion `activeIndex` prop and `update:activeIndex`/`tab-click` events were removed along with it; use `value`/`update:value` instead.
 - InlineMessage: Removed deprecated component. Use Message instead.
 - TabMenu: Removed deprecated component. Use Tabs with TabList/Tab and no TabPanels instead.
+- AutoComplete: Removed deprecated `loadingIcon` prop and `loadingicon` slot (use `loader`), `removeTokenIcon` prop and `removetokenicon` slot (use `chipIcon`/`chipicon`), `dropdownbutton` slot (use `dropdown`), and `item-select`/`item-unselect` events (use `option-select`/`option-unselect`).
 
 ## [1.0.0]
 
