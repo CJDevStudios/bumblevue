@@ -55,7 +55,6 @@ import type { InputIconPassThroughOptions } from '@cjdevstudios/bumblevue/inputi
 import type { InputMaskPassThroughOptions } from '@cjdevstudios/bumblevue/inputmask';
 import type { InputNumberPassThroughOptions } from '@cjdevstudios/bumblevue/inputnumber';
 import type { InputOtpPassThroughOptions } from '@cjdevstudios/bumblevue/inputotp';
-import type { InputSwitchPassThroughOptions } from '@cjdevstudios/bumblevue/inputswitch';
 import type { InputTextPassThroughOptions } from '@cjdevstudios/bumblevue/inputtext';
 import type { KeyFilterDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/keyfilter';
 import type { KnobPassThroughOptions } from '@cjdevstudios/bumblevue/knob';
@@ -210,7 +209,6 @@ export interface BumbleVuePTOptions {
      * @deprecated since v4. Use the new structure of ToggleSwitch instead.
      */
     inputotp?: DefaultPassThrough<InputOtpPassThroughOptions>;
-    inputswitch?: DefaultPassThrough<InputSwitchPassThroughOptions>;
     inputtext?: DefaultPassThrough<InputTextPassThroughOptions>;
     knob?: DefaultPassThrough<KnobPassThroughOptions>;
     listbox?: DefaultPassThrough<ListboxPassThroughOptions>;

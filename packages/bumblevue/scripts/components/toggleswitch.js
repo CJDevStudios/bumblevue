@@ -3,7 +3,7 @@ const ToggleSwitchProps = [
         name: 'modelValue',
         type: 'boolean',
         default: 'null',
-        description: 'Specifies whether a inputswitch should be checked or not.'
+        description: 'Specifies whether a toggleswitch should be checked or not.'
     },
     {
         name: 'trueValue',
@@ -71,7 +71,7 @@ const ToggleSwitchEvents = [
 ];
 
 module.exports = {
-    inputswitch: {
+    toggleswitch: {
         name: 'ToggleSwitch',
         description: 'ToggleSwitch is used to select a boolean value.',
         props: ToggleSwitchProps,

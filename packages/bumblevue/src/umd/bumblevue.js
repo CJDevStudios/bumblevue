@@ -381,12 +381,6 @@ export { default as InputOtp } from '../inputotp/InputOtp.vue';
 export * from '../inputotp/style/InputOtpStyle.js';
 export { default as InputOtpStyle } from '../inputotp/style/InputOtpStyle.js';
 
-// InputSwitch
-export * from '../inputswitch/InputSwitch.vue';
-export { default as InputSwitch } from '../inputswitch/InputSwitch.vue';
-export * from '../inputswitch/style/InputSwitchStyle.js';
-export { default as InputSwitchStyle } from '../inputswitch/style/InputSwitchStyle.js';
-
 // InputText
 export * from '../inputtext/InputText.vue';
 export { default as InputText } from '../inputtext/InputText.vue';

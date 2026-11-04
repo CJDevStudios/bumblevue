@@ -20,7 +20,6 @@ export const form: MetaType[] = toMeta([
     'InputMask',
     'InputNumber',
     'InputOtp',
-    'InputSwitch',
     'InputText',
     'Knob',
     'Listbox',
