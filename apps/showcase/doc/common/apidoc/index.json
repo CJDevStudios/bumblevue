@@ -15209,15 +15209,6 @@
                             "default": ""
                         },
                         {
-                            "name": "inputStyle",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "\"outlined\" | \"filled\"",
-                            "default": "",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'inputVariant' instead."
-                        },
-                        {
                             "name": "inputVariant",
                             "optional": true,
                             "readonly": false,

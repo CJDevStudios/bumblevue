@@ -123,10 +123,6 @@ export { default } from '@cjdevstudios/bumblevue-core/config';
 
 export interface BumbleVueConfiguration {
     ripple?: boolean;
-    /**
-     * @deprecated since v4.0. Use 'inputVariant' instead.
-     */
-    inputStyle?: 'filled' | 'outlined' | undefined;
     inputVariant?: 'filled' | 'outlined' | undefined;
     locale?: BumbleVueLocaleOptions;
     filterMatchModeOptions?: any;
