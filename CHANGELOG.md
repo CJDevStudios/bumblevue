@@ -1,10 +1,11 @@
 # Changelog
 
-## [1.1.0](https://github.com/CJDevStudios/bumblevue/)
+## [1.0.1](https://github.com/CJDevStudios/bumblevue/)
 
-**Implemented New Features and Enhancements:**
+**Fixed bugs:**
 
 - Removed GlobalComponent type declarations as they were not automatically registered as global components in BumbleVue, so they were polluting the types seen by the Vue language server.
+- DataTable: Fix selection in columnfilter closing filter overlay [\#65](https://github.com/CJDevStudios/bumblevue/pull/65)
 
 ## [1.0.0](https://github.com/CJDevStudios/bumblevue/releases/tag/1.0.0)
 
