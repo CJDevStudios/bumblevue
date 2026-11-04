@@ -61,12 +61,6 @@ export { default as AccordionPanel } from '../accordionpanel/AccordionPanel.vue'
 export * from '../accordionpanel/style/AccordionPanelStyle.js';
 export { default as AccordionPanelStyle } from '../accordionpanel/style/AccordionPanelStyle.js';
 
-// AccordionTab
-export * from '../accordiontab/AccordionTab.vue';
-export { default as AccordionTab } from '../accordiontab/AccordionTab.vue';
-export * from '../accordiontab/style/AccordionTabStyle.js';
-export { default as AccordionTabStyle } from '../accordiontab/style/AccordionTabStyle.js';
-
 // AnimateOnScroll
 export * from '../animateonscroll/AnimateOnScroll.js';
 export { default as AnimateOnScroll } from '../animateonscroll/AnimateOnScroll.js';
@@ -350,12 +344,6 @@ export * from '../imagecompare/ImageCompare.vue';
 export { default as ImageCompare } from '../imagecompare/ImageCompare.vue';
 export * from '../imagecompare/style/ImageCompareStyle.js';
 export { default as ImageCompareStyle } from '../imagecompare/style/ImageCompareStyle.js';
-
-// InlineMessage
-export * from '../inlinemessage/InlineMessage.vue';
-export { default as InlineMessage } from '../inlinemessage/InlineMessage.vue';
-export * from '../inlinemessage/style/InlineMessageStyle.js';
-export { default as InlineMessageStyle } from '../inlinemessage/style/InlineMessageStyle.js';
 
 // Inplace
 export * from '../inplace/Inplace.vue';
@@ -708,12 +696,6 @@ export * from '../tablist/TabList.vue';
 export { default as TabList } from '../tablist/TabList.vue';
 export * from '../tablist/style/TabListStyle.js';
 export { default as TabListStyle } from '../tablist/style/TabListStyle.js';
-
-// TabMenu
-export * from '../tabmenu/TabMenu.vue';
-export { default as TabMenu } from '../tabmenu/TabMenu.vue';
-export * from '../tabmenu/style/TabMenuStyle.js';
-export { default as TabMenuStyle } from '../tabmenu/style/TabMenuStyle.js';
 
 // TabPanel
 export * from '../tabpanel/TabPanel.vue';

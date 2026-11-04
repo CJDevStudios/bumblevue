@@ -4,7 +4,6 @@ import type { AccordionPassThroughOptions } from '@cjdevstudios/bumblevue/accord
 import type { AccordionContentPassThroughOptions } from '@cjdevstudios/bumblevue/accordioncontent';
 import type { AccordionHeaderPassThroughOptions } from '@cjdevstudios/bumblevue/accordionheader';
 import type { AccordionPanelPassThroughOptions } from '@cjdevstudios/bumblevue/accordionpanel';
-import type { AccordionTabPassThroughOptions } from '@cjdevstudios/bumblevue/accordiontab';
 import type { AnimateOnScrollDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/animateonscroll';
 import type { AutoCompletePassThroughOptions } from '@cjdevstudios/bumblevue/autocomplete';
 import type { AvatarPassThroughOptions } from '@cjdevstudios/bumblevue/avatar';
@@ -50,7 +49,6 @@ import type { IconFieldPassThroughOptions } from '@cjdevstudios/bumblevue/iconfi
 import type { IftaLabelPassThroughOptions } from '@cjdevstudios/bumblevue/iftalabel';
 import type { ImagePassThroughOptions } from '@cjdevstudios/bumblevue/image';
 import type { ImageComparePassThroughOptions } from '@cjdevstudios/bumblevue/imagecompare';
-import type { InlineMessagePassThroughOptions } from '@cjdevstudios/bumblevue/inlinemessage';
 import type { InplacePassThroughOptions } from '@cjdevstudios/bumblevue/inplace';
 import type { InputChipsPassThroughOptions } from '@cjdevstudios/bumblevue/inputchips';
 import type { InputGroupPassThroughOptions } from '@cjdevstudios/bumblevue/inputgroup';
@@ -109,7 +107,6 @@ import type { StepsPassThroughOptions } from '@cjdevstudios/bumblevue/steps';
 import type { StyleClassDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/styleclass';
 import type { TabPassThroughOptions } from '@cjdevstudios/bumblevue/tab';
 import type { TabListPassThroughOptions } from '@cjdevstudios/bumblevue/tablist';
-import type { TabMenuPassThroughOptions } from '@cjdevstudios/bumblevue/tabmenu';
 import type { TabPanelPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanel';
 import type { TabPanelsPassThroughOptions } from '@cjdevstudios/bumblevue/tabpanels';
 import type { TabsPassThroughOptions } from '@cjdevstudios/bumblevue/tabs';
@@ -156,7 +153,6 @@ export interface BumbleVuePTOptions {
     /**
      * @deprecated since v4. Use the new structure of Accordion instead.
      */
-    accordiontab?: DefaultPassThrough<AccordionTabPassThroughOptions>;
     autocomplete?: DefaultPassThrough<AutoCompletePassThroughOptions>;
     avatar?: DefaultPassThrough<AvatarPassThroughOptions>;
     avatargroup?: DefaultPassThrough<AvatarGroupPassThroughOptions>;
@@ -209,7 +205,6 @@ export interface BumbleVuePTOptions {
     iftalabel?: DefaultPassThrough<IftaLabelPassThroughOptions>;
     image?: DefaultPassThrough<ImagePassThroughOptions>;
     imagecompare?: DefaultPassThrough<ImageComparePassThroughOptions>;
-    inlinemessage?: DefaultPassThrough<InlineMessagePassThroughOptions>;
     inplace?: DefaultPassThrough<InplacePassThroughOptions>;
     inputchips?: DefaultPassThrough<InputChipsPassThroughOptions>;
     inputgroup?: DefaultPassThrough<InputGroupPassThroughOptions>;
@@ -271,7 +266,6 @@ export interface BumbleVuePTOptions {
     steppanels?: DefaultPassThrough<StepPanelsPassThroughOptions>;
     stepper?: DefaultPassThrough<StepperPassThroughOptions>;
     steps?: DefaultPassThrough<StepsPassThroughOptions>;
-    tabmenu?: DefaultPassThrough<TabMenuPassThroughOptions>;
     tabs?: DefaultPassThrough<TabsPassThroughOptions>;
     tablist?: DefaultPassThrough<TabListPassThroughOptions>;
     tab?: DefaultPassThrough<TabPassThroughOptions>;

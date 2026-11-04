@@ -31,7 +31,6 @@ import iconfield from '@cjdevstudios/bumblevue-themes/material/iconfield';
 import iftalabel from '@cjdevstudios/bumblevue-themes/material/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/material/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/material/imagecompare';
-import inlinemessage from '@cjdevstudios/bumblevue-themes/material/inlinemessage';
 import inplace from '@cjdevstudios/bumblevue-themes/material/inplace';
 import inputchips from '@cjdevstudios/bumblevue-themes/material/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/material/inputgroup';
@@ -70,7 +69,6 @@ import splitbutton from '@cjdevstudios/bumblevue-themes/material/splitbutton';
 import splitter from '@cjdevstudios/bumblevue-themes/material/splitter';
 import stepper from '@cjdevstudios/bumblevue-themes/material/stepper';
 import steps from '@cjdevstudios/bumblevue-themes/material/steps';
-import tabmenu from '@cjdevstudios/bumblevue-themes/material/tabmenu';
 import tabs from '@cjdevstudios/bumblevue-themes/material/tabs';
 import tag from '@cjdevstudios/bumblevue-themes/material/tag';
 import terminal from '@cjdevstudios/bumblevue-themes/material/terminal';
@@ -122,7 +120,6 @@ export default {
         iconfield,
         image,
         imagecompare,
-        inlinemessage,
         inplace,
         inputchips,
         inputgroup,
@@ -161,7 +158,6 @@ export default {
         splitbutton,
         stepper,
         steps,
-        tabmenu,
         tabs,
         textarea,
         tieredmenu,
