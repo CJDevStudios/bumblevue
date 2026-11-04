@@ -91,12 +91,6 @@ export { default as Badge } from '../badge/Badge.vue';
 export * from '../badge/style/BadgeStyle.js';
 export { default as BadgeStyle } from '../badge/style/BadgeStyle.js';
 
-// BadgeDirective
-export * from '../badgedirective/BadgeDirective.js';
-export { default as BadgeDirective } from '../badgedirective/BadgeDirective.js';
-export * from '../badgedirective/style/BadgeDirectiveStyle.js';
-export { default as BadgeDirectiveStyle } from '../badgedirective/style/BadgeDirectiveStyle.js';
-
 // BlockUI
 export * from '../blockui/BlockUI.vue';
 export { default as BlockUI } from '../blockui/BlockUI.vue';

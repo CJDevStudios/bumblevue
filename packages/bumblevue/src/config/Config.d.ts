@@ -9,7 +9,6 @@ import type { AutoCompletePassThroughOptions } from '@cjdevstudios/bumblevue/aut
 import type { AvatarPassThroughOptions } from '@cjdevstudios/bumblevue/avatar';
 import type { AvatarGroupPassThroughOptions } from '@cjdevstudios/bumblevue/avatargroup';
 import type { BadgePassThroughOptions } from '@cjdevstudios/bumblevue/badge';
-import type { BadgeDirectivePassThroughOptions } from '@cjdevstudios/bumblevue/badgedirective';
 import type { BlockUIPassThroughOptions } from '@cjdevstudios/bumblevue/blockui';
 import type { BreadcrumbPassThroughOptions } from '@cjdevstudios/bumblevue/breadcrumb';
 import type { ButtonPassThroughOptions } from '@cjdevstudios/bumblevue/button';
@@ -123,10 +122,6 @@ export { default } from '@cjdevstudios/bumblevue-core/config';
 
 export interface BumbleVueConfiguration {
     ripple?: boolean;
-    /**
-     * @deprecated since v4.0. Use 'inputVariant' instead.
-     */
-    inputStyle?: 'filled' | 'outlined' | undefined;
     inputVariant?: 'filled' | 'outlined' | undefined;
     locale?: BumbleVueLocaleOptions;
     filterMatchModeOptions?: any;
@@ -272,7 +267,6 @@ export interface BumbleVuePTOptions {
     virtualscroller?: DefaultPassThrough<VirtualScrollerPassThroughOptions>;
     directives?: {
         animate?: AnimateOnScrollDirectivePassThroughOptions;
-        badge?: BadgeDirectivePassThroughOptions;
         focustrap?: FocusTrapDirectivePassThroughOptions;
         keyfilter?: KeyFilterDirectivePassThroughOptions;
         ripple?: RippleDirectivePassThroughOptions;

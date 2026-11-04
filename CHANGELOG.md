@@ -22,6 +22,9 @@
 - Button and SplitButton: Removed deprecated `plain` prop.
 - Select: Removed deprecated `panelStyle` and `panelClass` props. Use `overlayStyle` and `overlayClass` instead.
 - CascadeSelect: Removed deprecated `panelStyle`, `panelClass` and `panelProps` props. Use `overlayStyle`, `overlayClass` and `overlayProps` instead.
+- Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
+- Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
+- BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
 
 ## [1.0.0]
 

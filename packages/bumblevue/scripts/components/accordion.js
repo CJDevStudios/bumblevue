@@ -49,41 +49,6 @@ const AccordionProps = [
     }
 ];
 
-const AccordionEvents = [
-    {
-        name: 'tab-open',
-        description: 'Callback to invoke when a tab gets expanded.',
-        arguments: [
-            {
-                name: 'originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'index',
-                type: 'number',
-                description: 'Opened tab index'
-            }
-        ]
-    },
-    {
-        name: 'tab-close',
-        description: 'Callback to invoke when an active tab is collapsed by clicking on the header.',
-        arguments: [
-            {
-                name: 'originalEvent',
-                type: 'object',
-                description: 'Original event'
-            },
-            {
-                name: 'index',
-                type: 'number',
-                description: 'Closed tab index'
-            }
-        ]
-    }
-];
-
 const AccordioneSlots = [
     {
         name: 'default',
@@ -104,7 +69,6 @@ module.exports = {
         name: 'Accordion',
         description: 'Accordion groups a collection of contents in tabs.',
         props: AccordionProps,
-        events: AccordionEvents,
         slots: AccordioneSlots
     }
 };

@@ -46,7 +46,7 @@ const props = defineProps({
     }
 });
 
-const emit = defineEmits(['update:value', 'tab-open', 'tab-close']);
+const emit = defineEmits(['update:value']);
 
 const state = reactive({
     d_value: props.value
@@ -88,8 +88,5 @@ function updateValue(newValue) {
     }
 
     emit('update:value', state.d_value);
-
-    // @deprecated since v4.
-    emit(active ? 'tab-close' : 'tab-open', { originalEvent: undefined, index: Number(newValue) });
 }
 </script>
