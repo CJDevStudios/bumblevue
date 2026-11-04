@@ -8143,15 +8143,6 @@
                             "description": "Specifies the variant of the component."
                         },
                         {
-                            "name": "plain",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "false",
-                            "description": "Add a plain textual class to the button without a background initially.",
-                            "deprecated": "since v4.2.0. Use a contrast severity instead."
-                        },
-                        {
                             "name": "fluid",
                             "optional": true,
                             "readonly": false,
@@ -61126,14 +61117,6 @@
                             "type": "HintedString<\"small\" | \"large\">",
                             "default": "",
                             "description": "Defines the size of the button."
-                        },
-                        {
-                            "name": "plain",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "false",
-                            "description": "Add a plain textual class to the button without a background initially."
                         },
                         {
                             "name": "dt",

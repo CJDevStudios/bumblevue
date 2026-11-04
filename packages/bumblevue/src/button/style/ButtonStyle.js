@@ -16,7 +16,6 @@ const classes = {
             'p-button-outlined': props.outlined || props.variant === 'outlined',
             'p-button-sm': props.size === 'small',
             'p-button-lg': props.size === 'large',
-            'p-button-plain': props.plain,
             'p-button-fluid': instance.hasFluid
         }
     ],

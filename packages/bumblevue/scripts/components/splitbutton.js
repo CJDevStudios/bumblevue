@@ -96,12 +96,6 @@ const SplitButtonProps = [
         description: 'Defines the size of the button, valid values are "small" and "large".'
     },
     {
-        name: 'plain',
-        type: 'boolean',
-        default: 'false',
-        description: 'Add a plain textual class to the button without a background initially.'
-    },
-    {
         name: 'pt',
         type: 'any',
         default: 'null',

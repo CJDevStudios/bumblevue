@@ -178,12 +178,6 @@ export interface ButtonProps extends ButtonHTMLAttributes {
      */
     variant?: HintedString<'outlined' | 'text' | 'link'> | undefined;
     /**
-     * Add a plain textual class to the button without a background initially.
-     * @defaultValue false
-     * @deprecated since v4.2.0. Use a contrast severity instead.
-     */
-    plain?: boolean | undefined;
-    /**
      * Spans 100% width of the container when enabled.
      * @defaultValue null
      */

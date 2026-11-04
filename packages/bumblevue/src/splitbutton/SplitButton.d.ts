@@ -205,11 +205,6 @@ export interface SplitButtonProps<T extends MenuItem = MenuItem> {
      */
     size?: HintedString<'small' | 'large'> | undefined;
     /**
-     * Add a plain textual class to the button without a background initially.
-     * @defaultValue false
-     */
-    plain?: boolean | undefined;
-    /**
      * It generates scoped CSS variables using design tokens for the component.
      */
     dt?: DesignToken<any>;

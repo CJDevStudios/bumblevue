@@ -106,10 +106,6 @@ export default {
             type: String,
             default: null
         },
-        plain: {
-            type: Boolean,
-            default: false
-        },
         fluid: {
             type: Boolean,
             default: null

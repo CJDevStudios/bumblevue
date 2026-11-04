@@ -154,10 +154,6 @@ export default {
         size: {
             type: String,
             default: null
-        },
-        plain: {
-            type: Boolean,
-            default: false
         }
     },
     emits: ['click'],

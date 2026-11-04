@@ -3,7 +3,7 @@
         <p>Overlay mode is enabled by adding <i>popup</i> property and calling <i>toggle</i> function of the menu ref with an event of the target.</p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <Button type="button" icon="pi pi-ellipsis-v" plain @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+        <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
         <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
     </div>
     <DocSectionCode :code="code" />
