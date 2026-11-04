@@ -89,7 +89,7 @@ describe('AutoComplete.vue', () => {
         it('should have correct custom icon', async () => {
             wrapper.setProps({
                 multiple: true,
-                removeTokenIcon: 'pi pi-discord',
+                chipIcon: 'pi pi-discord',
                 modelValue: ['foo', 'bar']
             });
 

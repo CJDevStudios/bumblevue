@@ -3015,7 +3015,7 @@
                 },
                 "AutoCompleteOptionSelectEvent": {
                     "description": "Custom item select event.",
-                    "relatedProp": "AutoCompleteEmitsOptions['item-select']",
+                    "relatedProp": "AutoCompleteEmitsOptions['option-select']",
                     "props": [
                         {
                             "name": "originalEvent",
@@ -3039,7 +3039,7 @@
                 },
                 "AutoCompleteOptionUnselectEvent": {
                     "description": "Custom item unselect event.",
-                    "relatedProp": "AutoCompleteEmitsOptions['item-unselect']",
+                    "relatedProp": "AutoCompleteEmitsOptions['option-unselect']",
                     "props": [
                         {
                             "name": "originalEvent",
@@ -3706,29 +3706,12 @@
                             "description": "Style class of the dropdown button."
                         },
                         {
-                            "name": "loadingIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Icon to display in loading state.",
-                            "deprecated": "since v4.0. Use 'loader' slot."
-                        },
-                        {
                             "name": "loader",
                             "optional": true,
                             "readonly": false,
                             "type": "string",
                             "default": "",
                             "description": "Icon to display in loading state."
-                        },
-                        {
-                            "name": "removeTokenIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Icon to display in chip remove action."
                         },
                         {
                             "name": "chipIcon",
@@ -4008,20 +3991,6 @@
                             "description": "Custom dropdown icon template."
                         },
                         {
-                            "name": "removetokenicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the icon.</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">index</span>: <span class=\"doc-option-parameter-type\">number</span>, <span class=\"doc-option-parameter-type\">// Index of the token.</span>\n \t <span class=\"ml-3 doc-option-parameter-name\">removeCallback</span>: <span class=\"doc-option-parameter-type\">(<span class=\"doc-option-parameter-name\">event</span>: Event, <span class=\"doc-option-parameter-name\">index</span>: number) &rArr; void</span>, <span class=\"doc-option-parameter-type\">// Remove token icon function.</span>\n}",
-                                    "description": "chip icon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'chipicon' slot instead.\nCustom chip icon template in multiple mode."
-                        },
-                        {
                             "name": "chipicon",
                             "parameters": [
                                 {
@@ -4033,32 +4002,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom chip icon template in multiple mode."
-                        },
-                        {
-                            "name": "loadingicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the loader.</span>\n }"
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'loader' slot instead.\nCustom loader template."
-                        },
-                        {
-                            "name": "dropdownbutton",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n \t <span class=\"ml-3 doc-option-parameter-name\">toggleCallback</span>: <span class=\"doc-option-parameter-type\">(<span class=\"doc-option-parameter-name\">event</span>: Event) &rArr; void</span>, <span class=\"doc-option-parameter-type\">// Toggle function.</span>\n}"
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'dropdown' slot instead.\nCustom dropdown template."
                         },
                         {
                             "name": "dropdown",
@@ -4156,34 +4099,6 @@
                             ],
                             "returnType": "void",
                             "description": "Callback to invoke when the component loses focus."
-                        },
-                        {
-                            "name": "item-select",
-                            "parameters": [
-                                {
-                                    "name": "event",
-                                    "optional": false,
-                                    "type": "AutoCompleteOptionSelectEvent",
-                                    "description": "Custom option select event."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'option-select' emit.\nCallback to invoke when a suggestion is selected."
-                        },
-                        {
-                            "name": "item-unselect",
-                            "parameters": [
-                                {
-                                    "name": "event",
-                                    "optional": false,
-                                    "type": "AutoCompleteOptionUnselectEvent",
-                                    "description": "Custom option unselect event."
-                                }
-                            ],
-                            "returnType": "void",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'option-unselect' emit.\nCallback to invoke when a selected value is removed."
                         },
                         {
                             "name": "option-select",

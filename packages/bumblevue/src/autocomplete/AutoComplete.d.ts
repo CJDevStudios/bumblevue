@@ -84,7 +84,7 @@ export interface AutoCompleteChangeEvent {
 
 /**
  * Custom item select event.
- * @see {@link AutoCompleteEmitsOptions['item-select']}
+ * @see {@link AutoCompleteEmitsOptions['option-select']}
  */
 export interface AutoCompleteOptionSelectEvent<T = any> {
     /**
@@ -99,7 +99,7 @@ export interface AutoCompleteOptionSelectEvent<T = any> {
 
 /**
  * Custom item unselect event.
- * @see {@link AutoCompleteEmitsOptions['item-unselect']}
+ * @see {@link AutoCompleteEmitsOptions['option-unselect']}
  * @extends AutoCompleteOptionSelectEvent
  */
 export interface AutoCompleteOptionUnselectEvent<T = any> extends AutoCompleteOptionSelectEvent<T> {}
@@ -475,17 +475,8 @@ export interface AutoCompleteProps<T = any, C = T> {
     dropdownClass?: string | object | undefined;
     /**
      * Icon to display in loading state.
-     * @deprecated since v4.0. Use 'loader' slot.
-     */
-    loadingIcon?: string | undefined;
-    /**
-     * Icon to display in loading state.
      */
     loader?: string | undefined;
-    /**
-     * Icon to display in chip remove action.
-     */
-    removeTokenIcon?: string | undefined;
     /**
      * Icon to display in chip remove action.
      */
@@ -710,26 +701,6 @@ export interface AutoCompleteSlots<T = any, C = T> {
         class: string;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'chipicon' slot instead.
-     * Custom chip icon template in multiple mode.
-     * @param {Object} scope - chip icon slot's params.
-     */
-    removetokenicon(scope: {
-        /**
-         * Style class of the icon.
-         */
-        class: string;
-        /**
-         * Index of the token.
-         */
-        index: number;
-        /**
-         * Remove token icon function.
-         * @param {Event} event - Browser event
-         */
-        removeCallback: (event: Event, index: number) => void;
-    }): VNode[];
-    /**
      * Custom chip icon template in multiple mode.
      * @param {Object} scope - chip icon slot's params.
      */
@@ -749,16 +720,6 @@ export interface AutoCompleteSlots<T = any, C = T> {
         removeCallback: (event: Event, index: number) => void;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'loader' slot instead.
-     * Custom loader template.
-     */
-    loadingicon(scope: {
-        /**
-         * Style class of the loader.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom loader template.
      */
     loader(scope: {
@@ -766,17 +727,6 @@ export interface AutoCompleteSlots<T = any, C = T> {
          * Style class of the loader.
          */
         class: string;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'dropdown' slot instead.
-     * Custom dropdown template.
-     */
-    dropdownbutton(scope: {
-        /**
-         * Toggle function.
-         * @param {Event} event - Browser event
-         */
-        toggleCallback: (event: Event) => void;
     }): VNode[];
     /**
      * Custom dropdown template.
@@ -830,18 +780,6 @@ export interface AutoCompleteEmitsOptions<T = any> {
      * @param {Event} event - Browser event.
      */
     blur(event: Event): void;
-    /**
-     * @deprecated since v4.0. Use 'option-select' emit.
-     * Callback to invoke when a suggestion is selected.
-     * @param {AutoCompleteOptionSelectEvent} event - Custom option select event.
-     */
-    'item-select'(event: AutoCompleteOptionSelectEvent<T>): void;
-    /**
-     * @deprecated since v4.0. Use 'option-unselect' emit.
-     * Callback to invoke when a selected value is removed.
-     * @param {AutoCompleteOptionUnselectEvent} event - Custom option unselect event.
-     */
-    'item-unselect'(event: AutoCompleteOptionUnselectEvent<T>): void;
     /**
      * Callback to invoke when a suggestion is selected.
      * @param {AutoCompleteOptionSelectEvent} event - Custom option select event.
