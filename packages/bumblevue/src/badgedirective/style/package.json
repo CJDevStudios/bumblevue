@@ -1,6 +1,0 @@
-{
-    "main": "./BadgeDirectiveStyle.js",
-    "module": "./BadgeDirectiveStyle.js",
-    "types": "./BadgeDirectiveStyle.d.ts",
-    "sideEffects": false
-}
