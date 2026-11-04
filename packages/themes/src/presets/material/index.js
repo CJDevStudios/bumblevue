@@ -32,7 +32,6 @@ import iftalabel from '@cjdevstudios/bumblevue-themes/material/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/material/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/material/imagecompare';
 import inplace from '@cjdevstudios/bumblevue-themes/material/inplace';
-import inputchips from '@cjdevstudios/bumblevue-themes/material/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/material/inputgroup';
 import inputnumber from '@cjdevstudios/bumblevue-themes/material/inputnumber';
 import inputotp from '@cjdevstudios/bumblevue-themes/material/inputotp';
@@ -121,7 +120,6 @@ export default {
         image,
         imagecompare,
         inplace,
-        inputchips,
         inputgroup,
         inputnumber,
         inputotp,

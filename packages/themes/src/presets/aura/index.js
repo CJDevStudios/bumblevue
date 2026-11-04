@@ -32,7 +32,6 @@ import iftalabel from '@cjdevstudios/bumblevue-themes/aura/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/aura/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/aura/imagecompare';
 import inplace from '@cjdevstudios/bumblevue-themes/aura/inplace';
-import inputchips from '@cjdevstudios/bumblevue-themes/aura/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/aura/inputgroup';
 import inputnumber from '@cjdevstudios/bumblevue-themes/aura/inputnumber';
 import inputotp from '@cjdevstudios/bumblevue-themes/aura/inputotp';
@@ -121,7 +120,6 @@ export default {
         image,
         imagecompare,
         inplace,
-        inputchips,
         inputgroup,
         inputnumber,
         inputotp,

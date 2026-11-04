@@ -32,7 +32,6 @@ import iftalabel from '@cjdevstudios/bumblevue-themes/nora/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/nora/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/nora/imagecompare';
 import inplace from '@cjdevstudios/bumblevue-themes/nora/inplace';
-import inputchips from '@cjdevstudios/bumblevue-themes/nora/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/nora/inputgroup';
 import inputnumber from '@cjdevstudios/bumblevue-themes/nora/inputnumber';
 import inputotp from '@cjdevstudios/bumblevue-themes/nora/inputotp';
@@ -121,7 +120,6 @@ export default {
         image,
         imagecompare,
         inplace,
-        inputchips,
         inputgroup,
         inputnumber,
         inputotp,

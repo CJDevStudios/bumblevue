@@ -32,7 +32,6 @@ import iftalabel from '@cjdevstudios/bumblevue-themes/lara/iftalabel';
 import image from '@cjdevstudios/bumblevue-themes/lara/image';
 import imagecompare from '@cjdevstudios/bumblevue-themes/lara/imagecompare';
 import inplace from '@cjdevstudios/bumblevue-themes/lara/inplace';
-import inputchips from '@cjdevstudios/bumblevue-themes/lara/inputchips';
 import inputgroup from '@cjdevstudios/bumblevue-themes/lara/inputgroup';
 import inputnumber from '@cjdevstudios/bumblevue-themes/lara/inputnumber';
 import inputotp from '@cjdevstudios/bumblevue-themes/lara/inputotp';
@@ -121,7 +120,6 @@ export default {
         image,
         imagecompare,
         inplace,
-        inputchips,
         inputgroup,
         inputnumber,
         inputotp,

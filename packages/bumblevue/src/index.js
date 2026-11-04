@@ -135,12 +135,6 @@ export { default as Chip } from '@cjdevstudios/bumblevue/chip';
 export * from '@cjdevstudios/bumblevue/chip/style';
 export { default as ChipStyle } from '@cjdevstudios/bumblevue/chip/style';
 
-// Chips
-export * from '@cjdevstudios/bumblevue/chips';
-export { default as Chips } from '@cjdevstudios/bumblevue/chips';
-export * from '@cjdevstudios/bumblevue/chips/style';
-export { default as ChipsStyle } from '@cjdevstudios/bumblevue/chips/style';
-
 // ColorPicker
 export * from '@cjdevstudios/bumblevue/colorpicker';
 export { default as ColorPicker } from '@cjdevstudios/bumblevue/colorpicker';
@@ -316,12 +310,6 @@ export * from '@cjdevstudios/bumblevue/inplace';
 export { default as Inplace } from '@cjdevstudios/bumblevue/inplace';
 export * from '@cjdevstudios/bumblevue/inplace/style';
 export { default as InplaceStyle } from '@cjdevstudios/bumblevue/inplace/style';
-
-// InputChips
-export * from '@cjdevstudios/bumblevue/inputchips';
-export { default as InputChips } from '@cjdevstudios/bumblevue/inputchips';
-export * from '@cjdevstudios/bumblevue/inputchips/style';
-export { default as InputChipsStyle } from '@cjdevstudios/bumblevue/inputchips/style';
 
 // InputGroup
 export * from '@cjdevstudios/bumblevue/inputgroup';

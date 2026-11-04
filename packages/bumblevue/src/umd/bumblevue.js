@@ -157,12 +157,6 @@ export { default as Chip } from '../chip/Chip.vue';
 export * from '../chip/style/ChipStyle.js';
 export { default as ChipStyle } from '../chip/style/ChipStyle.js';
 
-// Chips
-export * from '../chips/Chips.vue';
-export { default as Chips } from '../chips/Chips.vue';
-export * from '../chips/style/ChipsStyle.js';
-export { default as ChipsStyle } from '../chips/style/ChipsStyle.js';
-
 // ColorPicker
 export * from '../colorpicker/ColorPicker.vue';
 export { default as ColorPicker } from '../colorpicker/ColorPicker.vue';
@@ -338,12 +332,6 @@ export * from '../inplace/Inplace.vue';
 export { default as Inplace } from '../inplace/Inplace.vue';
 export * from '../inplace/style/InplaceStyle.js';
 export { default as InplaceStyle } from '../inplace/style/InplaceStyle.js';
-
-// InputChips
-export * from '../inputchips/InputChips.vue';
-export { default as InputChips } from '../inputchips/InputChips.vue';
-export * from '../inputchips/style/InputChipsStyle.js';
-export { default as InputChipsStyle } from '../inputchips/style/InputChipsStyle.js';
 
 // InputGroup
 export * from '../inputgroup/InputGroup.vue';
