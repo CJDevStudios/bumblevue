@@ -25,6 +25,8 @@
 - Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
+- TreeSelect: Removed deprecated `triggericon` and `itemtogglericon` slots. Use `dropdownicon` and `itemtoggleicon` instead.
+- Tree: Removed deprecated `searchicon`, `togglericon` and `nodetogglericon` slots. Use `filtericon` and `nodetoggleicon` instead.
 
 ## [1.0.0]
 
