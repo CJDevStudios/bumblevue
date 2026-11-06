@@ -72,8 +72,8 @@ const MenuSlots = [
         description: 'Custom item icon template.'
     },
     {
-        name: 'submenuheader',
-        description: 'Custom submenu header template.'
+        name: 'submenulabel',
+        description: 'Custom submenu label template.'
     }
 ];
 

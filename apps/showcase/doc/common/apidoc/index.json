@@ -40561,7 +40561,7 @@
                             "description": "Custom item template."
                         },
                         {
-                            "name": "menubutton",
+                            "name": "button",
                             "parameters": [
                                 {
                                     "name": "scope",
@@ -40574,7 +40574,7 @@
                             "description": "Custom menu button template on responsive mode."
                         },
                         {
-                            "name": "menubuttonicon",
+                            "name": "buttonicon",
                             "parameters": [],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom menu button icon template on responsive mode."
@@ -41317,20 +41317,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom item icon template."
-                        },
-                        {
-                            "name": "submenuheader",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">item</span>: <span class=\"doc-option-parameter-type\">MenuItem</span>, <span class=\"doc-option-parameter-type\">// Menuitem instance</span>\n }",
-                                    "description": "submenuheader slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use submenulabel slot instead.\nCustom submenu header template."
                         },
                         {
                             "name": "submenulabel",
@@ -42115,20 +42101,6 @@
                             "description": "Custom item template."
                         },
                         {
-                            "name": "menubutton",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">id</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Current id state as a string</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of component</span>\n \t <span class=\"ml-3 doc-option-parameter-name\">toggleCallback</span>: <span class=\"doc-option-parameter-type\">() &rArr; void</span>, <span class=\"doc-option-parameter-type\">// Toggle event</span>\n}",
-                                    "description": "menu button slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. use 'button' slot instead.\nCustom menu button template on responsive mode."
-                        },
-                        {
                             "name": "button",
                             "parameters": [
                                 {
@@ -42140,13 +42112,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom menu button template on responsive mode."
-                        },
-                        {
-                            "name": "menubuttonicon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. use 'buttonicon' slot instead.\nCustom menu button icon template on responsive mode."
                         },
                         {
                             "name": "buttonicon",
