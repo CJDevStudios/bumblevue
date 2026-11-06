@@ -100,19 +100,19 @@ const PaginatorSlots = [
         description: "Custom content for the component's right side."
     },
     {
-        name: 'firstpagelinkicon',
+        name: 'firsticon',
         description: 'Custom first page link icon template.'
     },
     {
-        name: 'prevpagelinkicon',
+        name: 'previcon',
         description: 'Custom previous page link icon template.'
     },
     {
-        name: 'nextpagelinkicon',
+        name: 'nexticon',
         description: 'Custom next page link icon template.'
     },
     {
-        name: 'lastpagelinkicon',
+        name: 'lasticon',
         description: 'Custom last page link icon template.'
     }
 ];

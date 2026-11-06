@@ -33,13 +33,11 @@
         >
             <button v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" tabindex="-1" :data-p-leaf="leaf" v-bind="getPTOptions('nodeToggleButton')">
                 <template v-if="node.loading && loadingMode === 'icon'">
-                    <!-- TODO: nodetogglericon deprecated since v4.0-->
-                    <component v-if="templates['nodetoggleicon'] || templates['nodetogglericon']" :is="templates['nodetoggleicon'] || templates['nodetogglericon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
                     <SpinnerIcon v-else spin :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
                 </template>
                 <template v-else>
-                    <!-- TODO: togglericon deprecated since v4.0-->
-                    <component v-if="templates['nodetoggleicon'] || templates['togglericon']" :is="templates['nodetoggleicon'] || templates['togglericon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
                     <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
                     <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
                 </template>

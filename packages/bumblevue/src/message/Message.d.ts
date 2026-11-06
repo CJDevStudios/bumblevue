@@ -119,12 +119,6 @@ export interface MessageProps {
      */
     closable?: boolean | undefined;
     /**
-     * @deprecated since 4.0.
-     * When enabled, message is not removed automatically.
-     * @defaultValue true
-     */
-    sticky?: boolean | undefined;
-    /**
      * Delay in milliseconds to close the message automatically.
      * @defaultValue null
      */

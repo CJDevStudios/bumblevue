@@ -12,12 +12,6 @@ const MessageProps = [
         description: 'Whether the message can be closed manually using the close icon.'
     },
     {
-        name: 'sticky',
-        type: 'boolean',
-        default: 'null',
-        description: 'When enabled, message is not removed automatically.'
-    },
-    {
         name: 'life',
         type: 'number',
         default: '300',

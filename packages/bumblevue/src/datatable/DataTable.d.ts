@@ -1319,18 +1319,8 @@ export interface DataTableSlots<T = any, PS extends number = number> {
     loadingicon(): VNode[];
     /**
      * Custom row reorder indicator up icon template.
-     * @deprecated since v4.0. Use 'rowreorderindicatorupicon' slot.
-     */
-    reorderindicatorupicon(): VNode[];
-    /**
-     * Custom row reorder indicator up icon template.
      */
     rowreorderindicatorupicon(): VNode[];
-    /**
-     * Custom reorder indicator down icon template.
-     * @deprecated since v4.0. Use 'rowreorderindicatordownicon' slot.
-     */
-    reorderindicatordownicon(): VNode[];
     /**
      * Custom reorder indicator down icon template.
      */
