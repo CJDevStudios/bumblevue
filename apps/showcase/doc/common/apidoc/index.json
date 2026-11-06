@@ -69559,20 +69559,6 @@
                             "description": "Custom message template."
                         },
                         {
-                            "name": "icon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">any</span>, <span class=\"doc-option-parameter-type\">// Style class of the message icon</span>\n }",
-                                    "description": "message icon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'messageicon' slot instead.\nCustom message icon template."
-                        },
-                        {
                             "name": "messageicon",
                             "parameters": [
                                 {
