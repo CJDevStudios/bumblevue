@@ -490,17 +490,6 @@ export interface TreeSlots<T extends TreeNode = TreeNode> {
         class: string;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'filtericon' slot instead.
-     * Custom search icon template.
-     * @param {Object} scope - searchicon slot's params.
-     */
-    searchicon(scope: {
-        /**
-         * Style class of the icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom search icon template.
      * @param {Object} scope - filtericon slot's params.
      */
@@ -509,36 +498,6 @@ export interface TreeSlots<T extends TreeNode = TreeNode> {
          * Style class of the icon.
          */
         class: string;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'nodetoggleicon' slot instead.
-     * Custom toggle icon template.
-     * @param {Object} scope - toggleicon slot's params.
-     */
-    togglericon(scope: {
-        /**
-         * Tree node instance
-         */
-        node: T;
-        /**
-         * Expanded state of the node
-         */
-        expanded: boolean;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'nodetoggleicon' slot instead.
-     * Custom node toggle icon template.
-     * @param {Object} scope - toggleicon slot's params.
-     */
-    nodetogglericon(scope: {
-        /**
-         * Tree node instance
-         */
-        node: T;
-        /**
-         * Expanded state of the node
-         */
-        expanded: boolean;
     }): VNode[];
     /**
      * Custom node toggle icon template.

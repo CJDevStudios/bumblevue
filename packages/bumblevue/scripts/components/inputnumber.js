@@ -36,16 +36,16 @@ const InputNumberProps = [
         description: 'Style class of the decrement button.'
     },
     {
-        name: 'incrementButtonIcon',
+        name: 'incrementIcon',
         type: 'string',
-        default: 'pi pi-angle-up',
-        description: 'Style class of the increment button.'
+        default: 'null',
+        description: 'Style class of the increment icon.'
     },
     {
-        name: 'decrementButtonIcon',
+        name: 'decrementIcon',
         type: 'string',
-        default: 'pi pi-angle-down',
-        description: 'Style class of the decrement button.'
+        default: 'null',
+        description: 'Style class of the decrement icon.'
     },
     {
         name: 'locale',
@@ -257,12 +257,12 @@ const InputNumberEvents = [
 
 const InputNumberSlots = [
     {
-        name: 'incrementbuttonicon',
-        description: 'Custom increment button icon template.'
+        name: 'incrementicon',
+        description: 'Custom increment icon template.'
     },
     {
-        name: 'decrementbuttonicon',
-        description: 'Custom decrement button icon template.'
+        name: 'decrementicon',
+        description: 'Custom decrement icon template.'
     }
 ];
 
