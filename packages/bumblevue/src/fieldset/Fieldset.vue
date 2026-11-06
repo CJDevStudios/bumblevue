@@ -37,9 +37,9 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
-import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
 import FieldsetStyle from '@cjdevstudios/bumblevue/fieldset/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 

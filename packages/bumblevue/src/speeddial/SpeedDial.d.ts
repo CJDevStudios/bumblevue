@@ -7,8 +7,8 @@
  * @module speeddial
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { ButtonPassThroughOptions, ButtonProps } from '@cjdevstudios/bumblevue/button';
 import type { MenuItem } from '@cjdevstudios/bumblevue/menuitem';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';

@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/slider';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const inlineStyles = {
     handle: { position: 'absolute' },

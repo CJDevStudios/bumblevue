@@ -1,1 +1,1 @@
-export * from '@cjdevstudios/bumblevue-core/usestyle';
+export * from '@cjdevstudios/bumblevue/core/usestyle';

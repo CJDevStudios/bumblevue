@@ -27,11 +27,11 @@
 
 <script>
 import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
-import SortAltIcon from '@cjdevstudios/bumblevue-icons/sortalt';
-import SortAmountDownIcon from '@cjdevstudios/bumblevue-icons/sortamountdown';
-import SortAmountUpAltIcon from '@cjdevstudios/bumblevue-icons/sortamountupalt';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+import SortAltIcon from '@cjdevstudios/bumblevue/icons/sortalt';
+import SortAmountDownIcon from '@cjdevstudios/bumblevue/icons/sortamountdown';
+import SortAmountUpAltIcon from '@cjdevstudios/bumblevue/icons/sortamountupalt';
 import Badge from '@cjdevstudios/bumblevue/badge';
 import { mergeProps } from 'vue';
 

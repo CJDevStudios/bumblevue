@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AccordionPanelStyle from '@cjdevstudios/bumblevue/accordionpanel/style';
 import { mergeProps } from 'vue';
 

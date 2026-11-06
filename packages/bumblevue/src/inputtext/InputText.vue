@@ -4,7 +4,7 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import InputTextStyle from '@cjdevstudios/bumblevue/inputtext/style';
 import { mergeProps } from 'vue';
 

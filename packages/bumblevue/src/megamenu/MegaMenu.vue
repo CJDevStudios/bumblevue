@@ -60,8 +60,8 @@
 import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import BarsIcon from '@cjdevstudios/bumblevue-icons/bars';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
 import MegaMenuStyle from '@cjdevstudios/bumblevue/megamenu/style';
 import MegaMenuSub from './MegaMenuSub.vue';
 

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import InputNumber from '@cjdevstudios/bumblevue/inputnumber';
 
 export default {

@@ -6,7 +6,7 @@
 
 <script>
 import { uuid } from '@cjdevstudios/bumbleuix-utils';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import CheckboxGroupStyle from '@cjdevstudios/bumblevue/checkboxgroup/style';
 
 export default {

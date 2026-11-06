@@ -88,10 +88,10 @@
 
 <script>
 import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
-import UploadIcon from '@cjdevstudios/bumblevue-icons/upload';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+import UploadIcon from '@cjdevstudios/bumblevue/icons/upload';
 import Button from '@cjdevstudios/bumblevue/button';
 import FileUploadStyle from '@cjdevstudios/bumblevue/fileupload/style';
 import Message from '@cjdevstudios/bumblevue/message';

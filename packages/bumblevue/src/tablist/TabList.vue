@@ -40,9 +40,9 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import TabListStyle from '@cjdevstudios/bumblevue/tablist/style';
 

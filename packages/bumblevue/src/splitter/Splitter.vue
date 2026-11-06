@@ -36,8 +36,8 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isArray, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import SplitterStyle from '@cjdevstudios/bumblevue/splitter/style';
 
 export default {

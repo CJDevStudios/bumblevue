@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import RefreshIcon from '@cjdevstudios/bumblevue-icons/refresh';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import RefreshIcon from '@cjdevstudios/bumblevue/icons/refresh';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 
 export default {
     components: { RefreshIcon, SpinnerIcon },

@@ -22,7 +22,7 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import TimelineStyle from '@cjdevstudios/bumblevue/timeline/style';
 
 export default {

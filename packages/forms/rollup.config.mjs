@@ -19,7 +19,7 @@ const GLOBALS = {
 
 // externals
 const GLOBAL_EXTERNALS = ['vue'];
-const INLINE_EXTERNALS = [/@cjdevstudios\/bumblevue-core\/.*/, /@@cjdevstudios\/bumbleuix-.*/];
+const INLINE_EXTERNALS = [/^@cjdevstudios\/bumblevue\/.*/, /@@cjdevstudios\/bumbleuix-.*/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 
 // alias

@@ -7,8 +7,8 @@
  * @module galleria
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { AllowedComponentProps, ButtonHTMLAttributes, ComponentCustomProps, HTMLAttributes, TransitionProps, VNode, VNodeProps } from 'vue';
 

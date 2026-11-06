@@ -45,8 +45,8 @@
 
 <script>
 import { findSingle, getHeight, getWidth, isVisible } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import VirtualScrollerStyle from '@cjdevstudios/bumblevue/virtualscroller/style';
 
 export default {

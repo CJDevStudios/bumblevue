@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import DockStyle from '@cjdevstudios/bumblevue/dock/style';
 import DockSub from './DockSub.vue';
 

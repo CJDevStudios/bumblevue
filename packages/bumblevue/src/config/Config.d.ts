@@ -1,5 +1,5 @@
-import type { DefaultPassThrough, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { BumbleVueCSPOptions, BumbleVueLocaleOptions, BumbleVueZIndexOptions } from '@cjdevstudios/bumblevue-core/config';
+import type { DefaultPassThrough, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { BumbleVueCSPOptions, BumbleVueLocaleOptions, BumbleVueZIndexOptions } from '@cjdevstudios/bumblevue/core/config';
 import type { AccordionPassThroughOptions } from '@cjdevstudios/bumblevue/accordion';
 import type { AccordionContentPassThroughOptions } from '@cjdevstudios/bumblevue/accordioncontent';
 import type { AccordionHeaderPassThroughOptions } from '@cjdevstudios/bumblevue/accordionheader';
@@ -117,8 +117,8 @@ import type { TreeSelectPassThroughOptions } from '@cjdevstudios/bumblevue/trees
 import type { TreeTablePassThroughOptions } from '@cjdevstudios/bumblevue/treetable';
 import type { VirtualScrollerPassThroughOptions } from '@cjdevstudios/bumblevue/virtualscroller';
 
-export * from '@cjdevstudios/bumblevue-core/config';
-export { default } from '@cjdevstudios/bumblevue-core/config';
+export * from '@cjdevstudios/bumblevue/core/config';
+export { default } from '@cjdevstudios/bumblevue/core/config';
 
 export interface BumbleVueConfiguration {
     ripple?: boolean;

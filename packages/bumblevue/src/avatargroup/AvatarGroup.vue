@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AvatarGroupStyle from '@cjdevstudios/bumblevue/avatargroup/style';
 
 export default {

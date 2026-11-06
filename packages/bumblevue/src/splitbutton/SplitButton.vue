@@ -63,8 +63,8 @@
 
 <script>
 import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
 import Button from '@cjdevstudios/bumblevue/button';
 import SplitButtonStyle from '@cjdevstudios/bumblevue/splitbutton/style';
 import TieredMenu from '@cjdevstudios/bumblevue/tieredmenu';

@@ -1,11 +1,11 @@
 /***************** BumbleVue (Auto-Generated) *****************/
 
 // API
-export * from '@cjdevstudios/bumblevue-core';
+export * from '@cjdevstudios/bumblevue/core';
 
 // BaseIcon
-export { default as BaseIcon } from '@cjdevstudios/bumblevue-icons/baseicon';
-export { default as BaseIconStyle } from '@cjdevstudios/bumblevue-icons/baseicon/style';
+export { default as BaseIcon } from '@cjdevstudios/bumblevue/icons/baseicon';
+export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon/style';
 
 // Themes
 export * from '@cjdevstudios/bumbleuix-styled';

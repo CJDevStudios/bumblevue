@@ -75,9 +75,9 @@
 
 <script>
 import { isNotEmpty, resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { mergeProps } from 'vue';
 

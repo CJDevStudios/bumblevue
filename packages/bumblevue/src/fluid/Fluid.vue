@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import FluidStyle from '@cjdevstudios/bumblevue/fluid/style';
 
 export default {

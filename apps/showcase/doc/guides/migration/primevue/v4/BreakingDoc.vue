@@ -22,7 +22,7 @@
                 </tr>
                 <tr>
                     <td>@primevue/core</td>
-                    <td>@cjdevstudios/bumblevue-core</td>
+                    <td>@cjdevstudios/bumblevue/core</td>
                 </tr>
                 <tr>
                     <td>@primevue/forms</td>
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td>@primevue/icons</td>
-                    <td>@cjdevstudios/bumblevue-icons</td>
+                    <td>@cjdevstudios/bumblevue/icons</td>
                 </tr>
                 <tr>
                     <td>@primevue/metadata</td>
@@ -106,7 +106,7 @@
         </p>
         <h5>PrimeIcons</h5>
         <p>
-            BumbleVue does not provide an icon font. Components use a small set of built-in SVG icons from <i>@cjdevstudios/bumblevue-icons</i> by default, and any other icons should come from the icon library of your choice. PrimeIcons can
+            BumbleVue does not provide an icon font. Components use a small set of built-in SVG icons from <i>@cjdevstudios/bumblevue/icons</i> by default, and any other icons should come from the icon library of your choice. PrimeIcons can
             still be used as is, since BumbleVue components accept the <i>pi pi-&#123;icon&#125;</i> classes in their icon properties. The <i>PrimeIcons</i> constants API has been removed and the <i>pi-spin</i> class applied by components
             to custom loading icons has been replaced with <i>p-icon-spin</i>.
         </p>

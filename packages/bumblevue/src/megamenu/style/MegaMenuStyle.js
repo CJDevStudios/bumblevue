@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/megamenu';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const inlineStyles = {
     rootList: ({ props }) => ({ 'max-height': props.scrollHeight, overflow: 'auto' })

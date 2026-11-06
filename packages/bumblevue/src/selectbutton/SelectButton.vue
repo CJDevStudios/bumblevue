@@ -25,7 +25,7 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { equals, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import SelectButtonStyle from '@cjdevstudios/bumblevue/selectbutton/style';
 import ToggleButton from '@cjdevstudios/bumblevue/togglebutton';

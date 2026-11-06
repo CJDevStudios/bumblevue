@@ -68,11 +68,11 @@
 <script>
 import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import AngleDoubleDownIcon from '@cjdevstudios/bumblevue-icons/angledoubledown';
-import AngleDoubleUpIcon from '@cjdevstudios/bumblevue-icons/angledoubleup';
-import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
-import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
+import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
+import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
 import Button from '@cjdevstudios/bumblevue/button';
 import Listbox from '@cjdevstudios/bumblevue/listbox';
 import OrderListStyle from '@cjdevstudios/bumblevue/orderlist/style';

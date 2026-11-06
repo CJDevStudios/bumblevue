@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/skeleton';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const inlineStyles = {
     root: { position: 'relative' }

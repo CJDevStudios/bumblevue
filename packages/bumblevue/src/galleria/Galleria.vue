@@ -13,7 +13,7 @@
 <script>
 import { addClass, focus } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import GalleriaStyle from '@cjdevstudios/bumblevue/galleria/style';
 import Portal from '@cjdevstudios/bumblevue/portal';

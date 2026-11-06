@@ -86,7 +86,7 @@
 
 <script>
 import { CustomerService } from '@/service/CustomerService';
-import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 
 export default {
     data() {
@@ -269,7 +269,7 @@ export default {
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 import { CustomerService } from '@/service/CustomerService';
 
 const customers = ref();

@@ -33,9 +33,9 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { contains, equals } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
 import CheckboxStyle from '@cjdevstudios/bumblevue/checkbox/style';
 
 export default {

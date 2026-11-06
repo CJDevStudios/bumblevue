@@ -62,13 +62,13 @@
 <script>
 import { addClass, focus, isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import EyeIcon from '@cjdevstudios/bumblevue-icons/eye';
-import RefreshIcon from '@cjdevstudios/bumblevue-icons/refresh';
-import SearchMinusIcon from '@cjdevstudios/bumblevue-icons/searchminus';
-import SearchPlusIcon from '@cjdevstudios/bumblevue-icons/searchplus';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
-import UndoIcon from '@cjdevstudios/bumblevue-icons/undo';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import EyeIcon from '@cjdevstudios/bumblevue/icons/eye';
+import RefreshIcon from '@cjdevstudios/bumblevue/icons/refresh';
+import SearchMinusIcon from '@cjdevstudios/bumblevue/icons/searchminus';
+import SearchPlusIcon from '@cjdevstudios/bumblevue/icons/searchplus';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+import UndoIcon from '@cjdevstudios/bumblevue/icons/undo';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import ImageStyle from '@cjdevstudios/bumblevue/image/style';
 import Portal from '@cjdevstudios/bumblevue/portal';

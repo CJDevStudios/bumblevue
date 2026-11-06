@@ -134,11 +134,11 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, focus, getFirstFocusableElement, isElement } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import { FilterService } from '@cjdevstudios/bumblevue-core/api';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
-import BlankIcon from '@cjdevstudios/bumblevue-icons/blank';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
+import { FilterService } from '@cjdevstudios/bumblevue/core/api';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+import BlankIcon from '@cjdevstudios/bumblevue/icons/blank';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
 import IconField from '@cjdevstudios/bumblevue/iconfield';
 import InputIcon from '@cjdevstudios/bumblevue/inputicon';
 import InputText from '@cjdevstudios/bumblevue/inputtext';

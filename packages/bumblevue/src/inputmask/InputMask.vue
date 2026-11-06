@@ -25,7 +25,7 @@
 
 <script>
 import { getUserAgent } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import InputMaskStyle from '@cjdevstudios/bumblevue/inputmask/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 import { mergeProps } from 'vue';

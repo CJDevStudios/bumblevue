@@ -7,8 +7,8 @@
  * @module inputmask
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { InputTextPassThroughOptions } from '@cjdevstudios/bumblevue/inputtext';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 

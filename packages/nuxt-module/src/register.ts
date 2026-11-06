@@ -108,7 +108,7 @@ function registerStyles(resolvePath: any, registered: any, moduleOptions: Module
         {
             name: 'BaseStyle',
             as: 'BaseStyle',
-            from: resolvePath({ name: 'BaseStyle', as: 'BaseStyle', from: '@cjdevstudios/bumblevue-core/base/style', type: 'style' })
+            from: resolvePath({ name: 'BaseStyle', as: 'BaseStyle', from: '@cjdevstudios/bumblevue/core/base/style', type: 'style' })
         }
     ];
 
@@ -118,7 +118,7 @@ function registerStyles(resolvePath: any, registered: any, moduleOptions: Module
             styles.push({
                 name: 'BaseComponentStyle',
                 as: 'BaseComponentStyle',
-                from: resolvePath({ name: 'BaseComponentStyle', as: 'BaseComponentStyle', from: '@cjdevstudios/bumblevue-core/basecomponent/style', type: 'style' })
+                from: resolvePath({ name: 'BaseComponentStyle', as: 'BaseComponentStyle', from: '@cjdevstudios/bumblevue/core/basecomponent/style', type: 'style' })
             });
         }
 

@@ -166,15 +166,15 @@
 <script>
 import { find, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList, isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import AngleDoubleDownIcon from '@cjdevstudios/bumblevue-icons/angledoubledown';
-import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue-icons/angledoubleleft';
-import AngleDoubleRightIcon from '@cjdevstudios/bumblevue-icons/angledoubleright';
-import AngleDoubleUpIcon from '@cjdevstudios/bumblevue-icons/angledoubleup';
-import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
-import AngleLeftIcon from '@cjdevstudios/bumblevue-icons/angleleft';
-import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
-import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
+import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue/icons/angledoubleleft';
+import AngleDoubleRightIcon from '@cjdevstudios/bumblevue/icons/angledoubleright';
+import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
+import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+import AngleLeftIcon from '@cjdevstudios/bumblevue/icons/angleleft';
+import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
 import Button from '@cjdevstudios/bumblevue/button';
 import Listbox from '@cjdevstudios/bumblevue/listbox';
 import PickListStyle from '@cjdevstudios/bumblevue/picklist/style';

@@ -7,8 +7,8 @@
  * @module tree
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { IconFieldPassThroughOptions } from '@cjdevstudios/bumblevue/iconfield';
 import type { InputIconPassThroughOptions } from '@cjdevstudios/bumblevue/inputicon';
 import type { InputTextPassThroughOptions } from '@cjdevstudios/bumblevue/inputtext';

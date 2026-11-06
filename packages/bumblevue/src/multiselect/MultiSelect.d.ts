@@ -7,8 +7,8 @@
  * @module multiselect
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { ChipPassThroughOptions } from '@cjdevstudios/bumblevue/chip';
 import type { IconFieldPassThroughOptions } from '@cjdevstudios/bumblevue/iconfield';
 import type { InputIconPassThroughOptions } from '@cjdevstudios/bumblevue/inputicon';

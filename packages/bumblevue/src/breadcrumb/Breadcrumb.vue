@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
 import BreadcrumbStyle from '@cjdevstudios/bumblevue/breadcrumb/style';
 import BreadcrumbItem from './BreadcrumbItem.vue';
 

@@ -7,7 +7,7 @@
  * @module inputotpstyle
  *
  */
-import type { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
+import type { BaseStyle } from '@cjdevstudios/bumblevue/core/base/style';
 
 export enum InputOtpClasses {
     /**

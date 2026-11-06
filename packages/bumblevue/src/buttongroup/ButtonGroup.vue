@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ButtonGroupStyle from '@cjdevstudios/bumblevue/buttongroup/style';
 
 export default {

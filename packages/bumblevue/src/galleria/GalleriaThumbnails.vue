@@ -73,11 +73,11 @@
 <script>
 import { addClass, find, findSingle, getAttribute, removeClass, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { localeComparator, sort } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
-import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 export default {

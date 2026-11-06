@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/virtualscroller';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const css = `
 .p-virtualscroller {

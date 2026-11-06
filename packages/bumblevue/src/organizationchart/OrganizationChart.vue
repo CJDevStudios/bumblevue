@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import OrganizationChartStyle from '@cjdevstudios/bumblevue/organizationchart/style';
 import OrganizationChartNode from './OrganizationChartNode.vue';
 

@@ -52,9 +52,9 @@
 
 <script>
 import { isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronUpIcon from '@cjdevstudios/bumblevue-icons/chevronup';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';
 
 export default {
     name: 'OrganizationChartNode',

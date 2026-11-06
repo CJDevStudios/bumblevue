@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/fileupload';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props }) => [`p-fileupload p-fileupload-${props.mode} p-component`],

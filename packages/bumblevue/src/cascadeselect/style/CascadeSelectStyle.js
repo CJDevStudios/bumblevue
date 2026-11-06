@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/cascadeselect';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const inlineStyles = {
     root: ({ props }) => ({ position: props.appendTo === 'self' ? 'relative' : undefined })

@@ -7,8 +7,8 @@
  * @module inputtext
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, Nullable, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, Nullable, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { InputHTMLAttributes } from 'vue';
 

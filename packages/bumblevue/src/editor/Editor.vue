@@ -49,7 +49,7 @@
 
 <script>
 import { isExist } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import EditorStyle from '@cjdevstudios/bumblevue/editor/style';
 
 const QuillJS = (function () {

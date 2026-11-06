@@ -7,7 +7,7 @@
  * @module iconfieldstyle
  *
  */
-import type { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
+import type { BaseStyle } from '@cjdevstudios/bumblevue/core/base/style';
 
 export enum IconFieldClasses {
     /**

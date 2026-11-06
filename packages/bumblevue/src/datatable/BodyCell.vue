@@ -133,14 +133,14 @@
 <script>
 import { getAttribute, getFirstFocusableElement, getNextElementSibling, getOuterWidth, getPreviousElementSibling, invokeElementMethod } from '@cjdevstudios/bumbleuix-utils/dom';
 import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
-import BarsIcon from '@cjdevstudios/bumblevue-icons/bars';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
-import PencilIcon from '@cjdevstudios/bumblevue-icons/pencil';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+import PencilIcon from '@cjdevstudios/bumblevue/icons/pencil';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import Button from '@cjdevstudios/bumblevue/button';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Ripple from '@cjdevstudios/bumblevue/ripple';

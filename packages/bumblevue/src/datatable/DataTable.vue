@@ -345,12 +345,12 @@ import {
     setAttribute
 } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findIndexInList, isEmpty, isNotEmpty, localeComparator, reorderArray, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
-import { FilterMatchMode, FilterOperator, FilterService } from '@cjdevstudios/bumblevue-core/api';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
-import ArrowDownIcon from '@cjdevstudios/bumblevue-icons/arrowdown';
-import ArrowUpIcon from '@cjdevstudios/bumblevue-icons/arrowup';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import { FilterMatchMode, FilterOperator, FilterService } from '@cjdevstudios/bumblevue/core/api';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+import ArrowDownIcon from '@cjdevstudios/bumblevue/icons/arrowdown';
+import ArrowUpIcon from '@cjdevstudios/bumblevue/icons/arrowup';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import DataTableStyle from '@cjdevstudios/bumblevue/datatable/style';
 import Paginator from '@cjdevstudios/bumblevue/paginator';
 import VirtualScroller from '@cjdevstudios/bumblevue/virtualscroller';

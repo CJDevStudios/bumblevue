@@ -8,8 +8,8 @@
  * @module column
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { BadgePassThroughOptions } from '@cjdevstudios/bumblevue/badge';
 import type { ButtonPassThroughOptions } from '@cjdevstudios/bumblevue/button';
 import type { CheckboxPassThroughOptionType } from '@cjdevstudios/bumblevue/checkbox';

@@ -7,8 +7,8 @@
  * @module treeselect
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { ChipPassThroughOptions } from '@cjdevstudios/bumblevue/chip';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import type { TreeExpandedKeys, TreeFilterEvent, TreePassThroughOptions } from '@cjdevstudios/bumblevue/tree';

@@ -38,8 +38,8 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { addClass, focus } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import Button from '@cjdevstudios/bumblevue/button';
 import DrawerStyle from '@cjdevstudios/bumblevue/drawer/style';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';

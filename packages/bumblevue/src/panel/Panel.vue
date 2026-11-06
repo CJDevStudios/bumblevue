@@ -35,9 +35,9 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
-import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
 import Button from '@cjdevstudios/bumblevue/button';
 import PanelStyle from '@cjdevstudios/bumblevue/panel/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';

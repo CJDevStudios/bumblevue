@@ -44,6 +44,7 @@
 - Select, MultiSelect, CascadeSelect, AutoComplete, DataTable and Tree: Custom loading icons are rotated with the `p-icon-spin` class instead of `pi-spin`.
 - Tailwind: The `@cjdevstudios/tailwindcss-bumblevue` package is discontinued. The Tailwind plugin is now included in `@cjdevstudios/bumblevue`; replace `@import "@cjdevstudios/tailwindcss-bumblevue";` with `@import "@cjdevstudios/bumblevue/tailwind.css";`. Tailwind v3 and its JavaScript plugin are no longer supported.
 - Auto Import: The `@cjdevstudios/bumblevue-auto-import-resolver` and `@cjdevstudios/bumblevue-metadata` packages are discontinued. The `BumbleVueResolver` and the component metadata are now included in `@cjdevstudios/bumblevue/resolver`.
+- Core and Icons: The `@cjdevstudios/bumblevue-core` and `@cjdevstudios/bumblevue-icons` packages are discontinued. They are now included in `@cjdevstudios/bumblevue` as `@cjdevstudios/bumblevue/core` and `@cjdevstudios/bumblevue/icons`; replace `@cjdevstudios/bumblevue-core/<module>` with `@cjdevstudios/bumblevue/core/<module>` and `@cjdevstudios/bumblevue-icons/<icon>` with `@cjdevstudios/bumblevue/icons/<icon>`, then uninstall the old packages. Custom components that extend `BaseComponent` or `BaseIcon` must also use the new paths, since loading both the old and new packages creates a second copy of the BumbleVue configuration.
 
 ## [1.0.0]
 

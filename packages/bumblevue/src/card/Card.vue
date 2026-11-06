@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import CardStyle from '@cjdevstudios/bumblevue/card/style';
 
 export default {

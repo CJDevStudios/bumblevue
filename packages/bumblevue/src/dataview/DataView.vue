@@ -102,7 +102,7 @@
 
 <script>
 import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import DataViewStyle from '@cjdevstudios/bumblevue/dataview/style';
 import Paginator from '@cjdevstudios/bumblevue/paginator';
 

@@ -1,4 +1,4 @@
-import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 import { mount } from '@vue/test-utils';
 import Button from '@cjdevstudios/bumblevue/button';
 import BumbleVue from '@cjdevstudios/bumblevue/config';

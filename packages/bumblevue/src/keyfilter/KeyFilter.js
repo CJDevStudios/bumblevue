@@ -1,5 +1,5 @@
 import { isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import KeyFilterStyle from '@cjdevstudios/bumblevue/keyfilter/style';
 
 const KeyFilter = BaseDirective.extend('keyfilter', {

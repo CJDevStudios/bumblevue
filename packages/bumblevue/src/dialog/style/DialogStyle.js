@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/dialog';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 /* Position */
 const inlineStyles = {

@@ -24,7 +24,7 @@
 
 <script>
 import { addClass, find, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import { defaultOptions } from '@cjdevstudios/bumblevue-core/config';
+import { defaultOptions } from '@cjdevstudios/bumblevue/core/config';
 
 export default {
     props: ['docs'],

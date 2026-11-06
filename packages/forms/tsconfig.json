@@ -17,7 +17,7 @@
         "baseUrl": ".",
         "paths": {
             "@cjdevstudios/bumblevue-forms/*": ["./src/*"],
-            "@cjdevstudios/bumblevue-core/*": ["../../packages/core/src/*"]
+            "@cjdevstudios/bumblevue/*": ["../bumblevue/src/*"]
         }
     },
     "include": ["**/*.ts", "src/*"],

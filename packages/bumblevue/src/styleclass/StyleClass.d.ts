@@ -7,8 +7,8 @@
  * @module styleclass
  *
  */
-import type { DesignToken, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { DirectiveHooks } from '@cjdevstudios/bumblevue-core/basedirective';
+import type { DesignToken, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { DirectiveHooks } from '@cjdevstudios/bumblevue/core/basedirective';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { DirectiveBinding, ObjectDirective } from 'vue';
 

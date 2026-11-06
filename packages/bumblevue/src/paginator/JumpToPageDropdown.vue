@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Select from '@cjdevstudios/bumblevue/select';
 
 export default {

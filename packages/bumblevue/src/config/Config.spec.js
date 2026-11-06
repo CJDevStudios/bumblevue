@@ -1,4 +1,4 @@
-import { defaultOptions } from '@cjdevstudios/bumblevue-core/config';
+import { defaultOptions } from '@cjdevstudios/bumblevue/core/config';
 import { config } from '@vue/test-utils';
 
 config.global.mocks['$bumblevue'] = {

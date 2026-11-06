@@ -7,8 +7,8 @@
  * @module datatable
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, NoInfer, Nullable, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, NoInfer, Nullable, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { ButtonProps } from '@cjdevstudios/bumblevue/button';
 import type { ColumnPassThroughOptionType } from '@cjdevstudios/bumblevue/column';
 import type { ColumnGroupPassThroughOptionType } from '@cjdevstudios/bumblevue/columngroup';

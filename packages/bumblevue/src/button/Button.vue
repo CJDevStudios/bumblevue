@@ -18,8 +18,8 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import Badge from '@cjdevstudios/bumblevue/badge';
 import ButtonStyle from '@cjdevstudios/bumblevue/button/style';
 import Ripple from '@cjdevstudios/bumblevue/ripple';

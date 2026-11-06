@@ -7,7 +7,7 @@
  * @module dynamicdialog
  *
  */
-import type { DefineComponent, EmitFn } from '@cjdevstudios/bumblevue-core';
+import type { DefineComponent, EmitFn } from '@cjdevstudios/bumblevue/core';
 
 /**
  * Defines valid properties in DynamicDialog component.
