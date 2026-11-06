@@ -279,17 +279,6 @@ export interface ToastSlots {
         message: any;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'messageicon' slot instead.
-     * Custom message icon template.
-     * @param {Object} scope - message icon slot's params.
-     */
-    icon(scope: {
-        /**
-         * Style class of the message icon
-         */
-        class: any;
-    }): VNode[];
-    /**
      * Custom message icon template.
      * @param {Object} scope - message icon slot's params.
      */

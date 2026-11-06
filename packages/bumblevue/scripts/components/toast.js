@@ -74,8 +74,8 @@ const ToastSlots = [
         description: 'Custom content for the toast message'
     },
     {
-        name: 'icon',
-        description: 'Custom icon template.'
+        name: 'messageicon',
+        description: 'Custom message icon template.'
     },
     {
         name: 'closeicon',
