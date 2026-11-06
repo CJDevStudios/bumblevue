@@ -101,7 +101,7 @@
                             <h1>Styled Mode</h1>
                             <p>Choose from a variety of pre-styled themes or develop your own.</p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

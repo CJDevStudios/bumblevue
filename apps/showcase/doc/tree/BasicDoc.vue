@@ -3,7 +3,7 @@
         <p>Tree component requires an array of TreeNode objects as its <i>value</i>.</p>
     </DocSectionText>
     <div class="card">
-        <Tree :value="nodes" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" class="w-full md:w-120"></Tree>
     </div>
     <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
 </template>
@@ -17,12 +17,12 @@ export default {
             nodes: null,
             code: {
                 basic: `
-<Tree :value="nodes" class="w-full md:w-[30rem]"></Tree>
+<Tree :value="nodes" class="w-full md:w-120"></Tree>
 `,
                 composition: `
 <template>
     <div class="card">
-        <Tree :value="nodes" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" class="w-full md:w-120"></Tree>
     </div>
 </template>
 

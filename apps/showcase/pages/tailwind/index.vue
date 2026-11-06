@@ -45,7 +45,7 @@
                         <h1>Tailwind CSS</h1>
                         <p>Integration between BumbleVue and Tailwind CSS both in styled and unstyled modes.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

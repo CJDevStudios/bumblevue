@@ -6,7 +6,7 @@
                     @click="handleBtnClick(data.id)"
                     @mouseenter="enterCardArea(data.id)"
                     @mouseleave="leaveCardArea"
-                    :class="`flex-1 py-1 px-1 lg:px-2 rounded-full text-surface-900 dark:text-surface-0 border-none outline-none text-xs font-medium transition-all hover:bg-surface-200 dark:hover:bg-surface-700 cursor-pointer ${
+                    :class="`flex-1 py-1 px-1 lg:px-2 rounded-full text-surface-900 dark:text-surface-0 border-none outline-hidden text-xs font-medium transition-all hover:bg-surface-200 dark:hover:bg-surface-700 cursor-pointer ${
                         data.id === selectedID ? 'bg-surface-200 dark:bg-surface-700' : 'bg-transparent'
                     }`"
                 >

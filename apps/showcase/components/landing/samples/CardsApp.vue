@@ -139,7 +139,7 @@
                     </div>
                     <div class="p-1 mt-4">
                         <button class="p-4 rounded-3xl w-full bg-emphasis transition-all text-color hover:text-color-emphasis flex items-center gap-2 justify-between cursor-pointer">
-                            <div class="flex items-center [&>*]:-mr-2">
+                            <div class="flex items-center *:-mr-2">
                                 <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg" size="small" shape="circle" />
                                 <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar10.jpg" size="small" shape="circle" />
                                 <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar12.jpg" size="small" shape="circle" />
@@ -201,7 +201,7 @@
                                 <div v-if="files.length > 0" class="px-4 py-0">
                                     <h5 class="m-0 mb-2">Pending</h5>
                                     <div class="flex flex-wrap gap-2 grow overflow-auto max-h-[210px]">
-                                        <div v-for="(file, index) of files" :key="file.name + file.type + file.size" class="card max-w-[120px] !p-2 m-0 flex flex-col border-1 surface-border items-center gap-2 text-center">
+                                        <div v-for="(file, index) of files" :key="file.name + file.type + file.size" class="card max-w-[120px] p-2! m-0 flex flex-col border surface-border items-center gap-2 text-center">
                                             <div>
                                                 <img role="presentation" :alt="file.name" :src="file.objectURL" width="100" height="50" />
                                             </div>
@@ -209,7 +209,7 @@
                                             <span class="text-sm text-muted-color">{{ formatSize(file.size) }}</span>
                                             <div class="grow flex flex-col gap-2 justify-end">
                                                 <Badge value="Pending" severity="warning" />
-                                                <Button icon="pi pi-times text-sm leading-none" @click="onRemoveTemplatingFile(file, removeFileCallback, index)" class="!text-sm !leading-none" label="Cancel" text severity="danger" />
+                                                <Button icon="pi pi-times text-sm leading-none" @click="onRemoveTemplatingFile(file, removeFileCallback, index)" class="text-sm! leading-none!" label="Cancel" text severity="danger" />
                                             </div>
                                         </div>
                                     </div>
@@ -218,7 +218,7 @@
                                 <div v-if="uploadedFiles.length > 0" class="px-4 py-0">
                                     <h5 class="m-0 mb-2">Completed</h5>
                                     <div class="flex flex-wrap gap-2">
-                                        <div v-for="(file, index) of uploadedFiles" :key="file.name + file.type + file.size" class="card max-w-[120px] !p-2 m-0 flex flex-col border-1 surface-border items-center gap-2 text-center">
+                                        <div v-for="(file, index) of uploadedFiles" :key="file.name + file.type + file.size" class="card max-w-[120px] p-2! m-0 flex flex-col border surface-border items-center gap-2 text-center">
                                             <div>
                                                 <img role="presentation" :alt="file.name" :src="file.objectURL" width="100" height="50" />
                                             </div>
@@ -226,7 +226,7 @@
                                             <span class="text-sm text-muted-color">{{ formatSize(file.size) }}</span>
                                             <div class="grow flex flex-col gap-2 justify-end">
                                                 <Badge value="Completed" class="mt-3" severity="success" />
-                                                <Button icon="pi pi-times text-sm leading-none" @click="removeUploadedFileCallback(index)" class="!text-sm !leading-none" label="Cancel" text severity="danger" />
+                                                <Button icon="pi pi-times text-sm leading-none" @click="removeUploadedFileCallback(index)" class="text-sm! leading-none!" label="Cancel" text severity="danger" />
                                             </div>
                                         </div>
                                     </div>
@@ -296,13 +296,13 @@
                                     :options="memberTypes"
                                     optionLabel="name"
                                     placeholder="Select"
-                                    class="!w-16"
+                                    class="w-16!"
                                     :pt="{
-                                        root: { class: '!border-0 !shadow-none' },
-                                        label: { class: '!p-0 !text-muted-color !text-sm' },
-                                        dropdown: { class: '!p-0 !w-auto' },
-                                        dropdownicon: { class: '!w-3 !h-3' },
-                                        option: { class: '!text-sm !px-2 !py-1' }
+                                        root: { class: 'border-0! shadow-none!' },
+                                        label: { class: 'p-0! text-muted-color! text-sm!' },
+                                        dropdown: { class: 'p-0! w-auto!' },
+                                        dropdownicon: { class: 'w-3! h-3!' },
+                                        option: { class: 'text-sm! px-2! py-1!' }
                                     }"
                                 />
                             </div>
@@ -317,13 +317,13 @@
                                     :options="memberTypes"
                                     optionLabel="name"
                                     placeholder="Select"
-                                    class="!w-16"
+                                    class="w-16!"
                                     :pt="{
-                                        root: { class: '!border-0 !shadow-none' },
-                                        label: { class: '!p-0 !text-muted-color !text-sm' },
-                                        dropdown: { class: '!p-0 !w-auto' },
-                                        dropdownicon: { class: '!w-3 !h-3' },
-                                        option: { class: '!text-sm !px-2 !py-1' }
+                                        root: { class: 'border-0! shadow-none!' },
+                                        label: { class: 'p-0! text-muted-color! text-sm!' },
+                                        dropdown: { class: 'p-0! w-auto!' },
+                                        dropdownicon: { class: 'w-3! h-3!' },
+                                        option: { class: 'text-sm! px-2! py-1!' }
                                     }"
                                 />
                             </div>
@@ -338,13 +338,13 @@
                                     :options="memberTypes"
                                     optionLabel="name"
                                     placeholder="Select"
-                                    class="!w-16"
+                                    class="w-16!"
                                     :pt="{
-                                        root: { class: '!border-0 !shadow-none' },
-                                        label: { class: '!p-0 !text-muted-color !text-sm' },
-                                        dropdown: { class: '!p-0 !w-auto' },
-                                        dropdownicon: { class: '!w-3 !h-3' },
-                                        option: { class: '!text-sm !px-2 !py-1' }
+                                        root: { class: 'border-0! shadow-none!' },
+                                        label: { class: 'p-0! text-muted-color! text-sm!' },
+                                        dropdown: { class: 'p-0! w-auto!' },
+                                        dropdownicon: { class: 'w-3! h-3!' },
+                                        option: { class: 'text-sm! px-2! py-1!' }
                                     }"
                                 />
                             </div>
@@ -428,7 +428,7 @@
                             integerOnly
                             :pt="{
                                 root: {
-                                    class: 'w-full [&>*]:flex-1 [&>*]:min-h-14 [&>*]:text-2xl '
+                                    class: 'w-full *:flex-1 *:min-h-14 *:text-2xl '
                                 }
                             }"
                         />
@@ -452,7 +452,7 @@
                                 locale="en-US"
                                 :pt="{
                                     root: {
-                                        class: '[&>*]:w-full mt-2'
+                                        class: '*:w-full mt-2'
                                     }
                                 }"
                             />
@@ -467,7 +467,7 @@
                                 locale="en-US"
                                 :pt="{
                                     root: {
-                                        class: '[&>*]:w-full mt-2'
+                                        class: '*:w-full mt-2'
                                     }
                                 }"
                             />
@@ -482,7 +482,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-3 flex-wrap [&>*]:flex-1 mt-6">
+                    <div class="flex items-center gap-3 flex-wrap *:flex-1 mt-6">
                         <Button label="Undo" variant="outlined" />
                         <Button label="Random" />
                     </div>

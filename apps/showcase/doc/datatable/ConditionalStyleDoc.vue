@@ -66,7 +66,7 @@ onMounted(() => {
 const products = ref();
 
 const rowClass = (data) => {
-    return [{ '!bg-primary !text-primary-contrast': data.category === 'Fitness' }];
+    return [{ 'bg-primary! text-primary-contrast!': data.category === 'Fitness' }];
 };
 const rowStyle = (data) => {
     if (data.quantity === 0) {
@@ -103,7 +103,7 @@ const stockSeverity = (data) => {
             ProductService.getProductsSmall().then((data) => (this.products = data));
         },
         rowClass(data) {
-            return [{ '!bg-primary !text-primary-contrast': data.category === 'Fitness' }];
+            return [{ 'bg-primary! text-primary-contrast!': data.category === 'Fitness' }];
         },
         rowStyle(data) {
             if (data.quantity === 0) {

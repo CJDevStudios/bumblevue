@@ -62,8 +62,8 @@
         "zod": "^3.25.76"
     },
     "devDependencies": {
-        "@cjdevstudios/tailwindcss-bumblevue": "catalog:",
         "@stackblitz/sdk": "^1.8.2",
+        "@tailwindcss/vite": "^4",
         "autoprefixer": "^10",
         "jsdom": "^19.0.0",
         "nuxt": "catalog:app",
@@ -71,7 +71,7 @@
         "primeicons": "^7.0.0",
         "sass": "catalog:app",
         "sass-loader": "catalog:app",
-        "tailwindcss": "^3",
+        "tailwindcss": "^4",
         "typedoc": "0.23.23",
         "vite": "catalog:app",
         "wrangler": "^4.120.0"

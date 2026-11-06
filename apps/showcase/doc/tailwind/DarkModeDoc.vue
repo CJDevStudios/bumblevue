@@ -6,12 +6,8 @@
         </p>
         <p>Suppose that, the darkModeSelector is set as <i>my-app-dark</i> in BumbleVue.</p>
         <DocSectionCode :code="code1" hideToggleCode importCode hideStackBlitz />
-        <h3>Tailwind v4</h3>
         <p>Add a custom variant for dark with a custom selector.</p>
         <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
-        <h3>Tailwind v3</h3>
-        <p>Use the plugins option in your Tailwind config file to configure the plugin.</p>
-        <DocSectionCode :code="code3" hideToggleCode importCode hideStackBlitz />
     </DocSectionText>
 </template>
 
@@ -39,19 +35,8 @@ app.use(BumbleVue, {
             code2: {
                 basic: `
 @import "tailwindcss";
-@import "tailwindcss-primeui";
+@import "@cjdevstudios/bumblevue/tailwind.css";
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));     //dark mode configuration
-`
-            },
-            code3: {
-                basic: `
-// tailwind.config.js
-import PrimeUI from 'tailwindcss-primeui';
-
-export default {
-    darkMode: ['selector', '[class~="my-app-dark"]'],           //dark mode configuration
-    plugins: [PrimeUI]
-};
 `
             }
         };

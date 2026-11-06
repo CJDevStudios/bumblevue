@@ -6,7 +6,7 @@
         </p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <Stepper v-model:value="activeStep" class="basis-[40rem]">
+        <Stepper v-model:value="activeStep" class="basis-160">
             <StepList>
                 <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="1">
                     <div class="flex flex-row flex-auto gap-2" v-bind="a11yAttrs.root">
@@ -129,7 +129,7 @@ export default {
             option10: false,
             code: {
                 basic: `
-<Stepper v-model:value="activeStep" class="basis-[40rem]">
+<Stepper v-model:value="activeStep" class="basis-160">
     <StepList>
         <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="1">
             <div class="flex flex-row flex-auto gap-2" v-bind="a11yAttrs.root">
@@ -232,7 +232,7 @@ export default {
                 composition: `
 <template>
     <div class="card flex justify-center">
-        <Stepper v-model:value="activeStep" class="basis-[40rem]">
+        <Stepper v-model:value="activeStep" class="basis-160">
             <StepList>
                 <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="1">
                     <div class="flex flex-row flex-auto gap-2" v-bind="a11yAttrs.root">

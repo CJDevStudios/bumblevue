@@ -32,7 +32,7 @@
                             <h1>Accessibility</h1>
                             <p>BumbleVue has WCAG 2.1 AA level compliance, refer to the accessibility documentation of each component for detailed information.</p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

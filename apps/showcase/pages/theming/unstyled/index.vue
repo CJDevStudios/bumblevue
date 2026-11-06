@@ -28,7 +28,7 @@
                             <h1>Unstyled Mode</h1>
                             <p>Theming BumbleVue with alternative styling approaches.</p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

@@ -1,8 +1,10 @@
+import tailwindcss from '@tailwindcss/vite';
 import path from 'path';
 
 const baseUrl = '/';
 
 const alias = {
+    '@cjdevstudios/bumblevue/tailwind.css': path.resolve(__dirname, '../../packages/bumblevue/src/tailwind/index.css'),
     '@cjdevstudios/bumblevue': path.resolve(__dirname, '../../packages/bumblevue/src'),
     // bumblevue: path.resolve(__dirname, '../../packages/bumblevue/src'),
     '@cjdevstudios/bumblevue-core': path.resolve(__dirname, '../../packages/core/src'),
@@ -29,6 +31,7 @@ export default defineNuxtConfig({
         }
     ],
     vite: {
+        plugins: [tailwindcss()],
         optimizeDeps: {
             noDiscovery: true,
             include: ['quill', 'yup']
@@ -81,7 +84,6 @@ export default defineNuxtConfig({
     },
     postcss: {
         plugins: {
-            tailwindcss: {},
             autoprefixer: {}
         }
     },
@@ -92,5 +94,5 @@ export default defineNuxtConfig({
             designerApiUrl: ''
         }
     },
-    css: ['primeicons/primeicons.css', '@/assets/styles/primeicons-rtl.css', '@/assets/styles/flags.css', '@docsearch/css/dist/style.css', '@/assets/styles/tailwind/main.css', '@/assets/styles/layout/layout.scss']
+    css: ['@/assets/styles/flags.css', '@docsearch/css/dist/style.css', '@/assets/styles/tailwind/main.css', '@/assets/styles/layout/layout.scss']
 });

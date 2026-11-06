@@ -13,15 +13,14 @@ const core_dependencies = {
     vue: '^3.2.45',
     '@vitejs/plugin-vue': '^4.0.0',
     vite: '^4.0.0',
-    bumblevue: pkg.version || BumbleVue.version || 'latest',
+    '@cjdevstudios/bumblevue': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumbleuix-themes': 'latest',
     '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumblevue-forms': pkg.version || BumbleVue.version || 'latest',
     primeicons: app_dependencies['primeicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
-    autoprefixer: app_dependencies['autoprefixer'] || 'latest',
+    '@tailwindcss/postcss': app_dependencies['tailwindcss'] || 'latest',
     postcss: app_dependencies['postcss'] || 'latest',
-    '@cjdevstudios/tailwindcss-bumblevue': 'latest',
     'unplugin-vue-components': 'latest'
 };
 
@@ -100,8 +99,6 @@ export default defineConfig({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="**${description}** ${BumbleVue.description}" />
-        <!-- Added to show icons in the editor -->
-        <link rel="stylesheet" href="https://unpkg.com/primeicons@${dependencies['primeicons'].replace(/[\^|~]/gi, '')}/primeicons.css">
         <title>BumbleVue App</title>
     </head>
     <body>
@@ -113,25 +110,12 @@ export default defineConfig({
         'postcss.config.js': {
             content: `module.exports = {
     plugins: {
-        tailwindcss: {},
-        autoprefixer: {}
+        '@tailwindcss/postcss': {}
     }
 };`
         },
-        'tailwind.config.js': {
-            content: `/** @type {import('tailwindcss').Config} */
-import BumbleVue from '@cjdevstudios/tailwindcss-bumblevue';
-
-export default {
-    content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
-    darkMode: ['selector', '[class="p-dark"]'],
-    plugins: [BumbleVue]
-};
-`
-        },
         [`${path}main.js`]: {
-            content: `import "primeicons/primeicons.css";
-import "./style.css";
+            content: `import "./style.css";
 import "./flags.css";
 
 import { createApp } from "vue";
@@ -154,7 +138,10 @@ app.use(BumbleVue, {
         options: {
             prefix: 'p',
             darkModeSelector: '.p-dark',
-            cssLayer: false,
+            cssLayer: {
+                name: 'bumblevue',
+                order: 'theme, base, bumblevue'
+            }
         }
     }
 });
@@ -175,7 +162,7 @@ app.mount("#app");
         <ul class="flex list-none m-0 p-0 gap-2 items-center">
             <li>
                 <button type="button"
-                    class="inline-flex w-8 h-8 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded"
+                    class="inline-flex w-8 h-8 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded-sm"
                     @click="onThemeToggler">
                     <i :class="\`dark:text-white pi \${iconClass}\`" />
                 </button>
@@ -189,17 +176,17 @@ app.mount("#app");
                     leaveActiveClass: 'animate-fadeout',
                     hideOnOutsideClick: true,
                 }" type="button"
-                    class="inline-flex w-8 h-8 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded">
+                    class="inline-flex w-8 h-8 p-0 items-center justify-center surface-0 dark:surface-800 border border-surface-200 dark:border-surface-600 rounded-sm">
                     <i class="pi pi-palette dark:text-white"></i>
                 </button>
                 <div
-                    class="absolute top-[2.5rem] right-0 hidden w-[16rem] p-3 bg-white dark:bg-surface-800 rounded-md shadow border border-surface-200 dark:border-surface-700 flex-col justify-start items-start gap-3.5 inline-flex origin-top z-10">
+                    class="absolute top-10 right-0 hidden w-[16rem] p-3 bg-white dark:bg-surface-800 rounded-md shadow-sm border border-surface-200 dark:border-surface-700 flex-col justify-start items-start gap-3.5 inline-flex origin-top z-10">
                     <div class="flex-col justify-start items-start gap-2 inline-flex pr-4">
                         <span class="text-sm font-medium">Primary Colors</span>
                         <div class="self-stretch justify-start items-start gap-2 inline-flex flex-wrap">
                             <button v-for="primaryColor of primaryColors" :key="primaryColor.name" type="button"
                                 :title="primaryColor.name" @click="updateColors('primary', primaryColor)"
-                                class="outline outline-2 outline-offset-1 outline-transparent cursor-pointer p-0 rounded-[50%] w-5 h-5"
+                                class="outline-solid outline-2 outline-offset-1 outline-transparent cursor-pointer p-0 rounded-[50%] w-5 h-5"
                                 :style="{
                                     backgroundColor: \`\${primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500']}\`,
                                     outlineColor: \`\${selectedPrimaryColor === primaryColor.name ? 'var(--p-primary-color)' : ''}\`,
@@ -211,7 +198,7 @@ app.mount("#app");
                         <div class="self-stretch justify-start items-start gap-2 inline-flex">
                             <button v-for="surface of surfaces" :key="surface.name" type="button" :title="surface.name"
                                 @click="updateColors('surface', surface)"
-                                class="outline outline-2 outline-offset-1 outline-transparent cursor-pointer p-0 rounded-[50%] w-5 h-5"
+                                class="outline-solid outline-2 outline-offset-1 outline-transparent cursor-pointer p-0 rounded-[50%] w-5 h-5"
                                 :style="{
                                     backgroundColor: \`\${surface.palette['500']}\`,
             outlineColor: \`\${selectedSurfaceColor === surface.name ? 'var(--p-primary-color)' : ''}\`,
@@ -949,9 +936,11 @@ export default Noir;
 };
 
 const staticStyles = {
-    global: `@tailwind base;
-@tailwind components;
-@tailwind utilities;
+    global: `@import "tailwindcss";
+@import "@cjdevstudios/bumblevue/tailwind.css";
+@import "primeicons/primeicons.css" layer(base);
+
+@custom-variant dark (&:where([class="p-dark"], [class="p-dark"] *));
 
 :root {
     --body-bg: var(--p-surface-50);

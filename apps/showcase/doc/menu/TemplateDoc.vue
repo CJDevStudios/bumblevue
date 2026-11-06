@@ -30,7 +30,7 @@
                     <span :class="item.icon" />
                     <span>{{ item.label }}</span>
                     <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
                 </a>
             </template>
             <template #end>
@@ -114,7 +114,7 @@ export default {
             <span :class="item.icon" />
             <span>{{ item.label }}</span>
             <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-            <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+            <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
         </a>
     </template>
     <template #end>
@@ -155,7 +155,7 @@ export default {
                     <span :class="item.icon" />
                     <span>{{ item.label }}</span>
                     <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
                 </a>
             </template>
             <template #end>

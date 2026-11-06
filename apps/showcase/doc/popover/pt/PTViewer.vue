@@ -2,11 +2,11 @@
     <DocPTViewer :docs="docs">
         <Button ref="btn" type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
         <Popover ref="op" appendTo="self">
-            <div class="flex flex-col gap-4 w-[25rem]">
+            <div class="flex flex-col gap-4 w-100">
                 <div>
                     <span class="font-medium block mb-2">Share this document</span>
                     <InputGroup>
-                        <InputText value="https://bumblevue.org/12323ff26t2g243g423g234gg52hy25XADXAG3" readonly class="w-[25rem]"></InputText>
+                        <InputText value="https://bumblevue.org/12323ff26t2g243g423g234gg52hy25XADXAG3" readonly class="w-100"></InputText>
                         <InputGroupAddon>
                             <i class="pi pi-copy"></i>
                         </InputGroupAddon>

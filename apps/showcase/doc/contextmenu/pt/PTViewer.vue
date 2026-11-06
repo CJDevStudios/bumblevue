@@ -1,6 +1,6 @@
 <template>
     <DocPTViewer :docs="docs">
-        <img id="logo" alt="Logo" src="https://primefaces.org/cdn/primevue/images/nature/nature2.jpg" class="w-full md:w-[20rem] rounded shadow-lg" @contextmenu="onImageRightClick" aria-haspopup="true" />
+        <img id="logo" alt="Logo" src="https://primefaces.org/cdn/primevue/images/nature/nature2.jpg" class="w-full md:w-[20rem] rounded-sm shadow-lg" @contextmenu="onImageRightClick" aria-haspopup="true" />
         <ContextMenu ref="menu" appendTo="#logo" :model="items" />
     </DocPTViewer>
 </template>

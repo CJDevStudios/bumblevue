@@ -55,6 +55,10 @@ export const NoirPreset = definePreset(Aura, {
 export default {
     preset: NoirPreset,
     options: {
-        darkModeSelector: '.p-dark'
+        darkModeSelector: '.p-dark',
+        cssLayer: {
+            name: 'bumblevue',
+            order: 'theme, base, bumblevue'
+        }
     }
 };

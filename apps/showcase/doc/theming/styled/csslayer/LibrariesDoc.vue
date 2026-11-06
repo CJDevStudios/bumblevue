@@ -8,8 +8,8 @@
 
     <h4>Tailwind</h4>
     <p>
-        Tailwind CSS includes a reset utility in base called <a href="https://tailwindcss.com/docs/preflight" target="_blank" rel="noopener noreferrer" class="doc-link">preflight</a>. If you are using this feature, wrap the base and utilities in
-        separate layers and make sure primevue layer comes after the base.
+        Tailwind CSS includes a reset utility in base called <a href="https://tailwindcss.com/docs/preflight" target="_blank" rel="noopener noreferrer" class="doc-link">preflight</a>. Tailwind already places its styles in the
+        <i>theme</i>, <i>base</i>, <i>components</i> and <i>utilities</i> layers, so define the order of the primevue layer to come after the base and before the utilities.
     </p>
     <DocSectionCode :code="code2" hideToggleCode hideStackBlitz />
 
@@ -31,16 +31,9 @@ export default {
             },
             code2: {
                 basic: `
-@layer tailwind-base, primevue, tailwind-utilities;
+@layer theme, base, primevue, components, utilities;
 
-@layer tailwind-base {
-    @tailwind base;
-}
-
-@layer tailwind-utilities {
-    @tailwind components;
-    @tailwind utilities;
-}
+@import "tailwindcss";
 `
             },
             code3: {

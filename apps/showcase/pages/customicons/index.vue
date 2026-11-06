@@ -30,7 +30,7 @@
                             <h1>Custom Icons</h1>
                             <p>BumbleVue components can be used with any icon library using the icon properties and templating features.</p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

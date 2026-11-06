@@ -14,7 +14,7 @@
                 <Button icon="pi pi-search" severity="secondary" variant="text" @click="toggle" />
             </InputGroupAddon>
         </InputGroup>
-        <Menu ref="menu" :model="items" popup class="!min-w-fit" />
+        <Menu ref="menu" :model="items" popup class="min-w-fit!" />
 
         <InputGroup>
             <InputGroupAddon>
@@ -47,7 +47,7 @@ export default {
         <Button icon="pi pi-search" severity="secondary" variant="text" @click="toggle" />
     </InputGroupAddon>
 </InputGroup>
-<Menu ref="menu" :model="items" popup class="!min-w-fit" />
+<Menu ref="menu" :model="items" popup class="min-w-fit!" />
 
 <InputGroup>
     <InputGroupAddon>
@@ -73,7 +73,7 @@ export default {
                 <Button icon="pi pi-search" severity="secondary" variant="text" @click="toggle" />
             </InputGroupAddon>
         </InputGroup>
-        <Menu ref="menu" :model="items" popup class="!min-w-fit" />
+        <Menu ref="menu" :model="items" popup class="min-w-fit!" />
 
         <InputGroup>
             <InputGroupAddon>

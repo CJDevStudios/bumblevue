@@ -31,7 +31,7 @@ const docs = [
                         <h1>Migration</h1>
                         <p>Migration from PrimeVue v4 to BumbleVue v1.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

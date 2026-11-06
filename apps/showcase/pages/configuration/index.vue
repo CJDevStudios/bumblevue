@@ -52,7 +52,7 @@
                         <h1>Configuration</h1>
                         <p>Application wide configuration for BumbleVue.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

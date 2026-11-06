@@ -18,7 +18,7 @@
                         <h1>Setup</h1>
                         <p>Installation guides for popular development environments.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

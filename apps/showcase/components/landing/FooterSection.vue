@@ -6,7 +6,7 @@
                     <ul class="list-none p-0 m-0">
                         <li class="font-bold mb-8">General</li>
                         <li class="mb-6">
-                            <BumbleVueNuxtLink to="/setup" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300">Get Started</BumbleVueNuxtLink>
+                            <BumbleVueNuxtLink to="/setup" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300">Get Started</BumbleVueNuxtLink>
                         </li>
                     </ul>
                 </div>
@@ -14,7 +14,7 @@
                     <ul class="list-none p-0 m-0">
                         <li class="font-bold mb-8">Support</li>
                         <li class="mb-6">
-                            <a href="https://github.com/CJDevStudios/bumblevue/discussions" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300" target="_blank" rel="noopener noreferrer"
+                            <a href="https://github.com/CJDevStudios/bumblevue/discussions" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300" target="_blank" rel="noopener noreferrer"
                                 >Forum</a
                             >
                         </li>
@@ -24,10 +24,10 @@
                     <ul class="list-none p-0 m-0">
                         <li class="font-bold mt-8 lg:mt-0 mb-8">Theming</li>
                         <li class="mb-6">
-                            <BumbleVueNuxtLink to="/theming/styled" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300">Styled Mode</BumbleVueNuxtLink>
+                            <BumbleVueNuxtLink to="/theming/styled" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300">Styled Mode</BumbleVueNuxtLink>
                         </li>
                         <li class="mb-6">
-                            <BumbleVueNuxtLink to="/theming/unstyled" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300">Unstyled Mode</BumbleVueNuxtLink>
+                            <BumbleVueNuxtLink to="/theming/unstyled" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300">Unstyled Mode</BumbleVueNuxtLink>
                         </li>
                     </ul>
                 </div>
@@ -35,12 +35,12 @@
                     <ul class="list-none p-0 m-0">
                         <li class="font-bold mt-8 lg:mt-0 mb-8">Resources</li>
                         <li class="mb-6">
-                            <a href="https://github.com/CJDevStudios/bumblevue" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300" target="_blank" rel="noopener noreferrer"
+                            <a href="https://github.com/CJDevStudios/bumblevue" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300" target="_blank" rel="noopener noreferrer"
                                 >Source Code</a
                             >
                         </li>
                         <li class="mb-6">
-                            <a href="mailto:contact@cjdevstudios.com" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded transition-all duration-300">Contact Us</a>
+                            <a href="mailto:contact@cjdevstudios.com" class="text-surface-500 dark:text-surface-400 font-medium hover:text-primary rounded-sm transition-all duration-300">Contact Us</a>
                         </li>
                     </ul>
                 </div>

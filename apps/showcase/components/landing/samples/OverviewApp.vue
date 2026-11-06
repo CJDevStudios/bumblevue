@@ -16,7 +16,7 @@
                         :pt="{
                             pcbadge: {
                                 root: {
-                                    class: '!min-w-0 !w-2.5 !h-2.5'
+                                    class: 'min-w-0! w-2.5! h-2.5!'
                                 }
                             }
                         }"
@@ -61,7 +61,7 @@
                         tableClass="overflow-x-auto dark:bg-surface-950"
                         paginatorTemplate="PrevPageLink PageLinks NextPageLink  CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                        pt:pcpaginator:root="!bg-transparent"
+                        pt:pcpaginator:root="bg-transparent!"
                         :dt="{
                             header: {
                                 background: 'transparent'
@@ -93,7 +93,7 @@
                                     <i
                                         :class="[
                                             {
-                                                'pi pi-bitcoin text-yellow-500 !text-3xl': slotProps.data.coin !== 'btc',
+                                                'pi pi-bitcoin text-yellow-500 text-3xl!': slotProps.data.coin !== 'btc',
                                                 'pi pi-ethereum bg-surface-950 text-surface-0 dark:bg-surface-0 dark:text-surface-950 w-7 h-7 rounded-full flex items-center justify-center': slotProps.data.coin !== 'eth'
                                             }
                                         ]"
@@ -322,7 +322,7 @@ export default {
                                     'opacity-100',
                                     'absolute',
                                     'transition-all',
-                                    'duration-[0.1s]',
+                                    'duration-100',
                                     'pointer-events-none',
                                     'shadow-[0px_25px_20px_-5px_rgba(0,0,0,0.10),0px_10px_8px_-6px_rgba(0,0,0,0.10)]'
                                 );

@@ -28,7 +28,7 @@
                         <h1>Install BumbleVue with Laravel</h1>
                         <p>Setting up BumbleVue in a Laravel project.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

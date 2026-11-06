@@ -40,13 +40,13 @@
                     }"
                 >
                     <div class="relative">
-                        <div v-if="chat.active !== undefined" class="absolute top-0 right-0 p-[1px] bg-surface-0 dark:bg-surface-950 rounded-full flex items-center justify-center">
+                        <div v-if="chat.active !== undefined" class="absolute top-0 right-0 p-px bg-surface-0 dark:bg-surface-950 rounded-full flex items-center justify-center">
                             <Badge :severity="chat.active ? 'success' : 'danger'" class="p-1.5"></Badge>
                         </div>
                         <Avatar
                             v-bind="chat.image ? { image: chat.image } : { label: chat.capName }"
                             :class="{
-                                '!bg-primary-100 !text-primary-950': !chat.image
+                                'bg-primary-100! text-primary-950!': !chat.image
                             }"
                             class="text-base font-medium flex"
                             size="large"

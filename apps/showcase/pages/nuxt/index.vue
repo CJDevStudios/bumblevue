@@ -51,7 +51,7 @@
                             <h1>Install BumbleVue with Nuxt</h1>
                             <p>Setting up BumbleVue in a Nuxt project.</p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

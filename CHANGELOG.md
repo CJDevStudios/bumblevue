@@ -42,6 +42,7 @@
 - Icons: The `@cjdevstudios/bumbleicons` icon font is discontinued. Components only use the built-in SVG icons from `@cjdevstudios/bumblevue-icons`. Use the icon library of your choice for any other icons; `primeicons` can be used as a drop-in replacement for the `pi pi-{icon}` classes.
 - Core: Removed the `BumbleIcons` constants from `@cjdevstudios/bumblevue-core/api`. Use the class names of your icon library directly instead.
 - Select, MultiSelect, CascadeSelect, AutoComplete, DataTable and Tree: Custom loading icons are rotated with the `p-icon-spin` class instead of `pi-spin`.
+- Tailwind: The `@cjdevstudios/tailwindcss-bumblevue` package is discontinued. The Tailwind plugin is now included in `@cjdevstudios/bumblevue`; replace `@import "@cjdevstudios/tailwindcss-bumblevue";` with `@import "@cjdevstudios/bumblevue/tailwind.css";`. Tailwind v3 and its JavaScript plugin are no longer supported.
 
 ## [1.0.0]
 

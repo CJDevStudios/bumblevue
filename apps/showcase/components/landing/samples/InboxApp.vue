@@ -57,7 +57,7 @@
                     },
                     column: {
                         bodyCell: {
-                            class: '!border-transparent'
+                            class: 'border-transparent!'
                         }
                     }
                 }"
@@ -88,7 +88,7 @@
                             <Button icon="pi pi-filter" variant="outlined" severity="secondary" />
                             <Divider layout="vertical" class="m-0" />
                             <Button icon="pi pi-refresh" variant="outlined" severity="secondary" />
-                            <Button label="1 of 15" class="!whitespace-nowrap" variant="outlined" severity="secondary" />
+                            <Button label="1 of 15" class="whitespace-nowrap!" variant="outlined" severity="secondary" />
                             <Button icon="pi pi-chevron-left" variant="outlined" severity="secondary" />
                             <Button icon="pi pi-chevron-right" variant="outlined" severity="secondary" />
                         </div>
