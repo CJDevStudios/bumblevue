@@ -26,6 +26,8 @@
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
 - InputNumber: Removed deprecated `incrementButtonIcon` and `decrementButtonIcon` props and `incrementbuttonicon` and `decrementbuttonicon` slots. Use `incrementIcon`/`decrementIcon` and `incrementicon`/`decrementicon` instead.
+- DataTable: Removed deprecated `reorderindicatorupicon` and `reorderindicatordownicon` slots. Use `rowreorderindicatorupicon` and `rowreorderindicatordownicon` instead.
+- Column: Removed deprecated `rowtogglericon` and `nodetogglericon` slots. Use `rowtoggleicon` and `nodetoggleicon` instead.
 
 ## [1.0.0]
 
