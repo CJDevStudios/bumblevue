@@ -74,7 +74,7 @@ const SpeedDialProps = [
     {
         name: 'showIcon',
         type: 'string',
-        default: 'pi pi-plus',
+        default: 'undefined',
         description: 'Show icon of the button element.'
     },
     {

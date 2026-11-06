@@ -8,7 +8,7 @@ const ImageProps = [
     {
         name: 'indicatorIcon',
         type: 'string',
-        default: 'pi pi-eye',
+        default: 'undefined',
         description: 'Custom indicator icon.'
     },
     {

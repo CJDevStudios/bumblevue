@@ -48,7 +48,6 @@
         "dev:cloudflare": "npx wrangler pages dev dist --compatibility-date 2026-08-08"
     },
     "dependencies": {
-        "@cjdevstudios/bumbleicons": "catalog:",
         "@cjdevstudios/bumbleuix-themes": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
         "@cjdevstudios/bumblevue-core": "workspace:*",
@@ -69,6 +68,7 @@
         "jsdom": "^19.0.0",
         "nuxt": "catalog:app",
         "postcss": "^8.4.31",
+        "primeicons": "^7.0.0",
         "sass": "catalog:app",
         "sass-loader": "catalog:app",
         "tailwindcss": "^3",

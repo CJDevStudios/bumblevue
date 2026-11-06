@@ -39,7 +39,7 @@ const TreeProps = [
     {
         name: 'loadingIcon',
         type: 'string',
-        default: 'pi pi-spin',
+        default: 'undefined',
         description: 'Icon to display when tree is loading.'
     },
     {

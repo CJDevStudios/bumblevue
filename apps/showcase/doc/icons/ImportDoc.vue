@@ -1,16 +1,32 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>CSS file of the icon library needs to be imported in <i>styles.scss</i> of your application.</p>
+        <p>Each built-in icon is a Vue component that can be imported individually from <i>@cjdevstudios/bumblevue-icons</i>.</p>
     </DocSectionText>
+    <div class="card flex justify-center gap-4">
+        <CheckIcon />
+        <TimesIcon />
+        <SearchIcon />
+        <StarIcon />
+    </div>
     <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
 </template>
 
 <script>
+import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
+import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
+import StarIcon from '@cjdevstudios/bumblevue-icons/star';
+import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+
 export default {
+    components: { CheckIcon, SearchIcon, StarIcon, TimesIcon },
     data() {
         return {
             code: {
-                basic: "\nimport 'primeicons/primeicons.css'\n"
+                basic: `
+import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
+
+<CheckIcon />
+`
             }
         };
     }

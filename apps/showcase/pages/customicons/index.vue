@@ -3,9 +3,11 @@
     import FontAwesomeDoc from '@/doc/customicons/FontAwesomeDoc.vue';
     import ImageDoc from '@/doc/customicons/ImageDoc.vue';
     import MaterialDoc from '@/doc/customicons/MaterialDoc.vue';
+    import PrimeIconsDoc from '@/doc/customicons/PrimeIconsDoc.vue';
     import SVGDoc from '@/doc/customicons/SVGDoc.vue';
 
     const docs = [
+        { id: 'primeicons', label: 'PrimeIcons', component: PrimeIconsDoc },
         { id: 'material', label: 'Material', component: MaterialDoc },
         { id: 'fontawesome', label: 'FontAwesome', component: FontAwesomeDoc },
         { id: 'svg', label: 'SVG', component: SVGDoc },
@@ -26,7 +28,7 @@
                     <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
                         <div class="flex-1">
                             <h1>Custom Icons</h1>
-                            <p>BumbleVue components can be used with any icon library using the templating features.</p>
+                            <p>BumbleVue components can be used with any icon library using the icon properties and templating features.</p>
                         </div>
                         <DocCopyMarkdown docType="page" class="flex-shrink-0" />
                     </div>

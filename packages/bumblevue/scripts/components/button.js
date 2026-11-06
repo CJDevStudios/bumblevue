@@ -44,7 +44,7 @@ const ButtonProps = [
     {
         name: 'loadingIcon',
         type: 'string',
-        default: 'pi pi-spinner pi-spin',
+        default: 'undefined',
         description: 'Icon to display in loading state.'
     },
     {

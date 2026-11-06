@@ -28,9 +28,6 @@ catalogs:
       specifier: 6.0.11
       version: 6.0.11
   default:
-    '@cjdevstudios/bumbleicons':
-      specifier: 1.0.0-beta.2
-      version: 1.0.0-beta.2
     '@cjdevstudios/bumbleuix-forms':
       specifier: 1.0.0-rc.1
       version: 1.0.0-rc.1
@@ -102,9 +99,6 @@ importers:
 
   apps/showcase:
     dependencies:
-      '@cjdevstudios/bumbleicons':
-        specifier: 'catalog:'
-        version: 1.0.0-beta.2
       '@cjdevstudios/bumbleuix-themes':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
@@ -160,6 +154,9 @@ importers:
       postcss:
         specifier: ^8.4.31
         version: 8.5.16
+      primeicons:
+        specifier: ^7.0.0
+        version: 7.0.0
       sass:
         specifier: catalog:app
         version: 1.45.0
@@ -978,9 +975,6 @@ packages:
         optional: true
       commander:
         optional: true
-
-  '@cjdevstudios/bumbleicons@1.0.0-beta.2':
-    resolution: {integrity: sha512-tPkzVqgV1H8R3Aig25XlzTXOys+SFzI6fmFiioiBdJ3uht3R0dp3zSWcYSE/7Cv2LDKnQDUBRkHsHwdGgA7wAQ==}
 
   '@cjdevstudios/bumbleuix-forms@1.0.0-rc.1':
     resolution: {integrity: sha512-3RJ7T+J+6tpnYK68FfSwdozCojeCQ1AHDSh5a4BqJrGQTUIPCMJuzdREXvwdhmnkNfDdvSsmB7W5DGUZ4dskAQ==}
@@ -6174,6 +6168,9 @@ packages:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
 
+  primeicons@7.0.0:
+    resolution: {integrity: sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==}
+
   process-nextick-args@2.0.1:
     resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
 
@@ -8625,8 +8622,6 @@ snapshots:
     optionalDependencies:
       cac: 6.7.14
       citty: 0.2.2
-
-  '@cjdevstudios/bumbleicons@1.0.0-beta.2': {}
 
   '@cjdevstudios/bumbleuix-forms@1.0.0-rc.1':
     dependencies:
@@ -14516,6 +14511,8 @@ snapshots:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 17.0.2
+
+  primeicons@7.0.0: {}
 
   process-nextick-args@2.0.1: {}
 

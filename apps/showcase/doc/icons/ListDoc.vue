@@ -1,67 +1,47 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Here is the full list of BumbleIcons. More icons will be added periodically and you may also <a href="https://github.com/primefaces/primeicons/issues">request new icons</a> at the issue tracker.</p>
+        <p>
+            Here is the full list of built-in icons. The set is intentionally limited to the icons that BumbleVue components use by default, for any other icon use the icon library of your choice as described in
+            <NuxtLink to="/customicons">Custom Icons</NuxtLink>.
+        </p>
     </DocSectionText>
 
     <InputText v-model="filter" class="w-full p-4 mt-4 mb-6" placeholder="Search an icon" />
 
     <div class="card">
         <div class="grid grid-cols-12 gap-4 text-center">
-            <div v-for="icon of filteredIcons" :key="icon.properties.name" class="col-span-12 md:col-span-2 mb-8">
-                <i :class="'text-2xl mb-4 text-surface-500 dark:text-surface-400 pi pi-' + icon.properties.name"></i>
-                <div>pi-{{ icon.properties.name }}</div>
+            <div v-for="icon of filteredIcons" :key="icon.name" class="col-span-12 md:col-span-3 mb-8">
+                <component :is="icon.component" class="mb-4 text-surface-500 dark:text-surface-400" style="width: 1.5rem; height: 1.5rem" />
+                <div>{{ icon.name }}</div>
+                <div class="text-sm text-surface-500 dark:text-surface-400">{{ icon.path }}</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { IconService } from '@/service/IconService';
+import * as Icons from '@cjdevstudios/bumblevue-icons';
+import { markRaw } from 'vue';
 
 export default {
     data() {
         return {
-            icons: null,
+            icons: Object.keys(Icons)
+                .filter((name) => name.endsWith('Icon') && name !== 'BaseIcon')
+                .sort()
+                .map((name) => ({
+                    name,
+                    path: `@cjdevstudios/bumblevue-icons/${name.slice(0, -4).toLowerCase()}`,
+                    component: markRaw(Icons[name])
+                })),
             filter: null
         };
     },
-    mounted() {
-        IconService.getIcons().then((data) => {
-            let d_data = data;
-            let d_icons = d_data.filter((value) => {
-                return value.icon.tags.indexOf('deprecate') === -1;
-            });
-
-            d_icons.sort((icon1, icon2) => {
-                if (icon1.properties.name < icon2.properties.name) return -1;
-                else if (icon1.properties.name < icon2.properties.name) return 1;
-                else return 0;
-            });
-
-            this.icons = d_icons;
-        });
-    },
     computed: {
         filteredIcons() {
-            let sanitizedInput = this.filter?.replace(/[^\w\s]/gi, '').replace(/\s/g, '');
+            const query = this.filter?.replace(/[^\w]/gi, '').toLowerCase();
 
-            if (this.filter)
-                return this.icons.filter((icon) => {
-                    return (
-                        icon.icon.tags.some((tag) =>
-                            tag
-                                .replace(/[^\w\s]/gi, '')
-                                .replace(/\s/g, '')
-                                .includes(sanitizedInput.toLowerCase())
-                        ) ||
-                        icon.properties.name
-                            .replace(/[^\w\s]/gi, '')
-                            .replace(/\s/g, '')
-                            .toLowerCase()
-                            .includes(sanitizedInput.toLowerCase())
-                    );
-                });
-            else return this.icons;
+            return query ? this.icons.filter((icon) => icon.name.toLowerCase().includes(query)) : this.icons;
         }
     }
 };
