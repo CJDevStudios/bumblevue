@@ -34938,30 +34938,12 @@
                             "description": "Style class of the decrement button."
                         },
                         {
-                            "name": "incrementButtonIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Style class of the increment icon.",
-                            "deprecated": "since v4.0. Use 'incrementIcon'."
-                        },
-                        {
                             "name": "incrementIcon",
                             "optional": true,
                             "readonly": false,
                             "type": "string",
                             "default": "",
                             "description": "Style class of the increment icon."
-                        },
-                        {
-                            "name": "decrementButtonIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Style class of the decrement icon.",
-                            "deprecated": "since v4.0. Use 'decrementIcon'."
                         },
                         {
                             "name": "decrementIcon",
@@ -35276,24 +35258,10 @@
                             "description": "Custom decrement button template."
                         },
                         {
-                            "name": "incrementbuttonicon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'incrementicon' slot.\nCustom increment icon template."
-                        },
-                        {
                             "name": "incrementicon",
                             "parameters": [],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom increment icon template."
-                        },
-                        {
-                            "name": "decrementbuttonicon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'decrementicon' slot.\nCustom decrement icon template."
                         },
                         {
                             "name": "decrementicon",
