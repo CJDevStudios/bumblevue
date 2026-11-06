@@ -25,6 +25,7 @@
 - Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
+- SplitButton: Removed deprecated `menuButtonIcon` prop and `menubuttonicon` slot. Use `dropdownIcon` and `dropdownicon` instead.
 
 ## [1.0.0]
 

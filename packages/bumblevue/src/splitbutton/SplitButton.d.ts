@@ -171,10 +171,6 @@ export interface SplitButtonProps<T extends MenuItem = MenuItem> {
     /**
      * Name of the menu button icon.
      */
-    menuButtonIcon?: string | undefined;
-    /**
-     * Name of the menu button icon.
-     */
     dropdownIcon?: string | undefined;
     /**
      * Defines the style of the button.
@@ -248,19 +244,8 @@ export interface SplitButtonSlots<T extends MenuItem = MenuItem> {
         class: string;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use dropdownicon slot instead.
      * Custom menu button icon template.
-     * @param {Object} scope - menubuttonicon slot's params.
-     */
-    menubuttonicon(scope: {
-        /**
-         * Style class of the icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
-     * Custom menu button icon template.
-     * @param {Object} scope - menubuttonicon slot's params.
+     * @param {Object} scope - dropdownicon slot's params.
      */
     dropdownicon(scope: {
         /**
