@@ -4,9 +4,7 @@
         "moduleResolution": "Node",
         "baseUrl": ".",
         "paths": {
-            "bumblevue/*": ["../../packages/bumblevue/src/*"],
-            "@cjdevstudios/bumblevue-metadata/*": ["../../packages/metadata/src/*"],
-            "@cjdevstudios/bumblevue-auto-import-resolver/*": ["../../packages/auto-import-resolver/src/*"]
+            "@cjdevstudios/bumblevue/*": ["../../packages/bumblevue/src/*"]
         }
     },
     "exclude": ["dist", "node_modules", "playground"]

@@ -15,7 +15,6 @@ const core_dependencies = {
     vite: '^4.0.0',
     '@cjdevstudios/bumblevue': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumbleuix-themes': 'latest',
-    '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumblevue-forms': pkg.version || BumbleVue.version || 'latest',
     primeicons: app_dependencies['primeicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
@@ -72,7 +71,7 @@ const getVueApp = (props = {}, sourceType) => {
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
-import {BumbleVueResolver} from '@cjdevstudios/bumblevue-auto-import-resolver';
+import { BumbleVueResolver } from '@cjdevstudios/bumblevue/resolver';
 
 // https://vitejs.dev/config/
 export default defineConfig({

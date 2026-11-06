@@ -13,7 +13,7 @@ updatePackageJson(pkg);
 // update package.json > "exports" for local
 let exports = {};
 let modules = {
-    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils'],
+    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver'],
     umd: [
         `/***************** BumbleVue (Auto-Generated) *****************/
 

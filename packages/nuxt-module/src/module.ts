@@ -1,7 +1,7 @@
 import { addPlugin, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
-import { BumbleVueResolver } from '@cjdevstudios/bumblevue-auto-import-resolver';
-import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
+import { BumbleVueResolver } from '@cjdevstudios/bumblevue/resolver';
+import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
 import { normalize } from 'pathe';
 import Components from 'unplugin-vue-components/nuxt';
 import { register } from './register';
