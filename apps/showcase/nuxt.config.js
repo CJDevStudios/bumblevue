@@ -92,5 +92,5 @@ export default defineNuxtConfig({
             designerApiUrl: ''
         }
     },
-    css: ['@cjdevstudios/bumbleicons/bumbleicons.css', '@/assets/styles/flags.css', '@docsearch/css/dist/style.css', '@/assets/styles/tailwind/main.css', '@/assets/styles/layout/layout.scss']
+    css: ['primeicons/primeicons.css', '@/assets/styles/primeicons-rtl.css', '@/assets/styles/flags.css', '@docsearch/css/dist/style.css', '@/assets/styles/tailwind/main.css', '@/assets/styles/layout/layout.scss']
 });

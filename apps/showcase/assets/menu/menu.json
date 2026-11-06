@@ -540,7 +540,7 @@
             "icon": "pi pi-eye",
             "children": [
                 {
-                    "name": "Bumble Icons",
+                    "name": "Built-in Icons",
                     "to": "/icons"
                 },
                 {

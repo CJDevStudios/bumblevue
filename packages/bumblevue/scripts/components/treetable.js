@@ -111,7 +111,7 @@ const TreeTableProps = [
     {
         name: 'loadingIcon',
         type: 'string',
-        default: 'pi pi-spinner',
+        default: 'undefined',
         description: 'The icon to show while indicating data load is in progress.'
     },
     {

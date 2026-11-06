@@ -111,7 +111,7 @@
             </li>
         </ul>
         <slot v-if="searching || loading" :class="cx('loader')" name="loader">
-            <i v-if="loader" :class="['pi-spin', cx('loader'), loader]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
+            <i v-if="loader" :class="['p-icon-spin', cx('loader'), loader]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
             <SpinnerIcon v-else-if="loading" :class="cx('loader')" spin aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
         </slot>
         <slot name="dropdown" :toggleCallback="(event) => onDropdownClick(event)">

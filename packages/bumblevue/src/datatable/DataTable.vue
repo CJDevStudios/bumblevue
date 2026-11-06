@@ -6,7 +6,7 @@
                 <slot v-if="$slots.loading" name="loading"></slot>
                 <template v-else>
                     <component v-if="$slots.loadingicon" :is="$slots.loadingicon" :class="cx('loadingIcon')" />
-                    <i v-else-if="loadingIcon" :class="[cx('loadingIcon'), 'pi-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
+                    <i v-else-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
                     <SpinnerIcon v-else spin :class="cx('loadingIcon')" v-bind="ptm('loadingIcon')" />
                 </template>
             </div>

@@ -200,7 +200,7 @@ const ColumnProps = [
     {
         name: 'rowReorderIcon',
         type: 'string',
-        default: 'pi pi-bars',
+        default: 'undefined',
         description: 'Icon of the drag handle to reorder rows.'
     },
     {

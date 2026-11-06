@@ -86,7 +86,7 @@ const DataTableProps = [
     {
         name: 'loadingIcon',
         type: 'string',
-        default: 'pi pi-spinner',
+        default: 'undefined',
         description: 'The icon to show while indicating data load is in progress.'
     },
     {
@@ -243,13 +243,13 @@ const DataTableProps = [
     {
         name: 'expandedRowIcon',
         type: 'string',
-        default: 'pi-chevron-down',
+        default: 'undefined',
         description: 'Icon of the row toggler to display the row as expanded.'
     },
     {
         name: 'collapsedRowIcon',
         type: 'string',
-        default: 'pi pi-chevron-right',
+        default: 'undefined',
         description: 'Icon of the row toggler to display the row as collapsed.'
     },
     {

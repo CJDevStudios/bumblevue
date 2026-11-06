@@ -41,10 +41,6 @@
                     <td>@cjdevstudios/bumblevue-nuxt-module</td>
                 </tr>
                 <tr>
-                    <td>primeicons</td>
-                    <td>@cjdevstudios/bumbleicons</td>
-                </tr>
-                <tr>
                     <td>tailwindcss-primeui</td>
                     <td>@cjdevstudios/tailwindcss-bumblevue</td>
                 </tr>
@@ -90,7 +86,6 @@
             <li><code>PrimeVueConfiguration</code> renamed to <code>BumbleVueConfiguration</code></li>
         </ul>
         <p>In general the renames are fairly obvious replacements of PrimeVue with BumbleVue.</p>
-        <p>Note that the prefix "p-" and style class "pi" for PrimeIcons remains the same for BumbleIcons.</p>
         <h4>Dropped packages/features/ecosystem products</h4>
         <p>In order to focus on the core BumbleVue project and maintain it as free and open source, some of the features and ecosystem products from PrimeTek have no alternative in BumbleVue.</p>
         <h5>LLM / MCP</h5>
@@ -108,6 +103,12 @@
         <p>
             The are no plans currently for selling templates or "UI blocks". In 2025, Tailwind announced they had to downsize by 75% and placed the blame solely on AI. The fact is that monetizing something than can easily be replicated by AI, or even
             a skilled designer, is not a sustainable business model and this is not a desired route for monetization of BumbleVue or even a desired free offering.
+        </p>
+        <h5>PrimeIcons</h5>
+        <p>
+            BumbleVue does not provide an icon font. Components use a small set of built-in SVG icons from <i>@cjdevstudios/bumblevue-icons</i> by default, and any other icons should come from the icon library of your choice. PrimeIcons can
+            still be used as is, since BumbleVue components accept the <i>pi pi-&#123;icon&#125;</i> classes in their icon properties. The <i>PrimeIcons</i> constants API has been removed and the <i>pi-spin</i> class applied by components
+            to custom loading icons has been replaced with <i>p-icon-spin</i>.
         </p>
         <h5>PrimeCLT</h5>
         <p>Not essential.</p>

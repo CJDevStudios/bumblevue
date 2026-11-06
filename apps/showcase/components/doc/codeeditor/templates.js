@@ -17,7 +17,7 @@ const core_dependencies = {
     '@cjdevstudios/bumbleuix-themes': 'latest',
     '@cjdevstudios/bumblevue-auto-import-resolver': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumblevue-forms': pkg.version || BumbleVue.version || 'latest',
-    '@cjdevstudios/bumbleicons': app_dependencies['@cjdevstudios/bumbleicons'] || 'latest',
+    primeicons: app_dependencies['primeicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
     autoprefixer: app_dependencies['autoprefixer'] || 'latest',
     postcss: app_dependencies['postcss'] || 'latest',
@@ -101,7 +101,7 @@ export default defineConfig({
         <meta name="theme-color" content="#000000" />
         <meta name="description" content="**${description}** ${BumbleVue.description}" />
         <!-- Added to show icons in the editor -->
-        <link rel="stylesheet" href="https://unpkg.com/@cjdevstudios/bumbleicons@${dependencies['@cjdevstudios/bumbleicons'].replace(/[\^|~]/gi, '')}/bumbleicons.css">
+        <link rel="stylesheet" href="https://unpkg.com/primeicons@${dependencies['primeicons'].replace(/[\^|~]/gi, '')}/primeicons.css">
         <title>BumbleVue App</title>
     </head>
     <body>
@@ -130,7 +130,7 @@ export default {
 `
         },
         [`${path}main.js`]: {
-            content: `import "@cjdevstudios/bumbleicons/bumbleicons.css";
+            content: `import "primeicons/primeicons.css";
 import "./style.css";
 import "./flags.css";
 
