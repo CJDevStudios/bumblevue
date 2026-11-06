@@ -54,10 +54,10 @@ const SplitButtonProps = [
         description: 'Inline of the component.'
     },
     {
-        name: 'menuButtonIcon',
+        name: 'dropdownIcon',
         type: 'string',
         default: 'null',
-        description: 'Name of the menu button icon.'
+        description: 'Name of the dropdown icon.'
     },
     {
         name: 'severity',
@@ -129,8 +129,8 @@ const SplitButtonSlots = [
         description: 'Custom icon template.'
     },
     {
-        name: 'menubuttonicon',
-        description: 'Custom menu button icon template.'
+        name: 'dropdownicon',
+        description: 'Custom dropdown icon template.'
     },
     {
         name: 'menuitemicon',

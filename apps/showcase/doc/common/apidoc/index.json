@@ -60316,14 +60316,6 @@
                             "description": "Used to pass all properties of the HTMLButtonElement to the menu button."
                         },
                         {
-                            "name": "menuButtonIcon",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "string",
-                            "default": "",
-                            "description": "Name of the menu button icon."
-                        },
-                        {
                             "name": "dropdownIcon",
                             "optional": true,
                             "readonly": false,
@@ -60443,20 +60435,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom button icon template."
-                        },
-                        {
-                            "name": "menubuttonicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the icon.</span>\n }",
-                                    "description": "menubuttonicon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use dropdownicon slot instead.\nCustom menu button icon template."
                         },
                         {
                             "name": "dropdownicon",
