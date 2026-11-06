@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>@primevue/forms</td>
-                    <td>@cjdevstudios/bumblevue-forms</td>
+                    <td>@cjdevstudios/bumblevue/forms</td>
                 </tr>
                 <tr>
                     <td>@primevue/icons</td>
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                     <td>@primeuix/forms</td>
-                    <td>@cjdevstudios/bumbleuix-forms</td>
+                    <td>@cjdevstudios/bumblevue/forms</td>
                 </tr>
                 <tr>
                     <td>@primeuix/headless</td>

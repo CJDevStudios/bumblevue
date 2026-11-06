@@ -15,7 +15,6 @@ const core_dependencies = {
     vite: '^4.0.0',
     '@cjdevstudios/bumblevue': pkg.version || BumbleVue.version || 'latest',
     '@cjdevstudios/bumbleuix-themes': 'latest',
-    '@cjdevstudios/bumblevue-forms': pkg.version || BumbleVue.version || 'latest',
     primeicons: app_dependencies['primeicons'] || 'latest',
     tailwindcss: app_dependencies['tailwindcss'] || 'latest',
     '@tailwindcss/postcss': app_dependencies['tailwindcss'] || 'latest',

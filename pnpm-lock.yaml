@@ -28,9 +28,6 @@ catalogs:
       specifier: 6.0.11
       version: 6.0.11
   default:
-    '@cjdevstudios/bumbleuix-forms':
-      specifier: 1.0.0-rc.1
-      version: 1.0.0-rc.1
     '@cjdevstudios/bumbleuix-styled':
       specifier: 1.0.0-rc.1
       version: 1.0.0-rc.1
@@ -102,9 +99,6 @@ importers:
       '@cjdevstudios/bumblevue':
         specifier: workspace:*
         version: link:../../packages/bumblevue
-      '@cjdevstudios/bumblevue-forms':
-        specifier: workspace:*
-        version: link:../../packages/forms
       '@cjdevstudios/bumblevue-nuxt-module':
         specifier: workspace:*
         version: link:../../packages/nuxt-module
@@ -181,15 +175,30 @@ importers:
       '@cjdevstudios/bumbleuix-utils':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
+      joi:
+        specifier: '>=17.0.0'
+        version: 18.3.2
+      superstruct:
+        specifier: '>=2.0.0'
+        version: 2.0.2
       tailwindcss:
         specifier: '>=4.0.0'
         version: 4.3.5
       unplugin-vue-components:
         specifier: '>=0.27.0'
         version: 28.4.1(@babel/parser@7.29.7)(@nuxt/kit@3.21.8(magicast@0.5.3))(vue@3.5.39(typescript@5.7.3))
+      valibot:
+        specifier: '>=0.42.0'
+        version: 1.4.2(typescript@5.7.3)
       vue:
         specifier: ^3.5.0
         version: 3.5.39(typescript@5.7.3)
+      yup:
+        specifier: '>=1.0.0'
+        version: 1.4.0
+      zod:
+        specifier: '>=3.25.0'
+        version: 3.25.76
     devDependencies:
       '@vue/test-utils':
         specifier: ^2.0.0
@@ -197,19 +206,6 @@ importers:
       vitest:
         specifier: ^0.29.8
         version: 0.29.8(jsdom@19.0.0)(lightningcss@1.33.0)(sass@1.45.0)(terser@5.49.0)
-    publishDirectory: dist
-
-  packages/forms:
-    dependencies:
-      '@cjdevstudios/bumbleuix-forms':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      '@cjdevstudios/bumbleuix-utils':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      '@cjdevstudios/bumblevue':
-        specifier: workspace:*
-        version: link:../bumblevue
     publishDirectory: dist
 
   packages/nuxt-module:
@@ -223,9 +219,6 @@ importers:
       '@cjdevstudios/bumblevue':
         specifier: workspace:*
         version: link:../bumblevue
-      '@cjdevstudios/bumblevue-forms':
-        specifier: workspace:*
-        version: link:../forms
       '@nuxt/kit':
         specifier: ^3
         version: 3.21.8(magicast@0.3.5)
@@ -918,10 +911,6 @@ packages:
         optional: true
       commander:
         optional: true
-
-  '@cjdevstudios/bumbleuix-forms@1.0.0-rc.1':
-    resolution: {integrity: sha512-3RJ7T+J+6tpnYK68FfSwdozCojeCQ1AHDSh5a4BqJrGQTUIPCMJuzdREXvwdhmnkNfDdvSsmB7W5DGUZ4dskAQ==}
-    engines: {node: '>=12.11.0'}
 
   '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
     resolution: {integrity: sha512-KbMQvnik30as7rrm+IugydzJmOlh2Ab907hGbsiC3mo2s+IsipqBLweqb3bD3R5JFQ2sjBj1bb/W2hmCaH3Xkw==}
@@ -1844,6 +1833,26 @@ packages:
     resolution: {integrity: sha512-43/qtrDUokr7LJqoF2c3+RInu/t4zfrpYdoSDfYyhg52rwLV6TnOvdG4fXm7IkSB3wErkcmJS9iEhjVtOSEjjA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
+  '@hapi/address@5.1.1':
+    resolution: {integrity: sha512-A+po2d/dVoY7cYajycYI43ZbYMXukuopIsqCjh5QzsBCipDtdofHntljDlpccMjIfTy6UOkg+5KPriwYch2bXA==}
+    engines: {node: '>=14.0.0'}
+
+  '@hapi/formula@3.0.2':
+    resolution: {integrity: sha512-hY5YPNXzw1He7s0iqkRQi+uMGh383CGdyyIGYtB+W5N3KHPXoqychklvHhKCC9M3Xtv0OCs/IHw+r4dcHtBYWw==}
+
+  '@hapi/hoek@11.0.7':
+    resolution: {integrity: sha512-HV5undWkKzcB4RZUusqOpcgxOaq6VOAH7zhhIr2g3G8NF/MlFO75SjOr2NfuSx0Mh40+1FqCkagKLJRykUWoFQ==}
+
+  '@hapi/pinpoint@2.0.1':
+    resolution: {integrity: sha512-EKQmr16tM8s16vTT3cA5L0kZZcTMU5DUOZTuvpnY738m+jyP3JIUj+Mm1xc1rsLkGBQ/gVnfKYPwOmPg1tUR4Q==}
+
+  '@hapi/tlds@1.1.7':
+    resolution: {integrity: sha512-MgNjRwy9Ti92yVAixLmDc8dd1bJIKwO9qlWCfFQRwRmUEDPQHYn4G6hwPFvFGUTzAa0FsS+inMjLin7GnyBRhA==}
+    engines: {node: '>=14.0.0'}
+
+  '@hapi/topo@6.0.2':
+    resolution: {integrity: sha512-KR3rD5inZbGMrHmgPxsJ9dbi6zEK+C3ZwUwTa+eMwWLz7oijWUTWD2pMSNNYJAU6Qq+65NkxXjqHr/7LM2Xkqg==}
+
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
     engines: {node: '>=18.18.0'}
@@ -2603,6 +2612,9 @@ packages:
 
   '@stackblitz/sdk@1.11.1':
     resolution: {integrity: sha512-5wl1j3IhtmE7POTl2W9VGQdbQyBQrRsF3jcYBK+0V353AuO8H2GFZkiFNyTRxL+TDY3HIFCHc3G983Osmg76Lg==}
+
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
   '@stylistic/eslint-plugin@5.10.0':
     resolution: {integrity: sha512-nPK52ZHvot8Ju/0A4ucSX1dcPV2/1clx0kLcH5wDmrE4naKso7TUC/voUyU1O9OTKTrR6MYip6LP0ogEMQ9jPQ==}
@@ -4826,6 +4838,10 @@ packages:
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
+
+  joi@18.3.2:
+    resolution: {integrity: sha512-iUivApKYw5GpZmq2Sy6El99j7noo8QSUFZlyQtr3HCkosC/b5wKF6/Y3teiHIlaM8WI38sAT3P+51rB0lhAhJA==}
+    engines: {node: '>= 20'}
 
   js-beautify@1.15.4:
     resolution: {integrity: sha512-9/KXeZUKKJwqCXUdBxFJ3vPh467OCckSBmYDwSK/EtV090K+iMJ7zx2S3HLVDIWFQdqMIsZWbnaGiba18aWhaA==}
@@ -8422,10 +8438,6 @@ snapshots:
       cac: 6.7.14
       citty: 0.2.2
 
-  '@cjdevstudios/bumbleuix-forms@1.0.0-rc.1':
-    dependencies:
-      '@cjdevstudios/bumbleuix-utils': 1.0.0-rc.1
-
   '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
     dependencies:
       '@cjdevstudios/bumbleuix-utils': 1.0.0-rc.1
@@ -8979,6 +8991,22 @@ snapshots:
     dependencies:
       '@eslint/core': 0.17.0
       levn: 0.4.1
+
+  '@hapi/address@5.1.1':
+    dependencies:
+      '@hapi/hoek': 11.0.7
+
+  '@hapi/formula@3.0.2': {}
+
+  '@hapi/hoek@11.0.7': {}
+
+  '@hapi/pinpoint@2.0.1': {}
+
+  '@hapi/tlds@1.1.7': {}
+
+  '@hapi/topo@6.0.2':
+    dependencies:
+      '@hapi/hoek': 11.0.7
 
   '@humanfs/core@0.19.2':
     dependencies:
@@ -10140,6 +10168,8 @@ snapshots:
   '@speed-highlight/core@1.2.17': {}
 
   '@stackblitz/sdk@1.11.1': {}
+
+  '@standard-schema/spec@1.1.0': {}
 
   '@stylistic/eslint-plugin@5.10.0(eslint@9.39.5(jiti@2.7.0))':
     dependencies:
@@ -12688,6 +12718,16 @@ snapshots:
   jiti@1.21.7: {}
 
   jiti@2.7.0: {}
+
+  joi@18.3.2:
+    dependencies:
+      '@hapi/address': 5.1.1
+      '@hapi/formula': 3.0.2
+      '@hapi/hoek': 11.0.7
+      '@hapi/pinpoint': 2.0.1
+      '@hapi/tlds': 1.1.7
+      '@hapi/topo': 6.0.2
+      '@standard-schema/spec': 1.1.0
 
   js-beautify@1.15.4:
     dependencies:
