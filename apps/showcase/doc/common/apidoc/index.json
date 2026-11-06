@@ -72667,20 +72667,6 @@
                             "description": "Custom loading icon template."
                         },
                         {
-                            "name": "searchicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the icon.</span>\n }",
-                                    "description": "searchicon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'filtericon' slot instead.\nCustom search icon template."
-                        },
-                        {
                             "name": "filtericon",
                             "parameters": [
                                 {
@@ -72692,34 +72678,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom search icon template."
-                        },
-                        {
-                            "name": "togglericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">node</span>: <span class=\"doc-option-parameter-type\">TreeNode</span>, <span class=\"doc-option-parameter-type\">// Tree node instance</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">expanded</span>: <span class=\"doc-option-parameter-type\">boolean</span>, <span class=\"doc-option-parameter-type\">// Expanded state of the node</span>\n }",
-                                    "description": "toggleicon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'nodetoggleicon' slot instead.\nCustom toggle icon template."
-                        },
-                        {
-                            "name": "nodetogglericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">node</span>: <span class=\"doc-option-parameter-type\">TreeNode</span>, <span class=\"doc-option-parameter-type\">// Tree node instance</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">expanded</span>: <span class=\"doc-option-parameter-type\">boolean</span>, <span class=\"doc-option-parameter-type\">// Expanded state of the node</span>\n }",
-                                    "description": "toggleicon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'nodetoggleicon' slot instead.\nCustom node toggle icon template."
                         },
                         {
                             "name": "nodetoggleicon",
@@ -74022,20 +73980,6 @@
                             "description": "Custom empty template."
                         },
                         {
-                            "name": "triggericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the icon.</span>\n }",
-                                    "description": "dropdownicon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. use 'dropdownicon' slot instead.\nCustom indicator template."
-                        },
-                        {
                             "name": "dropdownicon",
                             "parameters": [
                                 {
@@ -74047,20 +73991,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom indicator template."
-                        },
-                        {
-                            "name": "itemtogglericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">node</span>: <span class=\"doc-option-parameter-type\">any</span>, <span class=\"doc-option-parameter-type\">// Node instance</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">expanded</span>: <span class=\"doc-option-parameter-type\">TreeNode</span>, <span class=\"doc-option-parameter-type\">// Expanded state of the node</span>\n }",
-                                    "description": "item toggler icon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'itemtoggleicon' slot instead.\nCustom item toggler icon template."
                         },
                         {
                             "name": "itemtoggleicon",
