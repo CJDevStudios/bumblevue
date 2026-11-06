@@ -426,25 +426,6 @@ export interface PickListSlots<T = any> {
      */
     header(): VNode[];
     /**
-     * @deprecated since v4.0. Use option slot instead.
-     * Custom item template.
-     * @param {Object} scope - item slot's params.
-     */
-    item(scope: {
-        /**
-         * Item of the component
-         */
-        item: T;
-        /**
-         * Selection state
-         */
-        selected: boolean;
-        /**
-         * Index of the item.
-         */
-        index: number;
-    }): VNode[];
-    /**
      * Custom option template.
      * @param {Object} scope - option slot's params.
      */
