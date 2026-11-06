@@ -151,12 +151,12 @@ const TreeSlots = [
         description: 'Custom loading icon template.'
     },
     {
-        name: 'searchicon',
-        description: 'Custom search icon template.'
+        name: 'filtericon',
+        description: 'Custom filter icon template.'
     },
     {
-        name: 'toggleicon',
-        description: 'Custom toggler icon template.'
+        name: 'nodetoggleicon',
+        description: 'Custom node toggle icon template.'
     },
     {
         name: 'checkboxicon',

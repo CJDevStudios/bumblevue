@@ -333,7 +333,7 @@ export interface MegaMenuSlots<T extends MenuItem = MenuItem> {
      * Custom menu button template on responsive mode.
      * @param {Object} scope - menu button slot's params.
      */
-    menubutton(scope: {
+    button(scope: {
         /**
          * Current id state as a string
          */
@@ -350,7 +350,7 @@ export interface MegaMenuSlots<T extends MenuItem = MenuItem> {
     /**
      * Custom menu button icon template on responsive mode.
      */
-    menubuttonicon(): VNode[];
+    buttonicon(): VNode[];
     /**
      * Custom submenu icon template.
      * @param {Object} scope - submenuicon slot's params.

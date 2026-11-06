@@ -11,8 +11,7 @@
         <IconField v-if="filter" :unstyled="unstyled" :pt="{ ...ptm('pcFilter'), ...ptm('pcFilterContainer') }" :class="cx('pcFilterContainer')">
             <InputText v-model="filterValue" autocomplete="off" :class="cx('pcFilterInput')" :placeholder="filterPlaceholder" :unstyled="unstyled" @keyup="onFilterKeyup" :pt="ptm('pcFilterInput')" />
             <InputIcon :unstyled="unstyled" :pt="ptm('pcFilterIconContainer')">
-                <!--TODO: searchicon deprecated since v4.0-->
-                <slot :name="$slots.filtericon ? 'filtericon' : 'searchicon'" :class="cx('filterIcon')">
+                <slot name="filtericon" :class="cx('filterIcon')">
                     <SearchIcon :class="cx('filterIcon')" v-bind="ptm('filterIcon')" />
                 </slot>
             </InputIcon>
