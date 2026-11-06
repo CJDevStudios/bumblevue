@@ -68,4 +68,27 @@ describe('Paginator.vue', () => {
         expect(wrapper.getComponent({ name: "RowsPerPageDropdown" }).props().appendTo).toBe('#test_container');
         expect(wrapper.getComponent({ name: "JumpToPageDropdown" }).props().appendTo).toBe('#test_container');
     });
+
+    it('should render page link icon slots', () => {
+        wrapper = mount(Paginator, {
+            global: {
+                plugins: [BumbleVue]
+            },
+            props: {
+                rows: 10,
+                totalRecords: 120
+            },
+            slots: {
+                firsticon: '<i data-first-icon />',
+                previcon: '<i data-prev-icon />',
+                nexticon: '<i data-next-icon />',
+                lasticon: '<i data-last-icon />'
+            }
+        });
+
+        expect(wrapper.find('.p-paginator-first i[data-first-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-prev i[data-prev-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-next i[data-next-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-last i[data-last-icon]').exists()).toBe(true);
+    });
 });

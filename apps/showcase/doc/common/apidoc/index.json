@@ -47394,20 +47394,6 @@
                             "description": "Custom end template."
                         },
                         {
-                            "name": "firstpagelinkicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the jumptopagedropdown icon.</span>\n }",
-                                    "description": "firstpagelinkicon's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'firsticon' slot instead.\nCustom first page link icon template."
-                        },
-                        {
                             "name": "firsticon",
                             "parameters": [
                                 {
@@ -47419,20 +47405,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom first page link icon template."
-                        },
-                        {
-                            "name": "prevpagelinkicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the jumptopagedropdown icon.</span>\n }",
-                                    "description": "prevpagelinkicon's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'previcon' slot instead.\nCustom previous page link icon template."
                         },
                         {
                             "name": "previcon",
@@ -47448,20 +47420,6 @@
                             "description": "Custom previous page link icon template."
                         },
                         {
-                            "name": "nextpagelinkicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the jumptopagedropdown icon.</span>\n }",
-                                    "description": "nextpagelinkicon's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'nexticon' slot instead.\nCustom finextrst page link icon template."
-                        },
-                        {
                             "name": "nexticon",
                             "parameters": [
                                 {
@@ -47473,20 +47431,6 @@
                             ],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom finextrst page link icon template."
-                        },
-                        {
-                            "name": "lastpagelinkicon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the jumptopagedropdown icon.</span>\n }",
-                                    "description": "lastpagelinkicon's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'lasticon' slot instead.\nCustom last page link icon template."
                         },
                         {
                             "name": "lasticon",

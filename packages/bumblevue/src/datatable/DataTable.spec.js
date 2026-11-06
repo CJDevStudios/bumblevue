@@ -168,6 +168,28 @@ describe('DataTable.vue', () => {
         expect(wrapper.find('.p-paginator-content-start').text()).toBe('Paginator Start Templating');
     });
 
+    it('should forward paginator page link icon slots', async () => {
+        wrapper = mount(DataTable, {
+            global: {
+                plugins: [BumbleVue],
+                components: { Column }
+            },
+            props: { value: data, paginator: true, rows: 5 },
+            slots: {
+                default: `<Column field="code" header="Code"></Column>`,
+                paginatorfirstpagelinkicon: '<i data-first-icon />',
+                paginatorprevpagelinkicon: '<i data-prev-icon />',
+                paginatornextpagelinkicon: '<i data-next-icon />',
+                paginatorlastpagelinkicon: '<i data-last-icon />'
+            }
+        });
+
+        expect(wrapper.find('.p-paginator-first i[data-first-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-prev i[data-prev-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-next i[data-next-icon]').exists()).toBe(true);
+        expect(wrapper.find('.p-paginator-last i[data-last-icon]').exists()).toBe(true);
+    });
+
     it('should have paginatorend templating', async () => {
         await wrapper.setProps({ value: data, paginator: true, rows: 5 });
 
