@@ -1,0 +1,5 @@
+{
+    "main": "./Resolver.js",
+    "module": "./Resolver.js",
+    "types": "./Resolver.d.ts"
+}

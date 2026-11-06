@@ -18,7 +18,7 @@
                 </tr>
                 <tr>
                     <td>@primevue/auto-import-resolver</td>
-                    <td>@cjdevstudios/bumblevue-auto-import-resolver</td>
+                    <td>@cjdevstudios/bumblevue/resolver</td>
                 </tr>
                 <tr>
                     <td>@primevue/core</td>
@@ -34,7 +34,7 @@
                 </tr>
                 <tr>
                     <td>@primevue/metadata</td>
-                    <td>@cjdevstudios/bumblevue-metadata</td>
+                    <td>@cjdevstudios/bumblevue/resolver</td>
                 </tr>
                 <tr>
                     <td>@primevue/nuxt-module</td>

@@ -1,18 +1,9 @@
-import { components, directives, MetaType } from '@cjdevstudios/bumblevue-metadata';
-import type { ComponentResolver, ComponentResolveResult } from 'unplugin-vue-components/types';
+import { components, directives } from './Metadata';
 
-export interface BumbleVueResolverOptions {
-    components?: {
-        prefix?: string;
-    };
-    directives?: {
-        prefix?: string;
-    };
-    resolve?: (meta: MetaType, type: string) => ComponentResolveResult;
-}
+export * from './Metadata';
 
-export function BumbleVueResolver(options: BumbleVueResolverOptions = {}): ComponentResolver[] {
-    const getName = (name: string, prefix?: string) => {
+export function BumbleVueResolver(options = {}) {
+    const getName = (name, prefix) => {
         if (prefix) {
             if (!name.startsWith(prefix)) return;
 
@@ -25,7 +16,7 @@ export function BumbleVueResolver(options: BumbleVueResolverOptions = {}): Compo
     return [
         {
             type: 'component',
-            resolve: (name: string) => {
+            resolve: (name) => {
                 const { prefix } = options.components || {};
                 const cName = getName(name, prefix);
                 const cMeta = components.find((c) => c.name.toLocaleLowerCase() === cName?.toLocaleLowerCase());
@@ -41,7 +32,7 @@ export function BumbleVueResolver(options: BumbleVueResolverOptions = {}): Compo
         },
         {
             type: 'directive',
-            resolve: (name: string) => {
+            resolve: (name) => {
                 const { prefix } = options.directives || {};
                 const dName = getName(name, prefix);
                 const dMeta = directives.find((d) => d.name.toLocaleLowerCase() === dName?.toLocaleLowerCase());

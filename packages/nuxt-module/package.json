@@ -39,8 +39,7 @@
     "build": {
         "externals": [
             "@cjdevstudios/bumblevue",
-            "@cjdevstudios/bumblevue-metadata",
-            "@cjdevstudios/bumblevue-auto-import-resolver",
+            "@cjdevstudios/bumblevue/resolver",
             "unplugin-vue-components",
             "@cjdevstudios/bumbleuix-utils",
             "@cjdevstudios/bumbleuix-utils/object",
@@ -76,9 +75,7 @@
         "@cjdevstudios/bumbleuix-styled": "catalog:",
         "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
-        "@cjdevstudios/bumblevue-auto-import-resolver": "workspace:*",
         "@cjdevstudios/bumblevue-forms": "workspace:*",
-        "@cjdevstudios/bumblevue-metadata": "workspace:*",
         "@nuxt/kit": "^3",
         "pathe": "^1.1.2",
         "unplugin-vue-components": "28.4.1"

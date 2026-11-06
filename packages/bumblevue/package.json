@@ -213,6 +213,7 @@
         "./radiobuttongroup/style": "./src/radiobuttongroup/style/RadioButtonGroupStyle.js",
         "./rating": "./src/rating/Rating.vue",
         "./rating/style": "./src/rating/style/RatingStyle.js",
+        "./resolver": "./src/resolver/Resolver.js",
         "./ripple": "./src/ripple/Ripple.js",
         "./ripple/style": "./src/ripple/style/RippleStyle.js",
         "./row": "./src/row/Row.vue",
@@ -346,10 +347,14 @@
         "@cjdevstudios/bumblevue-icons": "workspace:*"
     },
     "peerDependencies": {
-        "tailwindcss": ">=4.0.0"
+        "tailwindcss": ">=4.0.0",
+        "unplugin-vue-components": ">=0.27.0"
     },
     "peerDependenciesMeta": {
         "tailwindcss": {
+            "optional": true
+        },
+        "unplugin-vue-components": {
             "optional": true
         }
     },

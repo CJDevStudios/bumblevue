@@ -1,7 +1,7 @@
 import { addComponent, addImports } from '@nuxt/kit';
 import { isNotEmpty, isString, resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
-import { components, composables, directives } from '@cjdevstudios/bumblevue-metadata';
+import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
+import { components, composables, directives } from '@cjdevstudios/bumblevue/resolver';
 import type { BumbleVueConfiguration } from '@cjdevstudios/bumblevue/config';
 import type { ConstructsType, ModuleOptions, ResolvePathOptions } from './types';
 import { Utils } from './utils';

@@ -1,6 +1,6 @@
 import { createStyleAsString } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isFunction } from '@cjdevstudios/bumbleuix-utils/object';
-import type { MetaType } from '@cjdevstudios/bumblevue-metadata';
+import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
 import type { ConstructsType, ResolvePathOptions } from './types';
 
 export const Utils = {
