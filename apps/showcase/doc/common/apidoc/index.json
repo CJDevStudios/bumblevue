@@ -14227,20 +14227,6 @@
                             "description": "Custom loading template."
                         },
                         {
-                            "name": "rowtogglericon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">class</span>: <span class=\"doc-option-parameter-type\">string</span>, <span class=\"doc-option-parameter-type\">// Style class of the row toggler icon.</span>\n  \t <span class=\"ml-3 doc-option-parameter-name\">rowExpanded</span>: <span class=\"doc-option-parameter-type\">boolean</span>, <span class=\"doc-option-parameter-type\">// Current row expanded state.</span>\n }",
-                                    "description": "row toggler icon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'rowtoggleicon' slot instead.\nCustom row toggler icon template."
-                        },
-                        {
                             "name": "rowtoggleicon",
                             "parameters": [
                                 {
@@ -14339,13 +14325,6 @@
                             "parameters": [],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom row reorder icon template."
-                        },
-                        {
-                            "name": "nodetogglericon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'nodetoggleicon' slot instead.\nCustom node toggler icon template."
                         },
                         {
                             "name": "nodetoggleicon",
@@ -20090,24 +20069,10 @@
                             "description": "Custom loading icon template."
                         },
                         {
-                            "name": "reorderindicatorupicon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Custom row reorder indicator up icon template.",
-                            "deprecated": "since v4.0. Use 'rowreorderindicatorupicon' slot."
-                        },
-                        {
                             "name": "rowreorderindicatorupicon",
                             "parameters": [],
                             "returnType": "VNode<RendererNode, RendererElement, Object>[]",
                             "description": "Custom row reorder indicator up icon template."
-                        },
-                        {
-                            "name": "reorderindicatordownicon",
-                            "parameters": [],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "Custom reorder indicator down icon template.",
-                            "deprecated": "since v4.0. Use 'rowreorderindicatordownicon' slot."
                         },
                         {
                             "name": "rowreorderindicatordownicon",
