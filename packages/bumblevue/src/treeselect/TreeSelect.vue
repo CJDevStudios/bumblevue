@@ -46,8 +46,7 @@
             <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
         </slot>
         <div :class="cx('dropdown')" role="button" aria-haspopup="tree" :aria-expanded="overlayVisible" v-bind="ptm('dropdown')">
-            <!-- TODO: triggericon is deprecated since v4.0 -->
-            <slot :name="$slots.dropdownicon ? 'dropdownicon' : 'triggericon'" :class="cx('dropdownIcon')">
+            <slot name="dropdownicon" :class="cx('dropdownIcon')">
                 <component :is="'ChevronDownIcon'" :class="cx('dropdownIcon')" v-bind="ptm('dropdownIcon')" />
             </slot>
         </div>
@@ -98,12 +97,8 @@
                             <template v-if="$slots.option" #default="optionSlotProps">
                                 <slot name="option" :node="optionSlotProps.node" :expanded="optionSlotProps.expanded" :selected="optionSlotProps.selected" />
                             </template>
-                            <template v-if="$slots.itemtoggleicon" #toggleicon="iconSlotProps">
+                            <template v-if="$slots.itemtoggleicon" #nodetoggleicon="iconSlotProps">
                                 <slot name="itemtoggleicon" :node="iconSlotProps.node" :expanded="iconSlotProps.expanded" :class="iconSlotProps.class" />
-                            </template>
-                            <!--TODO: itemtogglericon deprecated since v4.0-->
-                            <template v-else-if="$slots.itemtogglericon" #togglericon="iconSlotProps">
-                                <slot name="itemtogglericon" :node="iconSlotProps.node" :expanded="iconSlotProps.expanded" :class="iconSlotProps.class" />
                             </template>
                             <template v-if="$slots.itemcheckboxicon" #checkboxicon="iconSlotProps">
                                 <slot name="itemcheckboxicon" :checked="iconSlotProps.checked" :partialChecked="iconSlotProps.partialChecked" :class="iconSlotProps.class" />

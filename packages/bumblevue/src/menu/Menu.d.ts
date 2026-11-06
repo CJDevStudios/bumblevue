@@ -294,17 +294,6 @@ export interface MenuSlots<T extends MenuItem = MenuItem> {
         class: any;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use submenulabel slot instead.
-     * Custom submenu header template.
-     * @param {Object} scope - submenuheader slot's params.
-     */
-    submenuheader(scope: {
-        /**
-         * Menuitem instance
-         */
-        item: T;
-    }): VNode[];
-    /**
      * Custom submenu label template.
      * @param {Object} scope - submenulabel slot's params.
      */

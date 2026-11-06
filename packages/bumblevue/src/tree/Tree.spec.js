@@ -127,4 +127,26 @@ describe('Tree.vue', () => {
 
         expect(nodeIcon.exists()).toBeTruthy();
     });
+
+    it('should render nodetoggleicon and filtericon slots', () => {
+        let wrapper = mount(Tree, {
+            slots: {
+                nodetoggleicon: `<i data-node-toggle-icon/>`,
+                filtericon: `<i data-filter-icon/>`
+            },
+            props: {
+                filter: true,
+                value: [
+                    {
+                        key: '0',
+                        label: 'Documents',
+                        children: [{ key: '0-0', label: 'Work' }]
+                    }
+                ]
+            }
+        });
+
+        expect(wrapper.find('.p-tree-node-toggle-button i[data-node-toggle-icon]').exists()).toBeTruthy();
+        expect(wrapper.find('i[data-filter-icon]').exists()).toBeTruthy();
+    });
 });
