@@ -190,21 +190,6 @@ export interface FieldsetSlots {
         toggleCallback: (event: Event) => void;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use the 'toggleicon' slot instead.
-     * Custom toggler icon template.
-     * @param {Object} scope - toggler icon slot's params.
-     */
-    togglericon(scope: {
-        /**
-         * Collapsed state as a boolean
-         */
-        collapsed: boolean;
-        /**
-         * Style class of the icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom toggler icon template.
      * @param {Object} scope - toggler icon slot's params.
      */

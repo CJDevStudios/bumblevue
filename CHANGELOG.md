@@ -25,6 +25,7 @@
 - Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
+- Panel, Fieldset and OrganizationChart: Removed deprecated `togglericon` slot. Use `toggleicon` instead.
 - Paginator: Removed deprecated `firstpagelinkicon`, `prevpagelinkicon`, `nextpagelinkicon` and `lastpagelinkicon` slots. Use `firsticon`, `previcon`, `nexticon` and `lasticon` instead.
 - Message: Removed deprecated `sticky` prop. It had no effect; a message only closes automatically when `life` is set.
 - Dock: Removed deprecated `icon` slot. Use `itemicon` instead.
