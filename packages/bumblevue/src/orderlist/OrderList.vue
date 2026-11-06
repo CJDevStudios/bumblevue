@@ -59,9 +59,8 @@
                 <slot name="header"></slot>
             </template>
             <template #option="{ option, selected, index }">
-                <slot :name="$slots.option ? 'option' : 'item'" :item="option" :option="option" :selected="selected" :index="index" />
+                <slot name="option" :option="option" :selected="selected" :index="index" />
             </template>
-            <!-- //TODO: item slot deprecated since v4.0. Use option slot. -->
         </Listbox>
     </div>
 </template>

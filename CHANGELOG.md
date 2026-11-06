@@ -25,6 +25,7 @@
 - Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
+- OrderList and PickList: Removed deprecated `item` slot. Use `option` instead. The `option` slot no longer receives the undocumented `item` prop; use `option`.
 
 ## [1.0.0]
 
