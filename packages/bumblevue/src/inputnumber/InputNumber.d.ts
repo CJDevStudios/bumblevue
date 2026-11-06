@@ -235,18 +235,8 @@ export interface InputNumberProps {
     decrementButtonClass?: string | undefined;
     /**
      * Style class of the increment icon.
-     * @deprecated since v4.0. Use 'incrementIcon'.
-     */
-    incrementButtonIcon?: string | undefined;
-    /**
-     * Style class of the increment icon.
      */
     incrementIcon?: string | undefined;
-    /**
-     * Style class of the decrement icon.
-     * @deprecated since v4.0. Use 'decrementIcon'.
-     */
-    decrementButtonIcon?: string | undefined;
     /**
      * Style class of the decrement icon.
      */
@@ -433,19 +423,9 @@ export interface InputNumberSlots {
         listeners: InputNumberButtonListeners;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'incrementicon' slot.
-     * Custom increment icon template.
-     */
-    incrementbuttonicon(): VNode[];
-    /**
      * Custom increment icon template.
      */
     incrementicon(): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'decrementicon' slot.
-     * Custom decrement icon template.
-     */
-    decrementbuttonicon(): VNode[];
     /**
      * Custom decrement icon template.
      */
