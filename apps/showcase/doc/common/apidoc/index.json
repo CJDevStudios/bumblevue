@@ -26209,20 +26209,6 @@
                             "description": "Custom item content."
                         },
                         {
-                            "name": "icon",
-                            "parameters": [
-                                {
-                                    "name": "scope",
-                                    "optional": false,
-                                    "type": "{\n  \t <span class=\"ml-3 doc-option-parameter-name\">item</span>: <span class=\"doc-option-parameter-type\">MenuItem</span>, <span class=\"doc-option-parameter-type\">// Custom content for item icon.</span>\n }",
-                                    "description": "item icon slot's params."
-                                }
-                            ],
-                            "returnType": "VNode<RendererNode, RendererElement, Object>[]",
-                            "description": "",
-                            "deprecated": "since v4.0. Use 'itemicon' slot.\nCustom icon content."
-                        },
-                        {
                             "name": "itemicon",
                             "parameters": [
                                 {

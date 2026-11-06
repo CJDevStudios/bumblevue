@@ -49,8 +49,8 @@ const DockSlots = [
         description: 'Custom content for the item.'
     },
     {
-        name: 'icon',
-        description: 'Custom content for the icon.'
+        name: 'itemicon',
+        description: 'Custom content for the item icon.'
     }
 ];
 
