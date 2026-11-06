@@ -15,11 +15,11 @@
             <Button type="submit" severity="secondary" label="Submit" />
         </Form>
     </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.23.8' }" />
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
 </template>
 
 <script>
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 
 export default {
@@ -64,7 +64,7 @@ export default {
 
 <script setup>
 import { reactive } from 'vue';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import { useToast } from '@cjdevstudios/bumblevue/usetoast';
 

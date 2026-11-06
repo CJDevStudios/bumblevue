@@ -50,7 +50,6 @@
     "dependencies": {
         "@cjdevstudios/bumbleuix-themes": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
-        "@cjdevstudios/bumblevue-forms": "workspace:*",
         "@cjdevstudios/bumblevue-nuxt-module": "workspace:*",
         "@docsearch/js": "catalog:app",
         "chart.js": "catalog:app",

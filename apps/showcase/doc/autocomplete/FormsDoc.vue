@@ -11,12 +11,12 @@
             <Button type="submit" severity="secondary" label="Submit" />
         </Form>
     </div>
-    <DocSectionCode :code="code" :service="['CountryService']" :dependencies="{ zod: '3.23.8' }" />
+    <DocSectionCode :code="code" :service="['CountryService']" :dependencies="{ zod: '3.25.76' }" />
 </template>
 
 <script>
 import { CountryService } from '@/service/CountryService';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 
 export default {
@@ -63,7 +63,7 @@ export default {
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { useToast } from "@cjdevstudios/bumblevue/usetoast";
 import { z } from 'zod';
 import { CountryService } from "@/service/CountryService";

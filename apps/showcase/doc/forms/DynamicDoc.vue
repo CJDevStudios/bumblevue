@@ -31,7 +31,7 @@
             <DynamicForm :fields @submit="onFormSubmit('Form 2', $event)" />
         </Fieldset>
     </div>
-    <DocSectionCode :code="code" :extFiles="extFiles" :dependencies="{ zod: '3.23.8', valibot: '0.42.1' }" />
+    <DocSectionCode :code="code" :extFiles="extFiles" :dependencies="{ zod: '3.25.76', valibot: '0.42.1' }" />
 </template>
 
 <script>
@@ -246,7 +246,7 @@ const onFormSubmit = (text, { valid }) => {
 <script setup>
 import { ref, computed, provide } from 'vue';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
 import DynamicFormField from './DynamicFormField.vue';
@@ -433,7 +433,7 @@ const props = defineProps({
 <script setup>
 import { ref, computed, provide } from 'vue';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
 import DynamicFormField from './DynamicFormField.vue';

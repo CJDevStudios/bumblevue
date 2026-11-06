@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { Form } from '@cjdevstudios/bumblevue-forms';
+import { Form } from '@cjdevstudios/bumblevue/forms';
 `
             }
         };

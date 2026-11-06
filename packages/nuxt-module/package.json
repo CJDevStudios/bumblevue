@@ -75,7 +75,6 @@
         "@cjdevstudios/bumbleuix-styled": "catalog:",
         "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
-        "@cjdevstudios/bumblevue-forms": "workspace:*",
         "@nuxt/kit": "^3",
         "pathe": "^1.1.2",
         "unplugin-vue-components": "28.4.1"

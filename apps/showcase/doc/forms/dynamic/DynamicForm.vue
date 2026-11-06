@@ -15,7 +15,7 @@
 
 <script setup>
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
 import DynamicFormField from './DynamicFormField.vue';

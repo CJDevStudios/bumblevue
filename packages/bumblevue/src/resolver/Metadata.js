@@ -90,8 +90,8 @@ export const media = toMeta(['Carousel', 'Galleria', 'Image', 'ImageCompare']);
 export const misc = toMeta(['Avatar', 'AvatarGroup', 'Badge', 'BlockUI', 'Chip', 'Inplace', 'MeterGroup', 'OverlayBadge', 'ScrollTop', 'Skeleton', 'ProgressBar', 'ProgressSpinner', 'Tag', 'Terminal']);
 
 export const extensions = toMeta([
-    { name: 'Form', from: '@cjdevstudios/bumblevue-forms/form' },
-    { name: 'FormField', from: '@cjdevstudios/bumblevue-forms/formfield' }
+    { name: 'Form', from: '@cjdevstudios/bumblevue/forms/form' },
+    { name: 'FormField', from: '@cjdevstudios/bumblevue/forms/formfield' }
 ]);
 
 // All PrimeVue Components

@@ -27,13 +27,13 @@
             <Button type="submit" severity="secondary" label="Submit" />
         </Form>
     </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.23.8', yup: '1.4.0', valibot: '0.42.1' }" />
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76', yup: '1.4.0', valibot: '0.42.1' }" />
 </template>
 
 <script>
-import { valibotResolver } from '@cjdevstudios/bumblevue-forms/resolvers/valibot';
-import { yupResolver } from '@cjdevstudios/bumblevue-forms/resolvers/yup';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { valibotResolver } from '@cjdevstudios/bumblevue/forms/resolvers/valibot';
+import { yupResolver } from '@cjdevstudios/bumblevue/forms/resolvers/yup';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import * as v from 'valibot';
 import * as yup from 'yup';
 import { z } from 'zod';
@@ -109,9 +109,9 @@ export default {
 
 <script setup>
 import { reactive } from 'vue';
-import { valibotResolver } from '@cjdevstudios/bumblevue-forms/resolvers/valibot';
-import { yupResolver } from '@cjdevstudios/bumblevue-forms/resolvers/yup';
-import { zodResolver } from '@cjdevstudios/bumblevue-forms/resolvers/zod';
+import { valibotResolver } from '@cjdevstudios/bumblevue/forms/resolvers/valibot';
+import { yupResolver } from '@cjdevstudios/bumblevue/forms/resolvers/yup';
+import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import * as v from 'valibot';
 import * as yup from 'yup';
 import { z } from 'zod';
