@@ -114,8 +114,8 @@ const OrderListSlots = [
         description: "Custom content for the component's header."
     },
     {
-        name: 'item',
-        description: 'Custom content for the item.'
+        name: 'option',
+        description: 'Custom content for the option.'
     },
     {
         name: 'controlsstart',

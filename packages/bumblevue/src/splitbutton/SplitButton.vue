@@ -45,9 +45,8 @@
             :pt="ptm('pcDropdown')"
         >
             <template #icon="slotProps">
-                <!--TODO: menubuttonicon and menuButtonIcon deprecated since v4.0-->
-                <slot :name="$slots.dropdownicon ? 'dropdownicon' : 'menubuttonicon'" :class="slotProps.class">
-                    <component :is="menuButtonIcon || dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[dropdownIcon || menuButtonIcon, slotProps.class]" v-bind="ptm('pcDropdown')['icon']" data-pc-section="menubuttonicon" />
+                <slot name="dropdownicon" :class="slotProps.class">
+                    <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[dropdownIcon, slotProps.class]" v-bind="ptm('pcDropdown')['icon']" data-pc-section="menubuttonicon" />
                 </slot>
             </template>
         </PVSButton>
@@ -122,10 +121,6 @@ export default {
         menuButtonProps: {
             type: null,
             default: null
-        },
-        menuButtonIcon: {
-            type: String,
-            default: undefined
         },
         dropdownIcon: {
             type: String,

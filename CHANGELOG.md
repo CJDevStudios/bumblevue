@@ -26,6 +26,19 @@
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
 - Toast: Removed deprecated `icon` slot. Use `messageicon` instead.
+- SplitButton: Removed deprecated `menuButtonIcon` prop and `menubuttonicon` slot. Use `dropdownIcon` and `dropdownicon` instead.
+- OrderList and PickList: Removed deprecated `item` slot. Use `option` instead. The `option` slot no longer receives the undocumented `item` prop; use `option`.
+- Panel, Fieldset and OrganizationChart: Removed deprecated `togglericon` slot. Use `toggleicon` instead.
+- Paginator: Removed deprecated `firstpagelinkicon`, `prevpagelinkicon`, `nextpagelinkicon` and `lastpagelinkicon` slots. Use `firsticon`, `previcon`, `nexticon` and `lasticon` instead.
+- Message: Removed deprecated `sticky` prop. It had no effect; a message only closes automatically when `life` is set.
+- Dock: Removed deprecated `icon` slot. Use `itemicon` instead.
+- Menu: Removed deprecated `submenuheader` slot. Use `submenulabel` instead.
+- Menubar and MegaMenu: Removed deprecated `menubutton` and `menubuttonicon` slots. Use `button` and `buttonicon` instead.
+- TreeSelect: Removed deprecated `triggericon` and `itemtogglericon` slots. Use `dropdownicon` and `itemtoggleicon` instead.
+- Tree: Removed deprecated `searchicon`, `togglericon` and `nodetogglericon` slots. Use `filtericon` and `nodetoggleicon` instead.
+- InputNumber: Removed deprecated `incrementButtonIcon` and `decrementButtonIcon` props and `incrementbuttonicon` and `decrementbuttonicon` slots. Use `incrementIcon`/`decrementIcon` and `incrementicon`/`decrementicon` instead.
+- DataTable: Removed deprecated `reorderindicatorupicon` and `reorderindicatordownicon` slots. Use `rowreorderindicatorupicon` and `rowreorderindicatordownicon` instead.
+- Column: Removed deprecated `rowtogglericon` and `nodetogglericon` slots. Use `rowtoggleicon` and `nodetoggleicon` instead.
 
 ## [1.0.0]
 

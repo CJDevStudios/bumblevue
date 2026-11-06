@@ -88,20 +88,20 @@ describe('OrderList.vue', () => {
             },
             slots: {
                 header: 'List of Products',
-                item: `
-                    <template #item="slotProps">
+                option: `
+                    <template #option="slotProps">
                         <div class="product-item">
                             <div class="image-container">
-                                <img :src="'images/product/' + slotProps.item.image" :alt="slotProps.item.name" />
+                                <img :src="'images/product/' + slotProps.option.image" :alt="slotProps.option.name" />
                             </div>
                             <div class="product-list-detail">
-                                <h6 class="mb-2">{{slotProps.item.name}}</h6>
+                                <h6 class="mb-2">{{slotProps.option.name}}</h6>
                                 <i class="pi pi-tag product-category-icon"></i>
-                                <span class="product-category">{{slotProps.item.category}}</span>
+                                <span class="product-category">{{slotProps.option.category}}</span>
                             </div>
                             <div class="product-list-action">
-                                <h6 class="mb-2">\${{slotProps.item.price}}</h6>
-                                <span :class="'product-badge status-'+slotProps.item.inventoryStatus.toLowerCase()">{{slotProps.item.inventoryStatus}}</span>
+                                <h6 class="mb-2">\${{slotProps.option.price}}</h6>
+                                <span :class="'product-badge status-'+slotProps.option.inventoryStatus.toLowerCase()">{{slotProps.option.inventoryStatus}}</span>
                             </div>
                         </div>
                     </template>

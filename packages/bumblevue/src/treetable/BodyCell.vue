@@ -4,15 +4,11 @@
             <button v-if="columnProp('expander')" v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" :style="togglerStyle" tabindex="-1" v-bind="getColumnPT('nodeToggleButton')" data-pc-group-section="rowactionbutton">
                 <template v-if="node.loading && loadingMode === 'icon'">
                     <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" />
-                    <!-- TODO: Deprecated since v4.0-->
-                    <component v-if="templates['nodetogglericon']" :is="templates['nodetogglericon']" />
                     <SpinnerIcon v-else spin v-bind="ptm('nodetoggleicon')" />
                 </template>
                 <template v-else>
                     <component v-if="column.children && column.children.rowtoggleicon" :is="column.children.rowtoggleicon" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
                     <component v-else-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
-                    <!-- TODO: Deprecated since v4.0-->
-                    <component v-else-if="column.children && column.children.rowtogglericon" :is="column.children.rowtogglericon" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
                     <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
                     <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
                 </template>

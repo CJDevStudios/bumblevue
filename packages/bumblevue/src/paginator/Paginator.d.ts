@@ -319,32 +319,10 @@ export interface PaginatorSlots<PS extends number = number> {
         state: PageState<PS>;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'firsticon' slot instead.
-     * Custom first page link icon template.
-     * @param {Object} scope - firstpagelinkicon's params.
-     */
-    firstpagelinkicon(scope: {
-        /**
-         * Style class of the jumptopagedropdown icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom first page link icon template.
      * @param {Object} scope - firsticon's params.
      */
     firsticon(scope: {
-        /**
-         * Style class of the jumptopagedropdown icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'previcon' slot instead.
-     * Custom previous page link icon template.
-     * @param {Object} scope - prevpagelinkicon's params.
-     */
-    prevpagelinkicon(scope: {
         /**
          * Style class of the jumptopagedropdown icon.
          */
@@ -361,32 +339,10 @@ export interface PaginatorSlots<PS extends number = number> {
         class: string;
     }): VNode[];
     /**
-     * @deprecated since v4.0. Use 'nexticon' slot instead.
-     * Custom finextrst page link icon template.
-     * @param {Object} scope - nextpagelinkicon's params.
-     */
-    nextpagelinkicon(scope: {
-        /**
-         * Style class of the jumptopagedropdown icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom finextrst page link icon template.
      * @param {Object} scope - nexticon's params.
      */
     nexticon(scope: {
-        /**
-         * Style class of the jumptopagedropdown icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'lasticon' slot instead.
-     * Custom last page link icon template.
-     * @param {Object} scope - lastpagelinkicon's params.
-     */
-    lastpagelinkicon(scope: {
         /**
          * Style class of the jumptopagedropdown icon.
          */
