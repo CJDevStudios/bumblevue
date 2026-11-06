@@ -16,8 +16,7 @@
                     @keydown="onKeyDown"
                     v-bind="{ ...toggleButtonProps, ...ptm('toggleButton') }"
                 >
-                    <!--TODO: togglericon deprecated since v4.0-->
-                    <slot :name="$slots.toggleicon ? 'toggleicon' : 'togglericon'" :collapsed="d_collapsed" :class="cx('toggleIcon')">
+                    <slot name="toggleicon" :collapsed="d_collapsed" :class="cx('toggleIcon')">
                         <component :is="d_collapsed ? 'PlusIcon' : 'MinusIcon'" :class="cx('toggleIcon')" v-bind="ptm('toggleIcon')" />
                     </slot>
                     <span :class="cx('legendLabel')" v-bind="ptm('legendLabel')">{{ legend }}</span>
