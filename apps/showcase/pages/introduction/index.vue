@@ -26,7 +26,7 @@
                         <h1>Introduction</h1>
                         <p>Next-generation UI Component suite for Vue.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

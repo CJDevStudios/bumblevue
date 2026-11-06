@@ -5,7 +5,7 @@
     <div class="card flex justify-center">
         <ToggleSwitch v-model="checked">
             <template #handle="{ checked }">
-                <i :class="['!text-xs pi', { 'pi-check': checked, 'pi-times': !checked }]" />
+                <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
             </template>
         </ToggleSwitch>
     </div>
@@ -21,7 +21,7 @@ export default {
                 basic: `
 <ToggleSwitch v-model="checked">
     <template #handle="{ checked }">
-        <i :class="['!text-xs pi', { 'pi-check': checked, 'pi-times': !checked }]" />
+        <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
     </template>
 </ToggleSwitch>
 `,
@@ -30,7 +30,7 @@ export default {
     <div class="card flex justify-center">
         <ToggleSwitch v-model="checked">
             <template #handle="{ checked }">
-                <i :class="['!text-xs pi', { 'pi-check': checked, 'pi-times': !checked }]" />
+                <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
             </template>
         </ToggleSwitch>
     </div>

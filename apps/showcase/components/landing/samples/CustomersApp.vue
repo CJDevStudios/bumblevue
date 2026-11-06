@@ -21,7 +21,7 @@
                 <Button icon="pi pi-chevron-right" variant="outlined" severity="secondary" />
             </div>
         </div>
-        <div class="flex-1 last:[&>td]:border-0 rounded-lg border border-surface w-full overflow-auto">
+        <div class="flex-1 [&>td]:last:border-0 rounded-lg border border-surface w-full overflow-auto">
             <DataTable
                 v-model:selection="selectedRows"
                 :value="tableData"

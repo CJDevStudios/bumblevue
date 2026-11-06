@@ -3,7 +3,7 @@
         <p>A pie chart is a circular statistical graphic which is divided into slices to illustrate numerical proportion.</p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
     <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
 </template>
@@ -19,12 +19,12 @@ export default {
             chartOptions: null,
             code: {
                 basic: `
-<Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+<Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
 `,
                 composition: `
 <template>
     <div class="card flex justify-center">
-        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
 </template>
 

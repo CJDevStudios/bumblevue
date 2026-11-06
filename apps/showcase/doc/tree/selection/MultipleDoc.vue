@@ -11,7 +11,7 @@
             <ToggleSwitch v-model="checked" inputId="input-metakey" />
             <label for="input-metakey">MetaKey</label>
         </div>
-        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-[30rem]"></Tree>
+        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-120"></Tree>
     </div>
     <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
 </template>
@@ -37,7 +37,7 @@ export default {
             <ToggleSwitch v-model="checked" inputId="input-metakey" />
             <label for="input-metakey">MetaKey</label>
         </div>
-        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-[30rem]"></Tree>
+        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-120"></Tree>
     </div>
 </template>
 

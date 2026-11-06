@@ -33,7 +33,7 @@
                                 components as described in <NuxtLink to="/customicons">Custom Icons</NuxtLink>.
                             </p>
                         </div>
-                        <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                        <DocCopyMarkdown docType="page" class="shrink-0" />
                     </div>
                 </div>
                 <DocSections :docs="docs" />

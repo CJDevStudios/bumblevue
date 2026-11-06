@@ -9,7 +9,7 @@
                 <Column field="name" header="Name"></Column>
                 <Column field="category" header="Category"></Column>
                 <Column field="quantity" header="Quantity"></Column>
-                <Column class="w-24 !text-end">
+                <Column class="w-24 text-end!">
                     <template #body="{ data }">
                         <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
                     </template>
@@ -34,7 +34,7 @@ export default {
     <Column field="name" header="Name"></Column>
     <Column field="category" header="Category"></Column>
     <Column field="quantity" header="Quantity"></Column>
-    <Column class="w-24 !text-end">
+    <Column class="w-24 text-end!">
         <template #body="{ data }">
             <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
         </template>
@@ -49,7 +49,7 @@ export default {
             <Column field="name" header="Name"></Column>
             <Column field="category" header="Category"></Column>
             <Column field="quantity" header="Quantity"></Column>
-            <Column class="w-24 !text-end">
+            <Column class="w-24 text-end!">
                 <template #body="{ data }">
                     <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
                 </template>

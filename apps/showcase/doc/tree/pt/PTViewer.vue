@@ -1,6 +1,6 @@
 <template>
     <DocPTViewer :docs="docs">
-        <Tree v-model:selectionKeys="selectedKey" filter :value="nodes" selectionMode="checkbox" class="w-full md:w-[30rem]"></Tree>
+        <Tree v-model:selectionKeys="selectedKey" filter :value="nodes" selectionMode="checkbox" class="w-full md:w-120"></Tree>
     </DocPTViewer>
 </template>
 

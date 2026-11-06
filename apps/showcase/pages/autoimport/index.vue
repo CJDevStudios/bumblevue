@@ -22,7 +22,7 @@
                         <h1>Auto Import</h1>
                         <p>On-demand BumbleVue components with auto imports and tree-shaking.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

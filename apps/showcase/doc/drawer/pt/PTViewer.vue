@@ -1,5 +1,5 @@
 <template>
-    <DocPTViewer :docs="docs" class="!justify-start">
+    <DocPTViewer :docs="docs" class="justify-start!">
         <div class="">
             <div class="p-drawer p-component h-[450px] w-80" role="complementary" aria-modal="true" data-pc-name="drawer" data-pc-section="root">
                 <span class="p-hidden-accessible p-hidden-focusable" tabindex="0" role="presentation" aria-hidden="true" data-p-hidden-accessible="true" data-p-hidden-focusable="true" data-pc-section="firstfocusableelement"></span>

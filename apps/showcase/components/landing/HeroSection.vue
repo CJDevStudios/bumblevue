@@ -113,7 +113,7 @@
                 closeIcon="pi pi-sign-out"
                 :pt="{
                     root: {
-                        class: '!max-w-2xl !w-full !h-screen rounded-l-2xl'
+                        class: 'max-w-2xl! w-full! h-screen! rounded-l-2xl'
                     },
                     footer: {
                         class: 'hidden'
@@ -156,7 +156,7 @@
                             <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
                                 <div class="flex items-start justify-between">
                                     <div class="leading-6 font-medium text-color">Call Logs</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900 hover:opacity-75 transition-all" severity="secondary" text />
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
                                 </div>
                                 <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
                                     <div v-for="(data, index) of callLogs" :key="index" class="flex items-center gap-3 p-2">
@@ -175,7 +175,7 @@
                             <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
                                 <div class="flex items-start justify-between">
                                     <div class="leading-6 font-medium text-color">Email Records</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900 hover:opacity-75 transition-all" severity="secondary" text />
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
                                 </div>
                                 <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
                                     <div v-for="(data, index) of emailRecords" :key="index" class="flex items-center gap-3 p-2">
@@ -198,7 +198,7 @@
                             <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
                                 <div class="flex items-start justify-between">
                                     <div class="leading-6 font-medium text-color">Meeting Notes</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 !border-surface !bg-surface-0 dark:!bg-surface-900 hover:opacity-75 transition-all leading-none" severity="secondary" text />
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all leading-none" severity="secondary" text />
                                 </div>
                                 <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 p-4 flex flex-col rounded-lg overflow-hidden">
                                     <div class="flex items-start justify-between gap-1">
@@ -240,7 +240,7 @@
                                     <div class="flex items-center justify-between gap-2">
                                         <div class="font-medium text-color p-2">Customer Satisfaction Score</div>
                                     </div>
-                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-sm">
+                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
                                         <Knob v-model="customerSatisfaction" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
                                     </div>
                                 </div>
@@ -248,7 +248,7 @@
                                     <div class="flex items-center justify-between gap-2">
                                         <div class="font-medium text-color p-2">Estimated Lifetime Value</div>
                                     </div>
-                                    <div class="flex-1 flex items-center gap-2 justify-center mt-2 p-2 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-sm">
+                                    <div class="flex-1 flex items-center gap-2 justify-center mt-2 p-2 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
                                         <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">$</div>
                                         <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">272</div>
                                         <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">123</div>
@@ -259,20 +259,20 @@
                                     <div class="flex items-center justify-between gap-2">
                                         <div class="font-medium text-color p-2">Product Usage</div>
                                     </div>
-                                    <div class="flex-1 mt-2 py-4 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-sm">
+                                    <div class="flex-1 mt-2 py-4 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
                                         <Chart type="line" :data="lineChartData" :options="lineChartOptions" class="min-h-44 w-full" />
                                     </div>
                                 </div>
                                 <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
                                     <div class="font-medium text-color p-2">Churn Risk</div>
-                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-sm">
+                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
                                         <Knob v-model="churnRisk" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
                                     </div>
                                 </div>
                             </div>
                             <div class="mt-4 w-full flex flex-col p-3 rounded-xl bg-emphasis">
                                 <div class="font-medium text-color p-2">Total Purchases</div>
-                                <div class="flex-1 py-4 px-2 w-full mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-sm">
+                                <div class="flex-1 py-4 px-2 w-full mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
                                     <Chart type="bar" :data="chartData" :options="chartOptions" class="h-60 w-full" />
                                 </div>
                             </div>

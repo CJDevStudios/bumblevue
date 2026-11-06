@@ -1,6 +1,6 @@
 <template>
     <DocSectionText v-bind="$attrs">
-        <p>Animation classes are defined with the <i>enterClass</i> and <i>leaveClass</i> properties. This example utilizes <i>tailwindcss-primeui</i> plugin animations however any valid CSS animation is supported.</p>
+        <p>Animation classes are defined with the <i>enterClass</i> and <i>leaveClass</i> properties. This example utilizes the BumbleVue Tailwind plugin animations however any valid CSS animation is supported.</p>
     </DocSectionText>
     <div class="card flex flex-col items-center overflow-hidden">
         <div class="flex flex-col items-center gap-2">
@@ -9,14 +9,14 @@
                 <i class="pi pi-arrow-down" />
             </span>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div
                 v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-user !text-2xl"></i>
+                    <i class="pi pi-user text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Individual</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -26,7 +26,7 @@
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-users !text-2xl"></i>
+                    <i class="pi pi-users text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Team</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -36,13 +36,13 @@
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-building !text-2xl"></i>
+                    <i class="pi pi-building text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Enterprise</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }" class="flex flex-col border border-primary-200 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" size="xlarge" />
@@ -60,7 +60,7 @@
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div
                 v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }"
@@ -87,25 +87,25 @@
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-purple-500 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-wifi !text-2xl"></i>
+                    <i class="pi pi-wifi text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Bandwidth</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-75 animate-duration-1000' }" class="flex flex-col bg-teal-500 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-database !text-2xl"></i>
+                    <i class="pi pi-database text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Storage</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-indigo-500 text-white border-indigo-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-arrows-v !text-2xl"></i>
+                    <i class="pi pi-arrows-v text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Requests</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -127,7 +127,7 @@ export default {
         class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
     >
         <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-user !text-2xl"></i>
+            <i class="pi pi-user text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Individual</span>
         <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -137,7 +137,7 @@ export default {
         class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
     >
         <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-users !text-2xl"></i>
+            <i class="pi pi-users text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Team</span>
         <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -147,7 +147,7 @@ export default {
         class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
     >
         <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-building !text-2xl"></i>
+            <i class="pi pi-building text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Enterprise</span>
         <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -202,21 +202,21 @@ export default {
 <div class="flex flex-wrap justify-center gap-8">
     <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-purple-500 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
         <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-wifi !text-2xl"></i>
+            <i class="pi pi-wifi text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Bandwidth</span>
         <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
     </div>
     <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-75 animate-duration-1000' }" class="flex flex-col bg-teal-500 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
         <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-database !text-2xl"></i>
+            <i class="pi pi-database text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Storage</span>
         <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
     </div>
     <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-indigo-500 text-white border-indigo-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
         <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-            <i class="pi pi-arrows-v !text-2xl"></i>
+            <i class="pi pi-arrows-v text-2xl!"></i>
         </div>
         <span class="text-2xl font-bold">Requests</span>
         <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -232,14 +232,14 @@ export default {
                 <i class="pi pi-arrow-down" />
             </span>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div
                 v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-user !text-2xl"></i>
+                    <i class="pi pi-user text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Individual</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -249,7 +249,7 @@ export default {
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-users !text-2xl"></i>
+                    <i class="pi pi-users text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Team</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
@@ -259,13 +259,13 @@ export default {
                 class="flex flex-col border border-surface shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4"
             >
                 <div class="rounded-full bg-primary text-primary-contrast w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-building !text-2xl"></i>
+                    <i class="pi pi-building text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Enterprise</span>
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-t-20 animate-duration-1000' }" class="flex flex-col border border-primary-200 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" size="xlarge" />
@@ -283,7 +283,7 @@ export default {
                 <span class="text-muted-color text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div
                 v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 spin-in-45 slide-in-from-t-12 animate-duration-1000' }"
@@ -310,25 +310,25 @@ export default {
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
         </div>
-        <div class="h-[30rem]"></div>
+        <div class="h-120"></div>
         <div class="flex flex-wrap justify-center gap-8">
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-purple-500 text-white border-purple-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-wifi !text-2xl"></i>
+                    <i class="pi pi-wifi text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Bandwidth</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-75 animate-duration-1000' }" class="flex flex-col bg-teal-500 text-white border-teal-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-database !text-2xl"></i>
+                    <i class="pi pi-database text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Storage</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>
             </div>
             <div v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 zoom-in-50 animate-duration-1000' }" class="flex flex-col bg-indigo-500 text-white border-indigo-500 shadow-lg justify-center items-center max-w-80 rounded-2xl p-8 gap-4">
                 <div class="rounded-full border-2 border-white w-12 h-12 flex items-center justify-center">
-                    <i class="pi pi-arrows-v !text-2xl"></i>
+                    <i class="pi pi-arrows-v text-2xl!"></i>
                 </div>
                 <span class="text-2xl font-bold">Requests</span>
                 <span class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit.</span>

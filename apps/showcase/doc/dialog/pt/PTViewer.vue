@@ -1,6 +1,6 @@
 <template>
     <DocPTViewer :docs="docs">
-        <Dialog v-model:visible="visible" appendTo="#doc-ptviewer" header="Edit Profile" maximizable pt:mask="!relative" :draggable="false" class="!my-auto" :style="{ width: '25rem' }">
+        <Dialog v-model:visible="visible" appendTo="#doc-ptviewer" header="Edit Profile" maximizable pt:mask="!relative" :draggable="false" class="my-auto!" :style="{ width: '25rem' }">
             <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your information.</span>
             <div class="flex items-center gap-4 mb-4">
                 <label for="username" class="font-semibold w-24">Username</label>

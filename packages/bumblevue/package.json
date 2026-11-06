@@ -37,7 +37,8 @@
         "passthrough"
     ],
     "sideEffects": [
-        "*.vue"
+        "*.vue",
+        "*.css"
     ],
     "main": "./src/index.js",
     "module": "./src/index.js",
@@ -298,6 +299,7 @@
         "./utils": "./src/utils/Utils.js",
         "./virtualscroller": "./src/virtualscroller/VirtualScroller.vue",
         "./virtualscroller/style": "./src/virtualscroller/style/VirtualScrollerStyle.js",
+        "./tailwind.css": "./src/tailwind/index.css",
         "./*": "./*"
     },
     "publishConfig": {
@@ -310,6 +312,7 @@
                 "import": "./index.mjs",
                 "default": "./index.mjs"
             },
+            "./tailwind.css": "./tailwind/index.css",
             "./*": {
                 "types": "./*/index.d.ts",
                 "import": "./*/index.mjs",
@@ -341,6 +344,14 @@
         "@cjdevstudios/bumbleuix-styles": "catalog:",
         "@cjdevstudios/bumblevue-core": "workspace:*",
         "@cjdevstudios/bumblevue-icons": "workspace:*"
+    },
+    "peerDependencies": {
+        "tailwindcss": ">=4.0.0"
+    },
+    "peerDependenciesMeta": {
+        "tailwindcss": {
+            "optional": true
+        }
     },
     "engines": {
         "node": ">=12.11.0"

@@ -3,7 +3,7 @@
         <p>A doughnut chart is a variant of the pie chart, with a blank center allowing for additional information about the data as a whole to be included.</p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
     <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
 </template>
@@ -19,12 +19,12 @@ export default {
             chartOptions: null,
             code: {
                 basic: `
-<Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+<Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
 `,
                 composition: `
 <template>
     <div class="card flex justify-center">
-        <Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="doughnut" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
 </template>
 

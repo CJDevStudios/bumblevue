@@ -133,6 +133,7 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}
             }
         });
     });
+exports['./tailwind.css'] = `./${INPUT_DIR}tailwind/index.css`;
 exports['./*'] = './*';
 
 // package.json

@@ -28,7 +28,7 @@ export default {
             data: {
                 key: '0',
                 type: 'person',
-                styleClass: '!bg-indigo-100 !text-indigo-900 rounded-xl',
+                styleClass: 'bg-indigo-100! text-indigo-900! rounded-xl',
                 data: {
                     image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
                     name: 'Amy Elsner',
@@ -38,7 +38,7 @@ export default {
                     {
                         key: '0_0',
                         type: 'person',
-                        styleClass: '!bg-purple-100 !text-purple-900 rounded-xl',
+                        styleClass: 'bg-purple-100! text-purple-900! rounded-xl',
                         data: {
                             image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
                             name: 'Anna Fali',
@@ -47,18 +47,18 @@ export default {
                         children: [
                             {
                                 label: 'Sales',
-                                styleClass: '!bg-purple-100 !text-purple-900 rounded-xl'
+                                styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
                             },
                             {
                                 label: 'Marketing',
-                                styleClass: '!bg-purple-100 !text-purple-900 rounded-xl'
+                                styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
                             }
                         ]
                     },
                     {
                         key: '0_1',
                         type: 'person',
-                        styleClass: '!bg-teal-100 !text-teal-900 rounded-xl',
+                        styleClass: 'bg-teal-100! text-teal-900! rounded-xl',
                         data: {
                             image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
                             name: 'Stephen Shaw',
@@ -67,11 +67,11 @@ export default {
                         children: [
                             {
                                 label: 'Development',
-                                styleClass: '!bg-teal-100 !text-teal-900 rounded-xl'
+                                styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
                             },
                             {
                                 label: 'UI/UX Design',
-                                styleClass: '!bg-teal-100 !text-teal-900 rounded-xl'
+                                styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
                             }
                         ]
                     }
@@ -120,7 +120,7 @@ import { ref } from "vue";
 const data = ref({
     key: '0',
     type: 'person',
-    styleClass: '!bg-indigo-100 text-white rounded-xl',
+    styleClass: 'bg-indigo-100! text-white rounded-xl',
     data: {
         image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
         name: 'Amy Elsner',
@@ -130,7 +130,7 @@ const data = ref({
         {
             key: '0_0',
             type: 'person',
-            styleClass: '!bg-purple-100 text-white rounded-xl',
+            styleClass: 'bg-purple-100! text-white rounded-xl',
             data: {
                 image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
                 name: 'Anna Fali',
@@ -139,18 +139,18 @@ const data = ref({
             children: [
                 {
                     label: 'Sales',
-                    styleClass: '!bg-purple-100 text-white rounded-xl'
+                    styleClass: 'bg-purple-100! text-white rounded-xl'
                 },
                 {
                     label: 'Marketing',
-                    styleClass: '!bg-purple-100 text-white rounded-xl'
+                    styleClass: 'bg-purple-100! text-white rounded-xl'
                 }
             ]
         },
         {
             key: '0_1',
             type: 'person',
-            styleClass: '!bg-teal-100 text-white rounded-xl',
+            styleClass: 'bg-teal-100! text-white rounded-xl',
             data: {
                 image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
                 name: 'Stephen Shaw',
@@ -159,11 +159,11 @@ const data = ref({
             children: [
                 {
                     label: 'Development',
-                    styleClass: '!bg-teal-100 text-white rounded-xl'
+                    styleClass: 'bg-teal-100! text-white rounded-xl'
                 },
                 {
                     label: 'UI/UX Design',
-                    styleClass: '!bg-teal-100 text-white rounded-xl'
+                    styleClass: 'bg-teal-100! text-white rounded-xl'
                 }
             ]
         }

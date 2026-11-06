@@ -34,7 +34,7 @@
                         <h1>Pass Through</h1>
                         <p>The Pass Through attributes is an API to access the internal DOM Structure of the components.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

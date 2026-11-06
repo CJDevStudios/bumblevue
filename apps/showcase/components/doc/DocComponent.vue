@@ -29,7 +29,7 @@
                                 <h1>{{ header }}</h1>
                                 <p>{{ description }}</p>
                             </div>
-                            <DocCopyMarkdown :componentName="getComponentName()" class="flex-shrink-0" />
+                            <DocCopyMarkdown :componentName="getComponentName()" class="shrink-0" />
                         </div>
                     </div>
                     <DocSections :docs="componentDocs" />

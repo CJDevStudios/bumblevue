@@ -3,7 +3,7 @@
         <p>A radar chart is a graphical method of displaying multivariate data in the form of a two-dimensional chart of three or more quantitative variables represented on axes starting from the same point.</p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
     <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
 </template>
@@ -19,12 +19,12 @@ export default {
             chartOptions: null,
             code: {
                 basic: `
-<Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+<Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
 `,
                 composition: `
 <template>
     <div class="card flex justify-center">
-        <Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-[30rem]" />
+        <Chart type="radar" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
     </div>
 </template>
 

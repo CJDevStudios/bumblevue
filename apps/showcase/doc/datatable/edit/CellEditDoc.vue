@@ -12,7 +12,7 @@
                     table: { style: 'min-width: 50rem' },
                     column: {
                         bodycell: ({ state }) => ({
-                            class: [{ '!py-0': state['d_editing'] }]
+                            class: [{ 'py-0!': state['d_editing'] }]
                         })
                     }
                 }"
@@ -56,7 +56,7 @@ export default {
         table: { style: 'min-width: 50rem' },
         column: {
             bodycell: ({ state }) => ({
-                class: [{ '!py-0': state['d_editing'] }]
+                class: [{ 'py-0!': state['d_editing'] }]
             })
         }
     }"
@@ -84,7 +84,7 @@ export default {
                 table: { style: 'min-width: 50rem' },
                 column: {
                     bodycell: ({ state }) => ({
-                        class: [{ '!py-0': state['d_editing'] }]
+                        class: [{ 'py-0!': state['d_editing'] }]
                     })
                 }
             }"

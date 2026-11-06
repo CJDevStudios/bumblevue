@@ -3,7 +3,7 @@
         <p>DatePicker is displayed as a popup by default, add <i>inline</i> property to customize this behavior.</p>
     </DocSectionText>
     <div class="card flex justify-center">
-        <DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" />
+        <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
     </div>
     <DocSectionCode :code="code" />
 </template>
@@ -15,12 +15,12 @@ export default {
             date: null,
             code: {
                 basic: `
-<DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" />
+<DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
 `,
                 composition: `
 <template>
     <div class="card flex justify-center">
-        <DatePicker v-model="date" inline showWeek class="w-full sm:w-[30rem]" />
+        <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
     </div>
 </template>
 

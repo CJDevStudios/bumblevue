@@ -28,7 +28,7 @@
                         </div>
                         <div class="flex-1">
                             <h5 class="text-lg lg:text-xl font-semibold m-0">{{ data.title }}</h5>
-                            <p class="text-sm lg:text-base text-muted-color mt-1 mb-0 [&>a]:text-primary [&>a]:hover:underline">
+                            <p class="text-sm lg:text-base text-muted-color mt-1 mb-0 [&>a]:text-primary hover:[&>a]:underline">
                                 <template v-if="data.slotType">
                                     <slot :name="data.slotType" />
                                 </template>
@@ -40,7 +40,7 @@
                     </div>
                 </template>
             </div>
-            <div class="flex-1 w-full lg:w-fit rounded-2xl bg-surface-100 dark:bg-surface-800 overflow-hidden flex sm:min-w-[30rem]">
+            <div class="flex-1 w-full lg:w-fit rounded-2xl bg-surface-100 dark:bg-surface-800 overflow-hidden flex sm:min-w-120">
                 <TemplateFeaturesAnimationInline
                     v-if="featuresData[selectedID - 1]?.type === 'inline-animation'"
                     :inlineFeaturesData="featuresData[selectedID - 1]?.inlineFeaturesData"

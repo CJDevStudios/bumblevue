@@ -7,8 +7,8 @@
         </p>
     </DocSectionText>
     <div class="card flex flex-wrap justify-center gap-8">
-        <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-[30rem]"></Tree>
-        <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-120"></Tree>
+        <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-120"></Tree>
     </div>
     <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
 </template>
@@ -21,14 +21,14 @@ export default {
             nodes: null,
             code: {
                 basic: `
-<Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-[30rem]"></Tree>
-<Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-[30rem]"></Tree>
+<Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-120"></Tree>
+<Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-120"></Tree>
 `,
                 composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-8">
-        <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-[30rem]"></Tree>
-        <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-120"></Tree>
+        <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-120"></Tree>
     </div>
 </template>
 

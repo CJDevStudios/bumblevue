@@ -12,7 +12,7 @@
                     <div v-for="(item, index) in slotProps.items" :key="index">
                         <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" :class="{ 'border-t border-surface-200 dark:border-surface-700': index !== 0 }">
                             <div class="md:w-40 relative">
-                                <img class="block xl:block mx-auto rounded w-full" :src="`https://primefaces.org/cdn/primevue/images/product/${item.image}`" :alt="item.name" />
+                                <img class="block xl:block mx-auto rounded-sm w-full" :src="`https://primefaces.org/cdn/primevue/images/product/${item.image}`" :alt="item.name" />
                                 <div class="absolute bg-black/70 rounded-border" style="left: 4px; top: 4px">
                                     <Tag :value="item.inventoryStatus" :severity="getSeverity(item)"></Tag>
                                 </div>
@@ -80,7 +80,7 @@ export default {
             <div v-for="(item, index) in slotProps.items" :key="index">
                 <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" :class="{ 'border-t border-surface-200 dark:border-surface-700': index !== 0 }">
                     <div class="md:w-40 relative">
-                        <img class="block xl:block mx-auto rounded w-full" :src="\`https://primefaces.org/cdn/primevue/images/product/\${item.image}\`" :alt="item.name" />
+                        <img class="block xl:block mx-auto rounded-sm w-full" :src="\`https://primefaces.org/cdn/primevue/images/product/\${item.image}\`" :alt="item.name" />
                         <div class="absolute bg-black/70 rounded-border" style="left: 4px; top: 4px">
                             <Tag :value="item.inventoryStatus" :severity="getSeverity(item)"></Tag>
                         </div>
@@ -124,7 +124,7 @@ export default {
                     <div v-for="(item, index) in slotProps.items" :key="index">
                         <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4" :class="{ 'border-t border-surface-200 dark:border-surface-700': index !== 0 }">
                             <div class="md:w-40 relative">
-                                <img class="block xl:block mx-auto rounded w-full" :src="\`https://primefaces.org/cdn/primevue/images/product/\${item.image}\`" :alt="item.name" />
+                                <img class="block xl:block mx-auto rounded-sm w-full" :src="\`https://primefaces.org/cdn/primevue/images/product/\${item.image}\`" :alt="item.name" />
                                 <div class="absolute bg-black/70 rounded-border" style="left: 4px; top: 4px">
                                     <Tag :value="item.inventoryStatus" :severity="getSeverity(item)"></Tag>
                                 </div>

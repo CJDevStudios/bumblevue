@@ -45,7 +45,7 @@
                 <Column field="name" header="Name" sortable style="min-width: 16rem"></Column>
                 <Column header="Image">
                     <template #body="slotProps">
-                        <img :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`" :alt="slotProps.data.image" class="rounded" style="width: 64px" />
+                        <img :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`" :alt="slotProps.data.image" class="rounded-sm" style="width: 64px" />
                     </template>
                 </Column>
                 <Column field="price" header="Price" sortable style="min-width: 8rem">
@@ -133,7 +133,7 @@
 
     <Dialog v-model:visible="deleteProductDialog" :style="{ width: '450px' }" header="Confirm" :modal="true">
         <div class="flex items-center gap-4">
-            <i class="pi pi-exclamation-triangle !text-3xl" />
+            <i class="pi pi-exclamation-triangle text-3xl!" />
             <span v-if="product"
                 >Are you sure you want to delete <b>{{ product.name }}</b
                 >?</span
@@ -147,7 +147,7 @@
 
     <Dialog v-model:visible="deleteProductsDialog" :style="{ width: '450px' }" header="Confirm" :modal="true">
         <div class="flex items-center gap-4">
-            <i class="pi pi-exclamation-triangle !text-3xl" />
+            <i class="pi pi-exclamation-triangle text-3xl!" />
             <span v-if="product">Are you sure you want to delete the selected products?</span>
         </div>
         <template #footer>
@@ -222,7 +222,7 @@ export default {
     <Column field="name" header="Name" sortable style="min-width: 16rem"></Column>
     <Column header="Image">
         <template #body="slotProps">
-            <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="rounded" style="width: 64px" />
+            <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="rounded-sm" style="width: 64px" />
         </template>
     </Column>
     <Column field="price" header="Price" sortable style="min-width: 8rem">
@@ -294,7 +294,7 @@ export default {
                 <Column field="name" header="Name" sortable style="min-width: 16rem"></Column>
                 <Column header="Image">
                     <template #body="slotProps">
-                        <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="rounded" style="width: 64px" />
+                        <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="rounded-sm" style="width: 64px" />
                     </template>
                 </Column>
                 <Column field="price" header="Price" sortable style="min-width: 8rem">
@@ -381,7 +381,7 @@ export default {
 
         <Dialog v-model:visible="deleteProductDialog" :style="{ width: '450px' }" header="Confirm" :modal="true">
             <div class="flex items-center gap-4">
-                <i class="pi pi-exclamation-triangle !text-3xl" />
+                <i class="pi pi-exclamation-triangle text-3xl!" />
                 <span v-if="product"
                     >Are you sure you want to delete <b>{{ product.name }}</b
                     >?</span
@@ -395,7 +395,7 @@ export default {
 
         <Dialog v-model:visible="deleteProductsDialog" :style="{ width: '450px' }" header="Confirm" :modal="true">
             <div class="flex items-center gap-4">
-                <i class="pi pi-exclamation-triangle !text-3xl" />
+                <i class="pi pi-exclamation-triangle text-3xl!" />
                 <span v-if="product">Are you sure you want to delete the selected products?</span>
             </div>
             <template #footer>

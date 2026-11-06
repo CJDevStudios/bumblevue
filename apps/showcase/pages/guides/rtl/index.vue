@@ -22,7 +22,7 @@
                         <h1>RTL Support</h1>
                         <p>Right-to-left direction support of BumbleVue.</p>
                     </div>
-                    <DocCopyMarkdown docType="page" class="flex-shrink-0" />
+                    <DocCopyMarkdown docType="page" class="shrink-0" />
                 </div>
             </div>
             <DocSections :docs="docs" />

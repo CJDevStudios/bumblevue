@@ -1,6 +1,6 @@
 <template>
     <DocPTViewer :docs="docs">
-        <ConfirmDialog group="ptviewer" pt:mask="!relative" class="!my-auto"></ConfirmDialog>
+        <ConfirmDialog group="ptviewer" pt:mask="!relative" class="my-auto!"></ConfirmDialog>
     </DocPTViewer>
 </template>
 

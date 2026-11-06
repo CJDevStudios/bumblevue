@@ -13,7 +13,7 @@
             </Column>
             <Column header="Image" class="w-1/6">
                 <template #body="slotProps">
-                    <img :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`" :alt="slotProps.data.image" class="w-16 shadow-sm" />
+                    <img :src="`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`" :alt="slotProps.data.image" class="w-16 shadow-xs" />
                 </template>
             </Column>
             <Column header="Details" class="w-1/6">
@@ -24,11 +24,11 @@
         </DataTable>
 
         <Popover ref="op">
-            <div v-if="selectedProduct" class="rounded flex flex-col">
-                <div class="flex justify-center rounded">
+            <div v-if="selectedProduct" class="rounded-sm flex flex-col">
+                <div class="flex justify-center rounded-sm">
                     <div class="relative mx-auto">
-                        <img class="rounded w-44 sm:w-64" :src="`https://primefaces.org/cdn/primevue/images/product/${selectedProduct.image}`" :alt="selectedProduct.name" />
-                        <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:!bg-surface-900" style="left: 4px; top: 4px"></Tag>
+                        <img class="rounded-sm w-44 sm:w-64" :src="`https://primefaces.org/cdn/primevue/images/product/${selectedProduct.image}`" :alt="selectedProduct.name" />
+                        <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:bg-surface-900!" style="left: 4px; top: 4px"></Tag>
                     </div>
                 </div>
                 <div class="pt-4">
@@ -81,7 +81,7 @@ export default {
     </Column>
     <Column header="Image" class="w-1/6">
         <template #body="slotProps">
-            <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="w-16 shadow-sm" />
+            <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="w-16 shadow-xs" />
         </template>
     </Column>
     <Column header="Details" class="w-1/6">
@@ -92,11 +92,11 @@ export default {
 </DataTable>
 
 <Popover ref="op">
-    <div v-if="selectedProduct" class="rounded flex flex-col">
-        <div class="flex justify-center rounded">
+    <div v-if="selectedProduct" class="rounded-sm flex flex-col">
+        <div class="flex justify-center rounded-sm">
             <div class="relative mx-auto">
-                <img class="rounded w-44 sm:w-64" :src="\`https://primefaces.org/cdn/primevue/images/product/\${selectedProduct.image}\`" :alt="selectedProduct.name" />
-                <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:!bg-surface-900" style="left: 4px; top: 4px"></Tag>
+                <img class="rounded-sm w-44 sm:w-64" :src="\`https://primefaces.org/cdn/primevue/images/product/\${selectedProduct.image}\`" :alt="selectedProduct.name" />
+                <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:bg-surface-900!" style="left: 4px; top: 4px"></Tag>
             </div>
         </div>
         <div class="pt-4">
@@ -132,7 +132,7 @@ export default {
             </Column>
             <Column header="Image" class="w-1/6">
                 <template #body="slotProps">
-                    <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="w-16 shadow-sm" />
+                    <img :src="\`https://primefaces.org/cdn/primevue/images/product/\${slotProps.data.image}\`" :alt="slotProps.data.image" class="w-16 shadow-xs" />
                 </template>
             </Column>
             <Column header="Details" class="w-1/6">
@@ -143,11 +143,11 @@ export default {
         </DataTable>
 
         <Popover ref="op">
-            <div v-if="selectedProduct" class="rounded flex flex-col">
-                <div class="flex justify-center rounded">
+            <div v-if="selectedProduct" class="rounded-sm flex flex-col">
+                <div class="flex justify-center rounded-sm">
                     <div class="relative mx-auto">
-                        <img class="rounded w-44 sm:w-64" :src="\`https://primefaces.org/cdn/primevue/images/product/\${selectedProduct.image}\`" :alt="selectedProduct.name" />
-                        <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:!bg-surface-900" style="left: 4px; top: 4px"></Tag>
+                        <img class="rounded-sm w-44 sm:w-64" :src="\`https://primefaces.org/cdn/primevue/images/product/\${selectedProduct.image}\`" :alt="selectedProduct.name" />
+                        <Tag :value="selectedProduct.inventoryStatus" :severity="getSeverity(selectedProduct)" class="absolute dark:bg-surface-900!" style="left: 4px; top: 4px"></Tag>
                     </div>
                 </div>
                 <div class="pt-4">

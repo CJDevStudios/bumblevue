@@ -7,7 +7,7 @@
     </DocSectionText>
     <div class="card">
         <div class="flex justify-center">
-            <div class="flex flex-col items-center gap-4 w-[25rem]">
+            <div class="flex flex-col items-center gap-4 w-100">
                 <Button v-styleclass="{ selector: '.box', hideOnResize: true, enterFromClass: 'hidden', enterActiveClass: 'animate-fadein', leaveActiveClass: 'animate-fadeout', leaveToClass: 'hidden' }" label="Show Window Responsive Content" />
                 <div class="box hidden animate-duration-300 border border-lg border-surface">
                     <div class="p-4 flex flex-col gap-2">
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="flex flex-col items-center gap-4 w-[25rem]">
+            <div class="flex flex-col items-center gap-4 w-100">
                 <Button
                     v-styleclass="{
                         selector: '.resizable',
@@ -86,7 +86,7 @@ export default {
 <template>
     <div class="card">
         <div class="flex justify-center">
-            <div class="flex flex-col items-center gap-4 w-[25rem]">
+            <div class="flex flex-col items-center gap-4 w-100">
                 <Button
                     v-styleclass="{ selector: '.box', hideOnResize: true, enterFromClass: 'hidden', enterActiveClass: 'animate-fadein', leaveActiveClass: 'animate-fadeout', leaveToClass: 'hidden' }"
                     label="Show Window Responsive Content"
@@ -100,7 +100,7 @@ export default {
                 </div>
             </div>
 
-            <div class="flex flex-col items-center gap-4 w-[25rem]">
+            <div class="flex flex-col items-center gap-4 w-100">
                 <Button
                     v-styleclass="{
                         selector: '.resizable',

@@ -6,7 +6,7 @@
         </p>
     </DocSectionText>
     <div class="card">
-        <Tree v-model:value="nodes" class="w-full md:w-[30rem]" draggableNodes droppableNodes></Tree>
+        <Tree v-model:value="nodes" class="w-full md:w-120" draggableNodes droppableNodes></Tree>
     </div>
     <DocSectionCode :code="code" v-bind="$attrs" />
 </template>
@@ -146,7 +146,7 @@ export default {
                 composition: `
 <template>
     <div class="card">
-        <Tree v-model:value="nodes" class="w-full md:w-[30rem]" draggableNodes droppableNodes></Tree>
+        <Tree v-model:value="nodes" class="w-full md:w-120" draggableNodes droppableNodes></Tree>
     </div>
 </template>
 

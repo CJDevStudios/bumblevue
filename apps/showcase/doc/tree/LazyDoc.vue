@@ -3,7 +3,7 @@
         <p>Lazy loading is useful when dealing with huge datasets, in this example nodes are dynamically loaded on demand using <i>loading</i> property and <i>node-expand</i> method.</p>
     </DocSectionText>
     <div class="card">
-        <Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-120"></Tree>
     </div>
     <DocSectionCode :code="code" />
 </template>
@@ -15,12 +15,12 @@ export default {
             nodes: null,
             code: {
                 basic: `
-<Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-[30rem]"></Tree>
+<Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-120"></Tree>
 `,
                 composition: `
 <template>
     <div class="card">
-        <Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-[30rem]"></Tree>
+        <Tree :value="nodes" @node-expand="onNodeExpand" loadingMode="icon" class="w-full md:w-120"></Tree>
     </div>
 </template>
 
