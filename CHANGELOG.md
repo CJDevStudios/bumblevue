@@ -25,6 +25,7 @@
 - Accordion: Removed deprecated `tab-open` and `tab-close` events. Use `update:value` instead.
 - Configuration: Removed deprecated `inputStyle` option. Use `inputVariant` instead.
 - BadgeDirective: Removed deprecated `v-badge` directive. Use OverlayBadge instead.
+- Paginator: Removed deprecated `firstpagelinkicon`, `prevpagelinkicon`, `nextpagelinkicon` and `lastpagelinkicon` slots. Use `firsticon`, `previcon`, `nexticon` and `lasticon` instead.
 
 ## [1.0.0]
 

@@ -54,16 +54,16 @@
             <template v-if="$slots.paginatorend" #end>
                 <slot name="paginatorend"></slot>
             </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firstpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
                 <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #prevpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
                 <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nextpagelinkicon="slotProps">
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
                 <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lastpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
                 <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
             </template>
             <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
@@ -290,16 +290,16 @@
             <template v-if="$slots.paginatorend" #end>
                 <slot name="paginatorend"></slot>
             </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firstpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
                 <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #prevpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
                 <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nextpagelinkicon="slotProps">
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
                 <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
             </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lastpagelinkicon="slotProps">
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
                 <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
             </template>
             <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
