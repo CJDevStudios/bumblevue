@@ -4,10 +4,10 @@
     </DocSectionText>
     <div class="card flex justify-center">
         <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
-            <template #incrementbuttonicon>
+            <template #incrementicon>
                 <span class="pi pi-plus" />
             </template>
-            <template #decrementbuttonicon>
+            <template #decrementicon>
                 <span class="pi pi-minus" />
             </template>
         </InputNumber>
@@ -23,10 +23,10 @@ export default {
             code: {
                 basic: `
 <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
-    <template #incrementbuttonicon>
+    <template #incrementicon>
         <span class="pi pi-plus" />
     </template>
-    <template #decrementbuttonicon>
+    <template #decrementicon>
         <span class="pi pi-minus" />
     </template>
 </InputNumber>
@@ -35,10 +35,10 @@ export default {
 <template>
     <div class="card flex justify-center">
         <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
-            <template #incrementbuttonicon>
+            <template #incrementicon>
                 <span class="pi pi-plus" />
             </template>
-            <template #decrementbuttonicon>
+            <template #decrementicon>
                 <span class="pi pi-minus" />
             </template>
         </InputNumber>

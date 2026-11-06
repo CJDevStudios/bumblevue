@@ -432,17 +432,6 @@ export interface TreeSelectSlots<T extends TreeNode = TreeNode> {
      */
     empty(): VNode[];
     /**
-     * @deprecated since v4.0. use 'dropdownicon' slot instead.
-     * Custom indicator template.
-     * @param {Object} scope - dropdownicon slot's params.
-     */
-    triggericon(scope: {
-        /**
-         * Style class of the icon.
-         */
-        class: string;
-    }): VNode[];
-    /**
      * Custom indicator template.
      * @param {Object} scope - dropdownicon slot's params.
      */
@@ -451,21 +440,6 @@ export interface TreeSelectSlots<T extends TreeNode = TreeNode> {
          * Style class of the icon.
          */
         class: string;
-    }): VNode[];
-    /**
-     * @deprecated since v4.0. Use 'itemtoggleicon' slot instead.
-     * Custom item toggler icon template.
-     * @param {Object} scope - item toggler icon slot's params.
-     */
-    itemtogglericon(scope: {
-        /**
-         * Node instance
-         */
-        node: T | any;
-        /**
-         * Expanded state of the node
-         */
-        expanded: T[];
     }): VNode[];
     /**
      * Custom item toggle icon template.

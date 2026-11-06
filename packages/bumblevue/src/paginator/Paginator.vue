@@ -27,7 +27,7 @@
                         <FirstPageLink
                             v-if="item === 'FirstPageLink'"
                             :aria-label="getAriaLabel('firstPageLabel')"
-                            :template="$slots.firsticon || $slots.firstpagelinkicon"
+                            :template="$slots.firsticon"
                             @click="changePageToFirst($event)"
                             :disabled="isFirstPage || empty"
                             :unstyled="unstyled"
@@ -36,7 +36,7 @@
                         <PrevPageLink
                             v-else-if="item === 'PrevPageLink'"
                             :aria-label="getAriaLabel('prevPageLabel')"
-                            :template="$slots.previcon || $slots.prevpagelinkicon"
+                            :template="$slots.previcon"
                             @click="changePageToPrev($event)"
                             :disabled="isFirstPage || empty"
                             :unstyled="unstyled"
@@ -45,7 +45,7 @@
                         <NextPageLink
                             v-else-if="item === 'NextPageLink'"
                             :aria-label="getAriaLabel('nextPageLabel')"
-                            :template="$slots.nexticon || $slots.nextpagelinkicon"
+                            :template="$slots.nexticon"
                             @click="changePageToNext($event)"
                             :disabled="isLastPage || empty"
                             :unstyled="unstyled"
@@ -54,7 +54,7 @@
                         <LastPageLink
                             v-else-if="item === 'LastPageLink'"
                             :aria-label="getAriaLabel('lastPageLabel')"
-                            :template="$slots.lasticon || $slots.lastpagelinkicon"
+                            :template="$slots.lasticon"
                             @click="changePageToLast($event)"
                             :disabled="isLastPage || empty"
                             :unstyled="unstyled"

@@ -199,8 +199,8 @@ const PickListSlots = [
         description: "Custom content for the component's source header."
     },
     {
-        name: 'item',
-        description: 'Custom content for the item.'
+        name: 'option',
+        description: 'Custom content for the option.'
     },
     {
         name: 'targetheader',
