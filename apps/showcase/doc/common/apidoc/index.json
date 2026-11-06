@@ -42675,15 +42675,6 @@
                             "description": "Whether the message can be closed manually using the close icon."
                         },
                         {
-                            "name": "sticky",
-                            "optional": true,
-                            "readonly": false,
-                            "type": "boolean",
-                            "default": "true",
-                            "description": "",
-                            "deprecated": "since 4.0.\nWhen enabled, message is not removed automatically."
-                        },
-                        {
                             "name": "life",
                             "optional": true,
                             "readonly": false,
