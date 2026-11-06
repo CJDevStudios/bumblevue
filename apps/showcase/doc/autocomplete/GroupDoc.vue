@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue/core/api';
 
 export default {
     data() {
@@ -82,7 +82,7 @@ export default {
 
 <script setup>
 import { ref } from "vue";
-import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue/core/api';
 
 const selectedCity = ref();
 const filteredCities = ref();

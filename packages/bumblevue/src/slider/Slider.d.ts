@@ -7,8 +7,8 @@
  * @module slider
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 
 export declare type SliderPassThroughOptionType = SliderPassThroughAttributes | ((options: SliderPassThroughMethodOptions) => SliderPassThroughAttributes | string) | string | null | undefined;

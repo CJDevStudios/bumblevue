@@ -7,8 +7,8 @@
  * @module picklist
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { ButtonPassThroughOptions } from '@cjdevstudios/bumblevue/button';
 import type { ListboxPassThroughOptions } from '@cjdevstudios/bumblevue/listbox';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';

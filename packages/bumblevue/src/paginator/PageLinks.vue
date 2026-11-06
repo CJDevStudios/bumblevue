@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 export default {

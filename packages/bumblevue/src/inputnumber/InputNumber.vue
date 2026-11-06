@@ -92,10 +92,10 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { clearSelection, getSelection } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isEmpty, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
-import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
-import AngleUpIcon from '@cjdevstudios/bumblevue-icons/angleup';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import InputNumberStyle from '@cjdevstudios/bumblevue/inputnumber/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 

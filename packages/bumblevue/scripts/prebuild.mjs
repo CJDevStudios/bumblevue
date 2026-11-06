@@ -13,16 +13,16 @@ updatePackageJson(pkg);
 // update package.json > "exports" for local
 let exports = {};
 let modules = {
-    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver'],
+    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons'],
     umd: [
         `/***************** BumbleVue (Auto-Generated) *****************/
 
 // API
-export * from '@cjdevstudios/bumblevue-core';
+export * from '@cjdevstudios/bumblevue/core';
 
 // BaseIcon
-export { default as BaseIcon } from '@cjdevstudios/bumblevue-icons/baseicon';
-export { default as BaseIconStyle } from '@cjdevstudios/bumblevue-icons/baseicon/style';
+export { default as BaseIcon } from '@cjdevstudios/bumblevue/icons/baseicon';
+export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon/style';
 
 // Themes
 export * from '@cjdevstudios/bumbleuix-styled';
@@ -133,6 +133,69 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}
             }
         });
     });
+// core and icons: nested `core/<folder>` and `icons/<folder>` subpaths
+const findEntry = (folderPath, folderName, suffix = '') =>
+    fs.readdirSync(folderPath).find((file) => {
+        const name = file.split(/(.vue)$|(.js)$/)[0].toLowerCase();
+
+        return /\.(vue|js)$/.test(file) && (name === folderName || name === `${folderName}${suffix}`);
+    }) ?? JSON.parse(fs.readFileSync(path.resolve(folderPath, 'package.json'), { encoding: 'utf8', flag: 'r' })).main?.replace(/^\.\//, '');
+
+const icons = [
+    `/***************** BumbleVue Icons (Auto-Generated) *****************/
+`
+];
+
+[
+    { area: 'core', suffix: '' },
+    { area: 'icons', suffix: 'icon' }
+].forEach(({ area, suffix }) => {
+    const areaPath = path.resolve(__root, INPUT_DIR + area);
+
+    exports[`./${area}`] = `./${INPUT_DIR}${area}/index.js`;
+
+    fs.readdirSync(areaPath, { withFileTypes: true })
+        .filter((dir) => dir.isDirectory())
+        .forEach(({ name: folderName }) => {
+            const folderPath = path.resolve(areaPath, folderName);
+            const file = findEntry(folderPath, folderName, suffix);
+
+            if (!file) return;
+
+            exports[`./${area}/${folderName}`] = `./${INPUT_DIR}${area}/${folderName}/${file}`;
+
+            if (area === 'icons') {
+                const fileName = file.split(/(.vue)$|(.js)$/)[0];
+
+                icons.push(
+                    `
+// ${fileName}
+export * from '@cjdevstudios/bumblevue/icons/${folderName}';
+export { default as ${fileName} } from '@cjdevstudios/bumblevue/icons/${folderName}';
+`
+                );
+            }
+
+            if (fs.existsSync(folderPath + '/style')) {
+                const styleFile = fs.readdirSync(folderPath + '/style').find((file) => file.split(/(.js)$/)[0].toLowerCase() === `${folderName}style`);
+
+                if (styleFile) {
+                    exports[`./${area}/${folderName}/style`] = `./${INPUT_DIR}${area}/${folderName}/style/${styleFile}`;
+
+                    if (area === 'icons') {
+                        const subFileName = styleFile.split(/(.js)$/)[0];
+
+                        icons.push(
+                            `export * from '@cjdevstudios/bumblevue/icons/${folderName}/style';
+export { default as ${subFileName} } from '@cjdevstudios/bumblevue/icons/${folderName}/style';
+`
+                        );
+                    }
+                }
+            }
+        });
+});
+
 exports['./tailwind.css'] = `./${INPUT_DIR}tailwind/index.css`;
 exports['./*'] = './*';
 
@@ -149,3 +212,7 @@ fs.writeFileSync(INPUT_DIR + 'umd/bumblevue.js', modules.umd.join(''));
 // ESM
 fs.writeFileSync(INPUT_DIR + 'index.js', modules.esm.join(''));
 fs.writeFileSync(INPUT_DIR + 'index.d.ts', modules.esm.join(''));
+
+// Icons
+fs.writeFileSync(INPUT_DIR + 'icons/index.js', icons.join(''));
+fs.writeFileSync(INPUT_DIR + 'icons/index.d.ts', icons.join(''));

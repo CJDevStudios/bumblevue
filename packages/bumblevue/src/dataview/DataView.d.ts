@@ -7,8 +7,8 @@
  * @module dataview
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { PaginatorPassThroughOptionType } from '@cjdevstudios/bumblevue/paginator';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { AllowedComponentProps, ComponentCustomProps, VNode, VNodeProps } from 'vue';

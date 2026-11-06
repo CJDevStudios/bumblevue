@@ -30,7 +30,7 @@
 
 <script>
 import { isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import InputOtpStyle from '@cjdevstudios/bumblevue/inputotp/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 

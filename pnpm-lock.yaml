@@ -102,9 +102,6 @@ importers:
       '@cjdevstudios/bumblevue':
         specifier: workspace:*
         version: link:../../packages/bumblevue
-      '@cjdevstudios/bumblevue-core':
-        specifier: workspace:*
-        version: link:../../packages/core
       '@cjdevstudios/bumblevue-forms':
         specifier: workspace:*
         version: link:../../packages/forms
@@ -184,18 +181,15 @@ importers:
       '@cjdevstudios/bumbleuix-utils':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
-      '@cjdevstudios/bumblevue-core':
-        specifier: workspace:*
-        version: link:../core
-      '@cjdevstudios/bumblevue-icons':
-        specifier: workspace:*
-        version: link:../icons
       tailwindcss:
         specifier: '>=4.0.0'
         version: 4.3.5
       unplugin-vue-components:
         specifier: '>=0.27.0'
         version: 28.4.1(@babel/parser@7.29.7)(@nuxt/kit@3.21.8(magicast@0.5.3))(vue@3.5.39(typescript@5.7.3))
+      vue:
+        specifier: ^3.5.0
+        version: 3.5.39(typescript@5.7.3)
     devDependencies:
       '@vue/test-utils':
         specifier: ^2.0.0
@@ -203,19 +197,6 @@ importers:
       vitest:
         specifier: ^0.29.8
         version: 0.29.8(jsdom@19.0.0)(lightningcss@1.33.0)(sass@1.45.0)(terser@5.49.0)
-    publishDirectory: dist
-
-  packages/core:
-    dependencies:
-      '@cjdevstudios/bumbleuix-styled':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      '@cjdevstudios/bumbleuix-utils':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      vue:
-        specifier: ^3.5.0
-        version: 3.5.39(typescript@5.7.3)
     publishDirectory: dist
 
   packages/forms:
@@ -226,19 +207,9 @@ importers:
       '@cjdevstudios/bumbleuix-utils':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
-      '@cjdevstudios/bumblevue-core':
+      '@cjdevstudios/bumblevue':
         specifier: workspace:*
-        version: link:../core
-    publishDirectory: dist
-
-  packages/icons:
-    dependencies:
-      '@cjdevstudios/bumbleuix-utils':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      '@cjdevstudios/bumblevue-core':
-        specifier: workspace:*
-        version: link:../core
+        version: link:../bumblevue
     publishDirectory: dist
 
   packages/nuxt-module:

@@ -1,4 +1,4 @@
-import { defaultOptions } from '@cjdevstudios/bumblevue-core/config';
+import { defaultOptions } from '@cjdevstudios/bumblevue/core/config';
 import { mount } from '@vue/test-utils';
 import { expect, it } from 'vitest';
 import AccordionContent from '../accordioncontent/AccordionContent.vue';

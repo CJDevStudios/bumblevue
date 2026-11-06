@@ -99,12 +99,12 @@
 
 <script>
 import { find, findSingle, getAttribute, getOuterHeight, getOuterWidth } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
-import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import Checkbox from '@cjdevstudios/bumblevue/checkbox';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 

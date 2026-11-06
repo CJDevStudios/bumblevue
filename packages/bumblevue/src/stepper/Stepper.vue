@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import StepperStyle from '@cjdevstudios/bumblevue/stepper/style';
 
 export default {

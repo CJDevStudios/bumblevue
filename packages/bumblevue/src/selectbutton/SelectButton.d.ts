@@ -7,11 +7,11 @@
  * @module selectbutton
  *
  */
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { AllowedComponentProps, ComponentCustomProps, VNode, VNodeProps } from 'vue';
 // import { ToggleButtonPassThroughOptions } from '@cjdevstudios/bumblevue/togglebutton';
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
 
 export declare type SelectButtonPassThroughOptionType = SelectButtonPassThroughAttributes | ((options: SelectButtonPassThroughMethodOptions) => SelectButtonPassThroughAttributes | string) | string | null | undefined;
 

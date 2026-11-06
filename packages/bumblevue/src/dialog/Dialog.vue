@@ -67,10 +67,10 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
-import WindowMaximizeIcon from '@cjdevstudios/bumblevue-icons/windowmaximize';
-import WindowMinimizeIcon from '@cjdevstudios/bumblevue-icons/windowminimize';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+import WindowMaximizeIcon from '@cjdevstudios/bumblevue/icons/windowmaximize';
+import WindowMinimizeIcon from '@cjdevstudios/bumblevue/icons/windowminimize';
 import Button from '@cjdevstudios/bumblevue/button';
 import DialogStyle from '@cjdevstudios/bumblevue/dialog/style';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';

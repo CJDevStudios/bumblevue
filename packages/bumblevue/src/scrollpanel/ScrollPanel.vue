@@ -41,7 +41,7 @@
 
 <script>
 import { addClass, getHeight, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ScrollPanelStyle from '@cjdevstudios/bumblevue/scrollpanel/style';
 
 export default {

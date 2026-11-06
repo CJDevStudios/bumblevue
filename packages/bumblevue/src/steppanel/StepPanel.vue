@@ -28,7 +28,7 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { find, findSingle } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findIndexInList } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import StepPanelStyle from '@cjdevstudios/bumblevue/steppanel/style';
 import StepperSeparator from '../stepper/StepperSeparator.vue';
 

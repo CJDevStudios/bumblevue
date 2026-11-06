@@ -59,9 +59,9 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { isFunction, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import IconField from '@cjdevstudios/bumblevue/iconfield';
 import InputIcon from '@cjdevstudios/bumblevue/inputicon';
 import InputText from '@cjdevstudios/bumblevue/inputtext';

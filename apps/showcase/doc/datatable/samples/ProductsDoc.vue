@@ -161,7 +161,7 @@
 
 <script>
 import { ProductService } from '@/service/ProductService';
-import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 
 export default {
     data() {
@@ -408,7 +408,7 @@ export default {
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { FilterMatchMode } from '@cjdevstudios/bumblevue-core/api';
+import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 import { useToast } from '@cjdevstudios/bumblevue/usetoast';
 import { ProductService } from '@/service/ProductService';
 

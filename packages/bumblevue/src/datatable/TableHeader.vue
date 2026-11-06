@@ -116,8 +116,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import { mergeProps } from 'vue';
 import FilterHeaderCell from './FilterHeaderCell.vue';
 import HeaderCell from './HeaderCell.vue';

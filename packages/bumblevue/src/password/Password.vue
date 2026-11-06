@@ -78,11 +78,11 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { absolutePosition, addStyle, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
-import EyeIcon from '@cjdevstudios/bumblevue-icons/eye';
-import EyeSlashIcon from '@cjdevstudios/bumblevue-icons/eyeslash';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+import EyeIcon from '@cjdevstudios/bumblevue/icons/eye';
+import EyeSlashIcon from '@cjdevstudios/bumblevue/icons/eyeslash';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import InputText from '@cjdevstudios/bumblevue/inputtext';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import PasswordStyle from '@cjdevstudios/bumblevue/password/style';

@@ -69,8 +69,8 @@
 <script>
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { find, findSingle, focus } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
 import Button from '@cjdevstudios/bumblevue/button';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import SpeedDialStyle from '@cjdevstudios/bumblevue/speeddial/style';

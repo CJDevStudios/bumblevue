@@ -14,7 +14,7 @@
 
 <script>
 import { uuid } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Dialog from '@cjdevstudios/bumblevue/dialog';
 import DynamicDialogStyle from '@cjdevstudios/bumblevue/dynamicdialog/style';
 import DynamicDialogEventBus from '@cjdevstudios/bumblevue/dynamicdialogeventbus';

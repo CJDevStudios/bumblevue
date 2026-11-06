@@ -4,7 +4,7 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import SkeletonStyle from '@cjdevstudios/bumblevue/skeleton/style';
 
 export default {

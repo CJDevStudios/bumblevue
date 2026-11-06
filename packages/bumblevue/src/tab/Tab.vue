@@ -9,7 +9,7 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import TabStyle from '@cjdevstudios/bumblevue/tab/style';
 import { mergeProps } from 'vue';

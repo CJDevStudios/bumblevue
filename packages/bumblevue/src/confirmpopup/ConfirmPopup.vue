@@ -61,8 +61,8 @@
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import Button from '@cjdevstudios/bumblevue/button';
 import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
 import ConfirmPopupStyle from '@cjdevstudios/bumblevue/confirmpopup/style';

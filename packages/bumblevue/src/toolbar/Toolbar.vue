@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ToolbarStyle from '@cjdevstudios/bumblevue/toolbar/style';
 
 export default {

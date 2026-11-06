@@ -96,12 +96,12 @@
 import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
 import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, isString, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
-import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import CascadeSelectStyle from '@cjdevstudios/bumblevue/cascadeselect/style';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';

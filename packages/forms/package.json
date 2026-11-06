@@ -62,7 +62,7 @@
     "dependencies": {
         "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumbleuix-forms": "catalog:",
-        "@cjdevstudios/bumblevue-core": "workspace:*"
+        "@cjdevstudios/bumblevue": "workspace:*"
     },
     "engines": {
         "node": ">=12.11.0"

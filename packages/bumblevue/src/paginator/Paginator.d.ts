@@ -7,8 +7,8 @@
  * @module paginator
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { InputNumberPassThroughOptions } from '@cjdevstudios/bumblevue/inputnumber';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import type { SelectPassThroughOptions } from '@cjdevstudios/bumblevue/select';

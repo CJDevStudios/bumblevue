@@ -56,7 +56,7 @@
 <script>
 import { find, findSingle } from '@cjdevstudios/bumbleuix-utils/dom';
 import { resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import Tooltip from '@cjdevstudios/bumblevue/tooltip';
 import { mergeProps } from 'vue';

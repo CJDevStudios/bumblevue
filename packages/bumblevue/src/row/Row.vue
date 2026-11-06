@@ -1,5 +1,5 @@
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
 export default {
     name: 'Row',

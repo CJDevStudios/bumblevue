@@ -212,10 +212,10 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { addStyle, clearSelection, find, getAttribute, getIndex, getOffset, getOuterWidth, isRTL, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
-import { FilterService } from '@cjdevstudios/bumblevue-core/api';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp, HelperSet } from '@cjdevstudios/bumblevue-core/utils';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import { FilterService } from '@cjdevstudios/bumblevue/core/api';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp, HelperSet } from '@cjdevstudios/bumblevue/core/utils';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import Paginator from '@cjdevstudios/bumblevue/paginator';
 import TreeTableStyle from '@cjdevstudios/bumblevue/treetable/style';
 import FooterCell from './FooterCell.vue';

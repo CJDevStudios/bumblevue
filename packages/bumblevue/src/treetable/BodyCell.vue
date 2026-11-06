@@ -39,13 +39,13 @@
 <script>
 import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumbleuix-utils/dom';
 import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import ChevronDownIcon from '@cjdevstudios/bumblevue-icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
-import MinusIcon from '@cjdevstudios/bumblevue-icons/minus';
-import SpinnerIcon from '@cjdevstudios/bumblevue-icons/spinner';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 import Checkbox from '@cjdevstudios/bumblevue/checkbox';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { mergeProps } from 'vue';

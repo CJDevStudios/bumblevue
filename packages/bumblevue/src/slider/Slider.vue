@@ -70,7 +70,7 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { getAttribute, getWindowScrollLeft, getWindowScrollTop, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import SliderStyle from '@cjdevstudios/bumblevue/slider/style';
 
 export default {

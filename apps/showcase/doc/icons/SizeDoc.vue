@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import SearchIcon from '@cjdevstudios/bumblevue-icons/search';
-import StarIcon from '@cjdevstudios/bumblevue-icons/star';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
+import StarIcon from '@cjdevstudios/bumblevue/icons/star';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 
 export default {
     components: { CheckIcon, SearchIcon, StarIcon, TimesIcon },

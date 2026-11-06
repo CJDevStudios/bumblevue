@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 export default {

@@ -31,10 +31,10 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { focus, getFirstFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
-import BanIcon from '@cjdevstudios/bumblevue-icons/ban';
-import StarIcon from '@cjdevstudios/bumblevue-icons/star';
-import StarFillIcon from '@cjdevstudios/bumblevue-icons/starfill';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+import BanIcon from '@cjdevstudios/bumblevue/icons/ban';
+import StarIcon from '@cjdevstudios/bumblevue/icons/star';
+import StarFillIcon from '@cjdevstudios/bumblevue/icons/starfill';
 import RatingStyle from '@cjdevstudios/bumblevue/rating/style';
 
 export default {

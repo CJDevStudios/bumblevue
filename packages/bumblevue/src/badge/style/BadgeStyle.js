@@ -1,6 +1,6 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/badge';
 import { isEmpty, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props, instance }) => [

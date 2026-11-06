@@ -28,7 +28,7 @@
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { equals } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseInput from '@cjdevstudios/bumblevue-core/baseinput';
+import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import RadioButtonStyle from '@cjdevstudios/bumblevue/radiobutton/style';
 
 export default {

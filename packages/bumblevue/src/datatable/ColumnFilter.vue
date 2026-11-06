@@ -155,14 +155,14 @@
 <script>
 import { absolutePosition, addStyle, focus, getAttribute, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import { FilterOperator } from '@cjdevstudios/bumblevue-core/api';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
-import FilterIcon from '@cjdevstudios/bumblevue-icons/filter';
-import FilterFillIcon from '@cjdevstudios/bumblevue-icons/filterfill';
-import FilterSlashIcon from '@cjdevstudios/bumblevue-icons/filterslash';
-import PlusIcon from '@cjdevstudios/bumblevue-icons/plus';
-import TrashIcon from '@cjdevstudios/bumblevue-icons/trash';
+import { FilterOperator } from '@cjdevstudios/bumblevue/core/api';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+import FilterIcon from '@cjdevstudios/bumblevue/icons/filter';
+import FilterFillIcon from '@cjdevstudios/bumblevue/icons/filterfill';
+import FilterSlashIcon from '@cjdevstudios/bumblevue/icons/filterslash';
+import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
+import TrashIcon from '@cjdevstudios/bumblevue/icons/trash';
 import Button from '@cjdevstudios/bumblevue/button';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AccordionContentStyle from '@cjdevstudios/bumblevue/accordioncontent/style';
 import { mergeProps } from 'vue';
 

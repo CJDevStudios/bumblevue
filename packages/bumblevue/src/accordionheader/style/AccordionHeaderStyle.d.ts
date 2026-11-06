@@ -7,7 +7,7 @@
  * @module accordionheaderstyle
  *
  */
-import type { BaseStyle } from '@cjdevstudios/bumblevue-core/base/style';
+import type { BaseStyle } from '@cjdevstudios/bumblevue/core/base/style';
 
 export enum AccordionHeaderClasses {
     /**

@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/scrolltop';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props }) => ['p-scrolltop', { 'p-scrolltop-sticky': props.target !== 'window' }],

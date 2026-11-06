@@ -1,4 +1,4 @@
-import type { DefineComponent, EmitFn, HintedString } from '@cjdevstudios/bumblevue-core';
+import type { DefineComponent, EmitFn, HintedString } from '@cjdevstudios/bumblevue/core';
 import { VNode } from 'vue';
 
 type PortalAppendToType = HintedString<'body' | 'self'> | undefined | HTMLElement;

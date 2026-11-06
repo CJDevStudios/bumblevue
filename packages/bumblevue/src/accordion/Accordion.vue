@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { baseComponentProps, useComponent } from '@cjdevstudios/bumblevue-core/usecomponent';
+import { baseComponentProps, useComponent } from '@cjdevstudios/bumblevue/core/usecomponent';
 import AccordionStyle from '@cjdevstudios/bumblevue/accordion/style';
 import { provide, reactive, watch } from 'vue';
 

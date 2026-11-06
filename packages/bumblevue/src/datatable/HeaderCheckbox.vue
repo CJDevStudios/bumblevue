@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
 import Checkbox from '@cjdevstudios/bumblevue/checkbox';
 import { mergeProps } from 'vue';
 

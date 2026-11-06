@@ -29,7 +29,7 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import ToggleSwitchStyle from '@cjdevstudios/bumblevue/toggleswitch/style';
 
 export default {

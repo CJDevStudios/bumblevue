@@ -7,8 +7,8 @@
 
 <script>
 import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import { mergeProps } from 'vue';
 
 export default {

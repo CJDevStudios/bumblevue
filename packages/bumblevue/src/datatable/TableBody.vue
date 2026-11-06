@@ -73,7 +73,7 @@
 import { cn } from '@cjdevstudios/bumbleuix-utils';
 import { getOuterHeight } from '@cjdevstudios/bumbleuix-utils/dom';
 import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import BodyRow from './BodyRow.vue';
 
 export default {

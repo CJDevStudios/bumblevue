@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/timeline';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props }) => ['p-timeline p-component', 'p-timeline-' + props.align, 'p-timeline-' + props.layout],

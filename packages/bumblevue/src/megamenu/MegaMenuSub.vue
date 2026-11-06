@@ -75,9 +75,9 @@
 
 <script>
 import { isNotEmpty, resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import AngleDownIcon from '@cjdevstudios/bumblevue-icons/angledown';
-import AngleRightIcon from '@cjdevstudios/bumblevue-icons/angleright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import { mergeProps } from 'vue';
 

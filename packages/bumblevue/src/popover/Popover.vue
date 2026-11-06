@@ -17,8 +17,8 @@
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
 import { absolutePosition, addClass, addStyle, focus, getOffset, isClient, isTouchDevice, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import PopoverStyle from '@cjdevstudios/bumblevue/popover/style';

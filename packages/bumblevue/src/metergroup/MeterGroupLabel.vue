@@ -12,7 +12,7 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
 export default {
     name: 'MeterGroupLabel',

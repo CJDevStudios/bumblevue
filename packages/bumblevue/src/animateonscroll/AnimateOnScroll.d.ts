@@ -6,7 +6,7 @@
  *
  * @module animateonscroll
  */
-import type { DirectiveHooks } from '@cjdevstudios/bumblevue-core/basedirective';
+import type { DirectiveHooks } from '@cjdevstudios/bumblevue/core/basedirective';
 import { DirectiveBinding, ObjectDirective } from 'vue';
 
 /**

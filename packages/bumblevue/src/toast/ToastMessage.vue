@@ -21,12 +21,12 @@
 
 <script>
 import { cn } from '@cjdevstudios/bumbleuix-utils';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import CheckIcon from '@cjdevstudios/bumblevue-icons/check';
-import ExclamationTriangleIcon from '@cjdevstudios/bumblevue-icons/exclamationtriangle';
-import InfoCircleIcon from '@cjdevstudios/bumblevue-icons/infocircle';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
-import TimesCircleIcon from '@cjdevstudios/bumblevue-icons/timescircle';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+import ExclamationTriangleIcon from '@cjdevstudios/bumblevue/icons/exclamationtriangle';
+import InfoCircleIcon from '@cjdevstudios/bumblevue/icons/infocircle';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+import TimesCircleIcon from '@cjdevstudios/bumblevue/icons/timescircle';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 export default {

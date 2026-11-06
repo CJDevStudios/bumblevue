@@ -45,8 +45,8 @@
 import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import TieredMenuStyle from '@cjdevstudios/bumblevue/tieredmenu/style';

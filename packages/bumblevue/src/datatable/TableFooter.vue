@@ -24,8 +24,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue-core/utils';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import { mergeProps } from 'vue';
 import FooterCell from './FooterCell.vue';
 

@@ -37,9 +37,9 @@
 
 <script>
 import { find, findSingle, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import ChevronLeftIcon from '@cjdevstudios/bumblevue-icons/chevronleft';
-import ChevronRightIcon from '@cjdevstudios/bumblevue-icons/chevronright';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';
+import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 export default {

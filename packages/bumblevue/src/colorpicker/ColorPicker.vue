@@ -23,8 +23,8 @@
 <script>
 import { absolutePosition, addClass, isTouchDevice, relativePosition, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import ColorPickerStyle from '@cjdevstudios/bumblevue/colorpicker/style';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
 import Portal from '@cjdevstudios/bumblevue/portal';

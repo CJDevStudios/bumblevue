@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import * as Icons from '@cjdevstudios/bumblevue-icons';
+import * as Icons from '@cjdevstudios/bumblevue/icons';
 import { markRaw } from 'vue';
 
 export default {
@@ -31,7 +31,7 @@ export default {
                 .sort()
                 .map((name) => ({
                     name,
-                    path: `@cjdevstudios/bumblevue-icons/${name.slice(0, -4).toLowerCase()}`,
+                    path: `@cjdevstudios/bumblevue/icons/${name.slice(0, -4).toLowerCase()}`,
                     component: markRaw(Icons[name])
                 })),
             filter: null

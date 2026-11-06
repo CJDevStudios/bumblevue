@@ -7,7 +7,7 @@
  * @module metergroup
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue-core';
+import type { DefineComponent, DesignToken, EmitFn, PassThrough } from '@cjdevstudios/bumblevue/core';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { VNode } from 'vue';
 

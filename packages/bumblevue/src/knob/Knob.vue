@@ -29,7 +29,7 @@
 
 <script>
 import { $dt } from '@cjdevstudios/bumbleuix-styled';
-import BaseEditableHolder from '@cjdevstudios/bumblevue-core/baseeditableholder';
+import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import KnobStyle from '@cjdevstudios/bumblevue/knob/style';
 
 // Set fix value for SSR.

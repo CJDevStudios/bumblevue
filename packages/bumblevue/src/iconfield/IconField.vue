@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import IconFieldStyle from '@cjdevstudios/bumblevue/iconfield/style';
 
 export default {

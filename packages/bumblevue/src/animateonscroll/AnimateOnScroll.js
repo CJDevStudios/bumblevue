@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import AnimateOnScrollStyle from '@cjdevstudios/bumblevue/animateonscroll/style';
 
 const AnimateOnScroll = BaseDirective.extend('animateonscroll', {

@@ -7,8 +7,8 @@
  * @module tieredmenu
  *
  */
-import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue-core';
-import type { ComponentHooks } from '@cjdevstudios/bumblevue-core/basecomponent';
+import type { DefineComponent, DesignToken, EmitFn, HintedString, PassThrough } from '@cjdevstudios/bumblevue/core';
+import type { ComponentHooks } from '@cjdevstudios/bumblevue/core/basecomponent';
 import type { MenuItem } from '@cjdevstudios/bumblevue/menuitem';
 import type { PassThroughOptions } from '@cjdevstudios/bumblevue/passthrough';
 import { AllowedComponentProps, ComponentCustomProps, TransitionProps, VNode, VNodeProps } from 'vue';

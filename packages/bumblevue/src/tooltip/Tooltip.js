@@ -2,8 +2,8 @@ import { addClass, createElement, fadeIn, findSingle, getAttribute, getOuterHeig
 import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
 import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
-import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue-core/utils';
+import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
+import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import TooltipStyle from '@cjdevstudios/bumblevue/tooltip/style';
 
 const Tooltip = BaseDirective.extend('tooltip', {

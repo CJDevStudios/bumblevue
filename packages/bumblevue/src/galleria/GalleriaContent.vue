@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue-icons/times';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import GalleriaItem from './GalleriaItem.vue';
 import GalleriaThumbnails from './GalleriaThumbnails.vue';

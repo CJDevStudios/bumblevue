@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/selectbutton';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props, instance }) => [

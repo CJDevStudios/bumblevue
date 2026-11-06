@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/breadcrumb';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: 'p-breadcrumb p-component',

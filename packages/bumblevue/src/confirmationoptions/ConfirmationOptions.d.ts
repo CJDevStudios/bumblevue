@@ -5,7 +5,7 @@
  * @module confirmationoptions
  *
  */
-import type { HintedString } from '@cjdevstudios/bumblevue-core';
+import type { HintedString } from '@cjdevstudios/bumblevue/core';
 import type { ButtonProps } from '@cjdevstudios/bumblevue/button';
 
 /**

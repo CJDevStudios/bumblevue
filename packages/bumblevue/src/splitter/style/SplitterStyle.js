@@ -1,5 +1,5 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/splitter';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const classes = {
     root: ({ props }) => ['p-splitter p-component', 'p-splitter-' + props.layout],

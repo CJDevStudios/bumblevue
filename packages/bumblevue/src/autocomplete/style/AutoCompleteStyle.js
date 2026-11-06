@@ -1,6 +1,6 @@
 import { style } from '@cjdevstudios/bumbleuix-styles/autocomplete';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseStyle from '@cjdevstudios/bumblevue-core/base/style';
+import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 const inlineStyles = {
     root: { position: 'relative' }

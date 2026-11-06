@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { findSingle, focus } from '@cjdevstudios/bumbleuix-utils/dom';
 import { resolve, isNotEmpty, isPrintableCharacter, findLast, isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
 import PanelMenuSub from './PanelMenuSub.vue';

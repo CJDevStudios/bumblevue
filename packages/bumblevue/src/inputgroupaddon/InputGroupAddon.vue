@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue-core/basecomponent';
+import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import InputGroupAddonStyle from '@cjdevstudios/bumblevue/inputgroupaddon/style';
 
 export default {

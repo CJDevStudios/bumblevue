@@ -1,6 +1,6 @@
 import { createElement, focus, getFirstFocusableElement, getLastFocusableElement, isFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
 import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import BaseDirective from '@cjdevstudios/bumblevue-core/basedirective';
+import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import FocusTrapStyle from '@cjdevstudios/bumblevue/focustrap/style';
 
 const FocusTrap = BaseDirective.extend('focustrap', {

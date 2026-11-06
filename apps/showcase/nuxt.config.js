@@ -7,8 +7,6 @@ const alias = {
     '@cjdevstudios/bumblevue/tailwind.css': path.resolve(__dirname, '../../packages/bumblevue/src/tailwind/index.css'),
     '@cjdevstudios/bumblevue': path.resolve(__dirname, '../../packages/bumblevue/src'),
     // bumblevue: path.resolve(__dirname, '../../packages/bumblevue/src'),
-    '@cjdevstudios/bumblevue-core': path.resolve(__dirname, '../../packages/core/src'),
-    '@cjdevstudios/bumblevue-icons': path.resolve(__dirname, '../../packages/icons/src'),
 };
 
 let PROCESS_ENV = {};
