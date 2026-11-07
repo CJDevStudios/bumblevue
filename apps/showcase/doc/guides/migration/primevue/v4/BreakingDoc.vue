@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <td>@primeuix/themes</td>
-                    <td>@cjdevstudios/bumbleuix-themes</td>
+                    <td>@cjdevstudios/bumblevue/themes</td>
                 </tr>
                 <tr>
                     <td>@primeuix/utils</td>

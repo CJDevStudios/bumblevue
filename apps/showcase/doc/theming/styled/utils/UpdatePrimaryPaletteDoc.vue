@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { updatePrimaryPalette } from '@cjdevstudios/bumbleuix-themes';
+import { updatePrimaryPalette } from '@cjdevstudios/bumblevue/themes';
 
 const changePrimaryColor() {
     updatePrimaryPalette({

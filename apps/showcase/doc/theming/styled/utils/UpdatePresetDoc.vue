@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { updatePreset } from '@cjdevstudios/bumbleuix-themes';
+import { updatePreset } from '@cjdevstudios/bumblevue/themes';
 
 const changePrimaryColor() {
     updatePreset({

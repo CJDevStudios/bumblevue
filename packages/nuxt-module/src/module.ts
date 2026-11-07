@@ -59,8 +59,7 @@ export default defineNuxtModule<ModuleOptions>({
 
         //nuxt.options.build.transpile.push('nuxt');
         nuxt.options.build.transpile.push('bumblevue');
-        hasTheme && nuxt.options.build.transpile.push('@cjdevstudios/bumblevue-themes');
-        hasTheme && nuxt.options.build.transpile.push('@cjdevstudios/bumbleuix-themes');
+        hasTheme && nuxt.options.build.transpile.push('@cjdevstudios/bumblevue/themes');
 
         let registeredStyles: MetaType[] = registered.styles;
 

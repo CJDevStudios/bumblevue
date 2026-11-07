@@ -18,7 +18,7 @@ export default {
             code1: {
                 basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 const app = createApp(App);
 

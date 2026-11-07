@@ -1,9 +1,7 @@
 <template>
     <DocSectionText v-bind="$attrs">
         <p>Styled mode provides pre-skinned components, default theme is Aura with emerald as the primary color. See the <NuxtLink to="/theming/styled">styled mode</NuxtLink> documentation for details.</p>
-        <p>Install the <i>@cjdevstudios/bumbleuix-themes</i> add-on package as the themes are not included in BumbleVue by default.</p>
-        <DocSectionCode :code="code1" hideToggleCode hideStackBlitz />
-        <p>Configure the module to use a theme like Aura.</p>
+        <p>The theme presets are included in BumbleVue and can be imported from <i>@cjdevstudios/bumblevue/themes</i>. Configure the module to use a theme like Aura.</p>
         <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
     </DocSectionText>
 </template>
@@ -12,21 +10,9 @@
 export default {
     data() {
         return {
-            code1: {
-                basic: `
-# Using npm
-npm install @cjdevstudios/bumbleuix-themes
-
-# Using yarn
-yarn add @cjdevstudios/bumbleuix-themes
-
-# Using pnpm
-pnpm add @cjdevstudios/bumbleuix-themes
-`
-            },
             code2: {
                 basic: `
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export default defineNuxtConfig({
     modules: [

@@ -13,7 +13,7 @@ export default {
                 basic: `
 import { createApp } from 'vue';
 import BumbleVue from '@cjdevstudios/bumblevue/config';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 const app = createApp(App);
 app.use(BumbleVue, {

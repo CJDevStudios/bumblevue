@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { $dt } from '@cjdevstudios/bumbleuix-themes';
+import { $dt } from '@cjdevstudios/bumblevue/themes';
 
 const duration = $dt('transition.duration');
 /*

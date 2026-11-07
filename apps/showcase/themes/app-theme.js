@@ -1,5 +1,5 @@
-import { definePreset } from '@cjdevstudios/bumbleuix-themes';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import { definePreset } from '@cjdevstudios/bumblevue/themes';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export const NoirPreset = definePreset(Aura, {
     semantic: {

@@ -11,12 +11,12 @@ export default {
         return {
             code: {
                 basic: `
-<!-- <script src="https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/{preset}.js"><\/script> -->
+<!-- <script src="https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/{preset}.min.js"><\/script> -->
 
-<script src="https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/aura.js"><\/script>
-<script src="https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/lara.js"><\/script>
-<script src="https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/nora.js"><\/script>
-<script src="https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/material.js"><\/script>
+<script src="https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/aura.min.js"><\/script>
+<script src="https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/lara.min.js"><\/script>
+<script src="https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/nora.min.js"><\/script>
+<script src="https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/material.min.js"><\/script>
 `
             }
         };

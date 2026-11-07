@@ -17,7 +17,7 @@ export default {
                 basic: `
 https://unpkg.com/vue@3/dist/vue.global.js
 https://unpkg.com/@cjdevstudios/bumblevue/umd/bumblevue.min.js
-https://unpkg.com/@cjdevstudios/bumbleuix-themes/umd/aura.js  // see theming for alternatives
+https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/aura.min.js  // see theming for alternatives
 `
             }
         };

@@ -13,7 +13,7 @@ updatePackageJson(pkg);
 // update package.json > "exports" for local
 let exports = {};
 let modules = {
-    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms'],
+    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms', 'themes'],
     umd: [
         `/***************** BumbleVue (Auto-Generated) *****************/
 
@@ -151,9 +151,9 @@ export { default as ${fileName} } from '@cjdevstudios/bumblevue/${folderName}';
         });
     });
 
-// core, icons and forms: nested `<area>/<folder>` subpaths
-// A folder's entry is `<Folder>.(vue|js)` (or `<Folder><suffix>`), otherwise the `main` of its package.json.
-// Folders without either are grouping folders (e.g. `forms/resolvers`) and their sub folders are added instead.
+// core, icons, forms and themes: nested `<area>/<folder>` subpaths
+// A folder's entry is `<Folder>.(vue|js)` (or `<Folder><suffix>`), otherwise the `main` of its package.json, otherwise its `index.js`.
+// Sub folders (except `style`) are added as well, e.g. `forms/resolvers/zod` and `themes/aura/button`.
 const findEntry = (folderPath, folderName, suffix = '') => {
     const file = fs.readdirSync(folderPath).find((file) => {
         const name = file.split(/(.vue)$|(.js)$/)[0].toLowerCase();
@@ -162,7 +162,10 @@ const findEntry = (folderPath, folderName, suffix = '') => {
     });
     const packageJson = path.resolve(folderPath, 'package.json');
 
-    return file ?? (fs.existsSync(packageJson) ? JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' })).main?.replace(/^\.\//, '') : undefined);
+    if (file) return file;
+    if (fs.existsSync(packageJson)) return JSON.parse(fs.readFileSync(packageJson, { encoding: 'utf8', flag: 'r' })).main?.replace(/^\.\//, '');
+
+    return fs.existsSync(path.resolve(folderPath, 'index.js')) ? 'index.js' : undefined;
 };
 
 const icons = [
@@ -174,17 +177,15 @@ const addAreaFolders = (area, subPath, suffix) => {
     const areaPath = path.resolve(__root, INPUT_DIR + subPath);
 
     fs.readdirSync(areaPath, { withFileTypes: true })
-        .filter((dir) => dir.isDirectory())
+        .filter((dir) => dir.isDirectory() && dir.name !== 'style')
         .forEach(({ name: folderName }) => {
             const folderPath = path.resolve(areaPath, folderName);
             const subpath = `${subPath}/${folderName}`;
             const file = findEntry(folderPath, folderName, suffix);
 
-            if (!file) {
-                addAreaFolders(area, subpath, suffix);
+            addAreaFolders(area, subpath, suffix);
 
-                return;
-            }
+            if (!file) return;
 
             exports[`./${subpath}`] = `./${INPUT_DIR}${subpath}/${file}`;
 
@@ -223,7 +224,8 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${subpath}/st
 [
     { area: 'core', suffix: '' },
     { area: 'icons', suffix: 'icon' },
-    { area: 'forms', suffix: '' }
+    { area: 'forms', suffix: '' },
+    { area: 'themes', suffix: '' }
 ].forEach(({ area, suffix }) => {
     exports[`./${area}`] = `./${INPUT_DIR}${area}/index.js`;
     addAreaFolders(area, area, suffix);
