@@ -53,11 +53,11 @@
 
 <script>
 import EventBus from '@/app/AppEventBus';
-import { $t, updatePreset, updateSurfacePalette } from '@cjdevstudios/bumbleuix-themes';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
-import Lara from '@cjdevstudios/bumbleuix-themes/lara';
-import Material from '@cjdevstudios/bumbleuix-themes/material';
-import Nora from '@cjdevstudios/bumbleuix-themes/nora';
+import { $t, updatePreset, updateSurfacePalette } from '@cjdevstudios/bumblevue/themes';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
+import Lara from '@cjdevstudios/bumblevue/themes/lara';
+import Material from '@cjdevstudios/bumblevue/themes/material';
+import Nora from '@cjdevstudios/bumblevue/themes/nora';
 
 const presets = {
     Aura,

@@ -12,13 +12,13 @@ export default {
             code: {
                 basic: `
 # Using npm
-npm install @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+npm install @cjdevstudios/bumblevue
 
 # Using yarn
-yarn add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+yarn add @cjdevstudios/bumblevue
 
 # Using pnpm
-pnpm add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+pnpm add @cjdevstudios/bumblevue
 `
             }
         };

@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { updateSurfacePalette } from '@cjdevstudios/bumbleuix-themes';
+import { updateSurfacePalette } from '@cjdevstudios/bumblevue/themes';
 
 const changeSurfaces() {
     //changes surfaces both in light and dark mode

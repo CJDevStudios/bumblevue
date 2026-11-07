@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { palette } from '@cjdevstudios/bumbleuix-themes';
+import { palette } from '@cjdevstudios/bumblevue/themes';
 
 // custom color
 const values1 = palette('#10b981');

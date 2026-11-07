@@ -15,15 +15,15 @@ export default {
             code: {
                 basic: `
 # Using npm
-npm install @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+npm install @cjdevstudios/bumblevue
 npm install --save-dev @cjdevstudios/bumblevue-nuxt-module
 
 # Using yarn
-yarn add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+yarn add @cjdevstudios/bumblevue
 yarn add --dev @cjdevstudios/bumblevue-nuxt-module
 
 # Using pnpm
-pnpm add @cjdevstudios/bumblevue @cjdevstudios/bumbleuix-themes
+pnpm add @cjdevstudios/bumblevue
 pnpm add -D @cjdevstudios/bumblevue-nuxt-module
 `
             }

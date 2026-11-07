@@ -48,7 +48,6 @@
         "dev:cloudflare": "npx wrangler pages dev dist --compatibility-date 2026-08-08"
     },
     "dependencies": {
-        "@cjdevstudios/bumbleuix-themes": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
         "@cjdevstudios/bumblevue-nuxt-module": "workspace:*",
         "@docsearch/js": "catalog:app",

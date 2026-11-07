@@ -1,0 +1,102 @@
+/***************** BumbleVue Theme Tokens (Auto-Generated) *****************/
+export interface TokenMetaData {
+    description: string;
+    tokens: {
+        name: string;
+        token: string;
+        variable: string;
+        description: string;
+    }[];
+}
+
+export interface Tokens {
+    accordion: TokenMetaData;
+    autocomplete: TokenMetaData;
+    avatar: TokenMetaData;
+    badge: TokenMetaData;
+    blockui: TokenMetaData;
+    breadcrumb: TokenMetaData;
+    button: TokenMetaData;
+    card: TokenMetaData;
+    carousel: TokenMetaData;
+    cascadeselect: TokenMetaData;
+    checkbox: TokenMetaData;
+    chip: TokenMetaData;
+    colorpicker: TokenMetaData;
+    confirmdialog: TokenMetaData;
+    confirmpopup: TokenMetaData;
+    contextmenu: TokenMetaData;
+    datatable: TokenMetaData;
+    dataview: TokenMetaData;
+    datepicker: TokenMetaData;
+    dialog: TokenMetaData;
+    divider: TokenMetaData;
+    dock: TokenMetaData;
+    drawer: TokenMetaData;
+    editor: TokenMetaData;
+    fieldset: TokenMetaData;
+    fileupload: TokenMetaData;
+    floatlabel: TokenMetaData;
+    galleria: TokenMetaData;
+    iconfield: TokenMetaData;
+    iftalabel: TokenMetaData;
+    image: TokenMetaData;
+    imagecompare: TokenMetaData;
+    themes: TokenMetaData;
+    inplace: TokenMetaData;
+    inputgroup: TokenMetaData;
+    inputnumber: TokenMetaData;
+    inputotp: TokenMetaData;
+    inputtext: TokenMetaData;
+    knob: TokenMetaData;
+    listbox: TokenMetaData;
+    megamenu: TokenMetaData;
+    menu: TokenMetaData;
+    menubar: TokenMetaData;
+    message: TokenMetaData;
+    metergroup: TokenMetaData;
+    multiselect: TokenMetaData;
+    orderlist: TokenMetaData;
+    organizationchart: TokenMetaData;
+    overlaybadge: TokenMetaData;
+    paginator: TokenMetaData;
+    panel: TokenMetaData;
+    panelmenu: TokenMetaData;
+    password: TokenMetaData;
+    picklist: TokenMetaData;
+    popover: TokenMetaData;
+    progressbar: TokenMetaData;
+    progressspinner: TokenMetaData;
+    radiobutton: TokenMetaData;
+    rating: TokenMetaData;
+    ripple: TokenMetaData;
+    scrollpanel: TokenMetaData;
+    select: TokenMetaData;
+    selectbutton: TokenMetaData;
+    skeleton: TokenMetaData;
+    slider: TokenMetaData;
+    speeddial: TokenMetaData;
+    splitbutton: TokenMetaData;
+    splitter: TokenMetaData;
+    stepper: TokenMetaData;
+    steps: TokenMetaData;
+    tabs: TokenMetaData;
+    tag: TokenMetaData;
+    terminal: TokenMetaData;
+    textarea: TokenMetaData;
+    tieredmenu: TokenMetaData;
+    timeline: TokenMetaData;
+    toast: TokenMetaData;
+    togglebutton: TokenMetaData;
+    toggleswitch: TokenMetaData;
+    toolbar: TokenMetaData;
+    tooltip: TokenMetaData;
+    tree: TokenMetaData;
+    treeselect: TokenMetaData;
+    treetable: TokenMetaData;
+    virtualscroller: TokenMetaData;
+}
+
+declare const tokens: Tokens;
+
+export default tokens;

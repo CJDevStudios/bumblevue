@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import { usePreset } from '@cjdevstudios/bumbleuix-themes';
+import { usePreset } from '@cjdevstudios/bumblevue/themes';
 
 const onButtonClick() {
     usePreset(MyPreset);

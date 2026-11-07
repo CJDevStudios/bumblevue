@@ -11,7 +11,7 @@ export default {
         return {
             code: {
                 basic: `
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export default defineNuxtConfig({
     modules: [

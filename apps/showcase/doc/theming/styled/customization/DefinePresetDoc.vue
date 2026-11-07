@@ -12,8 +12,8 @@ export default {
             code: {
                 basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
-import { definePreset } from '@cjdevstudios/bumbleuix-themes';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import { definePreset } from '@cjdevstudios/bumblevue/themes';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 const MyPreset = definePreset(Aura, {
     //Your customizations, see the following sections for examples

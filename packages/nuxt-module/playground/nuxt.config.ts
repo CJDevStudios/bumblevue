@@ -1,4 +1,4 @@
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({

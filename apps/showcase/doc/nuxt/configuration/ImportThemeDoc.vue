@@ -20,8 +20,8 @@ bumblevue: {
             },
             code2: {
                 basic: `
-import { definePreset } from '@cjdevstudios/bumbleuix-themes';
-import Aura from '@cjdevstudios/bumbleuix-themes/aura';
+import { definePreset } from '@cjdevstudios/bumblevue/themes';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 const MyPreset = definePreset(Aura, {
     semantic: {
