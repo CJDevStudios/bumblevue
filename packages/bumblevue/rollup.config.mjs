@@ -19,7 +19,7 @@ const GLOBALS = {
 
 // externals
 const GLOBAL_EXTERNALS = ['vue', 'chart.js/auto', 'quill'];
-const INLINE_EXTERNALS = [/^@cjdevstudios\/bumblevue\/.*/, '@cjdevstudios/bumbleuix-styled', /@cjdevstudios\/bumbleuix-utils\/.*/];
+const INLINE_EXTERNALS = [/^@cjdevstudios\/bumblevue\/.*/, /@cjdevstudios\/bumbleuix-utils\/.*/];
 const EXTERNALS = [...GLOBAL_EXTERNALS, ...INLINE_EXTERNALS];
 
 // alias
@@ -213,6 +213,11 @@ function addAreas() {
         });
 }
 
+// styled holds the theme state, so it is built as one entry with its internal modules bundled in
+function addStyled() {
+    ENTRY.format.es({ input: process.env.INPUT_DIR + 'styled/index.js', output: process.env.OUTPUT_DIR + 'styled/index' });
+}
+
 function addPassThrough() {
     ENTRY.format.es({ input: process.env.INPUT_DIR + 'passthrough/index.js', output: process.env.OUTPUT_DIR + 'passthrough/index' });
 }
@@ -234,6 +239,7 @@ function addThemePresets() {
 addFile();
 addStyle();
 addAreas();
+addStyled();
 addPassThrough();
 addLibrary();
 addThemePresets();

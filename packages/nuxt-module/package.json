@@ -72,7 +72,6 @@
         "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
     },
     "dependencies": {
-        "@cjdevstudios/bumbleuix-styled": "catalog:",
         "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
         "@nuxt/kit": "^3",

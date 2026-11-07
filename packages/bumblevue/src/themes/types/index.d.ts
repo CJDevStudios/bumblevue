@@ -3,7 +3,7 @@
  * @module themes
  *
  */
-import type { StyleOptions, ThemeOptions } from '@cjdevstudios/bumbleuix-styled';
+import type { StyleOptions, ThemeOptions } from '@cjdevstudios/bumblevue/styled';
 
 import type { AccordionDesignTokens } from './accordion';
 import type { AutoCompleteDesignTokens } from './autocomplete';
@@ -112,7 +112,7 @@ export declare type RequiredDesignTokens<T, C = never> = {
 } & DesignTokens<T> &
     (C extends never ? object : ColorSchemeDesignToken<C>);
 
-// @todo: Remove this when the types are fixed in the styled package. Use `ColorScale` from `@cjdevstudios/bumbleuix-styled` instead.
+// @todo: Remove this when the types are fixed in the styled package. Use `ColorScale` from `@cjdevstudios/bumblevue/styled` instead.
 export interface PaletteDesignToken {
     0?: string;
     50?: string;

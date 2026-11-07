@@ -3,7 +3,6 @@ packages:
     - 'apps/*'
 
 catalog:
-    '@cjdevstudios/bumbleuix-styled': 1.0.0-rc.1
     '@cjdevstudios/bumbleuix-utils': 1.0.0-rc.1
 
 catalogs:

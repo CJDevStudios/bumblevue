@@ -1,4 +1,4 @@
-import { Theme, ThemeService } from '@cjdevstudios/bumbleuix-styled';
+import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
 import { getKeyValue, isArray, isEmpty, isFunction, isObject, isString, resolve, toCapitalCase, toFlatCase } from '@cjdevstudios/bumbleuix-utils/object';
 import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
 import Base from '@cjdevstudios/bumblevue/core/base';

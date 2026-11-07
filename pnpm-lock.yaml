@@ -28,9 +28,6 @@ catalogs:
       specifier: 6.0.11
       version: 6.0.11
   default:
-    '@cjdevstudios/bumbleuix-styled':
-      specifier: 1.0.0-rc.1
-      version: 1.0.0-rc.1
     '@cjdevstudios/bumbleuix-utils':
       specifier: 1.0.0-rc.1
       version: 1.0.0-rc.1
@@ -157,9 +154,6 @@ importers:
 
   packages/bumblevue:
     dependencies:
-      '@cjdevstudios/bumbleuix-styled':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
       '@cjdevstudios/bumbleuix-utils':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
@@ -198,9 +192,6 @@ importers:
 
   packages/nuxt-module:
     dependencies:
-      '@cjdevstudios/bumbleuix-styled':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
       '@cjdevstudios/bumbleuix-utils':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
@@ -882,10 +873,6 @@ packages:
         optional: true
       commander:
         optional: true
-
-  '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
-    resolution: {integrity: sha512-KbMQvnik30as7rrm+IugydzJmOlh2Ab907hGbsiC3mo2s+IsipqBLweqb3bD3R5JFQ2sjBj1bb/W2hmCaH3Xkw==}
-    engines: {node: '>=12.11.0'}
 
   '@cjdevstudios/bumbleuix-utils@1.0.0-rc.1':
     resolution: {integrity: sha512-rJVwLs9tlulO3u0RcRRcBB3SbykomZEGW6DNRd78PeckY0AOoeN5bvfeKe07APBOQnrAZfCB90Xcii4Gtm1PfA==}
@@ -8402,10 +8389,6 @@ snapshots:
     optionalDependencies:
       cac: 6.7.14
       citty: 0.2.2
-
-  '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
-    dependencies:
-      '@cjdevstudios/bumbleuix-utils': 1.0.0-rc.1
 
   '@cjdevstudios/bumbleuix-utils@1.0.0-rc.1': {}
 

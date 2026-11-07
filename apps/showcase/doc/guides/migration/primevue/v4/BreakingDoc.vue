@@ -62,7 +62,7 @@
                 </tr>
                 <tr>
                     <td>@primeuix/styled</td>
-                    <td>@cjdevstudios/bumbleuix-styled</td>
+                    <td>@cjdevstudios/bumblevue/styled</td>
                 </tr>
                 <tr>
                     <td>@primeuix/styles</td>

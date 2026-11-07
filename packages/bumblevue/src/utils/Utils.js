@@ -1,4 +1,4 @@
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import * as utils from '@cjdevstudios/bumbleuix-utils';
 
 export function blockBodyScroll() {
