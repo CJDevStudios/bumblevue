@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td>@primeuix/styles</td>
-                    <td>@cjdevstudios/bumbleuix-styles</td>
+                    <td>@cjdevstudios/bumblevue/&lt;component&gt;/style</td>
                 </tr>
                 <tr>
                     <td>@primeuix/themes</td>

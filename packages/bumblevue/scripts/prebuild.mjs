@@ -45,7 +45,6 @@ export * from '../usestyle/UseStyle.js';
 // Editor
 export * from '../editor/Editor.vue';
 export { default as Editor } from '../editor/Editor.vue';
-export * from '../editor/style/EditorStyle.js';
 export { default as EditorStyle } from '../editor/style/EditorStyle.js';
 
 // Chart
@@ -76,6 +75,17 @@ export * from '@cjdevstudios/bumblevue/usestyle';
     ]
 };
 
+modules.dts = [...modules.esm];
+
+// The names declared in a style module's .d.ts, except the raw `style` CSS and the name the default export is re-exported as
+const getStyleTypeNames = (dtsFile, defaultName) => {
+    if (!fs.existsSync(dtsFile)) return [];
+
+    const content = fs.readFileSync(dtsFile, { encoding: 'utf8', flag: 'r' });
+
+    return [...content.matchAll(/^export (?:declare )?(?:enum|interface|type|const|function|class) (\w+)/gm)].map(([, name]) => name).filter((name) => name !== 'style' && name !== defaultName);
+};
+
 fs.readdirSync(path.resolve(__root, INPUT_DIR), { withFileTypes: true })
     .filter((dir) => dir.isDirectory())
     .forEach(({ name: folderName }) => {
@@ -98,13 +108,14 @@ export * from '../${folderName}/${file}';
 export { default as ${fileName} } from '../${folderName}/${file}';
 `
                     );
-                    modules.esm.push(
-                        `
+                    const esm = `
 // ${fileName}
 export * from '@cjdevstudios/bumblevue/${folderName}';
 export { default as ${fileName} } from '@cjdevstudios/bumblevue/${folderName}';
-`
-                    );
+`;
+
+                    modules.esm.push(esm);
+                    modules.dts.push(esm);
                 }
 
                 try {
@@ -116,14 +127,20 @@ export { default as ${fileName} } from '@cjdevstudios/bumblevue/${folderName}';
                             exports[`./${folderName}/style`] = `./${INPUT_DIR}${folderName}/style/${file}`;
 
                             if (validModuleFolder) {
+                                // Style modules all export their raw CSS as `style`, so they can't be re-exported with `export *` without
+                                // conflicting. The JS barrels only re-export the default; the type barrel re-exports the declared types by name.
+                                const styleTypes = getStyleTypeNames(path.resolve(folderPath, 'style', `${subFileName}.d.ts`), subFileName);
+
                                 modules.umd.push(
-                                    `export * from '../${folderName}/style/${file}';
-export { default as ${subFileName} } from '../${folderName}/style/${file}';
+                                    `export { default as ${subFileName} } from '../${folderName}/style/${file}';
 `
                                 );
                                 modules.esm.push(
-                                    `export * from '@cjdevstudios/bumblevue/${folderName}/style';
-export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}/style';
+                                    `export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}/style';
+`
+                                );
+                                modules.dts.push(
+                                    `${styleTypes.length ? `export { ${styleTypes.join(', ')} } from '@cjdevstudios/bumblevue/${folderName}/style';\n` : ''}export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}/style';
 `
                                 );
                             }
@@ -133,6 +150,7 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${folderName}
             }
         });
     });
+
 // core, icons and forms: nested `<area>/<folder>` subpaths
 // A folder's entry is `<Folder>.(vue|js)` (or `<Folder><suffix>`), otherwise the `main` of its package.json.
 // Folders without either are grouping folders (e.g. `forms/resolvers`) and their sub folders are added instead.
@@ -226,7 +244,7 @@ fs.writeFileSync(INPUT_DIR + 'umd/bumblevue.js', modules.umd.join(''));
 
 // ESM
 fs.writeFileSync(INPUT_DIR + 'index.js', modules.esm.join(''));
-fs.writeFileSync(INPUT_DIR + 'index.d.ts', modules.esm.join(''));
+fs.writeFileSync(INPUT_DIR + 'index.d.ts', modules.dts.join(''));
 
 // Icons
 fs.writeFileSync(INPUT_DIR + 'icons/index.js', icons.join(''));
