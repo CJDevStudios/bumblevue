@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
-import * as prettier from 'prettier';
 import * as TypeDoc from 'typedoc';
 import { fileURLToPath } from 'url';
 
+// Generates the design token metadata shown in the "Design Tokens" tables of the component docs from the `@designToken` tags
+// of the theme types in `packages/bumblevue/src/themes/types`. The output is not committed; it is generated before `dev` and `build`.
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Generates the design token metadata of the theme presets (`@cjdevstudios/bumblevue/themes/tokens`) from the `@designToken` tags in `src/themes/types`.
-const INPUT_PATH = path.resolve(__dirname, '../src/themes/types');
-const OUTPUT_PATH = path.resolve(__dirname, '../src/themes/tokens');
+const INPUT_PATH = path.resolve(__dirname, '../../../packages/bumblevue/src/themes/types');
+const OUTPUT_FILE = path.resolve(__dirname, '../doc/common/apidoc/tokens.json');
 
 const parseText = (text) => {
     return text.replace(/&#123;/g, '{').replace(/&#125;/g, '}');
@@ -69,71 +69,46 @@ const findInNamespaces = (doc, module, name) => {
     });
 };
 
-async function run() {
-    const app = await TypeDoc.Application.bootstrapWithPlugins({
-        name: 'BumbleVue-Themes',
-        entryPoints: [INPUT_PATH],
-        tsconfig: path.resolve(__dirname, './tsconfig.tokens.json'),
-        skipErrorChecking: true,
-        entryPointStrategy: 'expand',
-        hideGenerator: true,
-        excludeExternals: false,
-        includeVersion: true,
-        searchInComments: true,
-        disableSources: true,
-        sort: ['source-order']
-    });
+const app = new TypeDoc.Application();
 
-    const project = await app.convert();
+app.options.addReader(new TypeDoc.TSConfigReader());
 
-    if (project) {
-        const doc = {};
+app.bootstrap({
+    name: 'BumbleVue-Themes',
+    entryPoints: [INPUT_PATH],
+    entryPointStrategy: 'expand',
+    tsconfig: path.resolve(__dirname, './tsconfig.tokens.json'),
+    skipErrorChecking: true,
+    hideGenerator: true,
+    excludeExternals: false,
+    includeVersion: true,
+    searchInComments: true,
+    disableSources: true,
+    logLevel: 'Error',
+    sort: ['source-order']
+});
 
-        project.children.forEach((module) => {
-            const { name, comment } = module;
+const project = app.convert();
 
-            if (name !== 'index') {
-                const description = comment?.summary?.map((s) => s.text || '').join(' ');
-
-                doc[name] = {
-                    description
-                };
-
-                findInInterfaces(doc, module, name);
-                findInNamespaces(doc, module, name);
-            }
-        });
-
-        if (!fs.existsSync(OUTPUT_PATH)) fs.mkdirSync(OUTPUT_PATH);
-
-        const types = `/***************** BumbleVue Theme Tokens (Auto-Generated) *****************/
-export interface TokenMetaData {
-    description: string;
-    tokens: {
-        name: string;
-        token: string;
-        variable: string;
-        description: string;
-    }[];
+if (!project) {
+    throw new Error('Unable to generate the design token metadata.');
 }
 
-export interface Tokens {
-${Object.keys(doc)
-    .map((key) => `    ${key}: TokenMetaData;`)
-    .join('\n')}
-}
+const doc = {};
 
-declare const tokens: Tokens;
+project.children.forEach((module) => {
+    const name = module.name.replace(/\/index$/, '');
+    const { comment } = module;
 
-export default tokens;
-`;
-        const data = `export default ${JSON.stringify(doc, null, 4)};
-`;
-        const config = await prettier.resolveConfig(OUTPUT_PATH);
+    if (name !== 'index') {
+        doc[name] = {
+            description: comment?.summary?.map((s) => s.text || '').join(' ')
+        };
 
-        fs.writeFileSync(path.resolve(OUTPUT_PATH, 'index.d.ts'), await prettier.format(types, { ...config, parser: 'typescript' }));
-        fs.writeFileSync(path.resolve(OUTPUT_PATH, 'index.js'), await prettier.format(data, { ...config, parser: 'babel' }));
+        findInInterfaces(doc, module, name);
+        findInNamespaces(doc, module, name);
     }
-}
+});
 
-run().catch(console.error);
+fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
+fs.writeFileSync(OUTPUT_FILE, JSON.stringify(doc, null, 4) + '\n');
