@@ -13,6 +13,14 @@ updatePackageJson(pkg);
 
 // update package.json > "exports" for local
 let exports = {};
+
+// A local export entry, with a `types` condition when a sibling .d.ts exists (e.g. `Form.vue` -> `Form.d.ts`, `index.js` -> `index.d.ts`).
+// Without it, TypeScript can't resolve declarations for `.vue` entries, so the `export *` re-exports in the barrel .d.ts files come up empty.
+const toExport = (target) => {
+    const dts = target.replace(/\.(vue|js)$/, '.d.ts');
+
+    return dts !== target && fs.existsSync(path.resolve(__root, dts)) ? { types: dts, default: target } : target;
+};
 let modules = {
     ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms', 'themes', 'styled'],
     umd: [
@@ -87,6 +95,8 @@ const getStyleTypeNames = (dtsFile, defaultName) => {
     return [...content.matchAll(/^export (?:declare )?(?:enum|interface|type|const|function|class) (\w+)/gm)].map(([, name]) => name).filter((name) => name !== 'style' && name !== defaultName);
 };
 
+exports['.'] = toExport(`./${INPUT_DIR}index.js`);
+
 fs.readdirSync(path.resolve(__root, INPUT_DIR), { withFileTypes: true })
     .filter((dir) => dir.isDirectory())
     .forEach(({ name: folderName }) => {
@@ -99,7 +109,7 @@ fs.readdirSync(path.resolve(__root, INPUT_DIR), { withFileTypes: true })
             if (name === folderName) {
                 const validModuleFolder = !modules.ignoredFolders.includes(folderName);
 
-                exports[`./${folderName}`] = `./${INPUT_DIR}${folderName}/${file}`;
+                exports[`./${folderName}`] = toExport(`./${INPUT_DIR}${folderName}/${file}`);
 
                 if (validModuleFolder) {
                     modules.umd.push(
@@ -125,7 +135,7 @@ export { default as ${fileName} } from '@cjdevstudios/bumblevue/${folderName}';
                         let subName = subFileName.toLowerCase();
 
                         if (subName === `${folderName}style`) {
-                            exports[`./${folderName}/style`] = `./${INPUT_DIR}${folderName}/style/${file}`;
+                            exports[`./${folderName}/style`] = toExport(`./${INPUT_DIR}${folderName}/style/${file}`);
 
                             if (validModuleFolder) {
                                 // Style modules all export their raw CSS as `style`, so they can't be re-exported with `export *` without
@@ -188,7 +198,7 @@ const addAreaFolders = (area, subPath, suffix) => {
 
             if (!file) return;
 
-            exports[`./${subpath}`] = `./${INPUT_DIR}${subpath}/${file}`;
+            exports[`./${subpath}`] = toExport(`./${INPUT_DIR}${subpath}/${file}`);
 
             if (area === 'icons') {
                 const fileName = file.split(/(.vue)$|(.js)$/)[0];
@@ -206,7 +216,7 @@ export { default as ${fileName} } from '@cjdevstudios/bumblevue/${subpath}';
                 const styleFile = fs.readdirSync(folderPath + '/style').find((file) => file.split(/(.js)$/)[0].toLowerCase() === `${folderName}style`);
 
                 if (styleFile) {
-                    exports[`./${subpath}/style`] = `./${INPUT_DIR}${subpath}/style/${styleFile}`;
+                    exports[`./${subpath}/style`] = toExport(`./${INPUT_DIR}${subpath}/style/${styleFile}`);
 
                     if (area === 'icons') {
                         const subFileName = styleFile.split(/(.js)$/)[0];
@@ -229,12 +239,12 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${subpath}/st
     { area: 'themes', suffix: '' },
     { area: 'utils', suffix: '' }
 ].forEach(({ area, suffix }) => {
-    exports[`./${area}`] = `./${INPUT_DIR}${area}/index.js`;
+    exports[`./${area}`] = toExport(`./${INPUT_DIR}${area}/index.js`);
     addAreaFolders(area, area, suffix);
 });
 
 // styled: a single entry, its internal modules are bundled into it so the theme state stays a single instance
-exports['./styled'] = `./${INPUT_DIR}styled/index.js`;
+exports['./styled'] = toExport(`./${INPUT_DIR}styled/index.js`);
 
 exports['./tailwind.css'] = `./${INPUT_DIR}tailwind/index.css`;
 exports['./*'] = './*';
