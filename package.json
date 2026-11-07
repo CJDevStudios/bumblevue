@@ -36,7 +36,7 @@
         "build:mcp": "pnpm --filter mcp build",
         "build:showcase": "pnpm --filter showcase build",
         "build:llm": "pnpm --filter showcase build:llmdocs",
-        "build:apidoc": "pnpm --filter @cjdevstudios/bumblevue build:tokens && pnpm --filter showcase build:apidoc",
+        "build:apidoc": "pnpm --filter showcase build:apidoc",
         "dev": "pnpm --filter showcase dev",
         "preview": "pnpm --filter showcase preview",
         "hot:dev": "DEV_ENV=hot pnpm --filter showcase dev",

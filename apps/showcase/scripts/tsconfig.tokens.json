@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "noEmit": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "target": "esnext",
+        "skipLibCheck": true,
+        "baseUrl": "../../../packages/bumblevue",
+        "paths": {
+            "@cjdevstudios/bumblevue/*": ["./src/*"]
+        }
+    },
+    "include": ["../../../packages/bumblevue/src/themes/types/**/*.d.ts"]
+}

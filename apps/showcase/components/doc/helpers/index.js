@@ -1,5 +1,5 @@
 import APIDocs from '@/doc/common/apidoc/index.json';
-import ComponentTokens from '@cjdevstudios/bumblevue/themes/tokens';
+import ComponentTokens from '@/doc/common/apidoc/tokens.json';
 
 export const getPTOptions = (name) => {
     const { props } = APIDocs[name.toLowerCase()].interfaces.values[`${name}PassThroughOptions`] || APIDocs[name.toLowerCase()].interfaces.values[`${name}DirectivePassThroughOptions`];

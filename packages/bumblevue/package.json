@@ -723,7 +723,6 @@
         "./themes/nora/treetable": "./src/themes/nora/treetable/index.js",
         "./themes/nora/virtualscroller": "./src/themes/nora/virtualscroller/index.js",
         "./themes/nora": "./src/themes/nora/index.js",
-        "./themes/tokens": "./src/themes/tokens/index.js",
         "./tailwind.css": "./src/tailwind/index.css",
         "./*": "./*"
     },
@@ -754,7 +753,6 @@
         "build:api": "node ./scripts/build-api.js",
         "build:prebuild": "node ./scripts/prebuild.mjs",
         "build:postbuild": "node ./scripts/postbuild.mjs",
-        "build:tokens": "node ./scripts/build-tokens.mjs",
         "dev:link": "pnpm link --global && npm link",
         "test:unit": "vitest run",
         "test:unit:watch": "vitest watch",
@@ -762,7 +760,6 @@
     },
     "devDependencies": {
         "@vue/test-utils": "^2.0.0",
-        "typedoc": "0.27.6",
         "vitest": "^0.29.8"
     },
     "dependencies": {
