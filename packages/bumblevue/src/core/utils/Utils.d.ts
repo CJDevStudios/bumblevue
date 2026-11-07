@@ -15,10 +15,3 @@ export declare class HelperSet {
     clear(): void;
     get(parentInstance?: any, slots?: any): any[] | null | undefined;
 }
-
-/**
- * @deprecated since v4.3.0. Use `uuid` from @cjdevstudios/bumblevue/utils instead.
- * @param {string} prefix
- * @return {string}
- */
-export declare function UniqueComponentId(prefix?: string): string;
