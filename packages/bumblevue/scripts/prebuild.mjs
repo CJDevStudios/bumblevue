@@ -1,6 +1,7 @@
 import fs from 'fs-extra';
 import path from 'path';
 import { removeBuild, resolvePath, updatePackageJson } from '../../../scripts/build-helper.mjs';
+import { buildThemeTypes } from './build-theme-types.mjs';
 
 removeBuild(import.meta.url);
 
@@ -247,6 +248,9 @@ fs.writeFileSync(INPUT_DIR + 'umd/bumblevue.js', modules.umd.join(''));
 // ESM
 fs.writeFileSync(INPUT_DIR + 'index.js', modules.esm.join(''));
 fs.writeFileSync(INPUT_DIR + 'index.d.ts', modules.dts.join(''));
+
+// Themes: the .d.ts of the preset components
+buildThemeTypes(path.resolve(__root, INPUT_DIR + 'themes'));
 
 // Icons
 fs.writeFileSync(INPUT_DIR + 'icons/index.js', icons.join(''));
