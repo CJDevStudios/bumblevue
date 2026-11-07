@@ -29,8 +29,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { focus, getFirstFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { focus, getFirstFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import BanIcon from '@cjdevstudios/bumblevue/icons/ban';
 import StarIcon from '@cjdevstudios/bumblevue/icons/star';

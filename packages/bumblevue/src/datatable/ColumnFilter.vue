@@ -153,8 +153,8 @@
 </template>
 
 <script>
-import { absolutePosition, addStyle, focus, getAttribute, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { absolutePosition, addStyle, focus, getAttribute, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import { FilterOperator } from '@cjdevstudios/bumblevue/core/api';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';

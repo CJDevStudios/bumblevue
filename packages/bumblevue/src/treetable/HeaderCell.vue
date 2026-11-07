@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumbleuix-utils/dom';
+import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import SortAltIcon from '@cjdevstudios/bumblevue/icons/sortalt';

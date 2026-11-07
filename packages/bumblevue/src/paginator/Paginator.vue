@@ -110,7 +110,7 @@
 </template>
 
 <script>
-import { setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
+import { setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import PaginatorStyle from '@cjdevstudios/bumblevue/paginator/style';
 import CurrrentPageReport from './CurrentPageReport.vue';

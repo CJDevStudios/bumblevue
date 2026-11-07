@@ -29,7 +29,7 @@ export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon
 export * from '@cjdevstudios/bumblevue/styled';
 
 // Utils
-export * from '../utils/Utils.js';
+export { blockBodyScroll, unblockBodyScroll } from '../utils/index.js';
 
 // UseConfirm
 export * from '../useconfirm/UseConfirm.js';
@@ -59,7 +59,7 @@ export { default as ChartStyle } from '../chart/style/ChartStyle.js';
         `/***************** BumbleVue (Auto-Generated) *****************/
 
 // Utils
-export * from '@cjdevstudios/bumblevue/utils';
+export { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
 
 // UseConfirm
 export * from '@cjdevstudios/bumblevue/useconfirm';
@@ -152,7 +152,7 @@ export { default as ${fileName} } from '@cjdevstudios/bumblevue/${folderName}';
         });
     });
 
-// core, icons, forms and themes: nested `<area>/<folder>` subpaths
+// core, icons, forms, themes and utils: nested `<area>/<folder>` subpaths
 // A folder's entry is `<Folder>.(vue|js)` (or `<Folder><suffix>`), otherwise the `main` of its package.json, otherwise its `index.js`.
 // Sub folders (except `style`) are added as well, e.g. `forms/resolvers/zod` and `themes/aura/button`.
 const findEntry = (folderPath, folderName, suffix = '') => {
@@ -226,7 +226,8 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${subpath}/st
     { area: 'core', suffix: '' },
     { area: 'icons', suffix: 'icon' },
     { area: 'forms', suffix: '' },
-    { area: 'themes', suffix: '' }
+    { area: 'themes', suffix: '' },
+    { area: 'utils', suffix: '' }
 ].forEach(({ area, suffix }) => {
     exports[`./${area}`] = `./${INPUT_DIR}${area}/index.js`;
     addAreaFolders(area, area, suffix);

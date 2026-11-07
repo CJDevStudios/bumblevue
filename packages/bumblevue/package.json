@@ -297,7 +297,6 @@
         "./usedialog": "./src/usedialog/UseDialog.js",
         "./usestyle": "./src/usestyle/UseStyle.js",
         "./usetoast": "./src/usetoast/UseToast.js",
-        "./utils": "./src/utils/Utils.js",
         "./virtualscroller": "./src/virtualscroller/VirtualScroller.vue",
         "./virtualscroller/style": "./src/virtualscroller/style/VirtualScrollerStyle.js",
         "./core": "./src/core/index.js",
@@ -723,6 +722,14 @@
         "./themes/nora/treetable": "./src/themes/nora/treetable/index.js",
         "./themes/nora/virtualscroller": "./src/themes/nora/virtualscroller/index.js",
         "./themes/nora": "./src/themes/nora/index.js",
+        "./utils": "./src/utils/index.js",
+        "./utils/classnames": "./src/utils/classnames/index.js",
+        "./utils/dom": "./src/utils/dom/index.js",
+        "./utils/eventbus": "./src/utils/eventbus/index.js",
+        "./utils/mergeprops": "./src/utils/mergeprops/index.js",
+        "./utils/object": "./src/utils/object/index.js",
+        "./utils/uuid": "./src/utils/uuid/index.js",
+        "./utils/zindex": "./src/utils/zindex/index.js",
         "./styled": "./src/styled/index.js",
         "./tailwind.css": "./src/tailwind/index.css",
         "./*": "./*"
@@ -762,9 +769,6 @@
     "devDependencies": {
         "@vue/test-utils": "^2.0.0",
         "vitest": "^0.29.8"
-    },
-    "dependencies": {
-        "@cjdevstudios/bumbleuix-utils": "catalog:"
     },
     "peerDependencies": {
         "joi": ">=17.0.0",

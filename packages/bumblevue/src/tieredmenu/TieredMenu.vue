@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
-import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
+import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';

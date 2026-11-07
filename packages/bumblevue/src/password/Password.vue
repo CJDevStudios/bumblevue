@@ -75,9 +75,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { absolutePosition, addStyle, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { absolutePosition, addStyle, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import EyeIcon from '@cjdevstudios/bumblevue/icons/eye';

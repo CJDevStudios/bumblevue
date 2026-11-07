@@ -57,8 +57,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { isFunction, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { isFunction, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
 import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';

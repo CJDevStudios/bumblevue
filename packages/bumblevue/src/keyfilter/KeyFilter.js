@@ -1,4 +1,4 @@
-import { isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isAttributeEquals } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import KeyFilterStyle from '@cjdevstudios/bumblevue/keyfilter/style';
 

@@ -21,8 +21,8 @@
 </template>
 
 <script>
-import { absolutePosition, addClass, isTouchDevice, relativePosition, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { absolutePosition, addClass, isTouchDevice, relativePosition, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import ColorPickerStyle from '@cjdevstudios/bumblevue/colorpicker/style';

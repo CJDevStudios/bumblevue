@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
 import TimesIcon from '@cjdevstudios/bumblevue/icons/times';

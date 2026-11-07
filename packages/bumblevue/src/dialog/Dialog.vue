@@ -64,9 +64,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 import WindowMaximizeIcon from '@cjdevstudios/bumblevue/icons/windowmaximize';

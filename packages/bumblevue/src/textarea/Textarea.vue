@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import TextareaStyle from '@cjdevstudios/bumblevue/textarea/style';
 import { mergeProps } from 'vue';

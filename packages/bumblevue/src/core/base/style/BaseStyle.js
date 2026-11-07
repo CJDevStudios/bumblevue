@@ -1,5 +1,5 @@
 import { css as Css, Theme, dt } from '@cjdevstudios/bumblevue/styled';
-import { isNotEmpty, minifyCSS, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import { isNotEmpty, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import { useStyle } from '@cjdevstudios/bumblevue/core/usestyle';
 
 export const style = /*css*/ `

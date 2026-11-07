@@ -126,9 +126,9 @@
 </template>
 
 <script>
-import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isEmpty, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
+import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';

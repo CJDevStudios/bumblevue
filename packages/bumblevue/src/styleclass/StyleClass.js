@@ -1,4 +1,4 @@
-import { addClass, getTargetElement, hasClass, isElement, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass, getTargetElement, hasClass, isElement, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import StyleClassStyle from '@cjdevstudios/bumblevue/styleclass/style';
 

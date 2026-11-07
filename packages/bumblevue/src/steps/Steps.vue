@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { findSingle, find } from '@cjdevstudios/bumbleuix-utils/dom';
+import { findSingle, find } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import StepsStyle from '@cjdevstudios/bumblevue/steps/style';
 import { mergeProps } from 'vue';

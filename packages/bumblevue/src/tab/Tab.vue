@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { equals } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { findSingle, focus, getAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { equals } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import TabStyle from '@cjdevstudios/bumblevue/tab/style';

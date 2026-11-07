@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import { getWindowScrollTop } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { getWindowScrollTop } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';
 import Button from '@cjdevstudios/bumblevue/button';

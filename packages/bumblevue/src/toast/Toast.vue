@@ -26,10 +26,10 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Portal from '@cjdevstudios/bumblevue/portal';
 import ToastStyle from '@cjdevstudios/bumblevue/toast/style';

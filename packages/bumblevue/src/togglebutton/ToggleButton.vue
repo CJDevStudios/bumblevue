@@ -27,8 +27,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import ToggleButtonStyle from '@cjdevstudios/bumblevue/togglebutton/style';

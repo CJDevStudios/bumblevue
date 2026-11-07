@@ -1,4 +1,4 @@
-import { isEmpty, isNotEmpty, isObject, matchRegex, minifyCSS, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import { isEmpty, isNotEmpty, isObject, matchRegex, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import { dt, toVariables } from '../helpers/index.js';
 import { CALC_REGEX, EXPR_REGEX, getRule, toTokenKey, VAR_REGEX } from './sharedUtils.js';
 

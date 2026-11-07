@@ -1,4 +1,4 @@
-import { isObject } from '@cjdevstudios/bumbleuix-utils';
+import { isObject } from '@cjdevstudios/bumblevue/utils';
 
 export const toValues = (value, name) => {
     if (name) {

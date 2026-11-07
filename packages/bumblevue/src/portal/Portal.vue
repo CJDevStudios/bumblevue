@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { isClient } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
 
 export default {
     name: 'Portal',

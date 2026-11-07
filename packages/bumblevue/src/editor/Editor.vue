@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { isExist } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isExist } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import EditorStyle from '@cjdevstudios/bumblevue/editor/style';
 

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { uuid } from '@cjdevstudios/bumbleuix-utils';
+import { uuid } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import Dialog from '@cjdevstudios/bumblevue/dialog';
 import DynamicDialogStyle from '@cjdevstudios/bumblevue/dynamicdialog/style';

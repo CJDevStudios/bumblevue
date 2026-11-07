@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import { z } from 'zod/v4';
 import { toValues } from '../utils';
 

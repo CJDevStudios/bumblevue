@@ -51,7 +51,7 @@
 </template>
 
 <script>
-import { isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isAttributeEquals } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
 import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';

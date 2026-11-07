@@ -66,8 +66,8 @@
 </template>
 
 <script>
-import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
 import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';

@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import { getDotPath, safeParse, safeParseAsync } from 'valibot';
 import { toValues } from '../utils';
 

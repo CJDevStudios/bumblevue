@@ -164,8 +164,8 @@
 </template>
 
 <script>
-import { find, scrollInView, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { findIndexInList, isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { find, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { findIndexInList, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
 import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue/icons/angledoubleleft';

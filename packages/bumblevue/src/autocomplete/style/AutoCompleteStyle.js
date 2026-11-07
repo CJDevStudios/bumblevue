@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 export const style = /*css*/ `

@@ -1,6 +1,6 @@
 import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
-import { getKeyValue, isArray, isEmpty, isFunction, isObject, isString, resolve, toCapitalCase, toFlatCase } from '@cjdevstudios/bumbleuix-utils/object';
-import { uuid } from '@cjdevstudios/bumbleuix-utils/uuid';
+import { getKeyValue, isArray, isEmpty, isFunction, isObject, isString, resolve, toCapitalCase, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
+import { uuid } from '@cjdevstudios/bumblevue/utils/uuid';
 import Base from '@cjdevstudios/bumblevue/core/base';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 import BumbleVueService from '@cjdevstudios/bumblevue/core/service';

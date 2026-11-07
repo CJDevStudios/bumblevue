@@ -70,9 +70,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { getOuterHeight } from '@cjdevstudios/bumbleuix-utils/dom';
-import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { getOuterHeight } from '@cjdevstudios/bumblevue/utils/dom';
+import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import BodyRow from './BodyRow.vue';
 

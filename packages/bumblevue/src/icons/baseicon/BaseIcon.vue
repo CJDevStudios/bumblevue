@@ -1,5 +1,5 @@
 <script>
-import { isEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import BaseIconStyle from '@cjdevstudios/bumblevue/icons/baseicon/style';
 

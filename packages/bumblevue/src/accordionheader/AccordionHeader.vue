@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { findSingle, focus, getAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { findSingle, focus, getAttribute } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
 import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';

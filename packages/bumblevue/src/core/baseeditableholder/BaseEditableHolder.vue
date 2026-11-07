@@ -1,5 +1,5 @@
 <script>
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
 export default {
@@ -97,7 +97,7 @@ export default {
 
             this.formField.onChange?.({ originalEvent: event, value });
         },
-        // @todo move to @cjdevstudios/bumbleuix-utils
+        // @todo move to @cjdevstudios/bumblevue/utils
         findNonEmpty(...values) {
             return values.find(isNotEmpty);
         }
