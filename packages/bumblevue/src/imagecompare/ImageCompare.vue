@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import { setCSSProperty } from '@cjdevstudios/bumbleuix-utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ImageCompareStyle from '@cjdevstudios/bumblevue/imagecompare/style';

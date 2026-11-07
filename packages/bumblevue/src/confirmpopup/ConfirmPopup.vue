@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';

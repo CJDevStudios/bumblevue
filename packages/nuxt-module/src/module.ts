@@ -90,7 +90,7 @@ import { useRuntimeConfig } from '#imports';
 ${uniqueRegisteredStyles?.map((style: MetaType) => `import ${style.as} from '${style.from}';`).join('\n')}
 ${
     hasTheme
-        ? `import { Theme } from '@cjdevstudios/bumbleuix-styled';
+        ? `import { Theme } from '@cjdevstudios/bumblevue/styled';
 ${importTheme ? `import ${importTheme.as} from '${normalize(importTheme.from)}';\n` : ''}`
         : ''
 }

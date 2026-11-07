@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import { absolutePosition, addClass, addStyle, focus, getOffset, isClient, isTouchDevice, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
 import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';

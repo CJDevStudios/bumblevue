@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import KnobStyle from '@cjdevstudios/bumblevue/knob/style';
 

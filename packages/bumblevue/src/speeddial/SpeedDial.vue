@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumbleuix-styled';
+import { $dt } from '@cjdevstudios/bumblevue/styled';
 import { find, findSingle, focus } from '@cjdevstudios/bumbleuix-utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';

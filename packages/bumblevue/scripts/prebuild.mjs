@@ -14,7 +14,7 @@ updatePackageJson(pkg);
 // update package.json > "exports" for local
 let exports = {};
 let modules = {
-    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms', 'themes'],
+    ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms', 'themes', 'styled'],
     umd: [
         `/***************** BumbleVue (Auto-Generated) *****************/
 
@@ -26,7 +26,7 @@ export { default as BaseIcon } from '@cjdevstudios/bumblevue/icons/baseicon';
 export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon/style';
 
 // Themes
-export * from '@cjdevstudios/bumbleuix-styled';
+export * from '@cjdevstudios/bumblevue/styled';
 
 // Utils
 export * from '../utils/Utils.js';
@@ -232,6 +232,9 @@ export { default as ${subFileName} } from '@cjdevstudios/bumblevue/${subpath}/st
     addAreaFolders(area, area, suffix);
 });
 
+// styled: a single entry, its internal modules are bundled into it so the theme state stays a single instance
+exports['./styled'] = `./${INPUT_DIR}styled/index.js`;
+
 exports['./tailwind.css'] = `./${INPUT_DIR}tailwind/index.css`;
 exports['./*'] = './*';
 
@@ -240,7 +243,7 @@ const pkgJson = JSON.parse(fs.readFileSync(pkg, { encoding: 'utf8', flag: 'r' })
 
 pkgJson.exports = exports;
 
-fs.writeFileSync(pkg, JSON.stringify(pkgJson, null, 4));
+fs.writeFileSync(pkg, JSON.stringify(pkgJson, null, 4) + '\n');
 
 // UMD
 fs.writeFileSync(INPUT_DIR + 'umd/bumblevue.js', modules.umd.join(''));

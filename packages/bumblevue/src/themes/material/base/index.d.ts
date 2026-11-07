@@ -5,7 +5,7 @@
  * @module base
  *
  */
-import type { ColorScale } from '@cjdevstudios/bumbleuix-styled';
+import type { ColorScale } from '@cjdevstudios/bumblevue/styled';
 
 /**
  * Design Token Sections

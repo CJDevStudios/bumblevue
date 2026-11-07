@@ -8,7 +8,7 @@ export { default as BaseIcon } from '@cjdevstudios/bumblevue/icons/baseicon';
 export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon/style';
 
 // Themes
-export * from '@cjdevstudios/bumbleuix-styled';
+export * from '@cjdevstudios/bumblevue/styled';
 
 // Utils
 export * from '../utils/Utils.js';

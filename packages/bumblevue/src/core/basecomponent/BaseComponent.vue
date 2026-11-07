@@ -1,5 +1,5 @@
 <script>
-import { Theme, ThemeService } from '@cjdevstudios/bumbleuix-styled';
+import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
 import { findSingle, isElement } from '@cjdevstudios/bumbleuix-utils/dom';
 import { getKeyValue, isArray, isFunction, isNotEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumbleuix-utils/object';
 import Base from '@cjdevstudios/bumblevue/core/base';

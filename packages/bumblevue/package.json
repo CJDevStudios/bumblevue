@@ -723,6 +723,7 @@
         "./themes/nora/treetable": "./src/themes/nora/treetable/index.js",
         "./themes/nora/virtualscroller": "./src/themes/nora/virtualscroller/index.js",
         "./themes/nora": "./src/themes/nora/index.js",
+        "./styled": "./src/styled/index.js",
         "./tailwind.css": "./src/tailwind/index.css",
         "./*": "./*"
     },
@@ -763,7 +764,6 @@
         "vitest": "^0.29.8"
     },
     "dependencies": {
-        "@cjdevstudios/bumbleuix-styled": "catalog:",
         "@cjdevstudios/bumbleuix-utils": "catalog:"
     },
     "peerDependencies": {

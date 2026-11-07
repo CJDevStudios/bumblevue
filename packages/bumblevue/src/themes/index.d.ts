@@ -1,6 +1,6 @@
 import type { PaletteDesignToken, Preset, Theme } from '@cjdevstudios/bumblevue/themes/types';
 
-export * from '@cjdevstudios/bumbleuix-styled';
+export * from '@cjdevstudios/bumblevue/styled';
 
 export declare const definePreset: (...presets: Preset[]) => Preset;
 export declare const updatePreset: (...presets: Preset[]) => Preset;

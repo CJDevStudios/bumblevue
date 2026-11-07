@@ -1,4 +1,4 @@
-import { Theme, ThemeService } from '@cjdevstudios/bumbleuix-styled';
+import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
 import { mergeKeys } from '@cjdevstudios/bumbleuix-utils';
 import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
