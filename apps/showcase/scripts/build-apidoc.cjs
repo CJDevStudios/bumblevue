@@ -690,7 +690,7 @@ const getTypeDoc = (typeDocOptions) => {
 
 const inlineDocs = getTypeDoc({
     name: 'BumbleVue',
-    entryPoints: ['../../packages/bumblevue', '../../packages/forms']
+    entryPoints: ['../../packages/bumblevue']
 });
 
 !fs.existsSync(outputPath) && fs.mkdirSync(outputPath);
