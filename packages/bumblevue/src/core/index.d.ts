@@ -46,7 +46,7 @@ export declare type NoInfer<T> = [T][T extends any ? 0 : never];
  * Modules
  */
 export * from '@cjdevstudios/bumblevue/core/api';
-export * from '@cjdevstudios/bumblevue/core/base/style';
+export { BaseClasses, type BaseStyle } from '@cjdevstudios/bumblevue/core/base/style';
 export * from '@cjdevstudios/bumblevue/core/basecomponent';
 export * from '@cjdevstudios/bumblevue/core/basecomponent/style';
 export * from '@cjdevstudios/bumblevue/core/basedirective';

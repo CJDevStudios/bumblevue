@@ -31,9 +31,6 @@ catalogs:
     '@cjdevstudios/bumbleuix-styled':
       specifier: 1.0.0-rc.1
       version: 1.0.0-rc.1
-    '@cjdevstudios/bumbleuix-styles':
-      specifier: 1.0.0-rc.1
-      version: 1.0.0-rc.1
     '@cjdevstudios/bumbleuix-themes':
       specifier: 1.0.0-rc.1
       version: 1.0.0-rc.1
@@ -167,9 +164,6 @@ importers:
   packages/bumblevue:
     dependencies:
       '@cjdevstudios/bumbleuix-styled':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
-      '@cjdevstudios/bumbleuix-styles':
         specifier: 'catalog:'
         version: 1.0.0-rc.1
       '@cjdevstudios/bumbleuix-utils':
@@ -915,9 +909,6 @@ packages:
   '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
     resolution: {integrity: sha512-KbMQvnik30as7rrm+IugydzJmOlh2Ab907hGbsiC3mo2s+IsipqBLweqb3bD3R5JFQ2sjBj1bb/W2hmCaH3Xkw==}
     engines: {node: '>=12.11.0'}
-
-  '@cjdevstudios/bumbleuix-styles@1.0.0-rc.1':
-    resolution: {integrity: sha512-SrZfAdxDxSIdsuoCYKEwXbsr0mqkMIfEKN5wdrStkFsdDxbZosKFsCEc+GP2F7lONO6cc13n5OB4y/Xp3J3Bew==}
 
   '@cjdevstudios/bumbleuix-themes@1.0.0-rc.1':
     resolution: {integrity: sha512-yemDeL2uG8TJHjZ230J3W6zJwitLZAb1lvp2DdPZQIvWADkEiTJ53cTEkTOeIFWzE/gwn2PnrTQoB9mkSqUU5g==}
@@ -8441,10 +8432,6 @@ snapshots:
   '@cjdevstudios/bumbleuix-styled@1.0.0-rc.1':
     dependencies:
       '@cjdevstudios/bumbleuix-utils': 1.0.0-rc.1
-
-  '@cjdevstudios/bumbleuix-styles@1.0.0-rc.1':
-    dependencies:
-      '@cjdevstudios/bumbleuix-styled': 1.0.0-rc.1
 
   '@cjdevstudios/bumbleuix-themes@1.0.0-rc.1':
     dependencies:

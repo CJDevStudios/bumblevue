@@ -2,6 +2,7 @@
     import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
     import ArchitectureDoc from '@/doc/theming/styled/ArchitectureDoc.vue';
     import CSSModulesDoc from '@/doc/theming/styled/CSSModulesDoc.vue';
+    import CustomComponentsDoc from '@/doc/theming/styled/CustomComponentsDoc.vue';
     import ColorsDoc from '@/doc/theming/styled/ColorsDoc.vue';
     import DarkModeDoc from '@/doc/theming/styled/DarkModeDoc.vue';
     import PresetsDoc from '@/doc/theming/styled/PresetsDoc.vue';
@@ -60,6 +61,7 @@
             ]
         },
         { id: 'scopedtokens', label: 'Scoped Tokens', component: ScopedTokensDoc },
+        { id: 'customcomponents', label: 'Custom Components', component: CustomComponentsDoc },
         {
             id: 'utils',
             label: 'Utils',

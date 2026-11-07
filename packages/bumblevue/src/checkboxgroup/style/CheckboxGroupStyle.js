@@ -1,5 +1,10 @@
-import { style } from '@cjdevstudios/bumbleuix-styles/checkboxgroup';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
+
+export const style = /*css*/ `
+    .p-checkbox-group {
+        display: inline-flex;
+    }
+`;
 
 const classes = {
     root: 'p-checkbox-group p-component'

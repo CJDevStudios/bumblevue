@@ -35,7 +35,7 @@ export default defineNuxtConfig({
             include: ['quill', 'yup']
         },
         resolve: {
-            dedupe: ['vue', '@cjdevstudios/bumbleuix-styles', '@cjdevstudios/bumbleuix-themes', '@cjdevstudios/bumbleuix-utils'],
+            dedupe: ['vue', '@cjdevstudios/bumbleuix-themes', '@cjdevstudios/bumbleuix-utils'],
             alias
         }
     },

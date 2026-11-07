@@ -1,6 +1,3 @@
-// @ts-ignore
-import '@cjdevstudios/bumbleuix-styles'; // When styles change, the app will hot reload.
-
 import { definePreset } from '@cjdevstudios/bumbleuix-themes';
 import Aura from '@cjdevstudios/bumbleuix-themes/aura';
 

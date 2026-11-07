@@ -418,8 +418,7 @@
     },
     "dependencies": {
         "@cjdevstudios/bumbleuix-styled": "catalog:",
-        "@cjdevstudios/bumbleuix-utils": "catalog:",
-        "@cjdevstudios/bumbleuix-styles": "catalog:"
+        "@cjdevstudios/bumbleuix-utils": "catalog:"
     },
     "peerDependencies": {
         "joi": ">=17.0.0",
