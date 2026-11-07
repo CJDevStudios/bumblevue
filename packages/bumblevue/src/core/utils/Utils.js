@@ -1,7 +1,6 @@
 export * from '@cjdevstudios/bumblevue/utils';
 export { default as ConnectedOverlayScrollHandler } from './ConnectedOverlayScrollHandler';
 export { default as HelperSet } from './HelperSet';
-export { default as UniqueComponentId } from './UniqueComponentId';
 
 export function getVNodeProp(vnode, prop) {
     if (vnode) {
