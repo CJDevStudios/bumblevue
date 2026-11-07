@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';

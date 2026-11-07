@@ -31,8 +31,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { contains, equals } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { contains, equals } from '@cjdevstudios/bumblevue/utils/object';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
 import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';

@@ -1,4 +1,4 @@
-import { addClass, createElement, getAttribute, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass, createElement, getAttribute, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import RippleStyle from '@cjdevstudios/bumblevue/ripple/style';
 

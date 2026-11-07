@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { equals, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { equals, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 import SelectButtonStyle from '@cjdevstudios/bumblevue/selectbutton/style';

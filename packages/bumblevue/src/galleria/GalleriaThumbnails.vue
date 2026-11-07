@@ -71,8 +71,8 @@
 </template>
 
 <script>
-import { addClass, find, findSingle, getAttribute, removeClass, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { localeComparator, sort } from '@cjdevstudios/bumbleuix-utils/object';
+import { addClass, find, findSingle, getAttribute, removeClass, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { localeComparator, sort } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
 import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';

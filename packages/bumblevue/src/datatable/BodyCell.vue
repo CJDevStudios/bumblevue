@@ -131,8 +131,8 @@
 </template>
 
 <script>
-import { getAttribute, getFirstFocusableElement, getNextElementSibling, getOuterWidth, getPreviousElementSibling, invokeElementMethod } from '@cjdevstudios/bumbleuix-utils/dom';
-import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { getAttribute, getFirstFocusableElement, getNextElementSibling, getOuterWidth, getPreviousElementSibling, invokeElementMethod } from '@cjdevstudios/bumblevue/utils/dom';
+import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';

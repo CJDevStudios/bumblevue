@@ -1,5 +1,5 @@
 import { addPlugin, addPluginTemplate, addTemplate, createResolver, defineNuxtModule } from '@nuxt/kit';
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import { BumbleVueResolver } from '@cjdevstudios/bumblevue/resolver';
 import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
 import { normalize } from 'pathe';

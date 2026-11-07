@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import TimesCircleIcon from '@cjdevstudios/bumblevue/icons/timescircle';
 import ChipStyle from '@cjdevstudios/bumblevue/chip/style';

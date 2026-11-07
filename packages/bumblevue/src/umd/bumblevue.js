@@ -11,7 +11,7 @@ export { default as BaseIconStyle } from '@cjdevstudios/bumblevue/icons/baseicon
 export * from '@cjdevstudios/bumblevue/styled';
 
 // Utils
-export * from '../utils/Utils.js';
+export { blockBodyScroll, unblockBodyScroll } from '../utils/index.js';
 
 // UseConfirm
 export * from '../useconfirm/UseConfirm.js';

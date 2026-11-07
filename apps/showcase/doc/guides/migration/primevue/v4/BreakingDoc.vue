@@ -74,7 +74,7 @@
                 </tr>
                 <tr>
                     <td>@primeuix/utils</td>
-                    <td>@cjdevstudios/bumbleuix-utils</td>
+                    <td>@cjdevstudios/bumblevue/utils</td>
                 </tr>
             </tbody>
         </table>

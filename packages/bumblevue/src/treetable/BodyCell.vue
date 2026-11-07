@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumbleuix-utils/dom';
-import { resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
+import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import CheckIcon from '@cjdevstudios/bumblevue/icons/check';

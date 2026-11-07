@@ -1,9 +1,9 @@
-import { addClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass } from '@cjdevstudios/bumblevue/utils/dom';
 import { mount } from '@vue/test-utils';
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import { describe, expect, it, vi } from 'vitest';
 import Drawer from './Drawer.vue';
-vi.mock('@cjdevstudios/bumbleuix-utils/dom', async (getModule) => {
+vi.mock('@cjdevstudios/bumblevue/utils/dom', async (getModule) => {
     const original = await getModule();
 
     return {

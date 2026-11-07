@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import { find, findSingle, getAttribute, getOuterHeight, getOuterWidth } from '@cjdevstudios/bumbleuix-utils';
+import { find, findSingle, getAttribute, getOuterHeight, getOuterWidth } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';

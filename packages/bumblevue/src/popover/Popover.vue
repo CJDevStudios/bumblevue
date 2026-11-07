@@ -15,8 +15,8 @@
 
 <script>
 import { $dt } from '@cjdevstudios/bumblevue/styled';
-import { absolutePosition, addClass, addStyle, focus, getOffset, isClient, isTouchDevice, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { absolutePosition, addClass, addStyle, focus, getOffset, isClient, isTouchDevice, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';

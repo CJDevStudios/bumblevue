@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { uuid } from '@cjdevstudios/bumbleuix-utils';
+import { uuid } from '@cjdevstudios/bumblevue/utils';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import RadioButtonGroupStyle from '@cjdevstudios/bumblevue/radiobuttongroup/style';
 

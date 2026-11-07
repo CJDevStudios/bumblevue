@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { find, findSingle } from '@cjdevstudios/bumbleuix-utils/dom';
-import { findIndexInList } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
+import { findIndexInList } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import StepStyle from '@cjdevstudios/bumblevue/step/style';
 import StepperSeparator from '../stepper/StepperSeparator.vue';

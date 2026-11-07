@@ -1,7 +1,7 @@
 /***************** BumbleVue (Auto-Generated) *****************/
 
 // Utils
-export * from '@cjdevstudios/bumblevue/utils';
+export { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
 
 // UseConfirm
 export * from '@cjdevstudios/bumblevue/useconfirm';

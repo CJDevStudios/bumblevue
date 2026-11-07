@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import BlockUIStyle from '@cjdevstudios/bumblevue/blockui/style';
 import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';

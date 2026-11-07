@@ -33,9 +33,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isArray, isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
+import { isArray, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import SplitterStyle from '@cjdevstudios/bumblevue/splitter/style';

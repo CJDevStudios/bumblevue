@@ -1,4 +1,4 @@
-import { matchRegex } from '@cjdevstudios/bumbleuix-utils';
+import { matchRegex } from '@cjdevstudios/bumblevue/utils/object';
 import { EXPR_REGEX } from '../../utils/index.js';
 import shade from './shade.js';
 import tint from './tint.js';

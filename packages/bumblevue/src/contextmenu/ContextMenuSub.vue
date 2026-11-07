@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import { nestedPosition } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isNotEmpty, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import { nestedPosition } from '@cjdevstudios/bumblevue/utils/dom';
+import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
 import Ripple from '@cjdevstudios/bumblevue/ripple';

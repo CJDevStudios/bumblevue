@@ -41,9 +41,9 @@
             "@cjdevstudios/bumblevue",
             "@cjdevstudios/bumblevue/resolver",
             "unplugin-vue-components",
-            "@cjdevstudios/bumbleuix-utils",
-            "@cjdevstudios/bumbleuix-utils/object",
-            "@cjdevstudios/bumbleuix-utils/dom"
+            "@cjdevstudios/bumblevue/utils",
+            "@cjdevstudios/bumblevue/utils/object",
+            "@cjdevstudios/bumblevue/utils/dom"
         ]
     },
     "publishConfig": {
@@ -72,7 +72,6 @@
         "test:types": "vue-tsc --noEmit && cd playground && vue-tsc --noEmit"
     },
     "dependencies": {
-        "@cjdevstudios/bumbleuix-utils": "catalog:",
         "@cjdevstudios/bumblevue": "workspace:*",
         "@nuxt/kit": "^3",
         "pathe": "^1.1.2",

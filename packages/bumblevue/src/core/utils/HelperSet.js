@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
 export default class {
     helpers;

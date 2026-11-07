@@ -131,9 +131,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { findSingle, focus, getFirstFocusableElement, isElement } from '@cjdevstudios/bumbleuix-utils/dom';
-import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { findSingle, focus, getFirstFocusableElement, isElement } from '@cjdevstudios/bumblevue/utils/dom';
+import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import { FilterService } from '@cjdevstudios/bumblevue/core/api';
 import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
 import BlankIcon from '@cjdevstudios/bumblevue/icons/blank';

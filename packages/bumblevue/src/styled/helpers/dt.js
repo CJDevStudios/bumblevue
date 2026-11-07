@@ -1,4 +1,4 @@
-import { isEmpty, matchRegex } from '@cjdevstudios/bumbleuix-utils/object';
+import { isEmpty, matchRegex } from '@cjdevstudios/bumblevue/utils/object';
 import Theme from '../config/index.js';
 import { EXPR_REGEX, getVariableValue } from '../utils/index.js';
 

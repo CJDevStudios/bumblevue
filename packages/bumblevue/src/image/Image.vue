@@ -60,8 +60,8 @@
 </template>
 
 <script>
-import { addClass, focus, isAttributeEquals } from '@cjdevstudios/bumbleuix-utils/dom';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { addClass, focus, isAttributeEquals } from '@cjdevstudios/bumblevue/utils/dom';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import EyeIcon from '@cjdevstudios/bumblevue/icons/eye';
 import RefreshIcon from '@cjdevstudios/bumblevue/icons/refresh';

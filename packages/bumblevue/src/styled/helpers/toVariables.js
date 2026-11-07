@@ -1,4 +1,4 @@
-import { isObject, matchRegex, toKebabCase } from '@cjdevstudios/bumbleuix-utils/object';
+import { isObject, matchRegex, toKebabCase } from '@cjdevstudios/bumblevue/utils/object';
 import Theme from '../config/index.js';
 import { getRule, getVariableName, getVariableValue, setProperty, toNormalizeVariable, toValue } from '../utils/index.js';
 

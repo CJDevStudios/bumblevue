@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
 import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';

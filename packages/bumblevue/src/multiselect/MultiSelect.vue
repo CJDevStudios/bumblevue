@@ -224,10 +224,10 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { absolutePosition, addStyle, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumbleuix-utils/dom';
-import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { absolutePosition, addStyle, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
+import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import { FilterService } from '@cjdevstudios/bumblevue/core/api';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';

@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import AnimateOnScrollStyle from '@cjdevstudios/bumblevue/animateonscroll/style';
 

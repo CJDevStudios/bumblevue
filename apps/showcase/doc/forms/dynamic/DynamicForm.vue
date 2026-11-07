@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';

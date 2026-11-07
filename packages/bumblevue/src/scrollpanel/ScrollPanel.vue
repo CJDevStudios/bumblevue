@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { addClass, getHeight, removeClass } from '@cjdevstudios/bumbleuix-utils/dom';
+import { addClass, getHeight, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ScrollPanelStyle from '@cjdevstudios/bumblevue/scrollpanel/style';
 

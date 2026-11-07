@@ -1,4 +1,5 @@
-import { createStyleMarkup, isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { createStyleMarkup } from '@cjdevstudios/bumblevue/utils/dom';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
 class StyleSheet {
     _styles;

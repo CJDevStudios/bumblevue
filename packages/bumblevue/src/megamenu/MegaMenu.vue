@@ -57,9 +57,9 @@
 </template>
 
 <script>
-import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
-import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumbleuix-utils/object';
-import { ZIndex } from '@cjdevstudios/bumbleuix-utils/zindex';
+import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
+import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
+import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
 import MegaMenuStyle from '@cjdevstudios/bumblevue/megamenu/style';

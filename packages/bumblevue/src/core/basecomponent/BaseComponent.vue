@@ -1,7 +1,7 @@
 <script>
 import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
-import { findSingle, isElement } from '@cjdevstudios/bumbleuix-utils/dom';
-import { getKeyValue, isArray, isFunction, isNotEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumbleuix-utils/object';
+import { findSingle, isElement } from '@cjdevstudios/bumblevue/utils/dom';
+import { getKeyValue, isArray, isFunction, isNotEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
 import Base from '@cjdevstudios/bumblevue/core/base';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 import { useAttrSelector } from '@cjdevstudios/bumblevue/core/useattrselector';

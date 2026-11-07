@@ -323,7 +323,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import {
     addClass,
     addStyle,
@@ -343,8 +343,8 @@ import {
     isRTL,
     removeClass,
     setAttribute
-} from '@cjdevstudios/bumbleuix-utils/dom';
-import { equals, findIndexInList, isEmpty, isNotEmpty, localeComparator, reorderArray, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
+} from '@cjdevstudios/bumblevue/utils/dom';
+import { equals, findIndexInList, isEmpty, isNotEmpty, localeComparator, reorderArray, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
 import { FilterMatchMode, FilterOperator, FilterService } from '@cjdevstudios/bumblevue/core/api';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';

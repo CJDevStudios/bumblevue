@@ -1,5 +1,5 @@
-import { createElement, focus, getFirstFocusableElement, getLastFocusableElement, isFocusableElement } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils/object';
+import { createElement, focus, getFirstFocusableElement, getLastFocusableElement, isFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import FocusTrapStyle from '@cjdevstudios/bumblevue/focustrap/style';
 

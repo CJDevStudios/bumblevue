@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
+import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import DataViewStyle from '@cjdevstudios/bumblevue/dataview/style';
 import Paginator from '@cjdevstudios/bumblevue/paginator';

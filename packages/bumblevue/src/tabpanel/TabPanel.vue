@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { equals } from '@cjdevstudios/bumbleuix-utils/object';
+import { equals } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import TabPanelStyle from '@cjdevstudios/bumblevue/tabpanel/style';
 import { mergeProps } from 'vue';

@@ -1,4 +1,4 @@
-import { EventBus } from '@cjdevstudios/bumbleuix-utils/eventbus';
+import { EventBus } from '@cjdevstudios/bumblevue/utils/eventbus';
 
 const ThemeService = EventBus();
 

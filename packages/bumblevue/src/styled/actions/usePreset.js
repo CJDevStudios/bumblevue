@@ -1,4 +1,4 @@
-import { deepMerge } from '@cjdevstudios/bumbleuix-utils/object';
+import { deepMerge } from '@cjdevstudios/bumblevue/utils/object';
 import Theme from '../config/index.js';
 
 export default function usePreset(...presets) {

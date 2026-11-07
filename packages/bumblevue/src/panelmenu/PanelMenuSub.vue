@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { isNotEmpty, resolve } from '@cjdevstudios/bumbleuix-utils/object';
+import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
 import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';

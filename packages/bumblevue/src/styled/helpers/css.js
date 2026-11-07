@@ -1,4 +1,4 @@
-import { resolve } from '@cjdevstudios/bumbleuix-utils';
+import { resolve } from '@cjdevstudios/bumblevue/utils/object';
 import { evaluateDtExpressions } from '../index.js';
 import { dt } from './dt.js';
 

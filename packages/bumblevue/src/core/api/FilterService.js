@@ -1,4 +1,4 @@
-import { equals, removeAccents, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { equals, removeAccents, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 
 const FilterService = {
     filter(value, fields, filterValue, filterMatchMode, filterLocale) {

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import SkeletonStyle from '@cjdevstudios/bumblevue/skeleton/style';
 

@@ -1,4 +1,4 @@
-import { mergeKeys } from '@cjdevstudios/bumbleuix-utils/object';
+import { mergeKeys } from '@cjdevstudios/bumblevue/utils/object';
 import Theme from '../config/index.js';
 
 export const $t = (theme = {}) => {

@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
+import { cn } from '@cjdevstudios/bumblevue/utils';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
 import ExclamationTriangleIcon from '@cjdevstudios/bumblevue/icons/exclamationtriangle';

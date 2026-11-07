@@ -1,4 +1,4 @@
-import * as _cjdevstudios_bumbleuix_utils_eventbus from '@cjdevstudios/bumbleuix-utils/eventbus';
+import * as _eventbus from '@cjdevstudios/bumblevue/utils/eventbus';
 
 declare function definePreset<T extends Record<string, unknown>>(...presets: T[]): T;
 
@@ -159,7 +159,7 @@ interface toVariableOutput {
 }
 declare function export_default(theme: any, options?: toVariableOptions): toVariableOutput;
 
-declare const ThemeService: _cjdevstudios_bumbleuix_utils_eventbus.EventBusOptions;
+declare const ThemeService: _eventbus.EventBusOptions;
 
 interface StyleSheetProps {
     attrs?: Record<string, unknown>;

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { getUserAgent } from '@cjdevstudios/bumbleuix-utils/dom';
+import { getUserAgent } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import InputMaskStyle from '@cjdevstudios/bumblevue/inputmask/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';

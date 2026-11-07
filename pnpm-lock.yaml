@@ -27,10 +27,6 @@ catalogs:
     vite:
       specifier: 6.0.11
       version: 6.0.11
-  default:
-    '@cjdevstudios/bumbleuix-utils':
-      specifier: 1.0.0-rc.1
-      version: 1.0.0-rc.1
 
 importers:
 
@@ -154,9 +150,6 @@ importers:
 
   packages/bumblevue:
     dependencies:
-      '@cjdevstudios/bumbleuix-utils':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
       joi:
         specifier: '>=17.0.0'
         version: 18.3.2
@@ -192,9 +185,6 @@ importers:
 
   packages/nuxt-module:
     dependencies:
-      '@cjdevstudios/bumbleuix-utils':
-        specifier: 'catalog:'
-        version: 1.0.0-rc.1
       '@cjdevstudios/bumblevue':
         specifier: workspace:*
         version: link:../bumblevue
@@ -873,10 +863,6 @@ packages:
         optional: true
       commander:
         optional: true
-
-  '@cjdevstudios/bumbleuix-utils@1.0.0-rc.1':
-    resolution: {integrity: sha512-rJVwLs9tlulO3u0RcRRcBB3SbykomZEGW6DNRd78PeckY0AOoeN5bvfeKe07APBOQnrAZfCB90Xcii4Gtm1PfA==}
-    engines: {node: '>=12.11.0'}
 
   '@clack/core@1.0.0-alpha.7':
     resolution: {integrity: sha512-3vdh6Ar09D14rVxJZIm3VQJkU+ZOKKT5I5cC0cOVazy70CNyYYjiwRj9unwalhESndgxx6bGc/m6Hhs4EKF5XQ==}
@@ -8389,8 +8375,6 @@ snapshots:
     optionalDependencies:
       cac: 6.7.14
       citty: 0.2.2
-
-  '@cjdevstudios/bumbleuix-utils@1.0.0-rc.1': {}
 
   '@clack/core@1.0.0-alpha.7':
     dependencies:

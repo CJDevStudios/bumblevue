@@ -209,9 +209,9 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumbleuix-utils';
-import { addStyle, clearSelection, find, getAttribute, getIndex, getOffset, getOuterWidth, isRTL, setAttribute } from '@cjdevstudios/bumbleuix-utils/dom';
-import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumbleuix-utils/object';
+import { cn } from '@cjdevstudios/bumblevue/utils';
+import { addStyle, clearSelection, find, getAttribute, getIndex, getOffset, getOuterWidth, isRTL, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
 import { FilterService } from '@cjdevstudios/bumblevue/core/api';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp, HelperSet } from '@cjdevstudios/bumblevue/core/utils';

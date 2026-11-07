@@ -1,5 +1,5 @@
-import { createStyleAsString } from '@cjdevstudios/bumbleuix-utils/dom';
-import { isFunction } from '@cjdevstudios/bumbleuix-utils/object';
+import { createStyleAsString } from '@cjdevstudios/bumblevue/utils/dom';
+import { isFunction } from '@cjdevstudios/bumblevue/utils/object';
 import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
 import type { ConstructsType, ResolvePathOptions } from './types';
 

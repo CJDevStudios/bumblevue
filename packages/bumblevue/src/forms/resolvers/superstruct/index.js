@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumbleuix-utils';
+import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
 import { toValues } from '../utils';
 
 export const superStructResolver =

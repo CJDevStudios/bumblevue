@@ -1,4 +1,4 @@
-export * from '@cjdevstudios/bumbleuix-utils';
+export * from '@cjdevstudios/bumblevue/utils';
 
 export declare class ConnectedOverlayScrollHandler {
     constructor(element: any, listener?: () => void);
@@ -17,7 +17,7 @@ export declare class HelperSet {
 }
 
 /**
- * @deprecated since v4.3.0. Use `uuid` from @cjdevstudios/bumbleuix-utils instead.
+ * @deprecated since v4.3.0. Use `uuid` from @cjdevstudios/bumblevue/utils instead.
  * @param {string} prefix
  * @return {string}
  */

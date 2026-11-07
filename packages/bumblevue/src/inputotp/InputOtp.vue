@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { isTouchDevice } from '@cjdevstudios/bumbleuix-utils/dom';
+import { isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
 import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
 import InputOtpStyle from '@cjdevstudios/bumblevue/inputotp/style';
 import InputText from '@cjdevstudios/bumblevue/inputtext';

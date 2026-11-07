@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import { find, findSingle, focus, getAttribute, isClickable } from '@cjdevstudios/bumbleuix-utils/dom';
-import { equals, resolveFieldData } from '@cjdevstudios/bumbleuix-utils/object';
+import { find, findSingle, focus, getAttribute, isClickable } from '@cjdevstudios/bumblevue/utils/dom';
+import { equals, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
 import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
 import BodyCell from './BodyCell.vue';
