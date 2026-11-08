@@ -8,19 +8,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('FloatLabel'),
-                    key: 'FloatLabel'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('FloatLabel'),
+                        key: 'FloatLabel'
+                    }
+                ]
+            };
+        }
+    };
 </script>

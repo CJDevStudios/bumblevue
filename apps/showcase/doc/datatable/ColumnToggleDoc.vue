@@ -19,16 +19,16 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            selectedColumns: null,
-            columns: null,
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedColumns: null,
+                columns: null,
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" tableStyle="min-width: 50rem">
     <template #header>
         <div style="text-align:left">
@@ -40,7 +40,7 @@ export default {
     <Column v-for="(col, index) of selectedColumns" :field="col.field" :header="col.header" :key="col.field + '_' + index"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div>
         <DataTable :value="products" tableStyle="min-width: 50rem">
@@ -77,7 +77,7 @@ const onToggle = (val) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -91,24 +91,24 @@ const onToggle = (val) => {
     rating: 5
 },
 ...`
-            }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
-        ];
-        this.selectedColumns = this.columns;
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
+                }
+            };
         },
-        onToggle(value) {
-            this.selectedColumns = this.columns.filter((col) => value.includes(col));
+        created() {
+            this.columns = [
+                { field: 'name', header: 'Name' },
+                { field: 'category', header: 'Category' },
+                { field: 'quantity', header: 'Quantity' }
+            ];
+            this.selectedColumns = this.columns;
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            onToggle(value) {
+                this.selectedColumns = this.columns.filter((col) => value.includes(col));
+            }
         }
-    }
-};
+    };
 </script>

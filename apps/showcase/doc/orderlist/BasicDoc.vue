@@ -13,21 +13,21 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <OrderList v-model="products" dataKey="id" breakpoint="575px" pt:pcListbox:root="w-full sm:w-56">
     <template #option="{ option }">
         {{ option.name }}
     </template>
 </OrderList>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card sm:flex sm:justify-center">
         <OrderList v-model="products" dataKey="id" breakpoint="575px" pt:pcListbox:root="w-full sm:w-56">
@@ -49,7 +49,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -64,11 +64,11 @@ onMounted(() => {
     rating: 5
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data));
+        }
+    };
 </script>

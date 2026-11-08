@@ -19,44 +19,44 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Select from '@cjdevstudios/bumblevue/select';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Select from '@cjdevstudios/bumblevue/select';
 
-export default {
-    name: 'RowsPerPageDropdown',
-    hostName: 'Paginator',
-    extends: BaseComponent,
-    emits: ['rows-change'],
-    props: {
-        options: Array,
-        rows: Number,
-        disabled: Boolean,
-        templates: null,
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        }
-    },
-    methods: {
-        onChange(value) {
-            this.$emit('rows-change', value);
-        }
-    },
-    computed: {
-        rowsOptions() {
-            let opts = [];
-
-            if (this.options) {
-                for (let i = 0; i < this.options.length; i++) {
-                    opts.push({ label: String(this.options[i]), value: this.options[i] });
-                }
+    export default {
+        name: 'RowsPerPageDropdown',
+        hostName: 'Paginator',
+        extends: BaseComponent,
+        emits: ['rows-change'],
+        props: {
+            options: Array,
+            rows: Number,
+            disabled: Boolean,
+            templates: null,
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
             }
+        },
+        methods: {
+            onChange(value) {
+                this.$emit('rows-change', value);
+            }
+        },
+        computed: {
+            rowsOptions() {
+                let opts = [];
 
-            return opts;
+                if (this.options) {
+                    for (let i = 0; i < this.options.length; i++) {
+                        opts.push({ label: String(this.options[i]), value: this.options[i] });
+                    }
+                }
+
+                return opts;
+            }
+        },
+        components: {
+            RPPSelect: Select
         }
-    },
-    components: {
-        RPPSelect: Select
-    }
-};
+    };
 </script>

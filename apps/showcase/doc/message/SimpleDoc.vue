@@ -14,11 +14,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Message severity="success" variant="simple">Success Message</Message>
 <Message severity="info" variant="simple">Info Message</Message>
 <Message severity="warn" variant="simple">Warn Message</Message>
@@ -26,7 +26,7 @@ export default {
 <Message severity="secondary" variant="simple">Secondary Message</Message>
 <Message severity="contrast" variant="simple">Contrast Message</Message>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-8 justify-center">
         <Message severity="success" variant="simple">Success Message</Message>
@@ -41,8 +41,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

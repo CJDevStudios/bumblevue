@@ -5,138 +5,138 @@
 </template>
 
 <script>
-import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumblevue/utils/dom';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import BlockUIStyle from '@cjdevstudios/bumblevue/blockui/style';
-import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
+    import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumblevue/utils/dom';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import BlockUIStyle from '@cjdevstudios/bumblevue/blockui/style';
+    import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
 
-export default {
-    name: 'BlockUI',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        blocked: {
-            type: Boolean,
-            default: false
-        },
-        fullScreen: {
-            type: Boolean,
-            default: false
-        },
-        baseZIndex: {
-            type: Number,
-            default: 0
-        },
-        autoZIndex: {
-            type: Boolean,
-            default: true
-        }
-    },
-    emits: ['block', 'unblock'],
-    style: BlockUIStyle,
-    provide() {
-        return {
-            $pcBlockUI: this,
-            $parentInstance: this
-        };
-    },
-    mask: null,
-    data() {
-        return {
-            isBlocked: false
-        };
-    },
-    watch: {
-        blocked(newValue) {
-            if (newValue === true) this.block();
-            else this.unblock();
-        }
-    },
-    mounted() {
-        if (this.blocked) {
-            this.block();
-        }
-    },
-    methods: {
-        block() {
-            let styleClass = 'p-blockui-mask p-overlay-mask p-overlay-mask-enter-active';
-
-            if (this.fullScreen) {
-                styleClass += ' p-blockui-mask-document';
-
-                this.mask = createElement('div', {
-                    style: {
-                        position: 'fixed',
-                        top: '0',
-                        left: '0',
-                        width: '100%',
-                        height: '100%'
-                    },
-                    class: !this.isUnstyled && styleClass,
-                    'p-bind': this.ptm('mask')
-                });
-
-                document.body.appendChild(this.mask);
-                blockBodyScroll();
-                document.activeElement.blur();
-            } else {
-                this.mask = createElement('div', {
-                    style: {
-                        position: 'absolute',
-                        top: '0',
-                        left: '0',
-                        width: '100%',
-                        height: '100%'
-                    },
-                    class: !this.isUnstyled && styleClass,
-                    'p-bind': this.ptm('mask')
-                });
-                this.$refs.container.appendChild(this.mask);
+    export default {
+        name: 'BlockUI',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            blocked: {
+                type: Boolean,
+                default: false
+            },
+            fullScreen: {
+                type: Boolean,
+                default: false
+            },
+            baseZIndex: {
+                type: Number,
+                default: 0
+            },
+            autoZIndex: {
+                type: Boolean,
+                default: true
             }
-
-            if (this.autoZIndex) {
-                ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
-            }
-
-            this.isBlocked = true;
-            this.$emit('block');
         },
-        unblock() {
-            if (this.mask) {
-                !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
+        emits: ['block', 'unblock'],
+        style: BlockUIStyle,
+        provide() {
+            return {
+                $pcBlockUI: this,
+                $parentInstance: this
+            };
+        },
+        mask: null,
+        data() {
+            return {
+                isBlocked: false
+            };
+        },
+        watch: {
+            blocked(newValue) {
+                if (newValue === true) this.block();
+                else this.unblock();
+            }
+        },
+        mounted() {
+            if (this.blocked) {
+                this.block();
+            }
+        },
+        methods: {
+            block() {
+                let styleClass = 'p-blockui-mask p-overlay-mask p-overlay-mask-enter-active';
 
-                const handleAnimationEnd = () => {
-                    clearTimeout(fallbackTimer);
-                    this.mask.removeEventListener('animationend', handleAnimationEnd);
-                    this.mask.removeEventListener('webkitAnimationEnd', handleAnimationEnd);
-                };
+                if (this.fullScreen) {
+                    styleClass += ' p-blockui-mask-document';
 
-                const fallbackTimer = setTimeout(() => {
-                    this.removeMask();
-                }, 300);
+                    this.mask = createElement('div', {
+                        style: {
+                            position: 'fixed',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100%'
+                        },
+                        class: !this.isUnstyled && styleClass,
+                        'p-bind': this.ptm('mask')
+                    });
 
-                if (hasCSSAnimation(this.mask) > 0) {
-                    this.mask.addEventListener('animationend', handleAnimationEnd);
-                    this.mask.addEventListener('webkitAnimationEnd', handleAnimationEnd);
+                    document.body.appendChild(this.mask);
+                    blockBodyScroll();
+                    document.activeElement.blur();
+                } else {
+                    this.mask = createElement('div', {
+                        style: {
+                            position: 'absolute',
+                            top: '0',
+                            left: '0',
+                            width: '100%',
+                            height: '100%'
+                        },
+                        class: !this.isUnstyled && styleClass,
+                        'p-bind': this.ptm('mask')
+                    });
+                    this.$refs.container.appendChild(this.mask);
                 }
-            } else {
-                this.removeMask();
-            }
-        },
-        removeMask() {
-            ZIndex.clear(this.mask);
 
-            if (this.fullScreen) {
-                document.body.removeChild(this.mask);
-                unblockBodyScroll();
-            } else {
-                this.$refs.container?.removeChild(this.mask);
-            }
+                if (this.autoZIndex) {
+                    ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
+                }
 
-            this.isBlocked = false;
-            this.$emit('unblock');
+                this.isBlocked = true;
+                this.$emit('block');
+            },
+            unblock() {
+                if (this.mask) {
+                    !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
+
+                    const handleAnimationEnd = () => {
+                        clearTimeout(fallbackTimer);
+                        this.mask.removeEventListener('animationend', handleAnimationEnd);
+                        this.mask.removeEventListener('webkitAnimationEnd', handleAnimationEnd);
+                    };
+
+                    const fallbackTimer = setTimeout(() => {
+                        this.removeMask();
+                    }, 300);
+
+                    if (hasCSSAnimation(this.mask) > 0) {
+                        this.mask.addEventListener('animationend', handleAnimationEnd);
+                        this.mask.addEventListener('webkitAnimationEnd', handleAnimationEnd);
+                    }
+                } else {
+                    this.removeMask();
+                }
+            },
+            removeMask() {
+                ZIndex.clear(this.mask);
+
+                if (this.fullScreen) {
+                    document.body.removeChild(this.mask);
+                    unblockBodyScroll();
+                } else {
+                    this.$refs.container?.removeChild(this.mask);
+                }
+
+                this.isBlocked = false;
+                this.$emit('unblock');
+            }
         }
-    }
-};
+    };
 </script>

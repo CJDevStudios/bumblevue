@@ -9,22 +9,22 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Image src="/image.jpg" alt="Image" width="250" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Image src="https://primefaces.org/cdn/primevue/images/galleria/galleria10.jpg" alt="Image" width="250" />
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

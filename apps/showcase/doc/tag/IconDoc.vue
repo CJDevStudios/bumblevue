@@ -15,11 +15,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Tag icon="pi pi-user" value="Primary"></Tag>
 <Tag icon="pi pi-search" severity="secondary" value="Secondary"></Tag>
 <Tag icon="pi pi-check" severity="success" value="Success"></Tag>
@@ -28,7 +28,7 @@ export default {
 <Tag icon="pi pi-times" severity="danger" value="Danger"></Tag>
 <Tag icon="pi pi-cog" severity="contrast" value="Contrast"></Tag>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-2">
         <Tag icon="pi pi-user" value="Primary"></Tag>
@@ -45,8 +45,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

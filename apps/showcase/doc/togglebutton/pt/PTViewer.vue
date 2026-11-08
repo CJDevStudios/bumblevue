@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            checked: false,
-            docs: [
-                {
-                    data: getPTOptions('ToggleButton'),
-                    key: 'ToggleButton'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                checked: false,
+                docs: [
+                    {
+                        data: getPTOptions('ToggleButton'),
+                        key: 'ToggleButton'
+                    }
+                ]
+            };
+        }
+    };
 </script>

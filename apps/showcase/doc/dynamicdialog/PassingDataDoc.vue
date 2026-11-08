@@ -12,11 +12,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 const dialog = useDialog();
 
 const showProducts = () => {
@@ -27,9 +27,9 @@ const showProducts = () => {
     });
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { inject, onMounted } from "vue";
 
 const dialogRef = inject('dialogRef');
@@ -38,9 +38,9 @@ onMounted(() => {
     const params = dialogRef.value.data; // {user: 'primetime'}
 })
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 const dialog = useDialog();
 
 const showProducts = () => {
@@ -51,9 +51,9 @@ const showProducts = () => {
     });
 }
 `
-            },
-            code4: {
-                basic: `
+                },
+                code4: {
+                    basic: `
 import { inject } from "vue";
 
 const dialogRef = inject('dialogRef');
@@ -64,8 +64,8 @@ const closeDialog = () => {
     });
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

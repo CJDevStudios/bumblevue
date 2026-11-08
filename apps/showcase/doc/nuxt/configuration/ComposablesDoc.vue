@@ -6,19 +6,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     composables: {
         include: ['useStyle']
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -21,11 +21,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Paginator
     :template="{
         '640px': 'PrevPageLink CurrentPageReport NextPageLink',
@@ -37,7 +37,7 @@ export default {
     :totalRecords="120">
 </Paginator>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Paginator
@@ -56,8 +56,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

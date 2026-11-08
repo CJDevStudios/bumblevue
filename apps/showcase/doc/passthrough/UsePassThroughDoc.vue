@@ -14,11 +14,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import { createApp } from "vue";
 import BumbleVue from "@cjdevstudios/bumblevue/config";
 import { usePassThrough } from "primevue/passthrough";
@@ -43,9 +43,9 @@ const CustomPreset = usePassThrough(
 
 app.use(BumbleVue, { unstyled: true, pt: CustomPreset });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 const CustomPreset = usePassThrough(
     BasePreset,
     {
@@ -60,9 +60,9 @@ const CustomPreset = usePassThrough(
 // panel.header.class => 'my_panel_header'
 // panel.title.class => Tailwind.panel.title.class
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 const CustomPreset = usePassThrough(
     BasePreset,
     {
@@ -77,9 +77,9 @@ const CustomPreset = usePassThrough(
 // panel.header.class => [Tailwind.panel.header.class, 'my_panel_header']
 // panel.title.class => Tailwind.panel.title.class
 `
-            },
-            code4: {
-                basic: `
+                },
+                code4: {
+                    basic: `
 const CustomPreset = usePassThrough(
     BasePreset,
     {
@@ -94,9 +94,9 @@ const CustomPreset = usePassThrough(
 // panel.header.class => [Tailwind.panel.header.class, 'my_panel_header']
 // panel.title.class => undefined
 `
-            },
-            code5: {
-                basic: `
+                },
+                code5: {
+                    basic: `
 const CustomPreset = usePassThrough(
     BasePreset,
     {
@@ -111,8 +111,8 @@ const CustomPreset = usePassThrough(
 // panel.header.class => 'my_panel_header'
 // panel.title.class => undefined
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

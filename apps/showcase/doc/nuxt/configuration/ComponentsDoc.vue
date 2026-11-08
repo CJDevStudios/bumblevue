@@ -18,20 +18,20 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     components: {
         include: ['Button', 'DataTable']
     }
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 bumblevue: {
     components: {
         include: '*',
@@ -39,18 +39,18 @@ bumblevue: {
     }
 }
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 bumblevue: {
     components: {
         exclude: []
     }
 }
 `
-            },
-            code4: {
-                basic: `
+                },
+                code4: {
+                    basic: `
 bumblevue: {
     components: {
         prefix: 'Bumble'
@@ -58,9 +58,9 @@ bumblevue: {
     }
 }
 `
-            },
-            code5: {
-                basic: `
+                },
+                code5: {
+                    basic: `
 bumblevue: {
     components: {
         name: ({ name, as, from }) => {
@@ -70,8 +70,8 @@ bumblevue: {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

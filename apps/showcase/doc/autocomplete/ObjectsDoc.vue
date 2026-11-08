@@ -12,19 +12,19 @@
 </template>
 
 <script>
-import { CountryService } from '@/service/CountryService';
+    import { CountryService } from '@/service/CountryService';
 
-export default {
-    data() {
-        return {
-            countries: null,
-            selectedCountry: null,
-            filteredCountries: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                countries: null,
+                selectedCountry: null,
+                filteredCountries: null,
+                code: {
+                    basic: `
 <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search" />
@@ -57,24 +57,24 @@ const search = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    mounted() {
-        CountryService.getCountries().then((data) => (this.countries = data));
-    },
-    methods: {
-        search(event) {
-            setTimeout(() => {
-                if (!event.query.trim().length) {
-                    this.filteredCountries = [...this.countries];
-                } else {
-                    this.filteredCountries = this.countries.filter((country) => {
-                        return country.name.toLowerCase().startsWith(event.query.toLowerCase());
-                    });
                 }
-            }, 250);
+            };
+        },
+        mounted() {
+            CountryService.getCountries().then((data) => (this.countries = data));
+        },
+        methods: {
+            search(event) {
+                setTimeout(() => {
+                    if (!event.query.trim().length) {
+                        this.filteredCountries = [...this.countries];
+                    } else {
+                        this.filteredCountries = this.countries.filter((country) => {
+                            return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+                        });
+                    }
+                }, 250);
+            }
         }
-    }
-};
+    };
 </script>

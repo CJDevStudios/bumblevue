@@ -58,11 +58,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
     <AccordionPanel value="0">
         <AccordionHeader>
@@ -111,7 +111,7 @@ export default {
     </AccordionPanel>
 </Accordion>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Accordion value="0" expandIcon="pi pi-plus" collapseIcon="pi pi-minus">
@@ -167,8 +167,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

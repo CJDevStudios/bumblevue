@@ -24,8 +24,8 @@
 
     <DocSectionText>
         <p>
-            Alternatively, a <i>CheckboxGroup</i> wrapper can be used to group checkboxes. In this case, the <i>v-model</i> should be defined on the <i>CheckboxGroup</i>, not on the individual checkboxes.
-            When a Checkbox is inside a CheckboxGroup, it reads and writes the group's value instead of its own.
+            Alternatively, a <i>CheckboxGroup</i> wrapper can be used to group checkboxes. In this case, the <i>v-model</i> should be defined on the <i>CheckboxGroup</i>, not on the individual checkboxes. When a Checkbox is inside a CheckboxGroup, it
+            reads and writes the group's value instead of its own.
         </p>
     </DocSectionText>
     <div class="card flex flex-wrap justify-center gap-4">
@@ -52,13 +52,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            pizza: null,
-            ingredients: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                pizza: null,
+                ingredients: [],
+                code: {
+                    basic: `
 <div class="card flex flex-wrap justify-center gap-4">
     <div class="flex items-center gap-2">
         <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
@@ -78,7 +78,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <div class="flex items-center gap-2">
@@ -106,9 +106,9 @@ import { ref } from "vue";
 const pizza = ref();
 <\/script>
 `
-            },
-            groupCode: {
-                basic: `
+                },
+                groupCode: {
+                    basic: `
 <CheckboxGroup v-model="ingredients" class="flex flex-wrap gap-4">
     <div class="flex items-center gap-2">
         <Checkbox inputId="ingredient5" value="Cheese" />
@@ -128,7 +128,7 @@ const pizza = ref();
     </div>
 </CheckboxGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <CheckboxGroup v-model="ingredients" class="flex flex-wrap gap-4">
@@ -158,8 +158,8 @@ import { ref } from "vue";
 const ingredients = ref([]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

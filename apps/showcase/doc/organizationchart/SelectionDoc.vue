@@ -25,61 +25,61 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            data: {
-                key: '0',
-                type: 'person',
+    export default {
+        data() {
+            return {
                 data: {
-                    image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
-                    name: 'Amy Elsner',
-                    title: 'CEO'
-                },
-                children: [
-                    {
-                        key: '0_0',
-                        type: 'person',
-                        data: {
-                            image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
-                            name: 'Anna Fali',
-                            title: 'CMO'
-                        },
-                        children: [
-                            {
-                                key: '0_0_0',
-                                label: 'Sales'
-                            },
-                            {
-                                key: '0_0_"1',
-                                label: 'Marketing'
-                            }
-                        ]
+                    key: '0',
+                    type: 'person',
+                    data: {
+                        image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
+                        name: 'Amy Elsner',
+                        title: 'CEO'
                     },
-                    {
-                        key: '0_1',
-                        type: 'person',
-                        data: {
-                            image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
-                            name: 'Stephen Shaw',
-                            title: 'CTO'
-                        },
-                        children: [
-                            {
-                                key: '0_1_0',
-                                label: 'Development'
+                    children: [
+                        {
+                            key: '0_0',
+                            type: 'person',
+                            data: {
+                                image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
+                                name: 'Anna Fali',
+                                title: 'CMO'
                             },
-                            {
-                                key: '0_1_1',
-                                label: 'UI/UX Design'
-                            }
-                        ]
-                    }
-                ]
-            },
-            selection: {},
-            code: {
-                basic: `
+                            children: [
+                                {
+                                    key: '0_0_0',
+                                    label: 'Sales'
+                                },
+                                {
+                                    key: '0_0_"1',
+                                    label: 'Marketing'
+                                }
+                            ]
+                        },
+                        {
+                            key: '0_1',
+                            type: 'person',
+                            data: {
+                                image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
+                                name: 'Stephen Shaw',
+                                title: 'CTO'
+                            },
+                            children: [
+                                {
+                                    key: '0_1_0',
+                                    label: 'Development'
+                                },
+                                {
+                                    key: '0_1_1',
+                                    label: 'UI/UX Design'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                selection: {},
+                code: {
+                    basic: `
 <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="multiple">
     <template #person="slotProps">
         <div class="flex flex-col">
@@ -95,7 +95,7 @@ export default {
     </template>
 </OrganizationChart>
 `,
-                composition: `
+                    composition: `
 <template>
     <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="multiple">
         <template #person="slotProps">
@@ -168,8 +168,8 @@ const data = ref({
 const selection = ref({});
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

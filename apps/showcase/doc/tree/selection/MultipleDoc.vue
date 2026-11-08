@@ -17,20 +17,20 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            checked: false,
-            nodes: null,
-            selectedKeys: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: false,
+                nodes: null,
+                selectedKeys: null,
+                code: {
+                    basic: `
 <Tree v-model:selectionKeys="selectedKeys" :value="nodes"
     selectionMode="multiple" :metaKeySelection="checked"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex items-center mb-6 gap-2">
@@ -54,7 +54,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -81,11 +81,11 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

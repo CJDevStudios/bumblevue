@@ -53,13 +53,13 @@
 </template>
 
 <script>
-export default {
-    name: 'TemplateHero',
-    props: {
-        templateHeroData: {
-            type: null,
-            default: null
+    export default {
+        name: 'TemplateHero',
+        props: {
+            templateHeroData: {
+                type: null,
+                default: null
+            }
         }
-    }
-};
+    };
 </script>

@@ -10,27 +10,27 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { ProductService } from '@/service/ProductService';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            docs: [
-                {
-                    data: getPTOptions('DataTable'),
-                    key: 'DataTable'
-                },
-                {
-                    data: getPTOptions('Column'),
-                    key: 'Column'
-                }
-            ]
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    }
-};
+    export default {
+        data() {
+            return {
+                products: null,
+                docs: [
+                    {
+                        data: getPTOptions('DataTable'),
+                        key: 'DataTable'
+                    },
+                    {
+                        data: getPTOptions('Column'),
+                        key: 'Column'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            ProductService.getProductsMini().then((data) => (this.products = data));
+        }
+    };
 </script>

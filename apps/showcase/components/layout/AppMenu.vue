@@ -9,27 +9,27 @@
 </template>
 
 <script>
-import menudata from '@/assets/menu/menu.json';
-import AppMenuItem from './AppMenuItem.vue';
-export default {
-    props: {
-        active: {
-            type: Boolean,
-            default: true
+    import menudata from '@/assets/menu/menu.json';
+    import AppMenuItem from './AppMenuItem.vue';
+    export default {
+        props: {
+            active: {
+                type: Boolean,
+                default: true
+            }
+        },
+        data() {
+            return {
+                menu: menudata.data
+            };
+        },
+        computed: {
+            darkTheme() {
+                return this.$appState.darkTheme === true;
+            }
+        },
+        components: {
+            AppMenuItem
         }
-    },
-    data() {
-        return {
-            menu: menudata.data
-        };
-    },
-    computed: {
-        darkTheme() {
-            return this.$appState.darkTheme === true;
-        }
-    },
-    components: {
-        AppMenuItem
-    }
-};
+    };
 </script>

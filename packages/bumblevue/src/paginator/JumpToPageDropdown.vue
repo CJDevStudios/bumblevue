@@ -19,42 +19,42 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Select from '@cjdevstudios/bumblevue/select';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Select from '@cjdevstudios/bumblevue/select';
 
-export default {
-    name: 'JumpToPageDropdown',
-    hostName: 'Paginator',
-    extends: BaseComponent,
-    emits: ['page-change'],
-    props: {
-        page: Number,
-        pageCount: Number,
-        disabled: Boolean,
-        templates: null,
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-    },
-    methods: {
-        onChange(value) {
-            this.$emit('page-change', value);
-        }
-    },
-    computed: {
-        pageOptions() {
-            let opts = [];
-
-            for (let i = 0; i < this.pageCount; i++) {
-                opts.push({ label: String(i + 1), value: i });
+    export default {
+        name: 'JumpToPageDropdown',
+        hostName: 'Paginator',
+        extends: BaseComponent,
+        emits: ['page-change'],
+        props: {
+            page: Number,
+            pageCount: Number,
+            disabled: Boolean,
+            templates: null,
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
             }
+        },
+        methods: {
+            onChange(value) {
+                this.$emit('page-change', value);
+            }
+        },
+        computed: {
+            pageOptions() {
+                let opts = [];
 
-            return opts;
+                for (let i = 0; i < this.pageCount; i++) {
+                    opts.push({ label: String(i + 1), value: i });
+                }
+
+                return opts;
+            }
+        },
+        components: {
+            JTPSelect: Select
         }
-    },
-    components: {
-        JTPSelect: Select
-    }
-};
+    };
 </script>

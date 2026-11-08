@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"><\/script>
 
@@ -30,8 +30,8 @@ export default {
     <\/script>
 </body>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

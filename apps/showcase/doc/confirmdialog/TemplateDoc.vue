@@ -17,11 +17,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmDialog group="templating">
     <template #message="slotProps">
         <div class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700">
@@ -32,7 +32,7 @@ export default {
 </ConfirmDialog>
 <Button @click="showTemplate()" label="Save"></Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <ConfirmDialog group="templating">
         <template #message="slotProps">
@@ -82,35 +82,35 @@ const showTemplate = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        showTemplate() {
-            this.$confirm.require({
-                group: 'templating',
-                header: 'Confirmation',
-                message: 'Please confirm to proceed moving forward.',
-                icon: 'pi pi-exclamation-circle',
-                rejectProps: {
-                    label: 'Cancel',
-                    icon: 'pi pi-times',
-                    outlined: true,
-                    size: 'small'
-                },
-                acceptProps: {
-                    label: 'Save',
-                    icon: 'pi pi-check',
-                    size: 'small'
-                },
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
                 }
-            });
+            };
+        },
+        methods: {
+            showTemplate() {
+                this.$confirm.require({
+                    group: 'templating',
+                    header: 'Confirmation',
+                    message: 'Please confirm to proceed moving forward.',
+                    icon: 'pi pi-exclamation-circle',
+                    rejectProps: {
+                        label: 'Cancel',
+                        icon: 'pi pi-times',
+                        outlined: true,
+                        size: 'small'
+                    },
+                    acceptProps: {
+                        label: 'Save',
+                        icon: 'pi pi-check',
+                        size: 'small'
+                    },
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

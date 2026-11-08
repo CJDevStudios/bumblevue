@@ -12,16 +12,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 'One-Way',
-            options: ['One-Way', 'Return'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 'One-Way',
+                options: ['One-Way', 'Return'],
+                code: {
+                    basic: `
 <SelectButton v-model="value" :options="options" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <SelectButton v-model="value" :options="options" />
@@ -35,8 +35,8 @@ const value = ref('One-Way');
 const options = ref(['One-Way', 'Return']);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

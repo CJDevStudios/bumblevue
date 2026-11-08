@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
-export default {
-    name: 'StepperSeparator',
-    hostName: 'Stepper',
-    extends: BaseComponent,
-    inject: {
-        $pcStepper: { default: null }
-    }
-};
+    export default {
+        name: 'StepperSeparator',
+        hostName: 'Stepper',
+        extends: BaseComponent,
+        inject: {
+            $pcStepper: { default: null }
+        }
+    };
 </script>

@@ -48,11 +48,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <div class="rounded-sm border border-surface-200 dark:border-surface-700 p-6 bg-surface-0 dark:bg-surface-900">
     <ul class="m-0 p-0 list-none">
         <li class="mb-4">
@@ -94,7 +94,7 @@ export default {
     </ul>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="rounded-sm border border-surface-200 dark:border-surface-700 p-6 bg-surface-0 dark:bg-surface-900">
         <ul class="m-0 p-0 list-none">
@@ -141,8 +141,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

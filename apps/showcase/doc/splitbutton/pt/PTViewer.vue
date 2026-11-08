@@ -5,30 +5,30 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update'
-                },
-                {
-                    label: 'Delete'
-                },
-                {
-                    label: 'Vue Website'
-                },
-                { label: 'Upload', to: '/fileupload' }
-            ],
-            docs: [
-                {
-                    data: getPTOptions('SplitButton'),
-                    key: 'SplitButton'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Update'
+                    },
+                    {
+                        label: 'Delete'
+                    },
+                    {
+                        label: 'Vue Website'
+                    },
+                    { label: 'Upload', to: '/fileupload' }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('SplitButton'),
+                        key: 'SplitButton'
+                    }
+                ]
+            };
+        }
+    };
 </script>

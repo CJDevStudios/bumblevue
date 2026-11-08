@@ -33,30 +33,30 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Accordion'),
-                    key: 'Accordion'
-                },
-                {
-                    data: getPTOptions('AccordionPanel'),
-                    key: 'AccordionPanel'
-                },
-                {
-                    data: getPTOptions('AccordionHeader'),
-                    key: 'AccordionHeader'
-                },
-                {
-                    data: getPTOptions('AccordionContent'),
-                    key: 'AccordionContent'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Accordion'),
+                        key: 'Accordion'
+                    },
+                    {
+                        data: getPTOptions('AccordionPanel'),
+                        key: 'AccordionPanel'
+                    },
+                    {
+                        data: getPTOptions('AccordionHeader'),
+                        key: 'AccordionHeader'
+                    },
+                    {
+                        data: getPTOptions('AccordionContent'),
+                        key: 'AccordionContent'
+                    }
+                ]
+            };
+        }
+    };
 </script>

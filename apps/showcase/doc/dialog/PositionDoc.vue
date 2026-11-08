@@ -38,13 +38,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            position: 'center',
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                position: 'center',
+                visible: false,
+                code: {
+                    basic: `
 <div class="flex flex-wrap justify-center gap-2 mb-2">
     <Button label="Left" icon="pi pi-arrow-right" @click="openPosition('left')" severity="secondary" style="min-width: 10rem" />
     <Button label="Right" icon="pi pi-arrow-left" @click="openPosition('right')" severity="secondary" style="min-width: 10rem" />
@@ -76,7 +76,7 @@ export default {
     </div>
 </Dialog>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap justify-center gap-2 mb-2">
@@ -124,14 +124,14 @@ const openPosition = (pos) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            openPosition(position) {
+                this.position = position;
+                this.visible = true;
             }
-        };
-    },
-    methods: {
-        openPosition(position) {
-            this.position = position;
-            this.visible = true;
         }
-    }
-};
+    };
 </script>

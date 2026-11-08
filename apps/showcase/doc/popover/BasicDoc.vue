@@ -46,16 +46,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            members: [
-                { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                members: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
+                ],
+                code: {
+                    basic: `
 <Button type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
 
 <Popover ref="op">
@@ -95,7 +95,7 @@ export default {
     </div>
 </Popover>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
@@ -154,13 +154,13 @@ const toggle = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            toggle(event) {
+                this.$refs.op.toggle(event);
             }
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.op.toggle(event);
         }
-    }
-};
+    };
 </script>

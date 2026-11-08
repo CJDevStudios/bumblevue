@@ -20,7 +20,7 @@
 </template>
 
 <script>
-export default {
-    props: ['docs']
-};
+    export default {
+        props: ['docs']
+    };
 </script>

@@ -15,11 +15,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Message severity="info" icon="pi pi-send">Info Message</Message>
 <Message severity="success">
     <template #icon>
@@ -28,7 +28,7 @@ export default {
     <span class="ml-2">How may I help you?</span>
 </Message>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-4">
         <Message severity="info" icon="pi pi-send">Info Message</Message>
@@ -44,8 +44,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

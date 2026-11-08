@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { createApp } from 'vue';
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
@@ -22,8 +22,8 @@ app.use(BumbleVue, {
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

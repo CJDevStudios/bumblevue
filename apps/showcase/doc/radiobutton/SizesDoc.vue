@@ -22,12 +22,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            size: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                size: null,
+                code: {
+                    basic: `
 <div class="flex flex-wrap gap-4">
     <div class="flex items-center gap-2">
         <RadioButton v-model="size" inputId="size_small" name="size" value="Small" size="small" />
@@ -43,7 +43,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div class="flex flex-wrap gap-4">
@@ -69,8 +69,8 @@ import { ref } from 'vue';
 const size = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -16,61 +16,61 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TerminalStyle from '@cjdevstudios/bumblevue/terminal/style';
-import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TerminalStyle from '@cjdevstudios/bumblevue/terminal/style';
+    import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
 
-export default {
-    name: 'Terminal',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        welcomeMessage: {
-            type: String,
-            default: null
-        },
-        prompt: {
-            type: String,
-            default: null
-        }
-    },
-    style: TerminalStyle,
-    provide() {
-        return {
-            $pcTerminal: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            commandText: null,
-            commands: []
-        };
-    },
-    mounted() {
-        TerminalService.on('response', this.responseListener);
-        this.$refs.input.focus();
-    },
-    updated() {
-        this.$el.scrollTop = this.$el.scrollHeight;
-    },
-    beforeUnmount() {
-        TerminalService.off('response', this.responseListener);
-    },
-    methods: {
-        onClick() {
-            this.$refs.input.focus();
-        },
-        onKeydown(event) {
-            if (event.key === 'Enter' && this.commandText) {
-                this.commands.push({ text: this.commandText });
-                TerminalService.emit('command', this.commandText);
-                this.commandText = '';
+    export default {
+        name: 'Terminal',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            welcomeMessage: {
+                type: String,
+                default: null
+            },
+            prompt: {
+                type: String,
+                default: null
             }
         },
-        responseListener(response) {
-            this.commands[this.commands.length - 1].response = response;
+        style: TerminalStyle,
+        provide() {
+            return {
+                $pcTerminal: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                commandText: null,
+                commands: []
+            };
+        },
+        mounted() {
+            TerminalService.on('response', this.responseListener);
+            this.$refs.input.focus();
+        },
+        updated() {
+            this.$el.scrollTop = this.$el.scrollHeight;
+        },
+        beforeUnmount() {
+            TerminalService.off('response', this.responseListener);
+        },
+        methods: {
+            onClick() {
+                this.$refs.input.focus();
+            },
+            onKeydown(event) {
+                if (event.key === 'Enter' && this.commandText) {
+                    this.commands.push({ text: this.commandText });
+                    TerminalService.emit('command', this.commandText);
+                    this.commandText = '';
+                }
+            },
+            responseListener(response) {
+                this.commands[this.commands.length - 1].response = response;
+            }
         }
-    }
-};
+    };
 </script>

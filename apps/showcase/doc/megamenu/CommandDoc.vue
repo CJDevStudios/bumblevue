@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 {
     label: 'Log out',
     icon: 'pi pi-signout',
@@ -19,8 +19,8 @@ export default {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

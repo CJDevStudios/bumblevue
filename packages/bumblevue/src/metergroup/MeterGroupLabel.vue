@@ -11,35 +11,35 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
-export default {
-    name: 'MeterGroupLabel',
-    hostName: 'MeterGroup',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    inject: ['$pcMeterGroup'],
-    props: {
-        value: {
-            type: Array,
-            default: null
+    export default {
+        name: 'MeterGroupLabel',
+        hostName: 'MeterGroup',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        inject: ['$pcMeterGroup'],
+        props: {
+            value: {
+                type: Array,
+                default: null
+            },
+            labelPosition: {
+                type: String,
+                default: 'end'
+            },
+            labelOrientation: {
+                type: String,
+                default: 'horizontal'
+            }
         },
-        labelPosition: {
-            type: String,
-            default: 'end'
-        },
-        labelOrientation: {
-            type: String,
-            default: 'horizontal'
+        computed: {
+            dataP() {
+                return cn({
+                    [this.$pcMeterGroup.labelOrientation]: this.$pcMeterGroup.labelOrientation
+                });
+            }
         }
-    },
-    computed: {
-        dataP() {
-            return cn({
-                [this.$pcMeterGroup.labelOrientation]: this.$pcMeterGroup.labelOrientation
-            });
-        }
-    }
-};
+    };
 </script>

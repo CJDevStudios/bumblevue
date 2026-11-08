@@ -9,16 +9,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                items: [],
+                code: {
+                    basic: `
 <AutoComplete v-model="value" :suggestions="items" fluid @complete="search" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <AutoComplete v-model="value" :suggestions="items" fluid @complete="search" />
@@ -36,13 +36,13 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>

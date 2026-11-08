@@ -57,152 +57,152 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Button from '@cjdevstudios/bumblevue/button';
-import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
-import ConfirmDialogStyle from '@cjdevstudios/bumblevue/confirmdialog/style';
-import Dialog from '@cjdevstudios/bumblevue/dialog';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
+    import ConfirmDialogStyle from '@cjdevstudios/bumblevue/confirmdialog/style';
+    import Dialog from '@cjdevstudios/bumblevue/dialog';
 
-export default {
-    name: 'ConfirmDialog',
-    extends: BaseComponent,
-    props: {
-        group: String,
-        breakpoints: {
-            type: Object,
-            default: null
-        },
-        draggable: {
-            type: Boolean,
-            default: true
-        }
-    },
-    style: ConfirmDialogStyle,
-    provide() {
-        return {
-            $pcConfirmDialog: this,
-            $parentInstance: this
-        };
-    },
-    confirmListener: null,
-    closeListener: null,
-    data() {
-        return {
-            visible: false,
-            confirmation: null
-        };
-    },
-    mounted() {
-        this.confirmListener = (options) => {
-            if (!options) {
-                return;
+    export default {
+        name: 'ConfirmDialog',
+        extends: BaseComponent,
+        props: {
+            group: String,
+            breakpoints: {
+                type: Object,
+                default: null
+            },
+            draggable: {
+                type: Boolean,
+                default: true
             }
-
-            if (options.group === this.group) {
-                this.confirmation = options;
-
-                if (this.confirmation.onShow) {
-                    this.confirmation.onShow();
+        },
+        style: ConfirmDialogStyle,
+        provide() {
+            return {
+                $pcConfirmDialog: this,
+                $parentInstance: this
+            };
+        },
+        confirmListener: null,
+        closeListener: null,
+        data() {
+            return {
+                visible: false,
+                confirmation: null
+            };
+        },
+        mounted() {
+            this.confirmListener = (options) => {
+                if (!options) {
+                    return;
                 }
 
-                this.visible = true;
-            }
-        };
+                if (options.group === this.group) {
+                    this.confirmation = options;
 
-        this.closeListener = () => {
-            this.visible = false;
-            this.confirmation = null;
-        };
+                    if (this.confirmation.onShow) {
+                        this.confirmation.onShow();
+                    }
 
-        ConfirmationEventBus.on('confirm', this.confirmListener);
-        ConfirmationEventBus.on('close', this.closeListener);
-    },
-    beforeUnmount() {
-        ConfirmationEventBus.off('confirm', this.confirmListener);
-        ConfirmationEventBus.off('close', this.closeListener);
-    },
-    methods: {
-        accept() {
-            if (this.confirmation.accept) {
-                this.confirmation.accept();
-            }
+                    this.visible = true;
+                }
+            };
 
-            this.visible = false;
+            this.closeListener = () => {
+                this.visible = false;
+                this.confirmation = null;
+            };
+
+            ConfirmationEventBus.on('confirm', this.confirmListener);
+            ConfirmationEventBus.on('close', this.closeListener);
         },
-        reject() {
-            if (this.confirmation.reject) {
-                this.confirmation.reject();
-            }
-
-            this.visible = false;
+        beforeUnmount() {
+            ConfirmationEventBus.off('confirm', this.confirmListener);
+            ConfirmationEventBus.off('close', this.closeListener);
         },
-        onHide() {
-            if (this.confirmation.onHide) {
-                this.confirmation.onHide();
-            }
+        methods: {
+            accept() {
+                if (this.confirmation.accept) {
+                    this.confirmation.accept();
+                }
 
-            this.visible = false;
+                this.visible = false;
+            },
+            reject() {
+                if (this.confirmation.reject) {
+                    this.confirmation.reject();
+                }
+
+                this.visible = false;
+            },
+            onHide() {
+                if (this.confirmation.onHide) {
+                    this.confirmation.onHide();
+                }
+
+                this.visible = false;
+            }
+        },
+        computed: {
+            appendTo() {
+                return this.confirmation ? this.confirmation.appendTo : 'body';
+            },
+            target() {
+                return this.confirmation ? this.confirmation.target : null;
+            },
+            modal() {
+                return this.confirmation ? (this.confirmation.modal == null ? true : this.confirmation.modal) : true;
+            },
+            header() {
+                return this.confirmation ? this.confirmation.header : null;
+            },
+            message() {
+                return this.confirmation ? this.confirmation.message : null;
+            },
+            blockScroll() {
+                return this.confirmation ? this.confirmation.blockScroll : true;
+            },
+            position() {
+                return this.confirmation ? this.confirmation.position : null;
+            },
+            acceptLabel() {
+                if (this.confirmation) {
+                    const confirmation = this.confirmation;
+
+                    return confirmation.acceptLabel || confirmation.acceptProps?.label || this.$bumblevue.config.locale.accept;
+                }
+
+                return this.$bumblevue.config.locale.accept;
+            },
+            rejectLabel() {
+                if (this.confirmation) {
+                    const confirmation = this.confirmation;
+
+                    return confirmation.rejectLabel || confirmation.rejectProps?.label || this.$bumblevue.config.locale.reject;
+                }
+
+                return this.$bumblevue.config.locale.reject;
+            },
+            acceptIcon() {
+                return this.confirmation ? this.confirmation.acceptIcon : this.confirmation?.acceptProps ? this.confirmation.acceptProps.icon : null;
+            },
+            rejectIcon() {
+                return this.confirmation ? this.confirmation.rejectIcon : this.confirmation?.rejectProps ? this.confirmation.rejectProps.icon : null;
+            },
+            autoFocusAccept() {
+                return this.confirmation.defaultFocus === undefined || this.confirmation.defaultFocus === 'accept' ? true : false;
+            },
+            autoFocusReject() {
+                return this.confirmation.defaultFocus === 'reject' ? true : false;
+            },
+            closeOnEscape() {
+                return this.confirmation ? this.confirmation.closeOnEscape : true;
+            }
+        },
+        components: {
+            Dialog,
+            Button
         }
-    },
-    computed: {
-        appendTo() {
-            return this.confirmation ? this.confirmation.appendTo : 'body';
-        },
-        target() {
-            return this.confirmation ? this.confirmation.target : null;
-        },
-        modal() {
-            return this.confirmation ? (this.confirmation.modal == null ? true : this.confirmation.modal) : true;
-        },
-        header() {
-            return this.confirmation ? this.confirmation.header : null;
-        },
-        message() {
-            return this.confirmation ? this.confirmation.message : null;
-        },
-        blockScroll() {
-            return this.confirmation ? this.confirmation.blockScroll : true;
-        },
-        position() {
-            return this.confirmation ? this.confirmation.position : null;
-        },
-        acceptLabel() {
-            if (this.confirmation) {
-                const confirmation = this.confirmation;
-
-                return confirmation.acceptLabel || confirmation.acceptProps?.label || this.$bumblevue.config.locale.accept;
-            }
-
-            return this.$bumblevue.config.locale.accept;
-        },
-        rejectLabel() {
-            if (this.confirmation) {
-                const confirmation = this.confirmation;
-
-                return confirmation.rejectLabel || confirmation.rejectProps?.label || this.$bumblevue.config.locale.reject;
-            }
-
-            return this.$bumblevue.config.locale.reject;
-        },
-        acceptIcon() {
-            return this.confirmation ? this.confirmation.acceptIcon : this.confirmation?.acceptProps ? this.confirmation.acceptProps.icon : null;
-        },
-        rejectIcon() {
-            return this.confirmation ? this.confirmation.rejectIcon : this.confirmation?.rejectProps ? this.confirmation.rejectProps.icon : null;
-        },
-        autoFocusAccept() {
-            return this.confirmation.defaultFocus === undefined || this.confirmation.defaultFocus === 'accept' ? true : false;
-        },
-        autoFocusReject() {
-            return this.confirmation.defaultFocus === 'reject' ? true : false;
-        },
-        closeOnEscape() {
-            return this.confirmation ? this.confirmation.closeOnEscape : true;
-        }
-    },
-    components: {
-        Dialog,
-        Button
-    }
-};
+    };
 </script>

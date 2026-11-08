@@ -16,17 +16,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            dateTypeModel: null,
-            stringTypeModel: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                dateTypeModel: null,
+                stringTypeModel: null,
+                code: {
+                    basic: `
 <DatePicker v-model="dateTypeModel" />
 <DatePicker v-model="stringTypeModel" updateModelType="string" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -47,8 +47,8 @@ const dateTypeModel = ref();
 const stringTypeModel = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

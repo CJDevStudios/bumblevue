@@ -8,22 +8,22 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Splitter'),
-                    key: 'Splitter'
-                },
-                {
-                    data: getPTOptions('SplitterPanel'),
-                    key: 'SplitterPanel'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Splitter'),
+                        key: 'Splitter'
+                    },
+                    {
+                        data: getPTOptions('SplitterPanel'),
+                        key: 'SplitterPanel'
+                    }
+                ]
+            };
+        }
+    };
 </script>

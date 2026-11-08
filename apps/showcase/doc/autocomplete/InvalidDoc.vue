@@ -10,18 +10,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: '',
-            value2: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: '',
+                value2: '',
+                items: [],
+                code: {
+                    basic: `
 <AutoComplete v-model="value1" :suggestions="items" @complete="search" :invalid="!value1" placeholder="Code" />
 <AutoComplete v-model="value2" :suggestions="items" @complete="search" :invalid="!value2" variant="filled" placeholder="Code" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <AutoComplete v-model="value1" :suggestions="items" @complete="search" :invalid="!value1" placeholder="Code" />
@@ -41,13 +41,13 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>

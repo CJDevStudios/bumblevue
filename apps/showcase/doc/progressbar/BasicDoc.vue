@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ProgressBar :value="50"></ProgressBar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ProgressBar :value="50"></ProgressBar>
@@ -27,8 +27,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

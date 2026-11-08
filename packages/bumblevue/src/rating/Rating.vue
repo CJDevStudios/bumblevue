@@ -29,123 +29,123 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { focus, getFirstFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
-import BanIcon from '@cjdevstudios/bumblevue/icons/ban';
-import StarIcon from '@cjdevstudios/bumblevue/icons/star';
-import StarFillIcon from '@cjdevstudios/bumblevue/icons/starfill';
-import RatingStyle from '@cjdevstudios/bumblevue/rating/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { focus, getFirstFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+    import BanIcon from '@cjdevstudios/bumblevue/icons/ban';
+    import StarIcon from '@cjdevstudios/bumblevue/icons/star';
+    import StarFillIcon from '@cjdevstudios/bumblevue/icons/starfill';
+    import RatingStyle from '@cjdevstudios/bumblevue/rating/style';
 
-export default {
-    name: 'Rating',
-    extends: BaseEditableHolder,
-    inheritAttrs: false,
-    props: {
-        readonly: {
-            type: Boolean,
-            default: false
+    export default {
+        name: 'Rating',
+        extends: BaseEditableHolder,
+        inheritAttrs: false,
+        props: {
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+            stars: {
+                type: Number,
+                default: 5
+            },
+            onIcon: {
+                type: String,
+                default: undefined
+            },
+            offIcon: {
+                type: String,
+                default: undefined
+            }
         },
-        stars: {
-            type: Number,
-            default: 5
+        emits: ['change', 'focus', 'blur'],
+        style: RatingStyle,
+        provide() {
+            return {
+                $pcRating: this,
+                $parentInstance: this
+            };
         },
-        onIcon: {
-            type: String,
-            default: undefined
+        data() {
+            return {
+                focusedOptionIndex: -1,
+                isFocusVisibleItem: true
+            };
         },
-        offIcon: {
-            type: String,
-            default: undefined
-        }
-    },
-    emits: ['change', 'focus', 'blur'],
-    style: RatingStyle,
-    provide() {
-        return {
-            $pcRating: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            focusedOptionIndex: -1,
-            isFocusVisibleItem: true
-        };
-    },
-    methods: {
-        getPTOptions(key, value) {
-            return this.ptm(key, {
-                context: {
-                    active: value <= this.d_value,
-                    focused: value === this.focusedOptionIndex
+        methods: {
+            getPTOptions(key, value) {
+                return this.ptm(key, {
+                    context: {
+                        active: value <= this.d_value,
+                        focused: value === this.focusedOptionIndex
+                    }
+                });
+            },
+            onOptionClick(event, value) {
+                if (!this.readonly && !this.disabled) {
+                    this.onOptionSelect(event, value);
+                    this.isFocusVisibleItem = false;
+                    const firstFocusableEl = getFirstFocusableElement(event.currentTarget);
+
+                    firstFocusableEl && focus(firstFocusableEl);
                 }
-            });
-        },
-        onOptionClick(event, value) {
-            if (!this.readonly && !this.disabled) {
-                this.onOptionSelect(event, value);
-                this.isFocusVisibleItem = false;
-                const firstFocusableEl = getFirstFocusableElement(event.currentTarget);
-
-                firstFocusableEl && focus(firstFocusableEl);
-            }
-        },
-        onFocus(event, value) {
-            this.focusedOptionIndex = value;
-            this.isFocusVisibleItem = event.sourceCapabilities?.firesTouchEvents === false;
-
-            this.$emit('focus', event);
-        },
-        onBlur(event) {
-            this.focusedOptionIndex = -1;
-            this.$emit('blur', event);
-            this.formField.onBlur?.();
-        },
-        onChange(event, value) {
-            this.onOptionSelect(event, value);
-            this.isFocusVisibleItem = true;
-        },
-        onOptionSelect(event, value) {
-            if (this.focusedOptionIndex === value || this.d_value === value) {
-                this.focusedOptionIndex = -1;
-                this.updateModel(event, null);
-            } else {
+            },
+            onFocus(event, value) {
                 this.focusedOptionIndex = value;
-                this.updateModel(event, value || null);
+                this.isFocusVisibleItem = event.sourceCapabilities?.firesTouchEvents === false;
+
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.focusedOptionIndex = -1;
+                this.$emit('blur', event);
+                this.formField.onBlur?.();
+            },
+            onChange(event, value) {
+                this.onOptionSelect(event, value);
+                this.isFocusVisibleItem = true;
+            },
+            onOptionSelect(event, value) {
+                if (this.focusedOptionIndex === value || this.d_value === value) {
+                    this.focusedOptionIndex = -1;
+                    this.updateModel(event, null);
+                } else {
+                    this.focusedOptionIndex = value;
+                    this.updateModel(event, value || null);
+                }
+            },
+            updateModel(event, value) {
+                this.writeValue(value, event);
+                this.$emit('change', { originalEvent: event, value });
+            },
+            starAriaLabel(value) {
+                return value === 1 ? this.$bumblevue.config.locale.aria.star : this.$bumblevue.config.locale.aria.stars.replace(/{star}/g, value);
+            },
+            dataOption(value) {
+                return cn({
+                    readonly: this.readonly,
+                    disabled: this.disabled,
+                    active: value <= this.d_value,
+                    'focus-visible': value === this.focusedOptionIndex && this.isFocusVisibleItem
+                });
             }
         },
-        updateModel(event, value) {
-            this.writeValue(value, event);
-            this.$emit('change', { originalEvent: event, value });
+        computed: {
+            namex() {
+                return this.name || `${this.$attrSelector}_name`;
+            },
+            dataP() {
+                return cn({
+                    readonly: this.readonly,
+                    disabled: this.disabled
+                });
+            }
         },
-        starAriaLabel(value) {
-            return value === 1 ? this.$bumblevue.config.locale.aria.star : this.$bumblevue.config.locale.aria.stars.replace(/{star}/g, value);
-        },
-        dataOption(value) {
-            return cn({
-                readonly: this.readonly,
-                disabled: this.disabled,
-                active: value <= this.d_value,
-                'focus-visible': value === this.focusedOptionIndex && this.isFocusVisibleItem
-            });
+        components: {
+            StarFillIcon,
+            StarIcon,
+            BanIcon
         }
-    },
-    computed: {
-        namex() {
-            return this.name || `${this.$attrSelector}_name`;
-        },
-        dataP() {
-            return cn({
-                readonly: this.readonly,
-                disabled: this.disabled
-            });
-        }
-    },
-    components: {
-        StarFillIcon,
-        StarIcon,
-        BanIcon
-    }
-};
+    };
 </script>

@@ -25,14 +25,14 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                code: {
+                    basic: `
 <DataTable :value="customers" scrollable scrollHeight="400px">
     <Column field="id" header="Id" footer="Id" style="min-width: 100px"></Column>
     <Column field="name" header="Name" footer="Name" style="min-width: 200px"></Column>
@@ -49,7 +49,7 @@ export default {
     <Column field="representative.name" header="Representative" footer="Representative" style="min-width: 200px"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="customers" scrollable scrollHeight="400px">
@@ -87,7 +87,7 @@ const formatCurrency = (value) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -108,18 +108,18 @@ const formatCurrency = (value) => {
 },
 ...
 `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => {
-                this.customers = data;
-            });
+                }
+            };
         },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => {
+                    this.customers = data;
+                });
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            }
         }
-    }
-};
+    };
 </script>

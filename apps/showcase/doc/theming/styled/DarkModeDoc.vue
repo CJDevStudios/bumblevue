@@ -19,11 +19,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -39,26 +39,26 @@ app.use(BumbleVue, {
     }
  });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 function toggleDarkMode() {
     document.documentElement.classList.toggle('my-app-dark');
 }
 `
-            },
-            code4: {
-                basic: `
+                },
+                code4: {
+                    basic: `
 <html class="my-app-dark">
 `
-            },
-            code5: {
-                basic: `
+                },
+                code5: {
+                    basic: `
 theme: {
     preset: Aura,
     options: {
@@ -66,8 +66,8 @@ theme: {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

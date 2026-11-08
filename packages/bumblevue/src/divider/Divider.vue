@@ -7,43 +7,43 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import DividerStyle from '@cjdevstudios/bumblevue/divider/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import DividerStyle from '@cjdevstudios/bumblevue/divider/style';
 
-export default {
-    name: 'Divider',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        align: {
-            type: String,
-            default: null
+    export default {
+        name: 'Divider',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            align: {
+                type: String,
+                default: null
+            },
+            layout: {
+                type: String,
+                default: 'horizontal'
+            },
+            type: {
+                type: String,
+                default: 'solid'
+            }
         },
-        layout: {
-            type: String,
-            default: 'horizontal'
+        style: DividerStyle,
+        provide() {
+            return {
+                $pcDivider: this,
+                $parentInstance: this
+            };
         },
-        type: {
-            type: String,
-            default: 'solid'
+        computed: {
+            dataP() {
+                return cn({
+                    [this.align]: this.align,
+                    [this.layout]: this.layout,
+                    [this.type]: this.type
+                });
+            }
         }
-    },
-    style: DividerStyle,
-    provide() {
-        return {
-            $pcDivider: this,
-            $parentInstance: this
-        };
-    },
-    computed: {
-        dataP() {
-            return cn({
-                [this.align]: this.align,
-                [this.layout]: this.layout,
-                [this.type]: this.type
-            });
-        }
-    }
-};
+    };
 </script>

@@ -48,54 +48,54 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    separator: true
-                },
-                {
-                    label: 'Documents',
-                    items: [
-                        {
-                            label: 'New',
-                            icon: 'pi pi-plus',
-                            shortcut: '⌘+N'
-                        },
-                        {
-                            label: 'Search',
-                            icon: 'pi pi-search',
-                            shortcut: '⌘+S'
-                        }
-                    ]
-                },
-                {
-                    label: 'Profile',
-                    items: [
-                        {
-                            label: 'Settings',
-                            icon: 'pi pi-cog',
-                            shortcut: '⌘+O'
-                        },
-                        {
-                            label: 'Messages',
-                            icon: 'pi pi-inbox',
-                            badge: 2
-                        },
-                        {
-                            label: 'Logout',
-                            icon: 'pi pi-sign-out',
-                            shortcut: '⌘+Q'
-                        }
-                    ]
-                },
-                {
-                    separator: true
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Documents',
+                        items: [
+                            {
+                                label: 'New',
+                                icon: 'pi pi-plus',
+                                shortcut: '⌘+N'
+                            },
+                            {
+                                label: 'Search',
+                                icon: 'pi pi-search',
+                                shortcut: '⌘+S'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Profile',
+                        items: [
+                            {
+                                label: 'Settings',
+                                icon: 'pi pi-cog',
+                                shortcut: '⌘+O'
+                            },
+                            {
+                                label: 'Messages',
+                                icon: 'pi pi-inbox',
+                                badge: 2
+                            },
+                            {
+                                label: 'Logout',
+                                icon: 'pi pi-sign-out',
+                                shortcut: '⌘+Q'
+                            }
+                        ]
+                    },
+                    {
+                        separator: true
+                    }
+                ],
+                code: {
+                    basic: `
 <Menu :model="items" class="w-full md:w-60">
     <template #start>
         <span class="inline-flex items-center gap-1 px-2 py-2">
@@ -128,7 +128,7 @@ export default {
     </template>
 </Menu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Menu :model="items" class="w-full md:w-60">
@@ -219,8 +219,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

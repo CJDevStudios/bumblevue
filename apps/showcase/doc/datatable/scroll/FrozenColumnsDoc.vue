@@ -28,15 +28,15 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            balanceFrozen: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                balanceFrozen: false,
+                code: {
+                    basic: `
 <ToggleButton v-model="balanceFrozen" onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Balance" offLabel="Balance" />
 <DataTable :value="customers" scrollable scrollHeight="400px" class="mt-6">
     <Column field="name" header="Name" style="min-width: 200px" frozen class="font-bold"></Column>
@@ -55,7 +55,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ToggleButton v-model="balanceFrozen" onIcon="pi pi-lock" offIcon="pi pi-lock-open" onLabel="Balance" offLabel="Balance" />
@@ -96,7 +96,7 @@ const formatCurrency = (value) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -117,18 +117,18 @@ const formatCurrency = (value) => {
 },
 ...
 `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersLarge().then((data) => {
-                this.customers = data;
-            });
+                }
+            };
         },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersLarge().then((data) => {
+                    this.customers = data;
+                });
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            }
         }
-    }
-};
+    };
 </script>

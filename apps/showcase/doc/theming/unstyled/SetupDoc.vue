@@ -11,24 +11,24 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import { createApp } from "vue";
 import BumbleVue from "@cjdevstudios/bumblevue/config";
 const app = createApp(App);
 
 app.use(BumbleVue, { unstyled: true });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <Button label="Check" icon="pi pi-check" unstyled></Button>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

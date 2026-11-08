@@ -73,15 +73,15 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            expandedRows: {},
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                expandedRows: {},
+                code: {
+                    basic: `
 <DataTable v-model:expandedRows="expandedRows" :value="products" dataKey="id"
         @rowExpand="onRowExpand" @rowCollapse="onRowCollapse" tableStyle="min-width: 60rem">
     <template #header>
@@ -140,7 +140,7 @@ export default {
     </template>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:expandedRows="expandedRows" :value="products" dataKey="id"
@@ -268,7 +268,7 @@ const getOrderSeverity = (order) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -295,61 +295,61 @@ const getOrderSeverity = (order) => {
 },
 ...
 `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsWithOrdersSmall().then((data) => (this.products = data));
+                }
+            };
         },
-        onRowExpand(event) {
-            this.$toast.add({ severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000 });
-        },
-        onRowCollapse(event) {
-            this.$toast.add({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
-        },
-        expandAll() {
-            this.expandedRows = this.products.reduce((acc, p) => (acc[p.id] = true) && acc, {});
-        },
-        collapseAll() {
-            this.expandedRows = null;
-        },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        },
-        getSeverity(product) {
-            switch (product.inventoryStatus) {
-                case 'INSTOCK':
-                    return 'success';
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsWithOrdersSmall().then((data) => (this.products = data));
+            },
+            onRowExpand(event) {
+                this.$toast.add({ severity: 'info', summary: 'Product Expanded', detail: event.data.name, life: 3000 });
+            },
+            onRowCollapse(event) {
+                this.$toast.add({ severity: 'success', summary: 'Product Collapsed', detail: event.data.name, life: 3000 });
+            },
+            expandAll() {
+                this.expandedRows = this.products.reduce((acc, p) => (acc[p.id] = true) && acc, {});
+            },
+            collapseAll() {
+                this.expandedRows = null;
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            },
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
 
-                case 'LOWSTOCK':
-                    return 'warn';
+                    case 'LOWSTOCK':
+                        return 'warn';
 
-                case 'OUTOFSTOCK':
-                    return 'danger';
+                    case 'OUTOFSTOCK':
+                        return 'danger';
 
-                default:
-                    return null;
-            }
-        },
-        getOrderSeverity(order) {
-            switch (order.status) {
-                case 'DELIVERED':
-                    return 'success';
+                    default:
+                        return null;
+                }
+            },
+            getOrderSeverity(order) {
+                switch (order.status) {
+                    case 'DELIVERED':
+                        return 'success';
 
-                case 'CANCELLED':
-                    return 'danger';
+                    case 'CANCELLED':
+                        return 'danger';
 
-                case 'PENDING':
-                    return 'warn';
+                    case 'PENDING':
+                        return 'warn';
 
-                case 'RETURNED':
-                    return 'info';
+                    case 'RETURNED':
+                        return 'info';
 
-                default:
-                    return null;
+                    default:
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

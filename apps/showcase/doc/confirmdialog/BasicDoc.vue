@@ -11,16 +11,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmDialog></ConfirmDialog>
 <Button @click="confirm1()" label="Save" variant="outlined"></Button>
 <Button @click="confirm2()" label="Delete" severity="danger" variant="outlined"></Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <Toast />
     <ConfirmDialog></ConfirmDialog>
@@ -84,53 +84,53 @@ const confirm2 = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        confirm1() {
-            this.$confirm.require({
-                message: 'Are you sure you want to proceed?',
-                header: 'Confirmation',
-                icon: 'pi pi-exclamation-triangle',
-                rejectProps: {
-                    label: 'Cancel',
-                    severity: 'secondary',
-                    outlined: true
-                },
-                acceptProps: {
-                    label: 'Save'
-                },
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
                 }
-            });
+            };
         },
-        confirm2() {
-            this.$confirm.require({
-                message: 'Do you want to delete this record?',
-                header: 'Danger Zone',
-                icon: 'pi pi-info-circle',
-                rejectProps: {
-                    label: 'Cancel',
-                    severity: 'secondary',
-                    outlined: true
-                },
-                acceptProps: {
-                    label: 'Delete',
-                    severity: 'danger'
-                },
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-                }
-            });
+        methods: {
+            confirm1() {
+                this.$confirm.require({
+                    message: 'Are you sure you want to proceed?',
+                    header: 'Confirmation',
+                    icon: 'pi pi-exclamation-triangle',
+                    rejectProps: {
+                        label: 'Cancel',
+                        severity: 'secondary',
+                        outlined: true
+                    },
+                    acceptProps: {
+                        label: 'Save'
+                    },
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            },
+            confirm2() {
+                this.$confirm.require({
+                    message: 'Do you want to delete this record?',
+                    header: 'Danger Zone',
+                    icon: 'pi pi-info-circle',
+                    rejectProps: {
+                        label: 'Cancel',
+                        severity: 'secondary',
+                        outlined: true
+                    },
+                    acceptProps: {
+                        label: 'Delete',
+                        severity: 'danger'
+                    },
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import TreeTable from '@cjdevstudios/bumblevue/treetable';
 import Column from '@cjdevstudios/bumblevue/column';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

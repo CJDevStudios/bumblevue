@@ -75,32 +75,32 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            loading: false,
-            totalRecords: 0,
-            customers: null,
-            selectedCustomers: null,
-            selectAll: false,
-            first: 0,
-            filters: {
-                name: { value: '', matchMode: 'contains' },
-                'country.name': { value: '', matchMode: 'contains' },
-                company: { value: '', matchMode: 'contains' },
-                'representative.name': { value: '', matchMode: 'contains' }
-            },
-            lazyParams: {},
-            columns: [
-                { field: 'name', header: 'Name' },
-                { field: 'country.name', header: 'Country' },
-                { field: 'company', header: 'Company' },
-                { field: 'representative.name', header: 'Representative' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                loading: false,
+                totalRecords: 0,
+                customers: null,
+                selectedCustomers: null,
+                selectAll: false,
+                first: 0,
+                filters: {
+                    name: { value: '', matchMode: 'contains' },
+                    'country.name': { value: '', matchMode: 'contains' },
+                    company: { value: '', matchMode: 'contains' },
+                    'representative.name': { value: '', matchMode: 'contains' }
+                },
+                lazyParams: {},
+                columns: [
+                    { field: 'name', header: 'Name' },
+                    { field: 'country.name', header: 'Country' },
+                    { field: 'company', header: 'Company' },
+                    { field: 'representative.name', header: 'Representative' }
+                ],
+                code: {
+                    basic: `
 <DataTable :value="customers" lazy paginator :first="first" :rows="10" v-model:filters="filters" ref="dt" dataKey="id"
         :totalRecords="totalRecords" :loading="loading" @page="onPage($event)" @sort="onSort($event)" @filter="onFilter($event)" filterDisplay="row"
         :globalFilterFields="['name','country.name', 'company', 'representative.name']"
@@ -140,7 +140,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
 	<div class="card">
         <DataTable :value="customers" lazy paginator :first="first" :rows="10" v-model:filters="filters" ref="dt" dataKey="id"
@@ -270,7 +270,7 @@ const onRowUnselect = () => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -290,66 +290,69 @@ const onRowUnselect = () => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            this.loading = true;
-
-            this.lazyParams = {
-                first: 0,
-                rows: 10,
-                sortField: null,
-                sortOrder: null,
-                filters: this.filters
+                }
             };
+        },
+        methods: {
+            loadDemoData() {
+                this.loading = true;
 
-            this.loadLazyData();
-        },
-        loadLazyData(event) {
-            this.loading = true;
-            this.lazyParams = { ...this.lazyParams, first: event?.first || this.first };
+                this.lazyParams = {
+                    first: 0,
+                    rows: 10,
+                    sortField: null,
+                    sortOrder: null,
+                    filters: this.filters
+                };
 
-            setTimeout(() => {
-                CustomerService.getCustomers({ lazyEvent: JSON.stringify(this.lazyParams) }).then((data) => {
-                    this.customers = data.customers;
-                    this.totalRecords = data.totalRecords;
-                    this.loading = false;
-                });
-            }, Math.random() * 1000 + 250);
-        },
-        onPage(event) {
-            this.lazyParams = event;
-            this.loadLazyData(event);
-        },
-        onSort(event) {
-            this.lazyParams = event;
-            this.loadLazyData(event);
-        },
-        onFilter(event) {
-            this.lazyParams.filters = this.filters;
-            this.loadLazyData(event);
-        },
-        onSelectAllChange(event) {
-            const selectAll = event.checked;
+                this.loadLazyData();
+            },
+            loadLazyData(event) {
+                this.loading = true;
+                this.lazyParams = { ...this.lazyParams, first: event?.first || this.first };
 
-            if (selectAll) {
-                CustomerService.getCustomers().then((data) => {
-                    this.selectAll = true;
-                    this.selectedCustomers = data.customers;
-                });
-            } else {
+                setTimeout(
+                    () => {
+                        CustomerService.getCustomers({ lazyEvent: JSON.stringify(this.lazyParams) }).then((data) => {
+                            this.customers = data.customers;
+                            this.totalRecords = data.totalRecords;
+                            this.loading = false;
+                        });
+                    },
+                    Math.random() * 1000 + 250
+                );
+            },
+            onPage(event) {
+                this.lazyParams = event;
+                this.loadLazyData(event);
+            },
+            onSort(event) {
+                this.lazyParams = event;
+                this.loadLazyData(event);
+            },
+            onFilter(event) {
+                this.lazyParams.filters = this.filters;
+                this.loadLazyData(event);
+            },
+            onSelectAllChange(event) {
+                const selectAll = event.checked;
+
+                if (selectAll) {
+                    CustomerService.getCustomers().then((data) => {
+                        this.selectAll = true;
+                        this.selectedCustomers = data.customers;
+                    });
+                } else {
+                    this.selectAll = false;
+                    this.selectedCustomers = [];
+                }
+            },
+            onRowSelect() {
+                this.selectAll = this.selectedCustomers.length === this.totalRecords;
+            },
+            onRowUnselect() {
                 this.selectAll = false;
-                this.selectedCustomers = [];
             }
-        },
-        onRowSelect() {
-            this.selectAll = this.selectedCustomers.length === this.totalRecords;
-        },
-        onRowUnselect() {
-            this.selectAll = false;
         }
-    }
-};
+    };
 </script>

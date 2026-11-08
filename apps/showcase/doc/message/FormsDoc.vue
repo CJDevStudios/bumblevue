@@ -20,13 +20,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            username: null,
-            email: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                username: null,
+                email: null,
+                code: {
+                    basic: `
 <Message v-if="!username || !email" severity="error" icon="pi pi-times-circle" class="mb-2">Validation error</Message>
 <Message v-if="username && email" severity="success" icon="pi pi-times-circle" class="mb-2">Form is valid</Message>
 <div class="flex flex-col gap-1">
@@ -38,7 +38,7 @@ export default {
     <Message v-show="!email" severity="error" variant="simple" size="small">Email is not valid</Message>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="flex flex-col gap-4">
         <Message v-if="!username || !email" severity="error" icon="pi pi-times-circle" class="mb-2">Validation error</Message>
@@ -61,8 +61,8 @@ const username = ref(null);
 const email = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

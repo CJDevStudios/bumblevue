@@ -9,22 +9,22 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center">
         <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

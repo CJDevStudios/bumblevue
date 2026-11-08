@@ -48,11 +48,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Tabs value="0">
     <TabList>
         <Tab value="0" as="div" class="flex items-center gap-2">
@@ -91,7 +91,7 @@ export default {
     </TabPanels>
 </Tabs>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Tabs value="0">
@@ -137,8 +137,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

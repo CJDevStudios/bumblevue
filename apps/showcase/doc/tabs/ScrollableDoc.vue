@@ -20,12 +20,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            scrollableTabs: Array.from({ length: 50 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content`, value: `${i}` })),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                scrollableTabs: Array.from({ length: 50 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content`, value: `${i}` })),
+                code: {
+                    basic: `
 <Tabs value="0" scrollable>
     <TabList>
         <Tab v-for="tab in scrollableTabs" :key="tab.title" :value="tab.value">
@@ -39,7 +39,7 @@ export default {
     </TabPanels>
 </Tabs>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Tabs value="0" scrollable>
@@ -63,8 +63,8 @@ import { ref } from 'vue';
 const scrollableTabs = ref(Array.from({ length: 50 }, (_, i) => ({ title: \`Tab \${i + 1}\`, content: \`Tab \${i + 1} Content\`, value: \`\${i}\` })));
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

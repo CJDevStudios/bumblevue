@@ -33,11 +33,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Paginator :rows="10" :totalRecords="120">
     <template #container="{ first, last, page, pageCount, prevPageCallback, nextPageCallback, totalRecords }">
         <div class="flex items-center gap-4 border border-primary bg-transparent rounded-full w-full py-1 px-2 justify-between">
@@ -51,7 +51,7 @@ export default {
     </template>
 </Paginator>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Paginator :rows="10" :totalRecords="120">
@@ -72,8 +72,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

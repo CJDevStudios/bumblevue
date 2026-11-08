@@ -41,12 +41,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '0',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '0',
+                code: {
+                    basic: `
 <div class="flex mb-2 gap-2 justify-end">
     <Button @click="value = '0'" rounded label="1" class="w-8 h-8 p-0" :outlined="value !== '0'" />
     <Button @click="value = '1'" rounded label="2" class="w-8 h-8 p-0" :outlined="value !== '1'" />
@@ -81,7 +81,7 @@ export default {
     </TabPanels>
 </Tabs>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex mb-2 gap-2 justify-end">
@@ -126,8 +126,8 @@ import { ref } from 'vue';
 const value = ref('0');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

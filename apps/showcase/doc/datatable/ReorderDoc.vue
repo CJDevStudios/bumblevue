@@ -18,21 +18,21 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            columns: null,
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                columns: null,
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" :reorderableColumns="true" @columnReorder="onColReorder" @rowReorder="onRowReorder" tableStyle="min-width: 50rem">
     <Column rowReorder headerStyle="width: 3rem" :reorderableColumn="false" />
     <Column v-for="col of columns" :field="col.field" :header="col.header" :key="col.field"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
 	<div>
         <DataTable :value="products" :reorderableColumns="true" @columnReorder="onColReorder" @rowReorder="onRowReorder" tableStyle="min-width: 50rem">
@@ -71,7 +71,7 @@ const onRowReorder = (event) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -85,28 +85,28 @@ const onRowReorder = (event) => {
     rating: 5
 },
 ...`
+                }
+            };
+        },
+        created() {
+            this.columns = [
+                { field: 'code', header: 'Code' },
+                { field: 'name', header: 'Name' },
+                { field: 'category', header: 'Category' },
+                { field: 'quantity', header: 'Quantity' }
+            ];
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            onColReorder() {
+                this.$toast.add({ severity: 'success', summary: 'Column Reordered', life: 3000 });
+            },
+            onRowReorder(event) {
+                this.products = event.value;
+                this.$toast.add({ severity: 'success', summary: 'Rows Reordered', life: 3000 });
             }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'code', header: 'Code' },
-            { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
-        ];
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
-        },
-        onColReorder() {
-            this.$toast.add({ severity: 'success', summary: 'Column Reordered', life: 3000 });
-        },
-        onRowReorder(event) {
-            this.products = event.value;
-            this.$toast.add({ severity: 'success', summary: 'Rows Reordered', life: 3000 });
         }
-    }
-};
+    };
 </script>

@@ -35,30 +35,30 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            activeIndex: 0,
-            responsiveOptions: [
-                {
-                    breakpoint: '1024px',
-                    numVisible: 5
-                },
-                {
-                    breakpoint: '768px',
-                    numVisible: 3
-                },
-                {
-                    breakpoint: '560px',
-                    numVisible: 1
-                }
-            ],
-            displayCustom: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                activeIndex: 0,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1024px',
+                        numVisible: 5
+                    },
+                    {
+                        breakpoint: '768px',
+                        numVisible: 3
+                    },
+                    {
+                        breakpoint: '560px',
+                        numVisible: 1
+                    }
+                ],
+                displayCustom: false,
+                code: {
+                    basic: `
 <Galleria v-model:activeIndex="activeIndex" v-model:visible="displayCustom" :value="images" :responsiveOptions="responsiveOptions" :numVisible="7"
     containerStyle="max-width: 850px" :circular="true" :fullScreen="true" :showItemNavigators="true" :showThumbnails="false">
     <template #item="slotProps">
@@ -69,7 +69,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Galleria v-model:activeIndex="activeIndex" v-model:visible="displayCustom" :value="images" :responsiveOptions="responsiveOptions" :numVisible="7"
@@ -122,7 +122,7 @@ const imageClick = (index) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -132,17 +132,17 @@ const imageClick = (index) => {
 },
 ...
         `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
+                }
+            };
         },
-        imageClick(index) {
-            this.activeIndex = index;
-            this.displayCustom = true;
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
+            },
+            imageClick(index) {
+                this.activeIndex = index;
+                this.displayCustom = true;
+            }
         }
-    }
-};
+    };
 </script>

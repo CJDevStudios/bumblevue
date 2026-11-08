@@ -16,11 +16,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button v-slot="slotProps" asChild>
     <button
         v-bind="slotProps.a11yAttrs"
@@ -30,7 +30,7 @@ export default {
     </button>
 </Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button v-slot="slotProps" asChild>
@@ -47,8 +47,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

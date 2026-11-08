@@ -5,34 +5,34 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
 
-export default {
-    name: 'NextPageLink',
-    hostName: 'Paginator',
-    extends: BaseComponent,
-    props: {
-        template: {
-            type: Function,
-            default: null
+    export default {
+        name: 'NextPageLink',
+        hostName: 'Paginator',
+        extends: BaseComponent,
+        props: {
+            template: {
+                type: Function,
+                default: null
+            }
+        },
+        methods: {
+            getPTOptions(key) {
+                return this.ptm(key, {
+                    context: {
+                        disabled: this.$attrs.disabled
+                    }
+                });
+            }
+        },
+        components: {
+            AngleRightIcon: AngleRightIcon
+        },
+        directives: {
+            ripple: Ripple
         }
-    },
-    methods: {
-        getPTOptions(key) {
-            return this.ptm(key, {
-                context: {
-                    disabled: this.$attrs.disabled
-                }
-            });
-        }
-    },
-    components: {
-        AngleRightIcon: AngleRightIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

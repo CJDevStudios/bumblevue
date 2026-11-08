@@ -101,182 +101,182 @@
 </template>
 
 <script>
-import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import DataViewStyle from '@cjdevstudios/bumblevue/dataview/style';
-import Paginator from '@cjdevstudios/bumblevue/paginator';
+    import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import DataViewStyle from '@cjdevstudios/bumblevue/dataview/style';
+    import Paginator from '@cjdevstudios/bumblevue/paginator';
 
-export default {
-    name: 'DataView',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: {
-            type: Array,
-            default: null
-        },
-        layout: {
-            type: String,
-            default: 'list'
-        },
-        rows: {
-            type: Number,
-            default: 0
-        },
-        first: {
-            type: Number,
-            default: 0
-        },
-        totalRecords: {
-            type: Number,
-            default: 0
-        },
-        paginator: {
-            type: Boolean,
-            default: false
-        },
-        paginatorPosition: {
-            type: String,
-            default: 'bottom'
-        },
-        alwaysShowPaginator: {
-            type: Boolean,
-            default: true
-        },
-        paginatorTemplate: {
-            type: String,
-            default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
-        },
-        pageLinkSize: {
-            type: Number,
-            default: 5
-        },
-        rowsPerPageOptions: {
-            type: Array,
-            default: null
-        },
-        currentPageReportTemplate: {
-            type: String,
-            default: '({currentPage} of {totalPages})'
-        },
-        sortField: {
-            type: [String, Function],
-            default: null
-        },
-        sortOrder: {
-            type: Number,
-            default: null
-        },
-        lazy: {
-            type: Boolean,
-            default: false
-        },
-        dataKey: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['update:first', 'update:rows', 'page'],
-    style: DataViewStyle,
-    provide() {
-        return {
-            $pcDataView: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            d_first: this.first,
-            d_rows: this.rows
-        };
-    },
-    watch: {
-        first(newValue) {
-            this.d_first = newValue;
-        },
-        rows(newValue) {
-            this.d_rows = newValue;
-        },
-        sortField() {
-            this.resetPage();
-        },
-        sortOrder() {
-            this.resetPage();
-        }
-    },
-    methods: {
-        getKey(item, index) {
-            return this.dataKey ? resolveFieldData(item, this.dataKey) : index;
-        },
-        onPage(event) {
-            this.d_first = event.first;
-            this.d_rows = event.rows;
-
-            this.$emit('update:first', this.d_first);
-            this.$emit('update:rows', this.d_rows);
-            this.$emit('page', event);
-        },
-        sort() {
-            if (this.value) {
-                const value = [...this.value];
-                const comparer = localeComparator();
-
-                value.sort((data1, data2) => {
-                    let value1 = resolveFieldData(data1, this.sortField);
-                    let value2 = resolveFieldData(data2, this.sortField);
-
-                    return sort(value1, value2, this.sortOrder, comparer);
-                });
-
-                return value;
-            } else {
-                return null;
+    export default {
+        name: 'DataView',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: {
+                type: Array,
+                default: null
+            },
+            layout: {
+                type: String,
+                default: 'list'
+            },
+            rows: {
+                type: Number,
+                default: 0
+            },
+            first: {
+                type: Number,
+                default: 0
+            },
+            totalRecords: {
+                type: Number,
+                default: 0
+            },
+            paginator: {
+                type: Boolean,
+                default: false
+            },
+            paginatorPosition: {
+                type: String,
+                default: 'bottom'
+            },
+            alwaysShowPaginator: {
+                type: Boolean,
+                default: true
+            },
+            paginatorTemplate: {
+                type: String,
+                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown'
+            },
+            pageLinkSize: {
+                type: Number,
+                default: 5
+            },
+            rowsPerPageOptions: {
+                type: Array,
+                default: null
+            },
+            currentPageReportTemplate: {
+                type: String,
+                default: '({currentPage} of {totalPages})'
+            },
+            sortField: {
+                type: [String, Function],
+                default: null
+            },
+            sortOrder: {
+                type: Number,
+                default: null
+            },
+            lazy: {
+                type: Boolean,
+                default: false
+            },
+            dataKey: {
+                type: String,
+                default: null
             }
         },
-        resetPage() {
-            this.d_first = 0;
-            this.$emit('update:first', this.d_first);
-        }
-    },
-    computed: {
-        getTotalRecords() {
-            if (this.totalRecords) return this.totalRecords;
-            else return this.value ? this.value.length : 0;
+        emits: ['update:first', 'update:rows', 'page'],
+        style: DataViewStyle,
+        provide() {
+            return {
+                $pcDataView: this,
+                $parentInstance: this
+            };
         },
-        empty() {
-            return !this.value || this.value.length === 0;
+        data() {
+            return {
+                d_first: this.first,
+                d_rows: this.rows
+            };
         },
-        emptyMessageText() {
-            return this.$bumblevue.config?.locale?.emptyMessage || '';
+        watch: {
+            first(newValue) {
+                this.d_first = newValue;
+            },
+            rows(newValue) {
+                this.d_rows = newValue;
+            },
+            sortField() {
+                this.resetPage();
+            },
+            sortOrder() {
+                this.resetPage();
+            }
         },
-        paginatorTop() {
-            return this.paginator && (this.paginatorPosition !== 'bottom' || this.paginatorPosition === 'both');
-        },
-        paginatorBottom() {
-            return this.paginator && (this.paginatorPosition !== 'top' || this.paginatorPosition === 'both');
-        },
-        items() {
-            if (this.value && this.value.length) {
-                let data = this.value;
+        methods: {
+            getKey(item, index) {
+                return this.dataKey ? resolveFieldData(item, this.dataKey) : index;
+            },
+            onPage(event) {
+                this.d_first = event.first;
+                this.d_rows = event.rows;
 
-                if (data && data.length && this.sortField) {
-                    data = this.sort();
-                }
+                this.$emit('update:first', this.d_first);
+                this.$emit('update:rows', this.d_rows);
+                this.$emit('page', event);
+            },
+            sort() {
+                if (this.value) {
+                    const value = [...this.value];
+                    const comparer = localeComparator();
 
-                if (this.paginator) {
-                    const first = this.lazy ? 0 : this.d_first;
+                    value.sort((data1, data2) => {
+                        let value1 = resolveFieldData(data1, this.sortField);
+                        let value2 = resolveFieldData(data2, this.sortField);
 
-                    return data.slice(first, first + this.d_rows);
+                        return sort(value1, value2, this.sortOrder, comparer);
+                    });
+
+                    return value;
                 } else {
-                    return data;
+                    return null;
                 }
-            } else {
-                return null;
+            },
+            resetPage() {
+                this.d_first = 0;
+                this.$emit('update:first', this.d_first);
             }
+        },
+        computed: {
+            getTotalRecords() {
+                if (this.totalRecords) return this.totalRecords;
+                else return this.value ? this.value.length : 0;
+            },
+            empty() {
+                return !this.value || this.value.length === 0;
+            },
+            emptyMessageText() {
+                return this.$bumblevue.config?.locale?.emptyMessage || '';
+            },
+            paginatorTop() {
+                return this.paginator && (this.paginatorPosition !== 'bottom' || this.paginatorPosition === 'both');
+            },
+            paginatorBottom() {
+                return this.paginator && (this.paginatorPosition !== 'top' || this.paginatorPosition === 'both');
+            },
+            items() {
+                if (this.value && this.value.length) {
+                    let data = this.value;
+
+                    if (data && data.length && this.sortField) {
+                        data = this.sort();
+                    }
+
+                    if (this.paginator) {
+                        const first = this.lazy ? 0 : this.d_first;
+
+                        return data.slice(first, first + this.d_rows);
+                    } else {
+                        return data;
+                    }
+                } else {
+                    return null;
+                }
+            }
+        },
+        components: {
+            DVPaginator: Paginator
         }
-    },
-    components: {
-        DVPaginator: Paginator
-    }
-};
+    };
 </script>

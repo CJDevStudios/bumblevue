@@ -12,16 +12,16 @@
 </template>
 
 <script setup>
-import { useToast } from '#imports';
+    import { useToast } from '#imports';
 
-const toast = useToast();
+    const toast = useToast();
 
-const onShow = () => {
-    toast.add({
-        severity: 'success',
-        summary: 'Success Message',
-        detail: 'Order submitted',
-        life: 3000
-    });
-};
+    const onShow = () => {
+        toast.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'Order submitted',
+            life: 3000
+        });
+    };
 </script>

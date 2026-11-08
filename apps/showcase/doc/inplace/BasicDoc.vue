@@ -17,11 +17,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Inplace>
     <template #display> View Content </template>
     <template #content>
@@ -32,7 +32,7 @@ export default {
     </template>
 </Inplace>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Inplace>
@@ -51,8 +51,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

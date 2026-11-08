@@ -12,16 +12,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                items: [],
+                code: {
+                    basic: `
 <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" />
@@ -41,15 +41,15 @@ const search = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        search(event) {
-            let _items = [...Array(10).keys()];
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                let _items = [...Array(10).keys()];
 
-            this.items = event.query ? [...Array(10).keys()].map((item) => event.query + '-' + item) : _items;
+                this.items = event.query ? [...Array(10).keys()].map((item) => event.query + '-' + item) : _items;
+            }
         }
-    }
-};
+    };
 </script>

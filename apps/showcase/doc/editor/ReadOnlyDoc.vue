@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 'Always bet on Prime',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 'Always bet on Prime',
+                code: {
+                    basic: `
 <Editor v-model="value" editorStyle="height: 320px" readonly />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Editor v-model="value" editorStyle="height: 320px" readonly />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const value = ref('Always bet on Prime');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

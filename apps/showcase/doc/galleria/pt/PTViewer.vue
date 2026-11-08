@@ -12,33 +12,33 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { PhotoService } from '@/service/PhotoService';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '1300px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ],
-            docs: [
-                {
-                    data: getPTOptions('Galleria'),
-                    key: 'Galleria'
-                }
-            ]
-        };
-    },
-    mounted() {
-        PhotoService.getImages().then((data) => (this.images = data));
-    }
-};
+    export default {
+        data() {
+            return {
+                images: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1300px',
+                        numVisible: 4
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1
+                    }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('Galleria'),
+                        key: 'Galleria'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            PhotoService.getImages().then((data) => (this.images = data));
+        }
+    };
 </script>

@@ -40,11 +40,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Panel header="Header" toggleable
     :pt="{
         root: 'border border-primary rounded-xl p-4',
@@ -65,7 +65,7 @@ export default {
     </p>
 </Panel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Panel header="Header" toggleable
@@ -98,8 +98,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

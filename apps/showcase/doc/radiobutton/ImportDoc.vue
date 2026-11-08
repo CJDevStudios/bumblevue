@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import RadioButton from '@cjdevstudios/bumblevue/radiobutton';
 import RadioButtonGroup from '@cjdevstudios/bumblevue/radiobuttongroup';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

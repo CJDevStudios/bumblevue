@@ -11,14 +11,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ScrollTop />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center" style="height: 2000px">
         <p>Scroll down the page to display the ScrollTop component.</p>
@@ -30,8 +30,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

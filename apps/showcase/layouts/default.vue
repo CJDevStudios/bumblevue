@@ -20,52 +20,52 @@
 </template>
 
 <script>
-import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils/dom';
+    import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils/dom';
 
-export default {
-    data() {
-        return {
-            sidebarActive: false
-        };
-    },
-    watch: {
-        $route: {
-            immediate: true,
-            handler() {
-                if (!process.client || typeof window === 'undefined') {
-                    return;
+    export default {
+        data() {
+            return {
+                sidebarActive: false
+            };
+        },
+        watch: {
+            $route: {
+                immediate: true,
+                handler() {
+                    if (!process.client || typeof window === 'undefined') {
+                        return;
+                    }
+
+                    this.sidebarActive = false;
+                    unblockBodyScroll('blocked-scroll');
+                    this.$toast.removeAllGroups();
                 }
-
-                this.sidebarActive = false;
-                unblockBodyScroll('blocked-scroll');
-                this.$toast.removeAllGroups();
-            }
-        }
-    },
-    methods: {
-        onMenuButtonClick() {
-            if (this.sidebarActive) {
-                this.sidebarActive = false;
-                unblockBodyScroll('blocked-scroll');
-            } else {
-                this.sidebarActive = true;
-                blockBodyScroll('blocked-scroll');
             }
         },
-        onMaskClick() {
-            this.sidebarActive = false;
-            unblockBodyScroll('blocked-scroll');
-        },
-    },
-    computed: {
-        containerClass() {
-            return [
-                'layout-wrapper',
-                {
-                    'layout-news-active': this.$appState.newsActive
+        methods: {
+            onMenuButtonClick() {
+                if (this.sidebarActive) {
+                    this.sidebarActive = false;
+                    unblockBodyScroll('blocked-scroll');
+                } else {
+                    this.sidebarActive = true;
+                    blockBodyScroll('blocked-scroll');
                 }
-            ];
+            },
+            onMaskClick() {
+                this.sidebarActive = false;
+                unblockBodyScroll('blocked-scroll');
+            }
+        },
+        computed: {
+            containerClass() {
+                return [
+                    'layout-wrapper',
+                    {
+                        'layout-news-active': this.$appState.newsActive
+                    }
+                ];
+            }
         }
-    }
-};
+    };
 </script>

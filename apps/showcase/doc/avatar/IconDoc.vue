@@ -30,11 +30,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Avatar icon="pi pi-user" class="mr-2" size="xlarge" />
 <Avatar icon="pi pi-user" class="mr-2" size="large" style="background-color: #ece9fc; color: #2a1261" />
 <Avatar icon="pi pi-user" style="background-color: #dee9fc; color: #1a2551" />
@@ -47,7 +47,7 @@ export default {
     <Avatar icon="pi pi-user" size="xlarge" />
 </OverlayBadge>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-8">
@@ -79,8 +79,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

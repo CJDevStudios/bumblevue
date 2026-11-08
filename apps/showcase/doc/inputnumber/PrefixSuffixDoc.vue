@@ -24,21 +24,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: 20,
-            value2: 50,
-            value3: 10,
-            value4: 20,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: 20,
+                value2: 50,
+                value3: 10,
+                value4: 20,
+                code: {
+                    basic: `
 <InputNumber v-model="value1" inputId="mile" suffix=" mi" fluid />
 <InputNumber v-model="value2" inputId="percent" prefix="%" fluid />
 <InputNumber v-model="value3" inputId="expiry" prefix="Expires in " suffix=" days" fluid />
 <InputNumber v-model="value4" inputId="temperature" prefix="&uarr; " suffix="℃" :min="0" :max="40" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -69,8 +69,8 @@ const value3 = ref(10);
 const value4 = ref(20);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

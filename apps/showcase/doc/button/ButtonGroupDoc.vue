@@ -13,18 +13,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ButtonGroup>
     <Button label="Save" icon="pi pi-check" />
     <Button label="Delete" icon="pi pi-trash" />
     <Button label="Cancel" icon="pi pi-times" />
 </ButtonGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ButtonGroup>
@@ -38,8 +38,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

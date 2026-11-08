@@ -19,11 +19,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <InputGroup class="sm:w-96!">
     <InputGroupAddon>
         <i class="pi pi-clock"></i>
@@ -36,7 +36,7 @@ export default {
     <InputGroupAddon>.00</InputGroupAddon>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputGroup class="sm:w-96!">
@@ -53,8 +53,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

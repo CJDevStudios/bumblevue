@@ -11,23 +11,23 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            filter: 0,
-            filterValues: [100, 100, 0],
-            filterOptions: [
-                { label: 'Contrast', value: 0 },
-                { label: 'Brightness', value: 1 },
-                { label: 'Sepia', value: 2 }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                filter: 0,
+                filterValues: [100, 100, 0],
+                filterOptions: [
+                    { label: 'Contrast', value: 0 },
+                    { label: 'Brightness', value: 1 },
+                    { label: 'Sepia', value: 2 }
+                ],
+                code: {
+                    basic: `
 <img alt="user header" class="w-full md:w-80 rounded-sm mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
 <SelectButton v-model="filter" :options="filterOptions" optionLabel="label" optionValue="value" class="mb-4" />
 <Slider v-model="filterValues[filter]" class="w-56" :min="0" :max="200" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center justify-center">
         <img alt="user header" class="w-full md:w-80 rounded-sm mb-6" src="~/assets/images/HiveCellBackgroundSmall.webp" :style="filterStyle" />
@@ -53,15 +53,15 @@ const filterStyle = computed(() => {
 })
 <\/script>
 `
-            }
-        };
-    },
-    computed: {
-        filterStyle() {
-            return {
-                filter: `contrast(${this.filterValues[0]}%) brightness(${this.filterValues[1]}%) sepia(${this.filterValues[2]}%)`
+                }
             };
+        },
+        computed: {
+            filterStyle() {
+                return {
+                    filter: `contrast(${this.filterValues[0]}%) brightness(${this.filterValues[1]}%) sepia(${this.filterValues[2]}%)`
+                };
+            }
         }
-    }
-};
+    };
 </script>

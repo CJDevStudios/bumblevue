@@ -23,19 +23,19 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import CardStyle from '@cjdevstudios/bumblevue/card/style';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import CardStyle from '@cjdevstudios/bumblevue/card/style';
 
-export default {
-    name: 'Card',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    style: CardStyle,
-    provide() {
-        return {
-            $pcCard: this,
-            $parentInstance: this
-        };
-    }
-};
+    export default {
+        name: 'Card',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        style: CardStyle,
+        provide() {
+            return {
+                $pcCard: this,
+                $parentInstance: this
+            };
+        }
+    };
 </script>

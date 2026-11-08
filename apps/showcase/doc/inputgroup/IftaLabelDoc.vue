@@ -17,12 +17,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 10,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 10,
+                code: {
+                    basic: `
 <InputGroup class="md:w-80">
     <InputGroupAddon>
         <i class="pi pi-shopping-cart"></i>
@@ -33,7 +33,7 @@ export default {
     </IftaLabel>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputGroup class="md:w-80">
@@ -54,8 +54,8 @@ import { ref } from 'vue';
 const value = ref(10);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

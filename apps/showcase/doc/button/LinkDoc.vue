@@ -13,18 +13,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Link" variant="link" />
 <Button as="a" label="External" href="https://vuejs.org/" target="_blank" rel="noopener" />
 <Button asChild v-slot="slotProps">
     <RouterLink to="/" :class="slotProps.class">Router</RouterLink>
 </Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-4">
         <Button label="Link" variant="link" />
@@ -38,8 +38,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

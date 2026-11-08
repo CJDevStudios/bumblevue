@@ -3,8 +3,7 @@ import { services } from './services';
 
 const BumbleVue = {
     version: '^4.0.0',
-    description:
-        'BumbleVue is an open source UI library for Vue featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support.'
+    description: 'BumbleVue is an open source UI library for Vue featuring a rich set of 80+ components, a theme designer, various theme alternatives such as Material, Bootstrap, Tailwind, premium templates and professional support.'
 };
 
 const app_dependencies = pkg ? pkg.devDependencies : {};

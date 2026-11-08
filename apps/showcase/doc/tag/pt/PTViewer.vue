@@ -5,18 +5,18 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Tag'),
-                    key: 'Tag'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Tag'),
+                        key: 'Tag'
+                    }
+                ]
+            };
+        }
+    };
 </script>

@@ -23,48 +23,48 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Router',
-                    icon: 'pi pi-palette',
-                    items: [
-                        {
-                            label: 'Styled',
-                            route: '/theming/styled'
-                        },
-                        {
-                            label: 'Unstyled',
-                            route: '/theming/unstyled'
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Router',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Styled',
+                                route: '/theming/styled'
+                            },
+                            {
+                                label: 'Unstyled',
+                                route: '/theming/unstyled'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Programmatic',
+                        icon: 'pi pi-link',
+                        command: () => {
+                            this.$router.push('/introduction');
                         }
-                    ]
-                },
-                {
-                    label: 'Programmatic',
-                    icon: 'pi pi-link',
-                    command: () => {
-                        this.$router.push('/introduction');
+                    },
+                    {
+                        label: 'External',
+                        icon: 'pi pi-home',
+                        items: [
+                            {
+                                label: 'Vue.js',
+                                url: 'https://vuejs.org/'
+                            },
+                            {
+                                label: 'Vite.js',
+                                url: 'https://vitejs.dev/'
+                            }
+                        ]
                     }
-                },
-                {
-                    label: 'External',
-                    icon: 'pi pi-home',
-                    items: [
-                        {
-                            label: 'Vue.js',
-                            url: 'https://vuejs.org/'
-                        },
-                        {
-                            label: 'Vite.js',
-                            url: 'https://vitejs.dev/'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <Menubar :model="items">
     <template #item="{ item, props, hasSubmenu }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -81,7 +81,7 @@ export default {
     </template>
 </Menubar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Menubar :model="items">
@@ -147,8 +147,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -110,25 +110,25 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            activeStep: 1,
-            name: null,
-            email: null,
-            password: null,
-            option1: false,
-            option2: false,
-            option3: false,
-            option4: false,
-            option5: false,
-            option6: false,
-            option7: false,
-            option8: false,
-            option9: false,
-            option10: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                activeStep: 1,
+                name: null,
+                email: null,
+                password: null,
+                option1: false,
+                option2: false,
+                option3: false,
+                option4: false,
+                option5: false,
+                option6: false,
+                option7: false,
+                option8: false,
+                option9: false,
+                option10: false,
+                code: {
+                    basic: `
 <Stepper v-model:value="activeStep" class="basis-160">
     <StepList>
         <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="1">
@@ -229,7 +229,7 @@ export default {
     </StepPanels>
 </Stepper>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Stepper v-model:value="activeStep" class="basis-160">
@@ -354,8 +354,8 @@ const option10 = ref(false);
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

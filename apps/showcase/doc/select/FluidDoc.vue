@@ -9,22 +9,22 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCity: null,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCity: null,
+                cities: [
+                    { name: 'New York', code: 'NY' },
+                    { name: 'Rome', code: 'RM' },
+                    { name: 'London', code: 'LDN' },
+                    { name: 'Istanbul', code: 'IST' },
+                    { name: 'Paris', code: 'PRS' }
+                ],
+                code: {
+                    basic: `
 <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" fluid />
@@ -44,8 +44,8 @@ const cities = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

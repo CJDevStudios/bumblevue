@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: false,
+                code: {
+                    basic: `
 <Checkbox v-model="checked" indeterminate binary />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Checkbox v-model="checked" indeterminate binary />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const checked = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

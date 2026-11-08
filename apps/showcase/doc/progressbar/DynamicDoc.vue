@@ -9,16 +9,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 0,
-            interval: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 0,
+                interval: null,
+                code: {
+                    basic: `
 <ProgressBar :value="value"></ProgressBar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast></Toast>
@@ -57,33 +57,33 @@ const endProgress = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    mounted() {
-        this.startProgress();
-    },
-    beforeUnmount() {
-        this.endProgress();
-    },
-    methods: {
-        startProgress() {
-            this.interval = setInterval(() => {
-                let newValue = this.value + Math.floor(Math.random() * 10) + 1;
-
-                if (newValue >= 100) {
-                    newValue = 100;
-                    this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Process Completed', life: 1000 });
-                    this.endProgress();
                 }
-
-                this.value = newValue;
-            }, 2000);
+            };
         },
-        endProgress() {
-            clearInterval(this.interval);
-            this.interval = null;
+        mounted() {
+            this.startProgress();
+        },
+        beforeUnmount() {
+            this.endProgress();
+        },
+        methods: {
+            startProgress() {
+                this.interval = setInterval(() => {
+                    let newValue = this.value + Math.floor(Math.random() * 10) + 1;
+
+                    if (newValue >= 100) {
+                        newValue = 100;
+                        this.$toast.add({ severity: 'info', summary: 'Success', detail: 'Process Completed', life: 1000 });
+                        this.endProgress();
+                    }
+
+                    this.value = newValue;
+                }, 2000);
+            },
+            endProgress() {
+                clearInterval(this.interval);
+                this.interval = null;
+            }
         }
-    }
-};
+    };
 </script>

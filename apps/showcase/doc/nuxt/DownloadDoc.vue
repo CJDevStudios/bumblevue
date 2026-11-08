@@ -9,11 +9,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 # Using npm
 npm install @cjdevstudios/bumblevue
 npm install --save-dev @cjdevstudios/bumblevue-nuxt-module
@@ -26,8 +26,8 @@ yarn add --dev @cjdevstudios/bumblevue-nuxt-module
 pnpm add @cjdevstudios/bumblevue
 pnpm add -D @cjdevstudios/bumblevue-nuxt-module
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -12,21 +12,21 @@
 </template>
 
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedValue: null,
+                code: {
+                    basic: `
 <IftaLabel class="w-full md:w-80">
     <TreeSelect v-model="selectedValue" inputId="t_file" :options="nodes" class="w-full" variant="filled" />
     <label for="t_file">File</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel class="w-full md:w-80">
@@ -48,7 +48,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -75,11 +75,11 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

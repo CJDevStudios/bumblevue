@@ -12,11 +12,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -31,15 +31,15 @@ app.use(BumbleVue, {
     }
  });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 @import "tailwindcss";
 @import "@cjdevstudios/bumblevue/tailwind.css";
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));     //dark mode configuration
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -13,19 +13,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: false,
+                code: {
+                    basic: `
 <ToggleSwitch v-model="checked">
     <template #handle="{ checked }">
         <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
     </template>
 </ToggleSwitch>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ToggleSwitch v-model="checked">
@@ -42,8 +42,8 @@ import { ref } from 'vue';
 const checked = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

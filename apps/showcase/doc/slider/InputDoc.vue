@@ -12,16 +12,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 50,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 50,
+                code: {
+                    basic: `
 <InputText v-model.number="value" />
 <Slider v-model="value" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div class="w-56">
@@ -37,8 +37,8 @@ import { ref } from 'vue';
 const value = ref(50);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

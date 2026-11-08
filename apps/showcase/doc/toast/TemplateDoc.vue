@@ -21,12 +21,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 <Toast position="bottom-center" group="bc" @close="onClose">
     <template #message="slotProps">
         <div class="flex flex-col items-start flex-auto">
@@ -41,7 +41,7 @@ export default {
 </Toast>
 <Button @click="showTemplate" label="View" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast position="bottom-center" group="bc" @close="onClose">
@@ -83,23 +83,23 @@ const onClose = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        showTemplate() {
-            if (!this.visible) {
-                this.$toast.add({ severity: 'success', summary: 'Can you send me the report?', group: 'bc' });
-                this.visible = true;
-            }
+                }
+            };
         },
-        onReply() {
-            this.$toast.removeGroup('bc');
-            this.visible = false;
-        },
-        onClose() {
-            this.visible = false;
+        methods: {
+            showTemplate() {
+                if (!this.visible) {
+                    this.$toast.add({ severity: 'success', summary: 'Can you send me the report?', group: 'bc' });
+                    this.visible = true;
+                }
+            },
+            onReply() {
+                this.$toast.removeGroup('bc');
+                this.visible = false;
+            },
+            onClose() {
+                this.visible = false;
+            }
         }
-    }
-};
+    };
 </script>

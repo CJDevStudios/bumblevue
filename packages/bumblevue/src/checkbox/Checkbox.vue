@@ -31,164 +31,164 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { contains, equals } from '@cjdevstudios/bumblevue/utils/object';
-import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
-import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
-import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
-import CheckboxStyle from '@cjdevstudios/bumblevue/checkbox/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { contains, equals } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+    import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+    import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+    import CheckboxStyle from '@cjdevstudios/bumblevue/checkbox/style';
 
-export default {
-    name: 'Checkbox',
-    extends: BaseInput,
-    inheritAttrs: false,
-    props: {
-        value: null,
-        binary: Boolean,
-        indeterminate: {
-            type: Boolean,
-            default: false
+    export default {
+        name: 'Checkbox',
+        extends: BaseInput,
+        inheritAttrs: false,
+        props: {
+            value: null,
+            binary: Boolean,
+            indeterminate: {
+                type: Boolean,
+                default: false
+            },
+            trueValue: {
+                type: null,
+                default: true
+            },
+            falseValue: {
+                type: null,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+            required: {
+                type: Boolean,
+                default: false
+            },
+            tabindex: {
+                type: Number,
+                default: null
+            },
+            inputId: {
+                type: String,
+                default: null
+            },
+            inputClass: {
+                type: [String, Object],
+                default: null
+            },
+            inputStyle: {
+                type: Object,
+                default: null
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            }
         },
-        trueValue: {
-            type: null,
-            default: true
+        emits: ['change', 'focus', 'blur', 'update:indeterminate'],
+        style: CheckboxStyle,
+        provide() {
+            return {
+                $pcCheckbox: this,
+                $parentInstance: this
+            };
         },
-        falseValue: {
-            type: null,
-            default: false
+        inject: {
+            $pcCheckboxGroup: {
+                default: undefined
+            }
         },
-        readonly: {
-            type: Boolean,
-            default: false
+        data() {
+            return {
+                d_indeterminate: this.indeterminate
+            };
         },
-        required: {
-            type: Boolean,
-            default: false
-        },
-        tabindex: {
-            type: Number,
-            default: null
-        },
-        inputId: {
-            type: String,
-            default: null
-        },
-        inputClass: {
-            type: [String, Object],
-            default: null
-        },
-        inputStyle: {
-            type: Object,
-            default: null
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['change', 'focus', 'blur', 'update:indeterminate'],
-    style: CheckboxStyle,
-    provide() {
-        return {
-            $pcCheckbox: this,
-            $parentInstance: this
-        };
-    },
-    inject: {
-        $pcCheckboxGroup: {
-            default: undefined
-        }
-    },
-    data() {
-        return {
-            d_indeterminate: this.indeterminate
-        };
-    },
-    watch: {
-        indeterminate(newValue) {
-            this.d_indeterminate = newValue;
+        watch: {
+            indeterminate(newValue) {
+                this.d_indeterminate = newValue;
 
+                this.updateIndeterminate();
+            }
+        },
+        mounted() {
             this.updateIndeterminate();
         },
-    },
-    mounted() {
-        this.updateIndeterminate();
-    },
-    updated() {
-        this.updateIndeterminate();
-    },
-    methods: {
-        getPTOptions(key) {
-            const _ptm = key === 'root' ? this.ptmi : this.ptm;
-
-            return _ptm(key, {
-                context: {
-                    checked: this.checked,
-                    indeterminate: this.d_indeterminate,
-                    disabled: this.disabled
-                }
-            });
+        updated() {
+            this.updateIndeterminate();
         },
-        onChange(event) {
-            if (!this.disabled && !this.readonly) {
+        methods: {
+            getPTOptions(key) {
+                const _ptm = key === 'root' ? this.ptmi : this.ptm;
+
+                return _ptm(key, {
+                    context: {
+                        checked: this.checked,
+                        indeterminate: this.d_indeterminate,
+                        disabled: this.disabled
+                    }
+                });
+            },
+            onChange(event) {
+                if (!this.disabled && !this.readonly) {
+                    const value = this.$pcCheckboxGroup ? this.$pcCheckboxGroup.d_value : this.d_value;
+                    let newModelValue;
+
+                    if (this.binary) {
+                        newModelValue = this.d_indeterminate ? this.trueValue : this.checked ? this.falseValue : this.trueValue;
+                    } else {
+                        if (this.checked || this.d_indeterminate) newModelValue = value.filter((val) => !equals(val, this.value));
+                        else newModelValue = value ? [...value, this.value] : [this.value];
+                    }
+
+                    if (this.d_indeterminate) {
+                        this.d_indeterminate = false;
+                        this.$emit('update:indeterminate', this.d_indeterminate);
+                    }
+
+                    this.$pcCheckboxGroup ? this.$pcCheckboxGroup.writeValue(newModelValue, event) : this.writeValue(newModelValue, event);
+                    this.$emit('change', event);
+                }
+            },
+            onFocus(event) {
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.$emit('blur', event);
+                this.formField.onBlur?.(event);
+            },
+            updateIndeterminate() {
+                if (this.$refs.input) {
+                    this.$refs.input.indeterminate = this.d_indeterminate;
+                }
+            }
+        },
+        computed: {
+            groupName() {
+                return this.$pcCheckboxGroup ? this.$pcCheckboxGroup.groupName : this.$formName;
+            },
+            checked() {
                 const value = this.$pcCheckboxGroup ? this.$pcCheckboxGroup.d_value : this.d_value;
-                let newModelValue;
 
-                if (this.binary) {
-                    newModelValue = this.d_indeterminate ? this.trueValue : this.checked ? this.falseValue : this.trueValue;
-                } else {
-                    if (this.checked || this.d_indeterminate) newModelValue = value.filter((val) => !equals(val, this.value));
-                    else newModelValue = value ? [...value, this.value] : [this.value];
-                }
-
-                if (this.d_indeterminate) {
-                    this.d_indeterminate = false;
-                    this.$emit('update:indeterminate', this.d_indeterminate);
-                }
-
-                this.$pcCheckboxGroup ? this.$pcCheckboxGroup.writeValue(newModelValue, event) : this.writeValue(newModelValue, event);
-                this.$emit('change', event);
+                return this.d_indeterminate ? false : this.binary ? value === this.trueValue : contains(this.value, value);
+            },
+            dataP() {
+                return cn({
+                    invalid: this.$invalid,
+                    checked: this.checked,
+                    disabled: this.disabled,
+                    filled: this.$variant === 'filled',
+                    [this.size]: this.size
+                });
             }
         },
-        onFocus(event) {
-            this.$emit('focus', event);
-        },
-        onBlur(event) {
-            this.$emit('blur', event);
-            this.formField.onBlur?.(event);
-        },
-        updateIndeterminate() {
-            if (this.$refs.input) {
-                this.$refs.input.indeterminate = this.d_indeterminate;
-            }
+        components: {
+            CheckIcon,
+            MinusIcon
         }
-    },
-    computed: {
-        groupName() {
-            return this.$pcCheckboxGroup ? this.$pcCheckboxGroup.groupName : this.$formName;
-        },
-        checked() {
-            const value = this.$pcCheckboxGroup ? this.$pcCheckboxGroup.d_value : this.d_value;
-
-            return this.d_indeterminate ? false : this.binary ? value === this.trueValue : contains(this.value, value);
-        },
-        dataP() {
-            return cn({
-                invalid: this.$invalid,
-                checked: this.checked,
-                disabled: this.disabled,
-                filled: this.$variant === 'filled',
-                [this.size]: this.size
-            });
-        }
-    },
-    components: {
-        CheckIcon,
-        MinusIcon
-    }
-};
+    };
 </script>

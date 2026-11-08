@@ -27,13 +27,12 @@
 </template>
 
 <script>
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" style="width: 34%">
         <template #body>
@@ -52,7 +51,7 @@ export default {
     </Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -85,14 +84,14 @@ onMounted(() => {
 const nodes = ref();
 
 <\/script>
-`,
+`
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                this.nodes = Array.from({ length: 10 }).map((_, i) => ({ id: i.toString() }));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            this.nodes = Array.from({ length: 10 }).map((_, i) => ({id: i.toString()}));
         }
-    }
-};
+    };
 </script>

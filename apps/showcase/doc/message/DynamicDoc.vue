@@ -15,20 +15,20 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            messages: [],
-            count: 0,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                messages: [],
+                count: 0,
+                code: {
+                    basic: `
 <Button label="Show" @click="addMessages()" />
 <Button label="Clear" severity="secondary" class="ml-2" @click="clearMessages()" />
 <transition-group name="p-message" tag="div" class="flex flex-col">
     <Message v-for="msg of messages" :key="msg.id" :severity="msg.severity" class="mt-4">{{ msg.content }}</Message>
 </transition-group>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center justify-center gap-4">
         <div class="flex gap-2">
@@ -60,20 +60,20 @@ const clearMessages = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        addMessages() {
-            this.messages = [
-                { severity: 'info', content: 'Dynamic Info Message', id: this.count++ },
-                { severity: 'success', content: 'Dynamic Success Message', id: this.count++ },
-                { severity: 'warn', content: 'Dynamic Warn Message', id: this.count++ }
-            ];
+                }
+            };
         },
-        clearMessages() {
-            this.messages = [];
+        methods: {
+            addMessages() {
+                this.messages = [
+                    { severity: 'info', content: 'Dynamic Info Message', id: this.count++ },
+                    { severity: 'success', content: 'Dynamic Success Message', id: this.count++ },
+                    { severity: 'warn', content: 'Dynamic Warn Message', id: this.count++ }
+                ];
+            },
+            clearMessages() {
+                this.messages = [];
+            }
         }
-    }
-};
+    };
 </script>

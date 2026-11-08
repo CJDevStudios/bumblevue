@@ -12,18 +12,18 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('ImageCompare'),
-                    key: 'ImageCompare'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('ImageCompare'),
+                        key: 'ImageCompare'
+                    }
+                ]
+            };
+        }
+    };
 </script>

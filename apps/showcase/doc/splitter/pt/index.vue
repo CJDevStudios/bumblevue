@@ -9,33 +9,33 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-import PTViewer from './PTViewer.vue';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import PTViewer from './PTViewer.vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.viewer',
-                    label: 'Viewer',
-                    component: PTViewer
-                },
-                {
-                    id: 'pt.doc.splitter',
-                    label: 'Splitter PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Splitter')
-                },
-                {
-                    id: 'pt.doc.splitterpanel',
-                    label: 'SplitterPanel PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('SplitterPanel')
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.viewer',
+                        label: 'Viewer',
+                        component: PTViewer
+                    },
+                    {
+                        id: 'pt.doc.splitter',
+                        label: 'Splitter PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Splitter')
+                    },
+                    {
+                        id: 'pt.doc.splitterpanel',
+                        label: 'SplitterPanel PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('SplitterPanel')
+                    }
+                ]
+            };
+        }
+    };
 </script>

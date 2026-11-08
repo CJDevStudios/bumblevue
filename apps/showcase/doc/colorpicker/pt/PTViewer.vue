@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            color: null,
-            docs: [
-                {
-                    data: getPTOptions('ColorPicker'),
-                    key: 'ColorPicker'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                color: null,
+                docs: [
+                    {
+                        data: getPTOptions('ColorPicker'),
+                        key: 'ColorPicker'
+                    }
+                ]
+            };
+        }
+    };
 </script>

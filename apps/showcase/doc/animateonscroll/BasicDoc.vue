@@ -116,11 +116,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <div class="flex flex-wrap justify-center gap-8">
     <div
         v-animateonscroll="{ enterClass: 'animate-enter fade-in-10 slide-in-from-l-8 animate-duration-1000', leaveClass: 'animate-leave fade-out-0' }"
@@ -223,7 +223,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center overflow-hidden">
         <div class="flex flex-col items-center gap-2">
@@ -337,8 +337,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

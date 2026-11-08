@@ -33,28 +33,28 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Refresh',
-                    icon: 'pi pi-refresh'
-                },
-                {
-                    label: 'Search',
-                    icon: 'pi pi-search'
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-times'
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Refresh',
+                        icon: 'pi pi-refresh'
+                    },
+                    {
+                        label: 'Search',
+                        icon: 'pi pi-search'
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-times'
+                    }
+                ],
+                code: {
+                    basic: `
 <Panel toggleable>
     <template #header>
         <div class="flex items-center gap-2">
@@ -81,7 +81,7 @@ export default {
     </p>
 </Panel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -150,16 +150,16 @@ const save = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.menu.toggle(event);
+                }
+            };
         },
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
+        methods: {
+            toggle(event) {
+                this.$refs.menu.toggle(event);
+            },
+            save() {
+                this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
+            }
         }
-    }
-};
+    };
 </script>

@@ -11,19 +11,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <InputText v-model="value1" type="text" size="small" placeholder="Small" />
 <InputText v-model="value2" type="text" placeholder="Normal" />
 <InputText v-model="value3" type="text" size="large" placeholder="Large" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">
         <InputText v-model="value1" type="text" size="small" placeholder="Small" />
@@ -40,8 +40,8 @@ const value2 = ref(null);
 const value3 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -6,17 +6,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 const app = createApp(App);
 
 app.use(BumbleVue);`
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

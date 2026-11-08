@@ -10,39 +10,39 @@
 </template>
 
 <script>
-export default {
-    inheritAttrs: false,
-    methods: {
-        onClick(event) {
-            const parentElement = event.currentTarget.parentElement;
-            const hash = window.location.hash.substring(1);
+    export default {
+        inheritAttrs: false,
+        methods: {
+            onClick(event) {
+                const parentElement = event.currentTarget.parentElement;
+                const hash = window.location.hash.substring(1);
 
-            hash === this.$attrs.id && event.preventDefault();
+                hash === this.$attrs.id && event.preventDefault();
 
-            setTimeout(() => {
-                parentElement.scrollIntoView({ block: 'start' });
-            }, 0);
-        }
-    },
-    computed: {
-        checkRouteName() {
-            const path = this.$router.currentRoute.value.path;
-
-            if (path.lastIndexOf('/') === path.length - 1) {
-                return path.slice(0, -1);
+                setTimeout(() => {
+                    parentElement.scrollIntoView({ block: 'start' });
+                }, 0);
             }
-
-            return path;
         },
-        headerTag() {
-            if (this.$attrs.level === 3) {
-                return 'h4';
-            } else if (this.$attrs.level === 2) {
-                return 'h3';
-            }
+        computed: {
+            checkRouteName() {
+                const path = this.$router.currentRoute.value.path;
 
-            return 'h2';
+                if (path.lastIndexOf('/') === path.length - 1) {
+                    return path.slice(0, -1);
+                }
+
+                return path;
+            },
+            headerTag() {
+                if (this.$attrs.level === 3) {
+                    return 'h4';
+                } else if (this.$attrs.level === 2) {
+                    return 'h3';
+                }
+
+                return 'h2';
+            }
         }
-    }
-};
+    };
 </script>

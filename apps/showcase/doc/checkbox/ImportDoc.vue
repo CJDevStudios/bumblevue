@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Checkbox from '@cjdevstudios/bumblevue/checkbox';
 import CheckboxGroup from '@cjdevstudios/bumblevue/checkboxgroup';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

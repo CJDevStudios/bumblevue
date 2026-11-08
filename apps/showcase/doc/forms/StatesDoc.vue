@@ -17,14 +17,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            initialValues: {
-                username: ''
-            },
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    username: ''
+                },
+                code: {
+                    basic: `
 <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="grid lg:grid-cols-2 gap-4 w-full">
     <div class="flex flex-col justify-center items-center gap-4">
         <InputText name="username" type="text" placeholder="Username" class="w-full sm:w-56" />
@@ -35,7 +35,7 @@ export default {
     </Fieldset>
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -86,31 +86,31 @@ const onFormSubmit = ({ valid }) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        resolver: ({ values }) => {
-            const errors = { username: [] };
-
-            if (!values.username) {
-                errors.username.push({ type: 'required', message: 'Username is required.' });
-            }
-
-            if (values.username?.length < 3) {
-                errors.username.push({ type: 'minimum', message: 'Username must be at least 3 characters long.' });
-            }
-
-            return {
-                values,
-                errors
+                }
             };
         },
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+        methods: {
+            resolver: ({ values }) => {
+                const errors = { username: [] };
+
+                if (!values.username) {
+                    errors.username.push({ type: 'required', message: 'Username is required.' });
+                }
+
+                if (values.username?.length < 3) {
+                    errors.username.push({ type: 'minimum', message: 'Username must be at least 3 characters long.' });
+                }
+
+                return {
+                    values,
+                    errors
+                };
+            },
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>

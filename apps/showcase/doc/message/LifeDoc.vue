@@ -10,16 +10,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
 <Message v-if="visible" severity="success" :life="3000">Auto Disappear Message</Message>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center justify-center">
         <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
@@ -41,17 +41,17 @@ const showMessage = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        showMessage() {
-            this.visible = true;
+                }
+            };
+        },
+        methods: {
+            showMessage() {
+                this.visible = true;
 
-            setTimeout(() => {
-                this.visible = false;
-            }, 3500);
+                setTimeout(() => {
+                    this.visible = false;
+                }, 3500);
+            }
         }
-    }
-};
+    };
 </script>

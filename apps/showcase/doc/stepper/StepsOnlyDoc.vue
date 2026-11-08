@@ -15,11 +15,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Stepper value="1" class="basis-200">
     <StepList>
         <Step value="1">Design</Step>
@@ -28,7 +28,7 @@ export default {
     </StepList>
 </Stepper>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Stepper value="1" class="basis-200">
@@ -41,8 +41,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

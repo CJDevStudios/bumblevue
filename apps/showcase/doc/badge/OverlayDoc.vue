@@ -17,11 +17,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <OverlayBadge value="2">
     <i class="pi pi-bell" style="font-size: 2rem" />
 </OverlayBadge>
@@ -32,7 +32,7 @@ export default {
     <i class="pi pi-envelope" style="font-size: 2rem" />
 </OverlayBadge>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-6">
         <OverlayBadge value="2">
@@ -51,8 +51,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

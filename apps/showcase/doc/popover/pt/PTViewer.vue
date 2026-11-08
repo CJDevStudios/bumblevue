@@ -41,28 +41,28 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            members: [
-                { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
-            ],
-            docs: [
-                {
-                    data: getPTOptions('Popover'),
-                    key: 'Popover'
-                }
-            ]
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.op.show(event);
+    export default {
+        data() {
+            return {
+                members: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('Popover'),
+                        key: 'Popover'
+                    }
+                ]
+            };
+        },
+        methods: {
+            toggle(event) {
+                this.$refs.op.show(event);
+            }
         }
-    }
-};
+    };
 </script>

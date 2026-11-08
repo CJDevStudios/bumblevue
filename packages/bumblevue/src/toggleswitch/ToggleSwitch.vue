@@ -28,98 +28,98 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
-import ToggleSwitchStyle from '@cjdevstudios/bumblevue/toggleswitch/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+    import ToggleSwitchStyle from '@cjdevstudios/bumblevue/toggleswitch/style';
 
-export default {
-    name: 'ToggleSwitch',
-    extends: BaseEditableHolder,
-    inheritAttrs: false,
-    props: {
-        trueValue: {
-            type: null,
-            default: true
-        },
-        falseValue: {
-            type: null,
-            default: false
-        },
-        readonly: {
-            type: Boolean,
-            default: false
-        },
-        tabindex: {
-            type: Number,
-            default: null
-        },
-        inputId: {
-            type: String,
-            default: null
-        },
-        inputClass: {
-            type: [String, Object],
-            default: null
-        },
-        inputStyle: {
-            type: Object,
-            default: null
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['change', 'focus', 'blur'],
-    style: ToggleSwitchStyle,
-    provide() {
-        return {
-            $pcToggleSwitch: this,
-            $parentInstance: this
-        };
-    },
-    methods: {
-        getPTOptions(key) {
-            const _ptm = key === 'root' ? this.ptmi : this.ptm;
-
-            return _ptm(key, {
-                context: {
-                    checked: this.checked,
-                    disabled: this.disabled
-                }
-            });
-        },
-        onChange(event) {
-            if (!this.disabled && !this.readonly) {
-                const newValue = this.checked ? this.falseValue : this.trueValue;
-
-                this.writeValue(newValue, event);
-                this.$emit('change', event);
+    export default {
+        name: 'ToggleSwitch',
+        extends: BaseEditableHolder,
+        inheritAttrs: false,
+        props: {
+            trueValue: {
+                type: null,
+                default: true
+            },
+            falseValue: {
+                type: null,
+                default: false
+            },
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+            tabindex: {
+                type: Number,
+                default: null
+            },
+            inputId: {
+                type: String,
+                default: null
+            },
+            inputClass: {
+                type: [String, Object],
+                default: null
+            },
+            inputStyle: {
+                type: Object,
+                default: null
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
             }
         },
-        onFocus(event) {
-            this.$emit('focus', event);
+        emits: ['change', 'focus', 'blur'],
+        style: ToggleSwitchStyle,
+        provide() {
+            return {
+                $pcToggleSwitch: this,
+                $parentInstance: this
+            };
         },
-        onBlur(event) {
-            this.$emit('blur', event);
-            this.formField.onBlur?.(event);
-        }
-    },
-    computed: {
-        checked() {
-            return this.d_value === this.trueValue;
+        methods: {
+            getPTOptions(key) {
+                const _ptm = key === 'root' ? this.ptmi : this.ptm;
+
+                return _ptm(key, {
+                    context: {
+                        checked: this.checked,
+                        disabled: this.disabled
+                    }
+                });
+            },
+            onChange(event) {
+                if (!this.disabled && !this.readonly) {
+                    const newValue = this.checked ? this.falseValue : this.trueValue;
+
+                    this.writeValue(newValue, event);
+                    this.$emit('change', event);
+                }
+            },
+            onFocus(event) {
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.$emit('blur', event);
+                this.formField.onBlur?.(event);
+            }
         },
-        dataP() {
-            return cn({
-                checked: this.checked,
-                disabled: this.disabled,
-                invalid: this.$invalid
-            });
+        computed: {
+            checked() {
+                return this.d_value === this.trueValue;
+            },
+            dataP() {
+                return cn({
+                    checked: this.checked,
+                    disabled: this.disabled,
+                    invalid: this.$invalid
+                });
+            }
         }
-    }
-};
+    };
 </script>

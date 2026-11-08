@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Select>
     <template #dropdownicon>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -21,8 +21,8 @@ export default {
     </template>
 </Select>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

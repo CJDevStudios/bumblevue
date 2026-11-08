@@ -106,14 +106,14 @@
         </p>
         <h5>PrimeIcons</h5>
         <p>
-            BumbleVue does not provide an icon font. Components use a small set of built-in SVG icons from <i>@cjdevstudios/bumblevue/icons</i> by default, and any other icons should come from the icon library of your choice. PrimeIcons can
-            still be used as is, since BumbleVue components accept the <i>pi pi-&#123;icon&#125;</i> classes in their icon properties. The <i>PrimeIcons</i> constants API has been removed and the <i>pi-spin</i> class applied by components
-            to custom loading icons has been replaced with <i>p-icon-spin</i>.
+            BumbleVue does not provide an icon font. Components use a small set of built-in SVG icons from <i>@cjdevstudios/bumblevue/icons</i> by default, and any other icons should come from the icon library of your choice. PrimeIcons can still be
+            used as is, since BumbleVue components accept the <i>pi pi-&#123;icon&#125;</i> classes in their icon properties. The <i>PrimeIcons</i> constants API has been removed and the <i>pi-spin</i> class applied by components to custom loading
+            icons has been replaced with <i>p-icon-spin</i>.
         </p>
         <h5>Tailwind CSS v3</h5>
         <p>
-            The Tailwind plugin is now part of the main package and is only available for Tailwind v4, import <i>@cjdevstudios/bumblevue/tailwind.css</i> after <i>tailwindcss</i> in your CSS file. The JavaScript plugin for Tailwind v3 has
-            been removed.
+            The Tailwind plugin is now part of the main package and is only available for Tailwind v4, import <i>@cjdevstudios/bumblevue/tailwind.css</i> after <i>tailwindcss</i> in your CSS file. The JavaScript plugin for Tailwind v3 has been
+            removed.
         </p>
         <h5>PrimeCLT</h5>
         <p>Not essential.</p>

@@ -65,14 +65,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            files: [],
-            totalSize: 0,
-            totalSizePercent: 0,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                files: [],
+                totalSize: 0,
+                totalSizePercent: 0,
+                code: {
+                    basic: `
 <FileUpload name="demo[]" url="/api/upload" @upload="onTemplatedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000" @select="onSelectedFiles">
     <template #header="{ chooseCallback, uploadCallback, clearCallback, files }">
         <div class="flex flex-wrap justify-between items-center flex-1 gap-4">
@@ -131,7 +131,7 @@ export default {
     </template>
 </FileUpload>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -247,47 +247,47 @@ const formatSize = (bytes) => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            onRemoveTemplatingFile(file, removeFileCallback, index) {
+                removeFileCallback(index);
+                this.totalSize -= parseInt(this.formatSize(file.size));
+                this.totalSizePercent = this.totalSize / 10;
+            },
+            onClearTemplatingUpload(clear) {
+                clear();
+                this.totalSize = 0;
+                this.totalSizePercent = 0;
+            },
+            onSelectedFiles(event) {
+                this.files = event.files;
+                this.files.forEach((file) => {
+                    this.totalSize += parseInt(this.formatSize(file.size));
+                });
+                this.totalSizePercent = this.totalSize / 10;
+            },
+            uploadEvent(callback) {
+                callback();
+            },
+            onTemplatedUpload() {
+                this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+            },
+            formatSize(bytes) {
+                const k = 1024;
+                const dm = 3;
+                const sizes = this.$primevue.config.locale.fileSizeTypes;
+
+                if (bytes === 0) {
+                    return `0 ${sizes[0]}`;
+                }
+
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+
+                return `${formattedSize} ${sizes[i]}`;
             }
-        };
-    },
-    methods: {
-        onRemoveTemplatingFile(file, removeFileCallback, index) {
-            removeFileCallback(index);
-            this.totalSize -= parseInt(this.formatSize(file.size));
-            this.totalSizePercent = this.totalSize / 10;
-        },
-        onClearTemplatingUpload(clear) {
-            clear();
-            this.totalSize = 0;
-            this.totalSizePercent = 0;
-        },
-        onSelectedFiles(event) {
-            this.files = event.files;
-            this.files.forEach((file) => {
-                this.totalSize += parseInt(this.formatSize(file.size));
-            });
-            this.totalSizePercent = this.totalSize / 10;
-        },
-        uploadEvent(callback) {
-            callback();
-        },
-        onTemplatedUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-        },
-        formatSize(bytes) {
-            const k = 1024;
-            const dm = 3;
-            const sizes = this.$primevue.config.locale.fileSizeTypes;
-
-            if (bytes === 0) {
-                return `0 ${sizes[0]}`;
-            }
-
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
-
-            return `${formattedSize} ${sizes[i]}`;
         }
-    }
-};
+    };
 </script>

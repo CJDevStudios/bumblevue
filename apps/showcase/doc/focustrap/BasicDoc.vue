@@ -30,14 +30,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            name: null,
-            email: null,
-            accept: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                name: null,
+                email: null,
+                accept: false,
+                code: {
+                    basic: `
 <div v-focustrap class="w-full sm:w-80 flex flex-col gap-6">
     <IconField>
         <InputIcon>
@@ -61,7 +61,7 @@ export default {
     <Button type="submit" label="Submit" class="mt-2" />
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div v-focustrap class="w-full sm:w-80 flex flex-col gap-6">
@@ -97,8 +97,8 @@ const email = ref();
 const accept = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

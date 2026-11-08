@@ -7,11 +7,11 @@
 </template>
 
 <script>
-export default {
-    computed: {
-        fillColor() {
-            return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
+    export default {
+        computed: {
+            fillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
+            }
         }
-    }
-};
+    };
 </script>

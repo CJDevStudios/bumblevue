@@ -31,24 +31,24 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCountries: null,
-            countries: [
-                { name: 'Australia', code: 'AU' },
-                { name: 'Brazil', code: 'BR' },
-                { name: 'China', code: 'CN' },
-                { name: 'Egypt', code: 'EG' },
-                { name: 'France', code: 'FR' },
-                { name: 'Germany', code: 'DE' },
-                { name: 'India', code: 'IN' },
-                { name: 'Japan', code: 'JP' },
-                { name: 'Spain', code: 'ES' },
-                { name: 'United States', code: 'US' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCountries: null,
+                countries: [
+                    { name: 'Australia', code: 'AU' },
+                    { name: 'Brazil', code: 'BR' },
+                    { name: 'China', code: 'CN' },
+                    { name: 'Egypt', code: 'EG' },
+                    { name: 'France', code: 'FR' },
+                    { name: 'Germany', code: 'DE' },
+                    { name: 'India', code: 'IN' },
+                    { name: 'Japan', code: 'JP' },
+                    { name: 'Spain', code: 'ES' },
+                    { name: 'United States', code: 'US' }
+                ],
+                code: {
+                    basic: `
 <MultiSelect v-model="selectedCountries" :options="countries" optionLabel="name" filter placeholder="Select Countries" display="chip" class="w-full md:w-80">
     <template #option="slotProps">
         <div class="flex items-center">
@@ -73,7 +73,7 @@ export default {
     </template>
 </MultiSelect>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <MultiSelect v-model="selectedCountries" :options="countries" optionLabel="name" filter placeholder="Select Countries" display="chip" class="w-full md:w-80">
@@ -120,8 +120,8 @@ const countries = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

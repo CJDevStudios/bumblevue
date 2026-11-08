@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" tableStyle="min-width: 50rem">
     <Column field="code" header="Code" sortable style="width: 25%"></Column>
     <Column field="name" header="Name" sortable style="width: 25%"></Column>
@@ -31,7 +31,7 @@ export default {
     <Column field="quantity" header="Quantity" sortable style="width: 25%"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" tableStyle="min-width: 50rem">
@@ -55,7 +55,7 @@ const products = ref();
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -70,13 +70,13 @@ const products = ref();
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
         }
-    }
-};
+    };
 </script>

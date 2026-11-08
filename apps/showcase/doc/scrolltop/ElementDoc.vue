@@ -18,11 +18,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ScrollPanel style="width: 250px; height: 200px">
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae et leo duis ut diam. Ultricies mi quis hendrerit dolor magna eget est lorem. Amet consectetur adipiscing
@@ -34,7 +34,7 @@ export default {
     <ScrollTop target="parent" :threshold="100" icon="pi pi-arrow-up" :buttonProps="{ severity: 'contrast', raised: true, rounded: true }" />
 </ScrollPanel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ScrollPanel style="width: 250px; height: 200px">
@@ -50,8 +50,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

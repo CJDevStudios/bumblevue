@@ -10,17 +10,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                code: {
+                    basic: `
 <Password v-model="value1" :invalid="!value1" placeholder="Password" />
 <Password v-model="value2" :invalid="!value2" variant="filled" placeholder="Password" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <Password v-model="value1" :invalid="!value1" placeholder="Password" />
@@ -35,8 +35,8 @@ const value1 = ref(null);
 const value2 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

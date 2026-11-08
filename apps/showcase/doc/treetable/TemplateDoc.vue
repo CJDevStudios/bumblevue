@@ -31,14 +31,14 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <template #header>
         <div class="text-xl font-bold">File Viewer</div>
@@ -61,7 +61,7 @@ export default {
     </template>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -99,7 +99,7 @@ onMounted(() => {
 const nodes = ref();
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -127,13 +127,13 @@ const nodes = ref();
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>

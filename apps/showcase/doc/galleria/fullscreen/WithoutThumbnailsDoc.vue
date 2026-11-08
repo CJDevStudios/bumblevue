@@ -20,33 +20,33 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '1500px',
-                    numVisible: 5
-                },
-                {
-                    breakpoint: '1024px',
-                    numVisible: 3
-                },
-                {
-                    breakpoint: '768px',
-                    numVisible: 2
-                },
-                {
-                    breakpoint: '560px',
-                    numVisible: 1
-                }
-            ],
-            displayBasic: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1500px',
+                        numVisible: 5
+                    },
+                    {
+                        breakpoint: '1024px',
+                        numVisible: 3
+                    },
+                    {
+                        breakpoint: '768px',
+                        numVisible: 2
+                    },
+                    {
+                        breakpoint: '560px',
+                        numVisible: 1
+                    }
+                ],
+                displayBasic: false,
+                code: {
+                    basic: `
 <Galleria v-model:visible="displayBasic" :value="images" :responsiveOptions="responsiveOptions" :numVisible="9" containerStyle="max-width: 50%" :circular="true" :fullScreen="true" :showItemNavigators="true"  :showThumbnails="false">
     <template #item="slotProps">
         <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
@@ -58,7 +58,7 @@ export default {
 
 <Button label="Show" icon="pi pi-external-link" @click="displayBasic = true" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Galleria v-model:visible="displayBasic" :value="images" :responsiveOptions="responsiveOptions" :numVisible="9" containerStyle="max-width: 50%" :circular="true" :fullScreen="true" :showItemNavigators="true"  :showThumbnails="false">
@@ -104,7 +104,7 @@ onMounted(() => {
 })
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -114,13 +114,13 @@ onMounted(() => {
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>

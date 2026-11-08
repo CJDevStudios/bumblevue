@@ -10,19 +10,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                { label: 'Copy', icon: 'pi pi-copy' },
-                { label: 'Rename', icon: 'pi pi-file-edit' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    { label: 'Copy', icon: 'pi pi-copy' },
+                    { label: 'Rename', icon: 'pi pi-file-edit' }
+                ],
+                code: {
+                    basic: `
 <img alt="Logo" src="/images/nature/nature2.jpg" class="w-full md:w-120 rounded-sm shadow-lg" @contextmenu="onImageRightClick" aria-haspopup="true" />
 <ContextMenu ref="menu" :model="items" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <img alt="Logo" src="https://primefaces.org/cdn/primevue/images/nature/nature2.jpg" @contextmenu="onImageRightClick" class="w-full md:w-120 rounded-sm shadow-lg" aria-haspopup="true" />
@@ -45,13 +45,13 @@ const onImageRightClick = (event) => {
 
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            onImageRightClick(event) {
+                this.$refs.menu.show(event);
             }
-        };
-    },
-    methods: {
-        onImageRightClick(event) {
-            this.$refs.menu.show(event);
         }
-    }
-};
+    };
 </script>

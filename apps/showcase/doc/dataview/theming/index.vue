@@ -9,42 +9,42 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import DocStyledPreset from '@/components/doc/DocStyledPreset.vue';
-import { getStyleOptions, getTokenOptions } from '@/components/doc/helpers';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import DocStyledPreset from '@/components/doc/DocStyledPreset.vue';
+    import { getStyleOptions, getTokenOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'theming.styled',
-                    label: 'Styled',
-                    children: [
-                        {
-                            id: 'theming.classes',
-                            label: 'CSS Classes',
-                            description: 'List of class names used in the styled mode.',
-                            component: DocApiTable,
-                            data: getStyleOptions('DataView')
-                        },
-                        {
-                            id: 'theming.tokens',
-                            label: 'Design Tokens',
-                            description: 'List of design tokens.',
-                            component: DocApiTable,
-                            data: getTokenOptions('DataView')
-                        },
-                        {
-                            id: 'theming.preset',
-                            label: 'Built-in Presets',
-                            component: DocStyledPreset,
-                            data: 'dataview'
-                        }
-                    ]
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'theming.styled',
+                        label: 'Styled',
+                        children: [
+                            {
+                                id: 'theming.classes',
+                                label: 'CSS Classes',
+                                description: 'List of class names used in the styled mode.',
+                                component: DocApiTable,
+                                data: getStyleOptions('DataView')
+                            },
+                            {
+                                id: 'theming.tokens',
+                                label: 'Design Tokens',
+                                description: 'List of design tokens.',
+                                component: DocApiTable,
+                                data: getTokenOptions('DataView')
+                            },
+                            {
+                                id: 'theming.preset',
+                                label: 'Built-in Presets',
+                                component: DocStyledPreset,
+                                data: 'dataview'
+                            }
+                        ]
+                    }
+                ]
+            };
+        }
+    };
 </script>

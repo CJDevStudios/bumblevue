@@ -4,17 +4,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import KeyFilter from '@cjdevstudios/bumblevue/keyfilter';
 
 app.directive('keyfilter', KeyFilter);
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

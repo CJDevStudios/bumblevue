@@ -9,11 +9,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 const Noir = definePreset(Aura, {
     semantic: {
         primary: {
@@ -62,8 +62,8 @@ const Noir = definePreset(Aura, {
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

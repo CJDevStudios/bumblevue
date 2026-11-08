@@ -12,17 +12,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <InputText v-tooltip="'Enter your username'" type="text" placeholder="Right" />
 <InputText v-tooltip.top="'Enter your username'" type="text" placeholder="Top" />
 <InputText v-tooltip.bottom="'Enter your username'" type="text" placeholder="Bottom" />
 <InputText v-tooltip.left="'Enter your username'" type="text" placeholder="Left" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-2">
         <InputText v-tooltip="'Enter your username'" type="text" placeholder="Right" />
@@ -32,8 +32,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

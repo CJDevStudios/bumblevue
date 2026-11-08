@@ -65,17 +65,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            size: 'normal',
-            sizeOptions: [
-                { label: 'Small', value: 'small' },
-                { label: 'Normal', value: 'normal' },
-                { label: 'Large', value: 'large' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                size: 'normal',
+                sizeOptions: [
+                    { label: 'Small', value: 'small' },
+                    { label: 'Normal', value: 'normal' },
+                    { label: 'Large', value: 'large' }
+                ],
+                code: {
+                    basic: `
 <Button icon="pi pi-check" aria-label="Filter" />
 <Button icon="pi pi-bookmark" severity="secondary" aria-label="Bookmark" />
 <Button icon="pi pi-search" severity="success" aria-label="Search" />
@@ -121,7 +121,7 @@ export default {
 <Button icon="pi pi-times" severity="danger" variant="text" rounded aria-label="Cancel" />
 <Button icon="pi pi-star" severity="contrast" variant="text" rounded aria-label="Star" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex justify-center mb-8">
@@ -195,8 +195,8 @@ const sizeOptions = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

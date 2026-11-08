@@ -116,30 +116,30 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
-import { FilterMatchMode, FilterOperator } from '@cjdevstudios/bumblevue/core/api';
+    import { CustomerService } from '@/service/CustomerService';
+    import { FilterMatchMode, FilterOperator } from '@cjdevstudios/bumblevue/core/api';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            selectedCustomers: null,
-            filters: null,
-            representatives: [
-                { name: 'Amy Elsner', image: 'amyelsner.png' },
-                { name: 'Anna Fali', image: 'annafali.png' },
-                { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-                { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-                { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-                { name: 'Onyama Limba', image: 'onyamalimba.png' },
-                { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-                { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-            ],
-            statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                selectedCustomers: null,
+                filters: null,
+                representatives: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png' },
+                    { name: 'Anna Fali', image: 'annafali.png' },
+                    { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+                    { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+                    { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+                    { name: 'Onyama Limba', image: 'onyamalimba.png' },
+                    { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+                    { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+                ],
+                statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
+                code: {
+                    basic: `
 <DataTable v-model:filters="filters" v-model:selection="selectedCustomers" :value="customers" paginator :rows="10" dataKey="id" filterDisplay="menu"
     :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']">
     <template #header>
@@ -239,7 +239,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:filters="filters" v-model:selection="selectedCustomers" :value="customers" paginator :rows="10" dataKey="id" filterDisplay="menu"
@@ -428,7 +428,7 @@ const getSeverity = (status) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -448,69 +448,69 @@ const getSeverity = (status) => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    created() {
-        this.initFilters();
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersLarge().then((data) => {
-                this.customers = this.getCustomers(data);
-            });
-        },
-        formatDate(value) {
-            return value.toLocaleDateString('en-US', {
-                day: '2-digit',
-                month: '2-digit',
-                year: 'numeric'
-            });
-        },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        },
-        clearFilter() {
-            this.initFilters();
-        },
-        initFilters() {
-            this.filters = {
-                global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-                name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-                'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-                representative: { value: null, matchMode: FilterMatchMode.IN },
-                date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
-                balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-                status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-                activity: { value: [0, 100], matchMode: FilterMatchMode.BETWEEN },
-                verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+                }
             };
         },
-        getCustomers(data) {
-            return [...(data || [])].map((d) => {
-                d.date = new Date(d.date);
-
-                return d;
-            });
+        created() {
+            this.initFilters();
         },
-        getSeverity(status) {
-            switch (status) {
-                case 'unqualified':
-                    return 'danger';
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersLarge().then((data) => {
+                    this.customers = this.getCustomers(data);
+                });
+            },
+            formatDate(value) {
+                return value.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            },
+            clearFilter() {
+                this.initFilters();
+            },
+            initFilters() {
+                this.filters = {
+                    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+                    name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+                    'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+                    representative: { value: null, matchMode: FilterMatchMode.IN },
+                    date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
+                    balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+                    status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
+                    activity: { value: [0, 100], matchMode: FilterMatchMode.BETWEEN },
+                    verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+                };
+            },
+            getCustomers(data) {
+                return [...(data || [])].map((d) => {
+                    d.date = new Date(d.date);
 
-                case 'qualified':
-                    return 'success';
+                    return d;
+                });
+            },
+            getSeverity(status) {
+                switch (status) {
+                    case 'unqualified':
+                        return 'danger';
 
-                case 'new':
-                    return 'info';
+                    case 'qualified':
+                        return 'success';
 
-                case 'negotiation':
-                    return 'warn';
+                    case 'new':
+                        return 'info';
 
-                case 'renewal':
-                    return null;
+                    case 'negotiation':
+                        return 'warn';
+
+                    case 'renewal':
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

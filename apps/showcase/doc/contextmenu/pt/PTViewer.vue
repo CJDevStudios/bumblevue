@@ -6,22 +6,22 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            items: [
-                { label: 'Copy', icon: 'pi pi-copy' },
-                { label: 'Rename', icon: 'pi pi-file-edit' }
-            ],
-            docs: [
-                {
-                    data: getPTOptions('ContextMenu'),
-                    key: 'ContextMenu'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                items: [
+                    { label: 'Copy', icon: 'pi pi-copy' },
+                    { label: 'Rename', icon: 'pi pi-file-edit' }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('ContextMenu'),
+                        key: 'ContextMenu'
+                    }
+                ]
+            };
+        }
+    };
 </script>

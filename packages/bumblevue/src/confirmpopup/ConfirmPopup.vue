@@ -58,295 +58,295 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumblevue/styled';
-import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
-import Button from '@cjdevstudios/bumblevue/button';
-import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
-import ConfirmPopupStyle from '@cjdevstudios/bumblevue/confirmpopup/style';
-import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
-import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
-import Portal from '@cjdevstudios/bumblevue/portal';
+    import { $dt } from '@cjdevstudios/bumblevue/styled';
+    import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import ConfirmationEventBus from '@cjdevstudios/bumblevue/confirmationeventbus';
+    import ConfirmPopupStyle from '@cjdevstudios/bumblevue/confirmpopup/style';
+    import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
+    import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
+    import Portal from '@cjdevstudios/bumblevue/portal';
 
-export default {
-    name: 'ConfirmPopup',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        group: String
-    },
-    style: ConfirmPopupStyle,
-    provide() {
-        return {
-            $pcConfirmPopup: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            visible: false,
-            confirmation: null,
-            autoFocusAccept: null,
-            autoFocusReject: null,
-            target: null
-        };
-    },
-    target: null,
-    outsideClickListener: null,
-    scrollHandler: null,
-    resizeListener: null,
-    container: null,
-    confirmListener: null,
-    closeListener: null,
-    mounted() {
-        this.confirmListener = (options) => {
-            if (!options) {
-                return;
-            }
-
-            if (options.group === this.group) {
-                this.confirmation = options;
-                this.target = options.target;
-
-                if (this.confirmation.onShow) {
-                    this.confirmation.onShow();
+    export default {
+        name: 'ConfirmPopup',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            group: String
+        },
+        style: ConfirmPopupStyle,
+        provide() {
+            return {
+                $pcConfirmPopup: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                visible: false,
+                confirmation: null,
+                autoFocusAccept: null,
+                autoFocusReject: null,
+                target: null
+            };
+        },
+        target: null,
+        outsideClickListener: null,
+        scrollHandler: null,
+        resizeListener: null,
+        container: null,
+        confirmListener: null,
+        closeListener: null,
+        mounted() {
+            this.confirmListener = (options) => {
+                if (!options) {
+                    return;
                 }
 
-                this.visible = true;
-            }
-        };
+                if (options.group === this.group) {
+                    this.confirmation = options;
+                    this.target = options.target;
 
-        this.closeListener = () => {
-            this.visible = false;
-            this.confirmation = null;
-        };
+                    if (this.confirmation.onShow) {
+                        this.confirmation.onShow();
+                    }
 
-        ConfirmationEventBus.on('confirm', this.confirmListener);
-        ConfirmationEventBus.on('close', this.closeListener);
-    },
-    beforeUnmount() {
-        ConfirmationEventBus.off('confirm', this.confirmListener);
-        ConfirmationEventBus.off('close', this.closeListener);
+                    this.visible = true;
+                }
+            };
 
-        this.unbindOutsideClickListener();
+            this.closeListener = () => {
+                this.visible = false;
+                this.confirmation = null;
+            };
 
-        if (this.scrollHandler) {
-            this.scrollHandler.destroy();
-            this.scrollHandler = null;
-        }
-
-        this.unbindResizeListener();
-
-        if (this.container) {
-            ZIndex.clear(this.container);
-            this.container = null;
-        }
-
-        this.target = null;
-        this.confirmation = null;
-    },
-    methods: {
-        accept() {
-            if (this.confirmation.accept) {
-                this.confirmation.accept();
-            }
-
-            this.visible = false;
+            ConfirmationEventBus.on('confirm', this.confirmListener);
+            ConfirmationEventBus.on('close', this.closeListener);
         },
-        reject() {
-            if (this.confirmation.reject) {
-                this.confirmation.reject();
-            }
-
-            this.visible = false;
-        },
-        onHide() {
-            if (this.confirmation.onHide) {
-                this.confirmation.onHide();
-            }
-
-            this.visible = false;
-        },
-        onAcceptKeydown(event) {
-            if (event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter') {
-                this.accept();
-                focus(this.target);
-                event.preventDefault();
-            }
-        },
-        onRejectKeydown(event) {
-            if (event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter') {
-                this.reject();
-                focus(this.target);
-                event.preventDefault();
-            }
-        },
-        onEnter(el) {
-            this.autoFocusAccept = this.confirmation.defaultFocus === undefined || this.confirmation.defaultFocus === 'accept' ? true : false;
-            this.autoFocusReject = this.confirmation.defaultFocus === 'reject' ? true : false;
-
-            this.target = this.target || document.activeElement;
-
-            this.bindOutsideClickListener();
-            this.bindScrollListener();
-            this.bindResizeListener();
-
-            ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
-        },
-        onAfterEnter() {
-            this.focus();
-        },
-        onLeave() {
-            this.autoFocusAccept = null;
-            this.autoFocusReject = null;
-
-            focus(this.target);
-            this.target = null;
+        beforeUnmount() {
+            ConfirmationEventBus.off('confirm', this.confirmListener);
+            ConfirmationEventBus.off('close', this.closeListener);
 
             this.unbindOutsideClickListener();
-            this.unbindScrollListener();
-            this.unbindResizeListener();
-        },
-        onAfterLeave(el) {
-            ZIndex.clear(el);
-        },
-        alignOverlay() {
-            absolutePosition(this.container, this.target, false);
 
-            const containerOffset = getOffset(this.container);
-            const targetOffset = getOffset(this.target);
-            let arrowLeft = 0;
-
-            if (containerOffset.left < targetOffset.left) {
-                arrowLeft = targetOffset.left - containerOffset.left;
-            }
-
-            this.container.style.setProperty($dt('confirmpopup.arrow.left').name, `${arrowLeft}px`);
-
-            if (containerOffset.top < targetOffset.top) {
-                this.container.setAttribute('data-p-confirmpopup-flipped', 'true');
-                !this.isUnstyled && addClass(this.container, 'p-confirmpopup-flipped');
-            }
-        },
-        bindOutsideClickListener() {
-            if (!this.outsideClickListener) {
-                this.outsideClickListener = (event) => {
-                    if (this.visible && this.container && !this.container.contains(event.target) && !this.isTargetClicked(event)) {
-                        if (this.confirmation.onHide) {
-                            this.confirmation.onHide();
-                        }
-
-                        this.visible = false;
-                    } else {
-                        this.alignOverlay();
-                    }
-                };
-
-                document.addEventListener('click', this.outsideClickListener);
-            }
-        },
-        unbindOutsideClickListener() {
-            if (this.outsideClickListener) {
-                document.removeEventListener('click', this.outsideClickListener);
-                this.outsideClickListener = null;
-            }
-        },
-        bindScrollListener() {
-            if (!this.scrollHandler) {
-                this.scrollHandler = new ConnectedOverlayScrollHandler(this.target, () => {
-                    if (this.visible) {
-                        this.visible = false;
-                    }
-                });
-            }
-
-            this.scrollHandler.bindScrollListener();
-        },
-        unbindScrollListener() {
             if (this.scrollHandler) {
-                this.scrollHandler.unbindScrollListener();
+                this.scrollHandler.destroy();
+                this.scrollHandler = null;
             }
-        },
-        bindResizeListener() {
-            if (!this.resizeListener) {
-                this.resizeListener = () => {
-                    if (this.visible && !isTouchDevice()) {
-                        this.visible = false;
-                    }
-                };
 
-                window.addEventListener('resize', this.resizeListener);
-            }
-        },
-        unbindResizeListener() {
-            if (this.resizeListener) {
-                window.removeEventListener('resize', this.resizeListener);
-                this.resizeListener = null;
-            }
-        },
-        focus() {
-            let focusTarget = this.container.querySelector('[autofocus]');
+            this.unbindResizeListener();
 
-            if (focusTarget) {
-                focusTarget.focus({ preventScroll: true }); // Firefox requires preventScroll
+            if (this.container) {
+                ZIndex.clear(this.container);
+                this.container = null;
             }
+
+            this.target = null;
+            this.confirmation = null;
         },
-        isTargetClicked(event) {
-            return this.target && (this.target === event.target || this.target.contains(event.target));
-        },
-        containerRef(el) {
-            this.container = el;
-        },
-        onOverlayClick(event) {
-            OverlayEventBus.emit('overlay-click', {
-                originalEvent: event,
-                target: this.target
-            });
-        },
-        onOverlayKeydown(event) {
-            if (event.code === 'Escape') {
-                ConfirmationEventBus.emit('close', this.closeListener);
+        methods: {
+            accept() {
+                if (this.confirmation.accept) {
+                    this.confirmation.accept();
+                }
+
+                this.visible = false;
+            },
+            reject() {
+                if (this.confirmation.reject) {
+                    this.confirmation.reject();
+                }
+
+                this.visible = false;
+            },
+            onHide() {
+                if (this.confirmation.onHide) {
+                    this.confirmation.onHide();
+                }
+
+                this.visible = false;
+            },
+            onAcceptKeydown(event) {
+                if (event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter') {
+                    this.accept();
+                    focus(this.target);
+                    event.preventDefault();
+                }
+            },
+            onRejectKeydown(event) {
+                if (event.code === 'Space' || event.code === 'Enter' || event.code === 'NumpadEnter') {
+                    this.reject();
+                    focus(this.target);
+                    event.preventDefault();
+                }
+            },
+            onEnter(el) {
+                this.autoFocusAccept = this.confirmation.defaultFocus === undefined || this.confirmation.defaultFocus === 'accept' ? true : false;
+                this.autoFocusReject = this.confirmation.defaultFocus === 'reject' ? true : false;
+
+                this.target = this.target || document.activeElement;
+
+                this.bindOutsideClickListener();
+                this.bindScrollListener();
+                this.bindResizeListener();
+
+                ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
+            },
+            onAfterEnter() {
+                this.focus();
+            },
+            onLeave() {
+                this.autoFocusAccept = null;
+                this.autoFocusReject = null;
+
                 focus(this.target);
+                this.target = null;
+
+                this.unbindOutsideClickListener();
+                this.unbindScrollListener();
+                this.unbindResizeListener();
+            },
+            onAfterLeave(el) {
+                ZIndex.clear(el);
+            },
+            alignOverlay() {
+                absolutePosition(this.container, this.target, false);
+
+                const containerOffset = getOffset(this.container);
+                const targetOffset = getOffset(this.target);
+                let arrowLeft = 0;
+
+                if (containerOffset.left < targetOffset.left) {
+                    arrowLeft = targetOffset.left - containerOffset.left;
+                }
+
+                this.container.style.setProperty($dt('confirmpopup.arrow.left').name, `${arrowLeft}px`);
+
+                if (containerOffset.top < targetOffset.top) {
+                    this.container.setAttribute('data-p-confirmpopup-flipped', 'true');
+                    !this.isUnstyled && addClass(this.container, 'p-confirmpopup-flipped');
+                }
+            },
+            bindOutsideClickListener() {
+                if (!this.outsideClickListener) {
+                    this.outsideClickListener = (event) => {
+                        if (this.visible && this.container && !this.container.contains(event.target) && !this.isTargetClicked(event)) {
+                            if (this.confirmation.onHide) {
+                                this.confirmation.onHide();
+                            }
+
+                            this.visible = false;
+                        } else {
+                            this.alignOverlay();
+                        }
+                    };
+
+                    document.addEventListener('click', this.outsideClickListener);
+                }
+            },
+            unbindOutsideClickListener() {
+                if (this.outsideClickListener) {
+                    document.removeEventListener('click', this.outsideClickListener);
+                    this.outsideClickListener = null;
+                }
+            },
+            bindScrollListener() {
+                if (!this.scrollHandler) {
+                    this.scrollHandler = new ConnectedOverlayScrollHandler(this.target, () => {
+                        if (this.visible) {
+                            this.visible = false;
+                        }
+                    });
+                }
+
+                this.scrollHandler.bindScrollListener();
+            },
+            unbindScrollListener() {
+                if (this.scrollHandler) {
+                    this.scrollHandler.unbindScrollListener();
+                }
+            },
+            bindResizeListener() {
+                if (!this.resizeListener) {
+                    this.resizeListener = () => {
+                        if (this.visible && !isTouchDevice()) {
+                            this.visible = false;
+                        }
+                    };
+
+                    window.addEventListener('resize', this.resizeListener);
+                }
+            },
+            unbindResizeListener() {
+                if (this.resizeListener) {
+                    window.removeEventListener('resize', this.resizeListener);
+                    this.resizeListener = null;
+                }
+            },
+            focus() {
+                let focusTarget = this.container.querySelector('[autofocus]');
+
+                if (focusTarget) {
+                    focusTarget.focus({ preventScroll: true }); // Firefox requires preventScroll
+                }
+            },
+            isTargetClicked(event) {
+                return this.target && (this.target === event.target || this.target.contains(event.target));
+            },
+            containerRef(el) {
+                this.container = el;
+            },
+            onOverlayClick(event) {
+                OverlayEventBus.emit('overlay-click', {
+                    originalEvent: event,
+                    target: this.target
+                });
+            },
+            onOverlayKeydown(event) {
+                if (event.code === 'Escape') {
+                    ConfirmationEventBus.emit('close', this.closeListener);
+                    focus(this.target);
+                }
             }
+        },
+        computed: {
+            message() {
+                return this.confirmation ? this.confirmation.message : null;
+            },
+            acceptLabel() {
+                if (this.confirmation) {
+                    const confirmation = this.confirmation;
+
+                    return confirmation.acceptLabel || confirmation.acceptProps?.label || this.$bumblevue.config.locale.accept;
+                }
+
+                return this.$bumblevue.config.locale.accept;
+            },
+            rejectLabel() {
+                if (this.confirmation) {
+                    const confirmation = this.confirmation;
+
+                    return confirmation.rejectLabel || confirmation.rejectProps?.label || this.$bumblevue.config.locale.reject;
+                }
+
+                return this.$bumblevue.config.locale.reject;
+            },
+            acceptIcon() {
+                return this.confirmation ? this.confirmation.acceptIcon : this.confirmation?.acceptProps ? this.confirmation.acceptProps.icon : null;
+            },
+            rejectIcon() {
+                return this.confirmation ? this.confirmation.rejectIcon : this.confirmation?.rejectProps ? this.confirmation.rejectProps.icon : null;
+            }
+        },
+        components: {
+            Button,
+            Portal
+        },
+        directives: {
+            focustrap: FocusTrap
         }
-    },
-    computed: {
-        message() {
-            return this.confirmation ? this.confirmation.message : null;
-        },
-        acceptLabel() {
-            if (this.confirmation) {
-                const confirmation = this.confirmation;
-
-                return confirmation.acceptLabel || confirmation.acceptProps?.label || this.$bumblevue.config.locale.accept;
-            }
-
-            return this.$bumblevue.config.locale.accept;
-        },
-        rejectLabel() {
-            if (this.confirmation) {
-                const confirmation = this.confirmation;
-
-                return confirmation.rejectLabel || confirmation.rejectProps?.label || this.$bumblevue.config.locale.reject;
-            }
-
-            return this.$bumblevue.config.locale.reject;
-        },
-        acceptIcon() {
-            return this.confirmation ? this.confirmation.acceptIcon : this.confirmation?.acceptProps ? this.confirmation.acceptProps.icon : null;
-        },
-        rejectIcon() {
-            return this.confirmation ? this.confirmation.rejectIcon : this.confirmation?.rejectProps ? this.confirmation.rejectProps.icon : null;
-        }
-    },
-    components: {
-        Button,
-        Portal
-    },
-    directives: {
-        focustrap: FocusTrap
-    }
-};
+    };
 </script>

@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <AutoComplete disabled placeholder="Disabled" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete disabled placeholder="Disabled" />
@@ -27,13 +27,13 @@ export default {
 
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>

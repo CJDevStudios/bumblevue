@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputNumber v-model="value" fluid mode="currency" currency="USD" locale="en-US" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <InputNumber v-model="value" fluid mode="currency" currency="USD" locale="en-US" />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const value = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

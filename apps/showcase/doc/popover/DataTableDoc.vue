@@ -63,15 +63,15 @@
     <DocSectionCode :code="code" :service="['ProductService']" />
 </template>
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProduct: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                selectedProduct: null,
+                code: {
+                    basic: `
 <DataTable :value="products" :rows="5" paginator tableStyle="min-width: 50rem">
     <Column field="id" header="Id" class="w-1/6"></Column>
     <Column field="code" header="Code" class="w-1/6"></Column>
@@ -120,7 +120,7 @@ export default {
     </div>
 </Popover>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" :rows="5" paginator tableStyle="min-width: 50rem">
@@ -221,7 +221,7 @@ const getSeverity = (product) => {
 }
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -237,44 +237,44 @@ const getSeverity = (product) => {
 },
 ...
         `
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data));
-    },
-    methods: {
-        displayProduct(event, product) {
-            this.$refs.op.hide();
-
-            if (this.selectedProduct?.id === product.id) {
-                this.selectedProduct = null;
-            } else {
-                this.selectedProduct = product;
-
-                this.$nextTick(() => {
-                    this.$refs.op.show(event);
-                });
-            }
+                }
+            };
         },
-        hidePopover() {
-            this.$refs.op.hide();
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data));
         },
-        getSeverity(product) {
-            switch (product.inventoryStatus) {
-                case 'INSTOCK':
-                    return 'success';
+        methods: {
+            displayProduct(event, product) {
+                this.$refs.op.hide();
 
-                case 'LOWSTOCK':
-                    return 'warn';
+                if (this.selectedProduct?.id === product.id) {
+                    this.selectedProduct = null;
+                } else {
+                    this.selectedProduct = product;
 
-                case 'OUTOFSTOCK':
-                    return 'danger';
+                    this.$nextTick(() => {
+                        this.$refs.op.show(event);
+                    });
+                }
+            },
+            hidePopover() {
+                this.$refs.op.hide();
+            },
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
 
-                default:
-                    return null;
+                    case 'LOWSTOCK':
+                        return 'warn';
+
+                    case 'OUTOFSTOCK':
+                        return 'danger';
+
+                    default:
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

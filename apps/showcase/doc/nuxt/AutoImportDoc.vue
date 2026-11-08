@@ -11,18 +11,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     autoImport: true|false
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 bumblevue: {
     autoImport: true|false,
     components: {
@@ -33,8 +33,8 @@ bumblevue: {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

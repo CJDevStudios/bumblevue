@@ -9,21 +9,21 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.doc.ripple',
-                    label: 'Ripple PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Ripple')
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.doc.ripple',
+                        label: 'Ripple PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Ripple')
+                    }
+                ]
+            };
+        }
+    };
 </script>

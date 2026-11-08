@@ -16,14 +16,14 @@
 </template>
 
 <script>
-export default {
-    computed: {
-        fillColor() {
-            return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
-        },
-        oppositeFillColor() {
-            return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
+    export default {
+        computed: {
+            fillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
+            },
+            oppositeFillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
+            }
         }
-    }
-};
+    };
 </script>

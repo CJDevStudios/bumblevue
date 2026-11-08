@@ -5,24 +5,24 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { NodeService } from '@/service/NodeService';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedKey: null,
-            docs: [
-                {
-                    data: getPTOptions('Tree'),
-                    key: 'Tree'
-                }
-            ]
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedKey: null,
+                docs: [
+                    {
+                        data: getPTOptions('Tree'),
+                        key: 'Tree'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

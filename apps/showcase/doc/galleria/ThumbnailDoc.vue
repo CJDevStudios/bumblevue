@@ -26,43 +26,43 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            position: 'bottom',
-            positionOptions: [
-                {
-                    label: 'Bottom',
-                    value: 'bottom'
-                },
-                {
-                    label: 'Top',
-                    value: 'top'
-                },
-                {
-                    label: 'Left',
-                    value: 'left'
-                },
-                {
-                    label: 'Right',
-                    value: 'right'
-                }
-            ],
-            responsiveOptions: [
-                {
-                    breakpoint: '1300px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                position: 'bottom',
+                positionOptions: [
+                    {
+                        label: 'Bottom',
+                        value: 'bottom'
+                    },
+                    {
+                        label: 'Top',
+                        value: 'top'
+                    },
+                    {
+                        label: 'Left',
+                        value: 'left'
+                    },
+                    {
+                        label: 'Right',
+                        value: 'right'
+                    }
+                ],
+                responsiveOptions: [
+                    {
+                        breakpoint: '1300px',
+                        numVisible: 4
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1
+                    }
+                ],
+                code: {
+                    basic: `
 <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :thumbnailsPosition="position" containerStyle="max-width: 640px">
     <template #item="slotProps">
         <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
@@ -74,7 +74,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-4 mb-8">
@@ -136,7 +136,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -146,13 +146,13 @@ onMounted(() => {
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>

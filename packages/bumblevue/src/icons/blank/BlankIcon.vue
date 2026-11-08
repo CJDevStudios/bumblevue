@@ -4,10 +4,10 @@
     </svg>
 </template>
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'BlankIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'BlankIcon',
+        extends: BaseIcon
+    };
 </script>

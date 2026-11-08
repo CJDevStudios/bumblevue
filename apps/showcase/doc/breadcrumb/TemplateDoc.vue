@@ -16,13 +16,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            home: { icon: 'pi pi-home' },
-            items: [{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'pi pi-wallet' }, { icon: 'pi pi-shopping-bag' }, { icon: 'pi pi-calculator' }],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                home: { icon: 'pi pi-home' },
+                items: [{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'pi pi-wallet' }, { icon: 'pi pi-shopping-bag' }, { icon: 'pi pi-calculator' }],
+                code: {
+                    basic: `
 <Breadcrumb :home="home" :model="items">
     <template #item="{ item }">
         <a class="cursor-pointer" :href="item.url">
@@ -32,7 +32,7 @@ export default {
     <template #separator> / </template>
 </Breadcrumb>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Breadcrumb :home="home" :model="items">
@@ -53,8 +53,8 @@ const home = ref({ icon: 'pi pi-home' });
 const items = ref([{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'pi pi-wallet' }, { icon: 'pi pi-shopping-bag' }, { icon: 'pi pi-calculator' }]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

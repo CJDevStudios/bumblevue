@@ -12,25 +12,25 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCity: null,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCity: null,
+                cities: [
+                    { name: 'New York', code: 'NY' },
+                    { name: 'Rome', code: 'RM' },
+                    { name: 'London', code: 'LDN' },
+                    { name: 'Istanbul', code: 'IST' },
+                    { name: 'Paris', code: 'PRS' }
+                ],
+                code: {
+                    basic: `
 <IftaLabel>
     <Select v-model="selectedCity" inputId="dd-city" :options="cities" optionLabel="name" class="w-full" variant="filled" />
     <label for="dd-city">City</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel class="w-full md:w-56">
@@ -53,8 +53,8 @@ const cities = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

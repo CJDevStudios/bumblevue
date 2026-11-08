@@ -177,11 +177,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="ac1">;Username</label>
 <AutoComplete inputId="ac1" />
 
@@ -190,8 +190,8 @@ export default {
 
 <AutoComplete aria-label="City" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

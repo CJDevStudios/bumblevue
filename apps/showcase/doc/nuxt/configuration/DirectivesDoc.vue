@@ -10,20 +10,20 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     directives: {
         include: ['Ripple', 'Tooltip']
     }
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 bumblevue: {
     directives: {
         include: '*',
@@ -31,9 +31,9 @@ bumblevue: {
     }
 }
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 bumblevue: {
     directives: {
         prefix: 'p'
@@ -41,8 +41,8 @@ bumblevue: {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

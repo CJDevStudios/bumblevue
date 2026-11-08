@@ -17,16 +17,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            first: 0,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                first: 0,
+                code: {
+                    basic: `
 <Paginator :rows="10" :totalRecords="120" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
     currentPageReportTemplate="Showing {first} to {last} of {totalRecords}" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Paginator :rows="10" :totalRecords="120" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
@@ -40,8 +40,8 @@ import { ref } from "vue";
 const first = ref(0);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

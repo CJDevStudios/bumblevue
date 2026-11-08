@@ -17,7 +17,7 @@ export default function nestedPosition(element, level) {
         const itemOuterHeight = getOuterHeight(parentItem?.children?.[0]);
 
         let left = '';
-        let top = '';
+        let top;
 
         if (elementOffset.left + itemOuterWidth + sublistWidth > viewport.width - calculateScrollbarWidth()) {
             if (elementOffset.left < sublistWidth) {

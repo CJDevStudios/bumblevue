@@ -25,18 +25,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedItems: null,
-            selectAll: false,
-            items: Array.from({ length: 100000 }, (_, i) => ({ label: `Item #${i}`, value: i })),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedItems: null,
+                selectAll: false,
+                items: Array.from({ length: 100000 }, (_, i) => ({ label: `Item #${i}`, value: i })),
+                code: {
+                    basic: `
 <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" optionLabel="label" optionValue="value"
     @selectall-change="onSelectAllChange($event)" @change="onChange($event)" :virtualScrollerOptions="{ itemSize: 44 }" filter placeholder="Select Item" class="w-full md:w-80" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <MultiSelect v-model="selectedItems" :options="items" :maxSelectedLabels="3" :selectAll="selectAll" optionLabel="label" optionValue="value"
@@ -62,17 +62,17 @@ const onChange = (event) => {
 
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        onSelectAllChange(event) {
-            this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
-            this.selectAll = event.checked;
+                }
+            };
         },
-        onChange(event) {
-            this.selectAll = event.value.length === this.items.length;
+        methods: {
+            onSelectAllChange(event) {
+                this.selectedItems = event.checked ? this.items.map((item) => item.value) : [];
+                this.selectAll = event.checked;
+            },
+            onChange(event) {
+                this.selectAll = event.value.length === this.items.length;
+            }
         }
-    }
-};
+    };
 </script>

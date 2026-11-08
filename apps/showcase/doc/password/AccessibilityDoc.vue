@@ -32,11 +32,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="pwd1">Password</label>
 <Password inputId="pwd1" />
 
@@ -45,8 +45,8 @@ export default {
 
 <Password aria-label="Password"/>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                code: {
+                    basic: `
 <DataTable :value="customers" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}">
@@ -56,7 +56,7 @@ export default {
     <Column field="representative.name" header="Representative" style="width: 25%"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="customers" paginator :rows="5" :rowsPerPageOptions="[5, 10, 20, 50]" tableStyle="min-width: 50rem"
@@ -88,7 +88,7 @@ const customers = ref();
 
 <\/script>
 `,
-                data: `
+                    data: `
                 {
     id: 1000,
     name: 'James Butt',
@@ -109,13 +109,13 @@ const customers = ref();
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => (this.customers = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => (this.customers = data));
         }
-    }
-};
+    };
 </script>

@@ -5,9 +5,9 @@
 </template>
 
 <script setup>
-import { computed, inject } from 'vue';
+    import { computed, inject } from 'vue';
 
-const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
+    const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
-const htmlFor = computed(() => $fcDynamicFormField?.groupId);
+    const htmlFor = computed(() => $fcDynamicFormField?.groupId);
 </script>

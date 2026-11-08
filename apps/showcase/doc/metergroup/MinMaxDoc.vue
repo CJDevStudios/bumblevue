@@ -9,20 +9,20 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: [
-                { label: 'Apps', color: '#34d399', value: 16 },
-                { label: 'Messages', color: '#fbbf24', value: 8 },
-                { label: 'Media', color: '#60a5fa', value: 24 },
-                { label: 'System', color: '#c084fc', value: 10 }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: [
+                    { label: 'Apps', color: '#34d399', value: 16 },
+                    { label: 'Messages', color: '#fbbf24', value: 8 },
+                    { label: 'Media', color: '#60a5fa', value: 24 },
+                    { label: 'System', color: '#c084fc', value: 10 }
+                ],
+                code: {
+                    basic: `
 <MeterGroup :value="value" :max="200"  />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <MeterGroup :value="value" :max="200"  />
@@ -40,8 +40,8 @@ const value = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

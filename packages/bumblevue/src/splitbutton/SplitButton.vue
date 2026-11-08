@@ -33,7 +33,7 @@
             :disabled="disabled"
             aria-haspopup="true"
             :aria-expanded="isExpanded"
-            :aria-controls="isExpanded ?  $id + '_overlay' : undefined"
+            :aria-controls="isExpanded ? $id + '_overlay' : undefined"
             @click="onDropdownButtonClick"
             @keydown="onDropdownKeydown"
             :severity="severity"
@@ -62,151 +62,151 @@
 </template>
 
 <script>
-import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
-import Button from '@cjdevstudios/bumblevue/button';
-import SplitButtonStyle from '@cjdevstudios/bumblevue/splitbutton/style';
-import TieredMenu from '@cjdevstudios/bumblevue/tieredmenu';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import SplitButtonStyle from '@cjdevstudios/bumblevue/splitbutton/style';
+    import TieredMenu from '@cjdevstudios/bumblevue/tieredmenu';
 
-export default {
-    name: 'SplitButton',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        label: {
-            type: String,
-            default: null
-        },
-        icon: {
-            type: String,
-            default: null
-        },
-        model: {
-            type: Array,
-            default: null
-        },
-        autoZIndex: {
-            type: Boolean,
-            default: true
-        },
-        baseZIndex: {
-            type: Number,
-            default: 0
-        },
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        fluid: {
-            type: Boolean,
-            default: null
-        },
-        class: {
-            type: null,
-            default: null
-        },
-        style: {
-            type: null,
-            default: null
-        },
-        buttonProps: {
-            type: null,
-            default: null
-        },
-        menuButtonProps: {
-            type: null,
-            default: null
-        },
-        dropdownIcon: {
-            type: String,
-            default: undefined
-        },
-        severity: {
-            type: String,
-            default: null
-        },
-        raised: {
-            type: Boolean,
-            default: false
-        },
-        rounded: {
-            type: Boolean,
-            default: false
-        },
-        text: {
-            type: Boolean,
-            default: false
-        },
-        outlined: {
-            type: Boolean,
-            default: false
-        },
-        size: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['click'],
-    style: SplitButtonStyle,
-    provide() {
-        return {
-            $pcSplitButton: this,
-            $parentInstance: this
-        };
-    },
-    inject: {
-        $pcFluid: { default: null }
-    },
-    data() {
-        return {
-            isExpanded: false
-        };
-    },
-    mounted() {
-        this.$watch('$refs.menu.visible', (newValue) => {
-            this.isExpanded = newValue;
-        });
-    },
-    methods: {
-        onDropdownButtonClick(event) {
-            if (event) {
-                event.preventDefault();
-            }
-
-            this.$refs.menu.toggle({ currentTarget: this.$el, relatedTarget: this.$refs.button.$el });
-            this.isExpanded = this.$refs.menu.visible;
-        },
-        onDropdownKeydown(event) {
-            if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
-                this.onDropdownButtonClick();
-                event.preventDefault();
+    export default {
+        name: 'SplitButton',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            label: {
+                type: String,
+                default: null
+            },
+            icon: {
+                type: String,
+                default: null
+            },
+            model: {
+                type: Array,
+                default: null
+            },
+            autoZIndex: {
+                type: Boolean,
+                default: true
+            },
+            baseZIndex: {
+                type: Number,
+                default: 0
+            },
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            fluid: {
+                type: Boolean,
+                default: null
+            },
+            class: {
+                type: null,
+                default: null
+            },
+            style: {
+                type: null,
+                default: null
+            },
+            buttonProps: {
+                type: null,
+                default: null
+            },
+            menuButtonProps: {
+                type: null,
+                default: null
+            },
+            dropdownIcon: {
+                type: String,
+                default: undefined
+            },
+            severity: {
+                type: String,
+                default: null
+            },
+            raised: {
+                type: Boolean,
+                default: false
+            },
+            rounded: {
+                type: Boolean,
+                default: false
+            },
+            text: {
+                type: Boolean,
+                default: false
+            },
+            outlined: {
+                type: Boolean,
+                default: false
+            },
+            size: {
+                type: String,
+                default: null
             }
         },
-        onDefaultButtonClick(event) {
-            if (this.isExpanded) {
-                this.$refs.menu.hide(event);
-            }
-
-            this.$emit('click', event);
-        }
-    },
-    computed: {
-        containerClass() {
-            return [this.cx('root'), this.class];
+        emits: ['click'],
+        style: SplitButtonStyle,
+        provide() {
+            return {
+                $pcSplitButton: this,
+                $parentInstance: this
+            };
         },
-        hasFluid() {
-            return isEmpty(this.fluid) ? !!this.$pcFluid : this.fluid;
+        inject: {
+            $pcFluid: { default: null }
+        },
+        data() {
+            return {
+                isExpanded: false
+            };
+        },
+        mounted() {
+            this.$watch('$refs.menu.visible', (newValue) => {
+                this.isExpanded = newValue;
+            });
+        },
+        methods: {
+            onDropdownButtonClick(event) {
+                if (event) {
+                    event.preventDefault();
+                }
+
+                this.$refs.menu.toggle({ currentTarget: this.$el, relatedTarget: this.$refs.button.$el });
+                this.isExpanded = this.$refs.menu.visible;
+            },
+            onDropdownKeydown(event) {
+                if (event.code === 'ArrowDown' || event.code === 'ArrowUp') {
+                    this.onDropdownButtonClick();
+                    event.preventDefault();
+                }
+            },
+            onDefaultButtonClick(event) {
+                if (this.isExpanded) {
+                    this.$refs.menu.hide(event);
+                }
+
+                this.$emit('click', event);
+            }
+        },
+        computed: {
+            containerClass() {
+                return [this.cx('root'), this.class];
+            },
+            hasFluid() {
+                return isEmpty(this.fluid) ? !!this.$pcFluid : this.fluid;
+            }
+        },
+        components: {
+            PVSButton: Button,
+            PVSMenu: TieredMenu,
+            ChevronDownIcon: ChevronDownIcon
         }
-    },
-    components: {
-        PVSButton: Button,
-        PVSMenu: TieredMenu,
-        ChevronDownIcon: ChevronDownIcon
-    }
-};
+    };
 </script>

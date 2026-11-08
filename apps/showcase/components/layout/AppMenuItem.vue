@@ -37,24 +37,24 @@
 </template>
 
 <script>
-export default {
-    props: {
-        root: {
-            type: Boolean,
-            default: true
+    export default {
+        props: {
+            root: {
+                type: Boolean,
+                default: true
+            },
+            menu: {
+                type: Object,
+                default: null
+            }
         },
-        menu: {
-            type: Object,
-            default: null
+        methods: {
+            isActiveRootmenuItem(menuitem) {
+                return (
+                    menuitem.children &&
+                    !menuitem.children.some((item) => item.to === `/${this.$router.currentRoute.value?.name?.replaceAll('-', '/')}` || (item.children && item.children.some((it) => it.to === `/${this.$router.currentRoute.value.name}`)))
+                );
+            }
         }
-    },
-    methods: {
-        isActiveRootmenuItem(menuitem) {
-            return (
-                menuitem.children &&
-                !menuitem.children.some((item) => item.to === `/${this.$router.currentRoute.value?.name?.replaceAll('-', '/')}` || (item.children && item.children.some((it) => it.to === `/${this.$router.currentRoute.value.name}`)))
-            );
-        }
-    }
-};
+    };
 </script>

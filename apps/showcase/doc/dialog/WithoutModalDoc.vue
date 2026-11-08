@@ -25,12 +25,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 <Button label="Show" @click="visible = true" />
 
 <Dialog v-model:visible="visible" header="Edit Profile" :style="{ width: '25rem' }">
@@ -49,7 +49,7 @@ export default {
     </div>
 </Dialog>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Show" @click="visible = true" />
@@ -77,8 +77,8 @@ import { ref } from "vue";
 const visible = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 # Using npm
 npm install @cjdevstudios/bumblevue
 
@@ -20,8 +20,8 @@ yarn add @cjdevstudios/bumblevue
 # Using pnpm
 pnpm add @cjdevstudios/bumblevue
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

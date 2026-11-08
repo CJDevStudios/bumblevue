@@ -61,11 +61,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="price">Price</label>
 <InputNumber inputId="price" />
 
@@ -74,8 +74,8 @@ export default {
 
 <InputNumber aria-label="Number" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

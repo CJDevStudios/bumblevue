@@ -5,94 +5,94 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import DockStyle from '@cjdevstudios/bumblevue/dock/style';
-import DockSub from './DockSub.vue';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import DockStyle from '@cjdevstudios/bumblevue/dock/style';
+    import DockSub from './DockSub.vue';
 
-export default {
-    name: 'Dock',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        position: {
-            type: String,
-            default: 'bottom'
+    export default {
+        name: 'Dock',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            position: {
+                type: String,
+                default: 'bottom'
+            },
+            model: null,
+            class: null,
+            style: null,
+            tooltipOptions: null,
+            menuId: {
+                type: String,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            breakpoint: {
+                type: String,
+                default: '960px'
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            }
         },
-        model: null,
-        class: null,
-        style: null,
-        tooltipOptions: null,
-        menuId: {
-            type: String,
-            default: null
+        style: DockStyle,
+        provide() {
+            return {
+                $pcDock: this,
+                $parentInstance: this
+            };
         },
-        tabindex: {
-            type: Number,
-            default: 0
+        matchMediaListener: null,
+        data() {
+            return {
+                query: null,
+                queryMatches: false
+            };
         },
-        breakpoint: {
-            type: String,
-            default: '960px'
+        mounted() {
+            this.bindMatchMediaListener();
         },
-        ariaLabel: {
-            type: String,
-            default: null
+        beforeUnmount() {
+            this.unbindMatchMediaListener();
         },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        }
-    },
-    style: DockStyle,
-    provide() {
-        return {
-            $pcDock: this,
-            $parentInstance: this
-        };
-    },
-    matchMediaListener: null,
-    data() {
-        return {
-            query: null,
-            queryMatches: false
-        };
-    },
-    mounted() {
-        this.bindMatchMediaListener();
-    },
-    beforeUnmount() {
-        this.unbindMatchMediaListener();
-    },
-    methods: {
-        bindMatchMediaListener() {
-            if (!this.matchMediaListener) {
-                const query = matchMedia(`(max-width: ${this.breakpoint})`);
+        methods: {
+            bindMatchMediaListener() {
+                if (!this.matchMediaListener) {
+                    const query = matchMedia(`(max-width: ${this.breakpoint})`);
 
-                this.query = query;
-                this.queryMatches = query.matches;
-
-                this.matchMediaListener = () => {
+                    this.query = query;
                     this.queryMatches = query.matches;
-                    this.mobileActive = false;
-                };
 
-                this.query.addEventListener('change', this.matchMediaListener);
+                    this.matchMediaListener = () => {
+                        this.queryMatches = query.matches;
+                        this.mobileActive = false;
+                    };
+
+                    this.query.addEventListener('change', this.matchMediaListener);
+                }
+            },
+            unbindMatchMediaListener() {
+                if (this.matchMediaListener) {
+                    this.query.removeEventListener('change', this.matchMediaListener);
+                    this.matchMediaListener = null;
+                }
             }
         },
-        unbindMatchMediaListener() {
-            if (this.matchMediaListener) {
-                this.query.removeEventListener('change', this.matchMediaListener);
-                this.matchMediaListener = null;
+        computed: {
+            containerClass() {
+                return [this.class, this.cx('root')];
             }
+        },
+        components: {
+            DockSub
         }
-    },
-    computed: {
-        containerClass() {
-            return [this.class, this.cx('root')];
-        }
-    },
-    components: {
-        DockSub
-    }
-};
+    };
 </script>

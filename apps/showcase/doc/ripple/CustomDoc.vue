@@ -16,16 +16,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <div v-ripple class="box" style="border: 1px solid rgba(75, 175, 80, 0.3); --p-ripple-background: rgba(75, 175, 80, 0.3)">Green</div>
 <div v-ripple class="box" style="border: 1px solid rgba(255, 193, 6, 0.3); --p-ripple-background: rgba(255, 193, 6, 0.3)">Orange</div>
 <div v-ripple class="box" style="border: 1px solid rgba(156, 39, 176, 0.3); --p-ripple-background: rgba(156, 39, 176, 0.3)">Purple</div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="flex justify-center items-center gap-2">
         <div v-ripple class="box" style="border: 1px solid rgba(75, 175, 80, 0.3); --p-ripple-background: rgba(75, 175, 80, 0.3)">Green</div>
@@ -43,17 +43,17 @@ export default {
 }
 </style>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style scoped>
-.box {
-    padding: 2rem;
-    border-radius: 10px;
-    width: 110px;
-    text-align: center;
-}
+    .box {
+        padding: 2rem;
+        border-radius: 10px;
+        width: 110px;
+        text-align: center;
+    }
 </style>

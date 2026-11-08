@@ -19,20 +19,20 @@
 </template>
 
 <script>
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            resolver: zodResolver(
-                z.object({
-                    username: z.string().min(1, { message: 'Username is required.' }),
-                    password: z.string().min(1, { message: 'Password is required.' })
-                })
-            ),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                resolver: zodResolver(
+                    z.object({
+                        username: z.string().min(1, { message: 'Username is required.' }),
+                        password: z.string().min(1, { message: 'Password is required.' })
+                    })
+                ),
+                code: {
+                    basic: `
 <Form :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
     <FormField v-slot="$field" name="username" initialValue="" class="flex flex-col gap-1">
         <input type="text" placeholder="Username" :class="[{ error: $field?.invalid }]" v-bind="$field.props" />
@@ -45,7 +45,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Form :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
@@ -96,27 +96,27 @@ input.error {
 }
 <\/style>
 `
-            }
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>
 <style scoped>
-input {
-    width: 100%;
-    color: var(--p-inputtext-color);
-    background: var(--p-inputtext-background);
-    border: 1px solid var(--p-inputtext-border-color);
-}
+    input {
+        width: 100%;
+        color: var(--p-inputtext-color);
+        background: var(--p-inputtext-background);
+        border: 1px solid var(--p-inputtext-border-color);
+    }
 
-input.error {
-    border-color: var(--p-inputtext-invalid-border-color);
-}
+    input.error {
+        border-color: var(--p-inputtext-invalid-border-color);
+    }
 </style>

@@ -16,24 +16,24 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCountry: null,
-            countries: [
-                { name: 'Australia', code: 'AU' },
-                { name: 'Brazil', code: 'BR' },
-                { name: 'China', code: 'CN' },
-                { name: 'Egypt', code: 'EG' },
-                { name: 'France', code: 'FR' },
-                { name: 'Germany', code: 'DE' },
-                { name: 'India', code: 'IN' },
-                { name: 'Japan', code: 'JP' },
-                { name: 'Spain', code: 'ES' },
-                { name: 'United States', code: 'US' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCountry: null,
+                countries: [
+                    { name: 'Australia', code: 'AU' },
+                    { name: 'Brazil', code: 'BR' },
+                    { name: 'China', code: 'CN' },
+                    { name: 'Egypt', code: 'EG' },
+                    { name: 'France', code: 'FR' },
+                    { name: 'Germany', code: 'DE' },
+                    { name: 'India', code: 'IN' },
+                    { name: 'Japan', code: 'JP' },
+                    { name: 'Spain', code: 'ES' },
+                    { name: 'United States', code: 'US' }
+                ],
+                code: {
+                    basic: `
 <Listbox v-model="selectedCountry" :options="countries" optionLabel="name" class="w-full md:w-56" listStyle="max-height:250px">
     <template #option="slotProps">
         <div class="flex items-center">
@@ -43,7 +43,7 @@ export default {
     </template>
 </Listbox>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Listbox v-model="selectedCountry" :options="countries" optionLabel="name" class="w-full md:w-56" listStyle="max-height:250px">
@@ -75,8 +75,8 @@ const countries = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -10,16 +10,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Panel header="Header" :pt="panelPT">
     Content
 </Panel>
 `,
-                composition: `
+                    composition: `
 <template>
     <Panel header="Header" :pt="panelPT">
         Content
@@ -41,8 +41,8 @@ const panelPt = ref({
 );
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

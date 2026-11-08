@@ -9,39 +9,39 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-// import PtDoc from './PTDoc.vue';
-import PTViewer from './PTViewer.vue';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    // import PtDoc from './PTDoc.vue';
+    import PTViewer from './PTViewer.vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.viewer',
-                    label: 'Viewer',
-                    component: PTViewer
-                },
-                {
-                    id: 'pt.doc.inputgroup',
-                    label: 'InputGroup PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('InputGroup')
-                },
-                {
-                    id: 'pt.doc.inputgroupaddon',
-                    label: 'InputGroupAddon PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('InputGroupAddon')
-                }
-                // {
-                //     id: 'pt.demo',
-                //     label: 'Demo',
-                //     component: PtDoc
-                // }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.viewer',
+                        label: 'Viewer',
+                        component: PTViewer
+                    },
+                    {
+                        id: 'pt.doc.inputgroup',
+                        label: 'InputGroup PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('InputGroup')
+                    },
+                    {
+                        id: 'pt.doc.inputgroupaddon',
+                        label: 'InputGroupAddon PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('InputGroupAddon')
+                    }
+                    // {
+                    //     id: 'pt.demo',
+                    //     label: 'Demo',
+                    //     component: PtDoc
+                    // }
+                ]
+            };
+        }
+    };
 </script>

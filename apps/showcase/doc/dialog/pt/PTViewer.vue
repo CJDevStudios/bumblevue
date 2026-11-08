@@ -21,19 +21,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            visible: true,
-            docs: [
-                {
-                    data: getPTOptions('Dialog'),
-                    key: 'Dialog'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                visible: true,
+                docs: [
+                    {
+                        data: getPTOptions('Dialog'),
+                        key: 'Dialog'
+                    }
+                ]
+            };
+        }
+    };
 </script>

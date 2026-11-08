@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <RadioButton v-model="value" value="1" :invalid="value === null" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <RadioButton v-model="value" value="1" :invalid="value === null" />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

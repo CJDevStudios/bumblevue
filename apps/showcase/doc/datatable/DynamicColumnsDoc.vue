@@ -13,20 +13,20 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            columns: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                columns: null,
+                code: {
+                    basic: `
 <DataTable :value="products" tableStyle="min-width: 50rem">
     <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" tableStyle="min-width: 50rem">
@@ -53,7 +53,7 @@ const columns = [
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -68,21 +68,21 @@ const columns = [
 },
 ...
         `
+                }
+            };
+        },
+        created() {
+            this.columns = [
+                { field: 'code', header: 'Code' },
+                { field: 'name', header: 'Name' },
+                { field: 'category', header: 'Category' },
+                { field: 'quantity', header: 'Quantity' }
+            ];
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
             }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'code', header: 'Code' },
-            { field: 'name', header: 'Name' },
-            { field: 'category', header: 'Category' },
-            { field: 'quantity', header: 'Quantity' }
-        ];
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
         }
-    }
-};
+    };
 </script>

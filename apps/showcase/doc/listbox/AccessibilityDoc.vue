@@ -140,18 +140,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <span id="lb"></span>Options</span>
 <Listbox aria-labelledby="lb" />
 
 <Listbox aria-label="City" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

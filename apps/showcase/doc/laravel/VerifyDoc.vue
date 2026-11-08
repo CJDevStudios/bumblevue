@@ -12,17 +12,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Button from "@cjdevstudios/bumblevue/button"
 
 const app = createApp(App);
 app.component('Button', Button);
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Verify" />
@@ -32,8 +32,8 @@ app.component('Button', Button);
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

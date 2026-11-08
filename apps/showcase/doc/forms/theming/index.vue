@@ -9,19 +9,19 @@
 </template>
 
 <script>
-import StyledDoc from './StyledDoc.vue';
+    import StyledDoc from './StyledDoc.vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'theming.styled',
-                    label: 'Styled',
-                    component: StyledDoc
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'theming.styled',
+                        label: 'Styled',
+                        component: StyledDoc
+                    }
+                ]
+            };
+        }
+    };
 </script>

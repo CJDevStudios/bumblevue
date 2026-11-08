@@ -11,16 +11,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Small" icon="pi pi-check" size="small" />
 <Button label="Normal" icon="pi pi-check" />
 <Button label="Large" icon="pi pi-check" size="large" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap items-center justify-center gap-4">
         <Button label="Small" icon="pi pi-check" size="small" />
@@ -32,8 +32,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -9,22 +9,22 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            items: null,
-            docs: [
-                {
-                    data: getPTOptions('VirtualScroller'),
-                    key: 'VirtualScroller'
-                }
-            ]
-        };
-    },
-    mounted() {
-        this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
-    }
-};
+    export default {
+        data() {
+            return {
+                items: null,
+                docs: [
+                    {
+                        data: getPTOptions('VirtualScroller'),
+                        key: 'VirtualScroller'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
+        }
+    };
 </script>

@@ -27,11 +27,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Card style="width: 25rem; overflow: hidden">
     <template #header>
         <img alt="user header" src="/images/usercard.png" />
@@ -52,7 +52,7 @@ export default {
     </template>
 </Card>
 `,
-                composition: `
+                    composition: `
 <template>
     <Card style="width: 25rem; overflow: hidden">
         <template #header>
@@ -78,8 +78,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

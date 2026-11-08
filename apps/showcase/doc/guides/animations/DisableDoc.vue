@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 @media (prefers-reduced-motion: reduce) {
     .p-anchored-overlay-enter-active,
     .p-anchored-overlay-leave-active {
@@ -18,8 +18,8 @@ export default {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

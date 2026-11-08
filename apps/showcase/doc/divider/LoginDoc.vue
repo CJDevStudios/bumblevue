@@ -30,11 +30,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <div class="flex flex-col md:flex-row">
     <div class="w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
         <div class="flex flex-col gap-2">
@@ -58,7 +58,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-col md:flex-row">
@@ -89,8 +89,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

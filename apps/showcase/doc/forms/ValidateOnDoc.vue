@@ -27,16 +27,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            initialValues: {
-                username: '',
-                firstName: '',
-                lastName: ''
-            },
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    username: '',
+                    firstName: '',
+                    lastName: ''
+                },
+                code: {
+                    basic: `
 <Form v-slot="$form" :initialValues :resolver :validateOnValueUpdate="false" :validateOnBlur="true" :validateOnMount="['firstName']" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
     <div class="flex flex-col gap-1">
         <InputText name="username" type="text" placeholder="Username" fluid />
@@ -53,7 +53,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -115,34 +115,34 @@ const onFormSubmit = ({ valid }) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        resolver: ({ values }) => {
-            const errors = {};
-
-            if (!values.username) {
-                errors.username = [{ message: 'Username is required.' }];
-            }
-
-            if (!values.firstName) {
-                errors.firstName = [{ message: 'First name is required.' }];
-            }
-
-            if (!values.lastName) {
-                errors.lastName = [{ message: 'Last name is required.' }];
-            }
-
-            return {
-                errors
+                }
             };
         },
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+        methods: {
+            resolver: ({ values }) => {
+                const errors = {};
+
+                if (!values.username) {
+                    errors.username = [{ message: 'Username is required.' }];
+                }
+
+                if (!values.firstName) {
+                    errors.firstName = [{ message: 'First name is required.' }];
+                }
+
+                if (!values.lastName) {
+                    errors.lastName = [{ message: 'Last name is required.' }];
+                }
+
+                return {
+                    errors
+                };
+            },
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>

@@ -12,18 +12,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <IftaLabel>
     <InputMask id="ssn" v-model="value" mask="999-99-9999" variant="filled" />
     <label for="ssn">SSN</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel>
@@ -39,8 +39,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

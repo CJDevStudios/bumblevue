@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            dialogVisible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                dialogVisible: false,
+                code: {
+                    basic: `
 <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
 <Dialog v-model:visible="dialogVisible" header="Flex Scroll" :style="{ width: '75vw' }" maximizable modal :contentStyle="{ height: '300px' }">
     <DataTable :value="customers" scrollable scrollHeight="flex" tableStyle="min-width: 50rem">
@@ -46,7 +46,7 @@ export default {
     </template>
 </Dialog>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
@@ -79,7 +79,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -100,15 +100,15 @@ onMounted(() => {
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            onShow() {
+                CustomerService.getCustomersMedium().then((data) => {
+                    this.customers = data;
+                });
             }
-        };
-    },
-    methods: {
-        onShow() {
-            CustomerService.getCustomersMedium().then((data) => {
-                this.customers = data;
-            });
         }
-    }
-};
+    };
 </script>

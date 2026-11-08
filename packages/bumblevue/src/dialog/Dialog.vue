@@ -64,495 +64,495 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import WindowMaximizeIcon from '@cjdevstudios/bumblevue/icons/windowmaximize';
-import WindowMinimizeIcon from '@cjdevstudios/bumblevue/icons/windowminimize';
-import Button from '@cjdevstudios/bumblevue/button';
-import DialogStyle from '@cjdevstudios/bumblevue/dialog/style';
-import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
-import Portal from '@cjdevstudios/bumblevue/portal';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
-import { computed } from 'vue';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { addClass, addStyle, focus, getOuterHeight, getOuterWidth, getViewport, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import WindowMaximizeIcon from '@cjdevstudios/bumblevue/icons/windowmaximize';
+    import WindowMinimizeIcon from '@cjdevstudios/bumblevue/icons/windowminimize';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import DialogStyle from '@cjdevstudios/bumblevue/dialog/style';
+    import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
+    import Portal from '@cjdevstudios/bumblevue/portal';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
+    import { computed } from 'vue';
 
-export default {
-    name: 'Dialog',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        header: {
-            type: null,
-            default: null
+    export default {
+        name: 'Dialog',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            header: {
+                type: null,
+                default: null
+            },
+            footer: {
+                type: null,
+                default: null
+            },
+            visible: {
+                type: Boolean,
+                default: false
+            },
+            modal: {
+                type: Boolean,
+                default: null
+            },
+            contentStyle: {
+                type: null,
+                default: null
+            },
+            contentClass: {
+                type: String,
+                default: null
+            },
+            contentProps: {
+                type: null,
+                default: null
+            },
+            maximizable: {
+                type: Boolean,
+                default: false
+            },
+            dismissableMask: {
+                type: Boolean,
+                default: false
+            },
+            closable: {
+                type: Boolean,
+                default: true
+            },
+            closeOnEscape: {
+                type: Boolean,
+                default: true
+            },
+            showHeader: {
+                type: Boolean,
+                default: true
+            },
+            blockScroll: {
+                type: Boolean,
+                default: false
+            },
+            baseZIndex: {
+                type: Number,
+                default: 0
+            },
+            autoZIndex: {
+                type: Boolean,
+                default: true
+            },
+            position: {
+                type: String,
+                default: 'center'
+            },
+            breakpoints: {
+                type: Object,
+                default: null
+            },
+            draggable: {
+                type: Boolean,
+                default: true
+            },
+            keepInViewport: {
+                type: Boolean,
+                default: true
+            },
+            minX: {
+                type: Number,
+                default: 0
+            },
+            minY: {
+                type: Number,
+                default: 0
+            },
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            closeIcon: {
+                type: String,
+                default: undefined
+            },
+            maximizeIcon: {
+                type: String,
+                default: undefined
+            },
+            minimizeIcon: {
+                type: String,
+                default: undefined
+            },
+            closeButtonProps: {
+                type: Object,
+                default: () => {
+                    return {
+                        severity: 'secondary',
+                        text: true,
+                        rounded: true
+                    };
+                }
+            },
+            maximizeButtonProps: {
+                type: Object,
+                default: () => {
+                    return {
+                        severity: 'secondary',
+                        text: true,
+                        rounded: true
+                    };
+                }
+            },
+            _instance: null
         },
-        footer: {
-            type: null,
-            default: null
+        emits: ['update:visible', 'show', 'hide', 'after-hide', 'maximize', 'unmaximize', 'dragstart', 'dragend'],
+        style: DialogStyle,
+        provide() {
+            return {
+                $pcDialog: this,
+                $parentInstance: this,
+                dialogRef: computed(() => this._instance)
+            };
         },
-        visible: {
-            type: Boolean,
-            default: false
+        data() {
+            return {
+                containerVisible: this.visible,
+                maximized: false,
+                focusableMax: null,
+                focusableClose: null,
+                target: null
+            };
         },
-        modal: {
-            type: Boolean,
-            default: null
-        },
-        contentStyle: {
-            type: null,
-            default: null
-        },
-        contentClass: {
-            type: String,
-            default: null
-        },
-        contentProps: {
-            type: null,
-            default: null
-        },
-        maximizable: {
-            type: Boolean,
-            default: false
-        },
-        dismissableMask: {
-            type: Boolean,
-            default: false
-        },
-        closable: {
-            type: Boolean,
-            default: true
-        },
-        closeOnEscape: {
-            type: Boolean,
-            default: true
-        },
-        showHeader: {
-            type: Boolean,
-            default: true
-        },
-        blockScroll: {
-            type: Boolean,
-            default: false
-        },
-        baseZIndex: {
-            type: Number,
-            default: 0
-        },
-        autoZIndex: {
-            type: Boolean,
-            default: true
-        },
-        position: {
-            type: String,
-            default: 'center'
-        },
-        breakpoints: {
-            type: Object,
-            default: null
-        },
-        draggable: {
-            type: Boolean,
-            default: true
-        },
-        keepInViewport: {
-            type: Boolean,
-            default: true
-        },
-        minX: {
-            type: Number,
-            default: 0
-        },
-        minY: {
-            type: Number,
-            default: 0
-        },
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-        closeIcon: {
-            type: String,
-            default: undefined
-        },
-        maximizeIcon: {
-            type: String,
-            default: undefined
-        },
-        minimizeIcon: {
-            type: String,
-            default: undefined
-        },
-        closeButtonProps: {
-            type: Object,
-            default: () => {
-                return {
-                    severity: 'secondary',
-                    text: true,
-                    rounded: true
-                };
+        documentKeydownListener: null,
+        container: null,
+        mask: null,
+        content: null,
+        headerContainer: null,
+        footerContainer: null,
+        maximizableButton: null,
+        closeButton: null,
+        styleElement: null,
+        dragging: null,
+        documentDragListener: null,
+        documentDragEndListener: null,
+        lastPageX: null,
+        lastPageY: null,
+        maskMouseDownTarget: null,
+        updated() {
+            if (this.visible) {
+                this.containerVisible = this.visible;
             }
         },
-        maximizeButtonProps: {
-            type: Object,
-            default: () => {
-                return {
-                    severity: 'secondary',
-                    text: true,
-                    rounded: true
-                };
-            }
-        },
-        _instance: null
-    },
-    emits: ['update:visible', 'show', 'hide', 'after-hide', 'maximize', 'unmaximize', 'dragstart', 'dragend'],
-    style: DialogStyle,
-    provide() {
-        return {
-            $pcDialog: this,
-            $parentInstance: this,
-            dialogRef: computed(() => this._instance)
-        };
-    },
-    data() {
-        return {
-            containerVisible: this.visible,
-            maximized: false,
-            focusableMax: null,
-            focusableClose: null,
-            target: null
-        };
-    },
-    documentKeydownListener: null,
-    container: null,
-    mask: null,
-    content: null,
-    headerContainer: null,
-    footerContainer: null,
-    maximizableButton: null,
-    closeButton: null,
-    styleElement: null,
-    dragging: null,
-    documentDragListener: null,
-    documentDragEndListener: null,
-    lastPageX: null,
-    lastPageY: null,
-    maskMouseDownTarget: null,
-    updated() {
-        if (this.visible) {
-            this.containerVisible = this.visible;
-        }
-    },
-    beforeUnmount() {
-        this.unbindDocumentState();
-        this.unbindGlobalListeners();
-        this.destroyStyle();
+        beforeUnmount() {
+            this.unbindDocumentState();
+            this.unbindGlobalListeners();
+            this.destroyStyle();
 
-        if (this.mask && this.autoZIndex) {
-            ZIndex.clear(this.mask);
-        }
-
-        this.container = null;
-        this.mask = null;
-    },
-    mounted() {
-        if (this.breakpoints) {
-            this.createStyle();
-        }
-    },
-    methods: {
-        close() {
-            this.$emit('update:visible', false);
-        },
-        onEnter() {
-            this.$emit('show');
-            this.target = document.activeElement;
-            this.enableDocumentSettings();
-            this.bindGlobalListeners();
-
-            if (this.autoZIndex) {
-                ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
-            }
-        },
-        onAfterEnter() {
-            this.focus();
-        },
-        onBeforeLeave() {
-            if (this.modal) {
-                !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
-            }
-
-            if (this.dragging && this.documentDragEndListener) {
-                this.documentDragEndListener();
-            }
-        },
-        onLeave() {
-            this.$emit('hide');
-            focus(this.target);
-            this.target = null;
-            this.focusableClose = null;
-            this.focusableMax = null;
-        },
-        onAfterLeave() {
-            if (this.autoZIndex) {
+            if (this.mask && this.autoZIndex) {
                 ZIndex.clear(this.mask);
             }
 
-            this.containerVisible = false;
-            this.unbindDocumentState();
-            this.unbindGlobalListeners();
-            this.$emit('after-hide');
+            this.container = null;
+            this.mask = null;
         },
-        onMaskMouseDown(event) {
-            this.maskMouseDownTarget = event.target;
-        },
-        onMaskMouseUp() {
-            if (this.dismissableMask && this.modal && this.mask === this.maskMouseDownTarget) {
-                this.close();
+        mounted() {
+            if (this.breakpoints) {
+                this.createStyle();
             }
         },
-        focus() {
-            const findFocusableElement = (container) => {
-                return container && container.querySelector('[autofocus]');
-            };
+        methods: {
+            close() {
+                this.$emit('update:visible', false);
+            },
+            onEnter() {
+                this.$emit('show');
+                this.target = document.activeElement;
+                this.enableDocumentSettings();
+                this.bindGlobalListeners();
 
-            let focusTarget = this.$slots.footer && findFocusableElement(this.footerContainer);
+                if (this.autoZIndex) {
+                    ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
+                }
+            },
+            onAfterEnter() {
+                this.focus();
+            },
+            onBeforeLeave() {
+                if (this.modal) {
+                    !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
+                }
 
-            if (!focusTarget) {
-                focusTarget = this.$slots.header && findFocusableElement(this.headerContainer);
+                if (this.dragging && this.documentDragEndListener) {
+                    this.documentDragEndListener();
+                }
+            },
+            onLeave() {
+                this.$emit('hide');
+                focus(this.target);
+                this.target = null;
+                this.focusableClose = null;
+                this.focusableMax = null;
+            },
+            onAfterLeave() {
+                if (this.autoZIndex) {
+                    ZIndex.clear(this.mask);
+                }
+
+                this.containerVisible = false;
+                this.unbindDocumentState();
+                this.unbindGlobalListeners();
+                this.$emit('after-hide');
+            },
+            onMaskMouseDown(event) {
+                this.maskMouseDownTarget = event.target;
+            },
+            onMaskMouseUp() {
+                if (this.dismissableMask && this.modal && this.mask === this.maskMouseDownTarget) {
+                    this.close();
+                }
+            },
+            focus() {
+                const findFocusableElement = (container) => {
+                    return container && container.querySelector('[autofocus]');
+                };
+
+                let focusTarget = this.$slots.footer && findFocusableElement(this.footerContainer);
 
                 if (!focusTarget) {
-                    focusTarget = this.$slots.default && findFocusableElement(this.content);
+                    focusTarget = this.$slots.header && findFocusableElement(this.headerContainer);
 
                     if (!focusTarget) {
-                        if (this.maximizable) {
-                            this.focusableMax = true;
-                            focusTarget = this.maximizableButton;
-                        } else {
-                            this.focusableClose = true;
-                            focusTarget = this.closeButton;
+                        focusTarget = this.$slots.default && findFocusableElement(this.content);
+
+                        if (!focusTarget) {
+                            if (this.maximizable) {
+                                this.focusableMax = true;
+                                focusTarget = this.maximizableButton;
+                            } else {
+                                this.focusableClose = true;
+                                focusTarget = this.closeButton;
+                            }
                         }
                     }
                 }
-            }
 
-            if (focusTarget) {
-                focus(focusTarget, { focusVisible: true });
-            }
-        },
-        maximize(event) {
-            if (this.maximized) {
-                this.maximized = false;
-                this.$emit('unmaximize', event);
-            } else {
-                this.maximized = true;
-                this.$emit('maximize', event);
-            }
+                if (focusTarget) {
+                    focus(focusTarget, { focusVisible: true });
+                }
+            },
+            maximize(event) {
+                if (this.maximized) {
+                    this.maximized = false;
+                    this.$emit('unmaximize', event);
+                } else {
+                    this.maximized = true;
+                    this.$emit('maximize', event);
+                }
 
-            if (!this.modal) {
-                this.maximized ? blockBodyScroll() : unblockBodyScroll();
-            }
-        },
-        enableDocumentSettings() {
-            if (this.modal || (!this.modal && this.blockScroll) || (this.maximizable && this.maximized)) {
-                blockBodyScroll();
-            }
-        },
-        unbindDocumentState() {
-            if (this.modal || (!this.modal && this.blockScroll) || (this.maximizable && this.maximized)) {
-                unblockBodyScroll();
-            }
-        },
-        onKeyDown(event) {
-            if (event.code === 'Escape' && this.closeOnEscape && !event.isComposing) {
-                this.close();
-            }
-        },
-        bindDocumentKeyDownListener() {
-            if (!this.documentKeydownListener) {
-                this.documentKeydownListener = this.onKeyDown.bind(this);
-                window.document.addEventListener('keydown', this.documentKeydownListener);
-            }
-        },
-        unbindDocumentKeyDownListener() {
-            if (this.documentKeydownListener) {
-                window.document.removeEventListener('keydown', this.documentKeydownListener);
-                this.documentKeydownListener = null;
-            }
-        },
-        containerRef(el) {
-            this.container = el;
-        },
-        maskRef(el) {
-            this.mask = el;
-        },
-        contentRef(el) {
-            this.content = el;
-        },
-        headerContainerRef(el) {
-            this.headerContainer = el;
-        },
-        footerContainerRef(el) {
-            this.footerContainer = el;
-        },
-        maximizableRef(el) {
-            this.maximizableButton = el ? el.$el : undefined;
-        },
-        closeButtonRef(el) {
-            this.closeButton = el ? el.$el : undefined;
-        },
-        createStyle() {
-            if (!this.styleElement && !this.isUnstyled) {
-                this.styleElement = document.createElement('style');
-                this.styleElement.type = 'text/css';
-                setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
-                document.head.appendChild(this.styleElement);
+                if (!this.modal) {
+                    this.maximized ? blockBodyScroll() : unblockBodyScroll();
+                }
+            },
+            enableDocumentSettings() {
+                if (this.modal || (!this.modal && this.blockScroll) || (this.maximizable && this.maximized)) {
+                    blockBodyScroll();
+                }
+            },
+            unbindDocumentState() {
+                if (this.modal || (!this.modal && this.blockScroll) || (this.maximizable && this.maximized)) {
+                    unblockBodyScroll();
+                }
+            },
+            onKeyDown(event) {
+                if (event.code === 'Escape' && this.closeOnEscape && !event.isComposing) {
+                    this.close();
+                }
+            },
+            bindDocumentKeyDownListener() {
+                if (!this.documentKeydownListener) {
+                    this.documentKeydownListener = this.onKeyDown.bind(this);
+                    window.document.addEventListener('keydown', this.documentKeydownListener);
+                }
+            },
+            unbindDocumentKeyDownListener() {
+                if (this.documentKeydownListener) {
+                    window.document.removeEventListener('keydown', this.documentKeydownListener);
+                    this.documentKeydownListener = null;
+                }
+            },
+            containerRef(el) {
+                this.container = el;
+            },
+            maskRef(el) {
+                this.mask = el;
+            },
+            contentRef(el) {
+                this.content = el;
+            },
+            headerContainerRef(el) {
+                this.headerContainer = el;
+            },
+            footerContainerRef(el) {
+                this.footerContainer = el;
+            },
+            maximizableRef(el) {
+                this.maximizableButton = el ? el.$el : undefined;
+            },
+            closeButtonRef(el) {
+                this.closeButton = el ? el.$el : undefined;
+            },
+            createStyle() {
+                if (!this.styleElement && !this.isUnstyled) {
+                    this.styleElement = document.createElement('style');
+                    this.styleElement.type = 'text/css';
+                    setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
+                    document.head.appendChild(this.styleElement);
 
-                let innerHTML = '';
+                    let innerHTML = '';
 
-                for (let breakpoint in this.breakpoints) {
-                    innerHTML += `
+                    for (let breakpoint in this.breakpoints) {
+                        innerHTML += `
                         @media screen and (max-width: ${breakpoint}) {
                             .p-dialog[${this.$attrSelector}] {
                                 width: ${this.breakpoints[breakpoint]} !important;
                             }
                         }
                     `;
+                    }
+
+                    this.styleElement.innerHTML = innerHTML;
+                }
+            },
+            destroyStyle() {
+                if (this.styleElement) {
+                    document.head.removeChild(this.styleElement);
+                    this.styleElement = null;
+                }
+            },
+            initDrag(event) {
+                if (event.target.closest('div').getAttribute('data-pc-section') === 'headeractions') {
+                    return;
                 }
 
-                this.styleElement.innerHTML = innerHTML;
-            }
-        },
-        destroyStyle() {
-            if (this.styleElement) {
-                document.head.removeChild(this.styleElement);
-                this.styleElement = null;
-            }
-        },
-        initDrag(event) {
-            if (event.target.closest('div').getAttribute('data-pc-section') === 'headeractions') {
-                return;
-            }
+                if (this.draggable) {
+                    this.dragging = true;
+                    this.lastPageX = event.pageX;
+                    this.lastPageY = event.pageY;
 
-            if (this.draggable) {
-                this.dragging = true;
-                this.lastPageX = event.pageX;
-                this.lastPageY = event.pageY;
+                    this.container.style.margin = '0';
+                    document.body.setAttribute('data-p-unselectable-text', 'true');
+                    !this.isUnstyled && addStyle(document.body, { 'user-select': 'none' });
 
-                this.container.style.margin = '0';
-                document.body.setAttribute('data-p-unselectable-text', 'true');
-                !this.isUnstyled && addStyle(document.body, { 'user-select': 'none' });
+                    this.$emit('dragstart', event);
+                }
+            },
+            bindGlobalListeners() {
+                if (this.draggable) {
+                    this.bindDocumentDragListener();
+                    this.bindDocumentDragEndListener();
+                }
 
-                this.$emit('dragstart', event);
-            }
-        },
-        bindGlobalListeners() {
-            if (this.draggable) {
-                this.bindDocumentDragListener();
-                this.bindDocumentDragEndListener();
-            }
+                if (this.closeOnEscape) {
+                    this.bindDocumentKeyDownListener();
+                }
+            },
+            unbindGlobalListeners() {
+                this.unbindDocumentDragListener();
+                this.unbindDocumentDragEndListener();
+                this.unbindDocumentKeyDownListener();
+            },
+            bindDocumentDragListener() {
+                this.documentDragListener = (event) => {
+                    if (this.dragging && this.container) {
+                        let width = getOuterWidth(this.container);
+                        let height = getOuterHeight(this.container);
+                        let deltaX = event.pageX - this.lastPageX;
+                        let deltaY = event.pageY - this.lastPageY;
+                        let offset = this.container.getBoundingClientRect();
+                        let leftPos = offset.left + deltaX;
+                        let topPos = offset.top + deltaY;
+                        let viewport = getViewport();
+                        let containerComputedStyle = getComputedStyle(this.container);
+                        let marginLeft = parseFloat(containerComputedStyle.marginLeft);
+                        let marginTop = parseFloat(containerComputedStyle.marginTop);
 
-            if (this.closeOnEscape) {
-                this.bindDocumentKeyDownListener();
-            }
-        },
-        unbindGlobalListeners() {
-            this.unbindDocumentDragListener();
-            this.unbindDocumentDragEndListener();
-            this.unbindDocumentKeyDownListener();
-        },
-        bindDocumentDragListener() {
-            this.documentDragListener = (event) => {
-                if (this.dragging && this.container) {
-                    let width = getOuterWidth(this.container);
-                    let height = getOuterHeight(this.container);
-                    let deltaX = event.pageX - this.lastPageX;
-                    let deltaY = event.pageY - this.lastPageY;
-                    let offset = this.container.getBoundingClientRect();
-                    let leftPos = offset.left + deltaX;
-                    let topPos = offset.top + deltaY;
-                    let viewport = getViewport();
-                    let containerComputedStyle = getComputedStyle(this.container);
-                    let marginLeft = parseFloat(containerComputedStyle.marginLeft);
-                    let marginTop = parseFloat(containerComputedStyle.marginTop);
+                        this.container.style.position = 'fixed';
 
-                    this.container.style.position = 'fixed';
+                        if (this.keepInViewport) {
+                            if (leftPos >= this.minX && leftPos + width < viewport.width) {
+                                this.lastPageX = event.pageX;
+                                this.container.style.left = leftPos - marginLeft + 'px';
+                            }
 
-                    if (this.keepInViewport) {
-                        if (leftPos >= this.minX && leftPos + width < viewport.width) {
+                            if (topPos >= this.minY && topPos + height < viewport.height) {
+                                this.lastPageY = event.pageY;
+                                this.container.style.top = topPos - marginTop + 'px';
+                            }
+                        } else {
                             this.lastPageX = event.pageX;
                             this.container.style.left = leftPos - marginLeft + 'px';
-                        }
-
-                        if (topPos >= this.minY && topPos + height < viewport.height) {
                             this.lastPageY = event.pageY;
                             this.container.style.top = topPos - marginTop + 'px';
                         }
-                    } else {
-                        this.lastPageX = event.pageX;
-                        this.container.style.left = leftPos - marginLeft + 'px';
-                        this.lastPageY = event.pageY;
-                        this.container.style.top = topPos - marginTop + 'px';
                     }
-                }
-            };
+                };
 
-            window.document.addEventListener('mousemove', this.documentDragListener);
-        },
-        unbindDocumentDragListener() {
-            if (this.documentDragListener) {
-                window.document.removeEventListener('mousemove', this.documentDragListener);
-                this.documentDragListener = null;
+                window.document.addEventListener('mousemove', this.documentDragListener);
+            },
+            unbindDocumentDragListener() {
+                if (this.documentDragListener) {
+                    window.document.removeEventListener('mousemove', this.documentDragListener);
+                    this.documentDragListener = null;
+                }
+            },
+            bindDocumentDragEndListener() {
+                this.documentDragEndListener = (event) => {
+                    if (this.dragging) {
+                        this.dragging = false;
+                        document.body.removeAttribute('data-p-unselectable-text');
+                        !this.isUnstyled && (document.body.style['user-select'] = '');
+
+                        this.$emit('dragend', event);
+                    }
+                };
+
+                window.document.addEventListener('mouseup', this.documentDragEndListener);
+            },
+            unbindDocumentDragEndListener() {
+                if (this.documentDragEndListener) {
+                    window.document.removeEventListener('mouseup', this.documentDragEndListener);
+                    this.documentDragEndListener = null;
+                }
             }
         },
-        bindDocumentDragEndListener() {
-            this.documentDragEndListener = (event) => {
-                if (this.dragging) {
-                    this.dragging = false;
-                    document.body.removeAttribute('data-p-unselectable-text');
-                    !this.isUnstyled && (document.body.style['user-select'] = '');
-
-                    this.$emit('dragend', event);
-                }
-            };
-
-            window.document.addEventListener('mouseup', this.documentDragEndListener);
-        },
-        unbindDocumentDragEndListener() {
-            if (this.documentDragEndListener) {
-                window.document.removeEventListener('mouseup', this.documentDragEndListener);
-                this.documentDragEndListener = null;
+        computed: {
+            maximizeIconComponent() {
+                return this.maximized ? (this.minimizeIcon ? 'span' : 'WindowMinimizeIcon') : this.maximizeIcon ? 'span' : 'WindowMaximizeIcon';
+            },
+            ariaLabelledById() {
+                return this.header != null || this.$attrs['aria-labelledby'] !== null ? this.$id + '_header' : null;
+            },
+            closeAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
+            },
+            dataP() {
+                return cn({
+                    maximized: this.maximized,
+                    modal: this.modal
+                });
             }
+        },
+        directives: {
+            ripple: Ripple,
+            focustrap: FocusTrap
+        },
+        components: {
+            Button,
+            Portal,
+            WindowMinimizeIcon,
+            WindowMaximizeIcon,
+            TimesIcon
         }
-    },
-    computed: {
-        maximizeIconComponent() {
-            return this.maximized ? (this.minimizeIcon ? 'span' : 'WindowMinimizeIcon') : this.maximizeIcon ? 'span' : 'WindowMaximizeIcon';
-        },
-        ariaLabelledById() {
-            return this.header != null || this.$attrs['aria-labelledby'] !== null ? this.$id + '_header' : null;
-        },
-        closeAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
-        },
-        dataP() {
-            return cn({
-                maximized: this.maximized,
-                modal: this.modal
-            });
-        }
-    },
-    directives: {
-        ripple: Ripple,
-        focustrap: FocusTrap
-    },
-    components: {
-        Button,
-        Portal,
-        WindowMinimizeIcon,
-        WindowMaximizeIcon,
-        TimesIcon
-    }
-};
+    };
 </script>

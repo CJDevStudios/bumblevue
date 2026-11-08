@@ -30,12 +30,12 @@
 </template>
 
 <script>
-export default {
-    props: {
-        license: {
-            type: null,
-            default: null
+    export default {
+        props: {
+            license: {
+                type: null,
+                default: null
+            }
         }
-    }
-};
+    };
 </script>

@@ -12,20 +12,20 @@
 </template>
 
 <script>
-export default {
-    props: {
-        templateData: {
-            type: Object,
-            required: true
+    export default {
+        props: {
+            templateData: {
+                type: Object,
+                required: true
+            }
+        },
+        computed: {
+            components() {
+                return this.templateData?.components?.map(({ name, ...rest }) => ({
+                    ...rest,
+                    name
+                }));
+            }
         }
-    },
-    computed: {
-        components() {
-            return this.templateData?.components?.map(({ name, ...rest }) => ({
-                ...rest,
-                name
-            }));
-        }
-    }
-};
+    };
 </script>

@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { updatePreset } from '@cjdevstudios/bumblevue/themes';
 
 const changePrimaryColor() {
@@ -33,8 +33,8 @@ const changePrimaryColor() {
     })
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

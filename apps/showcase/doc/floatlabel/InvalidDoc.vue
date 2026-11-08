@@ -22,14 +22,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: '',
-            value2: '',
-            value3: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: '',
+                value2: '',
+                value3: '',
+                code: {
+                    basic: `
 <FloatLabel>
     <InputText id="value1" v-model="value1" :invalid="!value1" />
     <label for="value1">Username</label>
@@ -45,7 +45,7 @@ export default {
     <label for="value3">Username</label>
 </FloatLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">
         <FloatLabel>
@@ -73,8 +73,8 @@ const value2 = ref('');
 const value3 = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

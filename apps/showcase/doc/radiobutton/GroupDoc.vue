@@ -26,12 +26,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            ingredient: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                ingredient: '',
+                code: {
+                    basic: `
 <div class="flex flex-wrap gap-4">
     <div class="flex items-center gap-2">
         <RadioButton v-model="ingredient" inputId="ingredient1" name="pizza" value="Cheese" />
@@ -51,7 +51,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div class="flex flex-wrap gap-4">
@@ -81,8 +81,8 @@ import { ref } from 'vue';
 const ingredient = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -1,7 +1,7 @@
 import isEmpty from './isEmpty.js';
 
 export default function compare(value1, value2, comparator, order = 1) {
-    let result = -1;
+    let result;
     const emptyValue1 = isEmpty(value1);
     const emptyValue2 = isEmpty(value2);
 

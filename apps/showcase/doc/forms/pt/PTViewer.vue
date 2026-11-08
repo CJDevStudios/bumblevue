@@ -11,35 +11,35 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Form'),
-                    key: 'Form'
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Form'),
+                        key: 'Form'
+                    }
+                ],
+                initialValues: {
+                    username: ''
+                },
+                resolver: zodResolver(
+                    z.object({
+                        username: z.string().min(1, { message: 'Username is required.' })
+                    })
+                )
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
                 }
-            ],
-            initialValues: {
-                username: ''
-            },
-            resolver: zodResolver(
-                z.object({
-                    username: z.string().min(1, { message: 'Username is required.' })
-                })
-            )
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
             }
         }
-    }
-};
+    };
 </script>

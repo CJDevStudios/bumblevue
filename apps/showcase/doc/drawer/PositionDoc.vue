@@ -30,15 +30,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visibleLeft: false,
-            visibleRight: false,
-            visibleTop: false,
-            visibleBottom: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visibleLeft: false,
+                visibleRight: false,
+                visibleTop: false,
+                visibleBottom: false,
+                code: {
+                    basic: `
 <div class="flex gap-2 justify-center">
     <Button icon="pi pi-arrow-right" @click="visibleLeft = true" />
     <Button icon="pi pi-arrow-left" @click="visibleRight = true" />
@@ -62,7 +62,7 @@ export default {
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 </Drawer>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex gap-2 justify-center">
@@ -99,8 +99,8 @@ const visibleTop = ref(false);
 const visibleBottom = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

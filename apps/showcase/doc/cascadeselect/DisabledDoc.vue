@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <CascadeSelect disabled placeholder="Disabled" class="w-56" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <CascadeSelect disabled placeholder="Disabled" class="w-56" />
@@ -27,8 +27,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

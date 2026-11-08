@@ -4,15 +4,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import DatePicker from '@cjdevstudios/bumblevue/datepicker';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

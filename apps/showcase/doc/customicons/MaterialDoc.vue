@@ -6,19 +6,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Select>
     <template #dropdownicon>
         <span class="material-icons">arrow_drop_down</span>
     </template>
 </Select>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

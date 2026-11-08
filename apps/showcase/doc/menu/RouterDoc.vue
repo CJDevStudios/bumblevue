@@ -22,35 +22,35 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Navigate',
-                    items: [
-                        {
-                            label: 'Router Link',
-                            icon: 'pi pi-palette',
-                            route: '/theming/unstyled'
-                        },
-                        {
-                            label: 'Programmatic',
-                            icon: 'pi pi-link',
-                            command: () => {
-                                this.$router.push('/introduction');
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Navigate',
+                        items: [
+                            {
+                                label: 'Router Link',
+                                icon: 'pi pi-palette',
+                                route: '/theming/unstyled'
+                            },
+                            {
+                                label: 'Programmatic',
+                                icon: 'pi pi-link',
+                                command: () => {
+                                    this.$router.push('/introduction');
+                                }
+                            },
+                            {
+                                label: 'External',
+                                icon: 'pi pi-home',
+                                url: 'https://vuejs.org/'
                             }
-                        },
-                        {
-                            label: 'External',
-                            icon: 'pi pi-home',
-                            url: 'https://vuejs.org/'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <Menu :model="items">
     <template #item="{ item, props }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -66,7 +66,7 @@ export default {
     </template>
 </Menu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Menu :model="items">
@@ -113,8 +113,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

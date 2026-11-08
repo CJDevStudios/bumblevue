@@ -14,11 +14,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Tag style="border: 2px solid var(--border-color); background: transparent; color: var(--text-color)">
     <div class="flex items-center gap-2 px-1">
         <img alt="Country" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" class="flag flag-it" style="width: 18px" />
@@ -26,7 +26,7 @@ export default {
     </div>
 </Tag>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Tag style="border: 2px solid var(--border-color); background: transparent; color: var(--text-color)">
@@ -41,8 +41,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

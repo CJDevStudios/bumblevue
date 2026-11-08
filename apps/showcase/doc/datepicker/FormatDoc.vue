@@ -28,15 +28,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" dateFormat="dd/mm/yy" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <DatePicker v-model="date" dateFormat="dd/mm/yy" />
@@ -49,8 +49,8 @@ import { ref } from "vue";
 const date = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

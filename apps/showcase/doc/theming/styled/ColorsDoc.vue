@@ -19,21 +19,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
-            colors: ['emerald', 'green', 'lime', 'red', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone'],
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
+                colors: ['emerald', 'green', 'lime', 'red', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone'],
+                code1: {
+                    basic: `
 // With CSS
 var(--p-blue-500)
 
 // With JS
 $dt('blue.500').value
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

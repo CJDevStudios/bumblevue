@@ -56,21 +56,21 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            sortKey: null,
-            sortOrder: null,
-            sortField: null,
-            sortOptions: [
-                { label: 'Price High to Low', value: '!price' },
-                { label: 'Price Low to High', value: 'price' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                sortKey: null,
+                sortOrder: null,
+                sortField: null,
+                sortOptions: [
+                    { label: 'Price High to Low', value: '!price' },
+                    { label: 'Price Low to High', value: 'price' }
+                ],
+                code: {
+                    basic: `
 <DataView :value="products" :sortOrder="sortOrder" :sortField="sortField">
     <template #header>
         <Select v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort By Price" @change="onSortChange($event)" />
@@ -112,7 +112,7 @@ export default {
     </template>
 </DataView>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataView :value="products" :sortOrder="sortOrder" :sortField="sortField">
@@ -206,7 +206,7 @@ const getSeverity = (product) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -222,42 +222,42 @@ const getSeverity = (product) => {
 },
 ...
         `
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
-    },
-    methods: {
-        getSeverity(product) {
-            switch (product.inventoryStatus) {
-                case 'INSTOCK':
-                    return 'success';
-
-                case 'LOWSTOCK':
-                    return 'warn';
-
-                case 'OUTOFSTOCK':
-                    return 'danger';
-
-                default:
-                    return null;
-            }
+                }
+            };
         },
-        onSortChange(event) {
-            const value = event.value.value;
-            const sortValue = event.value;
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
+        },
+        methods: {
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
 
-            if (value.indexOf('!') === 0) {
-                this.sortOrder = -1;
-                this.sortField = value.substring(1, value.length);
-                this.sortKey = sortValue;
-            } else {
-                this.sortOrder = 1;
-                this.sortField = value;
-                this.sortKey = sortValue;
+                    case 'LOWSTOCK':
+                        return 'warn';
+
+                    case 'OUTOFSTOCK':
+                        return 'danger';
+
+                    default:
+                        return null;
+                }
+            },
+            onSortChange(event) {
+                const value = event.value.value;
+                const sortValue = event.value;
+
+                if (value.indexOf('!') === 0) {
+                    this.sortOrder = -1;
+                    this.sortField = value.substring(1, value.length);
+                    this.sortKey = sortValue;
+                } else {
+                    this.sortOrder = 1;
+                    this.sortField = value;
+                    this.sortKey = sortValue;
+                }
             }
         }
-    }
-};
+    };
 </script>

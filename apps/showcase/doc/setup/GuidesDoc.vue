@@ -137,58 +137,58 @@
 </template>
 
 <style scoped>
-.card {
-    padding: 0;
-    min-height: 15rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    .card {
+        padding: 0;
+        min-height: 15rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-.card a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    height: 100%;
-}
+    .card a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+    }
 
-.card .title {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-secondary-color);
-    transition: all 0.5s;
-}
+    .card .title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-secondary-color);
+        transition: all 0.5s;
+    }
 
-.card .images {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    .card .images {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-.card svg {
-    height: 62px;
-    opacity: 1;
-    transition: all 0.5s;
-}
+    .card svg {
+        height: 62px;
+        opacity: 1;
+        transition: all 0.5s;
+    }
 
-.card svg.original {
-    opacity: 0;
-    margin-top: -62px;
-}
+    .card svg.original {
+        opacity: 0;
+        margin-top: -62px;
+    }
 
-.card:hover svg {
-    opacity: 0;
-}
+    .card:hover svg {
+        opacity: 0;
+    }
 
-.card:hover svg.original {
-    opacity: 1;
-}
+    .card:hover svg.original {
+        opacity: 1;
+    }
 
-.card:hover .title {
-    color: var(--text-color);
-}
+    .card:hover .title {
+        color: var(--text-color);
+    }
 </style>

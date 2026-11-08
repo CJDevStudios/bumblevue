@@ -131,468 +131,468 @@
 </template>
 
 <script>
-import { getAttribute, getFirstFocusableElement, getNextElementSibling, getOuterWidth, getPreviousElementSibling, invokeElementMethod } from '@cjdevstudios/bumblevue/utils/dom';
-import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
-import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
-import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
-import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
-import PencilIcon from '@cjdevstudios/bumblevue/icons/pencil';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import Button from '@cjdevstudios/bumblevue/button';
-import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import { mergeProps } from 'vue';
-import RowCheckbox from './RowCheckbox.vue';
-import RowRadioButton from './RowRadioButton.vue';
+    import { getAttribute, getFirstFocusableElement, getNextElementSibling, getOuterWidth, getPreviousElementSibling, invokeElementMethod } from '@cjdevstudios/bumblevue/utils/dom';
+    import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+    import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
+    import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+    import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+    import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+    import PencilIcon from '@cjdevstudios/bumblevue/icons/pencil';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { mergeProps } from 'vue';
+    import RowCheckbox from './RowCheckbox.vue';
+    import RowRadioButton from './RowRadioButton.vue';
 
-export default {
-    name: 'BodyCell',
-    hostName: 'DataTable',
-    extends: BaseComponent,
-    emits: ['cell-edit-init', 'cell-edit-complete', 'cell-edit-cancel', 'row-edit-init', 'row-edit-save', 'row-edit-cancel', 'row-toggle', 'radio-change', 'checkbox-change', 'editing-meta-change'],
-    inject: {
-        $pcDataTable: {
-            default: undefined
-        }
-    },
-    props: {
-        rowData: {
-            type: Object,
-            default: null
+    export default {
+        name: 'BodyCell',
+        hostName: 'DataTable',
+        extends: BaseComponent,
+        emits: ['cell-edit-init', 'cell-edit-complete', 'cell-edit-cancel', 'row-edit-init', 'row-edit-save', 'row-edit-cancel', 'row-toggle', 'radio-change', 'checkbox-change', 'editing-meta-change'],
+        inject: {
+            $pcDataTable: {
+                default: undefined
+            }
         },
-        column: {
-            type: Object,
-            default: null
+        props: {
+            rowData: {
+                type: Object,
+                default: null
+            },
+            column: {
+                type: Object,
+                default: null
+            },
+            frozenRow: {
+                type: Boolean,
+                default: false
+            },
+            rowIndex: {
+                type: Number,
+                default: null
+            },
+            index: {
+                type: Number,
+                default: null
+            },
+            isRowExpanded: {
+                type: Boolean,
+                default: false
+            },
+            selected: {
+                type: Boolean,
+                default: false
+            },
+            editing: {
+                type: Boolean,
+                default: false
+            },
+            editingMeta: {
+                type: Object,
+                default: null
+            },
+            editMode: {
+                type: String,
+                default: null
+            },
+            virtualScrollerContentProps: {
+                type: Object,
+                default: null
+            },
+            ariaControls: {
+                type: String,
+                default: null
+            },
+            name: {
+                type: String,
+                default: null
+            },
+            expandedRowIcon: {
+                type: String,
+                default: null
+            },
+            collapsedRowIcon: {
+                type: String,
+                default: null
+            },
+            editButtonProps: {
+                type: Object,
+                default: null
+            }
         },
-        frozenRow: {
-            type: Boolean,
-            default: false
-        },
-        rowIndex: {
-            type: Number,
-            default: null
-        },
-        index: {
-            type: Number,
-            default: null
-        },
-        isRowExpanded: {
-            type: Boolean,
-            default: false
-        },
-        selected: {
-            type: Boolean,
-            default: false
-        },
-        editing: {
-            type: Boolean,
-            default: false
-        },
-        editingMeta: {
-            type: Object,
-            default: null
-        },
-        editMode: {
-            type: String,
-            default: null
-        },
-        virtualScrollerContentProps: {
-            type: Object,
-            default: null
-        },
-        ariaControls: {
-            type: String,
-            default: null
-        },
-        name: {
-            type: String,
-            default: null
-        },
-        expandedRowIcon: {
-            type: String,
-            default: null
-        },
-        collapsedRowIcon: {
-            type: String,
-            default: null
-        },
-        editButtonProps: {
-            type: Object,
-            default: null
-        }
-    },
-    documentEditListener: null,
-    selfClick: false,
-    overlayEventListener: null,
-    editCompleteTimeout: null,
-    data() {
-        return {
-            d_editing: this.editing,
-            styleObject: {}
-        };
-    },
-    watch: {
-        editing(newValue) {
-            this.d_editing = newValue;
-        },
-        '$data.d_editing': function (newValue) {
-            this.$emit('editing-meta-change', { data: this.rowData, field: this.field || `field_${this.index}`, index: this.rowIndex, editing: newValue });
-        }
-    },
-    mounted() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-    },
-    updated() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-
-        if (this.d_editing && (this.editMode === 'cell' || (this.editMode === 'row' && this.columnProp('rowEditor')))) {
-            setTimeout(() => {
-                const focusableEl = getFirstFocusableElement(this.$el);
-
-                focusableEl && focusableEl.focus();
-            }, 1);
-        }
-    },
-    beforeUnmount() {
-        if (this.overlayEventListener) {
-            OverlayEventBus.off('overlay-click', this.overlayEventListener);
-            this.overlayEventListener = null;
-        }
-    },
-    methods: {
-        columnProp(prop) {
-            return getVNodeProp(this.column, prop);
-        },
-        getColumnPT(key) {
-            const columnMetaData = {
-                props: this.column.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    index: this.index,
-                    size: this.$parentInstance?.$parentInstance?.size,
-                    showGridlines: this.$parentInstance?.$parentInstance?.showGridlines
-                }
+        documentEditListener: null,
+        selfClick: false,
+        overlayEventListener: null,
+        editCompleteTimeout: null,
+        data() {
+            return {
+                d_editing: this.editing,
+                styleObject: {}
             };
+        },
+        watch: {
+            editing(newValue) {
+                this.d_editing = newValue;
+            },
+            '$data.d_editing': function (newValue) {
+                this.$emit('editing-meta-change', { data: this.rowData, field: this.field || `field_${this.index}`, index: this.rowIndex, editing: newValue });
+            }
+        },
+        mounted() {
+            if (this.columnProp('frozen')) {
+                this.updateStickyPosition();
+            }
+        },
+        updated() {
+            if (this.columnProp('frozen')) {
+                this.updateStickyPosition();
+            }
 
-            return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
-        },
-        getColumnProp() {
-            return this.column.props && this.column.props.pt ? this.column.props.pt : undefined;
-        },
-        resolveFieldData() {
-            return resolveFieldData(this.rowData, this.field);
-        },
-        toggleRow(event) {
-            this.$emit('row-toggle', {
-                originalEvent: event,
-                data: this.rowData
-            });
-        },
-        toggleRowWithRadio(event, index) {
-            this.$emit('radio-change', { originalEvent: event.originalEvent, index: index, data: event.data });
-        },
-        toggleRowWithCheckbox(event, index) {
-            this.$emit('checkbox-change', { originalEvent: event.originalEvent, index: index, data: event.data });
-        },
-        isEditable() {
-            return this.column.children && this.column.children.editor != null;
-        },
-        bindDocumentEditListener() {
-            if (!this.documentEditListener) {
-                this.documentEditListener = (event) => {
-                    this.selfClick = this.$el && (this.$el.contains(event.target) || event.target.closest('[data-pc-section="overlay"]') || event.target.closest('[data-pc-section="panel"]'));
+            if (this.d_editing && (this.editMode === 'cell' || (this.editMode === 'row' && this.columnProp('rowEditor')))) {
+                setTimeout(() => {
+                    const focusableEl = getFirstFocusableElement(this.$el);
 
-                    if (this.editCompleteTimeout) {
-                        clearTimeout(this.editCompleteTimeout);
-                    }
-
-                    if (!this.selfClick) {
-                        this.editCompleteTimeout = setTimeout(() => {
-                            this.completeEdit(event, 'outside');
-                        }, 1);
+                    focusableEl && focusableEl.focus();
+                }, 1);
+            }
+        },
+        beforeUnmount() {
+            if (this.overlayEventListener) {
+                OverlayEventBus.off('overlay-click', this.overlayEventListener);
+                this.overlayEventListener = null;
+            }
+        },
+        methods: {
+            columnProp(prop) {
+                return getVNodeProp(this.column, prop);
+            },
+            getColumnPT(key) {
+                const columnMetaData = {
+                    props: this.column.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        index: this.index,
+                        size: this.$parentInstance?.$parentInstance?.size,
+                        showGridlines: this.$parentInstance?.$parentInstance?.showGridlines
                     }
                 };
 
-                document.addEventListener('mousedown', this.documentEditListener);
-            }
-        },
-        unbindDocumentEditListener() {
-            if (this.documentEditListener) {
-                document.removeEventListener('mousedown', this.documentEditListener);
-                this.documentEditListener = null;
-                this.selfClick = false;
+                return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
+            },
+            getColumnProp() {
+                return this.column.props && this.column.props.pt ? this.column.props.pt : undefined;
+            },
+            resolveFieldData() {
+                return resolveFieldData(this.rowData, this.field);
+            },
+            toggleRow(event) {
+                this.$emit('row-toggle', {
+                    originalEvent: event,
+                    data: this.rowData
+                });
+            },
+            toggleRowWithRadio(event, index) {
+                this.$emit('radio-change', { originalEvent: event.originalEvent, index: index, data: event.data });
+            },
+            toggleRowWithCheckbox(event, index) {
+                this.$emit('checkbox-change', { originalEvent: event.originalEvent, index: index, data: event.data });
+            },
+            isEditable() {
+                return this.column.children && this.column.children.editor != null;
+            },
+            bindDocumentEditListener() {
+                if (!this.documentEditListener) {
+                    this.documentEditListener = (event) => {
+                        this.selfClick = this.$el && (this.$el.contains(event.target) || event.target.closest('[data-pc-section="overlay"]') || event.target.closest('[data-pc-section="panel"]'));
 
-                if (this.editCompleteTimeout) {
-                    clearTimeout(this.editCompleteTimeout);
-                    this.editCompleteTimeout = null;
-                }
-            }
-        },
-        switchCellToViewMode() {
-            this.d_editing = false;
-            this.unbindDocumentEditListener();
-            OverlayEventBus.off('overlay-click', this.overlayEventListener);
-            this.overlayEventListener = null;
-        },
-        onClick(event) {
-            if (this.editMode === 'cell' && this.isEditable()) {
-                if (!this.d_editing) {
-                    this.d_editing = true;
-                    this.bindDocumentEditListener();
-                    this.$emit('cell-edit-init', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
+                        if (this.editCompleteTimeout) {
+                            clearTimeout(this.editCompleteTimeout);
+                        }
 
-                    this.overlayEventListener = (e) => {
-                        this.selfClick = this.$el && this.$el.contains(e.target);
+                        if (!this.selfClick) {
+                            this.editCompleteTimeout = setTimeout(() => {
+                                this.completeEdit(event, 'outside');
+                            }, 1);
+                        }
                     };
 
-                    OverlayEventBus.on('overlay-click', this.overlayEventListener);
+                    document.addEventListener('mousedown', this.documentEditListener);
                 }
-            }
-        },
-        completeEdit(event, type) {
-            const completeEvent = {
-                originalEvent: event,
-                data: this.rowData,
-                newData: this.editingRowData,
-                value: this.rowData[this.field],
-                newValue: this.editingRowData[this.field],
-                field: this.field,
-                index: this.rowIndex,
-                type: type,
-                defaultPrevented: false,
-                preventDefault: function () {
-                    this.defaultPrevented = true;
+            },
+            unbindDocumentEditListener() {
+                if (this.documentEditListener) {
+                    document.removeEventListener('mousedown', this.documentEditListener);
+                    this.documentEditListener = null;
+                    this.selfClick = false;
+
+                    if (this.editCompleteTimeout) {
+                        clearTimeout(this.editCompleteTimeout);
+                        this.editCompleteTimeout = null;
+                    }
                 }
-            };
+            },
+            switchCellToViewMode() {
+                this.d_editing = false;
+                this.unbindDocumentEditListener();
+                OverlayEventBus.off('overlay-click', this.overlayEventListener);
+                this.overlayEventListener = null;
+            },
+            onClick(event) {
+                if (this.editMode === 'cell' && this.isEditable()) {
+                    if (!this.d_editing) {
+                        this.d_editing = true;
+                        this.bindDocumentEditListener();
+                        this.$emit('cell-edit-init', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
 
-            this.$emit('cell-edit-complete', completeEvent);
+                        this.overlayEventListener = (e) => {
+                            this.selfClick = this.$el && this.$el.contains(e.target);
+                        };
 
-            if (!completeEvent.defaultPrevented) {
-                this.switchCellToViewMode();
-            }
-        },
-        onKeyDown(event) {
-            if (this.editMode === 'cell') {
-                switch (event.code) {
-                    case 'Enter':
-                    case 'NumpadEnter':
-                        this.completeEdit(event, 'enter');
-                        break;
-
-                    case 'Escape':
-                        this.switchCellToViewMode();
-                        this.$emit('cell-edit-cancel', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
-                        break;
-
-                    case 'Tab':
-                        this.completeEdit(event, 'tab');
-
-                        if (event.shiftKey) this.moveToPreviousCell(event);
-                        else this.moveToNextCell(event);
-                        break;
-
-                    default:
-                        break;
+                        OverlayEventBus.on('overlay-click', this.overlayEventListener);
+                    }
                 }
-            }
-        },
-        async moveToPreviousCell(event) {
-            let currentCell = this.findCell(event.target);
-            let targetCell = this.findPreviousEditableColumn(currentCell);
+            },
+            completeEdit(event, type) {
+                const completeEvent = {
+                    originalEvent: event,
+                    data: this.rowData,
+                    newData: this.editingRowData,
+                    value: this.rowData[this.field],
+                    newValue: this.editingRowData[this.field],
+                    field: this.field,
+                    index: this.rowIndex,
+                    type: type,
+                    defaultPrevented: false,
+                    preventDefault: function () {
+                        this.defaultPrevented = true;
+                    }
+                };
 
-            if (targetCell) {
-                await this.$nextTick();
-                invokeElementMethod(targetCell, 'click');
-                event.preventDefault();
-            }
-        },
-        async moveToNextCell(event) {
-            let currentCell = this.findCell(event.target);
-            let targetCell = this.findNextEditableColumn(currentCell);
+                this.$emit('cell-edit-complete', completeEvent);
 
-            if (targetCell) {
-                await this.$nextTick();
-                invokeElementMethod(targetCell, 'click');
-                event.preventDefault();
-            }
-        },
-        findCell(element) {
-            if (element) {
-                let cell = element;
-
-                while (cell && !getAttribute(cell, 'data-p-cell-editing')) {
-                    cell = cell.parentElement;
+                if (!completeEvent.defaultPrevented) {
+                    this.switchCellToViewMode();
                 }
+            },
+            onKeyDown(event) {
+                if (this.editMode === 'cell') {
+                    switch (event.code) {
+                        case 'Enter':
+                        case 'NumpadEnter':
+                            this.completeEdit(event, 'enter');
+                            break;
 
-                return cell;
-            } else {
-                return null;
-            }
-        },
-        findPreviousEditableColumn(cell) {
-            let prevCell = cell.previousElementSibling;
+                        case 'Escape':
+                            this.switchCellToViewMode();
+                            this.$emit('cell-edit-cancel', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
+                            break;
 
-            if (!prevCell) {
-                let previousRow = cell.parentElement.previousElementSibling;
+                        case 'Tab':
+                            this.completeEdit(event, 'tab');
 
-                if (previousRow) {
-                    prevCell = previousRow.lastElementChild;
+                            if (event.shiftKey) this.moveToPreviousCell(event);
+                            else this.moveToNextCell(event);
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-            }
+            },
+            async moveToPreviousCell(event) {
+                let currentCell = this.findCell(event.target);
+                let targetCell = this.findPreviousEditableColumn(currentCell);
 
-            if (prevCell) {
-                if (getAttribute(prevCell, 'data-p-editable-column')) return prevCell;
-                else return this.findPreviousEditableColumn(prevCell);
-            } else {
-                return null;
-            }
-        },
-        findNextEditableColumn(cell) {
-            let nextCell = cell.nextElementSibling;
-
-            if (!nextCell) {
-                let nextRow = cell.parentElement.nextElementSibling;
-
-                if (nextRow) {
-                    nextCell = nextRow.firstElementChild;
+                if (targetCell) {
+                    await this.$nextTick();
+                    invokeElementMethod(targetCell, 'click');
+                    event.preventDefault();
                 }
-            }
+            },
+            async moveToNextCell(event) {
+                let currentCell = this.findCell(event.target);
+                let targetCell = this.findNextEditableColumn(currentCell);
 
-            if (nextCell) {
-                if (getAttribute(nextCell, 'data-p-editable-column')) return nextCell;
-                else return this.findNextEditableColumn(nextCell);
-            } else {
-                return null;
-            }
-        },
-        onRowEditInit(event) {
-            this.$emit('row-edit-init', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-        },
-        onRowEditSave(event) {
-            this.$emit('row-edit-save', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-        },
-        onRowEditCancel(event) {
-            this.$emit('row-edit-cancel', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-        },
-        editorInitCallback(event) {
-            this.$emit('row-edit-init', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-        },
-        editorSaveCallback(event) {
-            if (this.editMode === 'row') {
-                this.$emit('row-edit-save', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-            } else {
-                this.completeEdit(event, 'enter');
-            }
-        },
-        editorCancelCallback(event) {
-            if (this.editMode === 'row') {
-                this.$emit('row-edit-cancel', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
-            } else {
-                this.switchCellToViewMode();
-                this.$emit('cell-edit-cancel', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
-            }
-        },
-        updateStickyPosition() {
-            if (this.columnProp('frozen')) {
-                let align = this.columnProp('alignFrozen');
+                if (targetCell) {
+                    await this.$nextTick();
+                    invokeElementMethod(targetCell, 'click');
+                    event.preventDefault();
+                }
+            },
+            findCell(element) {
+                if (element) {
+                    let cell = element;
 
-                if (align === 'right') {
-                    let pos = 0;
-                    let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
-
-                    if (next) {
-                        pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
+                    while (cell && !getAttribute(cell, 'data-p-cell-editing')) {
+                        cell = cell.parentElement;
                     }
 
-                    this.styleObject.insetInlineEnd = pos + 'px';
+                    return cell;
                 } else {
-                    let pos = 0;
-                    let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
-
-                    if (prev) {
-                        pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
-                    }
-
-                    this.styleObject.insetInlineStart = pos + 'px';
+                    return null;
                 }
+            },
+            findPreviousEditableColumn(cell) {
+                let prevCell = cell.previousElementSibling;
+
+                if (!prevCell) {
+                    let previousRow = cell.parentElement.previousElementSibling;
+
+                    if (previousRow) {
+                        prevCell = previousRow.lastElementChild;
+                    }
+                }
+
+                if (prevCell) {
+                    if (getAttribute(prevCell, 'data-p-editable-column')) return prevCell;
+                    else return this.findPreviousEditableColumn(prevCell);
+                } else {
+                    return null;
+                }
+            },
+            findNextEditableColumn(cell) {
+                let nextCell = cell.nextElementSibling;
+
+                if (!nextCell) {
+                    let nextRow = cell.parentElement.nextElementSibling;
+
+                    if (nextRow) {
+                        nextCell = nextRow.firstElementChild;
+                    }
+                }
+
+                if (nextCell) {
+                    if (getAttribute(nextCell, 'data-p-editable-column')) return nextCell;
+                    else return this.findNextEditableColumn(nextCell);
+                } else {
+                    return null;
+                }
+            },
+            onRowEditInit(event) {
+                this.$emit('row-edit-init', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+            },
+            onRowEditSave(event) {
+                this.$emit('row-edit-save', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+            },
+            onRowEditCancel(event) {
+                this.$emit('row-edit-cancel', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+            },
+            editorInitCallback(event) {
+                this.$emit('row-edit-init', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+            },
+            editorSaveCallback(event) {
+                if (this.editMode === 'row') {
+                    this.$emit('row-edit-save', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+                } else {
+                    this.completeEdit(event, 'enter');
+                }
+            },
+            editorCancelCallback(event) {
+                if (this.editMode === 'row') {
+                    this.$emit('row-edit-cancel', { originalEvent: event, data: this.rowData, newData: this.editingRowData, field: this.field, index: this.rowIndex });
+                } else {
+                    this.switchCellToViewMode();
+                    this.$emit('cell-edit-cancel', { originalEvent: event, data: this.rowData, field: this.field, index: this.rowIndex });
+                }
+            },
+            updateStickyPosition() {
+                if (this.columnProp('frozen')) {
+                    let align = this.columnProp('alignFrozen');
+
+                    if (align === 'right') {
+                        let pos = 0;
+                        let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (next) {
+                            pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
+                        }
+
+                        this.styleObject.insetInlineEnd = pos + 'px';
+                    } else {
+                        let pos = 0;
+                        let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (prev) {
+                            pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
+                        }
+
+                        this.styleObject.insetInlineStart = pos + 'px';
+                    }
+                }
+            },
+            getVirtualScrollerProp(option) {
+                return this.virtualScrollerContentProps ? this.virtualScrollerContentProps[option] : null;
             }
         },
-        getVirtualScrollerProp(option) {
-            return this.virtualScrollerContentProps ? this.virtualScrollerContentProps[option] : null;
-        }
-    },
-    computed: {
-        editingRowData() {
-            return this.editingMeta[this.rowIndex] ? this.editingMeta[this.rowIndex].data : this.rowData;
-        },
-        field() {
-            return this.columnProp('field');
-        },
-        containerClass() {
-            return [this.columnProp('bodyClass'), this.columnProp('class'), this.cx('bodyCell')];
-        },
-        containerStyle() {
-            let bodyStyle = this.columnProp('bodyStyle');
-            let columnStyle = this.columnProp('style');
+        computed: {
+            editingRowData() {
+                return this.editingMeta[this.rowIndex] ? this.editingMeta[this.rowIndex].data : this.rowData;
+            },
+            field() {
+                return this.columnProp('field');
+            },
+            containerClass() {
+                return [this.columnProp('bodyClass'), this.columnProp('class'), this.cx('bodyCell')];
+            },
+            containerStyle() {
+                let bodyStyle = this.columnProp('bodyStyle');
+                let columnStyle = this.columnProp('style');
 
-            return this.columnProp('frozen') ? [columnStyle, bodyStyle, this.styleObject] : [columnStyle, bodyStyle];
-        },
-        loading() {
-            return this.column.children?.loading && (this.getVirtualScrollerProp('loading') || this.$pcDataTable?.loading);
-        },
-        loadingOptions() {
-            const getLoaderOptions = this.getVirtualScrollerProp('getLoaderOptions');
+                return this.columnProp('frozen') ? [columnStyle, bodyStyle, this.styleObject] : [columnStyle, bodyStyle];
+            },
+            loading() {
+                return this.column.children?.loading && (this.getVirtualScrollerProp('loading') || this.$pcDataTable?.loading);
+            },
+            loadingOptions() {
+                const getLoaderOptions = this.getVirtualScrollerProp('getLoaderOptions');
 
-            return (
-                getLoaderOptions &&
-                getLoaderOptions(this.rowIndex, {
-                    cellIndex: this.index,
-                    cellFirst: this.index === 0,
-                    cellLast: this.index === this.getVirtualScrollerProp('columns').length - 1,
-                    cellEven: this.index % 2 === 0,
-                    cellOdd: this.index % 2 !== 0,
-                    column: this.column,
-                    field: this.field
-                })
-            );
+                return (
+                    getLoaderOptions &&
+                    getLoaderOptions(this.rowIndex, {
+                        cellIndex: this.index,
+                        cellFirst: this.index === 0,
+                        cellLast: this.index === this.getVirtualScrollerProp('columns').length - 1,
+                        cellEven: this.index % 2 === 0,
+                        cellOdd: this.index % 2 !== 0,
+                        column: this.column,
+                        field: this.field
+                    })
+                );
+            },
+            expandButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? (this.isRowExpanded ? this.$bumblevue.config.locale.aria.expandRow : this.$bumblevue.config.locale.aria.collapseRow) : undefined;
+            },
+            initButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.editRow : undefined;
+            },
+            saveButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.saveEdit : undefined;
+            },
+            cancelButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.cancelEdit : undefined;
+            }
         },
-        expandButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? (this.isRowExpanded ? this.$bumblevue.config.locale.aria.expandRow : this.$bumblevue.config.locale.aria.collapseRow) : undefined;
+        components: {
+            DTRadioButton: RowRadioButton,
+            DTCheckbox: RowCheckbox,
+            Button,
+            ChevronDownIcon,
+            ChevronRightIcon,
+            BarsIcon,
+            PencilIcon,
+            CheckIcon,
+            TimesIcon
         },
-        initButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.editRow : undefined;
-        },
-        saveButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.saveEdit : undefined;
-        },
-        cancelButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.cancelEdit : undefined;
+        directives: {
+            ripple: Ripple
         }
-    },
-    components: {
-        DTRadioButton: RowRadioButton,
-        DTCheckbox: RowCheckbox,
-        Button,
-        ChevronDownIcon,
-        ChevronRightIcon,
-        BarsIcon,
-        PencilIcon,
-        CheckIcon,
-        TimesIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

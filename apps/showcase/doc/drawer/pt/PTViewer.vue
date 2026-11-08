@@ -33,24 +33,24 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import { markRaw } from 'vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import { markRaw } from 'vue';
 
-export default {
-    data() {
-        return {
-            visible: true,
-            docs: [
-                {
-                    data: getPTOptions('Drawer'),
-                    key: 'Drawer'
-                }
-            ]
-        };
-    },
-    components: {
-        TimesIcon: markRaw(TimesIcon)
-    }
-};
+    export default {
+        data() {
+            return {
+                visible: true,
+                docs: [
+                    {
+                        data: getPTOptions('Drawer'),
+                        key: 'Drawer'
+                    }
+                ]
+            };
+        },
+        components: {
+            TimesIcon: markRaw(TimesIcon)
+        }
+    };
 </script>

@@ -15,22 +15,22 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedKey: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedKey: null,
+                code: {
+                    basic: `
 <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" @nodeSelect="onNodeSelect" @nodeUnselect="onNodeUnselect" :metaKeySelection="false" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" expander style="width: 34%"></Column>
     <Column field="size" header="Size" style="width: 33%"></Column>
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" @nodeSelect="onNodeSelect" @nodeUnselect="onNodeUnselect" :metaKeySelection="false" tableStyle="min-width: 50rem">
@@ -62,7 +62,7 @@ const onNodeUnselect = (node) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -90,19 +90,19 @@ const onNodeUnselect = (node) => {
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+            },
+            onNodeSelect(node) {
+                this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.data.name, life: 3000 });
+            },
+            onNodeUnselect(node) {
+                this.$toast.add({ severity: 'warn', summary: 'Node Unselected', detail: node.data.name, life: 3000 });
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-        },
-        onNodeSelect(node) {
-            this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.data.name, life: 3000 });
-        },
-        onNodeUnselect(node) {
-            this.$toast.add({ severity: 'warn', summary: 'Node Unselected', detail: node.data.name, life: 3000 });
         }
-    }
-};
+    };
 </script>

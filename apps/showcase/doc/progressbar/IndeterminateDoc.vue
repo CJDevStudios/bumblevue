@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ProgressBar mode="indeterminate" style="height: 6px"></ProgressBar>
@@ -27,8 +27,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

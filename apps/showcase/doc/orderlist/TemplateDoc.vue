@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    import { ProductService } from '@/service/ProductService';
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <OrderList v-model="products" dataKey="id" breakpoint="575px" scrollHeight="20rem">
     <template #option="{ option , selected }">
         <div class="flex flex-wrap p-1 items-center gap-4 w-full">
@@ -40,7 +40,7 @@ export default {
     </template>
 </OrderList>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card sm:flex sm:justify-center">
         <OrderList v-model="products" dataKey="id" breakpoint="575px" scrollHeight="20rem">
@@ -69,7 +69,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -84,11 +84,11 @@ onMounted(() => {
     rating: 5
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data));
+        }
+    };
 </script>

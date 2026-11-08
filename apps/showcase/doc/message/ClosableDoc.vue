@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Message closable>Closable Message</Message>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Message closable>Closable Message</Message>
@@ -26,8 +26,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -38,185 +38,185 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { findSingle, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';
-import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import TabListStyle from '@cjdevstudios/bumblevue/tablist/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { findSingle, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ChevronLeftIcon from '@cjdevstudios/bumblevue/icons/chevronleft';
+    import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import TabListStyle from '@cjdevstudios/bumblevue/tablist/style';
 
-export default {
-    name: 'TabList',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {},
-    style: TabListStyle,
-    provide() {
-        return {
-            $pcTabList: this,
-            $parentInstance: this
-        };
-    },
-    inject: ['$pcTabs'],
-    data() {
-        return {
-            isPrevButtonEnabled: false,
-            isNextButtonEnabled: true
-        };
-    },
-    resizeObserver: undefined,
-    inkBarObserver: undefined,
-    watch: {
-        showNavigators(newValue) {
-            newValue ? this.bindResizeObserver() : this.unbindResizeObserver();
+    export default {
+        name: 'TabList',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {},
+        style: TabListStyle,
+        provide() {
+            return {
+                $pcTabList: this,
+                $parentInstance: this
+            };
         },
-        activeValue: {
-            flush: 'post',
-            handler() {
+        inject: ['$pcTabs'],
+        data() {
+            return {
+                isPrevButtonEnabled: false,
+                isNextButtonEnabled: true
+            };
+        },
+        resizeObserver: undefined,
+        inkBarObserver: undefined,
+        watch: {
+            showNavigators(newValue) {
+                newValue ? this.bindResizeObserver() : this.unbindResizeObserver();
+            },
+            activeValue: {
+                flush: 'post',
+                handler() {
+                    this.updateInkBar();
+                    this.bindInkBarObserver();
+                }
+            }
+        },
+        mounted() {
+            setTimeout(() => {
                 this.updateInkBar();
                 this.bindInkBarObserver();
-            }
-        }
-    },
-    mounted() {
-        setTimeout(() => {
-            this.updateInkBar();
-            this.bindInkBarObserver();
-        }, 150);
-
-        if (this.showNavigators) {
-            this.updateButtonState();
-            this.bindResizeObserver();
-        }
-    },
-    updated() {
-        this.showNavigators && this.updateButtonState();
-    },
-    beforeUnmount() {
-        this.unbindResizeObserver();
-        this.unbindInkBarObserver();
-    },
-    methods: {
-        onScroll(event) {
-            this.showNavigators && this.updateButtonState();
-
-            event.preventDefault();
-        },
-        onPrevButtonClick() {
-            const content = this.$refs.content;
-            const buttonWidths = this.getVisibleButtonWidths();
-            const width = getWidth(content) - buttonWidths;
-            const currentScrollLeft = Math.abs(content.scrollLeft);
-            const scrollStep = width * 0.8;
-            const targetScrollLeft = currentScrollLeft - scrollStep;
-            const scrollLeft = Math.max(targetScrollLeft, 0);
-
-            content.scrollLeft = isRTL(content) ? -1 * scrollLeft : scrollLeft;
-        },
-        onNextButtonClick() {
-            const content = this.$refs.content;
-            const buttonWidths = this.getVisibleButtonWidths();
-            const width = getWidth(content) - buttonWidths;
-            const currentScrollLeft = Math.abs(content.scrollLeft);
-            const scrollStep = width * 0.8;
-            const targetScrollLeft = currentScrollLeft + scrollStep;
-            const maxScrollLeft = content.scrollWidth - width;
-            const scrollLeft = Math.min(targetScrollLeft, maxScrollLeft);
-
-            content.scrollLeft = isRTL(content) ? -1 * scrollLeft : scrollLeft;
-        },
-        bindResizeObserver() {
-            this.resizeObserver = new ResizeObserver(() => this.updateButtonState());
-            this.resizeObserver.observe(this.$refs.list);
-        },
-        unbindResizeObserver() {
-            this.resizeObserver?.unobserve(this.$refs.list);
-            this.resizeObserver = undefined;
-        },
-        bindInkBarObserver() {
-            this.unbindInkBarObserver();
-
-            const { content } = this.$refs;
-            const activeTab = findSingle(content, '[data-pc-name="tab"][data-p-active="true"]');
-
-            if (activeTab) {
-                this.inkBarObserver = new ResizeObserver(() => this.updateInkBar());
-                this.inkBarObserver.observe(activeTab);
-            }
-        },
-        unbindInkBarObserver() {
-            this.inkBarObserver?.disconnect();
-            this.inkBarObserver = undefined;
-        },
-        updateInkBar() {
-            const { content, inkbar, tabs } = this.$refs;
-
-            if (!inkbar) return;
-
-            const activeTab = findSingle(content, '[data-pc-name="tab"][data-p-active="true"]');
-
-            if (this.$pcTabs.isVertical()) {
-                inkbar.style.height = getOuterHeight(activeTab) + 'px';
-                inkbar.style.top = getOffset(activeTab).top - getOffset(tabs).top + 'px';
-            } else {
-                inkbar.style.width = getOuterWidth(activeTab) + 'px';
-                inkbar.style.left = getOffset(activeTab).left - getOffset(tabs).left + 'px';
-            }
-        },
-        updateButtonState() {
-            const { list, content } = this.$refs;
-            const { scrollTop, scrollWidth, scrollHeight, offsetWidth, offsetHeight } = content;
-            const scrollLeft = Math.abs(content.scrollLeft);
-            const [width, height] = [getWidth(content), getHeight(content)];
-
-            if (this.$pcTabs.isVertical()) {
-                this.isPrevButtonEnabled = scrollTop !== 0;
-                this.isNextButtonEnabled = list.offsetHeight >= offsetHeight && parseInt(scrollTop) !== scrollHeight - height;
-            } else {
-                this.isPrevButtonEnabled = scrollLeft !== 0;
-                this.isNextButtonEnabled = list.offsetWidth >= offsetWidth && parseInt(scrollLeft) !== scrollWidth - width;
-            }
-        },
-        getVisibleButtonWidths() {
-            const { prevButton, nextButton } = this.$refs;
-            let width = 0;
+            }, 150);
 
             if (this.showNavigators) {
-                width = (prevButton?.offsetWidth || 0) + (nextButton?.offsetWidth || 0);
+                this.updateButtonState();
+                this.bindResizeObserver();
             }
+        },
+        updated() {
+            this.showNavigators && this.updateButtonState();
+        },
+        beforeUnmount() {
+            this.unbindResizeObserver();
+            this.unbindInkBarObserver();
+        },
+        methods: {
+            onScroll(event) {
+                this.showNavigators && this.updateButtonState();
 
-            return width;
+                event.preventDefault();
+            },
+            onPrevButtonClick() {
+                const content = this.$refs.content;
+                const buttonWidths = this.getVisibleButtonWidths();
+                const width = getWidth(content) - buttonWidths;
+                const currentScrollLeft = Math.abs(content.scrollLeft);
+                const scrollStep = width * 0.8;
+                const targetScrollLeft = currentScrollLeft - scrollStep;
+                const scrollLeft = Math.max(targetScrollLeft, 0);
+
+                content.scrollLeft = isRTL(content) ? -1 * scrollLeft : scrollLeft;
+            },
+            onNextButtonClick() {
+                const content = this.$refs.content;
+                const buttonWidths = this.getVisibleButtonWidths();
+                const width = getWidth(content) - buttonWidths;
+                const currentScrollLeft = Math.abs(content.scrollLeft);
+                const scrollStep = width * 0.8;
+                const targetScrollLeft = currentScrollLeft + scrollStep;
+                const maxScrollLeft = content.scrollWidth - width;
+                const scrollLeft = Math.min(targetScrollLeft, maxScrollLeft);
+
+                content.scrollLeft = isRTL(content) ? -1 * scrollLeft : scrollLeft;
+            },
+            bindResizeObserver() {
+                this.resizeObserver = new ResizeObserver(() => this.updateButtonState());
+                this.resizeObserver.observe(this.$refs.list);
+            },
+            unbindResizeObserver() {
+                this.resizeObserver?.unobserve(this.$refs.list);
+                this.resizeObserver = undefined;
+            },
+            bindInkBarObserver() {
+                this.unbindInkBarObserver();
+
+                const { content } = this.$refs;
+                const activeTab = findSingle(content, '[data-pc-name="tab"][data-p-active="true"]');
+
+                if (activeTab) {
+                    this.inkBarObserver = new ResizeObserver(() => this.updateInkBar());
+                    this.inkBarObserver.observe(activeTab);
+                }
+            },
+            unbindInkBarObserver() {
+                this.inkBarObserver?.disconnect();
+                this.inkBarObserver = undefined;
+            },
+            updateInkBar() {
+                const { content, inkbar, tabs } = this.$refs;
+
+                if (!inkbar) return;
+
+                const activeTab = findSingle(content, '[data-pc-name="tab"][data-p-active="true"]');
+
+                if (this.$pcTabs.isVertical()) {
+                    inkbar.style.height = getOuterHeight(activeTab) + 'px';
+                    inkbar.style.top = getOffset(activeTab).top - getOffset(tabs).top + 'px';
+                } else {
+                    inkbar.style.width = getOuterWidth(activeTab) + 'px';
+                    inkbar.style.left = getOffset(activeTab).left - getOffset(tabs).left + 'px';
+                }
+            },
+            updateButtonState() {
+                const { list, content } = this.$refs;
+                const { scrollTop, scrollWidth, scrollHeight, offsetWidth, offsetHeight } = content;
+                const scrollLeft = Math.abs(content.scrollLeft);
+                const [width, height] = [getWidth(content), getHeight(content)];
+
+                if (this.$pcTabs.isVertical()) {
+                    this.isPrevButtonEnabled = scrollTop !== 0;
+                    this.isNextButtonEnabled = list.offsetHeight >= offsetHeight && parseInt(scrollTop) !== scrollHeight - height;
+                } else {
+                    this.isPrevButtonEnabled = scrollLeft !== 0;
+                    this.isNextButtonEnabled = list.offsetWidth >= offsetWidth && parseInt(scrollLeft) !== scrollWidth - width;
+                }
+            },
+            getVisibleButtonWidths() {
+                const { prevButton, nextButton } = this.$refs;
+                let width = 0;
+
+                if (this.showNavigators) {
+                    width = (prevButton?.offsetWidth || 0) + (nextButton?.offsetWidth || 0);
+                }
+
+                return width;
+            }
+        },
+        computed: {
+            templates() {
+                return this.$pcTabs.$slots;
+            },
+            activeValue() {
+                return this.$pcTabs.d_value;
+            },
+            showNavigators() {
+                return this.$pcTabs.showNavigators;
+            },
+            prevButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.previous : undefined;
+            },
+            nextButtonAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.next : undefined;
+            },
+            dataP() {
+                return cn({
+                    scrollable: this.$pcTabs.scrollable
+                });
+            }
+        },
+        components: {
+            ChevronLeftIcon,
+            ChevronRightIcon
+        },
+        directives: {
+            ripple: Ripple
         }
-    },
-    computed: {
-        templates() {
-            return this.$pcTabs.$slots;
-        },
-        activeValue() {
-            return this.$pcTabs.d_value;
-        },
-        showNavigators() {
-            return this.$pcTabs.showNavigators;
-        },
-        prevButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.previous : undefined;
-        },
-        nextButtonAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.next : undefined;
-        },
-        dataP() {
-            return cn({
-                scrollable: this.$pcTabs.scrollable
-            });
-        }
-    },
-    components: {
-        ChevronLeftIcon,
-        ChevronRightIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

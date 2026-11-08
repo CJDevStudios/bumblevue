@@ -50,140 +50,140 @@
 </template>
 
 <script>
-import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
-import { mergeProps } from 'vue';
-import ColumnFilter from './ColumnFilter.vue';
-import HeaderCheckbox from './HeaderCheckbox.vue';
+    import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+    import { mergeProps } from 'vue';
+    import ColumnFilter from './ColumnFilter.vue';
+    import HeaderCheckbox from './HeaderCheckbox.vue';
 
-export default {
-    name: 'FilterHeaderCell',
-    hostName: 'DataTable',
-    extends: BaseComponent,
-    emits: ['checkbox-change', 'filter-change', 'filter-apply', 'operator-change', 'matchmode-change', 'constraint-add', 'constraint-remove', 'apply-click'],
-    props: {
-        column: {
-            type: Object,
-            default: null
+    export default {
+        name: 'FilterHeaderCell',
+        hostName: 'DataTable',
+        extends: BaseComponent,
+        emits: ['checkbox-change', 'filter-change', 'filter-apply', 'operator-change', 'matchmode-change', 'constraint-add', 'constraint-remove', 'apply-click'],
+        props: {
+            column: {
+                type: Object,
+                default: null
+            },
+            index: {
+                type: Number,
+                default: null
+            },
+            allRowsSelected: {
+                type: Boolean,
+                default: false
+            },
+            empty: {
+                type: Boolean,
+                default: false
+            },
+            display: {
+                type: String,
+                default: 'row'
+            },
+            filters: {
+                type: Object,
+                default: null
+            },
+            filtersStore: {
+                type: Object,
+                default: null
+            },
+            rowGroupMode: {
+                type: String,
+                default: null
+            },
+            groupRowsBy: {
+                type: [Array, String, Function],
+                default: null
+            },
+            filterInputProps: {
+                type: null,
+                default: null
+            },
+            filterButtonProps: {
+                type: null,
+                default: null
+            }
         },
-        index: {
-            type: Number,
-            default: null
-        },
-        allRowsSelected: {
-            type: Boolean,
-            default: false
-        },
-        empty: {
-            type: Boolean,
-            default: false
-        },
-        display: {
-            type: String,
-            default: 'row'
-        },
-        filters: {
-            type: Object,
-            default: null
-        },
-        filtersStore: {
-            type: Object,
-            default: null
-        },
-        rowGroupMode: {
-            type: String,
-            default: null
-        },
-        groupRowsBy: {
-            type: [Array, String, Function],
-            default: null
-        },
-        filterInputProps: {
-            type: null,
-            default: null
-        },
-        filterButtonProps: {
-            type: null,
-            default: null
-        }
-    },
-    data() {
-        return {
-            styleObject: {}
-        };
-    },
-    mounted() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-    },
-    updated() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-    },
-    methods: {
-        columnProp(prop) {
-            return getVNodeProp(this.column, prop);
-        },
-        getColumnPT(key) {
-            if (!this.column) return null;
-
-            const columnMetaData = {
-                props: this.column.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    index: this.index
-                }
+        data() {
+            return {
+                styleObject: {}
             };
-
-            return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
         },
-        getColumnProp() {
-            return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo
-        },
-        updateStickyPosition() {
+        mounted() {
             if (this.columnProp('frozen')) {
-                let align = this.columnProp('alignFrozen');
+                this.updateStickyPosition();
+            }
+        },
+        updated() {
+            if (this.columnProp('frozen')) {
+                this.updateStickyPosition();
+            }
+        },
+        methods: {
+            columnProp(prop) {
+                return getVNodeProp(this.column, prop);
+            },
+            getColumnPT(key) {
+                if (!this.column) return null;
 
-                if (align === 'right') {
-                    let pos = 0;
-                    let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
-
-                    if (next) {
-                        pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
+                const columnMetaData = {
+                    props: this.column.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        index: this.index
                     }
+                };
 
-                    this.styleObject.insetInlineEnd = pos + 'px';
-                } else {
-                    let pos = 0;
-                    let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
+                return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
+            },
+            getColumnProp() {
+                return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo
+            },
+            updateStickyPosition() {
+                if (this.columnProp('frozen')) {
+                    let align = this.columnProp('alignFrozen');
 
-                    if (prev) {
-                        pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
+                    if (align === 'right') {
+                        let pos = 0;
+                        let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (next) {
+                            pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
+                        }
+
+                        this.styleObject.insetInlineEnd = pos + 'px';
+                    } else {
+                        let pos = 0;
+                        let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (prev) {
+                            pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
+                        }
+
+                        this.styleObject.insetInlineStart = pos + 'px';
                     }
-
-                    this.styleObject.insetInlineStart = pos + 'px';
                 }
             }
-        }
-    },
-    computed: {
-        getFilterColumnHeaderClass() {
-            return [this.cx('headerCell', { column: this.column }), this.columnProp('filterHeaderClass'), this.columnProp('class')];
         },
-        getFilterColumnHeaderStyle() {
-            return this.columnProp('frozen') ? [this.columnProp('filterHeaderStyle'), this.columnProp('style'), this.styleObject] : [this.columnProp('filterHeaderStyle'), this.columnProp('style')];
+        computed: {
+            getFilterColumnHeaderClass() {
+                return [this.cx('headerCell', { column: this.column }), this.columnProp('filterHeaderClass'), this.columnProp('class')];
+            },
+            getFilterColumnHeaderStyle() {
+                return this.columnProp('frozen') ? [this.columnProp('filterHeaderStyle'), this.columnProp('style'), this.styleObject] : [this.columnProp('filterHeaderStyle'), this.columnProp('style')];
+            }
+        },
+        components: {
+            DTHeaderCheckbox: HeaderCheckbox,
+            DTColumnFilter: ColumnFilter
         }
-    },
-    components: {
-        DTHeaderCheckbox: HeaderCheckbox,
-        DTColumnFilter: ColumnFilter
-    }
-};
+    };
 </script>

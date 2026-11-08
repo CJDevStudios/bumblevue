@@ -9,27 +9,27 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-import PTViewer from './PTViewer.vue';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import PTViewer from './PTViewer.vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.viewer',
-                    label: 'Viewer',
-                    component: PTViewer
-                },
-                {
-                    id: 'pt.doc.tooltip',
-                    label: 'Tooltip PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Tooltip')
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.viewer',
+                        label: 'Viewer',
+                        component: PTViewer
+                    },
+                    {
+                        id: 'pt.doc.tooltip',
+                        label: 'Tooltip PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Tooltip')
+                    }
+                ]
+            };
+        }
+    };
 </script>

@@ -25,12 +25,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 .p-dialog-enter-active {
     animation: demo-dialog-in 500ms ease-out;
 }
@@ -54,33 +54,33 @@ export default {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style>
-.demo-dialog.p-dialog-enter-active {
-    animation: demo-dialog-in 500ms ease-out;
-}
-
-.demo-dialog.p-dialog-leave-active {
-    animation: demo-dialog-out 500ms ease-in;
-}
-
-@keyframes demo-dialog-in {
-    from {
-        opacity: 0;
-        transform: translateY(-10%) scale(1.1);
-        filter: blur(10px);
+    .demo-dialog.p-dialog-enter-active {
+        animation: demo-dialog-in 500ms ease-out;
     }
-}
 
-@keyframes demo-dialog-out {
-    to {
-        opacity: 0;
-        transform: translateY(200%) rotate(-90deg);
+    .demo-dialog.p-dialog-leave-active {
+        animation: demo-dialog-out 500ms ease-in;
     }
-}
+
+    @keyframes demo-dialog-in {
+        from {
+            opacity: 0;
+            transform: translateY(-10%) scale(1.1);
+            filter: blur(10px);
+        }
+    }
+
+    @keyframes demo-dialog-out {
+        to {
+            opacity: 0;
+            transform: translateY(200%) rotate(-90deg);
+        }
+    }
 </style>

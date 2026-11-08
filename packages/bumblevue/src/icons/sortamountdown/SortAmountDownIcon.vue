@@ -8,10 +8,10 @@
 </template>
 
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'SortAmountDownIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'SortAmountDownIcon',
+        extends: BaseIcon
+    };
 </script>

@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DatePicker v-model="date" fluid />
@@ -34,8 +34,8 @@ export default {
 };
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

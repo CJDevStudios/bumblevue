@@ -11,15 +11,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Chart type="line" :data="data" :canvasProps="{'role': 'img', 'aria-label': 'Data'}" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -6,24 +6,24 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 mounted() {
     this.$primevue.config.ripple = true;
 }
 `,
-                composition: `
+                    composition: `
 import { useBumbleVue } from '@cjdevstudios/bumblevue/config';
 
 const BumbleVue = useBumbleVue();
 
 BumbleVue.config.ripple = true;
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

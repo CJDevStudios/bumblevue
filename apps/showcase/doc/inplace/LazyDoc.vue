@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <Inplace @open="loadData">
     <template #display> View Data </template>
     <template #content>
@@ -39,7 +39,7 @@ export default {
     </template>
 </Inplace>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Inplace @open="loadData">
@@ -67,13 +67,13 @@ const loadData = () => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            loadData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
             }
-        };
-    },
-    methods: {
-        loadData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
         }
-    }
-};
+    };
 </script>

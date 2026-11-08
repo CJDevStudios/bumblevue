@@ -285,485 +285,485 @@
 </template>
 
 <script>
-import EventBus from '@/app/AppEventBus';
+    import EventBus from '@/app/AppEventBus';
 
-export default {
-    data() {
-        return {
-            lineChartData: {},
-            lineChartOptions: {},
-            chartData: {},
-            chartOptions: {},
-            sampleAppsSidebarNavs: [
-                { icon: 'pi pi-home', title: 'Overview' },
-                { icon: 'pi pi-comment', title: 'Chat' },
-                { icon: 'pi pi-inbox', title: 'Inbox' },
-                { icon: 'pi pi-th-large', title: 'Cards' },
-                { icon: 'pi pi-user', title: 'Customers' },
-                { icon: 'pi pi-video', title: 'Movies' }
-            ],
-            sampleAppsSidebarNavsMore: [{ icon: 'pi pi-cog', title: 'Settings' }],
-            selectedSampleAppsSidebarNav: 'Overview',
-            isSlimMenu: true,
-            isSlimMenuSelected: false,
-            visibleRight: false,
-            selectedSidebarOption: 'Statistics',
-            sidebarOptions: ['Interaction Logs', 'Preferences', 'Statistics'],
-            callLogs: [
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar6.png', name: 'Brook Simmons', time: '02.02.2024 | 45 min' },
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar12.jpg', name: 'Jacob Jones', time: '02.02.2024 | 45 min' },
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar13.jpg', name: 'Annette Black', time: '02.03.2024 | 13 min' },
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar9.jpg', name: 'Arlene McCoy', time: '02.03.2024 | 14 min' },
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar10.jpg', name: 'Arlene Simmons', time: '02.03.2024 | 14 min' },
-                { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg', name: 'Michael Brown', time: '02.04.2024 | 20 min' }
-            ],
-            emailRecords: [
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar2.png',
-                    name: 'Brook Simmons',
-                    time: '3:24 PM',
-                    title: 'Unleash Business Potential',
-                    text: 'Automate, analyze, and accelerate with our SaaS platform. Unshackle from mundane tasks and focus on scaling your business. Contact us for a demo today!'
-                },
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar7.png',
-                    name: 'Jacob Jones',
-                    time: '12.23.2023',
-                    title: 'Optimized Workflow Revolution  ',
-                    text: "Experience a workflow revolution with our intuitive SaaS tool. With enhanced features and optimized processes, it's efficiency like never before. Let's get in touch for a brief demo!"
-                },
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar8.png',
-                    name: 'Annette Black',
-                    time: '12.17.2023',
-                    title: 'Innovation at Fingertips',
-                    text: 'With our SaaS solution, innovation is only a click away. Shape your future with pioneering features and minimalist design. Join us for your solution walk-through today!'
-                },
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg',
-                    name: 'Arlene McCoy',
-                    time: '06.17.2023',
-                    title: 'Seamless Integration',
-                    text: 'Integrate effortlessly with our user-friendly SaaS tools. Streamline your operations and boost productivity. Discover more in our demo session.'
-                },
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar13.jpg',
-                    name: 'Arlene Simmons',
-                    time: '04.17.2023',
-                    title: 'Transform Your Business',
-                    text: 'Empower your team with our innovative SaaS solutions. Achieve unparalleled efficiency and drive growth. Book a demo to explore the possibilities.'
-                },
-                {
-                    image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar2.png',
-                    name: 'Michael Brown',
-                    time: '01.05.2024',
-                    title: 'Next-Gen Collaboration',
-                    text: 'Experience the future of collaboration with our cutting-edge SaaS platform. Enhance teamwork and streamline communication. Contact us for a demo today!'
-                }
-            ],
-            preferences: [
-                {
-                    title: 'Email',
-                    prefs: [
-                        { icon: 'pi pi-bell', title: 'Notification', checked: true },
-                        { icon: 'pi pi-inbox', title: 'Newsletter', checked: false },
-                        { icon: 'pi pi-sync', title: 'Product Updates', checked: false }
-                    ]
-                },
-                {
-                    title: 'Telephone',
-                    prefs: [
-                        { icon: 'pi pi-mobile', title: 'Phone Call', checked: true },
-                        { icon: 'pi pi-volume-down', title: 'Voicemail', checked: false },
-                        { icon: 'pi pi-comments', title: 'SMS text', checked: false }
-                    ]
-                },
-                {
-                    title: 'Social Media',
-                    prefs: [
-                        { icon: 'pi pi-clock', title: 'Automated Post', checked: true },
-                        { icon: 'pi pi-user', title: 'Direct Message', checked: false }
-                    ]
-                },
-                {
-                    title: 'Data Privacy',
-                    prefs: [
-                        { icon: 'pi pi-box', title: 'Share Data with 3rd Parties', checked: true },
-                        { icon: 'pi pi-file', title: 'Cookies', checked: false }
-                    ]
-                }
-            ],
-            customerSatisfaction: 56,
-            churnRisk: 24
-        };
-    },
-    beforeUnmount() {
-        EventBus.off('dark-mode-toggle-complete', this.redrawListener);
-        EventBus.off('theme-palette-change', this.redrawListener);
-    },
-    mounted() {
-        this.chartData = this.setChartData();
-        this.chartOptions = this.setChartOptions();
-        this.lineChartData = this.setLineChartData();
-        this.lineChartOptions = this.setLineChartOptions();
-
-        this.redrawListener = () => {
-            this.chartOptions = this.setChartOptions();
-            this.chartData = this.setChartData();
-            this.lineChartData = this.setLineChartData();
-            this.lineChartOptions = this.setLineChartOptions();
-        };
-
-        EventBus.on('theme-palette-change', this.redrawListener);
-        EventBus.on('dark-mode-toggle-complete', this.redrawListener);
-    },
-    methods: {
-        setSelectedSampleAppsSidebarNav(title) {
-            this.selectedSampleAppsSidebarNav = title;
-        },
-        isDark() {
-            return this.$appState.darkTheme;
-        },
-        toggleSlimMenu() {
-            this.isSlimMenu = !this.isSlimMenu;
-            this.isSlimMenuSelected = this.isSlimMenu;
-        },
-        onGetStartedClick() {
-            this.$appState.designer.active = false;
-        },
-        setChartData() {
-            const documentStyle = getComputedStyle(document.documentElement);
-            const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
-            const hoverBackgroundColor = documentStyle.getPropertyValue('--p-primary-color');
-
+    export default {
+        data() {
             return {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                datasets: [
+                lineChartData: {},
+                lineChartOptions: {},
+                chartData: {},
+                chartOptions: {},
+                sampleAppsSidebarNavs: [
+                    { icon: 'pi pi-home', title: 'Overview' },
+                    { icon: 'pi pi-comment', title: 'Chat' },
+                    { icon: 'pi pi-inbox', title: 'Inbox' },
+                    { icon: 'pi pi-th-large', title: 'Cards' },
+                    { icon: 'pi pi-user', title: 'Customers' },
+                    { icon: 'pi pi-video', title: 'Movies' }
+                ],
+                sampleAppsSidebarNavsMore: [{ icon: 'pi pi-cog', title: 'Settings' }],
+                selectedSampleAppsSidebarNav: 'Overview',
+                isSlimMenu: true,
+                isSlimMenuSelected: false,
+                visibleRight: false,
+                selectedSidebarOption: 'Statistics',
+                sidebarOptions: ['Interaction Logs', 'Preferences', 'Statistics'],
+                callLogs: [
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar6.png', name: 'Brook Simmons', time: '02.02.2024 | 45 min' },
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar12.jpg', name: 'Jacob Jones', time: '02.02.2024 | 45 min' },
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar13.jpg', name: 'Annette Black', time: '02.03.2024 | 13 min' },
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar9.jpg', name: 'Arlene McCoy', time: '02.03.2024 | 14 min' },
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar10.jpg', name: 'Arlene Simmons', time: '02.03.2024 | 14 min' },
+                    { image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg', name: 'Michael Brown', time: '02.04.2024 | 20 min' }
+                ],
+                emailRecords: [
                     {
-                        type: 'bar',
-                        label: 'Investment Wallet',
-                        backgroundColor: borderColor,
-                        data: [100, 201, 404, 300, 140, 220, 314, 520, 145, 234, 325, 147],
-                        borderRadius: {
-                            topLeft: 4,
-                            topRight: 4
-                        },
-                        borderSkipped: true,
-                        barThickness: 20,
-                        hoverBackgroundColor: hoverBackgroundColor,
-                        hoverTransition: '1s ease all'
-                    }
-                ]
-            };
-        },
-        setChartOptions() {
-            const documentStyle = getComputedStyle(document.documentElement);
-            const backgroundColor = documentStyle.getPropertyValue('--p-content-background');
-            const textColor = documentStyle.getPropertyValue('--p-text-color');
-            const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
-            const textMutedColor = documentStyle.getPropertyValue('--p-text-muted-color');
-
-            const getOrCreateTooltip = (chart) => {
-                let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
-
-                if (!tooltipEl) {
-                    tooltipEl = document.createElement('div');
-                    tooltipEl.classList.add('chartjs-tooltip');
-                    tooltipEl.style.backgroundColor = backgroundColor;
-                    tooltipEl.style.boxShadow =
-                        ' 0px 33.12px 9.399px 0px rgba(0, 0, 0, 0.00), 0px 21.036px 8.504px 0px rgba(0, 0, 0, 0.01), 0px 12.084px 7.161px 0px rgba(0, 0, 0, 0.05), 0px 5.371px 5.371px 0px rgba(0, 0, 0, 0.09), 0px 1.343px 2.685px 0px rgba(0, 0, 0, 0.10)';
-                    tooltipEl.style.borderRadius = '7px';
-                    tooltipEl.style.color = textColor;
-                    tooltipEl.style.opacity = 1;
-                    tooltipEl.style.padding = '14.5px';
-                    tooltipEl.style.pointerEvents = 'none';
-                    tooltipEl.style.position = 'absolute';
-                    tooltipEl.style.transform = 'translate(-50%, 0)';
-                    tooltipEl.style.transition = 'all .2s ease';
-                    chart.canvas.parentNode.appendChild(tooltipEl);
-                }
-
-                return tooltipEl;
-            };
-
-            return {
-                maintainAspectRatio: false,
-                aspectRatio: 0.8,
-                plugins: {
-                    chartAreaBorder: {
-                        borderColor: 'red',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        borderDashOffset: 2
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar2.png',
+                        name: 'Brook Simmons',
+                        time: '3:24 PM',
+                        title: 'Unleash Business Potential',
+                        text: 'Automate, analyze, and accelerate with our SaaS platform. Unshackle from mundane tasks and focus on scaling your business. Contact us for a demo today!'
                     },
-                    tooltip: {
-                        enabled: false,
-                        padding: 5,
-                        position: 'nearest',
-                        external: function (context) {
-                            // Tooltip Element
-                            const { chart, tooltip } = context;
-                            const tooltipEl = getOrCreateTooltip(chart);
-
-                            // Hide if no tooltip
-                            if (tooltip.opacity === 0) {
-                                tooltipEl.style.opacity = 0;
-
-                                return;
-                            }
-
-                            if (tooltip.body) {
-                                const bodyLines = tooltip.body.map((b) => {
-                                    const strArr = b.lines[0].split(':');
-                                    const data = {
-                                        text: strArr[0].trim(),
-                                        value: strArr[1].trim()
-                                    };
-
-                                    return data;
-                                });
-
-                                // Clear old content
-                                tooltipEl.innerHTML = '';
-                                bodyLines.forEach((body, i) => {
-                                    const text = document.createElement('div');
-
-                                    text.appendChild(document.createTextNode('$' + body.value + 'K'));
-                                    text.style.fontWeight = '500';
-                                    text.style.lineHeight = '21px';
-                                    text.style.fontSize = '14px';
-                                    tooltipEl.appendChild(text);
-                                });
-                            }
-
-                            const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-
-                            // Display, position, and set styles for font
-                            tooltipEl.style.opacity = 1;
-                            tooltipEl.style.left = positionX + tooltip.caretX + 'px';
-                            tooltipEl.style.top = positionY + tooltip.caretY + 'px';
-                            tooltipEl.style.font = tooltip.options.bodyFont.string;
-                            tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
-                        }
-                    },
-                    legend: {
-                        display: false
-                    }
-                },
-                scales: {
-                    x: {
-                        stacked: true,
-                        ticks: {
-                            color: textMutedColor
-                        },
-                        grid: {
-                            color: 'transparent',
-                            borderColor: 'transparent'
-                        }
-                    },
-                    y: {
-                        border: {
-                            display: false
-                        },
-                        stacked: true,
-                        ticks: {
-                            color: textMutedColor
-                        },
-                        grid: {
-                            color: borderColor,
-                            borderColor: 'transparent'
-                        }
-                    }
-                }
-            };
-        },
-        setLineChartData() {
-            const darkMode = this.$appState.darkTheme;
-
-            return {
-                labels: ['31', '1', '2', '3', '4', '5', '6', '7', '8'],
-                datasets: [
                     {
-                        label: 'My First Dataset',
-                        data: [60, 64, 57, 52, 58, 70, 75, 70, 60],
-                        fill: true,
-                        borderColor: '#16A34A',
-                        tension: 0.4,
-                        borderWidth: 1.5,
-                        pointBackgroundColor: '#16A34A',
-                        pointBorderColor: darkMode ? '#09090B' : '#FFF',
-                        pointBorderWidth: 3,
-
-                        hideInLegendAndTooltip: false,
-                        pointStyle: function (context) {
-                            let index = context.dataIndex;
-
-                            if (index == 6) {
-                                return 'circle';
-                            } else {
-                                return 'line';
-                            }
-                        },
-                        pointRadius: function (context) {
-                            let index = context.dataIndex;
-
-                            if (index == 6) {
-                                return 6;
-                            } else {
-                                return 0.1;
-                            }
-                        },
-                        backgroundColor: (context) => {
-                            const bgColor = ['rgba(22,163,74,0.16)', 'rgba(22,163,74,0)'];
-
-                            if (!context.chart.chartArea) {
-                                return;
-                            }
-
-                            const {
-                                ctx,
-                                data,
-                                chartArea: { top, bottom }
-                            } = context.chart;
-                            const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
-                            const colorTranches = 1 / (bgColor.length - 1);
-
-                            for (let i = 0; i < bgColor.length; i++) {
-                                gradientBg.addColorStop(0 + i * colorTranches, bgColor[i]);
-                            }
-
-                            return gradientBg;
-                        }
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar7.png',
+                        name: 'Jacob Jones',
+                        time: '12.23.2023',
+                        title: 'Optimized Workflow Revolution  ',
+                        text: "Experience a workflow revolution with our intuitive SaaS tool. With enhanced features and optimized processes, it's efficiency like never before. Let's get in touch for a brief demo!"
+                    },
+                    {
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar8.png',
+                        name: 'Annette Black',
+                        time: '12.17.2023',
+                        title: 'Innovation at Fingertips',
+                        text: 'With our SaaS solution, innovation is only a click away. Shape your future with pioneering features and minimalist design. Join us for your solution walk-through today!'
+                    },
+                    {
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg',
+                        name: 'Arlene McCoy',
+                        time: '06.17.2023',
+                        title: 'Seamless Integration',
+                        text: 'Integrate effortlessly with our user-friendly SaaS tools. Streamline your operations and boost productivity. Discover more in our demo session.'
+                    },
+                    {
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar13.jpg',
+                        name: 'Arlene Simmons',
+                        time: '04.17.2023',
+                        title: 'Transform Your Business',
+                        text: 'Empower your team with our innovative SaaS solutions. Achieve unparalleled efficiency and drive growth. Book a demo to explore the possibilities.'
+                    },
+                    {
+                        image: 'https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar2.png',
+                        name: 'Michael Brown',
+                        time: '01.05.2024',
+                        title: 'Next-Gen Collaboration',
+                        text: 'Experience the future of collaboration with our cutting-edge SaaS platform. Enhance teamwork and streamline communication. Contact us for a demo today!'
                     }
                 ],
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        },
-                        title: {
-                            display: true,
-                            text: 'Chart.js Line Chart'
-                        }
+                preferences: [
+                    {
+                        title: 'Email',
+                        prefs: [
+                            { icon: 'pi pi-bell', title: 'Notification', checked: true },
+                            { icon: 'pi pi-inbox', title: 'Newsletter', checked: false },
+                            { icon: 'pi pi-sync', title: 'Product Updates', checked: false }
+                        ]
+                    },
+                    {
+                        title: 'Telephone',
+                        prefs: [
+                            { icon: 'pi pi-mobile', title: 'Phone Call', checked: true },
+                            { icon: 'pi pi-volume-down', title: 'Voicemail', checked: false },
+                            { icon: 'pi pi-comments', title: 'SMS text', checked: false }
+                        ]
+                    },
+                    {
+                        title: 'Social Media',
+                        prefs: [
+                            { icon: 'pi pi-clock', title: 'Automated Post', checked: true },
+                            { icon: 'pi pi-user', title: 'Direct Message', checked: false }
+                        ]
+                    },
+                    {
+                        title: 'Data Privacy',
+                        prefs: [
+                            { icon: 'pi pi-box', title: 'Share Data with 3rd Parties', checked: true },
+                            { icon: 'pi pi-file', title: 'Cookies', checked: false }
+                        ]
                     }
-                }
+                ],
+                customerSatisfaction: 56,
+                churnRisk: 24
             };
         },
-        setLineChartOptions() {
-            const darkMode = this.$appState.darkTheme;
-            const documentStyle = getComputedStyle(document.documentElement);
+        beforeUnmount() {
+            EventBus.off('dark-mode-toggle-complete', this.redrawListener);
+            EventBus.off('theme-palette-change', this.redrawListener);
+        },
+        mounted() {
+            this.chartData = this.setChartData();
+            this.chartOptions = this.setChartOptions();
+            this.lineChartData = this.setLineChartData();
+            this.lineChartOptions = this.setLineChartOptions();
 
-            const backgroundColor = documentStyle.getPropertyValue('--p-content-background');
-            const textColor = documentStyle.getPropertyValue('--p-text-color');
-            const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
-            const textMutedColor = documentStyle.getPropertyValue('--p-text-muted-color');
-
-            const getOrCreateTooltip = (chart) => {
-                let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
-
-                if (!tooltipEl) {
-                    tooltipEl = document.createElement('div');
-                    tooltipEl.classList.add('chartjs-tooltip');
-                    tooltipEl.style.backgroundColor = backgroundColor;
-                    tooltipEl.style.boxShadow =
-                        ' 0px 33.12px 9.399px 0px rgba(0, 0, 0, 0.00), 0px 21.036px 8.504px 0px rgba(0, 0, 0, 0.01), 0px 12.084px 7.161px 0px rgba(0, 0, 0, 0.05), 0px 5.371px 5.371px 0px rgba(0, 0, 0, 0.09), 0px 1.343px 2.685px 0px rgba(0, 0, 0, 0.10)';
-                    tooltipEl.style.borderRadius = '7px';
-                    tooltipEl.style.color = textColor;
-                    tooltipEl.style.opacity = 1;
-                    tooltipEl.style.padding = '2px';
-                    tooltipEl.style.pointerEvents = 'none';
-                    tooltipEl.style.position = 'absolute';
-                    tooltipEl.style.transform = 'translate(-50%, 0)';
-                    tooltipEl.style.transition = 'all .2s ease';
-                    chart.canvas.parentNode.appendChild(tooltipEl);
-                }
-
-                return tooltipEl;
+            this.redrawListener = () => {
+                this.chartOptions = this.setChartOptions();
+                this.chartData = this.setChartData();
+                this.lineChartData = this.setLineChartData();
+                this.lineChartOptions = this.setLineChartOptions();
             };
 
-            return {
-                maintainAspectRatio: false,
-                aspectRatio: 0.8,
-                plugins: {
-                    chartAreaBorder: {
-                        borderColor: 'red',
-                        borderWidth: 2,
-                        borderDash: [5, 5],
-                        borderDashOffset: 2
-                    },
-                    tooltip: {
-                        enabled: false,
-                        padding: 8,
-                        position: 'nearest',
-                        external: function (context) {
-                            // Tooltip Element
-                            const { chart, tooltip } = context;
-                            const tooltipEl = getOrCreateTooltip(chart);
+            EventBus.on('theme-palette-change', this.redrawListener);
+            EventBus.on('dark-mode-toggle-complete', this.redrawListener);
+        },
+        methods: {
+            setSelectedSampleAppsSidebarNav(title) {
+                this.selectedSampleAppsSidebarNav = title;
+            },
+            isDark() {
+                return this.$appState.darkTheme;
+            },
+            toggleSlimMenu() {
+                this.isSlimMenu = !this.isSlimMenu;
+                this.isSlimMenuSelected = this.isSlimMenu;
+            },
+            onGetStartedClick() {
+                this.$appState.designer.active = false;
+            },
+            setChartData() {
+                const documentStyle = getComputedStyle(document.documentElement);
+                const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
+                const hoverBackgroundColor = documentStyle.getPropertyValue('--p-primary-color');
 
-                            // Hide if no tooltip
-                            if (tooltip.opacity === 0) {
-                                tooltipEl.style.opacity = 0;
-
-                                return;
-                            }
-
-                            if (tooltip.body) {
-                                const bodyLines = tooltip.body.map((b) => {
-                                    const strArr = b.lines[0].split(':');
-                                    const data = {
-                                        text: strArr[0].trim(),
-                                        value: strArr[1].trim()
-                                    };
-
-                                    return data;
-                                });
-
-                                // Clear old content
-                                tooltipEl.innerHTML = '';
-                                bodyLines.forEach((body, i) => {
-                                    const text = document.createElement('div');
-
-                                    text.appendChild(document.createTextNode(body.value + '.000'));
-                                    text.style.fontWeight = '500';
-                                    text.style.lineHeight = '21px';
-                                    text.style.fontSize = '14px';
-                                    tooltipEl.appendChild(text);
-                                });
-                            }
-
-                            const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-
-                            // Display, position, and set styles for font
-                            tooltipEl.style.opacity = 1;
-                            tooltipEl.style.left = positionX + tooltip.caretX + 'px';
-                            tooltipEl.style.top = positionY + tooltip.caretY - 40 + 'px';
-                            tooltipEl.style.font = tooltip.options.bodyFont.string;
-                            tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
+                return {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            type: 'bar',
+                            label: 'Investment Wallet',
+                            backgroundColor: borderColor,
+                            data: [100, 201, 404, 300, 140, 220, 314, 520, 145, 234, 325, 147],
+                            borderRadius: {
+                                topLeft: 4,
+                                topRight: 4
+                            },
+                            borderSkipped: true,
+                            barThickness: 20,
+                            hoverBackgroundColor: hoverBackgroundColor,
+                            hoverTransition: '1s ease all'
                         }
-                    },
-                    legend: {
-                        display: false
+                    ]
+                };
+            },
+            setChartOptions() {
+                const documentStyle = getComputedStyle(document.documentElement);
+                const backgroundColor = documentStyle.getPropertyValue('--p-content-background');
+                const textColor = documentStyle.getPropertyValue('--p-text-color');
+                const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
+                const textMutedColor = documentStyle.getPropertyValue('--p-text-muted-color');
+
+                const getOrCreateTooltip = (chart) => {
+                    let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
+
+                    if (!tooltipEl) {
+                        tooltipEl = document.createElement('div');
+                        tooltipEl.classList.add('chartjs-tooltip');
+                        tooltipEl.style.backgroundColor = backgroundColor;
+                        tooltipEl.style.boxShadow =
+                            ' 0px 33.12px 9.399px 0px rgba(0, 0, 0, 0.00), 0px 21.036px 8.504px 0px rgba(0, 0, 0, 0.01), 0px 12.084px 7.161px 0px rgba(0, 0, 0, 0.05), 0px 5.371px 5.371px 0px rgba(0, 0, 0, 0.09), 0px 1.343px 2.685px 0px rgba(0, 0, 0, 0.10)';
+                        tooltipEl.style.borderRadius = '7px';
+                        tooltipEl.style.color = textColor;
+                        tooltipEl.style.opacity = 1;
+                        tooltipEl.style.padding = '14.5px';
+                        tooltipEl.style.pointerEvents = 'none';
+                        tooltipEl.style.position = 'absolute';
+                        tooltipEl.style.transform = 'translate(-50%, 0)';
+                        tooltipEl.style.transition = 'all .2s ease';
+                        chart.canvas.parentNode.appendChild(tooltipEl);
                     }
-                },
-                scales: {
-                    x: {
-                        stacked: true,
-                        ticks: {
-                            color: textMutedColor
+
+                    return tooltipEl;
+                };
+
+                return {
+                    maintainAspectRatio: false,
+                    aspectRatio: 0.8,
+                    plugins: {
+                        chartAreaBorder: {
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            borderDashOffset: 2
                         },
-                        grid: {
-                            color: 'transparent',
-                            borderColor: 'transparent'
+                        tooltip: {
+                            enabled: false,
+                            padding: 5,
+                            position: 'nearest',
+                            external: function (context) {
+                                // Tooltip Element
+                                const { chart, tooltip } = context;
+                                const tooltipEl = getOrCreateTooltip(chart);
+
+                                // Hide if no tooltip
+                                if (tooltip.opacity === 0) {
+                                    tooltipEl.style.opacity = 0;
+
+                                    return;
+                                }
+
+                                if (tooltip.body) {
+                                    const bodyLines = tooltip.body.map((b) => {
+                                        const strArr = b.lines[0].split(':');
+                                        const data = {
+                                            text: strArr[0].trim(),
+                                            value: strArr[1].trim()
+                                        };
+
+                                        return data;
+                                    });
+
+                                    // Clear old content
+                                    tooltipEl.innerHTML = '';
+                                    bodyLines.forEach((body, i) => {
+                                        const text = document.createElement('div');
+
+                                        text.appendChild(document.createTextNode('$' + body.value + 'K'));
+                                        text.style.fontWeight = '500';
+                                        text.style.lineHeight = '21px';
+                                        text.style.fontSize = '14px';
+                                        tooltipEl.appendChild(text);
+                                    });
+                                }
+
+                                const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
+
+                                // Display, position, and set styles for font
+                                tooltipEl.style.opacity = 1;
+                                tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+                                tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+                                tooltipEl.style.font = tooltip.options.bodyFont.string;
+                                tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
+                            }
+                        },
+                        legend: {
+                            display: false
                         }
                     },
-                    y: {
-                        display: false,
-                        grace: 14
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: {
+                                color: textMutedColor
+                            },
+                            grid: {
+                                color: 'transparent',
+                                borderColor: 'transparent'
+                            }
+                        },
+                        y: {
+                            border: {
+                                display: false
+                            },
+                            stacked: true,
+                            ticks: {
+                                color: textMutedColor
+                            },
+                            grid: {
+                                color: borderColor,
+                                borderColor: 'transparent'
+                            }
+                        }
                     }
-                }
-            };
+                };
+            },
+            setLineChartData() {
+                const darkMode = this.$appState.darkTheme;
+
+                return {
+                    labels: ['31', '1', '2', '3', '4', '5', '6', '7', '8'],
+                    datasets: [
+                        {
+                            label: 'My First Dataset',
+                            data: [60, 64, 57, 52, 58, 70, 75, 70, 60],
+                            fill: true,
+                            borderColor: '#16A34A',
+                            tension: 0.4,
+                            borderWidth: 1.5,
+                            pointBackgroundColor: '#16A34A',
+                            pointBorderColor: darkMode ? '#09090B' : '#FFF',
+                            pointBorderWidth: 3,
+
+                            hideInLegendAndTooltip: false,
+                            pointStyle: function (context) {
+                                let index = context.dataIndex;
+
+                                if (index == 6) {
+                                    return 'circle';
+                                } else {
+                                    return 'line';
+                                }
+                            },
+                            pointRadius: function (context) {
+                                let index = context.dataIndex;
+
+                                if (index == 6) {
+                                    return 6;
+                                } else {
+                                    return 0.1;
+                                }
+                            },
+                            backgroundColor: (context) => {
+                                const bgColor = ['rgba(22,163,74,0.16)', 'rgba(22,163,74,0)'];
+
+                                if (!context.chart.chartArea) {
+                                    return;
+                                }
+
+                                const {
+                                    ctx,
+                                    data,
+                                    chartArea: { top, bottom }
+                                } = context.chart;
+                                const gradientBg = ctx.createLinearGradient(0, top, 0, bottom);
+                                const colorTranches = 1 / (bgColor.length - 1);
+
+                                for (let i = 0; i < bgColor.length; i++) {
+                                    gradientBg.addColorStop(0 + i * colorTranches, bgColor[i]);
+                                }
+
+                                return gradientBg;
+                            }
+                        }
+                    ],
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'top'
+                            },
+                            title: {
+                                display: true,
+                                text: 'Chart.js Line Chart'
+                            }
+                        }
+                    }
+                };
+            },
+            setLineChartOptions() {
+                const darkMode = this.$appState.darkTheme;
+                const documentStyle = getComputedStyle(document.documentElement);
+
+                const backgroundColor = documentStyle.getPropertyValue('--p-content-background');
+                const textColor = documentStyle.getPropertyValue('--p-text-color');
+                const borderColor = documentStyle.getPropertyValue('--p-content-border-color');
+                const textMutedColor = documentStyle.getPropertyValue('--p-text-muted-color');
+
+                const getOrCreateTooltip = (chart) => {
+                    let tooltipEl = chart.canvas.parentNode.querySelector('div.chartjs-tooltip');
+
+                    if (!tooltipEl) {
+                        tooltipEl = document.createElement('div');
+                        tooltipEl.classList.add('chartjs-tooltip');
+                        tooltipEl.style.backgroundColor = backgroundColor;
+                        tooltipEl.style.boxShadow =
+                            ' 0px 33.12px 9.399px 0px rgba(0, 0, 0, 0.00), 0px 21.036px 8.504px 0px rgba(0, 0, 0, 0.01), 0px 12.084px 7.161px 0px rgba(0, 0, 0, 0.05), 0px 5.371px 5.371px 0px rgba(0, 0, 0, 0.09), 0px 1.343px 2.685px 0px rgba(0, 0, 0, 0.10)';
+                        tooltipEl.style.borderRadius = '7px';
+                        tooltipEl.style.color = textColor;
+                        tooltipEl.style.opacity = 1;
+                        tooltipEl.style.padding = '2px';
+                        tooltipEl.style.pointerEvents = 'none';
+                        tooltipEl.style.position = 'absolute';
+                        tooltipEl.style.transform = 'translate(-50%, 0)';
+                        tooltipEl.style.transition = 'all .2s ease';
+                        chart.canvas.parentNode.appendChild(tooltipEl);
+                    }
+
+                    return tooltipEl;
+                };
+
+                return {
+                    maintainAspectRatio: false,
+                    aspectRatio: 0.8,
+                    plugins: {
+                        chartAreaBorder: {
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            borderDashOffset: 2
+                        },
+                        tooltip: {
+                            enabled: false,
+                            padding: 8,
+                            position: 'nearest',
+                            external: function (context) {
+                                // Tooltip Element
+                                const { chart, tooltip } = context;
+                                const tooltipEl = getOrCreateTooltip(chart);
+
+                                // Hide if no tooltip
+                                if (tooltip.opacity === 0) {
+                                    tooltipEl.style.opacity = 0;
+
+                                    return;
+                                }
+
+                                if (tooltip.body) {
+                                    const bodyLines = tooltip.body.map((b) => {
+                                        const strArr = b.lines[0].split(':');
+                                        const data = {
+                                            text: strArr[0].trim(),
+                                            value: strArr[1].trim()
+                                        };
+
+                                        return data;
+                                    });
+
+                                    // Clear old content
+                                    tooltipEl.innerHTML = '';
+                                    bodyLines.forEach((body, i) => {
+                                        const text = document.createElement('div');
+
+                                        text.appendChild(document.createTextNode(body.value + '.000'));
+                                        text.style.fontWeight = '500';
+                                        text.style.lineHeight = '21px';
+                                        text.style.fontSize = '14px';
+                                        tooltipEl.appendChild(text);
+                                    });
+                                }
+
+                                const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
+
+                                // Display, position, and set styles for font
+                                tooltipEl.style.opacity = 1;
+                                tooltipEl.style.left = positionX + tooltip.caretX + 'px';
+                                tooltipEl.style.top = positionY + tooltip.caretY - 40 + 'px';
+                                tooltipEl.style.font = tooltip.options.bodyFont.string;
+                                tooltipEl.style.padding = tooltip.options.padding + 'px ' + tooltip.options.padding + 'px';
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            ticks: {
+                                color: textMutedColor
+                            },
+                            grid: {
+                                color: 'transparent',
+                                borderColor: 'transparent'
+                            }
+                        },
+                        y: {
+                            display: false,
+                            grace: 14
+                        }
+                    }
+                };
+            }
         }
-    }
-};
+    };
 </script>

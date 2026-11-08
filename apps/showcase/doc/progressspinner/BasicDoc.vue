@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ProgressSpinner />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ProgressSpinner />
@@ -26,8 +26,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

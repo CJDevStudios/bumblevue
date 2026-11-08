@@ -60,20 +60,20 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            editingRows: [],
-            statuses: [
-                { label: 'In Stock', value: 'INSTOCK' },
-                { label: 'Low Stock', value: 'LOWSTOCK' },
-                { label: 'Out of Stock', value: 'OUTOFSTOCK' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                editingRows: [],
+                statuses: [
+                    { label: 'In Stock', value: 'INSTOCK' },
+                    { label: 'Low Stock', value: 'LOWSTOCK' },
+                    { label: 'Out of Stock', value: 'OUTOFSTOCK' }
+                ],
+                code: {
+                    basic: `
 <DataTable v-model:editingRows="editingRows" :value="products" editMode="row" dataKey="id" @row-edit-save="onRowEditSave"
     :pt="{
         table: { style: 'min-width: 50rem' },
@@ -117,7 +117,7 @@ export default {
     <Column :rowEditor="true" style="width: 10%; min-width: 8rem" bodyStyle="text-align:center"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:editingRows="editingRows" :value="products" editMode="row" dataKey="id" @row-edit-save="onRowEditSave"
@@ -207,7 +207,7 @@ const formatCurrency = (value) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -222,36 +222,36 @@ const formatCurrency = (value) => {
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            onRowEditSave(event) {
+                let { newData, index } = event;
+
+                this.products[index] = newData;
+            },
+            getStatusLabel(status) {
+                switch (status) {
+                    case 'INSTOCK':
+                        return 'success';
+
+                    case 'LOWSTOCK':
+                        return 'warn';
+
+                    case 'OUTOFSTOCK':
+                        return 'danger';
+
+                    default:
+                        return null;
+                }
+            },
+            formatCurrency(value) {
+                return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
-        },
-        onRowEditSave(event) {
-            let { newData, index } = event;
-
-            this.products[index] = newData;
-        },
-        getStatusLabel(status) {
-            switch (status) {
-                case 'INSTOCK':
-                    return 'success';
-
-                case 'LOWSTOCK':
-                    return 'warn';
-
-                case 'OUTOFSTOCK':
-                    return 'danger';
-
-                default:
-                    return null;
-            }
-        },
-        formatCurrency(value) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
         }
-    }
-};
+    };
 </script>

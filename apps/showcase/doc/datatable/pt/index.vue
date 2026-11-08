@@ -9,45 +9,45 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-import PTViewer from './PTViewer.vue';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import PTViewer from './PTViewer.vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.viewer',
-                    label: 'Viewer',
-                    component: PTViewer
-                },
-                {
-                    id: 'pt.doc.datatable',
-                    label: 'DataTable PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('DataTable')
-                },
-                {
-                    id: 'pt.doc.column',
-                    label: 'Column PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Column')
-                },
-                {
-                    id: 'pt.doc.columngroup',
-                    label: 'ColumnGroup PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('ColumnGroup')
-                },
-                {
-                    id: 'pt.doc.row',
-                    label: 'Row PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Row')
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.viewer',
+                        label: 'Viewer',
+                        component: PTViewer
+                    },
+                    {
+                        id: 'pt.doc.datatable',
+                        label: 'DataTable PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('DataTable')
+                    },
+                    {
+                        id: 'pt.doc.column',
+                        label: 'Column PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Column')
+                    },
+                    {
+                        id: 'pt.doc.columngroup',
+                        label: 'ColumnGroup PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('ColumnGroup')
+                    },
+                    {
+                        id: 'pt.doc.row',
+                        label: 'Row PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Row')
+                    }
+                ]
+            };
+        }
+    };
 </script>

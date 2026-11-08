@@ -12,24 +12,24 @@
 </template>
 
 <script>
-import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
-import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
-import StarIcon from '@cjdevstudios/bumblevue/icons/star';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+    import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
+    import StarIcon from '@cjdevstudios/bumblevue/icons/star';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
 
-export default {
-    components: { CheckIcon, SearchIcon, StarIcon, TimesIcon },
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        components: { CheckIcon, SearchIcon, StarIcon, TimesIcon },
+        data() {
+            return {
+                code: {
+                    basic: `
 <CheckIcon style="width: 1rem; height: 1rem" />
 <TimesIcon style="width: 1.5rem; height: 1.5rem" />
 <SearchIcon style="width: 2rem; height: 2rem" />
 <StarIcon style="width: 2.5rem; height: 2.5rem" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

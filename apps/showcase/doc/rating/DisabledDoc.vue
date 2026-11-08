@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 5,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 5,
+                code: {
+                    basic: `
 <Rating v-model="value" disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Rating v-model="value" disabled />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref(5);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

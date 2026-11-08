@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputText type="text" v-model="value" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <InputText type="text" v-model="value" fluid />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

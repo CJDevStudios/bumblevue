@@ -20,129 +20,129 @@
             </li>
         </ul>
 
-<!--        <div class="mt-8 px-4 py-6 rounded-lg border border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900 w-full" v-if="ad">-->
-<!--            <img :src="ad.lightImage" class="w-full rounded-xl block dark:hidden mb-4" />-->
-<!--            <img :src="ad.darkImage" class="w-full rounded-xl hidden dark:block mb-4" />-->
-<!--            <div class="text-xl font-semibold flex flex-col gap-2 text-center">-->
-<!--                <span class="leading-none">{{ ad.title }}</span>-->
-<!--            </div>-->
-<!--            <div class="text-center text-sm mt-4">{{ ad.details }}</div>-->
-<!--            <span class="flex justify-center mt-4">-->
-<!--                <Button v-if="ad.href" as="a" label="Learn More" :href="ad.href" target="_blank" rel="noopener" rounded size="small" />-->
-<!--                <Button asChild v-slot="slotProps" v-if="ad.to" rounded size="small">-->
-<!--                    <RouterLink :to="ad.to" :class="slotProps.class">Learn More</RouterLink>-->
-<!--                </Button>-->
-<!--            </span>-->
-<!--        </div>-->
+        <!--        <div class="mt-8 px-4 py-6 rounded-lg border border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900 w-full" v-if="ad">-->
+        <!--            <img :src="ad.lightImage" class="w-full rounded-xl block dark:hidden mb-4" />-->
+        <!--            <img :src="ad.darkImage" class="w-full rounded-xl hidden dark:block mb-4" />-->
+        <!--            <div class="text-xl font-semibold flex flex-col gap-2 text-center">-->
+        <!--                <span class="leading-none">{{ ad.title }}</span>-->
+        <!--            </div>-->
+        <!--            <div class="text-center text-sm mt-4">{{ ad.details }}</div>-->
+        <!--            <span class="flex justify-center mt-4">-->
+        <!--                <Button v-if="ad.href" as="a" label="Learn More" :href="ad.href" target="_blank" rel="noopener" rounded size="small" />-->
+        <!--                <Button asChild v-slot="slotProps" v-if="ad.to" rounded size="small">-->
+        <!--                    <RouterLink :to="ad.to" :class="slotProps.class">Learn More</RouterLink>-->
+        <!--                </Button>-->
+        <!--            </span>-->
+        <!--        </div>-->
     </div>
 </template>
 
 <script>
-import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@cjdevstudios/bumblevue/utils/dom';
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@cjdevstudios/bumblevue/utils/dom';
+    import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
-export default {
-    props: ['docs'],
-    data() {
-        return {
-            activeId: null,
-            isScrollBlocked: false,
-            scrollEndTimer: null,
-            topbarHeight: 0,
-            ad: null,
-            ads: []
-        };
-    },
-    watch: {
-        '$route.hash'() {
+    export default {
+        props: ['docs'],
+        data() {
+            return {
+                activeId: null,
+                isScrollBlocked: false,
+                scrollEndTimer: null,
+                topbarHeight: 0,
+                ad: null,
+                ads: []
+            };
+        },
+        watch: {
+            '$route.hash'() {
+                this.scrollCurrentUrl();
+            }
+        },
+        mounted() {
             this.scrollCurrentUrl();
-        }
-    },
-    mounted() {
-        this.scrollCurrentUrl();
 
-        window.addEventListener('scroll', this.onScroll, { passive: true });
+            window.addEventListener('scroll', this.onScroll, { passive: true });
 
-        this.ad = this.ads[Math.floor(Math.random() * 5)];
-    },
-    beforeUnmount() {
-        window.removeEventListener('scroll', this.onScroll, { passive: true });
-    },
-    methods: {
-        onScroll() {
-            if (!this.isScrollBlocked) {
-                const labels = [...document.querySelectorAll(':is(h1,h2,h3).doc-section-label')].filter((el) => isVisible(el));
-
-                const windowScrollTop = getWindowScrollTop();
-
-                labels.forEach((label) => {
-                    const { top } = getOffset(label);
-                    const threshold = this.getThreshold(label);
-
-                    if (top - threshold <= windowScrollTop) {
-                        const link = findSingle(label, 'a');
-
-                        this.activeId = link.id;
-                    }
-                });
-            }
-
-            clearTimeout(this.scrollEndTimer);
-            this.scrollEndTimer = setTimeout(() => {
-                this.isScrollBlocked = false;
-
-                const activeItem = findSingle(this.$refs.nav, '.active-navbar-item');
-
-                activeItem && activeItem.scrollIntoView({ block: 'nearest', inline: 'start' });
-            }, 50);
+            this.ad = this.ads[Math.floor(Math.random() * 5)];
         },
-        scrollToLabelById(id, behavior = 'smooth') {
-            const label = document.getElementById(id);
-
-            label && label.parentElement.scrollIntoView({ block: 'start', behavior });
+        beforeUnmount() {
+            window.removeEventListener('scroll', this.onScroll, { passive: true });
         },
-        onButtonClick(doc) {
-            this.$router.push(`${this.checkRouteName}/#${doc.id}`);
-            setTimeout(() => {
-                this.activeId = doc.id;
-                this.scrollToLabelById(doc.id, 'smooth');
-                this.isScrollBlocked = true;
-            }, 1);
-        },
-        getThreshold(label) {
-            if (!this.topbarHeight) {
-                const topbar = findSingle(document.body, '.layout-topbar');
+        methods: {
+            onScroll() {
+                if (!this.isScrollBlocked) {
+                    const labels = [...document.querySelectorAll(':is(h1,h2,h3).doc-section-label')].filter((el) => isVisible(el));
 
-                this.topbarHeight = topbar ? getHeight(topbar) : 0;
-            }
+                    const windowScrollTop = getWindowScrollTop();
 
-            return this.topbarHeight + getHeight(label) * 1.5;
-        },
-        getIdOfTheSection(section) {
-            return section.querySelector('a').getAttribute('id');
-        },
-        scrollCurrentUrl() {
-            const hash = window.location.hash.substring(1);
-            const hasHash = isNotEmpty(hash);
-            const id = hasHash ? hash : (this.docs[0] || {}).id;
+                    labels.forEach((label) => {
+                        const { top } = getOffset(label);
+                        const threshold = this.getThreshold(label);
 
-            this.activeId = id;
-            hasHash &&
+                        if (top - threshold <= windowScrollTop) {
+                            const link = findSingle(label, 'a');
+
+                            this.activeId = link.id;
+                        }
+                    });
+                }
+
+                clearTimeout(this.scrollEndTimer);
+                this.scrollEndTimer = setTimeout(() => {
+                    this.isScrollBlocked = false;
+
+                    const activeItem = findSingle(this.$refs.nav, '.active-navbar-item');
+
+                    activeItem && activeItem.scrollIntoView({ block: 'nearest', inline: 'start' });
+                }, 50);
+            },
+            scrollToLabelById(id, behavior = 'smooth') {
+                const label = document.getElementById(id);
+
+                label && label.parentElement.scrollIntoView({ block: 'start', behavior });
+            },
+            onButtonClick(doc) {
+                this.$router.push(`${this.checkRouteName}/#${doc.id}`);
                 setTimeout(() => {
-                    this.scrollToLabelById(id);
+                    this.activeId = doc.id;
+                    this.scrollToLabelById(doc.id, 'smooth');
+                    this.isScrollBlocked = true;
                 }, 1);
-        }
-    },
-    computed: {
-        checkRouteName() {
-            const path = this.$router.currentRoute.value.path;
+            },
+            getThreshold(label) {
+                if (!this.topbarHeight) {
+                    const topbar = findSingle(document.body, '.layout-topbar');
 
-            if (path.lastIndexOf('/') === path.length - 1) {
-                return path.slice(0, -1);
+                    this.topbarHeight = topbar ? getHeight(topbar) : 0;
+                }
+
+                return this.topbarHeight + getHeight(label) * 1.5;
+            },
+            getIdOfTheSection(section) {
+                return section.querySelector('a').getAttribute('id');
+            },
+            scrollCurrentUrl() {
+                const hash = window.location.hash.substring(1);
+                const hasHash = isNotEmpty(hash);
+                const id = hasHash ? hash : (this.docs[0] || {}).id;
+
+                this.activeId = id;
+                hasHash &&
+                    setTimeout(() => {
+                        this.scrollToLabelById(id);
+                    }, 1);
             }
+        },
+        computed: {
+            checkRouteName() {
+                const path = this.$router.currentRoute.value.path;
 
-            return path;
+                if (path.lastIndexOf('/') === path.length - 1) {
+                    return path.slice(0, -1);
+                }
+
+                return path;
+            }
         }
-    }
-};
+    };
 </script>

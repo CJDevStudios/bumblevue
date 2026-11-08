@@ -33,18 +33,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <span id="label_number">Number</span>
 <Slider aria-labelledby="label_number" />
 
 <Slider aria-label="Number" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

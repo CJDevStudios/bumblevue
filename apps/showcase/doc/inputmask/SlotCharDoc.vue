@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                code: {
+                    basic: `
 <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

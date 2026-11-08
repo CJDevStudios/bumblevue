@@ -24,21 +24,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: 42723,
-            value2: 58151,
-            value3: 2351.35,
-            value4: 50,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: 42723,
+                value2: 58151,
+                value3: 2351.35,
+                value4: 50,
+                code: {
+                    basic: `
 <InputNumber v-model="value1" inputId="integeronly" fluid />
 <InputNumber v-model="value2" inputId="withoutgrouping" :useGrouping="false" fluid />
 <InputNumber v-model="value3" inputId="minmaxfraction" :minFractionDigits="2" :maxFractionDigits="5" fluid />
 <InputNumber v-model="value4" inputId="minmax" :min="0" :max="100" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -69,8 +69,8 @@ const value3 = ref(2351.35);
 const value4 = ref(50);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

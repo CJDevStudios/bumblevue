@@ -25,14 +25,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: '',
-            value2: '',
-            value3: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: '',
+                value2: '',
+                value3: '',
+                code: {
+                    basic: `
 <div class="flex-auto">
     <label for="ssn" class="font-bold block mb-2">SSN</label>
     <InputMask id="ssn" v-model="value1" mask="999-99-9999" placeholder="999-99-9999" fluid />
@@ -48,7 +48,7 @@ export default {
     <InputMask id="serial" v-model="value3" mask="a*-999-a999" placeholder="a*-999-a999" fluid />
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -76,8 +76,8 @@ const value2 = ref('');
 const value3 = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

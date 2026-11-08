@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from 'vue';
-const verticalTabs = ref(Array.from({ length: 10 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content`, value: `${i}` })));
+    import { ref } from 'vue';
+    const verticalTabs = ref(Array.from({ length: 10 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content`, value: `${i}` })));
 
-const code = {
-    basic: `
+    const code = {
+        basic: `
         <Tabs value="0" orientation="vertical">
             <TabList>
                 <Tab v-for="tab in verticalTabs" :key="tab.title" :value="tab.value">
@@ -17,7 +17,7 @@ const code = {
             </TabPanels>
         </Tabs>
 `,
-    composition: `
+        composition: `
 <template>
     <div class="card">
         <Tabs value="0" orientation="vertical">
@@ -41,7 +41,7 @@ import { ref } from 'vue';
 const verticalTabs = ref(Array.from({ length: 10 }, (_, i) => ({ title: \`Tab \${i + 1}\`, content: \`Tab \${i + 1} Content\`, value: \`\${i}\` })));
 <\/script>
 `
-};
+    };
 </script>
 
 <template>

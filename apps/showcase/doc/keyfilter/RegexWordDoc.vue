@@ -12,15 +12,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            text: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                text: null,
+                code: {
+                    basic: `
 <InputText v-model="text" v-keyfilter="{ pattern: /^[+]?(\d{1,12})?$/, validateOnly: true }" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div>
@@ -36,8 +36,8 @@ import { ref } from 'vue';
 const text = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

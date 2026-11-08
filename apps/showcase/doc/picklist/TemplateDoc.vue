@@ -20,14 +20,14 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <PickList v-model="products" dataKey="id" breakpoint="1400px" scrollHeight="20rem">
     <template #option="{ option , selected }">
         <div class="flex flex-wrap p-1 items-center gap-4 w-full">
@@ -41,7 +41,7 @@ export default {
     </template>
 </PickList>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <PickList v-model="products" dataKey="id" breakpoint="1400px">
@@ -70,7 +70,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -86,11 +86,11 @@ onMounted(() => {
 },
 ...
         `
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = [data, []]));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = [data, []]));
+        }
+    };
 </script>

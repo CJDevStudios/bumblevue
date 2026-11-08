@@ -87,498 +87,498 @@
 </template>
 
 <script>
-import { addClass, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import UploadIcon from '@cjdevstudios/bumblevue/icons/upload';
-import Button from '@cjdevstudios/bumblevue/button';
-import FileUploadStyle from '@cjdevstudios/bumblevue/fileupload/style';
-import Message from '@cjdevstudios/bumblevue/message';
-import ProgressBar from '@cjdevstudios/bumblevue/progressbar';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import FileContent from './FileContent.vue';
+    import { addClass, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import UploadIcon from '@cjdevstudios/bumblevue/icons/upload';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import FileUploadStyle from '@cjdevstudios/bumblevue/fileupload/style';
+    import Message from '@cjdevstudios/bumblevue/message';
+    import ProgressBar from '@cjdevstudios/bumblevue/progressbar';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import FileContent from './FileContent.vue';
 
-export default {
-    name: 'FileUpload',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        name: {
-            type: String,
-            default: null
-        },
-        url: {
-            type: String,
-            default: null
-        },
-        mode: {
-            type: String,
-            default: 'advanced'
-        },
-        multiple: {
-            type: Boolean,
-            default: false
-        },
-        accept: {
-            type: String,
-            default: null
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        auto: {
-            type: Boolean,
-            default: false
-        },
-        maxFileSize: {
-            type: Number,
-            default: null
-        },
-        invalidFileSizeMessage: {
-            type: String,
-            default: '{0}: Invalid file size, file size should be smaller than {1}.'
-        },
-        invalidFileTypeMessage: {
-            type: String,
-            default: '{0}: Invalid file type, allowed file types: {1}.'
-        },
-        fileLimit: {
-            type: Number,
-            default: null
-        },
-        invalidFileLimitMessage: {
-            type: String,
-            default: 'Maximum number of files exceeded, limit is {0} at most.'
-        },
-        withCredentials: {
-            type: Boolean,
-            default: false
-        },
-        previewWidth: {
-            type: Number,
-            default: 50
-        },
-        chooseLabel: {
-            type: String,
-            default: null
-        },
-        uploadLabel: {
-            type: String,
-            default: null
-        },
-        cancelLabel: {
-            type: String,
-            default: null
-        },
-        customUpload: {
-            type: Boolean,
-            default: false
-        },
-        showUploadButton: {
-            type: Boolean,
-            default: true
-        },
-        showCancelButton: {
-            type: Boolean,
-            default: true
-        },
-        chooseIcon: {
-            type: String,
-            default: undefined
-        },
-        uploadIcon: {
-            type: String,
-            default: undefined
-        },
-        cancelIcon: {
-            type: String,
-            default: undefined
-        },
-        style: null,
-        class: null,
-        chooseButtonProps: {
-            type: null,
-            default: null
-        },
-        uploadButtonProps: {
-            type: Object,
-            default() {
-                return { severity: 'secondary' };
-            }
-        },
-        cancelButtonProps: {
-            type: Object,
-            default() {
-                return { severity: 'secondary' };
-            }
-        }
-    },
-    emits: ['select', 'uploader', 'before-upload', 'progress', 'upload', 'error', 'before-send', 'clear', 'remove', 'remove-uploaded-file'],
-    style: FileUploadStyle,
-    provide() {
-        return {
-            $pcFileUpload: this,
-            $parentInstance: this
-        };
-    },
-    duplicateIEEvent: false,
-    data() {
-        return {
-            uploadedFileCount: 0,
-            files: [],
-            messages: [],
-            focused: false,
-            progress: null,
-            uploadedFiles: []
-        };
-    },
-    methods: {
-        upload() {
-            if (this.hasFiles) this.uploader();
-        },
-        onBasicUploaderClick(event) {
-            if (event.button === 0) this.$refs.fileInput.click();
-        },
-        onFileSelect(event) {
-            if (event.type !== 'drop' && this.isIE11() && this.duplicateIEEvent) {
-                this.duplicateIEEvent = false;
-
-                return;
-            }
-
-            if (this.isBasic && this.hasFiles) {
-                this.files = [];
-            }
-
-            this.messages = [];
-            this.files = this.files || [];
-            let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-
-            for (let file of files) {
-                if (!this.isFileSelected(file) && !this.isFileLimitExceeded()) {
-                    if (this.validate(file)) {
-                        if (this.isImage(file)) {
-                            file.objectURL = window.URL.createObjectURL(file);
-                        }
-
-                        this.files.push(file);
-                    }
+    export default {
+        name: 'FileUpload',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            name: {
+                type: String,
+                default: null
+            },
+            url: {
+                type: String,
+                default: null
+            },
+            mode: {
+                type: String,
+                default: 'advanced'
+            },
+            multiple: {
+                type: Boolean,
+                default: false
+            },
+            accept: {
+                type: String,
+                default: null
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            auto: {
+                type: Boolean,
+                default: false
+            },
+            maxFileSize: {
+                type: Number,
+                default: null
+            },
+            invalidFileSizeMessage: {
+                type: String,
+                default: '{0}: Invalid file size, file size should be smaller than {1}.'
+            },
+            invalidFileTypeMessage: {
+                type: String,
+                default: '{0}: Invalid file type, allowed file types: {1}.'
+            },
+            fileLimit: {
+                type: Number,
+                default: null
+            },
+            invalidFileLimitMessage: {
+                type: String,
+                default: 'Maximum number of files exceeded, limit is {0} at most.'
+            },
+            withCredentials: {
+                type: Boolean,
+                default: false
+            },
+            previewWidth: {
+                type: Number,
+                default: 50
+            },
+            chooseLabel: {
+                type: String,
+                default: null
+            },
+            uploadLabel: {
+                type: String,
+                default: null
+            },
+            cancelLabel: {
+                type: String,
+                default: null
+            },
+            customUpload: {
+                type: Boolean,
+                default: false
+            },
+            showUploadButton: {
+                type: Boolean,
+                default: true
+            },
+            showCancelButton: {
+                type: Boolean,
+                default: true
+            },
+            chooseIcon: {
+                type: String,
+                default: undefined
+            },
+            uploadIcon: {
+                type: String,
+                default: undefined
+            },
+            cancelIcon: {
+                type: String,
+                default: undefined
+            },
+            style: null,
+            class: null,
+            chooseButtonProps: {
+                type: null,
+                default: null
+            },
+            uploadButtonProps: {
+                type: Object,
+                default() {
+                    return { severity: 'secondary' };
+                }
+            },
+            cancelButtonProps: {
+                type: Object,
+                default() {
+                    return { severity: 'secondary' };
                 }
             }
-
-            this.$emit('select', { originalEvent: event, files: this.files });
-
-            if (this.fileLimit) {
-                this.checkFileLimit();
-            }
-
-            if (this.auto && this.hasFiles && !this.isFileLimitExceeded()) {
-                this.uploader();
-            }
-
-            if (event.type !== 'drop' && this.isIE11()) {
-                this.clearIEInput();
-            } else {
-                this.clearInputElement();
-            }
         },
-        choose() {
-            this.$refs.fileInput.click();
+        emits: ['select', 'uploader', 'before-upload', 'progress', 'upload', 'error', 'before-send', 'clear', 'remove', 'remove-uploaded-file'],
+        style: FileUploadStyle,
+        provide() {
+            return {
+                $pcFileUpload: this,
+                $parentInstance: this
+            };
         },
-        uploader() {
-            if (this.customUpload) {
-                if (this.fileLimit) {
-                    this.uploadedFileCount += this.files.length;
+        duplicateIEEvent: false,
+        data() {
+            return {
+                uploadedFileCount: 0,
+                files: [],
+                messages: [],
+                focused: false,
+                progress: null,
+                uploadedFiles: []
+            };
+        },
+        methods: {
+            upload() {
+                if (this.hasFiles) this.uploader();
+            },
+            onBasicUploaderClick(event) {
+                if (event.button === 0) this.$refs.fileInput.click();
+            },
+            onFileSelect(event) {
+                if (event.type !== 'drop' && this.isIE11() && this.duplicateIEEvent) {
+                    this.duplicateIEEvent = false;
+
+                    return;
                 }
 
-                this.$emit('uploader', { files: this.files });
-            } else {
-                let xhr = new XMLHttpRequest();
-                let formData = new FormData();
-
-                this.$emit('before-upload', {
-                    xhr: xhr,
-                    formData: formData
-                });
-
-                for (let file of this.files) {
-                    formData.append(this.name, file, file.name);
+                if (this.isBasic && this.hasFiles) {
+                    this.files = [];
                 }
 
-                xhr.upload.addEventListener('progress', (event) => {
-                    if (event.lengthComputable) {
-                        this.progress = Math.round((event.loaded * 100) / event.total);
-                    }
+                this.messages = [];
+                this.files = this.files || [];
+                let files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
 
-                    this.$emit('progress', {
-                        originalEvent: event,
-                        progress: this.progress
-                    });
-                });
-
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        this.progress = 0;
-
-                        if (xhr.status >= 200 && xhr.status < 300) {
-                            if (this.fileLimit) {
-                                this.uploadedFileCount += this.files.length;
+                for (let file of files) {
+                    if (!this.isFileSelected(file) && !this.isFileLimitExceeded()) {
+                        if (this.validate(file)) {
+                            if (this.isImage(file)) {
+                                file.objectURL = window.URL.createObjectURL(file);
                             }
 
-                            this.$emit('upload', {
-                                xhr: xhr,
-                                files: this.files
-                            });
-                            this.uploadedFiles.push(...this.files);
-                        } else {
-                            this.$emit('error', {
-                                xhr: xhr,
-                                files: this.files
-                            });
+                            this.files.push(file);
                         }
-
-                        this.clear();
                     }
-                };
+                }
 
-                if (this.url) {
-                    xhr.open('POST', this.url, true);
+                this.$emit('select', { originalEvent: event, files: this.files });
 
-                    this.$emit('before-send', {
+                if (this.fileLimit) {
+                    this.checkFileLimit();
+                }
+
+                if (this.auto && this.hasFiles && !this.isFileLimitExceeded()) {
+                    this.uploader();
+                }
+
+                if (event.type !== 'drop' && this.isIE11()) {
+                    this.clearIEInput();
+                } else {
+                    this.clearInputElement();
+                }
+            },
+            choose() {
+                this.$refs.fileInput.click();
+            },
+            uploader() {
+                if (this.customUpload) {
+                    if (this.fileLimit) {
+                        this.uploadedFileCount += this.files.length;
+                    }
+
+                    this.$emit('uploader', { files: this.files });
+                } else {
+                    let xhr = new XMLHttpRequest();
+                    let formData = new FormData();
+
+                    this.$emit('before-upload', {
                         xhr: xhr,
                         formData: formData
                     });
 
-                    xhr.withCredentials = this.withCredentials;
+                    for (let file of this.files) {
+                        formData.append(this.name, file, file.name);
+                    }
 
-                    xhr.send(formData);
+                    xhr.upload.addEventListener('progress', (event) => {
+                        if (event.lengthComputable) {
+                            this.progress = Math.round((event.loaded * 100) / event.total);
+                        }
+
+                        this.$emit('progress', {
+                            originalEvent: event,
+                            progress: this.progress
+                        });
+                    });
+
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === 4) {
+                            this.progress = 0;
+
+                            if (xhr.status >= 200 && xhr.status < 300) {
+                                if (this.fileLimit) {
+                                    this.uploadedFileCount += this.files.length;
+                                }
+
+                                this.$emit('upload', {
+                                    xhr: xhr,
+                                    files: this.files
+                                });
+                                this.uploadedFiles.push(...this.files);
+                            } else {
+                                this.$emit('error', {
+                                    xhr: xhr,
+                                    files: this.files
+                                });
+                            }
+
+                            this.clear();
+                        }
+                    };
+
+                    if (this.url) {
+                        xhr.open('POST', this.url, true);
+
+                        this.$emit('before-send', {
+                            xhr: xhr,
+                            formData: formData
+                        });
+
+                        xhr.withCredentials = this.withCredentials;
+
+                        xhr.send(formData);
+                    }
                 }
-            }
-        },
-        clear() {
-            this.files = [];
-            this.messages = null;
-            this.$emit('clear');
+            },
+            clear() {
+                this.files = [];
+                this.messages = null;
+                this.$emit('clear');
 
-            if (this.isAdvanced) {
-                this.clearInputElement();
-            }
-        },
-        onFocus() {
-            this.focused = true;
-        },
-        onBlur() {
-            this.focused = false;
-        },
-        isFileSelected(file) {
-            if (this.files && this.files.length) {
-                for (let sFile of this.files) {
-                    if (sFile.name + sFile.type + sFile.size === file.name + file.type + file.size) return true;
+                if (this.isAdvanced) {
+                    this.clearInputElement();
                 }
-            }
-
-            return false;
-        },
-        isIE11() {
-            return !!window['MSInputMethodContext'] && !!document['documentMode'];
-        },
-        validate(file) {
-            if (this.accept && !this.isFileTypeValid(file)) {
-                this.messages.push(this.invalidFileTypeMessage.replace('{0}', file.name).replace('{1}', this.accept));
-
-                return false;
-            }
-
-            if (this.maxFileSize && file.size > this.maxFileSize) {
-                this.messages.push(this.invalidFileSizeMessage.replace('{0}', file.name).replace('{1}', this.formatSize(this.maxFileSize)));
-
-                return false;
-            }
-
-            return true;
-        },
-        isFileTypeValid(file) {
-            let acceptableTypes = this.accept.split(',').map((type) => type.trim());
-
-            for (let type of acceptableTypes) {
-                let acceptable = this.isWildcard(type) ? this.getTypeClass(file.type) === this.getTypeClass(type) : file.type == type || this.getFileExtension(file).toLowerCase() === type.toLowerCase();
-
-                if (acceptable) {
-                    return true;
-                }
-            }
-
-            return false;
-        },
-        getTypeClass(fileType) {
-            return fileType.substring(0, fileType.indexOf('/'));
-        },
-        isWildcard(fileType) {
-            return fileType.indexOf('*') !== -1;
-        },
-        getFileExtension(file) {
-            return '.' + file.name.split('.').pop();
-        },
-        isImage(file) {
-            return /^image\//.test(file.type);
-        },
-        onDragEnter(event) {
-            if (!this.disabled && (!this.hasFiles || this.multiple)) {
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        },
-        onDragOver(event) {
-            if (!this.disabled && (!this.hasFiles || this.multiple)) {
-                !this.isUnstyled && addClass(this.$refs.content, 'p-fileupload-highlight');
-                this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', true);
-                event.stopPropagation();
-                event.preventDefault();
-            }
-        },
-        onDragLeave() {
-            if (!this.disabled) {
-                !this.isUnstyled && removeClass(this.$refs.content, 'p-fileupload-highlight');
-                this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', false);
-            }
-        },
-        onDrop(event) {
-            if (!this.disabled) {
-                !this.isUnstyled && removeClass(this.$refs.content, 'p-fileupload-highlight');
-                this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', false);
-                event.stopPropagation();
-                event.preventDefault();
-
-                const files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
-                const allowDrop = this.multiple || (files && files.length === 1);
-
-                if (allowDrop) {
-                    this.onFileSelect(event);
-                }
-            }
-        },
-        remove(index) {
-            this.clearInputElement();
-            let removedFile = this.files.splice(index, 1)[0];
-
-            this.files = [...this.files];
-            this.$emit('remove', {
-                file: removedFile,
-                files: this.files
-            });
-        },
-        removeUploadedFile(index) {
-            let removedFile = this.uploadedFiles.splice(index, 1)[0];
-
-            this.uploadedFiles = [...this.uploadedFiles];
-            this.$emit('remove-uploaded-file', {
-                file: removedFile,
-                files: this.uploadedFiles
-            });
-        },
-        clearInputElement() {
-            this.$refs.fileInput.value = '';
-        },
-        clearIEInput() {
-            if (this.$refs.fileInput) {
-                this.duplicateIEEvent = true; //IE11 fix to prevent onFileChange trigger again
-                this.$refs.fileInput.value = '';
-            }
-        },
-        formatSize(bytes) {
-            const k = 1024;
-            const dm = 3;
-            const sizes = this.$bumblevue.config.locale?.fileSizeTypes || ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-            if (bytes === 0) {
-                return `0 ${sizes[0]}`;
-            }
-
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
-
-            return `${formattedSize} ${sizes[i]}`;
-        },
-        isFileLimitExceeded() {
-            if (this.fileLimit && this.fileLimit <= this.files.length + this.uploadedFileCount && this.focused) {
+            },
+            onFocus() {
+                this.focused = true;
+            },
+            onBlur() {
                 this.focused = false;
-            }
+            },
+            isFileSelected(file) {
+                if (this.files && this.files.length) {
+                    for (let sFile of this.files) {
+                        if (sFile.name + sFile.type + sFile.size === file.name + file.type + file.size) return true;
+                    }
+                }
 
-            return this.fileLimit && this.fileLimit < this.files.length + this.uploadedFileCount;
-        },
-        checkFileLimit() {
-            if (this.isFileLimitExceeded()) {
-                this.messages.push(this.invalidFileLimitMessage.replace('{0}', this.fileLimit.toString()));
+                return false;
+            },
+            isIE11() {
+                return !!window['MSInputMethodContext'] && !!document['documentMode'];
+            },
+            validate(file) {
+                if (this.accept && !this.isFileTypeValid(file)) {
+                    this.messages.push(this.invalidFileTypeMessage.replace('{0}', file.name).replace('{1}', this.accept));
+
+                    return false;
+                }
+
+                if (this.maxFileSize && file.size > this.maxFileSize) {
+                    this.messages.push(this.invalidFileSizeMessage.replace('{0}', file.name).replace('{1}', this.formatSize(this.maxFileSize)));
+
+                    return false;
+                }
+
+                return true;
+            },
+            isFileTypeValid(file) {
+                let acceptableTypes = this.accept.split(',').map((type) => type.trim());
+
+                for (let type of acceptableTypes) {
+                    let acceptable = this.isWildcard(type) ? this.getTypeClass(file.type) === this.getTypeClass(type) : file.type == type || this.getFileExtension(file).toLowerCase() === type.toLowerCase();
+
+                    if (acceptable) {
+                        return true;
+                    }
+                }
+
+                return false;
+            },
+            getTypeClass(fileType) {
+                return fileType.substring(0, fileType.indexOf('/'));
+            },
+            isWildcard(fileType) {
+                return fileType.indexOf('*') !== -1;
+            },
+            getFileExtension(file) {
+                return '.' + file.name.split('.').pop();
+            },
+            isImage(file) {
+                return /^image\//.test(file.type);
+            },
+            onDragEnter(event) {
+                if (!this.disabled && (!this.hasFiles || this.multiple)) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            },
+            onDragOver(event) {
+                if (!this.disabled && (!this.hasFiles || this.multiple)) {
+                    !this.isUnstyled && addClass(this.$refs.content, 'p-fileupload-highlight');
+                    this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', true);
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            },
+            onDragLeave() {
+                if (!this.disabled) {
+                    !this.isUnstyled && removeClass(this.$refs.content, 'p-fileupload-highlight');
+                    this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', false);
+                }
+            },
+            onDrop(event) {
+                if (!this.disabled) {
+                    !this.isUnstyled && removeClass(this.$refs.content, 'p-fileupload-highlight');
+                    this.$refs.content && this.$refs.content.setAttribute('data-p-highlight', false);
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    const files = event.dataTransfer ? event.dataTransfer.files : event.target.files;
+                    const allowDrop = this.multiple || (files && files.length === 1);
+
+                    if (allowDrop) {
+                        this.onFileSelect(event);
+                    }
+                }
+            },
+            remove(index) {
+                this.clearInputElement();
+                let removedFile = this.files.splice(index, 1)[0];
+
+                this.files = [...this.files];
+                this.$emit('remove', {
+                    file: removedFile,
+                    files: this.files
+                });
+            },
+            removeUploadedFile(index) {
+                let removedFile = this.uploadedFiles.splice(index, 1)[0];
+
+                this.uploadedFiles = [...this.uploadedFiles];
+                this.$emit('remove-uploaded-file', {
+                    file: removedFile,
+                    files: this.uploadedFiles
+                });
+            },
+            clearInputElement() {
+                this.$refs.fileInput.value = '';
+            },
+            clearIEInput() {
+                if (this.$refs.fileInput) {
+                    this.duplicateIEEvent = true; //IE11 fix to prevent onFileChange trigger again
+                    this.$refs.fileInput.value = '';
+                }
+            },
+            formatSize(bytes) {
+                const k = 1024;
+                const dm = 3;
+                const sizes = this.$bumblevue.config.locale?.fileSizeTypes || ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+
+                if (bytes === 0) {
+                    return `0 ${sizes[0]}`;
+                }
+
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+
+                return `${formattedSize} ${sizes[i]}`;
+            },
+            isFileLimitExceeded() {
+                if (this.fileLimit && this.fileLimit <= this.files.length + this.uploadedFileCount && this.focused) {
+                    this.focused = false;
+                }
+
+                return this.fileLimit && this.fileLimit < this.files.length + this.uploadedFileCount;
+            },
+            checkFileLimit() {
+                if (this.isFileLimitExceeded()) {
+                    this.messages.push(this.invalidFileLimitMessage.replace('{0}', this.fileLimit.toString()));
+                }
+            },
+            onMessageClose() {
+                this.messages = null;
             }
         },
-        onMessageClose() {
-            this.messages = null;
+        computed: {
+            isAdvanced() {
+                return this.mode === 'advanced';
+            },
+            isBasic() {
+                return this.mode === 'basic';
+            },
+            chooseButtonClass() {
+                return [this.cx('pcChooseButton'), this.class];
+            },
+            basicFileChosenLabel() {
+                if (this.auto) return this.chooseButtonLabel;
+                else if (this.hasFiles) {
+                    if (this.files && this.files.length === 1) return this.files[0].name;
+
+                    return this.$bumblevue.config.locale?.fileChosenMessage?.replace('{0}', this.files.length);
+                }
+
+                return this.$bumblevue.config.locale?.noFileChosenMessage || '';
+            },
+            hasFiles() {
+                return this.files && this.files.length > 0;
+            },
+            hasUploadedFiles() {
+                return this.uploadedFiles && this.uploadedFiles.length > 0;
+            },
+            chooseDisabled() {
+                return this.disabled || (this.fileLimit && this.fileLimit <= this.files.length + this.uploadedFileCount);
+            },
+            uploadDisabled() {
+                return this.disabled || !this.hasFiles || (this.fileLimit && this.fileLimit < this.files.length);
+            },
+            cancelDisabled() {
+                return this.disabled || !this.hasFiles;
+            },
+            chooseButtonLabel() {
+                return this.chooseLabel || this.$bumblevue.config.locale.choose;
+            },
+            uploadButtonLabel() {
+                return this.uploadLabel || this.$bumblevue.config.locale.upload;
+            },
+            cancelButtonLabel() {
+                return this.cancelLabel || this.$bumblevue.config.locale.cancel;
+            },
+            completedLabel() {
+                return this.$bumblevue.config.locale.completed;
+            },
+            pendingLabel() {
+                return this.$bumblevue.config.locale.pending;
+            }
+        },
+        components: {
+            Button,
+            ProgressBar,
+            Message,
+            FileContent,
+            PlusIcon,
+            UploadIcon,
+            TimesIcon
+        },
+        directives: {
+            ripple: Ripple
         }
-    },
-    computed: {
-        isAdvanced() {
-            return this.mode === 'advanced';
-        },
-        isBasic() {
-            return this.mode === 'basic';
-        },
-        chooseButtonClass() {
-            return [this.cx('pcChooseButton'), this.class];
-        },
-        basicFileChosenLabel() {
-            if (this.auto) return this.chooseButtonLabel;
-            else if (this.hasFiles) {
-                if (this.files && this.files.length === 1) return this.files[0].name;
-
-                return this.$bumblevue.config.locale?.fileChosenMessage?.replace('{0}', this.files.length);
-            }
-
-            return this.$bumblevue.config.locale?.noFileChosenMessage || '';
-        },
-        hasFiles() {
-            return this.files && this.files.length > 0;
-        },
-        hasUploadedFiles() {
-            return this.uploadedFiles && this.uploadedFiles.length > 0;
-        },
-        chooseDisabled() {
-            return this.disabled || (this.fileLimit && this.fileLimit <= this.files.length + this.uploadedFileCount);
-        },
-        uploadDisabled() {
-            return this.disabled || !this.hasFiles || (this.fileLimit && this.fileLimit < this.files.length);
-        },
-        cancelDisabled() {
-            return this.disabled || !this.hasFiles;
-        },
-        chooseButtonLabel() {
-            return this.chooseLabel || this.$bumblevue.config.locale.choose;
-        },
-        uploadButtonLabel() {
-            return this.uploadLabel || this.$bumblevue.config.locale.upload;
-        },
-        cancelButtonLabel() {
-            return this.cancelLabel || this.$bumblevue.config.locale.cancel;
-        },
-        completedLabel() {
-            return this.$bumblevue.config.locale.completed;
-        },
-        pendingLabel() {
-            return this.$bumblevue.config.locale.pending;
-        }
-    },
-    components: {
-        Button,
-        ProgressBar,
-        Message,
-        FileContent,
-        PlusIcon,
-        UploadIcon,
-        TimesIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

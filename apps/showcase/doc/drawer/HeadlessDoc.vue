@@ -193,12 +193,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 <Drawer v-model:visible="visible">
     <template #container="{ closeCallback }">
         <div class="flex flex-col h-full">
@@ -379,7 +379,7 @@ export default {
 </Drawer>
 <Button icon="pi pi-bars" @click="visible = true" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Drawer v-model:visible="visible">
@@ -576,8 +576,8 @@ import { ref } from "vue";
 const visible = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -23,12 +23,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <IconField>
     <InputIcon>
         <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -39,7 +39,7 @@ export default {
     <InputText v-model="value" placeholder="Search" />
 </IconField>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IconField>
@@ -60,8 +60,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

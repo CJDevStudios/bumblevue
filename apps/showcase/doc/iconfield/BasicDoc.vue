@@ -17,13 +17,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                code: {
+                    basic: `
 <IconField>
     <InputIcon class="pi pi-search" />
     <InputText v-model="value1" placeholder="Search" />
@@ -34,7 +34,7 @@ export default {
     <InputIcon class="pi pi-spin pi-spinner" />
 </IconField>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <IconField>
@@ -56,8 +56,8 @@ const value1 = ref(null);
 const value2 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

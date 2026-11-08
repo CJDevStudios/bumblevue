@@ -14,17 +14,17 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    import { NodeService } from '@/service/NodeService';
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-120"></Tree>
 <Tree :value="nodes" :filter="true" filterMode="strict" class="w-full md:w-120"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-8">
         <Tree :value="nodes" :filter="true" filterMode="lenient" class="w-full md:w-120"></Tree>
@@ -43,7 +43,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -70,11 +70,11 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

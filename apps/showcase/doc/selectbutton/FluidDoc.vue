@@ -9,16 +9,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 'One-Way',
-            options: ['One-Way', 'Return'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 'One-Way',
+                options: ['One-Way', 'Return'],
+                code: {
+                    basic: `
 <SelectButton v-model="value" :options="options" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <SelectButton v-model="value" :options="options" fluid />
@@ -32,8 +32,8 @@ const value = ref('One-Way');
 const options = ref(['One-Way', 'Return']);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

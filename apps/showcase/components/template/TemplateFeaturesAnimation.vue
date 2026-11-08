@@ -56,95 +56,95 @@
 </template>
 
 <script>
-export default {
-    props: {
-        featuresData: {
-            type: null,
-            default: null
-        },
-        title: {
-            type: String,
-            default: null
-        }
-    },
-    observer: null,
-    timeout: null,
-    data() {
-        return {
-            selectedID: 1,
-            intervalIds: [],
-            cancelInterval: false,
-            hoveredID: null,
-            visible: false,
-            animationSeconds: 8000
-        };
-    },
-    mounted() {
-        this.observer = new IntersectionObserver(([entry]) => {
-            clearTimeout(this.timeout);
-
-            if (entry.isIntersecting) {
-                this.timeout = setTimeout(
-                    () => {
-                        this.visible = entry.isIntersecting;
-                        this.createInterval();
-                        this.observer.unobserve(this.$el);
-                    },
-                    { threshold: 0.2 }
-                );
+    export default {
+        props: {
+            featuresData: {
+                type: null,
+                default: null
+            },
+            title: {
+                type: String,
+                default: null
             }
-        });
+        },
+        observer: null,
+        timeout: null,
+        data() {
+            return {
+                selectedID: 1,
+                intervalIds: [],
+                cancelInterval: false,
+                hoveredID: null,
+                visible: false,
+                animationSeconds: 8000
+            };
+        },
+        mounted() {
+            this.observer = new IntersectionObserver(([entry]) => {
+                clearTimeout(this.timeout);
 
-        this.observer.observe(this.$el);
-    },
-    beforeUnmount() {
-        !this.visible && this.$el && this.observer?.unobserve(this.$el);
-        this.intervalIds = [];
-    },
-    methods: {
-        enterCardArea(id) {
-            this.hoveredID = id;
-            this.handleHover(id, 'onMouseEnter');
-        },
-        leaveCardArea(id) {
-            this.hoveredID = null;
-            this.handleHover(id, 'onMouseLeave');
-        },
-        orderNumber(index) {
-            return (index + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
-        },
-        clearAllIntervals() {
-            if (this.intervalIds.length <= 0) {
-                return;
-            }
+                if (entry.isIntersecting) {
+                    this.timeout = setTimeout(
+                        () => {
+                            this.visible = entry.isIntersecting;
+                            this.createInterval();
+                            this.observer.unobserve(this.$el);
+                        },
+                        { threshold: 0.2 }
+                    );
+                }
+            });
 
-            this.intervalIds.forEach((intervalId) => clearInterval(intervalId));
+            this.observer.observe(this.$el);
+        },
+        beforeUnmount() {
+            !this.visible && this.$el && this.observer?.unobserve(this.$el);
             this.intervalIds = [];
         },
-        createInterval() {
-            const interval = setInterval(() => {
-                this.selectedID = this.selectedID === this.featuresData.length ? 1 : this.selectedID + 1;
-            }, 4000);
+        methods: {
+            enterCardArea(id) {
+                this.hoveredID = id;
+                this.handleHover(id, 'onMouseEnter');
+            },
+            leaveCardArea(id) {
+                this.hoveredID = null;
+                this.handleHover(id, 'onMouseLeave');
+            },
+            orderNumber(index) {
+                return (index + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
+            },
+            clearAllIntervals() {
+                if (this.intervalIds.length <= 0) {
+                    return;
+                }
 
-            this.intervalIds = [...this.intervalIds, interval];
-        },
-        handleClick(cardId) {
-            this.clearAllIntervals();
-            this.selectedID = cardId;
-            this.cancelInterval = true;
-        },
-        handleHover(cardId, type) {
-            if (this.cancelInterval || cardId !== this.selectedID) {
-                return;
-            }
+                this.intervalIds.forEach((intervalId) => clearInterval(intervalId));
+                this.intervalIds = [];
+            },
+            createInterval() {
+                const interval = setInterval(() => {
+                    this.selectedID = this.selectedID === this.featuresData.length ? 1 : this.selectedID + 1;
+                }, 4000);
 
-            this.clearAllIntervals();
-
-            if (type === 'onMouseLeave') {
+                this.intervalIds = [...this.intervalIds, interval];
+            },
+            handleClick(cardId) {
+                this.clearAllIntervals();
                 this.selectedID = cardId;
-                this.createInterval();
+                this.cancelInterval = true;
+            },
+            handleHover(cardId, type) {
+                if (this.cancelInterval || cardId !== this.selectedID) {
+                    return;
+                }
+
+                this.clearAllIntervals();
+
+                if (type === 'onMouseLeave') {
+                    this.selectedID = cardId;
+                    this.createInterval();
+                }
             }
         }
-    }
-};
+    };
 </script>

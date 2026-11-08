@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: [20, 80],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: [20, 80],
+                code: {
+                    basic: `
 <Slider v-model="value" range class="w-56" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Slider v-model="value" range class="w-56" />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref([20, 80]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

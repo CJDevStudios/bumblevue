@@ -9,16 +9,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            options: ['One-Way', 'Return'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                options: ['One-Way', 'Return'],
+                code: {
+                    basic: `
 <SelectButton v-model="value" :options="options" aria-labelledby="basic" allowEmpty :invalid="value === null"  />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <SelectButton v-model="value" :options="options" aria-labelledby="basic" allowEmpty :invalid="value === null"  />
@@ -32,8 +32,8 @@ const value = ref(null);
 const options = ref(['One-Way', 'Return']);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

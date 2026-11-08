@@ -17,12 +17,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '<div>Hello World!</div><div>BumbleVue <b>Editor</b> Rocks</div><div><br></div>',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '<div>Hello World!</div><div>BumbleVue <b>Editor</b> Rocks</div><div><br></div>',
+                code: {
+                    basic: `
 <Editor v-model="value" editorStyle="height: 320px">
     <template v-slot:toolbar>
         <span class="ql-formats">
@@ -33,7 +33,7 @@ export default {
     </template>
 </Editor>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Editor v-model="value" editorStyle="height: 320px">
@@ -54,8 +54,8 @@ import { ref } from "vue";
 const value = ref('<div>Hello World!</div><div>BumbleVue <b>Editor</b> Rocks</div><div><br></div>');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

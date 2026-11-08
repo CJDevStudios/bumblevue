@@ -40,11 +40,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Accordion :value="['0']" multiple>
     <AccordionPanel value="0">
         <AccordionHeader>Header I</AccordionHeader>
@@ -78,7 +78,7 @@ export default {
     </AccordionPanel>
 </Accordion>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Accordion :value="['0']" multiple>
@@ -119,8 +119,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

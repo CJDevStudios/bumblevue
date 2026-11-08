@@ -20,11 +20,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmPopup group="headless">
     <template #container="{ message, acceptCallback, rejectCallback }">
         <div class="rounded-sm p-4">
@@ -38,7 +38,7 @@ export default {
 </ConfirmPopup>
 <Button @click="requireConfirmation($event)" label="Save"></Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <Toast />
     <ConfirmPopup group="headless">
@@ -79,23 +79,23 @@ const requireConfirmation = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        requireConfirmation(event) {
-            this.$confirm.require({
-                target: event.currentTarget,
-                group: 'headless',
-                message: 'Save your current process?',
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
                 }
-            });
+            };
+        },
+        methods: {
+            requireConfirmation(event) {
+                this.$confirm.require({
+                    target: event.currentTarget,
+                    group: 'headless',
+                    message: 'Save your current process?',
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

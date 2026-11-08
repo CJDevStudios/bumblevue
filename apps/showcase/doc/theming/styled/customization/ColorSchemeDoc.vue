@@ -21,11 +21,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import { definePreset } from '@cjdevstudios/bumblevue/themes';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
@@ -49,9 +49,9 @@ app.use(BumbleVue, {
     }
  });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 /* Fails as Aura defines highlight tokens in colorScheme */
 const MyPreset = definePreset(Aura, {
     semantic: {
@@ -62,9 +62,9 @@ const MyPreset = definePreset(Aura, {
     }
 });
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 /* Works because highlight tokens are defined under colorScheme */
 const MyPreset = definePreset(Aura, {
     semantic: {
@@ -89,8 +89,8 @@ const MyPreset = definePreset(Aura, {
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

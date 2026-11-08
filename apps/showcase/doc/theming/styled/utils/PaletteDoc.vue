@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { palette } from '@cjdevstudios/bumblevue/themes';
 
 // custom color
@@ -19,8 +19,8 @@ const values1 = palette('#10b981');
 // copy an existing token set
 const primaryColor = palette('{blue}');
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

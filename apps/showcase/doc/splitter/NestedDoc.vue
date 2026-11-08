@@ -22,11 +22,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Splitter style="height: 300px">
     <SplitterPanel class="flex items-center justify-center" :size="20" :minSize="10"> Panel 1 </SplitterPanel>
     <SplitterPanel :size="80">
@@ -42,7 +42,7 @@ export default {
     </SplitterPanel>
 </Splitter>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Splitter style="height: 300px">
@@ -65,8 +65,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -15,11 +15,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Tag value="Primary"></Tag>
 <Tag severity="secondary" value="Secondary"></Tag>
 <Tag severity="success" value="Success"></Tag>
@@ -28,7 +28,7 @@ export default {
 <Tag severity="danger" value="Danger"></Tag>
 <Tag severity="contrast" value="Contrast"></Tag>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="flex flex-wrap justify-center gap-2">
         <Tag value="Primary"></Tag>
@@ -45,8 +45,8 @@ export default {
 
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

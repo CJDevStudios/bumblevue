@@ -3,12 +3,12 @@
 </template>
 
 <script>
-export default {
-    inject: ['dialogRef'],
-    methods: {
-        closeDialog(e) {
-            this.dialogRef.close(e);
+    export default {
+        inject: ['dialogRef'],
+        methods: {
+            closeDialog(e) {
+                this.dialogRef.close(e);
+            }
         }
-    }
-};
+    };
 </script>

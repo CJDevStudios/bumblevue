@@ -22,17 +22,17 @@
 </template>
 
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <FloatLabel class="w-full md:w-80">
     <TreeSelect v-model="value1" inputId="over_label" :options="nodes" class="w-full" />
     <label for="over_label">Over Label</label>
@@ -48,7 +48,7 @@ export default {
     <label for="on_label">On Label</label>
 </FloatLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">
         <FloatLabel class="w-full md:w-80">
@@ -82,7 +82,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -109,11 +109,11 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

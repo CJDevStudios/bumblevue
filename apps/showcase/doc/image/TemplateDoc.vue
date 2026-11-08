@@ -22,11 +22,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Image alt="Image" preview>
     <template #previewicon>
         <i class="pi pi-search"></i>
@@ -39,7 +39,7 @@ export default {
     </template>
 </Image>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Image alt="Image" preview>
@@ -56,8 +56,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

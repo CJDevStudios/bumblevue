@@ -20,25 +20,25 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 options: {
     prefix: 'my'
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 options: {
     darkModeSelector: '.my-app-dark'
 }
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 options: {
     cssLayer: {
         name: 'primevue',
@@ -46,8 +46,8 @@ options: {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -5,50 +5,50 @@
 </template>
 
 <script>
-import { omit } from '@cjdevstudios/bumblevue/utils';
-import { useForm } from '@cjdevstudios/bumblevue/forms/useform';
-import { ref } from 'vue';
-import BaseForm from './BaseForm.vue';
+    import { omit } from '@cjdevstudios/bumblevue/utils';
+    import { useForm } from '@cjdevstudios/bumblevue/forms/useform';
+    import { ref } from 'vue';
+    import BaseForm from './BaseForm.vue';
 
-export default {
-    name: 'Form',
-    extends: BaseForm,
-    inheritAttrs: false,
-    emits: ['submit', 'reset'],
-    setup(props, { emit }) {
-        const formRef = ref(null);
-        const $form = useForm(props);
+    export default {
+        name: 'Form',
+        extends: BaseForm,
+        inheritAttrs: false,
+        emits: ['submit', 'reset'],
+        setup(props, { emit }) {
+            const formRef = ref(null);
+            const $form = useForm(props);
 
-        const submit = () => {
-            formRef.value?.requestSubmit();
-        };
+            const submit = () => {
+                formRef.value?.requestSubmit();
+            };
 
-        const register = (field, options) => {
-            if (!options?.novalidate) {
-                const [, fieldProps] = $form.defineField(field, options);
+            const register = (field, options) => {
+                if (!options?.novalidate) {
+                    const [, fieldProps] = $form.defineField(field, options);
 
-                return fieldProps;
-            }
+                    return fieldProps;
+                }
 
-            return {};
-        };
+                return {};
+            };
 
-        const onSubmit = $form.handleSubmit((e) => {
-            emit('submit', e);
-        });
+            const onSubmit = $form.handleSubmit((e) => {
+                emit('submit', e);
+            });
 
-        const onReset = $form.handleReset((e) => {
-            emit('reset', e);
-        });
+            const onReset = $form.handleReset((e) => {
+                emit('reset', e);
+            });
 
-        return {
-            formRef,
-            submit,
-            register,
-            onSubmit,
-            onReset,
-            ...omit($form, ['handleSubmit', 'handleReset'])
-        };
-    }
-};
+            return {
+                formRef,
+                submit,
+                register,
+                onSubmit,
+                onReset,
+                ...omit($form, ['handleSubmit', 'handleReset'])
+            };
+        }
+    };
 </script>

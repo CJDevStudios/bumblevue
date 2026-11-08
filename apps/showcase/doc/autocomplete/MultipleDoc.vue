@@ -13,21 +13,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                items: [],
+                code: {
+                    basic: `
 <label for="multiple-ac-1" class="font-bold mb-2 block">With Typeahead</label>
 <AutoComplete v-model="value1" inputId="multiple-ac-1" multiple fluid :suggestions="items" @complete="search" />
 
 <label for="multiple-ac-2" class="font-bold mt-8 mb-2 block">Without Typeahead</label>
 <AutoComplete v-model="value2" inputId="multiple-ac-2" multiple fluid @complete="search" :typeahead="false" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <label for="multiple-ac-1" class="font-bold mb-2 block">With Typeahead</label>
@@ -50,13 +50,13 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>

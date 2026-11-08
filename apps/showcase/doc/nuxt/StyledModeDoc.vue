@@ -7,11 +7,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code2: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code2: {
+                    basic: `
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export default defineNuxtConfig({
@@ -27,8 +27,8 @@ export default defineNuxtConfig({
     }
 })
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

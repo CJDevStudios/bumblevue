@@ -23,11 +23,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button
     v-tooltip.bottom="{
         value: 'BumbleVue Rocks',
@@ -43,7 +43,7 @@ export default {
     label="Button"
 />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center">
         <Button
@@ -64,8 +64,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

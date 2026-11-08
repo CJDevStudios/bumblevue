@@ -8,18 +8,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     importTheme: { from: '@/themes/mytheme.js' },
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { definePreset } from '@cjdevstudios/bumblevue/themes';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -49,8 +49,8 @@ export default {
 };
 
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

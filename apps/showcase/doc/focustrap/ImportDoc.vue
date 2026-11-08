@@ -4,17 +4,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
 
 app.directive('focustrap', FocusTrap);
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

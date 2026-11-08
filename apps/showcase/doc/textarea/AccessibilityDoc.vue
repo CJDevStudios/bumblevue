@@ -29,11 +29,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="address1">Address 1</label>
 <Textarea id="address1" />
 
@@ -42,8 +42,8 @@ export default {
 
 <Textarea aria-label="Address Details"/>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

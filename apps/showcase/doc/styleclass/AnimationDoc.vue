@@ -34,11 +34,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <div class="card flex items-center justify-center gap-8">
     <div class="flex flex-col items-center">
         <div>
@@ -64,7 +64,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex items-center justify-center gap-8">
         <div class="flex flex-col items-center">
@@ -127,40 +127,40 @@ export default {
 }
 </style>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
-@keyframes my-fadein {
-    0% {
-        opacity: 0;
+    @keyframes my-fadein {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
-    100% {
-        opacity: 1;
+
+    @keyframes my-fadeout {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
     }
-}
 
-@keyframes my-fadeout {
-    0% {
-        opacity: 1;
+    .my-hidden {
+        display: none;
     }
-    100% {
-        opacity: 0;
+
+    .my-fadein {
+        animation: my-fadein 150ms linear;
     }
-}
 
-.my-hidden {
-    display: none;
-}
-
-.my-fadein {
-    animation: my-fadein 150ms linear;
-}
-
-.my-fadeout {
-    animation: my-fadeout 150ms linear;
-}
+    .my-fadeout {
+        animation: my-fadeout 150ms linear;
+    }
 </style>

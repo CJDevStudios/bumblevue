@@ -10,26 +10,26 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import {createApp} from 'vue';
 import ToastService from '@cjdevstudios/bumblevue/toastservice';
 
 const app = createApp(App);
 app.use(ToastService);
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { useToast } from '@cjdevstudios/bumblevue/usetoast';
 
 const toast = useToast();
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

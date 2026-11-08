@@ -26,21 +26,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    icon: 'pi pi-refresh'
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-times'
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Update',
+                        icon: 'pi pi-refresh'
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-times'
+                    }
+                ],
+                code: {
+                    basic: `
 <Toolbar>
     <template #start>
         <Button icon="pi pi-plus" class="mr-2" severity="secondary" text />
@@ -60,7 +60,7 @@ export default {
     <template #end> <SplitButton label="Save" :model="items"></SplitButton></template>
 </Toolbar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toolbar>
@@ -99,8 +99,8 @@ const items = ref([
 ])
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

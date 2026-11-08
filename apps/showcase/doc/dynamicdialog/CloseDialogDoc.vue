@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { inject } from "vue";
 
 const dialogRef = inject('dialogRef');
@@ -19,8 +19,8 @@ const closeDialog = () => {
     dialogRef.value.close();
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

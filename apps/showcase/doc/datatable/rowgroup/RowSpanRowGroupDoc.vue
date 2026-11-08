@@ -40,15 +40,15 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            expandedRowGroups: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                expandedRowGroups: null,
+                code: {
+                    basic: `
 <DataTable :value="customers" rowGroupMode="rowspan" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1" tableStyle="min-width: 50rem">
     <Column header="#" headerStyle="width:3rem">
         <template #body="slotProps">
@@ -80,7 +80,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="customers" rowGroupMode="rowspan" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1" tableStyle="min-width: 50rem">
@@ -146,7 +146,7 @@ const getSeverity = (status) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -166,50 +166,50 @@ const getSeverity = (status) => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => (this.customers = data));
+                }
+            };
         },
-        onRowGroupExpand(event) {
-            this.$toast.add({ severity: 'info', summary: 'Row Group Expanded', detail: 'Value: ' + event.data, life: 3000 });
-        },
-        onRowGroupCollapse(event) {
-            this.$toast.add({ severity: 'success', summary: 'Row Group Collapsed', detail: 'Value: ' + event.data, life: 3000 });
-        },
-        calculateCustomerTotal(name) {
-            let total = 0;
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => (this.customers = data));
+            },
+            onRowGroupExpand(event) {
+                this.$toast.add({ severity: 'info', summary: 'Row Group Expanded', detail: 'Value: ' + event.data, life: 3000 });
+            },
+            onRowGroupCollapse(event) {
+                this.$toast.add({ severity: 'success', summary: 'Row Group Collapsed', detail: 'Value: ' + event.data, life: 3000 });
+            },
+            calculateCustomerTotal(name) {
+                let total = 0;
 
-            if (this.customers) {
-                for (let customer of this.customers) {
-                    if (customer.representative.name === name) {
-                        total++;
+                if (this.customers) {
+                    for (let customer of this.customers) {
+                        if (customer.representative.name === name) {
+                            total++;
+                        }
                     }
                 }
-            }
 
-            return total;
-        },
-        getSeverity(status) {
-            switch (status) {
-                case 'unqualified':
-                    return 'danger';
+                return total;
+            },
+            getSeverity(status) {
+                switch (status) {
+                    case 'unqualified':
+                        return 'danger';
 
-                case 'qualified':
-                    return 'success';
+                    case 'qualified':
+                        return 'success';
 
-                case 'new':
-                    return 'info';
+                    case 'new':
+                        return 'info';
 
-                case 'negotiation':
-                    return 'warn';
+                    case 'negotiation':
+                        return 'warn';
 
-                case 'renewal':
-                    return null;
+                    case 'renewal':
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

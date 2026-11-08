@@ -12,18 +12,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 1,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 1,
+                code: {
+                    basic: `
 <IftaLabel>
     <InputNumber v-model="value" inputId="price_input" mode="currency" currency="USD" locale="en-US" variant="filled" />
     <label for="price_input">Price</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel>
@@ -39,8 +39,8 @@ import { ref } from "vue";
 const value = ref(1);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -5,87 +5,87 @@
 </template>
 
 <script>
-import EventBus from '@/app/AppEventBus';
-import { getPTOptions } from '@/components/doc/helpers';
+    import EventBus from '@/app/AppEventBus';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            chartData: null,
-            chartOptions: null,
-            docs: [
-                {
-                    data: getPTOptions('Chart'),
-                    key: 'Chart'
-                }
-            ]
-        };
-    },
-    beforeUnmount() {
-        EventBus.off('dark-mode-toggle-complete', this.redrawListener);
-        EventBus.off('theme-palette-change', this.redrawListener);
-    },
-    mounted() {
-        this.chartData = this.setChartData();
-        this.chartOptions = this.setChartOptions();
-
-        this.redrawListener = () => {
-            this.chartOptions = this.setChartOptions();
-        };
-
-        EventBus.on('theme-palette-change', this.redrawListener);
-        EventBus.on('dark-mode-toggle-complete', this.redrawListener);
-    },
-    methods: {
-        setChartData() {
+    export default {
+        data() {
             return {
-                labels: ['Q1', 'Q2', 'Q3', 'Q4'],
-                datasets: [
+                chartData: null,
+                chartOptions: null,
+                docs: [
                     {
-                        label: 'Sales',
-                        data: [540, 325, 702, 620],
-                        backgroundColor: ['rgba(249, 115, 22, 0.2)', 'rgba(6, 182, 212, 0.2)', 'rgb(107, 114, 128, 0.2)', 'rgba(139, 92, 246, 0.2)'],
-                        borderColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
-                        borderWidth: 1
+                        data: getPTOptions('Chart'),
+                        key: 'Chart'
                     }
                 ]
             };
         },
-        setChartOptions() {
-            const documentStyle = getComputedStyle(document.documentElement);
-            const textColor = documentStyle.getPropertyValue('--p-text-color');
-            const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
-            const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+        beforeUnmount() {
+            EventBus.off('dark-mode-toggle-complete', this.redrawListener);
+            EventBus.off('theme-palette-change', this.redrawListener);
+        },
+        mounted() {
+            this.chartData = this.setChartData();
+            this.chartOptions = this.setChartOptions();
 
-            return {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: textColor
+            this.redrawListener = () => {
+                this.chartOptions = this.setChartOptions();
+            };
+
+            EventBus.on('theme-palette-change', this.redrawListener);
+            EventBus.on('dark-mode-toggle-complete', this.redrawListener);
+        },
+        methods: {
+            setChartData() {
+                return {
+                    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+                    datasets: [
+                        {
+                            label: 'Sales',
+                            data: [540, 325, 702, 620],
+                            backgroundColor: ['rgba(249, 115, 22, 0.2)', 'rgba(6, 182, 212, 0.2)', 'rgb(107, 114, 128, 0.2)', 'rgba(139, 92, 246, 0.2)'],
+                            borderColor: ['rgb(249, 115, 22)', 'rgb(6, 182, 212)', 'rgb(107, 114, 128)', 'rgb(139, 92, 246)'],
+                            borderWidth: 1
                         }
-                    }
-                },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: textColorSecondary
-                        },
-                        grid: {
-                            color: surfaceBorder
+                    ]
+                };
+            },
+            setChartOptions() {
+                const documentStyle = getComputedStyle(document.documentElement);
+                const textColor = documentStyle.getPropertyValue('--p-text-color');
+                const textColorSecondary = documentStyle.getPropertyValue('--p-text-muted-color');
+                const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+
+                return {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: textColor
+                            }
                         }
                     },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: textColorSecondary
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: textColorSecondary
+                            },
+                            grid: {
+                                color: surfaceBorder
+                            }
                         },
-                        grid: {
-                            color: surfaceBorder
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: textColorSecondary
+                            },
+                            grid: {
+                                color: surfaceBorder
+                            }
                         }
                     }
-                }
-            };
+                };
+            }
         }
-    }
-};
+    };
 </script>

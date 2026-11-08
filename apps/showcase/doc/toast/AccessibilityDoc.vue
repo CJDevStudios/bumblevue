@@ -37,19 +37,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <ConfirmDialog id="confirm" />
 
 <Button @click="openDialog()" label="Confirm" :aria-expanded="visible" :aria-controls="visible ? 'confirm' : null"></Button>
 
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <script setup>
 const confirm = useConfirm();
 const isVisible = ref(false);
@@ -68,8 +68,8 @@ const openDialog = () => {
 };
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

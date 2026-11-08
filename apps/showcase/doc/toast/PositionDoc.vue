@@ -13,11 +13,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Toast position="top-left" group="tl" />
 <Toast position="bottom-left" group="bl" />
 <Toast position="bottom-right" group="br" />
@@ -26,7 +26,7 @@ export default {
 <Button label="Bottom Left" @click="showBottomLeft" />
 <Button label="Bottom Right" @click="showBottomRight" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast position="top-left" group="tl" />
@@ -58,19 +58,19 @@ const showBottomRight = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            showTopLeft() {
+                this.$toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', group: 'tl', life: 3000 });
+            },
+            showBottomLeft() {
+                this.$toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', group: 'bl', life: 3000 });
+            },
+            showBottomRight() {
+                this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', group: 'br', life: 3000 });
             }
-        };
-    },
-    methods: {
-        showTopLeft() {
-            this.$toast.add({ severity: 'info', summary: 'Info Message', detail: 'Message Content', group: 'tl', life: 3000 });
-        },
-        showBottomLeft() {
-            this.$toast.add({ severity: 'warn', summary: 'Warn Message', detail: 'Message Content', group: 'bl', life: 3000 });
-        },
-        showBottomRight() {
-            this.$toast.add({ severity: 'success', summary: 'Success Message', detail: 'Message Content', group: 'br', life: 3000 });
         }
-    }
-};
+    };
 </script>

@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'WindowMaximizeIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'WindowMaximizeIcon',
+        extends: BaseIcon
+    };
 </script>

@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'ExclamationTriangleIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'ExclamationTriangleIcon',
+        extends: BaseIcon
+    };
 </script>

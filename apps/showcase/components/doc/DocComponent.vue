@@ -53,28 +53,28 @@
 </template>
 
 <script>
-import DocCopyMarkdown from './DocCopyMarkdown.vue';
+    import DocCopyMarkdown from './DocCopyMarkdown.vue';
 
-export default {
-    components: {
-        DocCopyMarkdown
-    },
-    props: ['title', 'header', 'description', 'componentDocs', 'apiDocs', 'className', 'ptTabComponent', 'themingDocs'],
-    data() {
-        return {
-            tab: 0
-        };
-    },
-    mounted() {
-        this.tab = this.$route.hash.includes('api') ? 1 : this.$route.hash.includes('theming') ? 2 : this.$route.hash.includes('pt') ? 3 : 0;
-    },
-    methods: {
-        getComponentName() {
-            // Extract component name from route
-            const path = this.$route.path;
-            const segments = path.split('/').filter(Boolean);
-            return segments[segments.length - 1] || null;
+    export default {
+        components: {
+            DocCopyMarkdown
+        },
+        props: ['title', 'header', 'description', 'componentDocs', 'apiDocs', 'className', 'ptTabComponent', 'themingDocs'],
+        data() {
+            return {
+                tab: 0
+            };
+        },
+        mounted() {
+            this.tab = this.$route.hash.includes('api') ? 1 : this.$route.hash.includes('theming') ? 2 : this.$route.hash.includes('pt') ? 3 : 0;
+        },
+        methods: {
+            getComponentName() {
+                // Extract component name from route
+                const path = this.$route.path;
+                const segments = path.split('/').filter(Boolean);
+                return segments[segments.length - 1] || null;
+            }
         }
-    }
-};
+    };
 </script>

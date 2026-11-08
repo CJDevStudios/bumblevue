@@ -8,11 +8,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import ProductListDemo from './ProductListDemo';
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -31,9 +31,9 @@ const showProducts = () => {
     });
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <script setup>
 /* ProductListDemo.vue */
 const emit = defineEmits(['cancel', 'save'])
@@ -47,8 +47,8 @@ function saveButtonClick() {
 }
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

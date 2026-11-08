@@ -7,10 +7,10 @@
     </svg>
 </template>
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'AngleDownIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'AngleDownIcon',
+        extends: BaseIcon
+    };
 </script>

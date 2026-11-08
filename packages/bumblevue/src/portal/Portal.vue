@@ -10,32 +10,32 @@
 </template>
 
 <script>
-import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
+    import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
 
-export default {
-    name: 'Portal',
-    props: {
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
+    export default {
+        name: 'Portal',
+        props: {
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            }
         },
-        disabled: {
-            type: Boolean,
-            default: false
+        data() {
+            return {
+                mounted: false
+            };
+        },
+        mounted() {
+            this.mounted = isClient();
+        },
+        computed: {
+            inline() {
+                return this.disabled || this.appendTo === 'self';
+            }
         }
-    },
-    data() {
-        return {
-            mounted: false
-        };
-    },
-    mounted() {
-        this.mounted = isClient();
-    },
-    computed: {
-        inline() {
-            return this.disabled || this.appendTo === 'self';
-        }
-    }
-};
+    };
 </script>

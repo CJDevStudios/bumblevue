@@ -31,15 +31,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked1: false,
-            checked2: false,
-            radioValue1: '',
-            radioValue2: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked1: false,
+                checked2: false,
+                radioValue1: '',
+                radioValue2: '',
+                code: {
+                    basic: `
 <InputGroup>
     <InputText placeholder="Price" />
     <InputGroupAddon>
@@ -64,7 +64,7 @@ export default {
     </InputGroupAddon>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col md:flex-row gap-4">
         <InputGroup>
@@ -102,8 +102,8 @@ const radioValue1 = ref('');
 const radioValue2 = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

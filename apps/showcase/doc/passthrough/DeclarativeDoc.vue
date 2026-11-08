@@ -12,16 +12,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <ComponentTag pt:[passthrough_key]:[attribute]="value" />
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <Panel
     :pt="{
         root: {
@@ -35,9 +35,9 @@ export default {
     }"
 >
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 <Panel
     pt:root:class="border border-solid"
     pt:header:id="headerId"
@@ -46,8 +46,8 @@ export default {
     :pt:header:onClick="onHeaderClick"
 >
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                code: {
+                    basic: `
 <InputMask v-model="value" mask="(999) 999-9999? x99999" placeholder="(999) 999-9999? x99999" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputMask v-model="value" mask="(999) 999-9999? x99999"  placeholder="(999) 999-9999? x99999" />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref('');
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -26,11 +26,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ScrollPanel style="width: 100%; height: 200px">
     <p>
         Lorem ipsum dolor ...
@@ -38,7 +38,7 @@ export default {
 </ScrollPanel>
 
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ScrollPanel style="width: 100%; height: 200px">
@@ -65,8 +65,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

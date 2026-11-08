@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import RefreshIcon from '@cjdevstudios/bumblevue/icons/refresh';
-import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
+    import RefreshIcon from '@cjdevstudios/bumblevue/icons/refresh';
+    import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
 
-export default {
-    components: { RefreshIcon, SpinnerIcon },
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        components: { RefreshIcon, SpinnerIcon },
+        data() {
+            return {
+                code: {
+                    basic: `
 <SpinnerIcon spin style="width: 2rem; height: 2rem" />
 <RefreshIcon spin style="width: 2rem; height: 2rem" />
 <i class="fa-solid fa-gear p-icon-spin"></i>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

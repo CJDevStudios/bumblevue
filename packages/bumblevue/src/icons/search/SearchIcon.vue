@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'SearchIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'SearchIcon',
+        extends: BaseIcon
+    };
 </script>

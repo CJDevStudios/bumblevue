@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: [{ label: 'Space used', value: 15, color: 'var(--p-primary-color)' }],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: [{ label: 'Space used', value: 15, color: 'var(--p-primary-color)' }],
+                code: {
+                    basic: `
 <MeterGroup :value="value" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <MeterGroup :value="value" />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const value = ref([{ label: 'Space used', value: 15, color: 'var(--p-primary-color)' }]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

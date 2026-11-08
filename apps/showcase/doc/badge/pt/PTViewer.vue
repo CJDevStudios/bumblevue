@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Badge'),
-                    key: 'Badge'
-                },
-                {
-                    data: getPTOptions('OverlayBadge'),
-                    key: 'OverlayBadge'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Badge'),
+                        key: 'Badge'
+                    },
+                    {
+                        data: getPTOptions('OverlayBadge'),
+                        key: 'OverlayBadge'
+                    }
+                ]
+            };
+        }
+    };
 </script>

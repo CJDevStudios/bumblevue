@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <DataView :value="products">
     <template #list="slotProps">
         <div class="flex flex-col">
@@ -99,7 +99,7 @@ export default {
     </template>
 </DataView>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataView :value="products">
@@ -168,7 +168,7 @@ const getSeverity = (product) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -184,28 +184,28 @@ const getSeverity = (product) => {
 },
 ...
         `
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
-    },
-    methods: {
-        getSeverity(product) {
-            switch (product.inventoryStatus) {
-                case 'INSTOCK':
-                    return 'success';
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
+        },
+        methods: {
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
 
-                case 'LOWSTOCK':
-                    return 'warn';
+                    case 'LOWSTOCK':
+                        return 'warn';
 
-                case 'OUTOFSTOCK':
-                    return 'danger';
+                    case 'OUTOFSTOCK':
+                        return 'danger';
 
-                default:
-                    return null;
+                    default:
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

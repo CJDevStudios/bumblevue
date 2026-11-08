@@ -2,8 +2,8 @@
     <DocSectionText v-bind="$attrs">
         <p>
             ARIA refers to "Accessible Rich Internet Applications" is a suite to fill the gap where semantic HTML is inadequate. These cases are mainly related to rich UI components/widgets. Although browser support for rich UI components such as a
-            datepicker or colorpicker has been improved over the past years many web developers still utilize UI components derived from standard HTML elements created by them or by other projects like BumbleVue. These types of components must provide
-            keyboard and screen reader support, the latter case is where the WAI-ARIA is utilized.
+            datepicker or colorpicker has been improved over the past years many web developers still utilize UI components derived from standard HTML elements created by them or by other projects like BumbleVue. These types of components must
+            provide keyboard and screen reader support, the latter case is where the WAI-ARIA is utilized.
         </p>
         <p>
             ARIA consists of roles, properties and attributes. <b>Roles</b> define what the element is mainly used for e.g. <i>checkbox</i>, <i>dialog</i>, <i>tablist</i> whereas <b>States</b> and <b>Properties</b> define the metadata of the element
@@ -71,11 +71,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked: false
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                checked: false
+            };
+        }
+    };
 </script>

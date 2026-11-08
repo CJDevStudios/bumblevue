@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
-import OverviewDoc from '@/doc/guides/migration/primevue/v4/OverviewDoc.vue';
-import BreakingDoc from '@/doc/guides/migration/primevue/v4/BreakingDoc.vue';
-import CompatibleDoc from '@/doc/guides/migration/primevue/v4/CompatibleDoc.vue';
+    import DocCopyMarkdown from '@/components/doc/DocCopyMarkdown.vue';
+    import OverviewDoc from '@/doc/guides/migration/primevue/v4/OverviewDoc.vue';
+    import BreakingDoc from '@/doc/guides/migration/primevue/v4/BreakingDoc.vue';
+    import CompatibleDoc from '@/doc/guides/migration/primevue/v4/CompatibleDoc.vue';
 
-const docs = [
-    { id: 'overview', label: 'Overview', component: OverviewDoc },
-    {
-        id: 'changes',
-        label: 'Changes',
-        description: 'The list of backward-compatible and breaking changes',
-        children: [
-            { id: 'compatible', label: 'Compatible', component: CompatibleDoc },
-            { id: 'breaking', label: 'Breaking', component: BreakingDoc }
-        ]
-    }
-];
+    const docs = [
+        { id: 'overview', label: 'Overview', component: OverviewDoc },
+        {
+            id: 'changes',
+            label: 'Changes',
+            description: 'The list of backward-compatible and breaking changes',
+            children: [
+                { id: 'compatible', label: 'Compatible', component: CompatibleDoc },
+                { id: 'breaking', label: 'Breaking', component: BreakingDoc }
+            ]
+        }
+    ];
 </script>
 
 <template>

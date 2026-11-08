@@ -14,58 +14,58 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AccordionContentStyle from '@cjdevstudios/bumblevue/accordioncontent/style';
-import { mergeProps } from 'vue';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AccordionContentStyle from '@cjdevstudios/bumblevue/accordioncontent/style';
+    import { mergeProps } from 'vue';
 
-export default {
-    name: 'AccordionContent',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        as: {
-            type: [String, Object],
-            default: 'DIV'
+    export default {
+        name: 'AccordionContent',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            as: {
+                type: [String, Object],
+                default: 'DIV'
+            },
+            asChild: {
+                type: Boolean,
+                default: false
+            }
         },
-        asChild: {
-            type: Boolean,
-            default: false
-        }
-    },
-    style: AccordionContentStyle,
-    provide() {
-        return {
-            $pcAccordionContent: this,
-            $parentInstance: this
-        };
-    },
-    inject: ['$pcAccordion', '$pcAccordionPanel'],
-    computed: {
-        id() {
-            return `${this.$pcAccordion.$id}_accordioncontent_${this.$pcAccordionPanel.value}`;
-        },
-        ariaLabelledby() {
-            return `${this.$pcAccordion.$id}_accordionheader_${this.$pcAccordionPanel.value}`;
-        },
-        attrs() {
-            return mergeProps(this.a11yAttrs, this.ptmi('root', this.ptParams));
-        },
-        a11yAttrs() {
+        style: AccordionContentStyle,
+        provide() {
             return {
-                id: this.id,
-                role: 'region',
-                'aria-labelledby': this.ariaLabelledby,
-                'data-pc-name': 'accordioncontent',
-                'data-p-active': this.$pcAccordionPanel.active
+                $pcAccordionContent: this,
+                $parentInstance: this
             };
         },
-        ptParams() {
-            return {
-                context: {
-                    active: this.$pcAccordionPanel.active
-                }
-            };
+        inject: ['$pcAccordion', '$pcAccordionPanel'],
+        computed: {
+            id() {
+                return `${this.$pcAccordion.$id}_accordioncontent_${this.$pcAccordionPanel.value}`;
+            },
+            ariaLabelledby() {
+                return `${this.$pcAccordion.$id}_accordionheader_${this.$pcAccordionPanel.value}`;
+            },
+            attrs() {
+                return mergeProps(this.a11yAttrs, this.ptmi('root', this.ptParams));
+            },
+            a11yAttrs() {
+                return {
+                    id: this.id,
+                    role: 'region',
+                    'aria-labelledby': this.ariaLabelledby,
+                    'data-pc-name': 'accordioncontent',
+                    'data-p-active': this.$pcAccordionPanel.active
+                };
+            },
+            ptParams() {
+                return {
+                    context: {
+                        active: this.$pcAccordionPanel.active
+                    }
+                };
+            }
         }
-    }
-};
+    };
 </script>

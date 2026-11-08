@@ -26,12 +26,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            events: ['2020', '2021', '2022', '2023'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                events: ['2020', '2021', '2022', '2023'],
+                code: {
+                    basic: `
 <Timeline :value="events" layout="horizontal" align="top">
     <template #content="slotProps">
         {{ slotProps.item }}
@@ -51,7 +51,7 @@ export default {
     </template>
 </Timeline>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col gap-4">
         <Timeline :value="events" layout="horizontal" align="top">
@@ -81,8 +81,8 @@ import { ref } from "vue";
 const events = ref(['2020', '2021', '2022', '2023']);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

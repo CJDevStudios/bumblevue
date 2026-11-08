@@ -21,16 +21,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            home: {
-                icon: 'pi pi-home',
-                route: '/introduction'
-            },
-            items: [{ label: 'Components' }, { label: 'Form' }, { label: 'InputText', route: '/inputtext' }],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                home: {
+                    icon: 'pi pi-home',
+                    route: '/introduction'
+                },
+                items: [{ label: 'Components' }, { label: 'Form' }, { label: 'InputText', route: '/inputtext' }],
+                code: {
+                    basic: `
 <Breadcrumb :home="home" :model="items">
     <template #item="{ item, props }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -45,7 +45,7 @@ export default {
     </template>
 </Breadcrumb>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Breadcrumb :home="home" :model="items">
@@ -78,8 +78,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

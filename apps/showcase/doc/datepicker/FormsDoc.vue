@@ -15,28 +15,31 @@
 </template>
 
 <script>
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            initialValues: {
-                date: ''
-            },
-            resolver: zodResolver(
-                z.object({
-                    date: z.preprocess((val) => {
-                        if (val === '' || val === null) {
-                            return null;
-                        }
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    date: ''
+                },
+                resolver: zodResolver(
+                    z.object({
+                        date: z.preprocess(
+                            (val) => {
+                                if (val === '' || val === null) {
+                                    return null;
+                                }
 
-                        return new Date(val);
-                    }, z.union([z.date(), z.null().refine((val) => val !== null, { message: 'Date is required.' })]))
-                })
-            ),
-            code: {
-                basic: `
+                                return new Date(val);
+                            },
+                            z.union([z.date(), z.null().refine((val) => val !== null, { message: 'Date is required.' })])
+                        )
+                    })
+                ),
+                code: {
+                    basic: `
 <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
     <div class="flex flex-col gap-1">
         <DatePicker name="date" fluid />
@@ -45,7 +48,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
@@ -87,15 +90,15 @@ const onFormSubmit = ({ valid }) => {
 };
 <\/script>
         `
-            }
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>

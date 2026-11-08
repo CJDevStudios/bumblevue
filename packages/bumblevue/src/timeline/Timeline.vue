@@ -20,54 +20,54 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TimelineStyle from '@cjdevstudios/bumblevue/timeline/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TimelineStyle from '@cjdevstudios/bumblevue/timeline/style';
 
-export default {
-    name: 'Timeline',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: null,
-        align: {
-            mode: String,
-            default: 'left'
+    export default {
+        name: 'Timeline',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: null,
+            align: {
+                mode: String,
+                default: 'left'
+            },
+            layout: {
+                mode: String,
+                default: 'vertical'
+            },
+            dataKey: null
         },
-        layout: {
-            mode: String,
-            default: 'vertical'
+        style: TimelineStyle,
+        provide() {
+            return {
+                $pcTimeline: this,
+                $parentInstance: this
+            };
         },
-        dataKey: null
-    },
-    style: TimelineStyle,
-    provide() {
-        return {
-            $pcTimeline: this,
-            $parentInstance: this
-        };
-    },
-    methods: {
-        getKey(item, index) {
-            return this.dataKey ? resolveFieldData(item, this.dataKey) : index;
+        methods: {
+            getKey(item, index) {
+                return this.dataKey ? resolveFieldData(item, this.dataKey) : index;
+            },
+            getPTOptions(key, index) {
+                return this.ptm(key, {
+                    context: {
+                        index,
+                        count: this.value.length
+                    }
+                });
+            }
         },
-        getPTOptions(key, index) {
-            return this.ptm(key, {
-                context: {
-                    index,
-                    count: this.value.length
-                }
-            });
+        computed: {
+            dataP() {
+                return cn({
+                    [this.layout]: this.layout,
+                    [this.align]: this.align
+                });
+            }
         }
-    },
-    computed: {
-        dataP() {
-            return cn({
-                [this.layout]: this.layout,
-                [this.align]: this.align
-            });
-        }
-    }
-};
+    };
 </script>

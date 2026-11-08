@@ -13,81 +13,81 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            expandedKeys: {},
-            items: [
-                {
-                    key: '0',
-                    label: 'Users',
-                    icon: 'pi pi-users',
-                    items: [
-                        {
-                            key: '0_1',
-                            label: 'New',
-                            items: [
-                                {
-                                    key: '0_1_0',
-                                    label: 'Member'
-                                },
-                                {
-                                    key: '0_1_1',
-                                    label: 'Group'
-                                }
-                            ]
-                        },
-                        {
-                            key: '0_2',
-                            label: 'Search'
-                        }
-                    ]
-                },
-                {
-                    key: '1',
-                    label: 'Tasks',
-                    icon: 'pi pi-server',
-                    items: [
-                        {
-                            key: '1_0',
-                            label: 'Add New'
-                        },
-                        {
-                            key: '1_1',
-                            label: 'Pending'
-                        },
-                        {
-                            key: '1_2',
-                            label: 'Overdue'
-                        }
-                    ]
-                },
-                {
-                    key: '2',
-                    label: 'Calendar',
-                    icon: 'pi pi-calendar',
-                    items: [
-                        {
-                            key: '2_0',
-                            label: 'New Event'
-                        },
-                        {
-                            key: '2_1',
-                            label: 'Today'
-                        },
-                        {
-                            key: '2_2',
-                            label: 'This Week'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                expandedKeys: {},
+                items: [
+                    {
+                        key: '0',
+                        label: 'Users',
+                        icon: 'pi pi-users',
+                        items: [
+                            {
+                                key: '0_1',
+                                label: 'New',
+                                items: [
+                                    {
+                                        key: '0_1_0',
+                                        label: 'Member'
+                                    },
+                                    {
+                                        key: '0_1_1',
+                                        label: 'Group'
+                                    }
+                                ]
+                            },
+                            {
+                                key: '0_2',
+                                label: 'Search'
+                            }
+                        ]
+                    },
+                    {
+                        key: '1',
+                        label: 'Tasks',
+                        icon: 'pi pi-server',
+                        items: [
+                            {
+                                key: '1_0',
+                                label: 'Add New'
+                            },
+                            {
+                                key: '1_1',
+                                label: 'Pending'
+                            },
+                            {
+                                key: '1_2',
+                                label: 'Overdue'
+                            }
+                        ]
+                    },
+                    {
+                        key: '2',
+                        label: 'Calendar',
+                        icon: 'pi pi-calendar',
+                        items: [
+                            {
+                                key: '2_0',
+                                label: 'New Event'
+                            },
+                            {
+                                key: '2_1',
+                                label: 'Today'
+                            },
+                            {
+                                key: '2_2',
+                                label: 'This Week'
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <Button type="button" label="Toggle All" text @click="toggleAll" />
 <PanelMenu v-model:expandedKeys="expandedKeys" :model="items" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">
         <Button type="button" label="Toggle All" text @click="toggleAll" />
@@ -193,35 +193,35 @@ const expandNode = (node) => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        toggleAll() {
-            if (Object.keys(this.expandedKeys).length) this.collapseAll();
-            else this.expandAll();
-        },
-        expandAll() {
-            for (let node of this.items) {
-                this.expandNode(node);
-            }
-
-            this.expandedKeys = {
-                ...this.expandedKeys
+                }
             };
         },
-        collapseAll() {
-            this.expandedKeys = {};
-        },
-        expandNode(node) {
-            if (node.items && node.items.length) {
-                this.expandedKeys[node.key] = true;
+        methods: {
+            toggleAll() {
+                if (Object.keys(this.expandedKeys).length) this.collapseAll();
+                else this.expandAll();
+            },
+            expandAll() {
+                for (let node of this.items) {
+                    this.expandNode(node);
+                }
 
-                for (let child of node.items) {
-                    this.expandNode(child);
+                this.expandedKeys = {
+                    ...this.expandedKeys
+                };
+            },
+            collapseAll() {
+                this.expandedKeys = {};
+            },
+            expandNode(node) {
+                if (node.items && node.items.length) {
+                    this.expandedKeys[node.key] = true;
+
+                    for (let child of node.items) {
+                        this.expandNode(child);
+                    }
                 }
             }
         }
-    }
-};
+    };
 </script>

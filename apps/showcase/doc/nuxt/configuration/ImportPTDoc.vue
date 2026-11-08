@@ -8,18 +8,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     importPT: { from: '@/passthrough/mycustompt.js' }
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 const MyCustomPT = {
     ...
     button: {
@@ -31,8 +31,8 @@ const MyCustomPT = {
 
 export default MyCustomPT;
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

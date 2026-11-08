@@ -5,16 +5,16 @@
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
             <label for="stacked-buttons" class="font-bold block mb-2"> Stacked </label>
-            <InputNumber v-model="value1" inputId="stacked-buttons" showButtons mode="currency" currency="USD" fluid  />
+            <InputNumber v-model="value1" inputId="stacked-buttons" showButtons mode="currency" currency="USD" fluid />
         </div>
 
         <div class="flex-auto">
             <label for="minmax-buttons" class="font-bold block mb-2"> Min-Max Boundaries </label>
-            <InputNumber v-model="value2" inputId="minmax-buttons" mode="decimal" showButtons :min="0" :max="100" fluid  />
+            <InputNumber v-model="value2" inputId="minmax-buttons" mode="decimal" showButtons :min="0" :max="100" fluid />
         </div>
         <div class="flex-auto">
             <label for="horizontal-buttons" class="font-bold block mb-2"> Horizontal with Step </label>
-            <InputNumber v-model="value3" inputId="horizontal-buttons" showButtons buttonLayout="horizontal" :step="0.25" mode="currency" currency="EUR" fluid >
+            <InputNumber v-model="value3" inputId="horizontal-buttons" showButtons buttonLayout="horizontal" :step="0.25" mode="currency" currency="EUR" fluid>
                 <template #incrementicon>
                     <span class="pi pi-plus" />
                 </template>
@@ -28,14 +28,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: 20,
-            value2: 25,
-            value3: 10.5,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: 20,
+                value2: 25,
+                value3: 10.5,
+                code: {
+                    basic: `
 <InputNumber v-model="value1" inputId="stacked-buttons" showButtons mode="currency" currency="USD" fluid />
 <InputNumber v-model="value2" inputId="minmax-buttons" mode="decimal" showButtons :min="0" :max="100" fluid />
 <InputNumber v-model="value3" inputId="horizontal-buttons" showButtons buttonLayout="horizontal" :step="0.25" mode="currency" currency="EUR" fluid>
@@ -47,7 +47,7 @@ export default {
     </template>
 </InputNumber>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -81,8 +81,8 @@ const value2 = ref(25);
 const value3 = ref(10.5);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

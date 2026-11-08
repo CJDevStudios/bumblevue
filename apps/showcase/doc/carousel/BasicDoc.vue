@@ -29,36 +29,36 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '1400px',
-                    numVisible: 2,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '1199px',
-                    numVisible: 3,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '767px',
-                    numVisible: 2,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1,
-                    numScroll: 1
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1400px',
+                        numVisible: 2,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '1199px',
+                        numVisible: 3,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '767px',
+                        numVisible: 2,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1,
+                        numScroll: 1
+                    }
+                ],
+                code: {
+                    basic: `
 <Carousel :value="products" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions">
     <template #item="slotProps">
         <div class="border border-surface-200 dark:border-surface-700 rounded-sm m-2  p-4">
@@ -80,7 +80,7 @@ export default {
     </template>
 </Carousel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Carousel :value="products" :numVisible="3" :numScroll="3" :responsiveOptions="responsiveOptions">
@@ -156,7 +156,7 @@ const getSeverity = (status) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -171,28 +171,28 @@ const getSeverity = (status) => {
     rating: 5
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 9)));
-    },
-    methods: {
-        getSeverity(status) {
-            switch (status) {
-                case 'INSTOCK':
-                    return 'success';
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 9)));
+        },
+        methods: {
+            getSeverity(status) {
+                switch (status) {
+                    case 'INSTOCK':
+                        return 'success';
 
-                case 'LOWSTOCK':
-                    return 'warn';
+                    case 'LOWSTOCK':
+                        return 'warn';
 
-                case 'OUTOFSTOCK':
-                    return 'danger';
+                    case 'OUTOFSTOCK':
+                        return 'danger';
 
-                default:
-                    return null;
+                    default:
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

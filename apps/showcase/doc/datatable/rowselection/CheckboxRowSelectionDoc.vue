@@ -18,16 +18,16 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProducts: null,
-            metaKey: true,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                selectedProducts: null,
+                metaKey: true,
+                code: {
+                    basic: `
 <DataTable v-model:selection="selectedProducts" :value="products" dataKey="id" tableStyle="min-width: 50rem">
     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
     <Column field="code" header="Code"></Column>
@@ -36,7 +36,7 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:selection="selectedProducts" :value="products" dataKey="id" tableStyle="min-width: 50rem">
@@ -63,7 +63,7 @@ const metaKey = ref(true);
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -78,13 +78,13 @@ const metaKey = ref(true);
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
         }
-    }
-};
+    };
 </script>

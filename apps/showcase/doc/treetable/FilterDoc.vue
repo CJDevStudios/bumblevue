@@ -43,20 +43,20 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            filters: {},
-            filterMode: { label: 'Lenient', value: 'lenient' },
-            filterOptions: [
-                { label: 'Lenient', value: 'lenient' },
-                { label: 'Strict', value: 'strict' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                filters: {},
+                filterMode: { label: 'Lenient', value: 'lenient' },
+                filterOptions: [
+                    { label: 'Lenient', value: 'lenient' },
+                    { label: 'Strict', value: 'strict' }
+                ],
+                code: {
+                    basic: `
 <SelectButton v-model="filterMode" optionLabel="label" dataKey="label" :options="filterOptions" />
 <TreeTable :value="nodes" :filters="filters" :filterMode="filterMode.value">
     <template #header>
@@ -85,7 +85,7 @@ export default {
     </Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex justify-center mb-6">
@@ -137,7 +137,7 @@ const filterOptions = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -165,13 +165,13 @@ const filterOptions = ref([
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>

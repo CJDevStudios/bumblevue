@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import { CountryService } from '@/service/CountryService';
-export default {
-    data() {
-        return {
-            selectedCountry: null,
-            countries: null,
-            filteredCountries: null,
-            code: {
-                basic: `
+    import { CountryService } from '@/service/CountryService';
+    export default {
+        data() {
+            return {
+                selectedCountry: null,
+                countries: null,
+                filteredCountries: null,
+                code: {
+                    basic: `
 <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search">
     <template #option="slotProps">
         <div class="flex items-center">
@@ -50,7 +50,7 @@ export default {
     </template>
 </AutoComplete>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="selectedCountry" optionLabel="name" :suggestions="filteredCountries" @complete="search">
@@ -98,24 +98,24 @@ const search = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    mounted() {
-        CountryService.getCountries().then((data) => (this.countries = data));
-    },
-    methods: {
-        search(event) {
-            setTimeout(() => {
-                if (!event.query.trim().length) {
-                    this.filteredCountries = [...this.countries];
-                } else {
-                    this.filteredCountries = this.countries.filter((country) => {
-                        return country.name.toLowerCase().startsWith(event.query.toLowerCase());
-                    });
                 }
-            }, 250);
+            };
+        },
+        mounted() {
+            CountryService.getCountries().then((data) => (this.countries = data));
+        },
+        methods: {
+            search(event) {
+                setTimeout(() => {
+                    if (!event.query.trim().length) {
+                        this.filteredCountries = [...this.countries];
+                    } else {
+                        this.filteredCountries = this.countries.filter((country) => {
+                            return country.name.toLowerCase().startsWith(event.query.toLowerCase());
+                        });
+                    }
+                }, 250);
+            }
         }
-    }
-};
+    };
 </script>

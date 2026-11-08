@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <MegaMenu :model="items">
     <template #item="{ item }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -26,7 +26,7 @@ export default {
     </template>
 </MegaMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <MegaMenu :model="items">
@@ -99,8 +99,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -26,94 +26,94 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { resolve } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import { mergeProps } from 'vue';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { mergeProps } from 'vue';
 
-export default {
-    name: 'Menuitem',
-    hostName: 'Menu',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    emits: ['item-click', 'item-mousemove'],
-    props: {
-        item: null,
-        templates: null,
-        id: null,
-        focusedOptionId: null,
-        index: null
-    },
-    methods: {
-        getItemProp(processedItem, name) {
-            return processedItem && processedItem.item ? resolve(processedItem.item[name]) : undefined;
+    export default {
+        name: 'Menuitem',
+        hostName: 'Menu',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        emits: ['item-click', 'item-mousemove'],
+        props: {
+            item: null,
+            templates: null,
+            id: null,
+            focusedOptionId: null,
+            index: null
         },
-        getPTOptions(key) {
-            return this.ptm(key, {
-                context: {
-                    item: this.item,
-                    index: this.index,
-                    focused: this.isItemFocused(),
+        methods: {
+            getItemProp(processedItem, name) {
+                return processedItem && processedItem.item ? resolve(processedItem.item[name]) : undefined;
+            },
+            getPTOptions(key) {
+                return this.ptm(key, {
+                    context: {
+                        item: this.item,
+                        index: this.index,
+                        focused: this.isItemFocused(),
+                        disabled: this.disabled()
+                    }
+                });
+            },
+            isItemFocused() {
+                return this.focusedOptionId === this.id;
+            },
+            onItemClick(event) {
+                const command = this.getItemProp(this.item, 'command');
+
+                command && command({ originalEvent: event, item: this.item.item });
+                this.$emit('item-click', { originalEvent: event, item: this.item, id: this.id });
+            },
+            onItemMouseMove(event) {
+                this.$emit('item-mousemove', { originalEvent: event, item: this.item, id: this.id });
+            },
+            visible() {
+                return typeof this.item.visible === 'function' ? this.item.visible() : this.item.visible !== false;
+            },
+            disabled() {
+                return typeof this.item.disabled === 'function' ? this.item.disabled() : this.item.disabled;
+            },
+            label() {
+                return typeof this.item.label === 'function' ? this.item.label() : this.item.label;
+            },
+            getMenuItemProps(item) {
+                return {
+                    action: mergeProps(
+                        {
+                            class: this.cx('itemLink'),
+                            tabindex: '-1'
+                        },
+                        this.getPTOptions('itemLink')
+                    ),
+                    icon: mergeProps(
+                        {
+                            class: [this.cx('itemIcon'), item.icon]
+                        },
+                        this.getPTOptions('itemIcon')
+                    ),
+                    label: mergeProps(
+                        {
+                            class: this.cx('itemLabel')
+                        },
+                        this.getPTOptions('itemLabel')
+                    )
+                };
+            }
+        },
+        computed: {
+            dataP() {
+                return cn({
+                    focus: this.isItemFocused(),
                     disabled: this.disabled()
-                }
-            });
+                });
+            }
         },
-        isItemFocused() {
-            return this.focusedOptionId === this.id;
-        },
-        onItemClick(event) {
-            const command = this.getItemProp(this.item, 'command');
-
-            command && command({ originalEvent: event, item: this.item.item });
-            this.$emit('item-click', { originalEvent: event, item: this.item, id: this.id });
-        },
-        onItemMouseMove(event) {
-            this.$emit('item-mousemove', { originalEvent: event, item: this.item, id: this.id });
-        },
-        visible() {
-            return typeof this.item.visible === 'function' ? this.item.visible() : this.item.visible !== false;
-        },
-        disabled() {
-            return typeof this.item.disabled === 'function' ? this.item.disabled() : this.item.disabled;
-        },
-        label() {
-            return typeof this.item.label === 'function' ? this.item.label() : this.item.label;
-        },
-        getMenuItemProps(item) {
-            return {
-                action: mergeProps(
-                    {
-                        class: this.cx('itemLink'),
-                        tabindex: '-1'
-                    },
-                    this.getPTOptions('itemLink')
-                ),
-                icon: mergeProps(
-                    {
-                        class: [this.cx('itemIcon'), item.icon]
-                    },
-                    this.getPTOptions('itemIcon')
-                ),
-                label: mergeProps(
-                    {
-                        class: this.cx('itemLabel')
-                    },
-                    this.getPTOptions('itemLabel')
-                )
-            };
+        directives: {
+            ripple: Ripple
         }
-    },
-    computed: {
-        dataP() {
-            return cn({
-                focus: this.isItemFocused(),
-                disabled: this.disabled()
-            });
-        }
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

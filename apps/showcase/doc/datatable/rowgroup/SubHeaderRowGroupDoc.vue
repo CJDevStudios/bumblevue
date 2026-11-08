@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                code: {
+                    basic: `
 <DataTable :value="customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single"
         sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
     <Column field="representative.name" header="Representative"></Column>
@@ -79,7 +79,7 @@ export default {
     </template>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single"
@@ -156,7 +156,7 @@ const getSeverity = (status) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -176,44 +176,44 @@ const getSeverity = (status) => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => (this.customers = data));
+                }
+            };
         },
-        calculateCustomerTotal(name) {
-            let total = 0;
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => (this.customers = data));
+            },
+            calculateCustomerTotal(name) {
+                let total = 0;
 
-            if (this.customers) {
-                for (let customer of this.customers) {
-                    if (customer.representative.name === name) {
-                        total++;
+                if (this.customers) {
+                    for (let customer of this.customers) {
+                        if (customer.representative.name === name) {
+                            total++;
+                        }
                     }
                 }
-            }
 
-            return total;
-        },
-        getSeverity(status) {
-            switch (status) {
-                case 'unqualified':
-                    return 'danger';
+                return total;
+            },
+            getSeverity(status) {
+                switch (status) {
+                    case 'unqualified':
+                        return 'danger';
 
-                case 'qualified':
-                    return 'success';
+                    case 'qualified':
+                        return 'success';
 
-                case 'new':
-                    return 'info';
+                    case 'new':
+                        return 'info';
 
-                case 'negotiation':
-                    return 'warn';
+                    case 'negotiation':
+                        return 'warn';
 
-                case 'renewal':
-                    return null;
+                    case 'renewal':
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

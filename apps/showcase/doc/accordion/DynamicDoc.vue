@@ -16,16 +16,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            tabs: [
-                { title: 'Title 1', content: 'Content 1', value: '0' },
-                { title: 'Title 2', content: 'Content 2', value: '1' },
-                { title: 'Title 3', content: 'Content 3', value: '2' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                tabs: [
+                    { title: 'Title 1', content: 'Content 1', value: '0' },
+                    { title: 'Title 2', content: 'Content 2', value: '1' },
+                    { title: 'Title 3', content: 'Content 3', value: '2' }
+                ],
+                code: {
+                    basic: `
 <Accordion value="0">
     <AccordionPanel v-for="tab in tabs" :key="tab.title" :value="tab.value">
         <AccordionHeader>{{ tab.title }}</AccordionHeader>
@@ -35,7 +35,7 @@ export default {
     </AccordionPanel>
 </Accordion>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Accordion value="0">
@@ -59,8 +59,8 @@ const tabs = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

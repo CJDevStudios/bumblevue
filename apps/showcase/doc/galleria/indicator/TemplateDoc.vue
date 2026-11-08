@@ -18,14 +18,14 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                code: {
+                    basic: `
 <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
     :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="true" indicatorsPosition="left">
     <template #item="slotProps">
@@ -36,7 +36,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
@@ -62,7 +62,7 @@ onMounted(() => {
 const images = ref();
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -72,13 +72,13 @@ const images = ref();
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>

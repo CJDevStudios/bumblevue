@@ -10,15 +10,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ProgressSpinner aria-label="Loading" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -8,11 +8,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import ProductListDemo from './ProductListDemo';
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -22,9 +22,9 @@ const showProducts = () => {
     dialog.open(ProductListDemo, {});
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
 const dialog = useDialog();
@@ -35,8 +35,8 @@ const showProducts = () => {
     dialog.open(dynamicComponent, {});
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

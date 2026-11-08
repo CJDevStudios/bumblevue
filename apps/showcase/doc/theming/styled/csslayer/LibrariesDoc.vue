@@ -8,8 +8,8 @@
 
     <h4>Tailwind</h4>
     <p>
-        Tailwind CSS includes a reset utility in base called <a href="https://tailwindcss.com/docs/preflight" target="_blank" rel="noopener noreferrer" class="doc-link">preflight</a>. Tailwind already places its styles in the
-        <i>theme</i>, <i>base</i>, <i>components</i> and <i>utilities</i> layers, so define the order of the primevue layer to come after the base and before the utilities.
+        Tailwind CSS includes a reset utility in base called <a href="https://tailwindcss.com/docs/preflight" target="_blank" rel="noopener noreferrer" class="doc-link">preflight</a>. Tailwind already places its styles in the <i>theme</i>,
+        <i>base</i>, <i>components</i> and <i>utilities</i> layers, so define the order of the primevue layer to come after the base and before the utilities.
     </p>
     <DocSectionCode :code="code2" hideToggleCode hideStackBlitz />
 
@@ -19,31 +19,31 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 @layer bootstrap-reboot, primevue;
 
 @import "bootstrap-reboot.css" layer(bootstrap-rebooot);
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 @layer theme, base, primevue, components, utilities;
 
 @import "tailwindcss";
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 @layer normalize, primevue;
 
 @import "normalize.css" layer(normalize-reset);
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

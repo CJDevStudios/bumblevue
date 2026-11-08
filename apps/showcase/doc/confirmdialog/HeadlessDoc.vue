@@ -24,11 +24,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmDialog group="headless">
     <template #container="{ message, acceptCallback, rejectCallback }">
         <div class="flex flex-col items-center p-8 bg-surface-0 dark:bg-surface-900 rounded-sm">
@@ -46,7 +46,7 @@ export default {
 </ConfirmDialog>
 <Button @click="requireConfirmation()" label="Save"></Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <ConfirmDialog group="headless">
         <template #container="{ message, acceptCallback, rejectCallback }">
@@ -91,23 +91,23 @@ const requireConfirmation = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        requireConfirmation() {
-            this.$confirm.require({
-                group: 'headless',
-                header: 'Are you sure?',
-                message: 'Please confirm to proceed.',
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
                 }
-            });
+            };
+        },
+        methods: {
+            requireConfirmation() {
+                this.$confirm.require({
+                    group: 'headless',
+                    header: 'Are you sure?',
+                    message: 'Please confirm to proceed.',
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

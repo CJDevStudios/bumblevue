@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Terminal from '@cjdevstudios/bumblevue/terminal';
 import TerminalService from '@cjdevstudios/bumblevue/terminalservice'
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

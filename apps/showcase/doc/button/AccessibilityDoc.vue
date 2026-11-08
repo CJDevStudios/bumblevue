@@ -36,11 +36,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button icon="pi pi-check" aria-label="Submit" />
 
 <Button icon="pi pi-check" label="Submit" />
@@ -50,8 +50,8 @@ export default {
     <span class="px-4">Youtube</span>
 </Button>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

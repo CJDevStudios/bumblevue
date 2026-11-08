@@ -34,14 +34,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <InputGroup>
     <InputGroupAddon>
         <i class="pi pi-user"></i>
@@ -69,7 +69,7 @@ export default {
     </FloatLabel>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col md:items-end md:flex-row gap-4">
         <InputGroup>
@@ -109,8 +109,8 @@ const value2 = ref(null);
 const value3 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

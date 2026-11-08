@@ -20,12 +20,12 @@
 </template>
 
 <script>
-export default {
-    props: {
-        configurationData: {
-            type: null,
-            default: null
+    export default {
+        props: {
+            configurationData: {
+                type: null,
+                default: null
+            }
         }
-    }
-};
+    };
 </script>

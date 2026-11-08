@@ -10,54 +10,54 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ProgressBarStyle from '@cjdevstudios/bumblevue/progressbar/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ProgressBarStyle from '@cjdevstudios/bumblevue/progressbar/style';
 
-export default {
-    name: 'ProgressBar',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: {
-            type: Number,
-            default: null
+    export default {
+        name: 'ProgressBar',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: {
+                type: Number,
+                default: null
+            },
+            mode: {
+                type: String,
+                default: 'determinate'
+            },
+            showValue: {
+                type: Boolean,
+                default: true
+            }
         },
-        mode: {
-            type: String,
-            default: 'determinate'
-        },
-        showValue: {
-            type: Boolean,
-            default: true
-        }
-    },
-    style: ProgressBarStyle,
-    provide() {
-        return {
-            $pcProgressBar: this,
-            $parentInstance: this
-        };
-    },
-    computed: {
-        progressStyle() {
+        style: ProgressBarStyle,
+        provide() {
             return {
-                width: this.value + '%',
-                display: 'flex'
+                $pcProgressBar: this,
+                $parentInstance: this
             };
         },
-        indeterminate() {
-            return this.mode === 'indeterminate';
-        },
-        determinate() {
-            return this.mode === 'determinate';
-        },
-        dataP() {
-            return cn({
-                determinate: this.determinate,
-                indeterminate: this.indeterminate
-            });
+        computed: {
+            progressStyle() {
+                return {
+                    width: this.value + '%',
+                    display: 'flex'
+                };
+            },
+            indeterminate() {
+                return this.mode === 'indeterminate';
+            },
+            determinate() {
+                return this.mode === 'determinate';
+            },
+            dataP() {
+                return cn({
+                    determinate: this.determinate,
+                    indeterminate: this.indeterminate
+                });
+            }
         }
-    }
-};
+    };
 </script>

@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" :auto="true" chooseLabel="Browse" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -33,13 +33,13 @@ const onUpload = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            onUpload() {
+                this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
             }
-        };
-    },
-    methods: {
-        onUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
         }
-    }
-};
+    };
 </script>

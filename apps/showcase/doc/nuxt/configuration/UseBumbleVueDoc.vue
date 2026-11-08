@@ -6,17 +6,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 bumblevue: {
     useBumbleVue: true | false
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

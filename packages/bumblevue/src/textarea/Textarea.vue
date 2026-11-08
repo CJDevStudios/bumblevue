@@ -3,93 +3,93 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
-import TextareaStyle from '@cjdevstudios/bumblevue/textarea/style';
-import { mergeProps } from 'vue';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+    import TextareaStyle from '@cjdevstudios/bumblevue/textarea/style';
+    import { mergeProps } from 'vue';
 
-export default {
-    name: 'Textarea',
-    extends: BaseInput,
-    inheritAttrs: false,
-    props: {
-        autoResize: Boolean
-    },
-    style: TextareaStyle,
-    provide() {
-        return {
-            $pcTextarea: this,
-            $parentInstance: this
-        };
-    },
-    observer: null,
-    mounted() {
-        if (this.autoResize) {
-            this.observer = new ResizeObserver(() => {
-                // Firefox has issues without the requestAnimationFrame - ResizeObserver loop completed with undelivered notifications.
-                requestAnimationFrame(() => {
-                    this.resize();
+    export default {
+        name: 'Textarea',
+        extends: BaseInput,
+        inheritAttrs: false,
+        props: {
+            autoResize: Boolean
+        },
+        style: TextareaStyle,
+        provide() {
+            return {
+                $pcTextarea: this,
+                $parentInstance: this
+            };
+        },
+        observer: null,
+        mounted() {
+            if (this.autoResize) {
+                this.observer = new ResizeObserver(() => {
+                    // Firefox has issues without the requestAnimationFrame - ResizeObserver loop completed with undelivered notifications.
+                    requestAnimationFrame(() => {
+                        this.resize();
+                    });
                 });
-            });
-            this.observer.observe(this.$el);
-        }
-    },
-    updated() {
-        if (this.autoResize) {
-            this.resize();
-        }
-    },
-    beforeUnmount() {
-        if (this.observer) {
-            this.observer.disconnect();
-        }
-    },
-    methods: {
-        resize() {
-            if (!this.$el.offsetParent) return;
-
-            const currentHeight = this.$el.style.height;
-            const currentHeightValue = parseInt(currentHeight) || 0;
-            const initialScrollHeight = this.$el.scrollHeight;
-
-            const needsExpanding = !currentHeightValue || initialScrollHeight > currentHeightValue;
-            const needsShrinking = currentHeightValue && initialScrollHeight < currentHeightValue;
-
-            if (needsShrinking) {
-                this.$el.style.height = 'auto';
-                this.$el.style.height = `${this.$el.scrollHeight}px`;
-            } else if (needsExpanding) {
-                this.$el.style.height = `${initialScrollHeight}px`;
+                this.observer.observe(this.$el);
             }
         },
-        onInput(event) {
+        updated() {
             if (this.autoResize) {
                 this.resize();
             }
-
-            this.writeValue(event.target.value, event);
-        }
-    },
-    computed: {
-        attrs() {
-            return mergeProps(
-                this.ptmi('root', {
-                    context: {
-                        filled: this.$filled,
-                        disabled: this.disabled
-                    }
-                }),
-                this.formField
-            );
         },
-        dataP() {
-            return cn({
-                invalid: this.$invalid,
-                fluid: this.$fluid,
-                filled: this.$variant === 'filled',
-                [this.size]: this.size
-            });
+        beforeUnmount() {
+            if (this.observer) {
+                this.observer.disconnect();
+            }
+        },
+        methods: {
+            resize() {
+                if (!this.$el.offsetParent) return;
+
+                const currentHeight = this.$el.style.height;
+                const currentHeightValue = parseInt(currentHeight) || 0;
+                const initialScrollHeight = this.$el.scrollHeight;
+
+                const needsExpanding = !currentHeightValue || initialScrollHeight > currentHeightValue;
+                const needsShrinking = currentHeightValue && initialScrollHeight < currentHeightValue;
+
+                if (needsShrinking) {
+                    this.$el.style.height = 'auto';
+                    this.$el.style.height = `${this.$el.scrollHeight}px`;
+                } else if (needsExpanding) {
+                    this.$el.style.height = `${initialScrollHeight}px`;
+                }
+            },
+            onInput(event) {
+                if (this.autoResize) {
+                    this.resize();
+                }
+
+                this.writeValue(event.target.value, event);
+            }
+        },
+        computed: {
+            attrs() {
+                return mergeProps(
+                    this.ptmi('root', {
+                        context: {
+                            filled: this.$filled,
+                            disabled: this.disabled
+                        }
+                    }),
+                    this.formField
+                );
+            },
+            dataP() {
+                return cn({
+                    invalid: this.$invalid,
+                    fluid: this.$fluid,
+                    filled: this.$variant === 'filled',
+                    [this.size]: this.size
+                });
+            }
         }
-    }
-};
+    };
 </script>

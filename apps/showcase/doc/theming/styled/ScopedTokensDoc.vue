@@ -11,42 +11,42 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked1: true,
-            checked2: true,
-            amberSwitch: {
-                handle: {
-                    borderRadius: '4px'
-                },
-                colorScheme: {
-                    light: {
-                        root: {
-                            checkedBackground: '{amber.500}',
-                            checkedHoverBackground: '{amber.600}',
-                            borderRadius: '4px'
-                        },
-                        handle: {
-                            checkedBackground: '{amber.50}',
-                            checkedHoverBackground: '{amber.100}'
-                        }
+    export default {
+        data() {
+            return {
+                checked1: true,
+                checked2: true,
+                amberSwitch: {
+                    handle: {
+                        borderRadius: '4px'
                     },
-                    dark: {
-                        root: {
-                            checkedBackground: '{amber.400}',
-                            checkedHoverBackground: '{amber.300}',
-                            borderRadius: '4px'
+                    colorScheme: {
+                        light: {
+                            root: {
+                                checkedBackground: '{amber.500}',
+                                checkedHoverBackground: '{amber.600}',
+                                borderRadius: '4px'
+                            },
+                            handle: {
+                                checkedBackground: '{amber.50}',
+                                checkedHoverBackground: '{amber.100}'
+                            }
                         },
-                        handle: {
-                            checkedBackground: '{amber.900}',
-                            checkedHoverBackground: '{amber.800}'
+                        dark: {
+                            root: {
+                                checkedBackground: '{amber.400}',
+                                checkedHoverBackground: '{amber.300}',
+                                borderRadius: '4px'
+                            },
+                            handle: {
+                                checkedBackground: '{amber.900}',
+                                checkedHoverBackground: '{amber.800}'
+                            }
                         }
                     }
-                }
-            },
-            code1: {
-                basic: `
+                },
+                code1: {
+                    basic: `
 <template>
     <div>
         <ToggleSwitch v-model="checked1" />
@@ -91,8 +91,8 @@ const amberSwitch = ref({
 <\/script>
 
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

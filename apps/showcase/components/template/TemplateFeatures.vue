@@ -41,16 +41,16 @@
 </template>
 
 <script>
-export default {
-    props: {
-        featuresData: {
-            type: null,
-            default: null
-        },
-        displayType: {
-            type: null,
-            default: null
+    export default {
+        props: {
+            featuresData: {
+                type: null,
+                default: null
+            },
+            displayType: {
+                type: null,
+                default: null
+            }
         }
-    }
-};
+    };
 </script>

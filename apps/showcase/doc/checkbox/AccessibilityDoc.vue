@@ -33,11 +33,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="chkbox1">Remember Me</label>
 <Checkbox inputId="chkbox1" />
 
@@ -46,8 +46,8 @@ export default {
 
 <Checkbox aria-label="Remember Me" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

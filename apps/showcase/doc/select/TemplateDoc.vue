@@ -36,24 +36,24 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCountry: null,
-            countries: [
-                { name: 'Australia', code: 'AU' },
-                { name: 'Brazil', code: 'BR' },
-                { name: 'China', code: 'CN' },
-                { name: 'Egypt', code: 'EG' },
-                { name: 'France', code: 'FR' },
-                { name: 'Germany', code: 'DE' },
-                { name: 'India', code: 'IN' },
-                { name: 'Japan', code: 'JP' },
-                { name: 'Spain', code: 'ES' },
-                { name: 'United States', code: 'US' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCountry: null,
+                countries: [
+                    { name: 'Australia', code: 'AU' },
+                    { name: 'Brazil', code: 'BR' },
+                    { name: 'China', code: 'CN' },
+                    { name: 'Egypt', code: 'EG' },
+                    { name: 'France', code: 'FR' },
+                    { name: 'Germany', code: 'DE' },
+                    { name: 'India', code: 'IN' },
+                    { name: 'Japan', code: 'JP' },
+                    { name: 'Spain', code: 'ES' },
+                    { name: 'United States', code: 'US' }
+                ],
+                code: {
+                    basic: `
 <Select v-model="selectedCountry" :options="countries" optionLabel="name" placeholder="Select a Country" class="w-full md:w-56">
     <template #value="slotProps">
         <div v-if="slotProps.value" class="flex items-center">
@@ -83,7 +83,7 @@ export default {
     </template>
 </Select>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Select v-model="selectedCountry" :options="countries" optionLabel="name" placeholder="Select a Country" class="w-full md:w-56">
@@ -135,8 +135,8 @@ const countries = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

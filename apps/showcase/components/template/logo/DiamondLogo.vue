@@ -35,11 +35,11 @@
 </template>
 
 <script>
-export default {
-    computed: {
-        fillColor() {
-            return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
+    export default {
+        computed: {
+            fillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
+            }
         }
-    }
-};
+    };
 </script>

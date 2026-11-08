@@ -48,148 +48,148 @@
 </template>
 
 <script>
-import { isExist } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
-import EditorStyle from '@cjdevstudios/bumblevue/editor/style';
+    import { isExist } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+    import EditorStyle from '@cjdevstudios/bumblevue/editor/style';
 
-const QuillJS = (function () {
-    try {
-        return window.Quill;
-    } catch {
-        return null;
-    }
-})();
-
-export default {
-    name: 'Editor',
-    extends: BaseEditableHolder,
-    inheritAttrs: false,
-    props: {
-        placeholder: String,
-        readonly: Boolean,
-        formats: Array,
-        editorStyle: null,
-        modules: null
-    },
-    emits: ['text-change', 'selection-change', 'load'],
-    style: EditorStyle,
-    provide() {
-        return {
-            $pcEditor: this,
-            $parentInstance: this
-        };
-    },
-    quill: null,
-    watch: {
-        modelValue(newValue, oldValue) {
-            if (newValue !== oldValue && this.quill && !this.quill.hasFocus()) {
-                this.renderValue(newValue);
-            }
-        },
-        d_value(newValue, oldValue) {
-            if (newValue !== oldValue && this.quill && !this.quill.hasFocus()) {
-                this.renderValue(newValue);
-            }
-        },
-        readonly() {
-            this.handleReadOnlyChange();
+    const QuillJS = (function () {
+        try {
+            return window.Quill;
+        } catch {
+            return null;
         }
-    },
-    mounted() {
-        const configuration = {
-            modules: {
-                toolbar: this.$refs.toolbarElement,
-                ...this.modules
+    })();
+
+    export default {
+        name: 'Editor',
+        extends: BaseEditableHolder,
+        inheritAttrs: false,
+        props: {
+            placeholder: String,
+            readonly: Boolean,
+            formats: Array,
+            editorStyle: null,
+            modules: null
+        },
+        emits: ['text-change', 'selection-change', 'load'],
+        style: EditorStyle,
+        provide() {
+            return {
+                $pcEditor: this,
+                $parentInstance: this
+            };
+        },
+        quill: null,
+        watch: {
+            modelValue(newValue, oldValue) {
+                if (newValue !== oldValue && this.quill && !this.quill.hasFocus()) {
+                    this.renderValue(newValue);
+                }
             },
-            readOnly: this.readonly,
-            theme: 'snow',
-            formats: this.formats,
-            placeholder: this.placeholder
-        };
-        if (QuillJS) {
-            // Loaded by script only
-            this.quill = new QuillJS(this.$refs.editorElement, configuration);
-            this.initQuill();
-            this.handleLoad();
-        } else {
-            import('quill')
-                .then((module) => {
-                    if (module && isExist(this.$refs.editorElement)) {
-                        if (module.default) {
-                            // webpack
-                            this.quill = new module.default(this.$refs.editorElement, configuration);
-                        } else {
-                            // parceljs
-                            this.quill = new module(this.$refs.editorElement, configuration);
+            d_value(newValue, oldValue) {
+                if (newValue !== oldValue && this.quill && !this.quill.hasFocus()) {
+                    this.renderValue(newValue);
+                }
+            },
+            readonly() {
+                this.handleReadOnlyChange();
+            }
+        },
+        mounted() {
+            const configuration = {
+                modules: {
+                    toolbar: this.$refs.toolbarElement,
+                    ...this.modules
+                },
+                readOnly: this.readonly,
+                theme: 'snow',
+                formats: this.formats,
+                placeholder: this.placeholder
+            };
+            if (QuillJS) {
+                // Loaded by script only
+                this.quill = new QuillJS(this.$refs.editorElement, configuration);
+                this.initQuill();
+                this.handleLoad();
+            } else {
+                import('quill')
+                    .then((module) => {
+                        if (module && isExist(this.$refs.editorElement)) {
+                            if (module.default) {
+                                // webpack
+                                this.quill = new module.default(this.$refs.editorElement, configuration);
+                            } else {
+                                // parceljs
+                                this.quill = new module(this.$refs.editorElement, configuration);
+                            }
+
+                            this.initQuill();
+                        }
+                    })
+                    .then(() => {
+                        this.handleLoad();
+                    });
+            }
+        },
+        beforeUnmount() {
+            this.quill = null;
+        },
+        methods: {
+            renderValue(value) {
+                if (this.quill) {
+                    if (value) {
+                        const delta = this.quill.clipboard.convert({ html: value });
+                        this.quill.setContents(delta);
+                    } else {
+                        this.quill.setText('');
+                    }
+                }
+            },
+            initQuill() {
+                this.renderValue(this.d_value);
+
+                this.quill.on('text-change', (delta, oldContents, source) => {
+                    if (source === 'user') {
+                        let html = this.quill.getSemanticHTML();
+                        let text = this.quill.getText().trim();
+
+                        if (html === '<p><br></p>') {
+                            html = '';
                         }
 
-                        this.initQuill();
+                        this.writeValue(html);
+                        this.$emit('text-change', {
+                            htmlValue: html,
+                            textValue: text,
+                            delta: delta,
+                            source: source,
+                            instance: this.quill
+                        });
                     }
-                })
-                .then(() => {
-                    this.handleLoad();
                 });
-        }
-    },
-    beforeUnmount() {
-        this.quill = null;
-    },
-    methods: {
-        renderValue(value) {
-            if (this.quill) {
-                if (value) {
-                    const delta = this.quill.clipboard.convert({ html: value });
-                    this.quill.setContents(delta);
-                } else {
-                    this.quill.setText('');
-                }
-            }
-        },
-        initQuill() {
-            this.renderValue(this.d_value);
 
-            this.quill.on('text-change', (delta, oldContents, source) => {
-                if (source === 'user') {
+                this.quill.on('selection-change', (range, oldRange, source) => {
                     let html = this.quill.getSemanticHTML();
                     let text = this.quill.getText().trim();
 
-                    if (html === '<p><br></p>') {
-                        html = '';
-                    }
-
-                    this.writeValue(html);
-                    this.$emit('text-change', {
+                    this.$emit('selection-change', {
                         htmlValue: html,
                         textValue: text,
-                        delta: delta,
+                        range: range,
+                        oldRange: oldRange,
                         source: source,
                         instance: this.quill
                     });
-                }
-            });
-
-            this.quill.on('selection-change', (range, oldRange, source) => {
-                let html = this.quill.getSemanticHTML();
-                let text = this.quill.getText().trim();
-
-                this.$emit('selection-change', {
-                    htmlValue: html,
-                    textValue: text,
-                    range: range,
-                    oldRange: oldRange,
-                    source: source,
-                    instance: this.quill
                 });
-            });
-        },
-        handleLoad() {
-            if (this.quill && this.quill.getModule('toolbar')) {
-                this.$emit('load', { instance: this.quill });
+            },
+            handleLoad() {
+                if (this.quill && this.quill.getModule('toolbar')) {
+                    this.$emit('load', { instance: this.quill });
+                }
+            },
+            handleReadOnlyChange() {
+                if (this.quill) this.quill.enable(!this.readonly);
             }
-        },
-        handleReadOnlyChange() {
-            if (this.quill) this.quill.enable(!this.readonly);
         }
-    }
-};
+    };
 </script>

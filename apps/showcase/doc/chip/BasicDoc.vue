@@ -12,18 +12,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Chip label="Action" />
 <Chip label="Comedy" />
 <Chip label="Mystery" />
 <Chip label="Thriller" removable />
 `,
 
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-2">
         <Chip label="Action" />
@@ -37,8 +37,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

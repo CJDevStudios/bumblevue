@@ -10,25 +10,25 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <DynamicDialog />
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import {createApp} from 'vue';
 import DialogService from '@cjdevstudios/bumblevue/dialogservice';
 
 const app = createApp(App);
 app.use(DialogService);
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 /* Composition API */
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -37,8 +37,8 @@ const dialog = useDialog();
 /* Options API */
 const dialog = this.$dialog;
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

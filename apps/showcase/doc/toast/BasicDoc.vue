@@ -12,15 +12,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Toast />
 <Button label="Show" @click="show()" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -37,13 +37,13 @@ const show = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            show() {
+                this.$toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
             }
-        };
-    },
-    methods: {
-        show() {
-            this.$toast.add({ severity: 'info', summary: 'Info', detail: 'Message Content', life: 3000 });
         }
-    }
-};
+    };
 </script>

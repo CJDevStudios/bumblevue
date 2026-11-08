@@ -19,11 +19,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Inplace>
     <template #display>
         <span class="inline-flex items-center gap-2">
@@ -36,7 +36,7 @@ export default {
     </template>
 </Inplace>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Inplace>
@@ -57,8 +57,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

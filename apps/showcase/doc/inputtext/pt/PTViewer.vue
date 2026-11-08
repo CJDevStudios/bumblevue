@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('InputText'),
-                    key: 'InputText'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('InputText'),
+                        key: 'InputText'
+                    }
+                ]
+            };
+        }
+    };
 </script>

@@ -4,15 +4,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import InputOtp from '@cjdevstudios/bumblevue/inputotp';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

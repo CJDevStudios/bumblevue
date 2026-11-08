@@ -9,42 +9,42 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Documents',
-                    items: [
-                        {
-                            label: 'New',
-                            icon: 'pi pi-plus'
-                        },
-                        {
-                            label: 'Search',
-                            icon: 'pi pi-search'
-                        }
-                    ]
-                },
-                {
-                    label: 'Profile',
-                    items: [
-                        {
-                            label: 'Settings',
-                            icon: 'pi pi-cog'
-                        },
-                        {
-                            label: 'Logout',
-                            icon: 'pi pi-sign-out'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Documents',
+                        items: [
+                            {
+                                label: 'New',
+                                icon: 'pi pi-plus'
+                            },
+                            {
+                                label: 'Search',
+                                icon: 'pi pi-search'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Profile',
+                        items: [
+                            {
+                                label: 'Settings',
+                                icon: 'pi pi-cog'
+                            },
+                            {
+                                label: 'Logout',
+                                icon: 'pi pi-sign-out'
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <Menu :model="items" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Menu :model="items" />
@@ -84,8 +84,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

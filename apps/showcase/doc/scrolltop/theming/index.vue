@@ -9,28 +9,28 @@
 </template>
 
 <script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getStyleOptions } from '@/components/doc/helpers';
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getStyleOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'theming.styled',
-                    label: 'Styled',
-                    children: [
-                        {
-                            id: 'theming.classes',
-                            label: 'CSS Classes',
-                            description: 'List of class names used in the styled mode.',
-                            component: DocApiTable,
-                            data: getStyleOptions('ScrollTop')
-                        }
-                    ]
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'theming.styled',
+                        label: 'Styled',
+                        children: [
+                            {
+                                id: 'theming.classes',
+                                label: 'CSS Classes',
+                                description: 'List of class names used in the styled mode.',
+                                component: DocApiTable,
+                                data: getStyleOptions('ScrollTop')
+                            }
+                        ]
+                    }
+                ]
+            };
+        }
+    };
 </script>

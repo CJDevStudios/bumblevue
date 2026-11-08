@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const date = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

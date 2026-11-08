@@ -34,30 +34,30 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Router Link',
-                    icon: 'pi pi-palette',
-                    route: '/theming/unstyled'
-                },
-                {
-                    label: 'Programmatic',
-                    icon: 'pi pi-link',
-                    command: () => {
-                        this.$router.push('/introduction');
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Router Link',
+                        icon: 'pi pi-palette',
+                        route: '/theming/unstyled'
+                    },
+                    {
+                        label: 'Programmatic',
+                        icon: 'pi pi-link',
+                        command: () => {
+                            this.$router.push('/introduction');
+                        }
+                    },
+                    {
+                        label: 'External',
+                        icon: 'pi pi-home',
+                        url: 'https://vuejs.org/'
                     }
-                },
-                {
-                    label: 'External',
-                    icon: 'pi pi-home',
-                    url: 'https://vuejs.org/'
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <span class="inline-flex items-center justify-center border-2 border-primary rounded-sm w-16 h-16" @contextmenu="onRightClick" aria-haspopup="true">
     <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="..." fill="var(--p-primary-color)" />
@@ -79,7 +79,7 @@ export default {
     </template>
 </ContextMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <span class="inline-flex items-center justify-center border-2 border-primary rounded-sm w-16 h-16" @contextmenu="onRightClick" aria-haspopup="true">
@@ -143,13 +143,13 @@ const onRightClick = (event) => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            onRightClick(event) {
+                this.$refs.routemenu.show(event);
             }
-        };
-    },
-    methods: {
-        onRightClick(event) {
-            this.$refs.routemenu.show(event);
         }
-    }
-};
+    };
 </script>

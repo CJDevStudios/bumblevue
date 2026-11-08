@@ -4,15 +4,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import ToggleButton from '@cjdevstudios/bumblevue/togglebutton';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

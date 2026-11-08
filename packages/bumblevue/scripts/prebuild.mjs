@@ -21,6 +21,7 @@ const toExport = (target) => {
 
     return dts !== target && fs.existsSync(path.resolve(__root, dts)) ? { types: dts, default: target } : target;
 };
+
 let modules = {
     ignoredFolders: ['useconfirm', 'usedialog', 'usetoast', 'usestyle', 'editor', 'chart', 'utils', 'resolver', 'core', 'icons', 'forms', 'themes', 'styled'],
     umd: [

@@ -4,15 +4,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Message from '@cjdevstudios/bumblevue/message';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

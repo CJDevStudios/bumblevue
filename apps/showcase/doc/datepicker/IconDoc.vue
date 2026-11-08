@@ -24,14 +24,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            buttondisplay: null,
-            icondisplay: null,
-            templatedisplay: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                buttondisplay: null,
+                icondisplay: null,
+                templatedisplay: null,
+                code: {
+                    basic: `
 <DatePicker v-model="buttondisplay" showIcon fluid :showOnFocus="false" />
 <DatePicker v-model="icondisplay" showIcon fluid iconDisplay="input" />
 <DatePicker v-model="templatedisplay" showIcon fluid iconDisplay="input" timeOnly>
@@ -40,7 +40,7 @@ export default {
     </template>
 </DatePicker>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -70,8 +70,8 @@ const icondisplay = ref();
 const templatedisplay = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

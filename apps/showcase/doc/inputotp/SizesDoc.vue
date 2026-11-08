@@ -11,19 +11,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <InputOtp v-model="value1" size="small" />
 <InputOtp v-model="value2" />
 <InputOtp v-model="value3" size="large" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">
         <InputOtp v-model="value1" size="small" />
@@ -40,8 +40,8 @@ const value2 = ref(null);
 const value3 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

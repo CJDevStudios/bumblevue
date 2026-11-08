@@ -54,17 +54,17 @@
 </template>
 
 <script>
-import { CarService } from '@/service/CarService';
+    import { CarService } from '@/service/CarService';
 
-export default {
-    data() {
-        return {
-            cars: null,
-            virtualCars: Array.from({ length: 100000 }),
-            lazyLoading: false,
-            loadLazyTimeout: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                cars: null,
+                virtualCars: Array.from({ length: 100000 }),
+                lazyLoading: false,
+                loadLazyTimeout: null,
+                code: {
+                    basic: `
 <DataTable :value="virtualCars" scrollable scrollHeight="400px" tableStyle="min-width: 50rem"
         :virtualScrollerOptions="{ lazy: true, onLazyLoad: loadCarsLazy, itemSize: 44, delay: 200, showLoader: true, loading: lazyLoading, numToleratedItems: 10 }">
     <Column field="id" header="Id" style="width: 20%; height: 44px">
@@ -104,7 +104,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="virtualCars" scrollable scrollHeight="400px" tableStyle="min-width: 50rem"
@@ -185,7 +185,7 @@ const loadCarsLazy = (event) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1
     vin: tvACo,
@@ -193,38 +193,38 @@ const loadCarsLazy = (event) => {
     color: Black,
     year: 2002
 }`
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            this.cars = Array.from({ length: 100000 }).map((_, i) => CarService.generateCar(i + 1));
+                }
+            };
         },
-        loadCarsLazy(event) {
-            !this.lazyLoading && (this.lazyLoading = true);
+        methods: {
+            loadDemoData() {
+                this.cars = Array.from({ length: 100000 }).map((_, i) => CarService.generateCar(i + 1));
+            },
+            loadCarsLazy(event) {
+                !this.lazyLoading && (this.lazyLoading = true);
 
-            if (this.loadLazyTimeout) {
-                clearTimeout(this.loadLazyTimeout);
+                if (this.loadLazyTimeout) {
+                    clearTimeout(this.loadLazyTimeout);
+                }
+
+                //simulate remote connection with a timeout
+                this.loadLazyTimeout = setTimeout(
+                    () => {
+                        let _virtualCars = [...this.virtualCars];
+                        let { first, last } = event;
+
+                        //load data of required page
+                        const loadedCars = this.cars.slice(first, last);
+
+                        //populate page of virtual cars
+                        Array.prototype.splice.apply(_virtualCars, [...[first, last - first], ...loadedCars]);
+
+                        this.virtualCars = _virtualCars;
+                        this.lazyLoading = false;
+                    },
+                    Math.random() * 1000 + 250
+                );
             }
-
-            //simulate remote connection with a timeout
-            this.loadLazyTimeout = setTimeout(
-                () => {
-                    let _virtualCars = [...this.virtualCars];
-                    let { first, last } = event;
-
-                    //load data of required page
-                    const loadedCars = this.cars.slice(first, last);
-
-                    //populate page of virtual cars
-                    Array.prototype.splice.apply(_virtualCars, [...[first, last - first], ...loadedCars]);
-
-                    this.virtualCars = _virtualCars;
-                    this.lazyLoading = false;
-                },
-                Math.random() * 1000 + 250
-            );
         }
-    }
-};
+    };
 </script>

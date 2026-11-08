@@ -41,11 +41,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ScrollPanel
     style="width: 100%; height: 200px"
     :dt="{
@@ -57,7 +57,7 @@ export default {
     ...
 </ScrollPanel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ScrollPanel
@@ -76,8 +76,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

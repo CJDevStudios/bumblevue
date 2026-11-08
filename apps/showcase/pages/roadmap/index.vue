@@ -8,9 +8,7 @@
 
         <div class="doc-intro">
             <h1>Roadmap</h1>
-            <p>
-                As a community-driven project, we welcome contributions and feedback from the community. The roadmap is subject to change based on community input and evolving priorities.
-            </p>
+            <p>As a community-driven project, we welcome contributions and feedback from the community. The roadmap is subject to change based on community input and evolving priorities.</p>
         </div>
 
         <div class="overflow-auto">

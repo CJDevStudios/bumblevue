@@ -24,21 +24,21 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: 1500,
-            value2: 2500,
-            value3: 4250,
-            value4: 5002,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: 1500,
+                value2: 2500,
+                value3: 4250,
+                value4: 5002,
+                code: {
+                    basic: `
 <InputNumber v-model="value1" inputId="currency-us" mode="currency" currency="USD" locale="en-US" fluid />
 <InputNumber v-model="value2" inputId="currency-germany" mode="currency" currency="EUR" locale="de-DE" />
 <InputNumber v-model="value3" inputId="currency-india" mode="currency" currency="INR" currencyDisplay="code" locale="en-IN" fluid />
 <InputNumber v-model="value4" inputId="currency-japan" mode="currency" currency="JPY" locale="jp-JP" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -69,8 +69,8 @@ const value3 = ref(4250);
 const value4 = ref(5002);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -19,12 +19,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            text: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                text: null,
+                code: {
+                    basic: `
 <Inplace>
     <template #display>
         {{ text || 'Click to Edit' }}
@@ -37,7 +37,7 @@ export default {
     </template>
 </Inplace>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Inplace>
@@ -60,8 +60,8 @@ import { ref } from "vue";
 const text = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

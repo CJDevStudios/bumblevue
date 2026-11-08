@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { createApp } from "vue";
 import BumbleVue from "@cjdevstudios/bumblevue/config";
 import InputText from '@cjdevstudios/bumblevue/inputtext';
@@ -22,8 +22,8 @@ app.use(BumbleVue);
 app.component('InputText', InputText);
 app.component('Button', Button);
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -18,58 +18,58 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import Badge from '@cjdevstudios/bumblevue/badge';
-import Button from '@cjdevstudios/bumblevue/button';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import Badge from '@cjdevstudios/bumblevue/badge';
+    import Button from '@cjdevstudios/bumblevue/button';
 
-export default {
-    name: 'FileContent',
-    hostName: 'FileUpload',
-    extends: BaseComponent,
-    emits: ['remove'],
-    props: {
-        files: {
-            type: Array,
-            default: () => []
-        },
-        badgeSeverity: {
-            type: String,
-            default: 'warn'
-        },
-        badgeValue: {
-            type: String,
-            default: null
-        },
-        previewWidth: {
-            type: Number,
-            default: 50
-        },
-        templates: {
-            type: null,
-            default: null
-        }
-    },
-    methods: {
-        formatSize(bytes) {
-            const k = 1024;
-            const dm = 3;
-            const sizes = this.$bumblevue.config.locale?.fileSizeTypes || ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-            if (bytes === 0) {
-                return `0 ${sizes[0]}`;
+    export default {
+        name: 'FileContent',
+        hostName: 'FileUpload',
+        extends: BaseComponent,
+        emits: ['remove'],
+        props: {
+            files: {
+                type: Array,
+                default: () => []
+            },
+            badgeSeverity: {
+                type: String,
+                default: 'warn'
+            },
+            badgeValue: {
+                type: String,
+                default: null
+            },
+            previewWidth: {
+                type: Number,
+                default: 50
+            },
+            templates: {
+                type: null,
+                default: null
             }
+        },
+        methods: {
+            formatSize(bytes) {
+                const k = 1024;
+                const dm = 3;
+                const sizes = this.$bumblevue.config.locale?.fileSizeTypes || ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+                if (bytes === 0) {
+                    return `0 ${sizes[0]}`;
+                }
 
-            return `${formattedSize} ${sizes[i]}`;
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm));
+
+                return `${formattedSize} ${sizes[i]}`;
+            }
+        },
+        components: {
+            Button,
+            Badge,
+            TimesIcon
         }
-    },
-    components: {
-        Button,
-        Badge,
-        TimesIcon
-    }
-};
+    };
 </script>

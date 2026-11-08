@@ -22,25 +22,25 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import InfoCircleIcon from '@cjdevstudios/bumblevue/icons/infocircle';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import { markRaw } from 'vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import InfoCircleIcon from '@cjdevstudios/bumblevue/icons/infocircle';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import { markRaw } from 'vue';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Toast'),
-                    key: 'Toast'
-                }
-            ]
-        };
-    },
-    components: {
-        InfoCircleIcon: markRaw(InfoCircleIcon),
-        TimesIcon: markRaw(TimesIcon)
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Toast'),
+                        key: 'Toast'
+                    }
+                ]
+            };
+        },
+        components: {
+            InfoCircleIcon: markRaw(InfoCircleIcon),
+            TimesIcon: markRaw(TimesIcon)
+        }
+    };
 </script>

@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import ProductListDemo from './ProductListDemo';
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -32,8 +32,8 @@ const showProducts = () => {
     });
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

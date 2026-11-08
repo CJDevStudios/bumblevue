@@ -23,52 +23,52 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedUser: null,
-            users: [
-                { id: 0, name: 'Amy Elsner', image: 'amyelsner.png', role: 'Admin' },
-                { id: 1, name: 'Anna Fali', image: 'annafali.png', role: 'Member' },
-                { id: 2, name: 'Asiya Javayant', image: 'asiyajavayant.png', role: 'Member' },
-                { id: 3, name: 'Bernardo Dominic', image: 'bernardodominic.png', role: 'Guest' },
-                { id: 4, name: 'Elwin Sharvill', image: 'elwinsharvill.png', role: 'Member' }
-            ],
-            items: [
-                {
-                    label: 'Roles',
-                    icon: 'pi pi-users',
-                    items: [
-                        {
-                            label: 'Admin',
-                            command: () => {
-                                this.selectedUser.role = 'Admin';
+    export default {
+        data() {
+            return {
+                selectedUser: null,
+                users: [
+                    { id: 0, name: 'Amy Elsner', image: 'amyelsner.png', role: 'Admin' },
+                    { id: 1, name: 'Anna Fali', image: 'annafali.png', role: 'Member' },
+                    { id: 2, name: 'Asiya Javayant', image: 'asiyajavayant.png', role: 'Member' },
+                    { id: 3, name: 'Bernardo Dominic', image: 'bernardodominic.png', role: 'Guest' },
+                    { id: 4, name: 'Elwin Sharvill', image: 'elwinsharvill.png', role: 'Member' }
+                ],
+                items: [
+                    {
+                        label: 'Roles',
+                        icon: 'pi pi-users',
+                        items: [
+                            {
+                                label: 'Admin',
+                                command: () => {
+                                    this.selectedUser.role = 'Admin';
+                                }
+                            },
+                            {
+                                label: 'Member',
+                                command: () => {
+                                    this.selectedUser.role = 'Member';
+                                }
+                            },
+                            {
+                                label: 'Guest',
+                                command: () => {
+                                    this.selectedUser.role = 'Guest';
+                                }
                             }
-                        },
-                        {
-                            label: 'Member',
-                            command: () => {
-                                this.selectedUser.role = 'Member';
-                            }
-                        },
-                        {
-                            label: 'Guest',
-                            command: () => {
-                                this.selectedUser.role = 'Guest';
-                            }
+                        ]
+                    },
+                    {
+                        label: 'Invite',
+                        icon: 'pi pi-user-plus',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Invitation sent!', life: 3000 });
                         }
-                    ]
-                },
-                {
-                    label: 'Invite',
-                    icon: 'pi pi-user-plus',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Invitation sent!', life: 3000 });
                     }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <ul class="m-0 list-none border border-surface rounded-sm p-4 flex flex-col gap-2 w-full sm:w-96">
     <li
         v-for="user in users"
@@ -86,7 +86,7 @@ export default {
 <ContextMenu ref="menu" :model="items" @hide="selectedUser = null" />
 <Toast />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex sm:justify-center">
         <ul class="m-0 list-none border border-surface rounded-sm p-4 flex flex-col gap-2 w-full sm:w-96">
@@ -168,19 +168,19 @@ const getBadge = (user) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        onRightClick(event, user) {
-            this.selectedUser = user;
-            this.$refs.menu.show(event);
+                }
+            };
         },
-        getBadge(user) {
-            if (user.role === 'Member') return 'info';
-            else if (user.role === 'Guest') return 'warn';
-            else return null;
+        methods: {
+            onRightClick(event, user) {
+                this.selectedUser = user;
+                this.$refs.menu.show(event);
+            },
+            getBadge(user) {
+                if (user.role === 'Member') return 'info';
+                else if (user.role === 'Guest') return 'warn';
+                else return null;
+            }
         }
-    }
-};
+    };
 </script>

@@ -28,277 +28,277 @@
 </template>
 
 <script>
-import { $dt } from '@cjdevstudios/bumblevue/styled';
-import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
-import KnobStyle from '@cjdevstudios/bumblevue/knob/style';
+    import { $dt } from '@cjdevstudios/bumblevue/styled';
+    import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
+    import KnobStyle from '@cjdevstudios/bumblevue/knob/style';
 
-// Set fix value for SSR.
-const Math_PI = 3.14159265358979;
+    // Set fix value for SSR.
+    const Math_PI = 3.14159265358979;
 
-export default {
-    name: 'Knob',
-    extends: BaseEditableHolder,
-    inheritAttrs: false,
-    props: {
-        size: {
-            type: Number,
-            default: 100
-        },
-        readonly: {
-            type: Boolean,
-            default: false
-        },
-        step: {
-            type: Number,
-            default: 1
-        },
-        min: {
-            type: Number,
-            default: 0
-        },
-        max: {
-            type: Number,
-            default: 100
-        },
-        valueColor: {
-            type: String,
-            default: () => {
-                return $dt('knob.value.background').variable;
+    export default {
+        name: 'Knob',
+        extends: BaseEditableHolder,
+        inheritAttrs: false,
+        props: {
+            size: {
+                type: Number,
+                default: 100
+            },
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+            step: {
+                type: Number,
+                default: 1
+            },
+            min: {
+                type: Number,
+                default: 0
+            },
+            max: {
+                type: Number,
+                default: 100
+            },
+            valueColor: {
+                type: String,
+                default: () => {
+                    return $dt('knob.value.background').variable;
+                }
+            },
+            rangeColor: {
+                type: String,
+                default: () => {
+                    return $dt('knob.range.background').variable;
+                }
+            },
+            textColor: {
+                type: String,
+                default: () => {
+                    return $dt('knob.text.color').variable;
+                }
+            },
+            strokeWidth: {
+                type: Number,
+                default: 14
+            },
+            showValue: {
+                type: Boolean,
+                default: true
+            },
+            valueTemplate: {
+                type: [String, Function],
+                default: '{value}'
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
             }
         },
-        rangeColor: {
-            type: String,
-            default: () => {
-                return $dt('knob.range.background').variable;
-            }
+        emits: ['change'],
+        style: KnobStyle,
+        provide() {
+            return {
+                $pcKnob: this,
+                $parentInstance: this
+            };
         },
-        textColor: {
-            type: String,
-            default: () => {
-                return $dt('knob.text.color').variable;
-            }
+        data() {
+            return {
+                radius: 40,
+                midX: 50,
+                midY: 50,
+                minRadians: (4 * Math_PI) / 3,
+                maxRadians: -Math_PI / 3
+            };
         },
-        strokeWidth: {
-            type: Number,
-            default: 14
-        },
-        showValue: {
-            type: Boolean,
-            default: true
-        },
-        valueTemplate: {
-            type: [String, Function],
-            default: '{value}'
-        },
-        tabindex: {
-            type: Number,
-            default: 0
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['change'],
-    style: KnobStyle,
-    provide() {
-        return {
-            $pcKnob: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            radius: 40,
-            midX: 50,
-            midY: 50,
-            minRadians: (4 * Math_PI) / 3,
-            maxRadians: -Math_PI / 3
-        };
-    },
-    methods: {
-        updateValueByOffset(offsetX, offsetY) {
-            let dx = offsetX - this.size / 2;
-            let dy = this.size / 2 - offsetY;
-            let angle = Math.atan2(dy, dx);
-            let start = -Math_PI / 2 - Math_PI / 6;
+        methods: {
+            updateValueByOffset(offsetX, offsetY) {
+                let dx = offsetX - this.size / 2;
+                let dy = this.size / 2 - offsetY;
+                let angle = Math.atan2(dy, dx);
+                let start = -Math_PI / 2 - Math_PI / 6;
 
-            this.updateModel(angle, start);
-        },
-        updateModel(angle, start) {
-            let mappedValue;
+                this.updateModel(angle, start);
+            },
+            updateModel(angle, start) {
+                let mappedValue;
 
-            if (angle > this.maxRadians) mappedValue = this.mapRange(angle, this.minRadians, this.maxRadians, this.min, this.max);
-            else if (angle < start) mappedValue = this.mapRange(angle + 2 * Math_PI, this.minRadians, this.maxRadians, this.min, this.max);
-            else return;
+                if (angle > this.maxRadians) mappedValue = this.mapRange(angle, this.minRadians, this.maxRadians, this.min, this.max);
+                else if (angle < start) mappedValue = this.mapRange(angle + 2 * Math_PI, this.minRadians, this.maxRadians, this.min, this.max);
+                else return;
 
-            let newValue = Math.round((mappedValue - this.min) / this.step) * this.step + this.min;
+                let newValue = Math.round((mappedValue - this.min) / this.step) * this.step + this.min;
 
-            this.writeValue(newValue);
-            this.$emit('change', newValue);
-        },
-        updateModelValue(newValue) {
-            if (newValue > this.max) this.writeValue(this.max);
-            else if (newValue < this.min) this.writeValue(this.min);
-            else this.writeValue(newValue);
-        },
-        mapRange(x, inMin, inMax, outMin, outMax) {
-            return ((x - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
-        },
-        onClick(event) {
-            if (!this.disabled && !this.readonly) {
-                this.updateValueByOffset(event.offsetX, event.offsetY);
-            }
-        },
-        onBlur(event) {
-            this.formField.onBlur?.(event);
-        },
-        onMouseDown(event) {
-            if (!this.disabled && !this.readonly) {
-                window.addEventListener('mousemove', this.onMouseMove);
-                window.addEventListener('mouseup', this.onMouseUp);
-                event.preventDefault();
-            }
-        },
-        onMouseUp(event) {
-            if (!this.disabled && !this.readonly) {
-                window.removeEventListener('mousemove', this.onMouseMove);
-                window.removeEventListener('mouseup', this.onMouseUp);
-                event.preventDefault();
-            }
-        },
-        onTouchStart(event) {
-            if (!this.disabled && !this.readonly) {
-                window.addEventListener('touchmove', this.onTouchMove);
-                window.addEventListener('touchend', this.onTouchEnd);
-                event.preventDefault();
-            }
-        },
-        onTouchEnd(event) {
-            if (!this.disabled && !this.readonly) {
-                window.removeEventListener('touchmove', this.onTouchMove);
-                window.removeEventListener('touchend', this.onTouchEnd);
-                event.preventDefault();
-            }
-        },
-        onMouseMove(event) {
-            if (!this.disabled && !this.readonly) {
-                this.updateValueByOffset(event.offsetX, event.offsetY);
-                event.preventDefault();
-            }
-        },
-        onTouchMove(event) {
-            if (!this.disabled && !this.readonly && event.touches.length == 1) {
-                const rect = this.$el.getBoundingClientRect();
-                const touch = event.targetTouches.item(0);
-                const offsetX = touch.clientX - rect.left;
-                const offsetY = touch.clientY - rect.top;
+                this.writeValue(newValue);
+                this.$emit('change', newValue);
+            },
+            updateModelValue(newValue) {
+                if (newValue > this.max) this.writeValue(this.max);
+                else if (newValue < this.min) this.writeValue(this.min);
+                else this.writeValue(newValue);
+            },
+            mapRange(x, inMin, inMax, outMin, outMax) {
+                return ((x - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
+            },
+            onClick(event) {
+                if (!this.disabled && !this.readonly) {
+                    this.updateValueByOffset(event.offsetX, event.offsetY);
+                }
+            },
+            onBlur(event) {
+                this.formField.onBlur?.(event);
+            },
+            onMouseDown(event) {
+                if (!this.disabled && !this.readonly) {
+                    window.addEventListener('mousemove', this.onMouseMove);
+                    window.addEventListener('mouseup', this.onMouseUp);
+                    event.preventDefault();
+                }
+            },
+            onMouseUp(event) {
+                if (!this.disabled && !this.readonly) {
+                    window.removeEventListener('mousemove', this.onMouseMove);
+                    window.removeEventListener('mouseup', this.onMouseUp);
+                    event.preventDefault();
+                }
+            },
+            onTouchStart(event) {
+                if (!this.disabled && !this.readonly) {
+                    window.addEventListener('touchmove', this.onTouchMove);
+                    window.addEventListener('touchend', this.onTouchEnd);
+                    event.preventDefault();
+                }
+            },
+            onTouchEnd(event) {
+                if (!this.disabled && !this.readonly) {
+                    window.removeEventListener('touchmove', this.onTouchMove);
+                    window.removeEventListener('touchend', this.onTouchEnd);
+                    event.preventDefault();
+                }
+            },
+            onMouseMove(event) {
+                if (!this.disabled && !this.readonly) {
+                    this.updateValueByOffset(event.offsetX, event.offsetY);
+                    event.preventDefault();
+                }
+            },
+            onTouchMove(event) {
+                if (!this.disabled && !this.readonly && event.touches.length == 1) {
+                    const rect = this.$el.getBoundingClientRect();
+                    const touch = event.targetTouches.item(0);
+                    const offsetX = touch.clientX - rect.left;
+                    const offsetY = touch.clientY - rect.top;
 
-                this.updateValueByOffset(offsetX, offsetY);
-            }
-        },
-        onKeyDown(event) {
-            if (!this.disabled && !this.readonly) {
-                switch (event.code) {
-                    case 'ArrowRight':
+                    this.updateValueByOffset(offsetX, offsetY);
+                }
+            },
+            onKeyDown(event) {
+                if (!this.disabled && !this.readonly) {
+                    switch (event.code) {
+                        case 'ArrowRight':
 
-                    case 'ArrowUp': {
-                        event.preventDefault();
-                        this.updateModelValue(this.d_value + this.step);
-                        break;
-                    }
+                        case 'ArrowUp': {
+                            event.preventDefault();
+                            this.updateModelValue(this.d_value + this.step);
+                            break;
+                        }
 
-                    case 'ArrowLeft':
+                        case 'ArrowLeft':
 
-                    case 'ArrowDown': {
-                        event.preventDefault();
-                        this.updateModelValue(this.d_value - this.step);
-                        break;
-                    }
+                        case 'ArrowDown': {
+                            event.preventDefault();
+                            this.updateModelValue(this.d_value - this.step);
+                            break;
+                        }
 
-                    case 'Home': {
-                        event.preventDefault();
-                        this.writeValue(this.min);
-                        break;
-                    }
+                        case 'Home': {
+                            event.preventDefault();
+                            this.writeValue(this.min);
+                            break;
+                        }
 
-                    case 'End': {
-                        event.preventDefault();
-                        this.writeValue(this.max);
-                        break;
-                    }
+                        case 'End': {
+                            event.preventDefault();
+                            this.writeValue(this.max);
+                            break;
+                        }
 
-                    case 'PageUp': {
-                        event.preventDefault();
-                        this.updateModelValue(this.d_value + 10);
-                        break;
-                    }
+                        case 'PageUp': {
+                            event.preventDefault();
+                            this.updateModelValue(this.d_value + 10);
+                            break;
+                        }
 
-                    case 'PageDown': {
-                        event.preventDefault();
-                        this.updateModelValue(this.d_value - 10);
-                        break;
+                        case 'PageDown': {
+                            event.preventDefault();
+                            this.updateModelValue(this.d_value - 10);
+                            break;
+                        }
                     }
                 }
             }
-        }
-    },
-    computed: {
-        rangePath() {
-            return `M ${this.minX} ${this.minY} A ${this.radius} ${this.radius} 0 1 1 ${this.maxX} ${this.maxY}`;
         },
-        valuePath() {
-            return `M ${this.zeroX} ${this.zeroY} A ${this.radius} ${this.radius} 0 ${this.largeArc} ${this.sweep} ${this.valueX} ${this.valueY}`;
-        },
-        zeroRadians() {
-            if (this.min > 0 && this.max > 0) return this.mapRange(this.min, this.min, this.max, this.minRadians, this.maxRadians);
-            else return this.mapRange(0, this.min, this.max, this.minRadians, this.maxRadians);
-        },
-        valueRadians() {
-            return this.mapRange(this.d_value, this.min, this.max, this.minRadians, this.maxRadians);
-        },
-        minX() {
-            return this.midX + Math.cos(this.minRadians) * this.radius;
-        },
-        minY() {
-            return this.midY - Math.sin(this.minRadians) * this.radius;
-        },
-        maxX() {
-            return this.midX + Math.cos(this.maxRadians) * this.radius;
-        },
-        maxY() {
-            return this.midY - Math.sin(this.maxRadians) * this.radius;
-        },
-        zeroX() {
-            return this.midX + Math.cos(this.zeroRadians) * this.radius;
-        },
-        zeroY() {
-            return this.midY - Math.sin(this.zeroRadians) * this.radius;
-        },
-        valueX() {
-            return this.midX + Math.cos(this.valueRadians) * this.radius;
-        },
-        valueY() {
-            return this.midY - Math.sin(this.valueRadians) * this.radius;
-        },
-        largeArc() {
-            return Math.abs(this.zeroRadians - this.valueRadians) < Math_PI ? 0 : 1;
-        },
-        sweep() {
-            return this.valueRadians > this.zeroRadians ? 0 : 1;
-        },
-        valueToDisplay() {
-            if (typeof this.valueTemplate === 'string') {
-                return this.valueTemplate.replace(/{value}/g, this.d_value);
-            } else {
-                return this.valueTemplate(this.d_value);
+        computed: {
+            rangePath() {
+                return `M ${this.minX} ${this.minY} A ${this.radius} ${this.radius} 0 1 1 ${this.maxX} ${this.maxY}`;
+            },
+            valuePath() {
+                return `M ${this.zeroX} ${this.zeroY} A ${this.radius} ${this.radius} 0 ${this.largeArc} ${this.sweep} ${this.valueX} ${this.valueY}`;
+            },
+            zeroRadians() {
+                if (this.min > 0 && this.max > 0) return this.mapRange(this.min, this.min, this.max, this.minRadians, this.maxRadians);
+                else return this.mapRange(0, this.min, this.max, this.minRadians, this.maxRadians);
+            },
+            valueRadians() {
+                return this.mapRange(this.d_value, this.min, this.max, this.minRadians, this.maxRadians);
+            },
+            minX() {
+                return this.midX + Math.cos(this.minRadians) * this.radius;
+            },
+            minY() {
+                return this.midY - Math.sin(this.minRadians) * this.radius;
+            },
+            maxX() {
+                return this.midX + Math.cos(this.maxRadians) * this.radius;
+            },
+            maxY() {
+                return this.midY - Math.sin(this.maxRadians) * this.radius;
+            },
+            zeroX() {
+                return this.midX + Math.cos(this.zeroRadians) * this.radius;
+            },
+            zeroY() {
+                return this.midY - Math.sin(this.zeroRadians) * this.radius;
+            },
+            valueX() {
+                return this.midX + Math.cos(this.valueRadians) * this.radius;
+            },
+            valueY() {
+                return this.midY - Math.sin(this.valueRadians) * this.radius;
+            },
+            largeArc() {
+                return Math.abs(this.zeroRadians - this.valueRadians) < Math_PI ? 0 : 1;
+            },
+            sweep() {
+                return this.valueRadians > this.zeroRadians ? 0 : 1;
+            },
+            valueToDisplay() {
+                if (typeof this.valueTemplate === 'string') {
+                    return this.valueTemplate.replace(/{value}/g, this.d_value);
+                } else {
+                    return this.valueTemplate(this.d_value);
+                }
             }
         }
-    }
-};
-//Derived and forked from https://github.com/kramer99/vue-knob-control
+    };
+    //Derived and forked from https://github.com/kramer99/vue-knob-control
 </script>

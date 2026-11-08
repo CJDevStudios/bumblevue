@@ -10,16 +10,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            blocked: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                blocked: false,
+                code: {
+                    basic: `
 <BlockUI :blocked="blocked" fullScreen />
 <Button label="Block" @click="blocked = true" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <BlockUI :blocked="blocked" fullScreen />
@@ -40,17 +40,17 @@ const blockDocument = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        blockDocument() {
-            this.blocked = true;
+                }
+            };
+        },
+        methods: {
+            blockDocument() {
+                this.blocked = true;
 
-            setTimeout(() => {
-                this.blocked = false;
-            }, 3000);
+                setTimeout(() => {
+                    this.blocked = false;
+                }, 3000);
+            }
         }
-    }
-};
+    };
 </script>

@@ -23,52 +23,52 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Router',
-                    icon: 'pi pi-palette',
-                    items: [
-                        {
-                            label: 'Styled',
-                            icon: 'pi pi-eraser',
-                            route: '/theming/styled'
-                        },
-                        {
-                            label: 'Unstyled',
-                            icon: 'pi pi-heart',
-                            route: '/theming/unstyled'
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Router',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Styled',
+                                icon: 'pi pi-eraser',
+                                route: '/theming/styled'
+                            },
+                            {
+                                label: 'Unstyled',
+                                icon: 'pi pi-heart',
+                                route: '/theming/unstyled'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Programmatic',
+                        icon: 'pi pi-link',
+                        command: () => {
+                            this.$router.push('/introduction');
                         }
-                    ]
-                },
-                {
-                    label: 'Programmatic',
-                    icon: 'pi pi-link',
-                    command: () => {
-                        this.$router.push('/introduction');
+                    },
+                    {
+                        label: 'External',
+                        icon: 'pi pi-home',
+                        items: [
+                            {
+                                label: 'Vue.js',
+                                icon: 'pi pi-star',
+                                url: 'https://vuejs.org/'
+                            },
+                            {
+                                label: 'Vite.js',
+                                icon: 'pi pi-bookmark',
+                                url: 'https://vuejs.org/'
+                            }
+                        ]
                     }
-                },
-                {
-                    label: 'External',
-                    icon: 'pi pi-home',
-                    items: [
-                        {
-                            label: 'Vue.js',
-                            icon: 'pi pi-star',
-                            url: 'https://vuejs.org/'
-                        },
-                        {
-                            label: 'Vite.js',
-                            icon: 'pi pi-bookmark',
-                            url: 'https://vuejs.org/'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <PanelMenu :model="items">
     <template #item="{ item }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -85,7 +85,7 @@ export default {
     </template>
 </PanelMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <PanelMenu :model="items" class="w-full md:w-80">
@@ -155,8 +155,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

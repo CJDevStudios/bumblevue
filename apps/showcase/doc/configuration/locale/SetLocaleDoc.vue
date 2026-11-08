@@ -11,11 +11,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 app.use(BumbleVue, {
     locale: {
         accept: 'Aceptar',
@@ -24,9 +24,9 @@ app.use(BumbleVue, {
     }
 });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { defineComponent, onMounted } from "vue";
 import { useBumbleVue } from "@cjdevstudios/bumblevue/config";
 
@@ -44,8 +44,8 @@ export default defineComponent({
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

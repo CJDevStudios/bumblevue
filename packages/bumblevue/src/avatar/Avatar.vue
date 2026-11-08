@@ -10,64 +10,64 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AvatarStyle from '@cjdevstudios/bumblevue/avatar/style';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AvatarStyle from '@cjdevstudios/bumblevue/avatar/style';
 
-export default {
-    name: 'Avatar',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        label: {
-            type: String,
-            default: null
+    export default {
+        name: 'Avatar',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            label: {
+                type: String,
+                default: null
+            },
+            icon: {
+                type: String,
+                default: null
+            },
+            image: {
+                type: String,
+                default: null
+            },
+            size: {
+                type: String,
+                default: 'normal'
+            },
+            shape: {
+                type: String,
+                default: 'square'
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            }
         },
-        icon: {
-            type: String,
-            default: null
+        emits: ['error'],
+        style: AvatarStyle,
+        provide() {
+            return {
+                $pcAvatar: this,
+                $parentInstance: this
+            };
         },
-        image: {
-            type: String,
-            default: null
+        methods: {
+            onError(event) {
+                this.$emit('error', event);
+            }
         },
-        size: {
-            type: String,
-            default: 'normal'
-        },
-        shape: {
-            type: String,
-            default: 'square'
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
+        computed: {
+            dataP() {
+                return cn({
+                    [this.shape]: this.shape,
+                    [this.size]: this.size
+                });
+            }
         }
-    },
-    emits: ['error'],
-    style: AvatarStyle,
-    provide() {
-        return {
-            $pcAvatar: this,
-            $parentInstance: this
-        };
-    },
-    methods: {
-        onError(event) {
-            this.$emit('error', event);
-        }
-    },
-    computed: {
-        dataP() {
-            return cn({
-                [this.shape]: this.shape,
-                [this.size]: this.size
-            });
-        }
-    }
-};
+    };
 </script>

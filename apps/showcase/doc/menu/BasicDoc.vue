@@ -9,18 +9,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                { label: 'New', icon: 'pi pi-plus' },
-                { label: 'Search', icon: 'pi pi-search' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    { label: 'New', icon: 'pi pi-plus' },
+                    { label: 'Search', icon: 'pi pi-search' }
+                ],
+                code: {
+                    basic: `
 <Menu :model="items" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Menu :model="items" />
@@ -36,8 +36,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

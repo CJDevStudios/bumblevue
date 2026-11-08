@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            dates: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                dates: null,
+                code: {
+                    basic: `
 <DatePicker v-model="dates" selectionMode="multiple" :manualInput="false" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <DatePicker v-model="dates" selectionMode="multiple" :manualInput="false" />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const dates = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

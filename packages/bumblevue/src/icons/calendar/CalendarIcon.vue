@@ -7,10 +7,10 @@
     </svg>
 </template>
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'CalendarIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'CalendarIcon',
+        extends: BaseIcon
+    };
 </script>

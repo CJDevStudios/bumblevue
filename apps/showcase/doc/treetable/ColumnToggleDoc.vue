@@ -19,16 +19,16 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedColumns: null,
-            columns: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedColumns: null,
+                columns: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <template #header>
         <div style="text-align:left">
@@ -39,7 +39,7 @@ export default {
     <Column v-for="col of selectedColumns" :field="col.field" :header="col.header" :key="col.field"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -73,7 +73,7 @@ const onToggle = (val) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -101,24 +101,24 @@ const onToggle = (val) => {
 },
 ...
 `
-            }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
-        ];
-
-        this.selectedColumns = this.columns;
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+                }
+            };
         },
-        onToggle(value) {
-            this.selectedColumns = this.columns.filter((col) => value.includes(col));
+        created() {
+            this.columns = [
+                { field: 'size', header: 'Size' },
+                { field: 'type', header: 'Type' }
+            ];
+
+            this.selectedColumns = this.columns;
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+            },
+            onToggle(value) {
+                this.selectedColumns = this.columns.filter((col) => value.includes(col));
+            }
         }
-    }
-};
+    };
 </script>

@@ -12,133 +12,133 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
-import { findIndexInList } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import StepStyle from '@cjdevstudios/bumblevue/step/style';
-import StepperSeparator from '../stepper/StepperSeparator.vue';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
+    import { findIndexInList } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import StepStyle from '@cjdevstudios/bumblevue/step/style';
+    import StepperSeparator from '../stepper/StepperSeparator.vue';
 
-export default {
-    name: 'Step',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: {
-            type: [String, Number],
-            default: undefined
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        asChild: {
-            type: Boolean,
-            default: false
-        },
-        as: {
-            type: [String, Object],
-            default: 'DIV'
-        }
-    },
-    style: StepStyle,
-    provide() {
-        return {
-            $pcStep: this,
-            $parentInstance: this
-        };
-    },
-    inject: {
-        $pcStepper: { default: null },
-        $pcStepList: { default: null },
-        $pcStepItem: { default: null }
-    },
-    data() {
-        return {
-            isSeparatorVisible: false,
-            isCompleted: false
-        };
-    },
-    mounted() {
-        this.updateState();
-    },
-    updated() {
-        this.updateState();
-    },
-    methods: {
-        updateState() {
-            if (this.$el && this.$pcStepList) {
-                let index = findIndexInList(this.$el, find(this.$pcStepper.$el, '[data-pc-name="step"]'));
-                let activeIndex = findIndexInList(findSingle(this.$pcStepper.$el, '[data-pc-name="step"][data-p-active="true"]'), find(this.$pcStepper.$el, '[data-pc-name="step"]'));
-                let stepLen = find(this.$pcStepper.$el, '[data-pc-name="step"]').length;
-
-                this.isSeparatorVisible = index !== stepLen - 1;
-                this.isCompleted = index < activeIndex;
+    export default {
+        name: 'Step',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: {
+                type: [String, Number],
+                default: undefined
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            asChild: {
+                type: Boolean,
+                default: false
+            },
+            as: {
+                type: [String, Object],
+                default: 'DIV'
             }
         },
-        getPTOptions(key) {
-            const _ptm = key === 'root' ? this.ptmi : this.ptm;
-
-            return _ptm(key, {
-                context: {
-                    active: this.active,
-                    disabled: this.isStepDisabled
-                }
-            });
-        },
-        onStepClick() {
-            this.$pcStepper.updateValue(this.activeValue);
-        }
-    },
-    computed: {
-        active() {
-            return this.$pcStepper.isStepActive(this.activeValue);
-        },
-        activeValue() {
-            return !!this.$pcStepItem ? this.$pcStepItem?.value : this.value;
-        },
-        isStepDisabled() {
-            return !this.active && (this.$pcStepper.isStepDisabled() || this.disabled);
-        },
-        id() {
-            return `${this.$pcStepper?.$id}_step_${this.activeValue}`;
-        },
-        ariaControls() {
-            return `${this.$pcStepper?.$id}_steppanel_${this.activeValue}`;
-        },
-        a11yAttrs() {
+        style: StepStyle,
+        provide() {
             return {
-                root: {
-                    role: 'presentation',
-                    'aria-current': this.active ? 'step' : undefined,
-                    'data-pc-name': 'step',
-                    'data-pc-section': 'root',
-                    'data-p-disabled': this.isStepDisabled,
-                    'data-p-active': this.active
-                },
-                header: {
-                    id: this.id,
-                    role: 'tab',
-                    taindex: this.disabled ? -1 : undefined,
-                    'aria-controls': this.ariaControls,
-                    'data-pc-section': 'header',
-                    disabled: this.isStepDisabled,
-                    onClick: this.onStepClick
-                }
+                $pcStep: this,
+                $parentInstance: this
             };
         },
-        dataP() {
-            return cn({
-                disabled: this.isStepDisabled,
-                readonly: this.$pcStepper.linear,
-                active: this.active,
-                completed: this.isCompleted,
-                vertical: this.$pcStepItem != null
-            });
+        inject: {
+            $pcStepper: { default: null },
+            $pcStepList: { default: null },
+            $pcStepItem: { default: null }
+        },
+        data() {
+            return {
+                isSeparatorVisible: false,
+                isCompleted: false
+            };
+        },
+        mounted() {
+            this.updateState();
+        },
+        updated() {
+            this.updateState();
+        },
+        methods: {
+            updateState() {
+                if (this.$el && this.$pcStepList) {
+                    let index = findIndexInList(this.$el, find(this.$pcStepper.$el, '[data-pc-name="step"]'));
+                    let activeIndex = findIndexInList(findSingle(this.$pcStepper.$el, '[data-pc-name="step"][data-p-active="true"]'), find(this.$pcStepper.$el, '[data-pc-name="step"]'));
+                    let stepLen = find(this.$pcStepper.$el, '[data-pc-name="step"]').length;
+
+                    this.isSeparatorVisible = index !== stepLen - 1;
+                    this.isCompleted = index < activeIndex;
+                }
+            },
+            getPTOptions(key) {
+                const _ptm = key === 'root' ? this.ptmi : this.ptm;
+
+                return _ptm(key, {
+                    context: {
+                        active: this.active,
+                        disabled: this.isStepDisabled
+                    }
+                });
+            },
+            onStepClick() {
+                this.$pcStepper.updateValue(this.activeValue);
+            }
+        },
+        computed: {
+            active() {
+                return this.$pcStepper.isStepActive(this.activeValue);
+            },
+            activeValue() {
+                return !!this.$pcStepItem ? this.$pcStepItem?.value : this.value;
+            },
+            isStepDisabled() {
+                return !this.active && (this.$pcStepper.isStepDisabled() || this.disabled);
+            },
+            id() {
+                return `${this.$pcStepper?.$id}_step_${this.activeValue}`;
+            },
+            ariaControls() {
+                return `${this.$pcStepper?.$id}_steppanel_${this.activeValue}`;
+            },
+            a11yAttrs() {
+                return {
+                    root: {
+                        role: 'presentation',
+                        'aria-current': this.active ? 'step' : undefined,
+                        'data-pc-name': 'step',
+                        'data-pc-section': 'root',
+                        'data-p-disabled': this.isStepDisabled,
+                        'data-p-active': this.active
+                    },
+                    header: {
+                        id: this.id,
+                        role: 'tab',
+                        taindex: this.disabled ? -1 : undefined,
+                        'aria-controls': this.ariaControls,
+                        'data-pc-section': 'header',
+                        disabled: this.isStepDisabled,
+                        onClick: this.onStepClick
+                    }
+                };
+            },
+            dataP() {
+                return cn({
+                    disabled: this.isStepDisabled,
+                    readonly: this.$pcStepper.linear,
+                    active: this.active,
+                    completed: this.isCompleted,
+                    vertical: this.$pcStepItem != null
+                });
+            }
+        },
+        components: {
+            StepperSeparator
         }
-    },
-    components: {
-        StepperSeparator
-    }
-};
+    };
 </script>

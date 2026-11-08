@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('ScrollPanel'),
-                    key: 'ScrollPanel'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('ScrollPanel'),
+                        key: 'ScrollPanel'
+                    }
+                ]
+            };
+        }
+    };
 </script>

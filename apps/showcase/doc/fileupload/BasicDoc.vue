@@ -10,15 +10,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <FileUpload ref="fileupload" mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" />
 <Button label="Upload" @click="upload" severity="secondary" />
 `,
-                composition: `
+                    composition: `
 <template>
     <Toast />
     <div class="card flex flex-wrap gap-6 items-center justify-between">
@@ -42,16 +42,16 @@ const onUpload = () => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        upload() {
-            this.$refs.fileupload.upload();
+                }
+            };
         },
-        onUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+        methods: {
+            upload() {
+                this.$refs.fileupload.upload();
+            },
+            onUpload() {
+                this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+            }
         }
-    }
-};
+    };
 </script>

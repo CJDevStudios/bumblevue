@@ -35,11 +35,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Tabs value="0">
     <TabList>
         <Tab value="0">Header I</Tab>
@@ -68,7 +68,7 @@ export default {
     </TabPanels>
 </Tabs>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Tabs value="0">
@@ -104,8 +104,8 @@ export default {
 <script setup>
 <\/script>
     `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

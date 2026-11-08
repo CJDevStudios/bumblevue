@@ -37,20 +37,20 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            columns: [
-                { field: 'code', header: 'Code' },
-                { field: 'name', header: 'Name' },
-                { field: 'quantity', header: 'Quantity' },
-                { field: 'price', header: 'Price' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                columns: [
+                    { field: 'code', header: 'Code' },
+                    { field: 'name', header: 'Name' },
+                    { field: 'quantity', header: 'Quantity' },
+                    { field: 'price', header: 'Price' }
+                ],
+                code: {
+                    basic: `
 <DataTable :value="products" editMode="cell" @cell-edit-complete="onCellEditComplete"
     :pt="{
         table: { style: 'min-width: 50rem' },
@@ -76,7 +76,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" editMode="cell" @cell-edit-complete="onCellEditComplete"
@@ -158,7 +158,7 @@ const formatCurrency = (value) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -173,46 +173,46 @@ const formatCurrency = (value) => {
 },
 ...
         `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
+                }
+            };
         },
-        onCellEditComplete(event) {
-            let { data, newValue, field } = event;
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            onCellEditComplete(event) {
+                let { data, newValue, field } = event;
 
-            switch (field) {
-                case 'quantity':
-                case 'price':
-                    if (this.isPositiveInteger(newValue)) data[field] = newValue;
-                    else event.preventDefault();
-                    break;
+                switch (field) {
+                    case 'quantity':
+                    case 'price':
+                        if (this.isPositiveInteger(newValue)) data[field] = newValue;
+                        else event.preventDefault();
+                        break;
 
-                default:
-                    if (newValue.trim().length > 0) data[field] = newValue;
-                    else event.preventDefault();
-                    break;
+                    default:
+                        if (newValue.trim().length > 0) data[field] = newValue;
+                        else event.preventDefault();
+                        break;
+                }
+            },
+            isPositiveInteger(val) {
+                let str = String(val);
+
+                str = str.trim();
+
+                if (!str) {
+                    return false;
+                }
+
+                str = str.replace(/^0+/, '') || '0';
+                var n = Math.floor(Number(str));
+
+                return n !== Infinity && String(n) === str && n >= 0;
+            },
+            formatCurrency(value) {
+                return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
             }
-        },
-        isPositiveInteger(val) {
-            let str = String(val);
-
-            str = str.trim();
-
-            if (!str) {
-                return false;
-            }
-
-            str = str.replace(/^0+/, '') || '0';
-            var n = Math.floor(Number(str));
-
-            return n !== Infinity && String(n) === str && n >= 0;
-        },
-        formatCurrency(value) {
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
         }
-    }
-};
+    };
 </script>

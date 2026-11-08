@@ -1,9 +1,12 @@
 import eslint from '@eslint/js';
 import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
     eslint.configs.recommended,
+    ...tseslint.configs.recommended,
+    ...eslintPluginVue.configs['flat/recommended'],
     {
         languageOptions: {
             globals: {
@@ -26,7 +29,8 @@ export default [
             'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
             'no-fallthrough': 'off',
             'padding-line-between-statements': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'off',
                 { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
                 { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
                 { blankLine: 'any', prev: ['case', 'default'], next: 'break' },
@@ -47,20 +51,17 @@ export default [
         }
     },
     {
-        files: ['vue'],
-        plugins: {
-            vue: eslintPluginVue
-        },
+        files: ['**/*.vue'],
         rules: {
             'vue/valid-template-root': 'error',
             'vue/no-multiple-template-root': 'off',
             'vue/this-in-template': ['error', 'never'],
             'vue/multi-word-component-names': 'off',
             'vue/no-reserved-component-names': 'off',
-            'vue/component-tags-order': [
+            'vue/block-order': [
                 'error',
                 {
-                    order: ['template', 'script', 'style']
+                    order: ['script', 'template', 'style']
                 }
             ],
             'vue/require-explicit-emits': [
@@ -119,10 +120,7 @@ export default [
         }
     },
     {
-        files: ['**/*.{js,mjs,cjs,ts'],
-        plugins: {
-            vue: eslintPluginVue
-        },
+        files: ['**/*.{js,mjs,cjs,ts}'],
         languageOptions: {
             parserOptions: {
                 ecmaVersion: 'latest',

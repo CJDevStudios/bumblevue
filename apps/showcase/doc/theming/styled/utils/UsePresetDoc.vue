@@ -6,19 +6,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { usePreset } from '@cjdevstudios/bumblevue/themes';
 
 const onButtonClick() {
     usePreset(MyPreset);
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -22,63 +22,63 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            data: {
-                key: '0',
-                type: 'person',
-                styleClass: 'bg-indigo-100! text-indigo-900! rounded-xl',
+    export default {
+        data() {
+            return {
                 data: {
-                    image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
-                    name: 'Amy Elsner',
-                    title: 'CEO'
-                },
-                children: [
-                    {
-                        key: '0_0',
-                        type: 'person',
-                        styleClass: 'bg-purple-100! text-purple-900! rounded-xl',
-                        data: {
-                            image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
-                            name: 'Anna Fali',
-                            title: 'CMO'
-                        },
-                        children: [
-                            {
-                                label: 'Sales',
-                                styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
-                            },
-                            {
-                                label: 'Marketing',
-                                styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
-                            }
-                        ]
+                    key: '0',
+                    type: 'person',
+                    styleClass: 'bg-indigo-100! text-indigo-900! rounded-xl',
+                    data: {
+                        image: 'https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png',
+                        name: 'Amy Elsner',
+                        title: 'CEO'
                     },
-                    {
-                        key: '0_1',
-                        type: 'person',
-                        styleClass: 'bg-teal-100! text-teal-900! rounded-xl',
-                        data: {
-                            image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
-                            name: 'Stephen Shaw',
-                            title: 'CTO'
-                        },
-                        children: [
-                            {
-                                label: 'Development',
-                                styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
+                    children: [
+                        {
+                            key: '0_0',
+                            type: 'person',
+                            styleClass: 'bg-purple-100! text-purple-900! rounded-xl',
+                            data: {
+                                image: 'https://primefaces.org/cdn/primevue/images/avatar/annafali.png',
+                                name: 'Anna Fali',
+                                title: 'CMO'
                             },
-                            {
-                                label: 'UI/UX Design',
-                                styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
-                            }
-                        ]
-                    }
-                ]
-            },
-            code: {
-                basic: `
+                            children: [
+                                {
+                                    label: 'Sales',
+                                    styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
+                                },
+                                {
+                                    label: 'Marketing',
+                                    styleClass: 'bg-purple-100! text-purple-900! rounded-xl'
+                                }
+                            ]
+                        },
+                        {
+                            key: '0_1',
+                            type: 'person',
+                            styleClass: 'bg-teal-100! text-teal-900! rounded-xl',
+                            data: {
+                                image: 'https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png',
+                                name: 'Stephen Shaw',
+                                title: 'CTO'
+                            },
+                            children: [
+                                {
+                                    label: 'Development',
+                                    styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
+                                },
+                                {
+                                    label: 'UI/UX Design',
+                                    styleClass: 'bg-teal-100! text-teal-900! rounded-xl'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                code: {
+                    basic: `
 <OrganizationChart :value="data" collapsible>
     <template #person="slotProps">
         <div class="flex flex-col">
@@ -94,7 +94,7 @@ export default {
     </template>
 </OrganizationChart>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card overflow-x-auto">
         <OrganizationChart :value="data" collapsible>
@@ -171,8 +171,8 @@ const data = ref({
 });
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

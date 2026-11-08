@@ -19,11 +19,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button
     label="Search"
     icon="pi pi-search"
@@ -33,8 +33,8 @@ export default {
     pt:icon="text-white text-xl"
 />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

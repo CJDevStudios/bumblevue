@@ -23,11 +23,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmDialog group="positioned"></ConfirmDialog>
 <div class="flex flex-wrap justify-center gap-2 mb-4">
     <Button @click="confirmPosition('left')" icon="pi pi-arrow-right" label="Left" severity="secondary" style="min-width: 10rem"></Button>
@@ -44,7 +44,7 @@ export default {
     <Button @click="confirmPosition('bottomright')" icon="pi pi-arrow-up-left" label="BottomRight" severity="secondary" style="min-width: 10rem"></Button>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <Toast />
     <ConfirmDialog group="positioned"></ConfirmDialog>
@@ -99,34 +99,34 @@ const confirmPosition = (position) => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        confirmPosition(position) {
-            this.$confirm.require({
-                group: 'positioned',
-                message: 'Are you sure you want to proceed?',
-                header: 'Confirmation',
-                icon: 'pi pi-info-circle',
-                position: position,
-                rejectProps: {
-                    label: 'Cancel',
-                    severity: 'secondary',
-                    text: true
-                },
-                acceptProps: {
-                    label: 'Save',
-                    text: true
-                },
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'Process incomplete', life: 3000 });
                 }
-            });
+            };
+        },
+        methods: {
+            confirmPosition(position) {
+                this.$confirm.require({
+                    group: 'positioned',
+                    message: 'Are you sure you want to proceed?',
+                    header: 'Confirmation',
+                    icon: 'pi pi-info-circle',
+                    position: position,
+                    rejectProps: {
+                        label: 'Cancel',
+                        severity: 'secondary',
+                        text: true
+                    },
+                    acceptProps: {
+                        label: 'Save',
+                        text: true
+                    },
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'Process incomplete', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

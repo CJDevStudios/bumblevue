@@ -43,12 +43,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            active: '0',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                active: '0',
+                code: {
+                    basic: `
 <div class="flex mb-4 gap-2 justify-end">
     <Button @click="active = '0'" rounded label="1" class="w-8 h-8 p-0" :outlined="active !== '0'" />
     <Button @click="active = '1'" rounded label="2" class="w-8 h-8 p-0" :outlined="active !== '1'" />
@@ -85,7 +85,7 @@ export default {
     </AccordionPanel>
 </Accordion>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex mb-4 gap-2 justify-end">
@@ -132,8 +132,8 @@ import { ref } from 'vue';
 const active = ref('0');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

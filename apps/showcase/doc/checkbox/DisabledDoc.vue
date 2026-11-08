@@ -10,17 +10,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            checked1: false,
-            checked2: true,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked1: false,
+                checked2: true,
+                code: {
+                    basic: `
 <Checkbox v-model="checked1" binary disabled />
 <Checkbox v-model="checked2" binary disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-2">
         <Checkbox v-model="checked1" binary disabled />
@@ -35,8 +35,8 @@ const checked1 = ref(false);
 const checked2 = ref(true);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

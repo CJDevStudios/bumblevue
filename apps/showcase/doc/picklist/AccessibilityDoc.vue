@@ -122,18 +122,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <span id="lb">Options</span>
 <PickList aria-labelledby="lb" />
 
 <PickList aria-label="City" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

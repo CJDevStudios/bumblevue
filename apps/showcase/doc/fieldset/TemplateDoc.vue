@@ -20,11 +20,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Fieldset>
     <template #legend>
         <div class="flex items-center pl-2">
@@ -38,7 +38,7 @@ export default {
     </p>
 </Fieldset>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Fieldset>
@@ -59,8 +59,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

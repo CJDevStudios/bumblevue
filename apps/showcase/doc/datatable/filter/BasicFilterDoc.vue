@@ -85,37 +85,37 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
-import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
+    import { CustomerService } from '@/service/CustomerService';
+    import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            filters: {
-                global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-                name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-                'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-                representative: { value: null, matchMode: FilterMatchMode.IN },
-                status: { value: null, matchMode: FilterMatchMode.EQUALS },
-                verified: { value: null, matchMode: FilterMatchMode.EQUALS }
-            },
-            representatives: [
-                { name: 'Amy Elsner', image: 'amyelsner.png' },
-                { name: 'Anna Fali', image: 'annafali.png' },
-                { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-                { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-                { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-                { name: 'Onyama Limba', image: 'onyamalimba.png' },
-                { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-                { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-            ],
-            statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
-            loading: true,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                filters: {
+                    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+                    name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+                    'country.name': { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+                    representative: { value: null, matchMode: FilterMatchMode.IN },
+                    status: { value: null, matchMode: FilterMatchMode.EQUALS },
+                    verified: { value: null, matchMode: FilterMatchMode.EQUALS }
+                },
+                representatives: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png' },
+                    { name: 'Anna Fali', image: 'annafali.png' },
+                    { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+                    { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+                    { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+                    { name: 'Onyama Limba', image: 'onyamalimba.png' },
+                    { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+                    { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+                ],
+                statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
+                loading: true,
+                code: {
+                    basic: `
 <DataTable v-model:filters="filters" :value="customers" paginator :rows="10" dataKey="id" filterDisplay="row" :loading="loading"
         :globalFilterFields="['name', 'country.name', 'representative.name', 'status']">
     <template #header>
@@ -189,7 +189,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:filters="filters" :value="customers" paginator :rows="10" dataKey="id" filterDisplay="row" :loading="loading"
@@ -331,7 +331,7 @@ const getSeverity = (status) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -351,41 +351,41 @@ const getSeverity = (status) => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => {
-                this.customers = this.getCustomers(data);
-                this.loading = false;
-            });
+                }
+            };
         },
-        getCustomers(data) {
-            return [...(data || [])].map((d) => {
-                d.date = new Date(d.date);
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => {
+                    this.customers = this.getCustomers(data);
+                    this.loading = false;
+                });
+            },
+            getCustomers(data) {
+                return [...(data || [])].map((d) => {
+                    d.date = new Date(d.date);
 
-                return d;
-            });
-        },
-        getSeverity(status) {
-            switch (status) {
-                case 'unqualified':
-                    return 'danger';
+                    return d;
+                });
+            },
+            getSeverity(status) {
+                switch (status) {
+                    case 'unqualified':
+                        return 'danger';
 
-                case 'qualified':
-                    return 'success';
+                    case 'qualified':
+                        return 'success';
 
-                case 'new':
-                    return 'info';
+                    case 'new':
+                        return 'info';
 
-                case 'negotiation':
-                    return 'warn';
+                    case 'negotiation':
+                        return 'warn';
 
-                case 'renewal':
-                    return null;
+                    case 'renewal':
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

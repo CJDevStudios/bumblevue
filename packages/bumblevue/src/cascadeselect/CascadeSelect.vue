@@ -47,15 +47,7 @@
         </span>
         <Portal :appendTo="appendTo">
             <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div
-                    v-if="overlayVisible"
-                    :ref="overlayRef"
-                    :class="[cx('overlay'), overlayClass]"
-                    :style="overlayStyle"
-                    @click="onOverlayClick"
-                    @keydown="onOverlayKeyDown"
-                    v-bind="{ ...overlayProps, ...ptm('overlay') }"
-                >
+                <div v-if="overlayVisible" :ref="overlayRef" :class="[cx('overlay'), overlayClass]" :style="overlayStyle" @click="onOverlayClick" @keydown="onOverlayKeyDown" v-bind="{ ...overlayProps, ...ptm('overlay') }">
                     <slot name="header" :value="d_value" :options="options" />
                     <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
                         <CascadeSelectSub
@@ -93,467 +85,561 @@
 </template>
 
 <script>
-import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
-import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, isString, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
-import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
-import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
-import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import CascadeSelectStyle from '@cjdevstudios/bumblevue/cascadeselect/style';
-import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
-import Portal from '@cjdevstudios/bumblevue/portal';
-import CascadeSelectSub from './CascadeSelectSub.vue';
+    import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
+    import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, isString, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+    import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+    import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+    import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+    import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import CascadeSelectStyle from '@cjdevstudios/bumblevue/cascadeselect/style';
+    import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
+    import Portal from '@cjdevstudios/bumblevue/portal';
+    import CascadeSelectSub from './CascadeSelectSub.vue';
 
-export default {
-    name: 'CascadeSelect',
-    extends: BaseInput,
-    inheritAttrs: false,
-    props: {
-        options: Array,
-        optionLabel: null,
-        optionValue: null,
-        optionDisabled: null,
-        optionGroupLabel: null,
-        optionGroupChildren: null,
-        placeholder: String,
-        breakpoint: {
-            type: String,
-            default: '960px'
+    export default {
+        name: 'CascadeSelect',
+        extends: BaseInput,
+        inheritAttrs: false,
+        props: {
+            options: Array,
+            optionLabel: null,
+            optionValue: null,
+            optionDisabled: null,
+            optionGroupLabel: null,
+            optionGroupChildren: null,
+            placeholder: String,
+            breakpoint: {
+                type: String,
+                default: '960px'
+            },
+            dataKey: null,
+            showClear: {
+                type: Boolean,
+                default: false
+            },
+            clearIcon: {
+                type: String,
+                default: undefined
+            },
+            inputId: {
+                type: String,
+                default: null
+            },
+            inputClass: {
+                type: [String, Object],
+                default: null
+            },
+            inputStyle: {
+                type: Object,
+                default: null
+            },
+            inputProps: {
+                type: null,
+                default: null
+            },
+            overlayClass: {
+                type: [String, Object],
+                default: null
+            },
+            overlayStyle: {
+                type: Object,
+                default: null
+            },
+            overlayProps: {
+                type: null,
+                default: null
+            },
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            loading: {
+                type: Boolean,
+                default: false
+            },
+            dropdownIcon: {
+                type: String,
+                default: undefined
+            },
+            loadingIcon: {
+                type: String,
+                default: undefined
+            },
+            optionGroupIcon: {
+                type: String,
+                default: undefined
+            },
+            autoOptionFocus: {
+                type: Boolean,
+                default: false
+            },
+            selectOnFocus: {
+                type: Boolean,
+                default: false
+            },
+            focusOnHover: {
+                type: Boolean,
+                default: true
+            },
+            searchLocale: {
+                type: String,
+                default: undefined
+            },
+            searchMessage: {
+                type: String,
+                default: null
+            },
+            selectionMessage: {
+                type: String,
+                default: null
+            },
+            emptySelectionMessage: {
+                type: String,
+                default: null
+            },
+            emptySearchMessage: {
+                type: String,
+                default: null
+            },
+            emptyMessage: {
+                type: String,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            }
         },
-        dataKey: null,
-        showClear: {
-            type: Boolean,
-            default: false
+        emits: ['change', 'focus', 'blur', 'click', 'group-change', 'before-show', 'before-hide', 'hide', 'show'],
+        style: CascadeSelectStyle,
+        provide() {
+            return {
+                $pcCascadeSelect: this,
+                $parentInstance: this
+            };
         },
-        clearIcon: {
-            type: String,
-            default: undefined
+        outsideClickListener: null,
+        matchMediaListener: null,
+        scrollHandler: null,
+        resizeListener: null,
+        overlay: null,
+        searchTimeout: null,
+        searchValue: null,
+        data() {
+            return {
+                clicked: false,
+                focused: false,
+                focusedOptionInfo: { index: -1, level: 0, parentKey: '' },
+                activeOptionPath: [],
+                overlayVisible: false,
+                dirty: false,
+                mobileActive: false,
+                query: null,
+                queryMatches: false
+            };
         },
-        inputId: {
-            type: String,
-            default: null
+        watch: {
+            options() {
+                this.autoUpdateModel();
+            }
         },
-        inputClass: {
-            type: [String, Object],
-            default: null
-        },
-        inputStyle: {
-            type: Object,
-            default: null
-        },
-        inputProps: {
-            type: null,
-            default: null
-        },
-        overlayClass: {
-            type: [String, Object],
-            default: null
-        },
-        overlayStyle: {
-            type: Object,
-            default: null
-        },
-        overlayProps: {
-            type: null,
-            default: null
-        },
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        },
-        dropdownIcon: {
-            type: String,
-            default: undefined
-        },
-        loadingIcon: {
-            type: String,
-            default: undefined
-        },
-        optionGroupIcon: {
-            type: String,
-            default: undefined
-        },
-        autoOptionFocus: {
-            type: Boolean,
-            default: false
-        },
-        selectOnFocus: {
-            type: Boolean,
-            default: false
-        },
-        focusOnHover: {
-            type: Boolean,
-            default: true
-        },
-        searchLocale: {
-            type: String,
-            default: undefined
-        },
-        searchMessage: {
-            type: String,
-            default: null
-        },
-        selectionMessage: {
-            type: String,
-            default: null
-        },
-        emptySelectionMessage: {
-            type: String,
-            default: null
-        },
-        emptySearchMessage: {
-            type: String,
-            default: null
-        },
-        emptyMessage: {
-            type: String,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: 0
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['change', 'focus', 'blur', 'click', 'group-change', 'before-show', 'before-hide', 'hide', 'show'],
-    style: CascadeSelectStyle,
-    provide() {
-        return {
-            $pcCascadeSelect: this,
-            $parentInstance: this
-        };
-    },
-    outsideClickListener: null,
-    matchMediaListener: null,
-    scrollHandler: null,
-    resizeListener: null,
-    overlay: null,
-    searchTimeout: null,
-    searchValue: null,
-    data() {
-        return {
-            clicked: false,
-            focused: false,
-            focusedOptionInfo: { index: -1, level: 0, parentKey: '' },
-            activeOptionPath: [],
-            overlayVisible: false,
-            dirty: false,
-            mobileActive: false,
-            query: null,
-            queryMatches: false
-        };
-    },
-    watch: {
-        options() {
+        mounted() {
             this.autoUpdateModel();
-        }
-    },
-    mounted() {
-        this.autoUpdateModel();
-        this.bindMatchMediaListener();
-    },
-    beforeUnmount() {
-        this.unbindOutsideClickListener();
-        this.unbindResizeListener();
-        this.unbindMatchMediaListener();
+            this.bindMatchMediaListener();
+        },
+        beforeUnmount() {
+            this.unbindOutsideClickListener();
+            this.unbindResizeListener();
+            this.unbindMatchMediaListener();
 
-        if (this.scrollHandler) {
-            this.scrollHandler.destroy();
-            this.scrollHandler = null;
-        }
-
-        if (this.overlay) {
-            ZIndex.clear(this.overlay);
-            this.overlay = null;
-        }
-
-        if (this.mobileActive) {
-            this.mobileActive = false;
-        }
-    },
-    methods: {
-        getOptionLabel(option) {
-            return this.optionLabel ? resolveFieldData(option, this.optionLabel) : option;
-        },
-        getOptionValue(option) {
-            return this.optionValue ? resolveFieldData(option, this.optionValue) : option;
-        },
-        isOptionDisabled(option) {
-            return this.optionDisabled ? resolveFieldData(option, this.optionDisabled) : false;
-        },
-        getOptionGroupLabel(optionGroup) {
-            return this.optionGroupLabel ? resolveFieldData(optionGroup, this.optionGroupLabel) : null;
-        },
-        getOptionGroupChildren(optionGroup, level) {
-            return isString(this.optionGroupChildren) ? resolveFieldData(optionGroup, this.optionGroupChildren) : resolveFieldData(optionGroup, this.optionGroupChildren[level]);
-        },
-        isOptionGroup(option, level) {
-            return Object.prototype.hasOwnProperty.call(option, this.optionGroupChildren[level]);
-        },
-        getProccessedOptionLabel(processedOption = {}) {
-            const grouped = this.isProccessedOptionGroup(processedOption);
-
-            return grouped ? this.getOptionGroupLabel(processedOption.option, processedOption.level) : this.getOptionLabel(processedOption.option);
-        },
-        isProccessedOptionGroup(processedOption) {
-            return isNotEmpty(processedOption?.children);
-        },
-        show(isFocus) {
-            this.$emit('before-show');
-            this.overlayVisible = true;
-            this.activeOptionPath = this.$filled ? this.findOptionPathByValue(this.d_value) : this.activeOptionPath;
-
-            if (this.$filled && isNotEmpty(this.activeOptionPath)) {
-                const processedOption = this.activeOptionPath[this.activeOptionPath.length - 1];
-
-                this.focusedOptionInfo = { index: processedOption.index, level: processedOption.level, parentKey: processedOption.parentKey };
-            } else {
-                this.focusedOptionInfo = { index: this.autoOptionFocus ? this.findFirstFocusedOptionIndex() : this.findSelectedOptionIndex(), level: 0, parentKey: '' };
+            if (this.scrollHandler) {
+                this.scrollHandler.destroy();
+                this.scrollHandler = null;
             }
 
-            isFocus && focus(this.$refs.focusInput);
+            if (this.overlay) {
+                ZIndex.clear(this.overlay);
+                this.overlay = null;
+            }
+
+            if (this.mobileActive) {
+                this.mobileActive = false;
+            }
         },
-        hide(isFocus) {
-            const _hide = () => {
-                this.$emit('before-hide');
-                this.overlayVisible = false;
-                this.clicked = false;
-                this.activeOptionPath = [];
-                this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' };
+        methods: {
+            getOptionLabel(option) {
+                return this.optionLabel ? resolveFieldData(option, this.optionLabel) : option;
+            },
+            getOptionValue(option) {
+                return this.optionValue ? resolveFieldData(option, this.optionValue) : option;
+            },
+            isOptionDisabled(option) {
+                return this.optionDisabled ? resolveFieldData(option, this.optionDisabled) : false;
+            },
+            getOptionGroupLabel(optionGroup) {
+                return this.optionGroupLabel ? resolveFieldData(optionGroup, this.optionGroupLabel) : null;
+            },
+            getOptionGroupChildren(optionGroup, level) {
+                return isString(this.optionGroupChildren) ? resolveFieldData(optionGroup, this.optionGroupChildren) : resolveFieldData(optionGroup, this.optionGroupChildren[level]);
+            },
+            isOptionGroup(option, level) {
+                return Object.prototype.hasOwnProperty.call(option, this.optionGroupChildren[level]);
+            },
+            getProccessedOptionLabel(processedOption = {}) {
+                const grouped = this.isProccessedOptionGroup(processedOption);
+
+                return grouped ? this.getOptionGroupLabel(processedOption.option, processedOption.level) : this.getOptionLabel(processedOption.option);
+            },
+            isProccessedOptionGroup(processedOption) {
+                return isNotEmpty(processedOption?.children);
+            },
+            show(isFocus) {
+                this.$emit('before-show');
+                this.overlayVisible = true;
+                this.activeOptionPath = this.$filled ? this.findOptionPathByValue(this.d_value) : this.activeOptionPath;
+
+                if (this.$filled && isNotEmpty(this.activeOptionPath)) {
+                    const processedOption = this.activeOptionPath[this.activeOptionPath.length - 1];
+
+                    this.focusedOptionInfo = { index: processedOption.index, level: processedOption.level, parentKey: processedOption.parentKey };
+                } else {
+                    this.focusedOptionInfo = { index: this.autoOptionFocus ? this.findFirstFocusedOptionIndex() : this.findSelectedOptionIndex(), level: 0, parentKey: '' };
+                }
 
                 isFocus && focus(this.$refs.focusInput);
-            };
+            },
+            hide(isFocus) {
+                const _hide = () => {
+                    this.$emit('before-hide');
+                    this.overlayVisible = false;
+                    this.clicked = false;
+                    this.activeOptionPath = [];
+                    this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' };
 
-            setTimeout(() => {
-                _hide();
-            }, 0); // For ScreenReaders
-        },
-        onFocus(event) {
-            if (this.disabled) {
-                // For ScreenReaders
-                return;
-            }
+                    isFocus && focus(this.$refs.focusInput);
+                };
 
-            this.focused = true;
-            this.$emit('focus', event);
-        },
-        onBlur(event) {
-            this.focused = false;
-            this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' };
-            this.searchValue = '';
-            this.$emit('blur', event);
-            this.formField.onBlur?.();
-        },
-        onKeyDown(event) {
-            if (this.disabled || this.loading) {
-                event.preventDefault();
+                setTimeout(() => {
+                    _hide();
+                }, 0); // For ScreenReaders
+            },
+            onFocus(event) {
+                if (this.disabled) {
+                    // For ScreenReaders
+                    return;
+                }
 
-                return;
-            }
+                this.focused = true;
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.focused = false;
+                this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' };
+                this.searchValue = '';
+                this.$emit('blur', event);
+                this.formField.onBlur?.();
+            },
+            onKeyDown(event) {
+                if (this.disabled || this.loading) {
+                    event.preventDefault();
 
-            const metaKey = event.metaKey || event.ctrlKey;
+                    return;
+                }
 
-            switch (event.code) {
-                case 'ArrowDown':
-                    this.onArrowDownKey(event);
-                    break;
+                const metaKey = event.metaKey || event.ctrlKey;
 
-                case 'ArrowUp':
-                    this.onArrowUpKey(event);
-                    break;
+                switch (event.code) {
+                    case 'ArrowDown':
+                        this.onArrowDownKey(event);
+                        break;
 
-                case 'ArrowLeft':
-                    this.onArrowLeftKey(event);
-                    break;
+                    case 'ArrowUp':
+                        this.onArrowUpKey(event);
+                        break;
 
-                case 'ArrowRight':
-                    this.onArrowRightKey(event);
-                    break;
+                    case 'ArrowLeft':
+                        this.onArrowLeftKey(event);
+                        break;
 
-                case 'Home':
-                    this.onHomeKey(event);
-                    break;
+                    case 'ArrowRight':
+                        this.onArrowRightKey(event);
+                        break;
 
-                case 'End':
-                    this.onEndKey(event);
-                    break;
+                    case 'Home':
+                        this.onHomeKey(event);
+                        break;
 
-                case 'Space':
-                    this.onSpaceKey(event);
-                    break;
+                    case 'End':
+                        this.onEndKey(event);
+                        break;
 
-                case 'Enter':
-                case 'NumpadEnter':
-                    this.onEnterKey(event);
-                    break;
+                    case 'Space':
+                        this.onSpaceKey(event);
+                        break;
 
-                case 'Escape':
-                    this.onEscapeKey(event);
-                    break;
+                    case 'Enter':
+                    case 'NumpadEnter':
+                        this.onEnterKey(event);
+                        break;
 
-                case 'Tab':
-                    this.onTabKey(event);
-                    break;
+                    case 'Escape':
+                        this.onEscapeKey(event);
+                        break;
 
-                case 'PageDown':
-                case 'PageUp':
-                case 'Backspace':
-                case 'ShiftLeft':
-                case 'ShiftRight':
-                    //NOOP
-                    break;
+                    case 'Tab':
+                        this.onTabKey(event);
+                        break;
 
-                default:
-                    if (!metaKey && isPrintableCharacter(event.key)) {
-                        !this.overlayVisible && this.show();
-                        this.searchOptions(event, event.key);
-                    }
+                    case 'PageDown':
+                    case 'PageUp':
+                    case 'Backspace':
+                    case 'ShiftLeft':
+                    case 'ShiftRight':
+                        //NOOP
+                        break;
 
-                    break;
-            }
+                    default:
+                        if (!metaKey && isPrintableCharacter(event.key)) {
+                            !this.overlayVisible && this.show();
+                            this.searchOptions(event, event.key);
+                        }
 
-            this.clicked = false;
-        },
-        onOptionChange(event) {
-            const { processedOption, type } = event;
+                        break;
+                }
 
-            if (isEmpty(processedOption)) return;
+                this.clicked = false;
+            },
+            onOptionChange(event) {
+                const { processedOption, type } = event;
 
-            const { index, key, level, parentKey, children } = processedOption;
-            const grouped = isNotEmpty(children);
-            const activeOptionPath = this.activeOptionPath ? this.activeOptionPath.filter((p) => p.parentKey !== parentKey && p.parentKey !== key) : [];
+                if (isEmpty(processedOption)) return;
 
-            this.focusedOptionInfo = { index, level, parentKey };
+                const { index, key, level, parentKey, children } = processedOption;
+                const grouped = isNotEmpty(children);
+                const activeOptionPath = this.activeOptionPath ? this.activeOptionPath.filter((p) => p.parentKey !== parentKey && p.parentKey !== key) : [];
 
-            if (type == 'hover' && this.queryMatches) {
-                return;
-            }
-
-            if (grouped) {
-                activeOptionPath.push(processedOption);
-            }
-
-            this.activeOptionPath = activeOptionPath;
-        },
-        onOptionClick(event) {
-            const { originalEvent, processedOption, isFocus, isHide, preventSelection } = event;
-            const { index, key, level, parentKey } = processedOption;
-            const grouped = this.isProccessedOptionGroup(processedOption);
-            const selected = this.isSelected(processedOption);
-
-            if (selected) {
-                this.activeOptionPath = this.activeOptionPath.filter((p) => key !== p.key && key.startsWith(p.key));
                 this.focusedOptionInfo = { index, level, parentKey };
-            } else {
+
+                if (type == 'hover' && this.queryMatches) {
+                    return;
+                }
+
                 if (grouped) {
-                    this.onOptionChange(event);
-                    this.onOptionGroupSelect(originalEvent, processedOption);
-                } else {
-                    const activeOptionPath = this.activeOptionPath.filter((p) => p.parentKey !== parentKey);
-
                     activeOptionPath.push(processedOption);
+                }
 
+                this.activeOptionPath = activeOptionPath;
+            },
+            onOptionClick(event) {
+                const { originalEvent, processedOption, isFocus, isHide, preventSelection } = event;
+                const { index, key, level, parentKey } = processedOption;
+                const grouped = this.isProccessedOptionGroup(processedOption);
+                const selected = this.isSelected(processedOption);
+
+                if (selected) {
+                    this.activeOptionPath = this.activeOptionPath.filter((p) => key !== p.key && key.startsWith(p.key));
                     this.focusedOptionInfo = { index, level, parentKey };
+                } else {
+                    if (grouped) {
+                        this.onOptionChange(event);
+                        this.onOptionGroupSelect(originalEvent, processedOption);
+                    } else {
+                        const activeOptionPath = this.activeOptionPath.filter((p) => p.parentKey !== parentKey);
 
-                    if (!preventSelection || processedOption?.children.length !== 0) {
-                        this.activeOptionPath = activeOptionPath;
-                        this.onOptionSelect(originalEvent, processedOption, isHide);
+                        activeOptionPath.push(processedOption);
+
+                        this.focusedOptionInfo = { index, level, parentKey };
+
+                        if (!preventSelection || processedOption?.children.length !== 0) {
+                            this.activeOptionPath = activeOptionPath;
+                            this.onOptionSelect(originalEvent, processedOption, isHide);
+                        }
                     }
                 }
-            }
 
-            isFocus && focus(this.$refs.focusInput);
-        },
-        onOptionMouseEnter(event) {
-            if (this.focusOnHover) {
-                if (event.processedOption.level === 0) {
-                    this.dirty = true;
+                isFocus && focus(this.$refs.focusInput);
+            },
+            onOptionMouseEnter(event) {
+                if (this.focusOnHover) {
+                    if (event.processedOption.level === 0) {
+                        this.dirty = true;
+                    }
+
+                    if (this.dirty || (!this.dirty && isNotEmpty(this.d_value))) {
+                        this.onOptionChange({ ...event, type: 'hover' });
+                    } else if (!this.dirty && event.processedOption.level === 0) {
+                        this.onOptionClick({ ...event, type: 'hover' });
+                    }
+                }
+            },
+            onOptionMouseMove(event) {
+                if (this.focused && this.focusOnHover) {
+                    this.changeFocusedOptionIndex(event, event.processedOption.index);
+                }
+            },
+            onOptionSelect(event, processedOption, isHide = true) {
+                const value = this.getOptionValue(processedOption?.option);
+
+                this.activeOptionPath.forEach((p) => (p.selected = true));
+                this.updateModel(event, value);
+                isHide && this.hide(true);
+            },
+            onOptionGroupSelect(event, processedOption) {
+                this.dirty = true;
+                this.$emit('group-change', { originalEvent: event, value: processedOption.option });
+            },
+            onContainerClick(event) {
+                if (this.disabled || this.loading) {
+                    return;
                 }
 
-                if (this.dirty || (!this.dirty && isNotEmpty(this.d_value))) {
-                    this.onOptionChange({ ...event, type: 'hover' });
-                } else if (!this.dirty && event.processedOption.level === 0) {
-                    this.onOptionClick({ ...event, type: 'hover' });
+                if (event.target.getAttribute('data-pc-section') === 'clearicon' || event.target.closest('[data-pc-section="clearicon"]')) {
+                    return;
+                } else if (!this.overlay || !this.overlay.contains(event.target)) {
+                    this.overlayVisible ? this.hide() : this.show();
+                    focus(this.$refs.focusInput);
                 }
-            }
-        },
-        onOptionMouseMove(event) {
-            if (this.focused && this.focusOnHover) {
-                this.changeFocusedOptionIndex(event, event.processedOption.index);
-            }
-        },
-        onOptionSelect(event, processedOption, isHide = true) {
-            const value = this.getOptionValue(processedOption?.option);
 
-            this.activeOptionPath.forEach((p) => (p.selected = true));
-            this.updateModel(event, value);
-            isHide && this.hide(true);
-        },
-        onOptionGroupSelect(event, processedOption) {
-            this.dirty = true;
-            this.$emit('group-change', { originalEvent: event, value: processedOption.option });
-        },
-        onContainerClick(event) {
-            if (this.disabled || this.loading) {
-                return;
-            }
+                this.clicked = true;
+                this.$emit('click', event);
+            },
+            onClearClick(event) {
+                this.updateModel(event, null);
+            },
+            onOverlayClick(event) {
+                OverlayEventBus.emit('overlay-click', {
+                    originalEvent: event,
+                    target: this.$el
+                });
+            },
+            onOverlayKeyDown(event) {
+                switch (event.code) {
+                    case 'Escape':
+                        this.onEscapeKey(event);
+                        break;
 
-            if (event.target.getAttribute('data-pc-section') === 'clearicon' || event.target.closest('[data-pc-section="clearicon"]')) {
-                return;
-            } else if (!this.overlay || !this.overlay.contains(event.target)) {
-                this.overlayVisible ? this.hide() : this.show();
-                focus(this.$refs.focusInput);
-            }
+                    default:
+                        break;
+                }
+            },
+            onArrowDownKey(event) {
+                if (!this.overlayVisible) {
+                    this.show();
+                } else {
+                    const optionIndex = this.focusedOptionInfo.index !== -1 ? this.findNextOptionIndex(this.focusedOptionInfo.index) : this.clicked ? this.findFirstOptionIndex() : this.findFirstFocusedOptionIndex();
 
-            this.clicked = true;
-            this.$emit('click', event);
-        },
-        onClearClick(event) {
-            this.updateModel(event, null);
-        },
-        onOverlayClick(event) {
-            OverlayEventBus.emit('overlay-click', {
-                originalEvent: event,
-                target: this.$el
-            });
-        },
-        onOverlayKeyDown(event) {
-            switch (event.code) {
-                case 'Escape':
-                    this.onEscapeKey(event);
-                    break;
+                    this.changeFocusedOptionIndex(event, optionIndex, true);
+                }
 
-                default:
-                    break;
-            }
-        },
-        onArrowDownKey(event) {
-            if (!this.overlayVisible) {
-                this.show();
-            } else {
-                const optionIndex = this.focusedOptionInfo.index !== -1 ? this.findNextOptionIndex(this.focusedOptionInfo.index) : this.clicked ? this.findFirstOptionIndex() : this.findFirstFocusedOptionIndex();
+                event.preventDefault();
+            },
+            onArrowUpKey(event) {
+                if (event.altKey) {
+                    if (this.focusedOptionInfo.index !== -1) {
+                        const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
+                        const grouped = this.isProccessedOptionGroup(processedOption);
 
-                this.changeFocusedOptionIndex(event, optionIndex, true);
-            }
+                        !grouped && this.onOptionChange({ originalEvent: event, processedOption });
+                    }
 
-            event.preventDefault();
-        },
-        onArrowUpKey(event) {
-            if (event.altKey) {
+                    this.overlayVisible && this.hide();
+                    event.preventDefault();
+                } else {
+                    const optionIndex = this.focusedOptionInfo.index !== -1 ? this.findPrevOptionIndex(this.focusedOptionInfo.index) : this.clicked ? this.findLastOptionIndex() : this.findLastFocusedOptionIndex();
+
+                    this.changeFocusedOptionIndex(event, optionIndex, true);
+
+                    !this.overlayVisible && this.show();
+                    event.preventDefault();
+                }
+            },
+            onArrowLeftKey(event) {
+                if (this.overlayVisible) {
+                    const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
+                    const parentOption = this.activeOptionPath.find((p) => p.key === processedOption?.parentKey);
+                    const matched = this.focusedOptionInfo.parentKey === '' || (parentOption && parentOption.key === this.focusedOptionInfo.parentKey);
+                    const root = isEmpty(processedOption?.parent);
+
+                    if (matched) {
+                        this.activeOptionPath = this.activeOptionPath.filter((p) => p.parentKey !== this.focusedOptionInfo.parentKey);
+                    }
+
+                    if (!root) {
+                        this.focusedOptionInfo = { index: -1, parentKey: parentOption ? parentOption.parentKey : '' };
+                        this.searchValue = '';
+                        this.onArrowDownKey(event);
+                    }
+
+                    event.preventDefault();
+                }
+            },
+            onArrowRightKey(event) {
+                if (this.overlayVisible) {
+                    const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
+                    const grouped = this.isProccessedOptionGroup(processedOption);
+
+                    if (grouped) {
+                        const matched = this.activeOptionPath.some((p) => processedOption?.key === p.key);
+
+                        if (matched) {
+                            this.focusedOptionInfo = { index: -1, parentKey: processedOption?.key };
+                            this.searchValue = '';
+                            this.onArrowDownKey(event);
+                        } else {
+                            this.onOptionChange({ originalEvent: event, processedOption });
+                        }
+                    }
+
+                    event.preventDefault();
+                }
+            },
+            onHomeKey(event) {
+                this.changeFocusedOptionIndex(event, this.findFirstOptionIndex());
+
+                !this.overlayVisible && this.show();
+                event.preventDefault();
+            },
+            onEndKey(event) {
+                this.changeFocusedOptionIndex(event, this.findLastOptionIndex());
+
+                !this.overlayVisible && this.show();
+                event.preventDefault();
+            },
+            onEnterKey(event) {
+                if (!this.overlayVisible) {
+                    this.focusedOptionInfo.index !== -1; // reset
+                    this.onArrowDownKey(event);
+                } else {
+                    if (this.focusedOptionInfo.index !== -1) {
+                        const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
+                        const grouped = this.isProccessedOptionGroup(processedOption);
+
+                        this.onOptionClick({ originalEvent: event, processedOption, preventSelection: false });
+                        !grouped && this.hide();
+                    }
+                }
+
+                event.preventDefault();
+            },
+            onSpaceKey(event) {
+                this.onEnterKey(event);
+            },
+            onEscapeKey(event) {
+                this.overlayVisible && this.hide(true);
+                event.preventDefault();
+            },
+            onTabKey(event) {
                 if (this.focusedOptionInfo.index !== -1) {
                     const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
                     const grouped = this.isProccessedOptionGroup(processedOption);
@@ -562,435 +648,341 @@ export default {
                 }
 
                 this.overlayVisible && this.hide();
-                event.preventDefault();
-            } else {
-                const optionIndex = this.focusedOptionInfo.index !== -1 ? this.findPrevOptionIndex(this.focusedOptionInfo.index) : this.clicked ? this.findLastOptionIndex() : this.findLastFocusedOptionIndex();
+            },
+            onOverlayEnter(el) {
+                ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
 
-                this.changeFocusedOptionIndex(event, optionIndex, true);
-
-                !this.overlayVisible && this.show();
-                event.preventDefault();
-            }
-        },
-        onArrowLeftKey(event) {
-            if (this.overlayVisible) {
-                const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
-                const parentOption = this.activeOptionPath.find((p) => p.key === processedOption?.parentKey);
-                const matched = this.focusedOptionInfo.parentKey === '' || (parentOption && parentOption.key === this.focusedOptionInfo.parentKey);
-                const root = isEmpty(processedOption?.parent);
-
-                if (matched) {
-                    this.activeOptionPath = this.activeOptionPath.filter((p) => p.parentKey !== this.focusedOptionInfo.parentKey);
-                }
-
-                if (!root) {
-                    this.focusedOptionInfo = { index: -1, parentKey: parentOption ? parentOption.parentKey : '' };
-                    this.searchValue = '';
-                    this.onArrowDownKey(event);
-                }
-
-                event.preventDefault();
-            }
-        },
-        onArrowRightKey(event) {
-            if (this.overlayVisible) {
-                const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
-                const grouped = this.isProccessedOptionGroup(processedOption);
-
-                if (grouped) {
-                    const matched = this.activeOptionPath.some((p) => processedOption?.key === p.key);
-
-                    if (matched) {
-                        this.focusedOptionInfo = { index: -1, parentKey: processedOption?.key };
-                        this.searchValue = '';
-                        this.onArrowDownKey(event);
-                    } else {
-                        this.onOptionChange({ originalEvent: event, processedOption });
-                    }
-                }
-
-                event.preventDefault();
-            }
-        },
-        onHomeKey(event) {
-            this.changeFocusedOptionIndex(event, this.findFirstOptionIndex());
-
-            !this.overlayVisible && this.show();
-            event.preventDefault();
-        },
-        onEndKey(event) {
-            this.changeFocusedOptionIndex(event, this.findLastOptionIndex());
-
-            !this.overlayVisible && this.show();
-            event.preventDefault();
-        },
-        onEnterKey(event) {
-            if (!this.overlayVisible) {
-                this.focusedOptionInfo.index !== -1; // reset
-                this.onArrowDownKey(event);
-            } else {
-                if (this.focusedOptionInfo.index !== -1) {
-                    const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
-                    const grouped = this.isProccessedOptionGroup(processedOption);
-
-                    this.onOptionClick({ originalEvent: event, processedOption, preventSelection: false });
-                    !grouped && this.hide();
-                }
-            }
-
-            event.preventDefault();
-        },
-        onSpaceKey(event) {
-            this.onEnterKey(event);
-        },
-        onEscapeKey(event) {
-            this.overlayVisible && this.hide(true);
-            event.preventDefault();
-        },
-        onTabKey(event) {
-            if (this.focusedOptionInfo.index !== -1) {
-                const processedOption = this.visibleOptions[this.focusedOptionInfo.index];
-                const grouped = this.isProccessedOptionGroup(processedOption);
-
-                !grouped && this.onOptionChange({ originalEvent: event, processedOption });
-            }
-
-            this.overlayVisible && this.hide();
-        },
-        onOverlayEnter(el) {
-            ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
-
-            addStyle(el, { position: 'absolute', top: '0' });
-            this.alignOverlay();
-            this.scrollInView();
-
-            // Issue: #7508
-            this.$attrSelector && el.setAttribute(this.$attrSelector, '');
-        },
-        onOverlayAfterEnter() {
-            this.bindOutsideClickListener();
-            this.bindScrollListener();
-            this.bindResizeListener();
-
-            this.$emit('show');
-        },
-        onOverlayLeave(el) {
-            el.style.pointerEvents = 'none';
-            this.unbindOutsideClickListener();
-            this.unbindScrollListener();
-            this.unbindResizeListener();
-
-            this.$emit('hide');
-            this.overlay = null;
-            this.dirty = false;
-        },
-        onOverlayAfterLeave(el) {
-            ZIndex.clear(el);
-        },
-        alignOverlay() {
-            if (this.appendTo === 'self') {
-                relativePosition(this.overlay, this.$el);
-            } else {
-                this.overlay.style.minWidth = getOuterWidth(this.$el) + 'px';
-                absolutePosition(this.overlay, this.$el);
-            }
-        },
-        bindOutsideClickListener() {
-            if (!this.outsideClickListener) {
-                this.outsideClickListener = (event) => {
-                    if (this.overlayVisible && this.overlay && !this.$el.contains(event.target) && !this.overlay.contains(event.target)) {
-                        this.hide();
-                    }
-                };
-
-                document.addEventListener('click', this.outsideClickListener, true);
-            }
-        },
-        unbindOutsideClickListener() {
-            if (this.outsideClickListener) {
-                document.removeEventListener('click', this.outsideClickListener, true);
-                this.outsideClickListener = null;
-            }
-        },
-        bindScrollListener() {
-            if (!this.scrollHandler) {
-                this.scrollHandler = new ConnectedOverlayScrollHandler(this.$refs.container, () => {
-                    if (this.overlayVisible) {
-                        this.hide();
-                    }
-                });
-            }
-
-            this.scrollHandler.bindScrollListener();
-        },
-        unbindScrollListener() {
-            if (this.scrollHandler) {
-                this.scrollHandler.unbindScrollListener();
-            }
-        },
-        bindResizeListener() {
-            if (!this.resizeListener) {
-                this.resizeListener = () => {
-                    if (this.overlayVisible && !isTouchDevice()) {
-                        this.hide();
-                    }
-                };
-
-                window.addEventListener('resize', this.resizeListener);
-            }
-        },
-        unbindResizeListener() {
-            if (this.resizeListener) {
-                window.removeEventListener('resize', this.resizeListener);
-                this.resizeListener = null;
-            }
-        },
-        bindMatchMediaListener() {
-            if (!this.matchMediaListener) {
-                const query = matchMedia(`(max-width: ${this.breakpoint})`);
-
-                this.query = query;
-                this.queryMatches = query.matches;
-
-                this.matchMediaListener = () => {
-                    this.queryMatches = query.matches;
-                    this.mobileActive = false;
-                };
-
-                this.query.addEventListener('change', this.matchMediaListener);
-            }
-        },
-        unbindMatchMediaListener() {
-            if (this.matchMediaListener) {
-                this.query.removeEventListener('change', this.matchMediaListener);
-                this.matchMediaListener = null;
-            }
-        },
-        isOptionMatched(processedOption) {
-            return this.isValidOption(processedOption) && this.getProccessedOptionLabel(processedOption)?.toLocaleLowerCase(this.searchLocale).startsWith(this.searchValue.toLocaleLowerCase(this.searchLocale));
-        },
-        isValidOption(processedOption) {
-            return isNotEmpty(processedOption) && !this.isOptionDisabled(processedOption.option);
-        },
-        isValidSelectedOption(processedOption) {
-            return this.isValidOption(processedOption) && this.isSelected(processedOption);
-        },
-        isSelected(processedOption) {
-            return this.activeOptionPath && this.activeOptionPath.some((p) => p.key === processedOption.key);
-        },
-        findFirstOptionIndex() {
-            return this.visibleOptions.findIndex((processedOption) => this.isValidOption(processedOption));
-        },
-        findLastOptionIndex() {
-            return findLastIndex(this.visibleOptions, (processedOption) => this.isValidOption(processedOption));
-        },
-        findNextOptionIndex(index) {
-            const matchedOptionIndex = index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex((processedOption) => this.isValidOption(processedOption)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
-        },
-        findPrevOptionIndex(index) {
-            const matchedOptionIndex = index > 0 ? findLastIndex(this.visibleOptions.slice(0, index), (processedOption) => this.isValidOption(processedOption)) : -1;
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex : index;
-        },
-        findSelectedOptionIndex() {
-            return this.visibleOptions.findIndex((processedOption) => this.isValidSelectedOption(processedOption));
-        },
-        findFirstFocusedOptionIndex() {
-            const selectedIndex = this.findSelectedOptionIndex();
-
-            return selectedIndex < 0 ? this.findFirstOptionIndex() : selectedIndex;
-        },
-        findLastFocusedOptionIndex() {
-            const selectedIndex = this.findSelectedOptionIndex();
-
-            return selectedIndex < 0 ? this.findLastOptionIndex() : selectedIndex;
-        },
-        findOptionPathByValue(value, processedOptions, level = 0) {
-            processedOptions = processedOptions || (level === 0 && this.processedOptions);
-
-            if (!processedOptions) return null;
-            if (isEmpty(value)) return [];
-
-            for (let i = 0; i < processedOptions.length; i++) {
-                const processedOption = processedOptions[i];
-
-                if (equals(value, this.getOptionValue(processedOption.option), this.equalityKey)) {
-                    return [processedOption];
-                }
-
-                const matchedOptions = this.findOptionPathByValue(value, processedOption.children, level + 1);
-
-                if (matchedOptions) {
-                    matchedOptions.unshift(processedOption);
-
-                    return matchedOptions;
-                }
-            }
-        },
-        searchOptions(event, char) {
-            this.searchValue = (this.searchValue || '') + char;
-
-            let optionIndex = -1;
-            let matched = false;
-
-            if (isNotEmpty(this.searchValue)) {
-                if (this.focusedOptionInfo.index !== -1) {
-                    optionIndex = this.visibleOptions.slice(this.focusedOptionInfo.index).findIndex((processedOption) => this.isOptionMatched(processedOption));
-                    optionIndex = optionIndex === -1 ? this.visibleOptions.slice(0, this.focusedOptionInfo.index).findIndex((processedOption) => this.isOptionMatched(processedOption)) : optionIndex + this.focusedOptionInfo.index;
-                } else {
-                    optionIndex = this.visibleOptions.findIndex((processedOption) => this.isOptionMatched(processedOption));
-                }
-
-                if (optionIndex !== -1) {
-                    matched = true;
-                }
-
-                if (optionIndex === -1 && this.focusedOptionInfo.index === -1) {
-                    optionIndex = this.findFirstFocusedOptionIndex();
-                }
-
-                if (optionIndex !== -1) {
-                    this.changeFocusedOptionIndex(event, optionIndex);
-                }
-            }
-
-            if (this.searchTimeout) {
-                clearTimeout(this.searchTimeout);
-            }
-
-            this.searchTimeout = setTimeout(() => {
-                this.searchValue = '';
-                this.searchTimeout = null;
-            }, 500);
-
-            return matched;
-        },
-        changeFocusedOptionIndex(event, index, preventSelection) {
-            if (this.focusedOptionInfo.index !== index) {
-                this.focusedOptionInfo.index = index;
+                addStyle(el, { position: 'absolute', top: '0' });
+                this.alignOverlay();
                 this.scrollInView();
 
-                if (this.focusOnHover) {
-                    this.onOptionClick({ originalEvent: event, processedOption: this.visibleOptions[index], isHide: false, preventSelection });
+                // Issue: #7508
+                this.$attrSelector && el.setAttribute(this.$attrSelector, '');
+            },
+            onOverlayAfterEnter() {
+                this.bindOutsideClickListener();
+                this.bindScrollListener();
+                this.bindResizeListener();
+
+                this.$emit('show');
+            },
+            onOverlayLeave(el) {
+                el.style.pointerEvents = 'none';
+                this.unbindOutsideClickListener();
+                this.unbindScrollListener();
+                this.unbindResizeListener();
+
+                this.$emit('hide');
+                this.overlay = null;
+                this.dirty = false;
+            },
+            onOverlayAfterLeave(el) {
+                ZIndex.clear(el);
+            },
+            alignOverlay() {
+                if (this.appendTo === 'self') {
+                    relativePosition(this.overlay, this.$el);
+                } else {
+                    this.overlay.style.minWidth = getOuterWidth(this.$el) + 'px';
+                    absolutePosition(this.overlay, this.$el);
                 }
-
-                if (this.selectOnFocus) {
-                    this.onOptionChange({ originalEvent: event, processedOption: this.visibleOptions[index], isHide: false });
-                }
-            }
-        },
-        scrollInView(index = -1) {
-            this.$nextTick(() => {
-                const id = index !== -1 ? `${this.$id}_${index}` : this.focusedOptionId;
-                const element = findSingle(this.list, `li[id="${id}"]`);
-
-                if (element) {
-                    element.scrollIntoView && element.scrollIntoView({ block: 'nearest', inline: 'start' });
-                }
-            });
-        },
-        autoUpdateModel() {
-            if (this.selectOnFocus && this.autoOptionFocus && !this.$filled) {
-                this.focusedOptionInfo.index = this.findFirstFocusedOptionIndex();
-                this.onOptionChange({ processedOption: this.visibleOptions[this.focusedOptionInfo.index], isHide: false });
-
-                !this.overlayVisible && (this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' });
-            }
-        },
-        updateModel(event, value) {
-            this.writeValue(value, event);
-            this.$emit('change', { originalEvent: event, value });
-        },
-        createProcessedOptions(options, level = 0, parent = {}, parentKey = '') {
-            const processedOptions = [];
-
-            options &&
-                options.forEach((option, index) => {
-                    const key = (parentKey !== '' ? parentKey + '_' : '') + index;
-                    const newOption = {
-                        option,
-                        index,
-                        level,
-                        key,
-                        parent,
-                        parentKey
+            },
+            bindOutsideClickListener() {
+                if (!this.outsideClickListener) {
+                    this.outsideClickListener = (event) => {
+                        if (this.overlayVisible && this.overlay && !this.$el.contains(event.target) && !this.overlay.contains(event.target)) {
+                            this.hide();
+                        }
                     };
 
-                    newOption['children'] = this.createProcessedOptions(this.getOptionGroupChildren(option, level), level + 1, newOption, key);
-                    processedOptions.push(newOption);
+                    document.addEventListener('click', this.outsideClickListener, true);
+                }
+            },
+            unbindOutsideClickListener() {
+                if (this.outsideClickListener) {
+                    document.removeEventListener('click', this.outsideClickListener, true);
+                    this.outsideClickListener = null;
+                }
+            },
+            bindScrollListener() {
+                if (!this.scrollHandler) {
+                    this.scrollHandler = new ConnectedOverlayScrollHandler(this.$refs.container, () => {
+                        if (this.overlayVisible) {
+                            this.hide();
+                        }
+                    });
+                }
+
+                this.scrollHandler.bindScrollListener();
+            },
+            unbindScrollListener() {
+                if (this.scrollHandler) {
+                    this.scrollHandler.unbindScrollListener();
+                }
+            },
+            bindResizeListener() {
+                if (!this.resizeListener) {
+                    this.resizeListener = () => {
+                        if (this.overlayVisible && !isTouchDevice()) {
+                            this.hide();
+                        }
+                    };
+
+                    window.addEventListener('resize', this.resizeListener);
+                }
+            },
+            unbindResizeListener() {
+                if (this.resizeListener) {
+                    window.removeEventListener('resize', this.resizeListener);
+                    this.resizeListener = null;
+                }
+            },
+            bindMatchMediaListener() {
+                if (!this.matchMediaListener) {
+                    const query = matchMedia(`(max-width: ${this.breakpoint})`);
+
+                    this.query = query;
+                    this.queryMatches = query.matches;
+
+                    this.matchMediaListener = () => {
+                        this.queryMatches = query.matches;
+                        this.mobileActive = false;
+                    };
+
+                    this.query.addEventListener('change', this.matchMediaListener);
+                }
+            },
+            unbindMatchMediaListener() {
+                if (this.matchMediaListener) {
+                    this.query.removeEventListener('change', this.matchMediaListener);
+                    this.matchMediaListener = null;
+                }
+            },
+            isOptionMatched(processedOption) {
+                return this.isValidOption(processedOption) && this.getProccessedOptionLabel(processedOption)?.toLocaleLowerCase(this.searchLocale).startsWith(this.searchValue.toLocaleLowerCase(this.searchLocale));
+            },
+            isValidOption(processedOption) {
+                return isNotEmpty(processedOption) && !this.isOptionDisabled(processedOption.option);
+            },
+            isValidSelectedOption(processedOption) {
+                return this.isValidOption(processedOption) && this.isSelected(processedOption);
+            },
+            isSelected(processedOption) {
+                return this.activeOptionPath && this.activeOptionPath.some((p) => p.key === processedOption.key);
+            },
+            findFirstOptionIndex() {
+                return this.visibleOptions.findIndex((processedOption) => this.isValidOption(processedOption));
+            },
+            findLastOptionIndex() {
+                return findLastIndex(this.visibleOptions, (processedOption) => this.isValidOption(processedOption));
+            },
+            findNextOptionIndex(index) {
+                const matchedOptionIndex = index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex((processedOption) => this.isValidOption(processedOption)) : -1;
+
+                return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
+            },
+            findPrevOptionIndex(index) {
+                const matchedOptionIndex = index > 0 ? findLastIndex(this.visibleOptions.slice(0, index), (processedOption) => this.isValidOption(processedOption)) : -1;
+
+                return matchedOptionIndex > -1 ? matchedOptionIndex : index;
+            },
+            findSelectedOptionIndex() {
+                return this.visibleOptions.findIndex((processedOption) => this.isValidSelectedOption(processedOption));
+            },
+            findFirstFocusedOptionIndex() {
+                const selectedIndex = this.findSelectedOptionIndex();
+
+                return selectedIndex < 0 ? this.findFirstOptionIndex() : selectedIndex;
+            },
+            findLastFocusedOptionIndex() {
+                const selectedIndex = this.findSelectedOptionIndex();
+
+                return selectedIndex < 0 ? this.findLastOptionIndex() : selectedIndex;
+            },
+            findOptionPathByValue(value, processedOptions, level = 0) {
+                processedOptions = processedOptions || (level === 0 && this.processedOptions);
+
+                if (!processedOptions) return null;
+                if (isEmpty(value)) return [];
+
+                for (let i = 0; i < processedOptions.length; i++) {
+                    const processedOption = processedOptions[i];
+
+                    if (equals(value, this.getOptionValue(processedOption.option), this.equalityKey)) {
+                        return [processedOption];
+                    }
+
+                    const matchedOptions = this.findOptionPathByValue(value, processedOption.children, level + 1);
+
+                    if (matchedOptions) {
+                        matchedOptions.unshift(processedOption);
+
+                        return matchedOptions;
+                    }
+                }
+            },
+            searchOptions(event, char) {
+                this.searchValue = (this.searchValue || '') + char;
+
+                let optionIndex = -1;
+                let matched = false;
+
+                if (isNotEmpty(this.searchValue)) {
+                    if (this.focusedOptionInfo.index !== -1) {
+                        optionIndex = this.visibleOptions.slice(this.focusedOptionInfo.index).findIndex((processedOption) => this.isOptionMatched(processedOption));
+                        optionIndex = optionIndex === -1 ? this.visibleOptions.slice(0, this.focusedOptionInfo.index).findIndex((processedOption) => this.isOptionMatched(processedOption)) : optionIndex + this.focusedOptionInfo.index;
+                    } else {
+                        optionIndex = this.visibleOptions.findIndex((processedOption) => this.isOptionMatched(processedOption));
+                    }
+
+                    if (optionIndex !== -1) {
+                        matched = true;
+                    }
+
+                    if (optionIndex === -1 && this.focusedOptionInfo.index === -1) {
+                        optionIndex = this.findFirstFocusedOptionIndex();
+                    }
+
+                    if (optionIndex !== -1) {
+                        this.changeFocusedOptionIndex(event, optionIndex);
+                    }
+                }
+
+                if (this.searchTimeout) {
+                    clearTimeout(this.searchTimeout);
+                }
+
+                this.searchTimeout = setTimeout(() => {
+                    this.searchValue = '';
+                    this.searchTimeout = null;
+                }, 500);
+
+                return matched;
+            },
+            changeFocusedOptionIndex(event, index, preventSelection) {
+                if (this.focusedOptionInfo.index !== index) {
+                    this.focusedOptionInfo.index = index;
+                    this.scrollInView();
+
+                    if (this.focusOnHover) {
+                        this.onOptionClick({ originalEvent: event, processedOption: this.visibleOptions[index], isHide: false, preventSelection });
+                    }
+
+                    if (this.selectOnFocus) {
+                        this.onOptionChange({ originalEvent: event, processedOption: this.visibleOptions[index], isHide: false });
+                    }
+                }
+            },
+            scrollInView(index = -1) {
+                this.$nextTick(() => {
+                    const id = index !== -1 ? `${this.$id}_${index}` : this.focusedOptionId;
+                    const element = findSingle(this.list, `li[id="${id}"]`);
+
+                    if (element) {
+                        element.scrollIntoView && element.scrollIntoView({ block: 'nearest', inline: 'start' });
+                    }
                 });
+            },
+            autoUpdateModel() {
+                if (this.selectOnFocus && this.autoOptionFocus && !this.$filled) {
+                    this.focusedOptionInfo.index = this.findFirstFocusedOptionIndex();
+                    this.onOptionChange({ processedOption: this.visibleOptions[this.focusedOptionInfo.index], isHide: false });
 
-            return processedOptions;
-        },
-        overlayRef(el) {
-            this.overlay = el;
-        }
-    },
-    computed: {
-        // @deprecated use $filled instead.
-        hasSelectedOption() {
-            return this.$filled;
-        },
-        label() {
-            const label = this.placeholder || 'p-emptylabel';
+                    !this.overlayVisible && (this.focusedOptionInfo = { index: -1, level: 0, parentKey: '' });
+                }
+            },
+            updateModel(event, value) {
+                this.writeValue(value, event);
+                this.$emit('change', { originalEvent: event, value });
+            },
+            createProcessedOptions(options, level = 0, parent = {}, parentKey = '') {
+                const processedOptions = [];
 
-            if (this.$filled) {
-                const activeOptionPath = this.findOptionPathByValue(this.d_value);
-                const processedOption = isNotEmpty(activeOptionPath) ? activeOptionPath[activeOptionPath.length - 1] : null;
+                options &&
+                    options.forEach((option, index) => {
+                        const key = (parentKey !== '' ? parentKey + '_' : '') + index;
+                        const newOption = {
+                            option,
+                            index,
+                            level,
+                            key,
+                            parent,
+                            parentKey
+                        };
 
-                return processedOption ? this.getOptionLabel(processedOption.option) : label;
+                        newOption['children'] = this.createProcessedOptions(this.getOptionGroupChildren(option, level), level + 1, newOption, key);
+                        processedOptions.push(newOption);
+                    });
+
+                return processedOptions;
+            },
+            overlayRef(el) {
+                this.overlay = el;
             }
+        },
+        computed: {
+            // @deprecated use $filled instead.
+            hasSelectedOption() {
+                return this.$filled;
+            },
+            label() {
+                const label = this.placeholder || 'p-emptylabel';
 
-            return label;
-        },
-        processedOptions() {
-            return this.createProcessedOptions(this.options || []);
-        },
-        visibleOptions() {
-            const processedOption = this.activeOptionPath && this.activeOptionPath.find((p) => p.key === this.focusedOptionInfo.parentKey);
+                if (this.$filled) {
+                    const activeOptionPath = this.findOptionPathByValue(this.d_value);
+                    const processedOption = isNotEmpty(activeOptionPath) ? activeOptionPath[activeOptionPath.length - 1] : null;
 
-            return processedOption ? processedOption.children : this.processedOptions;
+                    return processedOption ? this.getOptionLabel(processedOption.option) : label;
+                }
+
+                return label;
+            },
+            processedOptions() {
+                return this.createProcessedOptions(this.options || []);
+            },
+            visibleOptions() {
+                const processedOption = this.activeOptionPath && this.activeOptionPath.find((p) => p.key === this.focusedOptionInfo.parentKey);
+
+                return processedOption ? processedOption.children : this.processedOptions;
+            },
+            equalityKey() {
+                return this.optionValue ? null : this.dataKey;
+            },
+            searchResultMessageText() {
+                return isNotEmpty(this.visibleOptions) ? this.searchMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptySearchMessageText;
+            },
+            searchMessageText() {
+                return this.searchMessage || this.$bumblevue.config.locale.searchMessage || '';
+            },
+            emptySearchMessageText() {
+                return this.emptySearchMessage || this.$bumblevue.config.locale.emptySearchMessage || '';
+            },
+            emptyMessageText() {
+                return this.emptyMessage || this.$bumblevue.config.locale.emptyMessage || '';
+            },
+            selectionMessageText() {
+                return this.selectionMessage || this.$bumblevue.config.locale.selectionMessage || '';
+            },
+            emptySelectionMessageText() {
+                return this.emptySelectionMessage || this.$bumblevue.config.locale.emptySelectionMessage || '';
+            },
+            selectedMessageText() {
+                return this.$filled ? this.selectionMessageText.replaceAll('{0}', '1') : this.emptySelectionMessageText;
+            },
+            focusedOptionId() {
+                return this.focusedOptionInfo.index !== -1 ? `${this.$id}${isNotEmpty(this.focusedOptionInfo.parentKey) ? '_' + this.focusedOptionInfo.parentKey : ''}_${this.focusedOptionInfo.index}` : null;
+            },
+            isClearIconVisible() {
+                return this.showClear && this.d_value != null && isNotEmpty(this.options) && !this.disabled && !this.loading;
+            }
         },
-        equalityKey() {
-            return this.optionValue ? null : this.dataKey;
-        },
-        searchResultMessageText() {
-            return isNotEmpty(this.visibleOptions) ? this.searchMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptySearchMessageText;
-        },
-        searchMessageText() {
-            return this.searchMessage || this.$bumblevue.config.locale.searchMessage || '';
-        },
-        emptySearchMessageText() {
-            return this.emptySearchMessage || this.$bumblevue.config.locale.emptySearchMessage || '';
-        },
-        emptyMessageText() {
-            return this.emptyMessage || this.$bumblevue.config.locale.emptyMessage || '';
-        },
-        selectionMessageText() {
-            return this.selectionMessage || this.$bumblevue.config.locale.selectionMessage || '';
-        },
-        emptySelectionMessageText() {
-            return this.emptySelectionMessage || this.$bumblevue.config.locale.emptySelectionMessage || '';
-        },
-        selectedMessageText() {
-            return this.$filled ? this.selectionMessageText.replaceAll('{0}', '1') : this.emptySelectionMessageText;
-        },
-        focusedOptionId() {
-            return this.focusedOptionInfo.index !== -1 ? `${this.$id}${isNotEmpty(this.focusedOptionInfo.parentKey) ? '_' + this.focusedOptionInfo.parentKey : ''}_${this.focusedOptionInfo.index}` : null;
-        },
-        isClearIconVisible() {
-            return this.showClear && this.d_value != null && isNotEmpty(this.options) && !this.disabled && !this.loading;
+        components: {
+            CascadeSelectSub,
+            Portal,
+            ChevronDownIcon,
+            SpinnerIcon,
+            AngleRightIcon,
+            TimesIcon
         }
-    },
-    components: {
-        CascadeSelectSub,
-        Portal,
-        ChevronDownIcon,
-        SpinnerIcon,
-        AngleRightIcon,
-        TimesIcon
-    }
-};
+    };
 </script>

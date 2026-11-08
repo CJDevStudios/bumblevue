@@ -3,26 +3,26 @@
 </template>
 
 <script setup>
-import * as BumbleVue from '@cjdevstudios/bumblevue';
-import { computed, inject } from 'vue';
+    import * as BumbleVue from '@cjdevstudios/bumblevue';
+    import { computed, inject } from 'vue';
 
-const props = defineProps({
-    as: {
-        type: String,
-        default: 'InputText'
-    },
-    schema: null,
-    defaultValue: {
-        default: ''
-    }
-});
+    const props = defineProps({
+        as: {
+            type: String,
+            default: 'InputText'
+        },
+        schema: null,
+        defaultValue: {
+            default: ''
+        }
+    });
 
-const $fcDynamicForm = inject('$fcDynamicForm', undefined);
-const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
+    const $fcDynamicForm = inject('$fcDynamicForm', undefined);
+    const $fcDynamicFormField = inject('$fcDynamicFormField', undefined);
 
-const id = computed(() => $fcDynamicFormField?.groupId);
-const name = computed(() => $fcDynamicFormField?.name);
-const component = computed(() => BumbleVue[props.as] ?? props.as);
+    const id = computed(() => $fcDynamicFormField?.groupId);
+    const name = computed(() => $fcDynamicFormField?.name);
+    const component = computed(() => BumbleVue[props.as] ?? props.as);
 
-$fcDynamicForm?.addField(name.value, props.schema, props.defaultValue);
+    $fcDynamicForm?.addField(name.value, props.schema, props.defaultValue);
 </script>

@@ -28,11 +28,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="date">Date</label>
 <InputMask id="date" />
 
@@ -41,8 +41,8 @@ export default {
 
 <InputMask aria-label="Age" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

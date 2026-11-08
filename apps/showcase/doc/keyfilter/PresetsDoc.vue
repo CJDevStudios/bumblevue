@@ -36,17 +36,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            integer: null,
-            number: null,
-            money: null,
-            hex: null,
-            alphabetic: null,
-            alphanumeric: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                integer: null,
+                number: null,
+                money: null,
+                hex: null,
+                alphabetic: null,
+                alphanumeric: null,
+                code: {
+                    basic: `
 <InputText v-keyfilter.int />
 <InputText v-keyfilter.num />
 <InputText v-keyfilter.money />
@@ -54,7 +54,7 @@ export default {
 <InputText v-keyfilter.alpha />
 <InputText v-keyfilter.alphanum />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-3 mb-4">
@@ -99,8 +99,8 @@ const alphabetic = ref(null);
 const alphanumeric = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -12,16 +12,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Toast />
 <Button @click="showSticky" label="Sticky" />
 <Button label="Clear" severity="secondary" @click="clear()" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -45,16 +45,16 @@ const clear = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        showSticky() {
-            this.$toast.add({ severity: 'info', summary: 'Sticky Message', detail: 'Message Content' });
+                }
+            };
         },
-        clear() {
-            this.$toast.removeAllGroups();
+        methods: {
+            showSticky() {
+                this.$toast.add({ severity: 'info', summary: 'Sticky Message', detail: 'Message Content' });
+            },
+            clear() {
+                this.$toast.removeAllGroups();
+            }
         }
-    }
-};
+    };
 </script>

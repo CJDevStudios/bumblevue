@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            loading: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                loading: false,
+                code: {
+                    basic: `
 <Button type="button" label="Search" icon="pi pi-search" :loading="loading" @click="load" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button type="button" label="Search" icon="pi pi-search" :loading="loading" @click="load" />
@@ -37,16 +37,16 @@ const load = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            load() {
+                this.loading = true;
+                setTimeout(() => {
+                    this.loading = false;
+                }, 2000);
             }
-        };
-    },
-    methods: {
-        load() {
-            this.loading = true;
-            setTimeout(() => {
-                this.loading = false;
-            }, 2000);
         }
-    }
-};
+    };
 </script>

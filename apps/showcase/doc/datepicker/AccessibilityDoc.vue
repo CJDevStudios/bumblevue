@@ -191,11 +191,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="date1">Date</label>
 <DatePicker inputId="date1" />
 
@@ -204,8 +204,8 @@ export default {
 
 <DatePicker aria-label="Date" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

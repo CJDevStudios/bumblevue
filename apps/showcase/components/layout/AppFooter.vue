@@ -9,13 +9,13 @@
 </template>
 
 <script>
-import pkg from '@/package.json';
+    import pkg from '@/package.json';
 
-export default {
-    data() {
-        return {
-            version: pkg.version
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                version: pkg.version
+            };
+        }
+    };
 </script>

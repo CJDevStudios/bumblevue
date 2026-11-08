@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                code: {
+                    basic: `
 <Editor v-model="value" editorStyle="height: 320px" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Editor v-model="value" editorStyle="height: 320px" />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const value = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

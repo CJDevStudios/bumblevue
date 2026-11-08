@@ -9,14 +9,14 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <MultiSelect disabled placeholder="Select Cities" class="w-full md:w-80" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="flex justify-center">
         <MultiSelect disabled placeholder="Select Cities" class="w-full md:w-80" />
@@ -27,8 +27,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

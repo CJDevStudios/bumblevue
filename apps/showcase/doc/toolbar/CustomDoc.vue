@@ -34,11 +34,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Toolbar style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem">
     <template #start>
         <div class="flex items-center gap-2">
@@ -60,7 +60,7 @@ export default {
     </template>
 </Toolbar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toolbar style="border-radius: 3rem; padding: 1rem 1rem 1rem 1.5rem">
@@ -95,8 +95,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

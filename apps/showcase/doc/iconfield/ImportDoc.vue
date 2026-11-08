@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import IconField from '@cjdevstudios/bumblevue/iconfield';
 import InputIcon from '@cjdevstudios/bumblevue/inputicon';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

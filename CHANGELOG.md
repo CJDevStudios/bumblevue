@@ -3,9 +3,11 @@
 ## [2.0.0]
 
 **Implemented New Features and Enhancements:**
+
 - Add `UseComponent` composable to centralize shared component props and logic. This is a replacement for the old `BaseComponent` mixin. [\#54](https://github.com/CJDevStudios/bumblevue/pull/54)
 
 **Breaking Changes:**
+
 - Chips and InputChips: Removed deprecated components. Use AutoComplete with `multiple` enabled and `typeahead` disabled instead.
 - InputSwitch: Removed deprecated component. Use ToggleSwitch instead.
 - Sidebar: Removed deprecated component. Use Drawer instead.
@@ -53,6 +55,7 @@
 - Utils: Removed `UniqueComponentId`.
 
 **Deprecations:**
+
 - Utils: The `uuid()` function is deprecated. Use the Vue-native `useId()` composable instead. The `uuid()` function will be removed in a future release.
 
 ## [1.0.0]
@@ -60,20 +63,22 @@
 **Implemented New Features and Enhancements:**
 
 - Rebranded as BumbleVue
-  - primevue -> @cjdevstudios/bumblevue
-  - @primevue/auto-import-resolver -> @cjdevstudios/bumblevue-auto-import-resolver
-  - @primevue/core -> @cjdevstudios/bumblevue-core
-  - @primevue/forms -> @cjdevstudios/bumblevue-forms
-  - @primevue/icons -> @cjdevstudios/bumblevue-icons
-  - @primevue/metadata -> @cjdevstudios/bumblevue-metadata
-  - @primevue/nuxt-module -> @cjdevstudios/bumblevue-nuxt-module
+    - primevue -> @cjdevstudios/bumblevue
+    - @primevue/auto-import-resolver -> @cjdevstudios/bumblevue-auto-import-resolver
+    - @primevue/core -> @cjdevstudios/bumblevue-core
+    - @primevue/forms -> @cjdevstudios/bumblevue-forms
+    - @primevue/icons -> @cjdevstudios/bumblevue-icons
+    - @primevue/metadata -> @cjdevstudios/bumblevue-metadata
+    - @primevue/nuxt-module -> @cjdevstudios/bumblevue-nuxt-module
 
 **Enhancements:**
+
 - InputNumber: Add keyboard shortcuts for deleting content to the left and right of the cursor [\#43](https://github.com/CJDevStudios/bumblevue/pull/43)
 - Paginator: Add `selectAppendTo` prop that is passed to the Select child-components [\#44](https://github.com/CJDevStudios/bumblevue/pull/44)
 - Tabs: Add `orientation` prop to control the orientation of the tabs list [\#41](https://github.com/CJDevStudios/bumblevue/pull/41)
 
 **Deprecations:**
+
 - Vue Options API: BumbleVue will be migrating to the Composition API in future releases.
   While this does not prevent you from using BumbleVue with the Options API, even after the migration, it will no longer be an option when viewing the demos on the BumbleVue website [\#45](https://github.com/CJDevStudios/bumblevue/pull/45).
 

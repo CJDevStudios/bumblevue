@@ -84,30 +84,30 @@
 </template>
 
 <script>
-import { CustomerService } from '@/service/CustomerService';
-import { FilterMatchMode, FilterOperator } from '@cjdevstudios/bumblevue/core/api';
+    import { CustomerService } from '@/service/CustomerService';
+    import { FilterMatchMode, FilterOperator } from '@cjdevstudios/bumblevue/core/api';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            selectedCustomer: null,
-            filters: null,
-            representatives: [
-                { name: 'Amy Elsner', image: 'amyelsner.png' },
-                { name: 'Anna Fali', image: 'annafali.png' },
-                { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-                { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-                { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-                { name: 'Onyama Limba', image: 'onyamalimba.png' },
-                { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-                { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-            ],
-            statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                selectedCustomer: null,
+                filters: null,
+                representatives: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png' },
+                    { name: 'Anna Fali', image: 'annafali.png' },
+                    { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
+                    { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
+                    { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
+                    { name: 'Onyama Limba', image: 'onyamalimba.png' },
+                    { name: 'Stephen Shaw', image: 'stephenshaw.png' },
+                    { name: 'XuXue Feng', image: 'xuxuefeng.png' }
+                ],
+                statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
+                code: {
+                    basic: `
 <DataTable v-model:filters="filters" v-model:selection="selectedCustomer" :value="customers"
     stateStorage="session" stateKey="dt-state-demo-session" paginator :rows="5" filterDisplay="menu"
     selectionMode="single" dataKey="id" :globalFilterFields="['name', 'country.name', 'representative.name', 'status']" tableStyle="min-width: 50rem">
@@ -168,7 +168,7 @@ export default {
     <template #empty> No customers found. </template>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable v-model:filters="filters" v-model:selection="selectedCustomer" :value="customers"
@@ -288,7 +288,7 @@ const getSeverity = (status) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* CustomerService */
 {
     id: 1000,
@@ -309,43 +309,43 @@ const getSeverity = (status) => {
     balance: 70663
 },
 ...`
-            }
-        };
-    },
-    created() {
-        this.initFilters();
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersSmall().then((data) => (this.customers = data));
-        },
-        initFilters() {
-            this.filters = {
-                global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-                name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-                'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-                representative: { value: null, matchMode: FilterMatchMode.IN },
-                status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] }
+                }
             };
         },
-        getSeverity(status) {
-            switch (status) {
-                case 'unqualified':
-                    return 'danger';
+        created() {
+            this.initFilters();
+        },
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersSmall().then((data) => (this.customers = data));
+            },
+            initFilters() {
+                this.filters = {
+                    global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+                    name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+                    'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
+                    representative: { value: null, matchMode: FilterMatchMode.IN },
+                    status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] }
+                };
+            },
+            getSeverity(status) {
+                switch (status) {
+                    case 'unqualified':
+                        return 'danger';
 
-                case 'qualified':
-                    return 'success';
+                    case 'qualified':
+                        return 'success';
 
-                case 'new':
-                    return 'info';
+                    case 'new':
+                        return 'info';
 
-                case 'negotiation':
-                    return 'warn';
+                    case 'negotiation':
+                        return 'warn';
 
-                case 'renewal':
-                    return null;
+                    case 'renewal':
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

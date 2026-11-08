@@ -25,34 +25,34 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            inside: false,
-            position: 'bottom',
-            positionOptions: [
-                {
-                    label: 'Bottom',
-                    value: 'bottom'
-                },
-                {
-                    label: 'Top',
-                    value: 'top'
-                },
-                {
-                    label: 'Left',
-                    value: 'left'
-                },
-                {
-                    label: 'Right',
-                    value: 'right'
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                inside: false,
+                position: 'bottom',
+                positionOptions: [
+                    {
+                        label: 'Bottom',
+                        value: 'bottom'
+                    },
+                    {
+                        label: 'Top',
+                        value: 'top'
+                    },
+                    {
+                        label: 'Left',
+                        value: 'left'
+                    },
+                    {
+                        label: 'Right',
+                        value: 'right'
+                    }
+                ],
+                code: {
+                    basic: `
 <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
     :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="inside" :indicatorsPosition="position">
     <template #item="slotProps">
@@ -60,7 +60,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-4 mb-8">
@@ -114,7 +114,7 @@ const positionOptions = ref([
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -124,13 +124,13 @@ const positionOptions = ref([
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>

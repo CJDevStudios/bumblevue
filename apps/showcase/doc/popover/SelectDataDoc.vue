@@ -26,17 +26,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedMember: null,
-            members: [
-                { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
-                { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
-                { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedMember: null,
+                members: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
+                ],
+                code: {
+                    basic: `
 <Button type="button" :label="selectedMember ? selectedMember.name : 'Select Member'" @click="toggle" class="min-w-48" />
 
 <Popover ref="op">
@@ -56,7 +56,7 @@ export default {
     </div>
 </Popover>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button type="button" :label="selectedMember ? selectedMember.name : 'Select Member'" @click="toggle" class="min-w-48" />
@@ -101,17 +101,17 @@ const selectMember = (member) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.op.toggle(event);
+                }
+            };
         },
-        selectMember(member) {
-            this.selectedMember = member;
-            this.$refs.op.hide();
+        methods: {
+            toggle(event) {
+                this.$refs.op.toggle(event);
+            },
+            selectMember(member) {
+                this.selectedMember = member;
+                this.$refs.op.hide();
+            }
         }
-    }
-};
+    };
 </script>

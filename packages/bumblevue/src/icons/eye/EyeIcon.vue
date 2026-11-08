@@ -9,10 +9,10 @@
     </svg>
 </template>
 <script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
 
-export default {
-    name: 'EyeIcon',
-    extends: BaseIcon
-};
+    export default {
+        name: 'EyeIcon',
+        extends: BaseIcon
+    };
 </script>

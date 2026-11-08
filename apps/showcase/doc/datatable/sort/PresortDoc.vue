@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" sortField="price" :sortOrder="-1" tableStyle="min-width: 50rem">
     <Column field="code" header="Code" sortable style="width: 20%"></Column>
     <Column field="name" header="Name" sortable style="width: 20%"></Column>
@@ -44,7 +44,7 @@ export default {
     <Column field="quantity" header="Quantity" sortable style="width: 20%"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" sortField="price" :sortOrder="-1" tableStyle="min-width: 50rem">
@@ -76,7 +76,7 @@ const formatCurrency = (value) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -91,16 +91,16 @@ const formatCurrency = (value) => {
 },
 ...
         `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
+                }
+            };
         },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            }
         }
-    }
-};
+    };
 </script>

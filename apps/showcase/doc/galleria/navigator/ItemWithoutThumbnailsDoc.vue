@@ -18,28 +18,28 @@
 </template>
 
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '991px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '767px',
-                    numVisible: 3
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '991px',
+                        numVisible: 4
+                    },
+                    {
+                        breakpoint: '767px',
+                        numVisible: 3
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1
+                    }
+                ],
+                code: {
+                    basic: `
 <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
     :showItemNavigators="true" :showThumbnails="false">
     <template #item="slotProps">
@@ -50,7 +50,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
@@ -90,7 +90,7 @@ const responsiveOptions = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -100,13 +100,13 @@ const responsiveOptions = ref([
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>

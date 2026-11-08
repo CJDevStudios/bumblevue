@@ -30,11 +30,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <DataTable :value="products">
     <Column field="code" header="Code">
         <template #body>
@@ -58,7 +58,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products">
@@ -92,9 +92,9 @@ import { ref } from 'vue';
 const products = ref(new Array(4));
 <\/script>
 `
-            },
-            products: new Array(4)
-        };
-    }
-};
+                },
+                products: new Array(4)
+            };
+        }
+    };
 </script>

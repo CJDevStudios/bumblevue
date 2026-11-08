@@ -8,60 +8,60 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
-import Checkbox from '@cjdevstudios/bumblevue/checkbox';
-import { mergeProps } from 'vue';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import CheckIcon from '@cjdevstudios/bumblevue/icons/check';
+    import Checkbox from '@cjdevstudios/bumblevue/checkbox';
+    import { mergeProps } from 'vue';
 
-export default {
-    name: 'HeaderCheckbox',
-    hostName: 'DataTable',
-    extends: BaseComponent,
-    emits: ['change'],
-    props: {
-        checked: null,
-        disabled: null,
-        column: null,
-        headerCheckboxIconTemplate: {
-            type: Function,
-            default: null
-        }
-    },
-    methods: {
-        getColumnPT(key) {
-            const columnMetaData = {
-                props: this.column.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    checked: this.checked,
-                    disabled: this.disabled
-                }
-            };
+    export default {
+        name: 'HeaderCheckbox',
+        hostName: 'DataTable',
+        extends: BaseComponent,
+        emits: ['change'],
+        props: {
+            checked: null,
+            disabled: null,
+            column: null,
+            headerCheckboxIconTemplate: {
+                type: Function,
+                default: null
+            }
+        },
+        methods: {
+            getColumnPT(key) {
+                const columnMetaData = {
+                    props: this.column.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        checked: this.checked,
+                        disabled: this.disabled
+                    }
+                };
 
-            return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
+                return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
+            },
+            getColumnProp() {
+                return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo:
+            },
+            onChange(event) {
+                this.$emit('change', {
+                    originalEvent: event,
+                    checked: !this.checked
+                });
+            }
         },
-        getColumnProp() {
-            return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo:
+        computed: {
+            headerCheckboxAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? (this.checked ? this.$bumblevue.config.locale.aria.selectAll : this.$bumblevue.config.locale.aria.unselectAll) : undefined;
+            }
         },
-        onChange(event) {
-            this.$emit('change', {
-                originalEvent: event,
-                checked: !this.checked
-            });
+        components: {
+            CheckIcon,
+            Checkbox
         }
-    },
-    computed: {
-        headerCheckboxAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? (this.checked ? this.$bumblevue.config.locale.aria.selectAll : this.$bumblevue.config.locale.aria.unselectAll) : undefined;
-        }
-    },
-    components: {
-        CheckIcon,
-        Checkbox
-    }
-};
+    };
 </script>

@@ -19,60 +19,60 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            data: {
-                key: '0',
-                type: 'country',
-                label: 'Argentina',
-                data: 'ar',
-                children: [
-                    {
-                        key: '0_0',
-                        type: 'country',
-                        label: 'Argentina',
-                        data: 'ar',
-                        children: [
-                            {
-                                key: '0_0_0',
-                                type: 'country',
-                                label: 'Argentina',
-                                data: 'ar'
-                            },
-                            {
-                                key: '0_0_1',
-                                type: 'country',
-                                label: 'Croatia',
-                                data: 'hr'
-                            }
-                        ]
-                    },
-                    {
-                        key: '0_1',
-                        type: 'country',
-                        label: 'France',
-                        data: 'fr',
-                        children: [
-                            {
-                                key: '0_1_0',
-                                type: 'country',
-                                label: 'France',
-                                data: 'fr'
-                            },
-                            {
-                                key: '0_1_1',
-                                type: 'country',
-                                label: 'Morocco',
-                                data: 'ma'
-                            }
-                        ]
-                    }
-                ]
-            },
-            selection: {},
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                data: {
+                    key: '0',
+                    type: 'country',
+                    label: 'Argentina',
+                    data: 'ar',
+                    children: [
+                        {
+                            key: '0_0',
+                            type: 'country',
+                            label: 'Argentina',
+                            data: 'ar',
+                            children: [
+                                {
+                                    key: '0_0_0',
+                                    type: 'country',
+                                    label: 'Argentina',
+                                    data: 'ar'
+                                },
+                                {
+                                    key: '0_0_1',
+                                    type: 'country',
+                                    label: 'Croatia',
+                                    data: 'hr'
+                                }
+                            ]
+                        },
+                        {
+                            key: '0_1',
+                            type: 'country',
+                            label: 'France',
+                            data: 'fr',
+                            children: [
+                                {
+                                    key: '0_1_0',
+                                    type: 'country',
+                                    label: 'France',
+                                    data: 'fr'
+                                },
+                                {
+                                    key: '0_1_1',
+                                    type: 'country',
+                                    label: 'Morocco',
+                                    data: 'ma'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                selection: {},
+                code: {
+                    basic: `
 <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="single">
     <template #country="slotProps">
         <div class="flex flex-col items-center">
@@ -85,7 +85,7 @@ export default {
     </template>
 </OrganizationChart>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card overflow-x-auto">
         <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="single">
@@ -156,8 +156,8 @@ const data = ref({
 });
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

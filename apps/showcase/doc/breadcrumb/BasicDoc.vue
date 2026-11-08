@@ -9,18 +9,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            home: {
-                icon: 'pi pi-home'
-            },
-            items: [{ label: 'Electronics' }, { label: 'Computer', icon: 'pi pi-desktop' }, { label: 'Accessories' }, { label: 'Keyboard' }, { label: 'Wireless' }],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                home: {
+                    icon: 'pi pi-home'
+                },
+                items: [{ label: 'Electronics' }, { label: 'Computer', icon: 'pi pi-desktop' }, { label: 'Accessories' }, { label: 'Keyboard' }, { label: 'Wireless' }],
+                code: {
+                    basic: `
 <Breadcrumb :home="home" :model="items" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Breadcrumb :home="home" :model="items" />
@@ -42,8 +42,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

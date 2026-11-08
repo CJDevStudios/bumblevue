@@ -25,15 +25,15 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            dialogVisible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                dialogVisible: false,
+                code: {
+                    basic: `
 <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
 <Dialog v-model:visible="dialogVisible" header="Flex Scroll" :style="{ width: '75vw' }" maximizable modal :contentStyle="{ height: '300px' }">
     <TreeTable :value="nodes" :scrollable="true" scrollHeight="flex" tableStyle="min-width: 50rem">
@@ -46,7 +46,7 @@ export default {
     </template>
 </Dialog>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Show" icon="pi pi-external-link" @click="dialogVisible = true" />
@@ -76,13 +76,13 @@ const dialogVisible = ref(false);
 
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>

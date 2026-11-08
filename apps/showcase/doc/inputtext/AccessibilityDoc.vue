@@ -31,11 +31,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="firstname">Firstname</label>
 <InputText id="firstname" />
 
@@ -44,8 +44,8 @@ export default {
 
 <InputText aria-label="Age"/>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

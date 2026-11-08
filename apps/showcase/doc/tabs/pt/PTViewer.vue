@@ -31,34 +31,34 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Tabs'),
-                    key: 'Tabs'
-                },
-                {
-                    data: getPTOptions('TabList'),
-                    key: 'TabList'
-                },
-                {
-                    data: getPTOptions('Tab'),
-                    key: 'Tab'
-                },
-                {
-                    data: getPTOptions('TabPanels'),
-                    key: 'TabPanels'
-                },
-                {
-                    data: getPTOptions('TabPanel'),
-                    key: 'TabPanel'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Tabs'),
+                        key: 'Tabs'
+                    },
+                    {
+                        data: getPTOptions('TabList'),
+                        key: 'TabList'
+                    },
+                    {
+                        data: getPTOptions('Tab'),
+                        key: 'Tab'
+                    },
+                    {
+                        data: getPTOptions('TabPanels'),
+                        key: 'TabPanels'
+                    },
+                    {
+                        data: getPTOptions('TabPanel'),
+                        key: 'TabPanel'
+                    }
+                ]
+            };
+        }
+    };
 </script>

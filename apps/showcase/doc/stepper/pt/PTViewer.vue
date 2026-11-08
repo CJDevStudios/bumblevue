@@ -38,34 +38,34 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Stepper'),
-                    key: 'Stepper'
-                },
-                {
-                    data: getPTOptions('StepList'),
-                    key: 'StepList'
-                },
-                {
-                    data: getPTOptions('Step'),
-                    key: 'Step'
-                },
-                {
-                    data: getPTOptions('StepPanels'),
-                    key: 'StepPanels'
-                },
-                {
-                    data: getPTOptions('StepPanel'),
-                    key: 'StepPanel'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Stepper'),
+                        key: 'Stepper'
+                    },
+                    {
+                        data: getPTOptions('StepList'),
+                        key: 'StepList'
+                    },
+                    {
+                        data: getPTOptions('Step'),
+                        key: 'Step'
+                    },
+                    {
+                        data: getPTOptions('StepPanels'),
+                        key: 'StepPanels'
+                    },
+                    {
+                        data: getPTOptions('StepPanel'),
+                        key: 'StepPanel'
+                    }
+                ]
+            };
+        }
+    };
 </script>

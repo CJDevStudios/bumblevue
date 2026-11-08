@@ -45,12 +45,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            headers: ['Preset', 'Implementation', 'Types'],
-            presets: ['Aura', 'Lara', 'Nora', 'Material']
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                headers: ['Preset', 'Implementation', 'Types'],
+                presets: ['Aura', 'Lara', 'Nora', 'Material']
+            };
+        }
+    };
 </script>

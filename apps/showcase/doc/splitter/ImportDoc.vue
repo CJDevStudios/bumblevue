@@ -4,16 +4,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Splitter from '@cjdevstudios/bumblevue/splitter';
 import SplitterPanel from '@cjdevstudios/bumblevue/splitterpanel';
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

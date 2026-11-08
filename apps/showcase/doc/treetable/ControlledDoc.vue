@@ -16,15 +16,15 @@
 </template>
 
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            expandedKeys: {},
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                expandedKeys: {},
+                code: {
+                    basic: `
 <Button @click="toggleApplications" label="Toggle Applications" />
 <TreeTable v-model:expandedKeys="expandedKeys" :value="nodes" class="mt-6" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" expander style="width: 34%"></Column>
@@ -32,7 +32,7 @@ export default {
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Button @click="toggleApplications" label="Toggle Applications" />
@@ -64,7 +64,7 @@ const toggleApplications = () => {
 }
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -92,21 +92,21 @@ const toggleApplications = () => {
 },
 ...
 `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+                }
+            };
         },
-        toggleApplications() {
-            let _expandedKeys = { ...this.expandedKeys };
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+            },
+            toggleApplications() {
+                let _expandedKeys = { ...this.expandedKeys };
 
-            if (_expandedKeys['0']) delete _expandedKeys['0'];
-            else _expandedKeys['0'] = true;
+                if (_expandedKeys['0']) delete _expandedKeys['0'];
+                else _expandedKeys['0'] = true;
 
-            this.expandedKeys = _expandedKeys;
+                this.expandedKeys = _expandedKeys;
+            }
         }
-    }
-};
+    };
 </script>

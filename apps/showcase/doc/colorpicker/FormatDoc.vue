@@ -23,19 +23,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            colorHEX: '6466f1',
-            colorRGB: { r: 100, g: 102, b: 241 },
-            colorHSB: { h: 239, s: 59, b: 95 },
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                colorHEX: '6466f1',
+                colorRGB: { r: 100, g: 102, b: 241 },
+                colorHSB: { h: 239, s: 59, b: 95 },
+                code: {
+                    basic: `
 <ColorPicker v-model="colorHEX" inputId="cp-hex" format="hex" class="mb-4" />
 <ColorPicker v-model="colorRGB" inputId="cp-rgb" format="rgb" class="mb-4" />
 <ColorPicker v-model="colorHSB" inputId="cp-hsb" format="hsb" class="mb-4" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-1 flex flex-col items-center">
@@ -64,8 +64,8 @@ const colorRGB = ref({ r: 100, g: 102, b: 241 });
 const colorHSB = ref({ h: 239, s: 59, b: 95 });
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

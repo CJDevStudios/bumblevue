@@ -23,13 +23,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            dates: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                dates: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" showButtonBar placeholder="Basic" />
 <DatePicker v-model="dates" showButtonBar placeholder="Customized" selectionMode="range" :manualInput="false">
     <template #buttonbar="{ todayCallback, clearCallback }">
@@ -46,7 +46,7 @@ export default {
     </template>
 </DatePicker>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-4 flex-wrap">
         <DatePicker v-model="date" showButtonBar placeholder="Basic" />
@@ -74,8 +74,8 @@ const date = ref();
 const dates = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

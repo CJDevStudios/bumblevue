@@ -9,45 +9,45 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            data: {
-                label: 'Argentina',
-                children: [
+    export default {
+        data() {
+            return {
+                data: {
+                    label: 'Argentina',
+                    children: [
+                        {
+                            label: 'Argentina',
+                            children: [
+                                {
+                                    label: 'Argentina'
+                                },
+                                {
+                                    label: 'Croatia'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'France',
+                            children: [
+                                {
+                                    label: 'France'
+                                },
+                                {
+                                    label: 'Morocco'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                docs: [
                     {
-                        label: 'Argentina',
-                        children: [
-                            {
-                                label: 'Argentina'
-                            },
-                            {
-                                label: 'Croatia'
-                            }
-                        ]
-                    },
-                    {
-                        label: 'France',
-                        children: [
-                            {
-                                label: 'France'
-                            },
-                            {
-                                label: 'Morocco'
-                            }
-                        ]
+                        data: getPTOptions('OrganizationChart'),
+                        key: 'OrganizationChart'
                     }
                 ]
-            },
-            docs: [
-                {
-                    data: getPTOptions('OrganizationChart'),
-                    key: 'OrganizationChart'
-                }
-            ]
-        };
-    }
-};
+            };
+        }
+    };
 </script>

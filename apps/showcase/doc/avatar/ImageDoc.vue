@@ -28,11 +28,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Avatar image="/images/avatar/amyelsner.png" class="mr-2" size="xlarge" shape="circle" />
 <Avatar image="/images/avatar/asiyajavayant.png" class="mr-2" size="large" shape="circle" />
 <Avatar image="/images/avatar/onyamalimba.png" shape="circle" />
@@ -43,7 +43,7 @@ export default {
 
 <Avatar image="https://www.gravatar.com/avatar/05dfd4b41340d09cae045235eb0893c3?d=mp" class="flex items-center justify-center mr-2" size="xlarge" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-8">
@@ -73,8 +73,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

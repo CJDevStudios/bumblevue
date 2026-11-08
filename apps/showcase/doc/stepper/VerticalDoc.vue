@@ -44,11 +44,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Stepper value="1">
     <StepItem value="1">
         <Step>Header I</Step>
@@ -86,7 +86,7 @@ export default {
     </StepItem>
 </Stepper>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Stepper value="1">
@@ -128,8 +128,8 @@ export default {
     </div>
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

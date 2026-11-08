@@ -38,42 +38,42 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Home',
-                    icon: 'pi pi-home'
-                },
-                {
-                    label: 'Projects',
-                    icon: 'pi pi-search',
-                    badge: 3,
-                    items: [
-                        {
-                            label: 'Core',
-                            icon: 'pi pi-bolt',
-                            shortcut: '⌘+S'
-                        },
-                        {
-                            label: 'Blocks',
-                            icon: 'pi pi-server',
-                            shortcut: '⌘+B'
-                        },
-                        {
-                            separator: true
-                        },
-                        {
-                            label: 'UI Kit',
-                            icon: 'pi pi-pencil',
-                            shortcut: '⌘+U'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Home',
+                        icon: 'pi pi-home'
+                    },
+                    {
+                        label: 'Projects',
+                        icon: 'pi pi-search',
+                        badge: 3,
+                        items: [
+                            {
+                                label: 'Core',
+                                icon: 'pi pi-bolt',
+                                shortcut: '⌘+S'
+                            },
+                            {
+                                label: 'Blocks',
+                                icon: 'pi pi-server',
+                                shortcut: '⌘+B'
+                            },
+                            {
+                                separator: true
+                            },
+                            {
+                                label: 'UI Kit',
+                                icon: 'pi pi-pencil',
+                                shortcut: '⌘+U'
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <Menubar :model="items">
     <template #start>
         <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8">
@@ -97,7 +97,7 @@ export default {
     </template>
 </Menubar>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Menubar :model="items">
@@ -167,8 +167,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

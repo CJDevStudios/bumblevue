@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputNumber v-model="value" showClear />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputNumber v-model="value" showClear />
@@ -30,8 +30,8 @@ import { ref } from "vue";
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

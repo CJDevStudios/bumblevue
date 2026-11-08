@@ -16,11 +16,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <AvatarGroup>
     <Avatar image="/images/avatar/amyelsner.png" shape="circle" />
     <Avatar image="/images/avatar/asiyajavayant.png" shape="circle" />
@@ -30,7 +30,7 @@ export default {
     <Avatar label="+2" shape="circle" />
 </AvatarGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AvatarGroup>
@@ -48,8 +48,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

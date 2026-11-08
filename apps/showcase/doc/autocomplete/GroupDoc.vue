@@ -16,47 +16,47 @@
 </template>
 
 <script>
-import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue/core/api';
+    import { FilterMatchMode, FilterService } from '@cjdevstudios/bumblevue/core/api';
 
-export default {
-    data() {
-        return {
-            selectedCity: null,
-            filteredCities: null,
-            groupedCities: [
-                {
-                    label: 'Germany',
-                    code: 'DE',
-                    items: [
-                        { label: 'Berlin', value: 'Berlin' },
-                        { label: 'Frankfurt', value: 'Frankfurt' },
-                        { label: 'Hamburg', value: 'Hamburg' },
-                        { label: 'Munich', value: 'Munich' }
-                    ]
-                },
-                {
-                    label: 'USA',
-                    code: 'US',
-                    items: [
-                        { label: 'Chicago', value: 'Chicago' },
-                        { label: 'Los Angeles', value: 'Los Angeles' },
-                        { label: 'New York', value: 'New York' },
-                        { label: 'San Francisco', value: 'San Francisco' }
-                    ]
-                },
-                {
-                    label: 'Japan',
-                    code: 'JP',
-                    items: [
-                        { label: 'Kyoto', value: 'Kyoto' },
-                        { label: 'Osaka', value: 'Osaka' },
-                        { label: 'Tokyo', value: 'Tokyo' },
-                        { label: 'Yokohama', value: 'Yokohama' }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCity: null,
+                filteredCities: null,
+                groupedCities: [
+                    {
+                        label: 'Germany',
+                        code: 'DE',
+                        items: [
+                            { label: 'Berlin', value: 'Berlin' },
+                            { label: 'Frankfurt', value: 'Frankfurt' },
+                            { label: 'Hamburg', value: 'Hamburg' },
+                            { label: 'Munich', value: 'Munich' }
+                        ]
+                    },
+                    {
+                        label: 'USA',
+                        code: 'US',
+                        items: [
+                            { label: 'Chicago', value: 'Chicago' },
+                            { label: 'Los Angeles', value: 'Los Angeles' },
+                            { label: 'New York', value: 'New York' },
+                            { label: 'San Francisco', value: 'San Francisco' }
+                        ]
+                    },
+                    {
+                        label: 'Japan',
+                        code: 'JP',
+                        items: [
+                            { label: 'Kyoto', value: 'Kyoto' },
+                            { label: 'Osaka', value: 'Osaka' },
+                            { label: 'Tokyo', value: 'Tokyo' },
+                            { label: 'Yokohama', value: 'Yokohama' }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <AutoComplete v-model="selectedCity" :suggestions="filteredCities" @complete="search" optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" placeholder="Hint: type 'a'">
     <template #optiongroup="slotProps">
         <div class="flex items-center country-item">
@@ -66,7 +66,7 @@ export default {
     </template>
 </AutoComplete>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="selectedCity" :suggestions="filteredCities" @complete="search" optionLabel="label" optionGroupLabel="label" optionGroupChildren="items" placeholder="Hint: type 'a'">
@@ -135,24 +135,24 @@ const search = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        search(event) {
-            let query = event.query;
-            let filteredCities = [];
-
-            for (let country of this.groupedCities) {
-                let filteredItems = FilterService.filter(country.items, ['label'], query, FilterMatchMode.CONTAINS);
-
-                if (filteredItems && filteredItems.length) {
-                    filteredCities.push({ ...country, ...{ items: filteredItems } });
                 }
-            }
+            };
+        },
+        methods: {
+            search(event) {
+                let query = event.query;
+                let filteredCities = [];
 
-            this.filteredCities = filteredCities;
+                for (let country of this.groupedCities) {
+                    let filteredItems = FilterService.filter(country.items, ['label'], query, FilterMatchMode.CONTAINS);
+
+                    if (filteredItems && filteredItems.length) {
+                        filteredCities.push({ ...country, ...{ items: filteredItems } });
+                    }
+                }
+
+                this.filteredCities = filteredCities;
+            }
         }
-    }
-};
+    };
 </script>

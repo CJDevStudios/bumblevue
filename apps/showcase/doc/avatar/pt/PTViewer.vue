@@ -11,22 +11,22 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Avatar'),
-                    key: 'Avatar'
-                },
-                {
-                    data: getPTOptions('AvatarGroup'),
-                    key: 'AvatarGroup'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Avatar'),
+                        key: 'Avatar'
+                    },
+                    {
+                        data: getPTOptions('AvatarGroup'),
+                        key: 'AvatarGroup'
+                    }
+                ]
+            };
+        }
+    };
 </script>

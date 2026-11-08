@@ -8,23 +8,23 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('IconField'),
-                    key: 'IconField'
-                },
-                {
-                    data: getPTOptions('InputIcon'),
-                    key: 'InputIcon'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('IconField'),
+                        key: 'IconField'
+                    },
+                    {
+                        data: getPTOptions('InputIcon'),
+                        key: 'InputIcon'
+                    }
+                ]
+            };
+        }
+    };
 </script>

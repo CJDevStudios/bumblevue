@@ -16,17 +16,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            spacekey: null,
-            chars: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                spacekey: null,
+                chars: null,
+                code: {
+                    basic: `
 <InputText v-model="spacekey" v-keyfilter="/[^\s]/" />
 <InputText v-model="chars" v-keyfilter="/^[^<>*!]+$/" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-3">
         <div class="flex-auto">
@@ -47,8 +47,8 @@ const spacekey = ref(null);
 const chars = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -24,12 +24,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <div class="flex flex-col items-center">
     <div class="font-bold text-xl mb-2">Authenticate Your Account</div>
     <p class="text-surface-500 dark:text-surface-400 block mb-8">Please enter the code sent to your phone.</p>
@@ -47,7 +47,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <div class="flex flex-col items-center">
@@ -113,46 +113,46 @@ const value = ref(null);
 }
 <\/style>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style scoped>
-.custom-otp-input {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
-    appearance: none;
-    text-align: center;
-    transition: all 0.2s;
-    border-radius: 0;
-    border: 1px solid var(--p-inputtext-border-color);
-    background: transparent;
-    outline-offset: -2px;
-    outline-color: transparent;
-    border-right: 0 none;
-    transition: outline-color 0.3s;
-    color: var(--p-inputtext-color);
-}
+    .custom-otp-input {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        appearance: none;
+        text-align: center;
+        transition: all 0.2s;
+        border-radius: 0;
+        border: 1px solid var(--p-inputtext-border-color);
+        background: transparent;
+        outline-offset: -2px;
+        outline-color: transparent;
+        border-right: 0 none;
+        transition: outline-color 0.3s;
+        color: var(--p-inputtext-color);
+    }
 
-.custom-otp-input:focus {
-    outline: 2px solid var(--p-focus-ring-color);
-}
+    .custom-otp-input:focus {
+        outline: 2px solid var(--p-focus-ring-color);
+    }
 
-.custom-otp-input:first-child,
-.custom-otp-input:nth-child(5) {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
+    .custom-otp-input:first-child,
+    .custom-otp-input:nth-child(5) {
+        border-top-left-radius: 12px;
+        border-bottom-left-radius: 12px;
+    }
 
-.custom-otp-input:nth-child(3),
-.custom-otp-input:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-color: var(--p-inputtext-border-color);
-}
+    .custom-otp-input:nth-child(3),
+    .custom-otp-input:last-child {
+        border-top-right-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-color: var(--p-inputtext-border-color);
+    }
 </style>

@@ -16,12 +16,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 50,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 50,
+                code: {
+                    basic: `
 <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
     <template #incrementicon>
         <span class="pi pi-plus" />
@@ -31,7 +31,7 @@ export default {
     </template>
 </InputNumber>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputNumber v-model="value" showButtons buttonLayout="vertical" style="width: 3rem" :min="0" :max="99">
@@ -51,8 +51,8 @@ import { ref } from "vue";
 const value = ref(50);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

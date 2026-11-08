@@ -16,12 +16,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <Rating v-model="value">
     <template #onicon>
         <img src="/images/rating/custom-onicon.png" height="24" width="24" />
@@ -31,7 +31,7 @@ export default {
     </template>
 </Rating>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Rating v-model="value">
@@ -51,8 +51,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

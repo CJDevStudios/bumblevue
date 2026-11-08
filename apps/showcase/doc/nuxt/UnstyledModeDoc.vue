@@ -9,11 +9,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 export default defineNuxtConfig({
     modules: [
         '@cjdevstudios/bumblevue-nuxt-module'
@@ -25,8 +25,8 @@ export default defineNuxtConfig({
     }
 })
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

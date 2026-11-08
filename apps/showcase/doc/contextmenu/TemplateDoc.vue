@@ -39,46 +39,46 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            selectedId: null,
-            items: [
-                {
-                    label: 'Favorite',
-                    icon: 'pi pi-star',
-                    shortcut: '⌘+D'
-                },
-                {
-                    label: 'Add',
-                    icon: 'pi pi-shopping-cart',
-                    shortcut: '⌘+A'
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Share',
-                    icon: 'pi pi-share-alt',
-                    items: [
-                        {
-                            label: 'Whatsapp',
-                            icon: 'pi pi-whatsapp',
-                            badge: 2
-                        },
-                        {
-                            label: 'Instagram',
-                            icon: 'pi pi-instagram',
-                            badge: 3
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                selectedId: null,
+                items: [
+                    {
+                        label: 'Favorite',
+                        icon: 'pi pi-star',
+                        shortcut: '⌘+D'
+                    },
+                    {
+                        label: 'Add',
+                        icon: 'pi pi-shopping-cart',
+                        shortcut: '⌘+A'
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Share',
+                        icon: 'pi pi-share-alt',
+                        items: [
+                            {
+                                label: 'Whatsapp',
+                                icon: 'pi pi-whatsapp',
+                                badge: 2
+                            },
+                            {
+                                label: 'Instagram',
+                                icon: 'pi pi-instagram',
+                                badge: 3
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120">
     <li
         v-for="product in products"
@@ -111,7 +111,7 @@ export default {
     </template>
 </ContextMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex md:justify-center">
         <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120" @hide="selectedId = null">
@@ -199,8 +199,8 @@ const onRightClick = (event, id) => {
 
 <\/script>
 `
-            },
-            data: `
+                },
+                data: `
 /* ProductService */
 {
     id: '1000',
@@ -215,16 +215,16 @@ const onRightClick = (event, id) => {
     rating: 5
 },
 ...`
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    },
-    methods: {
-        onRightClick(event, id) {
-            this.selectedId = id;
-            this.$refs.menu.show(event);
+            };
+        },
+        mounted() {
+            ProductService.getProductsMini().then((data) => (this.products = data));
+        },
+        methods: {
+            onRightClick(event, id) {
+                this.selectedId = id;
+                this.$refs.menu.show(event);
+            }
         }
-    }
-};
+    };
 </script>

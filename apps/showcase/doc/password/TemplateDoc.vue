@@ -22,12 +22,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <Password v-model="value">
     <template #header>
         <div class="font-semibold text-xm mb-4">Reset Password</div>
@@ -43,7 +43,7 @@ export default {
     </template>
 </Password>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Password v-model="value">
@@ -69,8 +69,8 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -10,26 +10,26 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import {createApp} from 'vue';
 import ConfirmationService from '@cjdevstudios/bumblevue/confirmationservice';
 
 const app = createApp(App);
 app.use(ConfirmationService);
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { useConfirm } from "@cjdevstudios/bumblevue/useconfirm";
 
 const confirm = useConfirm();
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

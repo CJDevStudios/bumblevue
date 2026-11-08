@@ -2,8 +2,7 @@
     <Portal>
         <div v-if="containerVisible" :ref="maskRef" @mousedown="onMaskClick" :class="cx('mask')" :style="sx('mask', true, { position, modal })" :data-p="dataP" v-bind="ptm('mask')">
             <transition name="p-drawer" @enter="onEnter" @after-enter="onAfterEnter" @before-leave="onBeforeLeave" @leave="onLeave" @after-leave="onAfterLeave" appear v-bind="ptm('transition')">
-                <div v-if="visible" :ref="containerRef" v-focustrap :class="cx('root')" :style="sx('root')" :role="modal ? 'dialog' : 'complementary'" :aria-modal="modal ? true : undefined"
-                    :data-p="dataP" v-bind="ptmi('root')">
+                <div v-if="visible" :ref="containerRef" v-focustrap :class="cx('root')" :style="sx('root')" :role="modal ? 'dialog' : 'complementary'" :aria-modal="modal ? true : undefined" :data-p="dataP" v-bind="ptmi('root')">
                     <slot v-if="$slots.container" name="container" :closeCallback="hide"></slot>
                     <template v-else>
                         <div :ref="headerContainerRef" :class="cx('header')" v-bind="ptm('header')">
@@ -11,8 +10,17 @@
                                 <div v-if="header" :class="cx('title')" v-bind="ptm('title')">{{ header }}</div>
                             </slot>
                             <slot v-if="showCloseIcon" name="closebutton" :closeCallback="hide">
-                                <Button :ref="closeButtonRef" type="button" :class="cx('pcCloseButton')" :aria-label="closeAriaLabel" :unstyled="unstyled" @click="hide" v-bind="closeButtonProps"
-                                    :pt="ptm('pcCloseButton')" data-pc-group-section="iconcontainer">
+                                <Button
+                                    :ref="closeButtonRef"
+                                    type="button"
+                                    :class="cx('pcCloseButton')"
+                                    :aria-label="closeAriaLabel"
+                                    :unstyled="unstyled"
+                                    @click="hide"
+                                    v-bind="closeButtonProps"
+                                    :pt="ptm('pcCloseButton')"
+                                    data-pc-group-section="iconcontainer"
+                                >
                                     <template #icon="slotProps">
                                         <slot name="closeicon">
                                             <component :is="closeIcon ? 'span' : 'TimesIcon'" :class="[closeIcon, slotProps.class]" v-bind="ptm('pcCloseButton')['icon']"></component>
@@ -35,276 +43,276 @@
 </template>
 
 <script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { addClass, focus } from '@cjdevstudios/bumblevue/utils/dom';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import Button from '@cjdevstudios/bumblevue/button';
-import DrawerStyle from '@cjdevstudios/bumblevue/drawer/style';
-import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
-import Portal from '@cjdevstudios/bumblevue/portal';
-import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { addClass, focus } from '@cjdevstudios/bumblevue/utils/dom';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import DrawerStyle from '@cjdevstudios/bumblevue/drawer/style';
+    import FocusTrap from '@cjdevstudios/bumblevue/focustrap';
+    import Portal from '@cjdevstudios/bumblevue/portal';
+    import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils';
 
-export default {
-    name: 'Drawer',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        visible: {
-            type: Boolean,
-            default: false
-        },
-        position: {
-            type: String,
-            default: 'left'
-        },
-        header: {
-            type: null,
-            default: null
-        },
-        baseZIndex: {
-            type: Number,
-            default: 0
-        },
-        autoZIndex: {
-            type: Boolean,
-            default: true
-        },
-        dismissable: {
-            type: Boolean,
-            default: true
-        },
-        showCloseIcon: {
-            type: Boolean,
-            default: true
-        },
-        closeButtonProps: {
-            type: Object,
-            default: () => {
-                return { severity: 'secondary', text: true, rounded: true };
+    export default {
+        name: 'Drawer',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            visible: {
+                type: Boolean,
+                default: false
+            },
+            position: {
+                type: String,
+                default: 'left'
+            },
+            header: {
+                type: null,
+                default: null
+            },
+            baseZIndex: {
+                type: Number,
+                default: 0
+            },
+            autoZIndex: {
+                type: Boolean,
+                default: true
+            },
+            dismissable: {
+                type: Boolean,
+                default: true
+            },
+            showCloseIcon: {
+                type: Boolean,
+                default: true
+            },
+            closeButtonProps: {
+                type: Object,
+                default: () => {
+                    return { severity: 'secondary', text: true, rounded: true };
+                }
+            },
+            closeIcon: {
+                type: String,
+                default: undefined
+            },
+            modal: {
+                type: Boolean,
+                default: true
+            },
+            blockScroll: {
+                type: Boolean,
+                default: false
+            },
+            closeOnEscape: {
+                type: Boolean,
+                default: true
             }
         },
-        closeIcon: {
-            type: String,
-            default: undefined
+        emits: ['update:visible', 'show', 'after-show', 'hide', 'after-hide', 'before-hide'],
+        style: DrawerStyle,
+        provide() {
+            return {
+                $pcDrawer: this,
+                $parentInstance: this
+            };
         },
-        modal: {
-            type: Boolean,
-            default: true
+        data() {
+            return {
+                containerVisible: this.visible
+            };
         },
-        blockScroll: {
-            type: Boolean,
-            default: false
-        },
-        closeOnEscape: {
-            type: Boolean,
-            default: true
-        }
-    },
-    emits: ['update:visible', 'show', 'after-show', 'hide', 'after-hide', 'before-hide'],
-    style: DrawerStyle,
-    provide() {
-        return {
-            $pcDrawer: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            containerVisible: this.visible
-        };
-    },
-    container: null,
-    mask: null,
-    content: null,
-    headerContainer: null,
-    footerContainer: null,
-    closeButton: null,
-    outsideClickListener: null,
-    documentKeydownListener: null,
-    watch: {
-        dismissable(newValue) {
-            if (newValue && !this.modal) {
-                this.bindOutsideClickListener();
-            } else {
-                this.unbindOutsideClickListener();
-            }
-        }
-    },
-    updated() {
-        if (this.visible) {
-            this.containerVisible = this.visible;
-        }
-    },
-    beforeUnmount() {
-        this.disableDocumentSettings();
-
-        if (this.mask && this.autoZIndex) {
-            ZIndex.clear(this.mask);
-        }
-
-        this.container = null;
-        this.mask = null;
-    },
-    methods: {
-        hide() {
-            this.$emit('update:visible', false);
-        },
-        onEnter() {
-            this.$emit('show');
-            this.focus();
-            this.bindDocumentKeyDownListener();
-
-            if (this.autoZIndex) {
-                ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
+        container: null,
+        mask: null,
+        content: null,
+        headerContainer: null,
+        footerContainer: null,
+        closeButton: null,
+        outsideClickListener: null,
+        documentKeydownListener: null,
+        watch: {
+            dismissable(newValue) {
+                if (newValue && !this.modal) {
+                    this.bindOutsideClickListener();
+                } else {
+                    this.unbindOutsideClickListener();
+                }
             }
         },
-        onAfterEnter() {
-            this.enableDocumentSettings();
-            this.$emit('after-show');
-        },
-        onBeforeLeave() {
-            if (this.modal) {
-                !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
+        updated() {
+            if (this.visible) {
+                this.containerVisible = this.visible;
             }
+        },
+        beforeUnmount() {
+            this.disableDocumentSettings();
 
-            this.$emit('before-hide');
-        },
-        onLeave() {
-            this.$emit('hide');
-        },
-        onAfterLeave() {
-            if (this.autoZIndex) {
+            if (this.mask && this.autoZIndex) {
                 ZIndex.clear(this.mask);
             }
 
-            this.unbindDocumentKeyDownListener();
-            this.containerVisible = false;
-            this.disableDocumentSettings();
-            this.$emit('after-hide');
+            this.container = null;
+            this.mask = null;
         },
-        onMaskClick(event) {
-            if (this.dismissable && this.modal && this.mask === event.target) {
-                this.hide();
-            }
-        },
-        focus() {
-            const findFocusableElement = (container) => {
-                return container && container.querySelector('[autofocus]');
-            };
+        methods: {
+            hide() {
+                this.$emit('update:visible', false);
+            },
+            onEnter() {
+                this.$emit('show');
+                this.focus();
+                this.bindDocumentKeyDownListener();
 
-            let focusTarget = this.$slots.header && findFocusableElement(this.headerContainer);
-
-            if (!focusTarget) {
-                focusTarget = this.$slots.default && findFocusableElement(this.container);
-
-                if (!focusTarget) {
-                    focusTarget = this.$slots.footer && findFocusableElement(this.footerContainer);
-
-                    if (!focusTarget) {
-                        focusTarget = this.closeButton;
-                    }
+                if (this.autoZIndex) {
+                    ZIndex.set('modal', this.mask, this.baseZIndex || this.$bumblevue.config.zIndex.modal);
                 }
-            }
+            },
+            onAfterEnter() {
+                this.enableDocumentSettings();
+                this.$emit('after-show');
+            },
+            onBeforeLeave() {
+                if (this.modal) {
+                    !this.isUnstyled && addClass(this.mask, 'p-overlay-mask-leave-active');
+                }
 
-            focusTarget && focus(focusTarget);
-        },
-        enableDocumentSettings() {
-            if (this.dismissable && !this.modal) {
-                this.bindOutsideClickListener();
-            }
+                this.$emit('before-hide');
+            },
+            onLeave() {
+                this.$emit('hide');
+            },
+            onAfterLeave() {
+                if (this.autoZIndex) {
+                    ZIndex.clear(this.mask);
+                }
 
-            if (this.blockScroll) {
-                blockBodyScroll();
-            }
-        },
-        disableDocumentSettings() {
-            this.unbindOutsideClickListener();
-
-            if (this.blockScroll) {
-                unblockBodyScroll();
-            }
-        },
-        onKeydown(event) {
-            if (event.code === 'Escape' && this.closeOnEscape) {
-                this.hide();
-            }
-        },
-        containerRef(el) {
-            this.container = el;
-        },
-        maskRef(el) {
-            this.mask = el;
-        },
-        contentRef(el) {
-            this.content = el;
-        },
-        headerContainerRef(el) {
-            this.headerContainer = el;
-        },
-        footerContainerRef(el) {
-            this.footerContainer = el;
-        },
-        closeButtonRef(el) {
-            this.closeButton = el ? el.$el : undefined;
-        },
-        bindDocumentKeyDownListener() {
-            if (!this.documentKeydownListener) {
-                this.documentKeydownListener = this.onKeydown;
-                document.addEventListener('keydown', this.documentKeydownListener);
-            }
-        },
-        unbindDocumentKeyDownListener() {
-            if (this.documentKeydownListener) {
-                document.removeEventListener('keydown', this.documentKeydownListener);
-                this.documentKeydownListener = null;
-            }
-        },
-        bindOutsideClickListener() {
-            if (!this.outsideClickListener) {
-                this.outsideClickListener = (event) => {
-                    if (this.isOutsideClicked(event)) {
-                        this.hide();
-                    }
+                this.unbindDocumentKeyDownListener();
+                this.containerVisible = false;
+                this.disableDocumentSettings();
+                this.$emit('after-hide');
+            },
+            onMaskClick(event) {
+                if (this.dismissable && this.modal && this.mask === event.target) {
+                    this.hide();
+                }
+            },
+            focus() {
+                const findFocusableElement = (container) => {
+                    return container && container.querySelector('[autofocus]');
                 };
 
-                document.addEventListener('click', this.outsideClickListener, true);
+                let focusTarget = this.$slots.header && findFocusableElement(this.headerContainer);
+
+                if (!focusTarget) {
+                    focusTarget = this.$slots.default && findFocusableElement(this.container);
+
+                    if (!focusTarget) {
+                        focusTarget = this.$slots.footer && findFocusableElement(this.footerContainer);
+
+                        if (!focusTarget) {
+                            focusTarget = this.closeButton;
+                        }
+                    }
+                }
+
+                focusTarget && focus(focusTarget);
+            },
+            enableDocumentSettings() {
+                if (this.dismissable && !this.modal) {
+                    this.bindOutsideClickListener();
+                }
+
+                if (this.blockScroll) {
+                    blockBodyScroll();
+                }
+            },
+            disableDocumentSettings() {
+                this.unbindOutsideClickListener();
+
+                if (this.blockScroll) {
+                    unblockBodyScroll();
+                }
+            },
+            onKeydown(event) {
+                if (event.code === 'Escape' && this.closeOnEscape) {
+                    this.hide();
+                }
+            },
+            containerRef(el) {
+                this.container = el;
+            },
+            maskRef(el) {
+                this.mask = el;
+            },
+            contentRef(el) {
+                this.content = el;
+            },
+            headerContainerRef(el) {
+                this.headerContainer = el;
+            },
+            footerContainerRef(el) {
+                this.footerContainer = el;
+            },
+            closeButtonRef(el) {
+                this.closeButton = el ? el.$el : undefined;
+            },
+            bindDocumentKeyDownListener() {
+                if (!this.documentKeydownListener) {
+                    this.documentKeydownListener = this.onKeydown;
+                    document.addEventListener('keydown', this.documentKeydownListener);
+                }
+            },
+            unbindDocumentKeyDownListener() {
+                if (this.documentKeydownListener) {
+                    document.removeEventListener('keydown', this.documentKeydownListener);
+                    this.documentKeydownListener = null;
+                }
+            },
+            bindOutsideClickListener() {
+                if (!this.outsideClickListener) {
+                    this.outsideClickListener = (event) => {
+                        if (this.isOutsideClicked(event)) {
+                            this.hide();
+                        }
+                    };
+
+                    document.addEventListener('click', this.outsideClickListener, true);
+                }
+            },
+            unbindOutsideClickListener() {
+                if (this.outsideClickListener) {
+                    document.removeEventListener('click', this.outsideClickListener, true);
+                    this.outsideClickListener = null;
+                }
+            },
+            isOutsideClicked(event) {
+                return this.container && !this.container.contains(event.target);
             }
         },
-        unbindOutsideClickListener() {
-            if (this.outsideClickListener) {
-                document.removeEventListener('click', this.outsideClickListener, true);
-                this.outsideClickListener = null;
+        computed: {
+            fullScreen() {
+                return this.position === 'full';
+            },
+            closeAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
+            },
+            dataP() {
+                return cn({
+                    'full-screen': this.position === 'full',
+                    [this.position]: this.position,
+                    open: this.containerVisible,
+                    modal: this.modal
+                });
             }
         },
-        isOutsideClicked(event) {
-            return this.container && !this.container.contains(event.target);
-        }
-    },
-    computed: {
-        fullScreen() {
-            return this.position === 'full';
+        directives: {
+            focustrap: FocusTrap
         },
-        closeAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
-        },
-        dataP() {
-            return cn({
-                'full-screen': this.position === 'full',
-                [this.position]: this.position,
-                open: this.containerVisible,
-                modal: this.modal
-            });
+        components: {
+            Button,
+            Portal,
+            TimesIcon
         }
-    },
-    directives: {
-        focustrap: FocusTrap
-    },
-    components: {
-        Button,
-        Portal,
-        TimesIcon
-    }
-};
+    };
 </script>

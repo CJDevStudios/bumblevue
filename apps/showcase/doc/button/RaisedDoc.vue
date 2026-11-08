@@ -16,11 +16,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Primary" raised />
 <Button label="Secondary" severity="secondary" raised />
 <Button label="Success" severity="success" raised />
@@ -30,7 +30,7 @@ export default {
 <Button label="Danger" severity="danger" raised />
 <Button label="Contrast" severity="contrast" raised />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center flex-wrap gap-4">
         <Button label="Primary" raised />
@@ -47,8 +47,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

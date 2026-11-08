@@ -20,12 +20,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            size: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                size: null,
+                code: {
+                    basic: `
 <div class="card flex flex-wrap justify-center gap-4">
     <div class="flex items-center gap-2">
         <Checkbox v-model="size" inputId="size_small" name="size" value="Small" size="small" />
@@ -41,7 +41,7 @@ export default {
     </div>
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <div class="flex items-center gap-2">
@@ -65,8 +65,8 @@ import { ref } from "vue";
 const size = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

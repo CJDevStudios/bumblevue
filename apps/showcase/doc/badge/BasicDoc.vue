@@ -10,15 +10,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Badge value="2"></Badge>
 <Badge>10</Badge>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-2">
         <Badge value="2"></Badge>
@@ -30,8 +30,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

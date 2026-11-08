@@ -14,18 +14,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <span id="label_status" />
 <ProgressBar aria-labelledby="label_status" />
 
 <ProgressBar aria-label="Status" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

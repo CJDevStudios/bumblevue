@@ -19,20 +19,20 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            size: { label: 'Normal', value: 'null' },
-            sizeOptions: [
-                { label: 'Small', value: 'small' },
-                { label: 'Normal', value: 'null' },
-                { label: 'Large', value: 'large' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                size: { label: 'Normal', value: 'null' },
+                sizeOptions: [
+                    { label: 'Small', value: 'small' },
+                    { label: 'Normal', value: 'null' },
+                    { label: 'Large', value: 'large' }
+                ],
+                code: {
+                    basic: `
 <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
 <DataTable :value="products" :size="size.value" tableStyle="min-width: 50rem">
     <Column field="code" header="Code"></Column>
@@ -41,7 +41,7 @@ export default {
     <Column field="quantity" header="Quantity"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex justify-center mb-6">
@@ -74,7 +74,7 @@ const sizeOptions = ref([
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -89,13 +89,13 @@ const sizeOptions = ref([
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
         }
-    }
-};
+    };
 </script>

@@ -66,287 +66,287 @@
 </template>
 
 <script>
-import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
-import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
-import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
-import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
-import Button from '@cjdevstudios/bumblevue/button';
-import Listbox from '@cjdevstudios/bumblevue/listbox';
-import OrderListStyle from '@cjdevstudios/bumblevue/orderlist/style';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+    import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
+    import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
+    import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+    import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import Listbox from '@cjdevstudios/bumblevue/listbox';
+    import OrderListStyle from '@cjdevstudios/bumblevue/orderlist/style';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
 
-export default {
-    name: 'OrderList',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        modelValue: {
-            type: Array,
-            default: null
-        },
-        selection: {
-            type: Array,
-            default: null
-        },
-        dataKey: {
-            type: String,
-            default: null
-        },
-        listStyle: {
-            type: null,
-            default: null
-        },
-        metaKeySelection: {
-            type: Boolean,
-            default: false
-        },
-        autoOptionFocus: {
-            type: Boolean,
-            default: true
-        },
-        focusOnHover: {
-            type: Boolean,
-            default: true
-        },
-        responsive: {
-            type: Boolean,
-            default: true
-        },
-        breakpoint: {
-            type: String,
-            default: '960px'
-        },
-        striped: {
-            type: Boolean,
-            default: false
-        },
-        scrollHeight: {
-            type: String,
-            default: '14rem'
-        },
-        buttonProps: {
-            type: Object,
-            default() {
-                return { severity: 'secondary' };
+    export default {
+        name: 'OrderList',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            modelValue: {
+                type: Array,
+                default: null
+            },
+            selection: {
+                type: Array,
+                default: null
+            },
+            dataKey: {
+                type: String,
+                default: null
+            },
+            listStyle: {
+                type: null,
+                default: null
+            },
+            metaKeySelection: {
+                type: Boolean,
+                default: false
+            },
+            autoOptionFocus: {
+                type: Boolean,
+                default: true
+            },
+            focusOnHover: {
+                type: Boolean,
+                default: true
+            },
+            responsive: {
+                type: Boolean,
+                default: true
+            },
+            breakpoint: {
+                type: String,
+                default: '960px'
+            },
+            striped: {
+                type: Boolean,
+                default: false
+            },
+            scrollHeight: {
+                type: String,
+                default: '14rem'
+            },
+            buttonProps: {
+                type: Object,
+                default() {
+                    return { severity: 'secondary' };
+                }
+            },
+            moveUpButtonProps: {
+                type: null,
+                default: null
+            },
+            moveTopButtonProps: {
+                type: null,
+                default: null
+            },
+            moveDownButtonProps: {
+                type: null,
+                default: null
+            },
+            moveBottomButtonProps: {
+                type: null,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
             }
         },
-        moveUpButtonProps: {
-            type: null,
-            default: null
+        emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'focus', 'blur'],
+        style: OrderListStyle,
+        provide() {
+            return {
+                $pcOrderList: this,
+                $parentInstance: this
+            };
         },
-        moveTopButtonProps: {
-            type: null,
-            default: null
+        itemTouched: false,
+        reorderDirection: null,
+        styleElement: null,
+        list: null,
+        data() {
+            return {
+                d_selection: this.selection
+            };
         },
-        moveDownButtonProps: {
-            type: null,
-            default: null
+        beforeUnmount() {
+            this.destroyStyle();
         },
-        moveBottomButtonProps: {
-            type: null,
-            default: null
+        updated() {
+            if (this.reorderDirection) {
+                this.updateListScroll();
+                this.reorderDirection = null;
+            }
         },
-        tabindex: {
-            type: Number,
-            default: 0
+        mounted() {
+            if (this.responsive) {
+                this.createStyle();
+            }
         },
-        disabled: {
-            type: Boolean,
-            default: false
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'focus', 'blur'],
-    style: OrderListStyle,
-    provide() {
-        return {
-            $pcOrderList: this,
-            $parentInstance: this
-        };
-    },
-    itemTouched: false,
-    reorderDirection: null,
-    styleElement: null,
-    list: null,
-    data() {
-        return {
-            d_selection: this.selection
-        };
-    },
-    beforeUnmount() {
-        this.destroyStyle();
-    },
-    updated() {
-        if (this.reorderDirection) {
-            this.updateListScroll();
-            this.reorderDirection = null;
-        }
-    },
-    mounted() {
-        if (this.responsive) {
-            this.createStyle();
-        }
-    },
-    methods: {
-        updateSelection(event) {
-            this.$emit('update:selection', this.d_selection);
-            this.$emit('selection-change', {
-                originalEvent: event,
-                value: this.d_selection
-            });
-        },
-        onChangeSelection(params) {
-            this.d_selection = params.value;
-            this.updateSelection(params.event);
-        },
-        onListFocus(event) {
-            this.$emit('focus', event);
-        },
-        onListBlur(event) {
-            this.$emit('blur', event);
-        },
-        onReorderUpdate(event, value) {
-            this.$emit('update:modelValue', value);
-            this.$emit('reorder', {
-                originalEvent: event,
-                value: value,
-                direction: this.reorderDirection
-            });
-        },
-        moveUp(event) {
-            if (this.d_selection) {
-                let value = [...this.modelValue];
+        methods: {
+            updateSelection(event) {
+                this.$emit('update:selection', this.d_selection);
+                this.$emit('selection-change', {
+                    originalEvent: event,
+                    value: this.d_selection
+                });
+            },
+            onChangeSelection(params) {
+                this.d_selection = params.value;
+                this.updateSelection(params.event);
+            },
+            onListFocus(event) {
+                this.$emit('focus', event);
+            },
+            onListBlur(event) {
+                this.$emit('blur', event);
+            },
+            onReorderUpdate(event, value) {
+                this.$emit('update:modelValue', value);
+                this.$emit('reorder', {
+                    originalEvent: event,
+                    value: value,
+                    direction: this.reorderDirection
+                });
+            },
+            moveUp(event) {
+                if (this.d_selection) {
+                    let value = [...this.modelValue];
 
-                for (let i = 0; i < this.d_selection.length; i++) {
-                    let selectedItem = this.d_selection[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, value);
+                    for (let i = 0; i < this.d_selection.length; i++) {
+                        let selectedItem = this.d_selection[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, value);
 
-                    if (selectedItemIndex !== 0) {
-                        let movedItem = value[selectedItemIndex];
-                        let temp = value[selectedItemIndex - 1];
+                        if (selectedItemIndex !== 0) {
+                            let movedItem = value[selectedItemIndex];
+                            let temp = value[selectedItemIndex - 1];
 
-                        value[selectedItemIndex - 1] = movedItem;
-                        value[selectedItemIndex] = temp;
-                    } else {
-                        break;
+                            value[selectedItemIndex - 1] = movedItem;
+                            value[selectedItemIndex] = temp;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    this.reorderDirection = 'up';
+                    this.onReorderUpdate(event, value);
+                }
+            },
+            moveTop(event) {
+                if (this.d_selection) {
+                    let value = [...this.modelValue];
+
+                    for (let i = 0; i < this.d_selection.length; i++) {
+                        let selectedItem = this.d_selection[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, value);
+
+                        if (selectedItemIndex !== 0) {
+                            let movedItem = value.splice(selectedItemIndex, 1)[0];
+
+                            value.unshift(movedItem);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    this.reorderDirection = 'top';
+                    this.onReorderUpdate(event, value);
+                }
+            },
+            moveDown(event) {
+                if (this.d_selection) {
+                    let value = [...this.modelValue];
+
+                    for (let i = this.d_selection.length - 1; i >= 0; i--) {
+                        let selectedItem = this.d_selection[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, value);
+
+                        if (selectedItemIndex !== value.length - 1) {
+                            let movedItem = value[selectedItemIndex];
+                            let temp = value[selectedItemIndex + 1];
+
+                            value[selectedItemIndex + 1] = movedItem;
+                            value[selectedItemIndex] = temp;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    this.reorderDirection = 'down';
+                    this.onReorderUpdate(event, value);
+                }
+            },
+            moveBottom(event) {
+                if (this.d_selection) {
+                    let value = [...this.modelValue];
+
+                    for (let i = this.d_selection.length - 1; i >= 0; i--) {
+                        let selectedItem = this.d_selection[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, value);
+
+                        if (selectedItemIndex !== value.length - 1) {
+                            let movedItem = value.splice(selectedItemIndex, 1)[0];
+
+                            value.push(movedItem);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    this.reorderDirection = 'bottom';
+                    this.onReorderUpdate(event, value);
+                }
+            },
+            updateListScroll() {
+                this.list = findSingle(this.$refs.listbox.$el, '[data-pc-section="list"]');
+
+                const listItems = find(this.list, '[data-pc-section="item"][data-p-selected="true"]');
+
+                if (listItems && listItems.length) {
+                    switch (this.reorderDirection) {
+                        case 'up':
+                            scrollInView(this.list, listItems[0]);
+                            break;
+
+                        case 'top':
+                            this.list.scrollTop = 0;
+                            break;
+
+                        case 'down':
+                            scrollInView(this.list, listItems[listItems.length - 1]);
+                            break;
+
+                        case 'bottom':
+                            this.list.scrollTop = this.list.scrollHeight;
+                            break;
+
+                        default:
+                            break;
                     }
                 }
+            },
+            createStyle() {
+                if (!this.styleElement && !this.isUnstyled) {
+                    this.styleElement = document.createElement('style');
+                    this.styleElement.type = 'text/css';
+                    setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
+                    document.head.appendChild(this.styleElement);
 
-                this.reorderDirection = 'up';
-                this.onReorderUpdate(event, value);
-            }
-        },
-        moveTop(event) {
-            if (this.d_selection) {
-                let value = [...this.modelValue];
-
-                for (let i = 0; i < this.d_selection.length; i++) {
-                    let selectedItem = this.d_selection[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, value);
-
-                    if (selectedItemIndex !== 0) {
-                        let movedItem = value.splice(selectedItemIndex, 1)[0];
-
-                        value.unshift(movedItem);
-                    } else {
-                        break;
-                    }
-                }
-
-                this.reorderDirection = 'top';
-                this.onReorderUpdate(event, value);
-            }
-        },
-        moveDown(event) {
-            if (this.d_selection) {
-                let value = [...this.modelValue];
-
-                for (let i = this.d_selection.length - 1; i >= 0; i--) {
-                    let selectedItem = this.d_selection[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, value);
-
-                    if (selectedItemIndex !== value.length - 1) {
-                        let movedItem = value[selectedItemIndex];
-                        let temp = value[selectedItemIndex + 1];
-
-                        value[selectedItemIndex + 1] = movedItem;
-                        value[selectedItemIndex] = temp;
-                    } else {
-                        break;
-                    }
-                }
-
-                this.reorderDirection = 'down';
-                this.onReorderUpdate(event, value);
-            }
-        },
-        moveBottom(event) {
-            if (this.d_selection) {
-                let value = [...this.modelValue];
-
-                for (let i = this.d_selection.length - 1; i >= 0; i--) {
-                    let selectedItem = this.d_selection[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, value);
-
-                    if (selectedItemIndex !== value.length - 1) {
-                        let movedItem = value.splice(selectedItemIndex, 1)[0];
-
-                        value.push(movedItem);
-                    } else {
-                        break;
-                    }
-                }
-
-                this.reorderDirection = 'bottom';
-                this.onReorderUpdate(event, value);
-            }
-        },
-        updateListScroll() {
-            this.list = findSingle(this.$refs.listbox.$el, '[data-pc-section="list"]');
-
-            const listItems = find(this.list, '[data-pc-section="item"][data-p-selected="true"]');
-
-            if (listItems && listItems.length) {
-                switch (this.reorderDirection) {
-                    case 'up':
-                        scrollInView(this.list, listItems[0]);
-                        break;
-
-                    case 'top':
-                        this.list.scrollTop = 0;
-                        break;
-
-                    case 'down':
-                        scrollInView(this.list, listItems[listItems.length - 1]);
-                        break;
-
-                    case 'bottom':
-                        this.list.scrollTop = this.list.scrollHeight;
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-        },
-        createStyle() {
-            if (!this.styleElement && !this.isUnstyled) {
-                this.styleElement = document.createElement('style');
-                this.styleElement.type = 'text/css';
-                setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
-                document.head.appendChild(this.styleElement);
-
-                let innerHTML = `
+                    let innerHTML = `
 @media screen and (max-width: ${this.breakpoint}) {
     .p-orderlist[${this.$attrSelector}] {
         flex-direction: column;
@@ -358,46 +358,46 @@ export default {
 }
 `;
 
-                this.styleElement.innerHTML = innerHTML;
+                    this.styleElement.innerHTML = innerHTML;
+                }
+            },
+            destroyStyle() {
+                if (this.styleElement) {
+                    document.head.removeChild(this.styleElement);
+                    this.styleElement = null;
+                }
+            },
+            moveDisabled() {
+                return this.disabled ? true : !this.d_selection || !this.d_selection.length ? true : false;
             }
         },
-        destroyStyle() {
-            if (this.styleElement) {
-                document.head.removeChild(this.styleElement);
-                this.styleElement = null;
+        computed: {
+            moveUpAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveUp : undefined;
+            },
+            moveTopAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveTop : undefined;
+            },
+            moveDownAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveDown : undefined;
+            },
+            moveBottomAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveBottom : undefined;
+            },
+            hasSelectedOption() {
+                return isNotEmpty(this.d_selection);
             }
         },
-        moveDisabled() {
-            return this.disabled ? true : !this.d_selection || !this.d_selection.length ? true : false;
+        components: {
+            Listbox,
+            Button,
+            AngleUpIcon,
+            AngleDownIcon,
+            AngleDoubleUpIcon,
+            AngleDoubleDownIcon
+        },
+        directives: {
+            ripple: Ripple
         }
-    },
-    computed: {
-        moveUpAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveUp : undefined;
-        },
-        moveTopAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveTop : undefined;
-        },
-        moveDownAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveDown : undefined;
-        },
-        moveBottomAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveBottom : undefined;
-        },
-        hasSelectedOption() {
-            return isNotEmpty(this.d_selection);
-        }
-    },
-    components: {
-        Listbox,
-        Button,
-        AngleUpIcon,
-        AngleDownIcon,
-        AngleDoubleUpIcon,
-        AngleDoubleDownIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

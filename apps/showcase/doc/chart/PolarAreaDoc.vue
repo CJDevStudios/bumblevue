@@ -9,19 +9,19 @@
 </template>
 
 <script>
-import EventBus from '@/app/AppEventBus';
+    import EventBus from '@/app/AppEventBus';
 
-export default {
-    redrawListener: null,
-    data() {
-        return {
-            chartData: null,
-            chartOptions: null,
-            code: {
-                basic: `
+    export default {
+        redrawListener: null,
+        data() {
+            return {
+                chartData: null,
+                chartOptions: null,
+                code: {
+                    basic: `
 <Chart type="polarArea" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Chart type="polarArea" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
@@ -83,67 +83,67 @@ const setChartOptions = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    beforeUnmount() {
-        EventBus.off('dark-mode-toggle-complete', this.redrawListener);
-        EventBus.off('theme-palette-change', this.redrawListener);
-    },
-    mounted() {
-        this.chartData = this.setChartData();
-        this.chartOptions = this.setChartOptions();
-
-        this.redrawListener = () => {
-            this.chartOptions = this.setChartOptions();
-        };
-
-        EventBus.on('theme-palette-change', this.redrawListener);
-        EventBus.on('dark-mode-toggle-complete', this.redrawListener);
-    },
-    methods: {
-        setChartData() {
-            const documentStyle = getComputedStyle(document.documentElement);
-
-            return {
-                datasets: [
-                    {
-                        data: [11, 16, 7, 3, 14],
-                        backgroundColor: [
-                            documentStyle.getPropertyValue('--p-pink-500'),
-                            documentStyle.getPropertyValue('--p-gray-500'),
-                            documentStyle.getPropertyValue('--p-orange-500'),
-                            documentStyle.getPropertyValue('--p-purple-500'),
-                            documentStyle.getPropertyValue('--p-cyan-500')
-                        ],
-                        label: 'My dataset'
-                    }
-                ],
-                labels: ['Pink', 'Gray', 'Orange', 'Purple', 'Cyan']
-            };
-        },
-        setChartOptions() {
-            const documentStyle = getComputedStyle(document.documentElement);
-            const textColor = documentStyle.getPropertyValue('--p-text-color');
-            const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
-
-            return {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: textColor
-                        }
-                    }
-                },
-                scales: {
-                    r: {
-                        grid: {
-                            color: surfaceBorder
-                        }
-                    }
                 }
             };
+        },
+        beforeUnmount() {
+            EventBus.off('dark-mode-toggle-complete', this.redrawListener);
+            EventBus.off('theme-palette-change', this.redrawListener);
+        },
+        mounted() {
+            this.chartData = this.setChartData();
+            this.chartOptions = this.setChartOptions();
+
+            this.redrawListener = () => {
+                this.chartOptions = this.setChartOptions();
+            };
+
+            EventBus.on('theme-palette-change', this.redrawListener);
+            EventBus.on('dark-mode-toggle-complete', this.redrawListener);
+        },
+        methods: {
+            setChartData() {
+                const documentStyle = getComputedStyle(document.documentElement);
+
+                return {
+                    datasets: [
+                        {
+                            data: [11, 16, 7, 3, 14],
+                            backgroundColor: [
+                                documentStyle.getPropertyValue('--p-pink-500'),
+                                documentStyle.getPropertyValue('--p-gray-500'),
+                                documentStyle.getPropertyValue('--p-orange-500'),
+                                documentStyle.getPropertyValue('--p-purple-500'),
+                                documentStyle.getPropertyValue('--p-cyan-500')
+                            ],
+                            label: 'My dataset'
+                        }
+                    ],
+                    labels: ['Pink', 'Gray', 'Orange', 'Purple', 'Cyan']
+                };
+            },
+            setChartOptions() {
+                const documentStyle = getComputedStyle(document.documentElement);
+                const textColor = documentStyle.getPropertyValue('--p-text-color');
+                const surfaceBorder = documentStyle.getPropertyValue('--p-content-border-color');
+
+                return {
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: textColor
+                            }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            grid: {
+                                color: surfaceBorder
+                            }
+                        }
+                    }
+                };
+            }
         }
-    }
-};
+    };
 </script>

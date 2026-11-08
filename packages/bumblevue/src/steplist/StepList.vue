@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import StepListStyle from '@cjdevstudios/bumblevue/steplist/style';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import StepListStyle from '@cjdevstudios/bumblevue/steplist/style';
 
-export default {
-    name: 'StepList',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    style: StepListStyle,
-    provide() {
-        return {
-            $pcStepList: this,
-            $parentInstance: this
-        };
-    }
-};
+    export default {
+        name: 'StepList',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        style: StepListStyle,
+        provide() {
+            return {
+                $pcStepList: this,
+                $parentInstance: this
+            };
+        }
+    };
 </script>

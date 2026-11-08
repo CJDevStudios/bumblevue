@@ -64,102 +64,102 @@
 </template>
 
 <script>
-import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-export default {
-    name: 'CascadeSelectSub',
-    hostName: 'CascadeSelect',
-    extends: BaseComponent,
-    emits: ['option-change', 'option-focus-change', 'option-focus-enter-change'],
-    container: null,
-    props: {
-        selectId: String,
-        focusedOptionId: String,
-        options: Array,
-        optionLabel: String | Function,
-        optionValue: String,
-        optionDisabled: null,
-        optionGroupIcon: String,
-        optionGroupLabel: String,
-        optionGroupChildren: {
-            type: [String, Array],
-            default: null
+    import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    export default {
+        name: 'CascadeSelectSub',
+        hostName: 'CascadeSelect',
+        extends: BaseComponent,
+        emits: ['option-change', 'option-focus-change', 'option-focus-enter-change'],
+        container: null,
+        props: {
+            selectId: String,
+            focusedOptionId: String,
+            options: Array,
+            optionLabel: String | Function,
+            optionValue: String,
+            optionDisabled: null,
+            optionGroupIcon: String,
+            optionGroupLabel: String,
+            optionGroupChildren: {
+                type: [String, Array],
+                default: null
+            },
+            activeOptionPath: Array,
+            level: Number,
+            templates: null,
+            value: null
         },
-        activeOptionPath: Array,
-        level: Number,
-        templates: null,
-        value: null
-    },
-    methods: {
-        getOptionId(processedOption) {
-            return `${this.selectId}_${processedOption.key}`;
+        methods: {
+            getOptionId(processedOption) {
+                return `${this.selectId}_${processedOption.key}`;
+            },
+            getOptionLabel(processedOption) {
+                return this.optionLabel ? resolveFieldData(processedOption.option, this.optionLabel) : processedOption.option;
+            },
+            getOptionValue(processedOption) {
+                return this.optionValue ? resolveFieldData(processedOption.option, this.optionValue) : processedOption.option;
+            },
+            getPTOptions(processedOption, index, key) {
+                return this.ptm(key, {
+                    context: {
+                        option: processedOption,
+                        index,
+                        level: this.level,
+                        optionGroup: this.isOptionGroup(processedOption),
+                        active: this.isOptionActive(processedOption),
+                        focused: this.isOptionFocused(processedOption),
+                        disabled: this.isOptionDisabled(processedOption)
+                    }
+                });
+            },
+            isOptionDisabled(processedOption) {
+                return this.optionDisabled ? resolveFieldData(processedOption.option, this.optionDisabled) : false;
+            },
+            getOptionGroupLabel(processedOption) {
+                return this.optionGroupLabel ? resolveFieldData(processedOption.option, this.optionGroupLabel) : null;
+            },
+            getOptionGroupChildren(processedOption) {
+                return processedOption.children;
+            },
+            isOptionGroup(processedOption) {
+                return isNotEmpty(processedOption.children);
+            },
+            isOptionSelected(processedOption) {
+                return equals(this.value, processedOption?.option);
+            },
+            isOptionActive(processedOption) {
+                return this.activeOptionPath && this.activeOptionPath.some((path) => path.key === processedOption.key);
+            },
+            isOptionFocused(processedOption) {
+                return this.focusedOptionId === this.getOptionId(processedOption);
+            },
+            getOptionLabelToRender(processedOption) {
+                return this.isOptionGroup(processedOption) ? this.getOptionGroupLabel(processedOption) : this.getOptionLabel(processedOption);
+            },
+            onOptionClick(event, processedOption) {
+                this.$emit('option-change', { originalEvent: event, processedOption, isFocus: true });
+            },
+            onOptionMouseEnter(event, processedOption) {
+                this.$emit('option-focus-enter-change', { originalEvent: event, processedOption });
+            },
+            onOptionMouseMove(event, processedOption) {
+                this.$emit('option-focus-change', { originalEvent: event, processedOption });
+            },
+            containerRef(el) {
+                this.container = el;
+            },
+            listAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.listLabel : undefined;
+            }
         },
-        getOptionLabel(processedOption) {
-            return this.optionLabel ? resolveFieldData(processedOption.option, this.optionLabel) : processedOption.option;
+        directives: {
+            ripple: Ripple
         },
-        getOptionValue(processedOption) {
-            return this.optionValue ? resolveFieldData(processedOption.option, this.optionValue) : processedOption.option;
-        },
-        getPTOptions(processedOption, index, key) {
-            return this.ptm(key, {
-                context: {
-                    option: processedOption,
-                    index,
-                    level: this.level,
-                    optionGroup: this.isOptionGroup(processedOption),
-                    active: this.isOptionActive(processedOption),
-                    focused: this.isOptionFocused(processedOption),
-                    disabled: this.isOptionDisabled(processedOption)
-                }
-            });
-        },
-        isOptionDisabled(processedOption) {
-            return this.optionDisabled ? resolveFieldData(processedOption.option, this.optionDisabled) : false;
-        },
-        getOptionGroupLabel(processedOption) {
-            return this.optionGroupLabel ? resolveFieldData(processedOption.option, this.optionGroupLabel) : null;
-        },
-        getOptionGroupChildren(processedOption) {
-            return processedOption.children;
-        },
-        isOptionGroup(processedOption) {
-            return isNotEmpty(processedOption.children);
-        },
-        isOptionSelected(processedOption) {
-            return equals(this.value, processedOption?.option);
-        },
-        isOptionActive(processedOption) {
-            return this.activeOptionPath && this.activeOptionPath.some((path) => path.key === processedOption.key);
-        },
-        isOptionFocused(processedOption) {
-            return this.focusedOptionId === this.getOptionId(processedOption);
-        },
-        getOptionLabelToRender(processedOption) {
-            return this.isOptionGroup(processedOption) ? this.getOptionGroupLabel(processedOption) : this.getOptionLabel(processedOption);
-        },
-        onOptionClick(event, processedOption) {
-            this.$emit('option-change', { originalEvent: event, processedOption, isFocus: true });
-        },
-        onOptionMouseEnter(event, processedOption) {
-            this.$emit('option-focus-enter-change', { originalEvent: event, processedOption });
-        },
-        onOptionMouseMove(event, processedOption) {
-            this.$emit('option-focus-change', { originalEvent: event, processedOption });
-        },
-        containerRef(el) {
-            this.container = el;
-        },
-        listAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.listLabel : undefined;
+        components: {
+            AngleRightIcon: AngleRightIcon
         }
-    },
-    directives: {
-        ripple: Ripple
-    },
-    components: {
-        AngleRightIcon: AngleRightIcon
-    }
-};
+    };
 </script>

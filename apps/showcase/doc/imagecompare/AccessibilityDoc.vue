@@ -60,11 +60,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <span id="image_label">Compare Images</span>
 <ImageCompare class="shadow-lg rounded-2xl" aria-labelledby="image-label">
     ...
@@ -74,8 +74,8 @@ export default {
     ...
 </ImageCompare>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

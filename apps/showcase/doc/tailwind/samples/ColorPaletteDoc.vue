@@ -27,13 +27,13 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            shades: [0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
-            colors: ['primary', 'surface'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                shades: [0, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
+                colors: ['primary', 'surface'],
+                code: {
+                    basic: `
 <div class="flex flex-col gap-12">
     <div class="flex gap-6 flex-wrap">
         <div class="rounded-border p-4 border border-transparent flex items-center justify-center bg-primary hover:bg-primary-emphasis text-primary-contrast font-medium flex-auto transition-colors">primary</div>
@@ -42,8 +42,8 @@ export default {
     </div>
 </div>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -32,11 +32,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="switch1">Remember Me</label>
 <ToggleSwitch inputId="switch1" />
 
@@ -45,8 +45,8 @@ export default {
 
 <ToggleSwitch aria-label="Remember Me" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

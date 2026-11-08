@@ -23,19 +23,19 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            selectedProduct: null,
-            menuModel: [
-                { label: 'View', icon: 'pi pi-fw pi-search', command: () => this.viewProduct(this.selectedProduct) },
-                { label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.deleteProduct(this.selectedProduct) }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                selectedProduct: null,
+                menuModel: [
+                    { label: 'View', icon: 'pi pi-fw pi-search', command: () => this.viewProduct(this.selectedProduct) },
+                    { label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.deleteProduct(this.selectedProduct) }
+                ],
+                code: {
+                    basic: `
 <ContextMenu ref="cm" :model="menuModel" @hide="selectedProduct = null" />
 <DataTable v-model:contextMenuSelection="selectedProduct" :value="products" contextMenu
         @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
@@ -49,7 +49,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ContextMenu ref="cm" :model="menuModel" @hide="selectedProduct = null" />
@@ -102,7 +102,7 @@ const formatCurrency = (value) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -117,27 +117,27 @@ const formatCurrency = (value) => {
     rating: 5
 },
 ...`
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            onRowContextMenu(event) {
+                this.$refs.cm.show(event.originalEvent);
+            },
+            viewProduct(product) {
+                this.$toast.add({ severity: 'info', summary: 'Product Selected', detail: product.name, life: 3000 });
+            },
+            deleteProduct(product) {
+                this.products = this.products.filter((p) => p.id !== product.id);
+                this.$toast.add({ severity: 'error', summary: 'Product Deleted', detail: product.name, life: 3000 });
+                this.selectedProduct = null;
+            },
+            formatCurrency(value) {
+                return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
-        },
-        onRowContextMenu(event) {
-            this.$refs.cm.show(event.originalEvent);
-        },
-        viewProduct(product) {
-            this.$toast.add({ severity: 'info', summary: 'Product Selected', detail: product.name, life: 3000 });
-        },
-        deleteProduct(product) {
-            this.products = this.products.filter((p) => p.id !== product.id);
-            this.$toast.add({ severity: 'error', summary: 'Product Deleted', detail: product.name, life: 3000 });
-            this.selectedProduct = null;
-        },
-        formatCurrency(value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
         }
-    }
-};
+    };
 </script>

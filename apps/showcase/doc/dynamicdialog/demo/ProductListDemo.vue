@@ -23,35 +23,35 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
-import InfoDemo from './InfoDemo.vue';
+    import { ProductService } from '@/service/ProductService';
+    import InfoDemo from './InfoDemo.vue';
 
-export default {
-    inject: ['dialogRef'],
-    data() {
-        return {
-            products: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
-    },
-    methods: {
-        selectProduct(data) {
-            this.dialogRef.close(data);
+    export default {
+        inject: ['dialogRef'],
+        data() {
+            return {
+                products: null
+            };
         },
-        showInfo() {
-            this.$dialog.open(InfoDemo, {
-                props: {
-                    header: 'Information',
-                    modal: true,
-                    dismissableMask: true
-                },
-                data: {
-                    totalProducts: this.products ? this.products.length : 0
-                }
-            });
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
+        },
+        methods: {
+            selectProduct(data) {
+                this.dialogRef.close(data);
+            },
+            showInfo() {
+                this.$dialog.open(InfoDemo, {
+                    props: {
+                        header: 'Information',
+                        modal: true,
+                        dismissableMask: true
+                    },
+                    data: {
+                        totalProducts: this.products ? this.products.length : 0
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>

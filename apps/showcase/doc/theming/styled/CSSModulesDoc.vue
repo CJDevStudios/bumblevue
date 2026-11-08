@@ -13,11 +13,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <style module>
 .myinput {
     border-radius: 2rem;
@@ -26,23 +26,23 @@ export default {
 }
 </style>
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <template>
     <InputText :class="$style.myinput" placeholder="Search" />
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style module>
-.myinput {
-    border-radius: 2rem;
-    padding: 1rem 2rem;
-    border-width: 2px;
-}
+    .myinput {
+        border-radius: 2rem;
+        padding: 1rem 2rem;
+        border-width: 2px;
+    }
 </style>

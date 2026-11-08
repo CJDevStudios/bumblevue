@@ -10,16 +10,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 2,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 2,
+                code: {
+                    basic: `
 <RadioButton v-model="value" :value="1" disabled />
 <RadioButton v-model="value" :value="2" disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-2">
         <RadioButton v-model="value" :value="1" disabled />
@@ -33,8 +33,8 @@ import { ref } from "vue";
 const value = ref(2);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

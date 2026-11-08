@@ -70,18 +70,18 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <ConfirmPopup id="confirm" aria-label="popup" />
 
 <Button @click="openPopup($event)" label="Confirm" id="confirmButton" :aria-expanded="isVisible" :aria-controls="isVisible ? 'confirm' : null" />
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <script setup>
 const confirm = useConfirm();
 const isVisible = ref(false);
@@ -100,8 +100,8 @@ const openPopup = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

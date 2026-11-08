@@ -24,62 +24,62 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { ProductService } from '@/service/ProductService';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '1400px',
-                    numVisible: 2,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '1199px',
-                    numVisible: 3,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '767px',
-                    numVisible: 2,
-                    numScroll: 1
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1,
-                    numScroll: 1
+    export default {
+        data() {
+            return {
+                products: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1400px',
+                        numVisible: 2,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '1199px',
+                        numVisible: 3,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '767px',
+                        numVisible: 2,
+                        numScroll: 1
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1,
+                        numScroll: 1
+                    }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('Carousel'),
+                        key: 'Carousel'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 9)));
+        },
+        methods: {
+            getSeverity(status) {
+                switch (status) {
+                    case 'INSTOCK':
+                        return 'success';
+
+                    case 'LOWSTOCK':
+                        return 'warn';
+
+                    case 'OUTOFSTOCK':
+                        return 'danger';
+
+                    default:
+                        return null;
                 }
-            ],
-            docs: [
-                {
-                    data: getPTOptions('Carousel'),
-                    key: 'Carousel'
-                }
-            ]
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 9)));
-    },
-    methods: {
-        getSeverity(status) {
-            switch (status) {
-                case 'INSTOCK':
-                    return 'success';
-
-                case 'LOWSTOCK':
-                    return 'warn';
-
-                case 'OUTOFSTOCK':
-                    return 'danger';
-
-                default:
-                    return null;
             }
         }
-    }
-};
+    };
 </script>

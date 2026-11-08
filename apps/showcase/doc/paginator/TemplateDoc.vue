@@ -27,19 +27,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            first: 0,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                first: 0,
+                code: {
+                    basic: `
 <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
 
 <div class="p-4 text-center">
     <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded-sm w-full sm:w-120" />
 </div>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
@@ -56,8 +56,8 @@ import { ref } from 'vue';
 const first = ref(0);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import { ProductService } from '/service/ProductService';
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    import { ProductService } from '/service/ProductService';
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <DeferredContent @load="onDataLoad" role="region" aria-live="polite" aria-label="Content loaded after page scrolled down">
     <DataTable :value="products">
         <Column field="code" header="Code"></Column>
@@ -33,7 +33,7 @@ export default {
     </DataTable>
 </DeferredContent>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -62,15 +62,15 @@ const onDataLoad = () => {
 };
 <\/script>
 `
-            },
-            products: null
-        };
-    },
-    methods: {
-        onDataLoad() {
-            ProductService.getProductsSmall().then((data) => (this.products = data));
-            this.$toast.add({ severity: 'success', summary: 'Data Initialized', detail: 'Render Completed', life: 2000 });
+                },
+                products: null
+            };
+        },
+        methods: {
+            onDataLoad() {
+                ProductService.getProductsSmall().then((data) => (this.products = data));
+                this.$toast.add({ severity: 'success', summary: 'Data Initialized', detail: 'Render Completed', life: 2000 });
+            }
         }
-    }
-};
+    };
 </script>

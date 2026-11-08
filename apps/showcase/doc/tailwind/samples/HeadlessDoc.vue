@@ -38,12 +38,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            visible: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                visible: false,
+                code: {
+                    basic: `
 <Button label="Login" icon="pi pi-user" @click="visible = true" />
 
 <Dialog v-model:visible="visible" pt:root:class="border-0! bg-transparent!" pt:mask:class="backdrop-blur-xs">
@@ -75,8 +75,8 @@ export default {
     </template>
 </Dialog>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

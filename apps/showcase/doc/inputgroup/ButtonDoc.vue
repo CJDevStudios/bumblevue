@@ -30,12 +30,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [{ label: 'Web Search' }, { label: 'AI Assistant' }, { label: 'History' }],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [{ label: 'Web Search' }, { label: 'AI Assistant' }, { label: 'History' }],
+                code: {
+                    basic: `
 <InputGroup>
     <Button label="Search" />
     <InputText placeholder="Keyword" />
@@ -59,7 +59,7 @@ export default {
     </InputGroupAddon>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col md:flex-row gap-4">
         <InputGroup>
@@ -98,13 +98,13 @@ const toggle = (event) => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            toggle(event) {
+                this.$refs.menu.toggle(event);
             }
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.menu.toggle(event);
         }
-    }
-};
+    };
 </script>

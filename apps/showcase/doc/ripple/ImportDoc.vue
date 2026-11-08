@@ -11,26 +11,26 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import { createApp } from 'vue';
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 const app = createApp(App);
 
 app.use(BumbleVue, { ripple: true });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import Ripple from '@cjdevstudios/bumblevue/ripple';
 
 app.directive('ripple', Ripple);
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

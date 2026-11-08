@@ -10,17 +10,17 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value1: '',
-            value2: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: '',
+                value2: '',
+                code: {
+                    basic: `
 <InputMask v-model="value1" mask="99-999999" placeholder="Serial Key" :invalid="!value1" />
 <InputMask v-model="value2" mask="99-999999" placeholder="Serial Key" :invalid="!value2" variant="filled" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center gap-4">
         <InputMask v-model="value1" mask="99-999999" placeholder="Serial Key" :invalid="!value1" />
@@ -35,8 +35,8 @@ const value1 = ref('');
 const value2 = ref('');
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

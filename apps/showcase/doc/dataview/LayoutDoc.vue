@@ -109,16 +109,16 @@
 </template>
 
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            layout: 'grid',
-            options: ['list', 'grid'],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                layout: 'grid',
+                options: ['list', 'grid'],
+                code: {
+                    basic: `
 <DataView :value="products" :layout="layout">
     <template #header>
         <div class="flex justify-end">
@@ -205,7 +205,7 @@ export default {
     </template>
 </DataView>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataView :value="products" :layout="layout">
@@ -326,7 +326,7 @@ const getSeverity = (product) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -342,28 +342,28 @@ const getSeverity = (product) => {
 },
 ...
         `
-            }
-        };
-    },
-    mounted() {
-        ProductService.getProducts().then((data) => (this.products = data.slice(0, 12)));
-    },
-    methods: {
-        getSeverity(product) {
-            switch (product.inventoryStatus) {
-                case 'INSTOCK':
-                    return 'success';
+                }
+            };
+        },
+        mounted() {
+            ProductService.getProducts().then((data) => (this.products = data.slice(0, 12)));
+        },
+        methods: {
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
 
-                case 'LOWSTOCK':
-                    return 'warn';
+                    case 'LOWSTOCK':
+                        return 'warn';
 
-                case 'OUTOFSTOCK':
-                    return 'danger';
+                    case 'OUTOFSTOCK':
+                        return 'danger';
 
-                default:
-                    return null;
+                    default:
+                        return null;
+                }
             }
         }
-    }
-};
+    };
 </script>

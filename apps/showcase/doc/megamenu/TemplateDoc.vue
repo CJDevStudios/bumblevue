@@ -46,59 +46,59 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Company',
-                    root: true,
-                    items: [
-                        [
-                            {
-                                items: [
-                                    { label: 'Features', icon: 'pi pi-list', subtext: 'Subtext of item' },
-                                    { label: 'Customers', icon: 'pi pi-users', subtext: 'Subtext of item' },
-                                    { label: 'Case Studies', icon: 'pi pi-file', subtext: 'Subtext of item' }
-                                ]
-                            }
-                        ],
-                        [
-                            {
-                                items: [
-                                    { label: 'Solutions', icon: 'pi pi-shield', subtext: 'Subtext of item' },
-                                    { label: 'Faq', icon: 'pi pi-question', subtext: 'Subtext of item' },
-                                    { label: 'Library', icon: 'pi pi-search', subtext: 'Subtext of item' }
-                                ]
-                            }
-                        ],
-                        [
-                            {
-                                items: [
-                                    { label: 'Community', icon: 'pi pi-comments', subtext: 'Subtext of item' },
-                                    { label: 'Rewards', icon: 'pi pi-star', subtext: 'Subtext of item' },
-                                    { label: 'Investors', icon: 'pi pi-globe', subtext: 'Subtext of item' }
-                                ]
-                            }
-                        ],
-                        [
-                            {
-                                items: [{ image: 'https://primefaces.org/cdn/primevue/images/uikit/uikit-system.png', label: 'GET STARTED', subtext: 'Build spectacular apps in no time.' }]
-                            }
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Company',
+                        root: true,
+                        items: [
+                            [
+                                {
+                                    items: [
+                                        { label: 'Features', icon: 'pi pi-list', subtext: 'Subtext of item' },
+                                        { label: 'Customers', icon: 'pi pi-users', subtext: 'Subtext of item' },
+                                        { label: 'Case Studies', icon: 'pi pi-file', subtext: 'Subtext of item' }
+                                    ]
+                                }
+                            ],
+                            [
+                                {
+                                    items: [
+                                        { label: 'Solutions', icon: 'pi pi-shield', subtext: 'Subtext of item' },
+                                        { label: 'Faq', icon: 'pi pi-question', subtext: 'Subtext of item' },
+                                        { label: 'Library', icon: 'pi pi-search', subtext: 'Subtext of item' }
+                                    ]
+                                }
+                            ],
+                            [
+                                {
+                                    items: [
+                                        { label: 'Community', icon: 'pi pi-comments', subtext: 'Subtext of item' },
+                                        { label: 'Rewards', icon: 'pi pi-star', subtext: 'Subtext of item' },
+                                        { label: 'Investors', icon: 'pi pi-globe', subtext: 'Subtext of item' }
+                                    ]
+                                }
+                            ],
+                            [
+                                {
+                                    items: [{ image: 'https://primefaces.org/cdn/primevue/images/uikit/uikit-system.png', label: 'GET STARTED', subtext: 'Build spectacular apps in no time.' }]
+                                }
+                            ]
                         ]
-                    ]
-                },
-                {
-                    label: 'Resources',
-                    root: true
-                },
-                {
-                    label: 'Contact',
-                    root: true
-                }
-            ],
-            code: {
-                basic: `
+                    },
+                    {
+                        label: 'Resources',
+                        root: true
+                    },
+                    {
+                        label: 'Contact',
+                        root: true
+                    }
+                ],
+                code: {
+                    basic: `
 <MegaMenu :model="items" class="p-4 bg-surface-0" style="border-radius: 3rem">
     <template #start>
         <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8">
@@ -130,7 +130,7 @@ export default {
     </template>
 </MegaMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <MegaMenu :model="items" class="p-4 bg-surface-0" style="border-radius: 3rem">
@@ -225,8 +225,8 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

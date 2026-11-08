@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 # Using npm
 npm install zod
 
@@ -20,8 +20,8 @@ yarn add zod
 # Using pnpm
 pnpm add zod
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

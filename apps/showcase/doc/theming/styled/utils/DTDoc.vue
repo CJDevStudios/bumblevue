@@ -6,11 +6,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { $dt } from '@cjdevstudios/bumblevue/themes';
 
 const duration = $dt('transition.duration');
@@ -50,8 +50,8 @@ const primaryColor = $dt('primary.color');
 }
 */
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

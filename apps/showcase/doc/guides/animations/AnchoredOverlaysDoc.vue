@@ -13,19 +13,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            selectedCity: null,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCity: null,
+                cities: [
+                    { name: 'New York', code: 'NY' },
+                    { name: 'Rome', code: 'RM' },
+                    { name: 'London', code: 'LDN' },
+                    { name: 'Istanbul', code: 'IST' },
+                    { name: 'Paris', code: 'PRS' }
+                ],
+                code: {
+                    basic: `
 .p-anchored-overlay-enter-active {
     animation: demo-overlay-in 300ms ease-out;
 }
@@ -48,32 +48,32 @@ export default {
     }
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
 
 <style>
-.demo-select-overlay.p-anchored-overlay-enter-active {
-    animation: demo-overlay-in 300ms ease-out;
-}
-
-.demo-select-overlay.p-anchored-overlay-leave-active {
-    animation: demo-overlay-out 250ms ease-in;
-}
-
-@keyframes demo-overlay-in {
-    from {
-        opacity: 0;
-        transform: translateY(10%);
+    .demo-select-overlay.p-anchored-overlay-enter-active {
+        animation: demo-overlay-in 300ms ease-out;
     }
-}
 
-@keyframes demo-overlay-out {
-    to {
-        opacity: 0;
-        transform: translateY(10%);
+    .demo-select-overlay.p-anchored-overlay-leave-active {
+        animation: demo-overlay-out 250ms ease-in;
     }
-}
+
+    @keyframes demo-overlay-in {
+        from {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+    }
+
+    @keyframes demo-overlay-out {
+        to {
+            opacity: 0;
+            transform: translateY(10%);
+        }
+    }
 </style>

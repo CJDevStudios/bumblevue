@@ -50,11 +50,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <label for="rb1">One</label>
 <RadioButton inputId="rb1" />
 
@@ -63,8 +63,8 @@ export default {
 
 <RadioButton aria-label="Three" />
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

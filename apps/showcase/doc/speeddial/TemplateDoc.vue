@@ -37,48 +37,48 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Add',
-                    icon: 'pi pi-pencil',
-                    command: () => {
-                        this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Add',
+                        icon: 'pi pi-pencil',
+                        command: () => {
+                            this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Update',
+                        icon: 'pi pi-refresh',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-trash',
+                        command: () => {
+                            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Upload',
+                        icon: 'pi pi-upload',
+                        command: () => {
+                            this.$router.push('/fileupload');
+                        }
+                    },
+                    {
+                        label: 'Website',
+                        icon: 'pi pi-external-link',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Update',
-                    icon: 'pi pi-refresh',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-trash',
-                    command: () => {
-                        this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Upload',
-                    icon: 'pi pi-upload',
-                    command: () => {
-                        this.$router.push('/fileupload');
-                    }
-                },
-                {
-                    label: 'Website',
-                    icon: 'pi pi-external-link',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SpeedDial :model="items" direction="up" :transitionDelay="80" :style="{ position: 'absolute' }" pt:menuitem="m-2">
     <template #button="{ toggleCallback }">
         <Button variant="outlined" class="border" @click="toggleCallback">
@@ -98,7 +98,7 @@ export default {
     </template>
 </SpeedDial>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex items-end justify-center" :style="{ position: 'relative', height: '400px' }">
@@ -172,8 +172,8 @@ const items = ref([
 ])
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

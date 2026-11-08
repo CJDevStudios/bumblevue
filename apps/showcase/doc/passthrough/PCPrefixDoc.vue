@@ -1,8 +1,8 @@
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
-            Section names prefixed with <i>pc</i> denote BumbleVue components, distinguishing them from standard DOM elements and indicating the necessity for a nested structure. For example, the "badge" section is identified as <i>pcBadge</i> because
-            the button component incorporates the badge component internally.
+            Section names prefixed with <i>pc</i> denote BumbleVue components, distinguishing them from standard DOM elements and indicating the necessity for a nested structure. For example, the "badge" section is identified as
+            <i>pcBadge</i> because the button component incorporates the badge component internally.
         </p>
     </DocSectionText>
     <div class="card flex justify-center">
@@ -27,11 +27,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
  <Button
     type="button"
     label="Messages"
@@ -49,7 +49,7 @@ export default {
     }"
 />
 `,
-                composition: `
+                    composition: `
 <template>
     <Button
         type="button"
@@ -69,8 +69,8 @@ export default {
     />
 </template>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

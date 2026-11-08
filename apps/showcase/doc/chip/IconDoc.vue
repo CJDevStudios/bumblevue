@@ -17,11 +17,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Chip label="Apple" icon="pi pi-apple" />
 <Chip label="Facebook" icon="pi pi-facebook" />
 <Chip label="Google" icon="pi pi-google" />
@@ -32,7 +32,7 @@ export default {
     </template>
 </Chip>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-2">
         <Chip label="Apple" icon="pi pi-apple" />
@@ -50,8 +50,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

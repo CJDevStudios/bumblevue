@@ -31,12 +31,12 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <div>
     <label for="non-fluid" class="font-bold mb-2 block">Non-Fluid</label>
     <InputText id="non-fluid" />
@@ -57,7 +57,7 @@ export default {
     </div>
 </Fluid>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col gap-6">
         <div>
@@ -86,8 +86,8 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

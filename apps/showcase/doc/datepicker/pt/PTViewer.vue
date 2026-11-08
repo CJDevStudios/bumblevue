@@ -5,19 +5,19 @@
 </template>
 
 <script>
-import { getPTOptions } from '@/components/doc/helpers';
+    import { getPTOptions } from '@/components/doc/helpers';
 
-export default {
-    data() {
-        return {
-            date: null,
-            docs: [
-                {
-                    data: getPTOptions('DatePicker'),
-                    key: 'DatePicker'
-                }
-            ]
-        };
-    }
-};
+    export default {
+        data() {
+            return {
+                date: null,
+                docs: [
+                    {
+                        data: getPTOptions('DatePicker'),
+                        key: 'DatePicker'
+                    }
+                ]
+            };
+        }
+    };
 </script>

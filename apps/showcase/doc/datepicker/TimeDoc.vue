@@ -20,19 +20,19 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            datetime12h: null,
-            datetime24h: null,
-            time: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                datetime12h: null,
+                datetime24h: null,
+                time: null,
+                code: {
+                    basic: `
 <DatePicker id="datepicker-12h" v-model="datetime12h" showTime hourFormat="12" fluid />
 <DatePicker id="datepicker-24h" v-model="datetime24h" showTime hourFormat="24" fluid />
 <DatePicker id="datepicker-timeonly" v-model="time" timeOnly fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap gap-4">
         <div class="flex-auto">
@@ -58,8 +58,8 @@ const datetime24h = ref();
 const time = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

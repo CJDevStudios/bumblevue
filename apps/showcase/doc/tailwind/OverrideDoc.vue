@@ -15,16 +15,16 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 <InputText placeholder="Overridden" class="p-8!" />
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -42,14 +42,14 @@ app.use(BumbleVue, {
     }
  });
 `
-            },
-            code4: {
-                basic: `
+                },
+                code4: {
+                    basic: `
 @import "tailwindcss";
 @import "@cjdevstudios/bumblevue/tailwind.css";
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

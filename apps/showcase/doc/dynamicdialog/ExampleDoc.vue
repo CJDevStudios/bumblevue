@@ -11,20 +11,20 @@
 </template>
 
 <script>
-import { markRaw } from 'vue';
-import FooterDemo from './demo/FooterDemo';
-import ProductListDemo from './demo/ProductListDemo';
+    import { markRaw } from 'vue';
+    import FooterDemo from './demo/FooterDemo';
+    import ProductListDemo from './demo/ProductListDemo';
 
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Select a Product" icon="pi pi-search" @click="showProducts" />
 
 <DynamicDialog />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Select a Product" icon="pi pi-search" @click="showProducts" />
@@ -73,7 +73,7 @@ const showProducts = () => {
 }
 <\/script>
 `,
-                data: `
+                    data: `
 /* ProductService */
 {
     id: '1000',
@@ -88,11 +88,11 @@ const showProducts = () => {
     rating: 5
 },
 ...`
-            },
-            extFiles: {
-                options: {
-                    'src/components/ProductListDemo.vue': {
-                        content: `
+                },
+                extFiles: {
+                    options: {
+                        'src/components/ProductListDemo.vue': {
+                            content: `
 <template>
 	<div>
         <div class="flex justify-end mt-1 mb-4">
@@ -152,9 +152,9 @@ export default {
 }
 <\/script>
 `
-                    },
-                    'src/components/InfoDemo.vue': {
-                        content: `
+                        },
+                        'src/components/InfoDemo.vue': {
+                            content: `
 <template>
     <div>
         <p>There are <strong>{{totalProducts}}</strong> products in total in this list.</p>
@@ -183,9 +183,9 @@ export default {
 }
 <\/script>
                             `
-                    },
-                    'src/components/FooterDemo.vue': {
-                        content: `
+                        },
+                        'src/components/FooterDemo.vue': {
+                            content: `
 <template>
     <Button type="button" label="Cancel" icon="pi pi-times" @click="closeDialog({ buttonType: 'Cancel' })" autofocus></Button>
 </template>
@@ -201,11 +201,11 @@ export default {
 };
 <\/script>
 `
-                    }
-                },
-                composition: {
-                    'src/components/ProductListDemo.vue': {
-                        content: `
+                        }
+                    },
+                    composition: {
+                        'src/components/ProductListDemo.vue': {
+                            content: `
 <template>
 	<div>
         <div class="flex justify-end mt-1 mb-4">
@@ -265,9 +265,9 @@ const showInfo = () => {
 };
 <\/script>
 `
-                    },
-                    'src/components/InfoDemo.vue': {
-                        content: `
+                        },
+                        'src/components/InfoDemo.vue': {
+                            content: `
 <template>
     <div>
         <p>There are <strong>{{totalProducts}}</strong> products in total in this list.</p>
@@ -292,9 +292,9 @@ const closeDialog = () => {
 };
 <\/script>
                             `
-                    },
-                    'src/components/FooterDemo.vue': {
-                        content: `
+                        },
+                        'src/components/FooterDemo.vue': {
+                            content: `
 <template>
     <Button type="button" label="Cancel" icon="pi pi-times" @click="closeDialog({ buttonType: 'Cancel' })" autofocus></Button>
 </template>
@@ -309,40 +309,40 @@ const closeDialog = (e) => {
 };
 <\/script>
 `
+                        }
                     }
                 }
+            };
+        },
+        methods: {
+            showProducts() {
+                const dialogRef = this.$dialog.open(ProductListDemo, {
+                    props: {
+                        header: 'Product List',
+                        style: {
+                            width: '50vw'
+                        },
+                        breakpoints: {
+                            '960px': '75vw',
+                            '640px': '90vw'
+                        },
+                        modal: true
+                    },
+                    templates: {
+                        footer: markRaw(FooterDemo)
+                    },
+                    onClose: (options) => {
+                        const data = options.data;
+
+                        if (data) {
+                            const buttonType = data.buttonType;
+                            const summary_and_detail = buttonType ? { summary: 'No Product Selected', detail: `Pressed '${buttonType}' button` } : { summary: 'Product Selected', detail: data.name };
+
+                            this.$toast.add({ severity: 'info', ...summary_and_detail, life: 3000 });
+                        }
+                    }
+                });
             }
-        };
-    },
-    methods: {
-        showProducts() {
-            const dialogRef = this.$dialog.open(ProductListDemo, {
-                props: {
-                    header: 'Product List',
-                    style: {
-                        width: '50vw'
-                    },
-                    breakpoints: {
-                        '960px': '75vw',
-                        '640px': '90vw'
-                    },
-                    modal: true
-                },
-                templates: {
-                    footer: markRaw(FooterDemo)
-                },
-                onClose: (options) => {
-                    const data = options.data;
-
-                    if (data) {
-                        const buttonType = data.buttonType;
-                        const summary_and_detail = buttonType ? { summary: 'No Product Selected', detail: `Pressed '${buttonType}' button` } : { summary: 'Product Selected', detail: data.name };
-
-                        this.$toast.add({ severity: 'info', ...summary_and_detail, life: 3000 });
-                    }
-                }
-            });
         }
-    }
-};
+    };
 </script>

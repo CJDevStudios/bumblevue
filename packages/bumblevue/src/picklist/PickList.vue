@@ -164,506 +164,506 @@
 </template>
 
 <script>
-import { find, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-import { findIndexInList, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
-import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue/icons/angledoubleleft';
-import AngleDoubleRightIcon from '@cjdevstudios/bumblevue/icons/angledoubleright';
-import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
-import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
-import AngleLeftIcon from '@cjdevstudios/bumblevue/icons/angleleft';
-import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
-import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
-import Button from '@cjdevstudios/bumblevue/button';
-import Listbox from '@cjdevstudios/bumblevue/listbox';
-import PickListStyle from '@cjdevstudios/bumblevue/picklist/style';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { find, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
+    import { findIndexInList, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
+    import AngleDoubleLeftIcon from '@cjdevstudios/bumblevue/icons/angledoubleleft';
+    import AngleDoubleRightIcon from '@cjdevstudios/bumblevue/icons/angledoubleright';
+    import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
+    import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+    import AngleLeftIcon from '@cjdevstudios/bumblevue/icons/angleleft';
+    import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+    import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import Listbox from '@cjdevstudios/bumblevue/listbox';
+    import PickListStyle from '@cjdevstudios/bumblevue/picklist/style';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
 
-export default {
-    name: 'PickList',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        modelValue: {
-            type: Array,
-            default: () => [[], []]
-        },
-        selection: {
-            type: Array,
-            default: () => [[], []]
-        },
-        dataKey: {
-            type: String,
-            default: null
-        },
-        listStyle: {
-            type: null,
-            default: null
-        },
-        metaKeySelection: {
-            type: Boolean,
-            default: false
-        },
-        autoOptionFocus: {
-            type: Boolean,
-            default: true
-        },
-        focusOnHover: {
-            type: Boolean,
-            default: true
-        },
-        responsive: {
-            type: Boolean,
-            default: true
-        },
-        breakpoint: {
-            type: String,
-            default: '960px'
-        },
-        striped: {
-            type: Boolean,
-            default: false
-        },
-        scrollHeight: {
-            type: String,
-            default: '14rem'
-        },
-        showSourceControls: {
-            type: Boolean,
-            default: true
-        },
-        showTargetControls: {
-            type: Boolean,
-            default: true
-        },
-        buttonProps: {
-            type: Object,
-            default() {
-                return { severity: 'secondary' };
+    export default {
+        name: 'PickList',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            modelValue: {
+                type: Array,
+                default: () => [[], []]
+            },
+            selection: {
+                type: Array,
+                default: () => [[], []]
+            },
+            dataKey: {
+                type: String,
+                default: null
+            },
+            listStyle: {
+                type: null,
+                default: null
+            },
+            metaKeySelection: {
+                type: Boolean,
+                default: false
+            },
+            autoOptionFocus: {
+                type: Boolean,
+                default: true
+            },
+            focusOnHover: {
+                type: Boolean,
+                default: true
+            },
+            responsive: {
+                type: Boolean,
+                default: true
+            },
+            breakpoint: {
+                type: String,
+                default: '960px'
+            },
+            striped: {
+                type: Boolean,
+                default: false
+            },
+            scrollHeight: {
+                type: String,
+                default: '14rem'
+            },
+            showSourceControls: {
+                type: Boolean,
+                default: true
+            },
+            showTargetControls: {
+                type: Boolean,
+                default: true
+            },
+            buttonProps: {
+                type: Object,
+                default() {
+                    return { severity: 'secondary' };
+                }
+            },
+            moveUpButtonProps: {
+                type: null,
+                default: null
+            },
+            moveTopButtonProps: {
+                type: null,
+                default: null
+            },
+            moveDownButtonProps: {
+                type: null,
+                default: null
+            },
+            moveBottomButtonProps: {
+                type: null,
+                default: null
+            },
+            moveToTargetProps: {
+                type: null,
+                default: null
+            },
+            moveAllToTargetProps: {
+                type: null,
+                default: null
+            },
+            moveToSourceProps: {
+                type: null,
+                default: null
+            },
+            moveAllToSourceProps: {
+                type: null,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
-        moveUpButtonProps: {
-            type: null,
-            default: null
+        emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'move-to-target', 'move-to-source', 'move-all-to-target', 'move-all-to-source', 'focus', 'blur'],
+        style: PickListStyle,
+        provide() {
+            return {
+                $pcPickList: this,
+                $parentInstance: this
+            };
         },
-        moveTopButtonProps: {
-            type: null,
-            default: null
+        itemTouched: false,
+        reorderDirection: null,
+        styleElement: null,
+        media: null,
+        mediaChangeListener: null,
+        data() {
+            return {
+                d_selection: this.selection,
+                viewChanged: false
+            };
         },
-        moveDownButtonProps: {
-            type: null,
-            default: null
+        watch: {
+            selection(newValue) {
+                this.d_selection = newValue;
+            },
+            breakpoint() {
+                this.destroyMedia();
+                this.initMedia();
+            }
         },
-        moveBottomButtonProps: {
-            type: null,
-            default: null
+        updated() {
+            if (this.reorderDirection) {
+                this.updateListScroll(this.$refs.sourceList.$el);
+                this.updateListScroll(this.$refs.targetList.$el);
+                this.reorderDirection = null;
+            }
         },
-        moveToTargetProps: {
-            type: null,
-            default: null
-        },
-        moveAllToTargetProps: {
-            type: null,
-            default: null
-        },
-        moveToSourceProps: {
-            type: null,
-            default: null
-        },
-        moveAllToSourceProps: {
-            type: null,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: 0
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        }
-    },
-    emits: ['update:modelValue', 'reorder', 'update:selection', 'selection-change', 'move-to-target', 'move-to-source', 'move-all-to-target', 'move-all-to-source', 'focus', 'blur'],
-    style: PickListStyle,
-    provide() {
-        return {
-            $pcPickList: this,
-            $parentInstance: this
-        };
-    },
-    itemTouched: false,
-    reorderDirection: null,
-    styleElement: null,
-    media: null,
-    mediaChangeListener: null,
-    data() {
-        return {
-            d_selection: this.selection,
-            viewChanged: false
-        };
-    },
-    watch: {
-        selection(newValue) {
-            this.d_selection = newValue;
-        },
-        breakpoint() {
+        beforeUnmount() {
+            this.destroyStyle();
             this.destroyMedia();
-            this.initMedia();
-        }
-    },
-    updated() {
-        if (this.reorderDirection) {
-            this.updateListScroll(this.$refs.sourceList.$el);
-            this.updateListScroll(this.$refs.targetList.$el);
-            this.reorderDirection = null;
-        }
-    },
-    beforeUnmount() {
-        this.destroyStyle();
-        this.destroyMedia();
-    },
-    mounted() {
-        if (this.responsive) {
-            this.createStyle();
-            this.initMedia();
-        }
-    },
-    methods: {
-        updateSelection(event) {
-            this.$emit('update:selection', this.d_selection);
-            this.$emit('selection-change', {
-                originalEvent: event,
-                value: this.d_selection
-            });
         },
-        onChangeSelection(params, listIndex) {
-            this.d_selection[listIndex] = params.value;
-            this.updateSelection(params.event);
-        },
-        onListFocus(event, listType) {
-            this.$emit('focus', event, listType);
-        },
-        onListBlur(event, listType) {
-            this.$emit('blur', event, listType);
-        },
-        onReorderUpdate(event, value, listIndex) {
-            this.$emit('update:modelValue', value);
-            this.$emit('reorder', {
-                originalEvent: event,
-                value: value,
-                direction: this.reorderDirection,
-                listIndex
-            });
-        },
-        onItemDblClick(event, listIndex) {
-            if (listIndex === 0) this.moveToTarget({ event: event.originalEvent });
-            else if (listIndex === 1) this.moveToSource({ event: event.originalEvent });
-        },
-        moveUp(event, listIndex) {
-            if (this.d_selection && this.d_selection[listIndex]) {
-                let valueList = [...this.modelValue[listIndex]];
-                let selectionList = this.d_selection[listIndex];
-                let selectedIndices = selectionList.map((item) => findIndexInList(item, valueList)).sort((a, b) => a - b);
-
-                for (let i = 0; i < selectedIndices.length; i++) {
-                    let selectedItemIndex = selectedIndices[i];
-
-                    if (selectedItemIndex !== 0) {
-                        let movedItem = valueList[selectedItemIndex];
-                        let temp = valueList[selectedItemIndex - 1];
-
-                        valueList[selectedItemIndex - 1] = movedItem;
-                        valueList[selectedItemIndex] = temp;
-                    } else {
-                        break;
-                    }
-                }
-
-                let value = [...this.modelValue];
-                value[listIndex] = valueList;
-
-                this.reorderDirection = 'up';
-                this.onReorderUpdate(event, value, listIndex);
+        mounted() {
+            if (this.responsive) {
+                this.createStyle();
+                this.initMedia();
             }
         },
-        moveTop(event, listIndex) {
-            if (this.d_selection) {
-                let valueList = [...this.modelValue[listIndex]];
-                let selectionList = this.d_selection[listIndex];
-
-                for (let i = 0; i < selectionList.length; i++) {
-                    let selectedItem = selectionList[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, valueList);
-
-                    if (selectedItemIndex !== 0) {
-                        let movedItem = valueList.splice(selectedItemIndex, 1)[0];
-
-                        valueList.unshift(movedItem);
-                    } else {
-                        break;
-                    }
-                }
-
-                let value = [...this.modelValue];
-                value[listIndex] = valueList;
-
-                this.reorderDirection = 'top';
-                this.onReorderUpdate(event, value, listIndex);
-            }
-        },
-        moveDown(event, listIndex) {
-            if (this.d_selection && this.d_selection[listIndex]) {
-                let valueList = [...this.modelValue[listIndex]];
-                let selectionList = this.d_selection[listIndex];
-
-                let selectedIndices = selectionList.map((item) => findIndexInList(item, valueList)).sort((a, b) => b - a);
-
-                for (let i = 0; i < selectedIndices.length; i++) {
-                    let selectedItemIndex = selectedIndices[i];
-
-                    if (selectedItemIndex !== valueList.length - 1) {
-                        let movedItem = valueList[selectedItemIndex];
-                        let temp = valueList[selectedItemIndex + 1];
-
-                        valueList[selectedItemIndex + 1] = movedItem;
-                        valueList[selectedItemIndex] = temp;
-                    } else {
-                        break;
-                    }
-                }
-
-                let value = [...this.modelValue];
-                value[listIndex] = valueList;
-
-                this.reorderDirection = 'down';
-                this.onReorderUpdate(event, value, listIndex);
-            }
-        },
-        moveBottom(event, listIndex) {
-            if (this.d_selection) {
-                let valueList = [...this.modelValue[listIndex]];
-                let selectionList = this.d_selection[listIndex];
-
-                for (let i = selectionList.length - 1; i >= 0; i--) {
-                    let selectedItem = selectionList[i];
-                    let selectedItemIndex = findIndexInList(selectedItem, valueList);
-
-                    if (selectedItemIndex !== valueList.length - 1) {
-                        let movedItem = valueList.splice(selectedItemIndex, 1)[0];
-
-                        valueList.push(movedItem);
-                    } else {
-                        break;
-                    }
-                }
-
-                let value = [...this.modelValue];
-                value[listIndex] = valueList;
-
-                this.reorderDirection = 'bottom';
-                this.onReorderUpdate(event, value, listIndex);
-            }
-        },
-        moveToTarget(event) {
-            let selection = this.d_selection && this.d_selection[0] ? this.d_selection[0] : null;
-            let sourceList = [...this.modelValue[0]];
-            let targetList = [...this.modelValue[1]];
-
-            if (selection) {
-                for (let i = 0; i < selection.length; i++) {
-                    let selectedItem = selection[i];
-
-                    if (findIndexInList(selectedItem, targetList) == -1) {
-                        targetList.push(sourceList.splice(findIndexInList(selectedItem, sourceList), 1)[0]);
-                    }
-                }
-
-                let value = [...this.modelValue];
-
-                value[0] = sourceList;
-                value[1] = targetList;
-                this.$emit('update:modelValue', value);
-
-                this.$emit('move-to-target', {
+        methods: {
+            updateSelection(event) {
+                this.$emit('update:selection', this.d_selection);
+                this.$emit('selection-change', {
                     originalEvent: event,
-                    items: [...new Set(selection)]
+                    value: this.d_selection
                 });
+            },
+            onChangeSelection(params, listIndex) {
+                this.d_selection[listIndex] = params.value;
+                this.updateSelection(params.event);
+            },
+            onListFocus(event, listType) {
+                this.$emit('focus', event, listType);
+            },
+            onListBlur(event, listType) {
+                this.$emit('blur', event, listType);
+            },
+            onReorderUpdate(event, value, listIndex) {
+                this.$emit('update:modelValue', value);
+                this.$emit('reorder', {
+                    originalEvent: event,
+                    value: value,
+                    direction: this.reorderDirection,
+                    listIndex
+                });
+            },
+            onItemDblClick(event, listIndex) {
+                if (listIndex === 0) this.moveToTarget({ event: event.originalEvent });
+                else if (listIndex === 1) this.moveToSource({ event: event.originalEvent });
+            },
+            moveUp(event, listIndex) {
+                if (this.d_selection && this.d_selection[listIndex]) {
+                    let valueList = [...this.modelValue[listIndex]];
+                    let selectionList = this.d_selection[listIndex];
+                    let selectedIndices = selectionList.map((item) => findIndexInList(item, valueList)).sort((a, b) => a - b);
 
-                this.d_selection[0] = [];
-                this.updateSelection(event);
-            }
-        },
-        moveAllToTarget(event) {
-            if (this.modelValue[0]) {
+                    for (let i = 0; i < selectedIndices.length; i++) {
+                        let selectedItemIndex = selectedIndices[i];
+
+                        if (selectedItemIndex !== 0) {
+                            let movedItem = valueList[selectedItemIndex];
+                            let temp = valueList[selectedItemIndex - 1];
+
+                            valueList[selectedItemIndex - 1] = movedItem;
+                            valueList[selectedItemIndex] = temp;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let value = [...this.modelValue];
+                    value[listIndex] = valueList;
+
+                    this.reorderDirection = 'up';
+                    this.onReorderUpdate(event, value, listIndex);
+                }
+            },
+            moveTop(event, listIndex) {
+                if (this.d_selection) {
+                    let valueList = [...this.modelValue[listIndex]];
+                    let selectionList = this.d_selection[listIndex];
+
+                    for (let i = 0; i < selectionList.length; i++) {
+                        let selectedItem = selectionList[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, valueList);
+
+                        if (selectedItemIndex !== 0) {
+                            let movedItem = valueList.splice(selectedItemIndex, 1)[0];
+
+                            valueList.unshift(movedItem);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let value = [...this.modelValue];
+                    value[listIndex] = valueList;
+
+                    this.reorderDirection = 'top';
+                    this.onReorderUpdate(event, value, listIndex);
+                }
+            },
+            moveDown(event, listIndex) {
+                if (this.d_selection && this.d_selection[listIndex]) {
+                    let valueList = [...this.modelValue[listIndex]];
+                    let selectionList = this.d_selection[listIndex];
+
+                    let selectedIndices = selectionList.map((item) => findIndexInList(item, valueList)).sort((a, b) => b - a);
+
+                    for (let i = 0; i < selectedIndices.length; i++) {
+                        let selectedItemIndex = selectedIndices[i];
+
+                        if (selectedItemIndex !== valueList.length - 1) {
+                            let movedItem = valueList[selectedItemIndex];
+                            let temp = valueList[selectedItemIndex + 1];
+
+                            valueList[selectedItemIndex + 1] = movedItem;
+                            valueList[selectedItemIndex] = temp;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let value = [...this.modelValue];
+                    value[listIndex] = valueList;
+
+                    this.reorderDirection = 'down';
+                    this.onReorderUpdate(event, value, listIndex);
+                }
+            },
+            moveBottom(event, listIndex) {
+                if (this.d_selection) {
+                    let valueList = [...this.modelValue[listIndex]];
+                    let selectionList = this.d_selection[listIndex];
+
+                    for (let i = selectionList.length - 1; i >= 0; i--) {
+                        let selectedItem = selectionList[i];
+                        let selectedItemIndex = findIndexInList(selectedItem, valueList);
+
+                        if (selectedItemIndex !== valueList.length - 1) {
+                            let movedItem = valueList.splice(selectedItemIndex, 1)[0];
+
+                            valueList.push(movedItem);
+                        } else {
+                            break;
+                        }
+                    }
+
+                    let value = [...this.modelValue];
+                    value[listIndex] = valueList;
+
+                    this.reorderDirection = 'bottom';
+                    this.onReorderUpdate(event, value, listIndex);
+                }
+            },
+            moveToTarget(event) {
+                let selection = this.d_selection && this.d_selection[0] ? this.d_selection[0] : null;
                 let sourceList = [...this.modelValue[0]];
                 let targetList = [...this.modelValue[1]];
 
-                this.$emit('move-all-to-target', {
-                    originalEvent: event,
-                    items: sourceList
-                });
+                if (selection) {
+                    for (let i = 0; i < selection.length; i++) {
+                        let selectedItem = selection[i];
 
-                targetList = [...targetList, ...sourceList];
-                sourceList = [];
-
-                let value = [...this.modelValue];
-
-                value[0] = sourceList;
-                value[1] = targetList;
-                this.$emit('update:modelValue', value);
-
-                this.d_selection = [[], []];
-                this.updateSelection(event);
-            }
-        },
-        moveToSource(event) {
-            let selection = this.d_selection && this.d_selection[1] ? this.d_selection[1] : null;
-            let sourceList = [...this.modelValue[0]];
-            let targetList = [...this.modelValue[1]];
-
-            if (selection) {
-                for (let i = 0; i < selection.length; i++) {
-                    let selectedItem = selection[i];
-
-                    if (findIndexInList(selectedItem, sourceList) == -1) {
-                        sourceList.push(targetList.splice(findIndexInList(selectedItem, targetList), 1)[0]);
+                        if (findIndexInList(selectedItem, targetList) == -1) {
+                            targetList.push(sourceList.splice(findIndexInList(selectedItem, sourceList), 1)[0]);
+                        }
                     }
+
+                    let value = [...this.modelValue];
+
+                    value[0] = sourceList;
+                    value[1] = targetList;
+                    this.$emit('update:modelValue', value);
+
+                    this.$emit('move-to-target', {
+                        originalEvent: event,
+                        items: [...new Set(selection)]
+                    });
+
+                    this.d_selection[0] = [];
+                    this.updateSelection(event);
                 }
+            },
+            moveAllToTarget(event) {
+                if (this.modelValue[0]) {
+                    let sourceList = [...this.modelValue[0]];
+                    let targetList = [...this.modelValue[1]];
 
-                let value = [...this.modelValue];
+                    this.$emit('move-all-to-target', {
+                        originalEvent: event,
+                        items: sourceList
+                    });
 
-                value[0] = sourceList;
-                value[1] = targetList;
-                this.$emit('update:modelValue', value);
+                    targetList = [...targetList, ...sourceList];
+                    sourceList = [];
 
-                this.$emit('move-to-source', {
-                    originalEvent: event,
-                    items: [...new Set(selection)]
-                });
+                    let value = [...this.modelValue];
 
-                this.d_selection[1] = [];
-                this.updateSelection(event);
-            }
-        },
-        moveAllToSource(event) {
-            if (this.modelValue[1]) {
+                    value[0] = sourceList;
+                    value[1] = targetList;
+                    this.$emit('update:modelValue', value);
+
+                    this.d_selection = [[], []];
+                    this.updateSelection(event);
+                }
+            },
+            moveToSource(event) {
+                let selection = this.d_selection && this.d_selection[1] ? this.d_selection[1] : null;
                 let sourceList = [...this.modelValue[0]];
                 let targetList = [...this.modelValue[1]];
 
-                this.$emit('move-all-to-source', {
-                    originalEvent: event,
-                    items: targetList
-                });
+                if (selection) {
+                    for (let i = 0; i < selection.length; i++) {
+                        let selectedItem = selection[i];
 
-                sourceList = [...sourceList, ...targetList];
-                targetList = [];
+                        if (findIndexInList(selectedItem, sourceList) == -1) {
+                            sourceList.push(targetList.splice(findIndexInList(selectedItem, targetList), 1)[0]);
+                        }
+                    }
 
-                let value = [...this.modelValue];
+                    let value = [...this.modelValue];
 
-                value[0] = sourceList;
-                value[1] = targetList;
-                this.$emit('update:modelValue', value);
+                    value[0] = sourceList;
+                    value[1] = targetList;
+                    this.$emit('update:modelValue', value);
 
-                this.d_selection = [[], []];
+                    this.$emit('move-to-source', {
+                        originalEvent: event,
+                        items: [...new Set(selection)]
+                    });
+
+                    this.d_selection[1] = [];
+                    this.updateSelection(event);
+                }
+            },
+            moveAllToSource(event) {
+                if (this.modelValue[1]) {
+                    let sourceList = [...this.modelValue[0]];
+                    let targetList = [...this.modelValue[1]];
+
+                    this.$emit('move-all-to-source', {
+                        originalEvent: event,
+                        items: targetList
+                    });
+
+                    sourceList = [...sourceList, ...targetList];
+                    targetList = [];
+
+                    let value = [...this.modelValue];
+
+                    value[0] = sourceList;
+                    value[1] = targetList;
+                    this.$emit('update:modelValue', value);
+
+                    this.d_selection = [[], []];
+                    this.updateSelection(event);
+                }
+            },
+            onItemClick(event, item, index, listIndex) {
+                const listType = listIndex === 0 ? 'sourceList' : 'targetList';
+
+                this.itemTouched = false;
+                const selectionList = this.d_selection[listIndex];
+                const selectedIndex = findIndexInList(item, selectionList);
+                const selected = selectedIndex != -1;
+                const metaSelection = this.itemTouched ? false : this.metaKeySelection;
+                const selectedId = find(this.$refs[listType].$el, '[data-pc-section="item"]')[index].getAttribute('id');
+
+                this.focusedOptionIndex = selectedId;
+                let _selection;
+
+                if (metaSelection) {
+                    let metaKey = event.metaKey || event.ctrlKey;
+
+                    if (selected && metaKey) {
+                        _selection = selectionList.filter((val, index) => index !== selectedIndex);
+                    } else {
+                        _selection = metaKey ? (selectionList ? [...selectionList] : []) : [];
+                        _selection.push(item);
+                    }
+                } else {
+                    if (selected) {
+                        _selection = selectionList.filter((val, index) => index !== selectedIndex);
+                    } else {
+                        _selection = selectionList ? [...selectionList] : [];
+                        _selection.push(item);
+                    }
+                }
+
+                let newSelection = [...this.d_selection];
+
+                newSelection[listIndex] = _selection;
+                this.d_selection = newSelection;
+
                 this.updateSelection(event);
-            }
-        },
-        onItemClick(event, item, index, listIndex) {
-            const listType = listIndex === 0 ? 'sourceList' : 'targetList';
+            },
+            updateListScroll(listElement) {
+                const listItems = find(listElement, '[data-pc-section="item"][data-p-selected="true"]');
 
-            this.itemTouched = false;
-            const selectionList = this.d_selection[listIndex];
-            const selectedIndex = findIndexInList(item, selectionList);
-            const selected = selectedIndex != -1;
-            const metaSelection = this.itemTouched ? false : this.metaKeySelection;
-            const selectedId = find(this.$refs[listType].$el, '[data-pc-section="item"]')[index].getAttribute('id');
+                if (listItems && listItems.length) {
+                    switch (this.reorderDirection) {
+                        case 'up':
+                            scrollInView(listElement, listItems[0]);
+                            break;
 
-            this.focusedOptionIndex = selectedId;
-            let _selection;
+                        case 'top':
+                            listElement.scrollTop = 0;
+                            break;
 
-            if (metaSelection) {
-                let metaKey = event.metaKey || event.ctrlKey;
+                        case 'down':
+                            scrollInView(listElement, listItems[listItems.length - 1]);
+                            break;
 
-                if (selected && metaKey) {
-                    _selection = selectionList.filter((val, index) => index !== selectedIndex);
-                } else {
-                    _selection = metaKey ? (selectionList ? [...selectionList] : []) : [];
-                    _selection.push(item);
+                        case 'bottom':
+                            listElement.scrollTop = listElement.scrollHeight;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
-            } else {
-                if (selected) {
-                    _selection = selectionList.filter((val, index) => index !== selectedIndex);
-                } else {
-                    _selection = selectionList ? [...selectionList] : [];
-                    _selection.push(item);
+            },
+            initMedia() {
+                this.media = window.matchMedia(`(max-width: ${this.breakpoint})`);
+                this.viewChanged = this.media.matches;
+                this.bindMediaChangeListener();
+            },
+            destroyMedia() {
+                this.unbindMediaChangeListener();
+            },
+            bindMediaChangeListener() {
+                if (this.media && !this.mediaChangeListener) {
+                    this.mediaChangeListener = (event) => {
+                        this.viewChanged = event.matches;
+                    };
+
+                    this.media.addEventListener('change', this.mediaChangeListener);
                 }
-            }
-
-            let newSelection = [...this.d_selection];
-
-            newSelection[listIndex] = _selection;
-            this.d_selection = newSelection;
-
-            this.updateSelection(event);
-        },
-        updateListScroll(listElement) {
-            const listItems = find(listElement, '[data-pc-section="item"][data-p-selected="true"]');
-
-            if (listItems && listItems.length) {
-                switch (this.reorderDirection) {
-                    case 'up':
-                        scrollInView(listElement, listItems[0]);
-                        break;
-
-                    case 'top':
-                        listElement.scrollTop = 0;
-                        break;
-
-                    case 'down':
-                        scrollInView(listElement, listItems[listItems.length - 1]);
-                        break;
-
-                    case 'bottom':
-                        listElement.scrollTop = listElement.scrollHeight;
-                        break;
-
-                    default:
-                        break;
+            },
+            unbindMediaChangeListener() {
+                if (this.media && this.mediaChangeListener) {
+                    this.media.removeEventListener('change', this.mediaChangeListener);
+                    this.mediaChangeListener = null;
                 }
-            }
-        },
-        initMedia() {
-            this.media = window.matchMedia(`(max-width: ${this.breakpoint})`);
-            this.viewChanged = this.media.matches;
-            this.bindMediaChangeListener();
-        },
-        destroyMedia() {
-            this.unbindMediaChangeListener();
-        },
-        bindMediaChangeListener() {
-            if (this.media && !this.mediaChangeListener) {
-                this.mediaChangeListener = (event) => {
-                    this.viewChanged = event.matches;
-                };
+            },
+            createStyle() {
+                if (!this.styleElement && !this.isUnstyled) {
+                    this.styleElement = document.createElement('style');
+                    this.styleElement.type = 'text/css';
+                    setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
+                    document.head.appendChild(this.styleElement);
 
-                this.media.addEventListener('change', this.mediaChangeListener);
-            }
-        },
-        unbindMediaChangeListener() {
-            if (this.media && this.mediaChangeListener) {
-                this.media.removeEventListener('change', this.mediaChangeListener);
-                this.mediaChangeListener = null;
-            }
-        },
-        createStyle() {
-            if (!this.styleElement && !this.isUnstyled) {
-                this.styleElement = document.createElement('style');
-                this.styleElement.type = 'text/css';
-                setAttribute(this.styleElement, 'nonce', this.$bumblevue?.config?.csp?.nonce);
-                document.head.appendChild(this.styleElement);
-
-                let innerHTML = `
+                    let innerHTML = `
 @media screen and (max-width: ${this.breakpoint}) {
     .p-picklist[${this.$attrSelector}] {
         flex-direction: column;
@@ -675,74 +675,74 @@ export default {
 }
 `;
 
-                this.styleElement.innerHTML = innerHTML;
+                    this.styleElement.innerHTML = innerHTML;
+                }
+            },
+            destroyStyle() {
+                if (this.styleElement) {
+                    document.head.removeChild(this.styleElement);
+                    this.styleElement = null;
+                }
+            },
+            moveDisabled(index) {
+                return this.disabled ? true : this.d_selection && (!this.d_selection[index] || !this.d_selection[index].length) ? true : false;
+            },
+            moveAllDisabled(list) {
+                return this.disabled ? true : isEmpty(this[list]);
             }
         },
-        destroyStyle() {
-            if (this.styleElement) {
-                document.head.removeChild(this.styleElement);
-                this.styleElement = null;
+        computed: {
+            idSource() {
+                return `${this.$id}_source`;
+            },
+            idTarget() {
+                return `${this.$id}_target`;
+            },
+            sourceList() {
+                return this.modelValue && this.modelValue[0] ? this.modelValue[0] : null;
+            },
+            targetList() {
+                return this.modelValue && this.modelValue[1] ? this.modelValue[1] : null;
+            },
+            moveUpAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveUp : undefined;
+            },
+            moveTopAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveTop : undefined;
+            },
+            moveDownAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveDown : undefined;
+            },
+            moveBottomAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveBottom : undefined;
+            },
+            moveToTargetAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveToTarget : undefined;
+            },
+            moveAllToTargetAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveAllToTarget : undefined;
+            },
+            moveToSourceAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveToSource : undefined;
+            },
+            moveAllToSourceAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveAllToSource : undefined;
             }
         },
-        moveDisabled(index) {
-            return this.disabled ? true : this.d_selection && (!this.d_selection[index] || !this.d_selection[index].length) ? true : false;
+        components: {
+            Listbox,
+            Button,
+            AngleRightIcon,
+            AngleLeftIcon,
+            AngleDownIcon,
+            AngleUpIcon,
+            AngleDoubleRightIcon,
+            AngleDoubleLeftIcon,
+            AngleDoubleDownIcon,
+            AngleDoubleUpIcon
         },
-        moveAllDisabled(list) {
-            return this.disabled ? true : isEmpty(this[list]);
+        directives: {
+            ripple: Ripple
         }
-    },
-    computed: {
-        idSource() {
-            return `${this.$id}_source`;
-        },
-        idTarget() {
-            return `${this.$id}_target`;
-        },
-        sourceList() {
-            return this.modelValue && this.modelValue[0] ? this.modelValue[0] : null;
-        },
-        targetList() {
-            return this.modelValue && this.modelValue[1] ? this.modelValue[1] : null;
-        },
-        moveUpAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveUp : undefined;
-        },
-        moveTopAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveTop : undefined;
-        },
-        moveDownAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveDown : undefined;
-        },
-        moveBottomAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveBottom : undefined;
-        },
-        moveToTargetAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveToTarget : undefined;
-        },
-        moveAllToTargetAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveAllToTarget : undefined;
-        },
-        moveToSourceAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveToSource : undefined;
-        },
-        moveAllToSourceAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveAllToSource : undefined;
-        }
-    },
-    components: {
-        Listbox,
-        Button,
-        AngleRightIcon,
-        AngleLeftIcon,
-        AngleDownIcon,
-        AngleUpIcon,
-        AngleDoubleRightIcon,
-        AngleDoubleLeftIcon,
-        AngleDoubleDownIcon,
-        AngleDoubleUpIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
+    };
 </script>

@@ -9,15 +9,15 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            value: 40,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 40,
+                code: {
+                    basic: `
 <Knob v-model="value" :strokeWidth="5" />
 `,
-                composition: `
+                    composition: `
 <template>
   <div class="card flex justify-center">
       <Knob v-model="value" :strokeWidth="5" />
@@ -30,8 +30,8 @@ import { ref } from 'vue';
 const value = ref(40);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

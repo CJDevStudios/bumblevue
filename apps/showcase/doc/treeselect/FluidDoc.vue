@@ -9,18 +9,18 @@
 </template>
 
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedValue: null,
+                code: {
+                    basic: `
 <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" fluid />
@@ -39,7 +39,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -66,11 +66,11 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>

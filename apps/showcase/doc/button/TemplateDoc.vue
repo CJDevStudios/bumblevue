@@ -20,11 +20,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button variant="outlined" class="border-2!">
     <svg width="35" height="40" viewBox="0 0 35 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="..." fill="var(--p-primary-color)" />
@@ -32,7 +32,7 @@ export default {
     </svg>
 </Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button variant="outlined" class="border-2!">
@@ -53,8 +53,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>

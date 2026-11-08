@@ -44,11 +44,11 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <h5>Rectangle</h5>
 <Skeleton class="mb-2"></Skeleton>
 <Skeleton width="10rem" class="mb-2"></Skeleton>
@@ -75,7 +75,7 @@ export default {
 <Skeleton shape="circle" size="4rem" class="mr-2"></Skeleton>
 <Skeleton shape="circle" size="5rem"></Skeleton>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap">
@@ -120,8 +120,8 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
