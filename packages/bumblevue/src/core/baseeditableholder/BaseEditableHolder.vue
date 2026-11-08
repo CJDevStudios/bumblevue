@@ -99,7 +99,7 @@
             },
             // @todo move to @cjdevstudios/bumblevue/utils
             findNonEmpty(...values) {
-                return values.find(!isEmpty);
+                return values.find((v) => !isEmpty(v));
             }
         },
         computed: {
