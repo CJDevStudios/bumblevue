@@ -180,6 +180,16 @@ export function setup(app, options) {
 
 let stopWatchers = [];
 
+const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+
+const normalizeTheme = (theme) => {
+    if (!theme || typeof theme !== 'object' || Array.isArray(theme)) {
+        return theme;
+    }
+
+    return hasOwn(theme, 'preset') || hasOwn(theme, 'options') ? theme : { preset: theme };
+};
+
 export function clearConfig() {
     ThemeService.clear();
 
@@ -236,7 +246,7 @@ export function setupConfig(app, BumbleVue) {
         () => BumbleVue.config.theme,
         (newValue, oldValue) => {
             if (!isThemeChanged.value) {
-                Theme.setTheme(newValue);
+                Theme.setTheme(normalizeTheme(newValue));
             }
 
             if (!BumbleVue.config.unstyled) {

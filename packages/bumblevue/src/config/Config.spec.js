@@ -1,5 +1,8 @@
-import { defaultOptions } from '@cjdevstudios/bumblevue/core/config';
+import { clearConfig, defaultOptions, setupConfig } from '@cjdevstudios/bumblevue/core/config';
+import { Theme } from '@cjdevstudios/bumblevue/styled';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
 import { config } from '@vue/test-utils';
+import { reactive } from 'vue';
 
 config.global.mocks['$bumblevue'] = {
     config: defaultOptions
@@ -24,4 +27,30 @@ Object.defineProperty(window, 'matchMedia', {
 
 describe('BumbleVue.vue', () => {
     it('should exist', async () => {});
+
+    it('should normalize direct theme presets', async () => {
+        const app = {
+            config: {
+                globalProperties: {
+                    $bumblevue: {
+                        config: {}
+                    }
+                }
+            }
+        };
+        const BumbleVue = {
+            config: reactive({
+                ...defaultOptions,
+                theme: Aura
+            })
+        };
+        const spy = vi.spyOn(Theme, 'setTheme');
+
+        setupConfig(app, BumbleVue);
+
+        expect(spy).toHaveBeenCalledWith({ preset: Aura });
+
+        spy.mockRestore();
+        clearConfig();
+    });
 });
