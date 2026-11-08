@@ -1,7 +1,7 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
-    import { equals, findLastIndex, isEmpty, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, isEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
     import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
@@ -730,7 +730,7 @@
             },
             onBackspaceKey(event) {
                 if (this.multiple) {
-                    if (isNotEmpty(this.d_value) && !this.$refs.focusInput.value) {
+                    if (!isEmpty(this.d_value) && !this.$refs.focusInput.value) {
                         const removedValue = this.d_value[this.d_value.length - 1];
                         const newValue = this.d_value.slice(0, -1);
 
@@ -859,7 +859,7 @@
                 return this.isValidOption(option) && this.getOptionLabel(option)?.toLocaleLowerCase(this.searchLocale) === value.toLocaleLowerCase(this.searchLocale);
             },
             isValidOption(option) {
-                return isNotEmpty(option) && !(this.isOptionDisabled(option) || this.isOptionGroup(option));
+                return !isEmpty(option) && !(this.isOptionDisabled(option) || this.isOptionGroup(option));
             },
             isValidSelectedOption(option) {
                 return this.isValidOption(option) && this.isSelected(option);
@@ -876,7 +876,7 @@
                 return this.visibleOptions.findIndex((option) => this.isValidOption(option));
             },
             findLastOptionIndex() {
-                return findLastIndex(this.visibleOptions, (option) => this.isValidOption(option));
+                return this.visibleOptions.findLastIndex((option) => this.isValidOption(option));
             },
             findNextOptionIndex(index) {
                 const matchedOptionIndex = index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex((option) => this.isValidOption(option)) : -1;
@@ -884,7 +884,7 @@
                 return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
             },
             findPrevOptionIndex(index) {
-                const matchedOptionIndex = index > 0 ? findLastIndex(this.visibleOptions.slice(0, index), (option) => this.isValidOption(option)) : -1;
+                const matchedOptionIndex = index > 0 ? this.visibleOptions.slice(0, index).findLastIndex((option) => this.isValidOption(option)) : -1;
 
                 return matchedOptionIndex > -1 ? matchedOptionIndex : index;
             },
@@ -983,7 +983,7 @@
                 return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : -1;
             },
             findPrevSelectedOptionIndex(index) {
-                const matchedOptionIndex = this.$filled && index > 0 ? findLastIndex(this.visibleOptions.slice(0, index), (option) => this.isValidSelectedOption(option)) : -1;
+                const matchedOptionIndex = this.$filled && index > 0 ? this.visibleOptions.slice(0, index).findLastIndex((option) => this.isValidSelectedOption(option)) : -1;
 
                 return matchedOptionIndex > -1 ? matchedOptionIndex : -1;
             },
@@ -1029,7 +1029,7 @@
                 return this.dataKey;
             },
             searchResultMessageText() {
-                return isNotEmpty(this.visibleOptions) && this.overlayVisible ? this.searchMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptySearchMessageText;
+                return !isEmpty(this.visibleOptions) && this.overlayVisible ? this.searchMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptySearchMessageText;
             },
             searchMessageText() {
                 return this.searchMessage || this.$bumblevue.config.locale.searchMessage || '';

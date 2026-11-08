@@ -1,5 +1,5 @@
 import { createElement, focus, getFirstFocusableElement, getLastFocusableElement, isFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseDirective from '@cjdevstudios/bumblevue/core/basedirective';
 import FocusTrapStyle from '@cjdevstudios/bumblevue/focustrap/style';
 
@@ -43,7 +43,7 @@ const FocusTrap = BaseDirective.extend('focustrap', {
                                     : getFirstFocusableElement(el, this.getComputedSelector(el.$_pfocustrap_focusableselector))
                                 : getFirstFocusableElement(_el);
 
-                            return isNotEmpty(focusableElement) ? focusableElement : _el.nextSibling && findNextFocusableElement(_el.nextSibling);
+                            return !isEmpty(focusableElement) ? focusableElement : _el.nextSibling && findNextFocusableElement(_el.nextSibling);
                         };
 
                         focus(findNextFocusableElement(mutation.nextSibling));

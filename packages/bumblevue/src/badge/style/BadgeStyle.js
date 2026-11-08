@@ -1,4 +1,4 @@
-import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 export const style = /*css*/ `
@@ -82,7 +82,7 @@ const classes = {
     root: ({ props, instance }) => [
         'p-badge p-component',
         {
-            'p-badge-circle': isNotEmpty(props.value) && String(props.value).length === 1,
+            'p-badge-circle': !isEmpty(props.value) && String(props.value).length === 1,
             'p-badge-dot': isEmpty(props.value) && !instance.$slots.default,
             'p-badge-sm': props.size === 'small',
             'p-badge-lg': props.size === 'large',

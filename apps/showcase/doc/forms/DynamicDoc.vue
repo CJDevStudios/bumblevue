@@ -209,7 +209,7 @@ const onFormSubmit = (text, { valid }) => {
 
 <script setup>
 import { ref, computed, provide } from 'vue';
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
@@ -227,7 +227,7 @@ const emit = defineEmits(['submit']);
 const defaultValues = ref({});
 const schemas = ref({});
 
-const resolver = computed(() => (isNotEmpty(schemas.value) ? zodResolver(z.object(schemas.value)) : undefined));
+const resolver = computed(() => (!isEmpty(schemas.value) ? zodResolver(z.object(schemas.value)) : undefined));
 const initialValues = computed(() => defaultValues.value);
 
 const addField = (name, schema, defaultValue) => {
@@ -324,7 +324,7 @@ const htmlFor = computed(() => $fcDynamicFormField?.groupId);
 </template>
 
 <script setup>
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { computed, inject } from 'vue';
 
 const props = defineProps({
@@ -349,7 +349,7 @@ const fieldName = computed(() => $fcDynamicFormField?.name);
 const state = computed(() => $pcForm?.states?.[fieldName.value]);
 const errors = computed(() => state.value?.errors);
 const invalid = computed(() => state.value?.invalid);
-const error = computed(() => errors.value?.find((error) => props.errorType === error.errorType || isNotEmpty(error[props.errorType])));
+const error = computed(() => errors.value?.find((error) => props.errorType === error.errorType || !isEmpty(error[props.errorType])));
 const message = computed(() => (props.errorType ? error.value?.message : errors.value?.[0]?.message));
 const visible = computed(() => invalid.value && (error.value || props.errorType === undefined));
 <\/script>
@@ -396,7 +396,7 @@ const props = defineProps({
 
 <script setup>
 import { ref, computed, provide } from 'vue';
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
 import { z } from 'zod';
 import DynamicFormControl from './DynamicFormControl.vue';
@@ -414,7 +414,7 @@ const emit = defineEmits(['submit']);
 const defaultValues = ref({});
 const schemas = ref({});
 
-const resolver = computed(() => (isNotEmpty(schemas.value) ? zodResolver(z.object(schemas.value)) : undefined));
+const resolver = computed(() => (!isEmpty(schemas.value) ? zodResolver(z.object(schemas.value)) : undefined));
 const initialValues = computed(() => defaultValues.value);
 
 const addField = (name, schema, defaultValue) => {
@@ -511,7 +511,7 @@ const htmlFor = computed(() => $fcDynamicFormField?.groupId);
 </template>
 
 <script setup>
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { computed, inject } from 'vue';
 
 const props = defineProps({
@@ -536,7 +536,7 @@ const fieldName = computed(() => $fcDynamicFormField?.name);
 const state = computed(() => $pcForm?.states?.[fieldName.value]);
 const errors = computed(() => state.value?.errors);
 const invalid = computed(() => state.value?.invalid);
-const error = computed(() => errors.value?.find((error) => props.errorType === error.errorType || isNotEmpty(error[props.errorType])));
+const error = computed(() => errors.value?.find((error) => props.errorType === error.errorType || !isEmpty(error[props.errorType])));
 const message = computed(() => (props.errorType ? error.value?.message : errors.value?.[0]?.message));
 const visible = computed(() => invalid.value && (error.value || props.errorType === undefined));
 <\/script>

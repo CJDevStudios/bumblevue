@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { getDotPath, safeParse, safeParseAsync } from 'valibot';
 import { toValues } from '../utils';
 
@@ -19,7 +19,7 @@ export const valibotResolver =
                 values: toValues(raw ? values : undefined, name),
                 errors: result.issues?.reduce((acc, error) => {
                     const path = getDotPath(error);
-                    const pathKey = isNotEmpty(path) ? path : name;
+                    const pathKey = !isEmpty(path) ? path : name;
 
                     if (pathKey) {
                         acc[pathKey] ||= [];

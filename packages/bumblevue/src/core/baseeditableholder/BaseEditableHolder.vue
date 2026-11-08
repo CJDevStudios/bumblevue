@@ -1,5 +1,5 @@
 <script>
-    import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
     export default {
@@ -99,12 +99,12 @@
             },
             // @todo move to @cjdevstudios/bumblevue/utils
             findNonEmpty(...values) {
-                return values.find(isNotEmpty);
+                return values.find(!isEmpty);
             }
         },
         computed: {
             $filled() {
-                return isNotEmpty(this.d_value);
+                return !isEmpty(this.d_value);
             },
             $invalid() {
                 return !this.$formNovalidate && this.findNonEmpty(this.invalid, this.$pcFormField?.$field?.invalid, this.$pcForm?.getFieldState(this.$formName)?.invalid);

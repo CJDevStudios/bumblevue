@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { toValues } from '../utils';
 
 export const yupResolver =
@@ -18,7 +18,7 @@ export const yupResolver =
                 return {
                     values: toValues(raw ? values : undefined, name),
                     errors: e.inner.reduce((acc, error) => {
-                        const pathKey = isNotEmpty(error.path) ? error.path : name;
+                        const pathKey = !isEmpty(error.path) ? error.path : name;
 
                         if (pathKey) {
                             acc[pathKey] ||= [];

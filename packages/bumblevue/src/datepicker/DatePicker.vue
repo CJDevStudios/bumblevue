@@ -1,7 +1,7 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, find, findSingle, getAttribute, getFocusableElements, getIndex, getOuterWidth, isTouchDevice, relativePosition, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isDate, isEmpty, isNotEmpty, localeComparator } from '@cjdevstudios/bumblevue/utils/object';
+    import { isDate, isEmpty, localeComparator } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
     import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
@@ -1085,7 +1085,7 @@
             formatDateTime(date) {
                 let formattedValue = null;
 
-                if (isDate(date) && isNotEmpty(date)) {
+                if (isDate(date) && !isEmpty(date)) {
                     if (this.timeOnly) {
                         formattedValue = this.formatTime(date);
                     } else {

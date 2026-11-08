@@ -1,6 +1,6 @@
 <script>
     import { nestedPosition } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
     import Ripple from '@cjdevstudios/bumblevue/ripple';
@@ -89,7 +89,7 @@
                 return this.focusedItemId === this.getItemId(processedItem);
             },
             isItemGroup(processedItem) {
-                return isNotEmpty(processedItem.items);
+                return !isEmpty(processedItem.items);
             },
             onItemClick(event, processedItem) {
                 this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });

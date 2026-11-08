@@ -1,4 +1,4 @@
-import { getKeyValue, isArray, isNotEmpty, isNumber, isObject, isString, matchRegex, toKebabCase } from '@cjdevstudios/bumblevue/utils/object';
+import { getKeyValue, isArray, isEmpty, isNumber, isObject, isString, matchRegex, toKebabCase } from '@cjdevstudios/bumblevue/utils/object';
 
 export const EXPR_REGEX = /{([^}]*)}/g; // Exp: '{a}', '{a.b}', '{a.b.c}' etc.
 export const CALC_REGEX = /(\d+\s+[+\-*/]\s+\d+)/g;
@@ -64,7 +64,7 @@ export function getVariableValue(value, variable = '', prefix = '', excludedKeyR
                 const path = v.replace(/{|}/g, '');
                 const keys = path.split('.').filter((_v) => !excludedKeyRegexes.some((_r) => matchRegex(_v, _r)));
 
-                return `var(${getVariableName(prefix, toKebabCase(keys.join('-')))}${isNotEmpty(fallback) ? `, ${fallback}` : ''})`;
+                return `var(${getVariableName(prefix, toKebabCase(keys.join('-')))}${!isEmpty(fallback) ? `, ${fallback}` : ''})`;
             });
 
             return matchRegex(_val.replace(VAR_REGEX, '0'), CALC_REGEX) ? `calc(${_val})` : _val;

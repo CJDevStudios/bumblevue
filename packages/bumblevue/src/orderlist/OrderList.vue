@@ -1,6 +1,6 @@
 <script>
     import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-    import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { findIndexInList, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AngleDoubleDownIcon from '@cjdevstudios/bumblevue/icons/angledoubledown';
     import AngleDoubleUpIcon from '@cjdevstudios/bumblevue/icons/angledoubleup';
@@ -318,7 +318,7 @@
                 return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.moveBottom : undefined;
             },
             hasSelectedOption() {
-                return isNotEmpty(this.d_selection);
+                return !isEmpty(this.d_selection);
             }
         },
         components: {

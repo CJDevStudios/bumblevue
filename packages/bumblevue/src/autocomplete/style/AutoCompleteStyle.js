@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 
 export const style = /*css*/ `
@@ -319,7 +319,7 @@ const classes = {
         {
             'p-invalid': instance.$invalid,
             'p-focus': instance.focused,
-            'p-inputwrapper-filled': instance.$filled || isNotEmpty(instance.inputValue),
+            'p-inputwrapper-filled': instance.$filled || !isEmpty(instance.inputValue),
             'p-inputwrapper-focus': instance.focused,
             'p-autocomplete-open': instance.overlayVisible,
             'p-autocomplete-fluid': instance.$fluid,

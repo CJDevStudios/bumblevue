@@ -12,10 +12,8 @@ export { default as calculateScrollbarHeight } from './methods/calculateScrollba
 export { default as calculateScrollbarWidth } from './methods/calculateScrollbarWidth.js';
 export { default as clearSelection } from './methods/clearSelection.js';
 export { default as createElement } from './methods/createElement.js';
-export { default as createStyleAsString } from './methods/createStyleAsString.js';
 export { default as createStyleElement } from './methods/createStyleElement.js';
 export { default as createStyleMarkup } from './methods/createStyleMarkup.js';
-export { default as createStyleTag } from './methods/createStyleTag.js';
 export { default as fadeIn } from './methods/fadeIn.js';
 export { default as fadeOut } from './methods/fadeOut.js';
 export { default as find } from './methods/find.js';

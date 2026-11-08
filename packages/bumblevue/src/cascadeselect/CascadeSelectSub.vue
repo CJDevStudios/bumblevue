@@ -1,5 +1,5 @@
 <script>
-    import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, isEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
     import Ripple from '@cjdevstudios/bumblevue/ripple';
@@ -60,7 +60,7 @@
                 return processedOption.children;
             },
             isOptionGroup(processedOption) {
-                return isNotEmpty(processedOption.children);
+                return !isEmpty(processedOption.children);
             },
             isOptionSelected(processedOption) {
                 return equals(this.value, processedOption?.option);

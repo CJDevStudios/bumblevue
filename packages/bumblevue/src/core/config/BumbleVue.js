@@ -1,5 +1,5 @@
 import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
-import { mergeKeys } from '@cjdevstudios/bumblevue/utils';
+import { deepMerge } from '@cjdevstudios/bumblevue/utils';
 import { FilterMatchMode } from '@cjdevstudios/bumblevue/core/api';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 import BumbleVueService from '@cjdevstudios/bumblevue/core/service';
@@ -269,7 +269,7 @@ export function setupConfig(app, BumbleVue) {
 
 export default {
     install: (app, options) => {
-        const configOptions = mergeKeys(defaultOptions, options);
+        const configOptions = deepMerge(defaultOptions, options);
 
         setup(app, configOptions);
     }

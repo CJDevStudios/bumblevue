@@ -1,6 +1,6 @@
 import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
 import { findSingle, isElement } from '@cjdevstudios/bumblevue/utils/dom';
-import { getKeyValue, isArray, isFunction, isNotEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
+import { getKeyValue, isArray, isFunction, isEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
 import Base from '@cjdevstudios/bumblevue/core/base';
 import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
 import BaseComponentStyle from '@cjdevstudios/bumblevue/core/basecomponent/style';
@@ -184,7 +184,7 @@ export function useComponent(props, { name, style, hostName, state = {}, members
     function _loadGlobalStyles() {
         const globalCSS = _useGlobalPT(_getOptionValue, 'global.css', $params.value);
 
-        isNotEmpty(globalCSS) && BaseStyle.load(globalCSS, { name: 'global', ...$styleOptions.value });
+        !isEmpty(globalCSS) && BaseStyle.load(globalCSS, { name: 'global', ...$styleOptions.value });
     }
 
     function _loadThemeStyles() {
@@ -275,7 +275,7 @@ export function useComponent(props, { name, style, hostName, state = {}, members
 
     function _getPTDatasets(key = '') {
         const datasetPrefix = 'data-pc-';
-        const isExtended = key === 'root' && isNotEmpty(props.pt?.['data-pc-section']);
+        const isExtended = key === 'root' && !isEmpty(props.pt?.['data-pc-section']);
 
         return (
             key !== 'transition' && {

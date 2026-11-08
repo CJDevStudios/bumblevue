@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { toValues } from '../utils';
 
 export const superStructResolver =
@@ -12,7 +12,7 @@ export const superStructResolver =
             return {
                 values: toValues(undefined, name),
                 errors: errors.failures().reduce((acc, error) => {
-                    const pathKey = isNotEmpty(error.path) ? error.path.join('.') : name;
+                    const pathKey = !isEmpty(error.path) ? error.path.join('.') : name;
 
                     if (pathKey) {
                         acc[pathKey] ||= [];
