@@ -1,5 +1,5 @@
 <script>
-    import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, isEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
     import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
@@ -406,7 +406,7 @@
                     for (let col of this.columns) {
                         let _selectionMode = this.columnProp(col, 'selectionMode');
 
-                        if (isNotEmpty(_selectionMode)) {
+                        if (!isEmpty(_selectionMode)) {
                             columnSelectionMode = _selectionMode;
                             break;
                         }

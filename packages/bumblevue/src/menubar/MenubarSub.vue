@@ -1,5 +1,5 @@
 <script>
-    import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
     import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
@@ -92,7 +92,7 @@
                 return this.focusedItemId === this.getItemId(processedItem);
             },
             isItemGroup(processedItem) {
-                return isNotEmpty(processedItem.items);
+                return !isEmpty(processedItem.items);
             },
             onItemClick(event, processedItem) {
                 this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });

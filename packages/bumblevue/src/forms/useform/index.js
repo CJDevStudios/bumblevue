@@ -1,4 +1,4 @@
-import { isArray, isEmpty, isNotEmpty, mergeKeys, resolve } from '@cjdevstudios/bumblevue/utils';
+import { isArray, isEmpty, deepMerge, resolve } from '@cjdevstudios/bumblevue/utils';
 import { computed, getCurrentInstance, mergeProps, nextTick, onMounted, reactive, ref, toValue, watch } from 'vue';
 
 function tryOnMounted(fn, sync = true) {
@@ -51,7 +51,7 @@ function getValueByPath(obj, path) {
     try {
         const value = obj[path];
 
-        if (isNotEmpty(value)) return value;
+        if (!isEmpty(value)) return value;
     } catch {
         // do nothing and continue to other methods to resolve path data
     }
@@ -93,7 +93,7 @@ export const useForm = (options = {}) => {
         isArray(options[option]) ? (results = await validate(options[option])) : (options[option] ?? defaultValue) && (results = await validate());
         const fieldArr = Object.keys(fields).filter((field) => fields[field]?.options?.[option]) || [];
 
-        isNotEmpty(fieldArr) && (results = await validate(fieldArr));
+        !isEmpty(fieldArr) && (results = await validate(fieldArr));
 
         return results;
     };
@@ -205,7 +205,7 @@ export const useForm = (options = {}) => {
 
                     isArray(fieldResult.errors) && (fieldResult.errors = { [fieldName]: fieldResult.errors });
 
-                    result = mergeKeys(result, fieldResult);
+                    result = deepMerge(result, fieldResult);
                 }
 
                 const errors = getValueByPath(result.errors, fieldName) ?? [];

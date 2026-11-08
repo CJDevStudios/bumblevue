@@ -1,4 +1,4 @@
-import { mergeKeys } from '@cjdevstudios/bumblevue/utils/object';
+import { deepMerge } from '@cjdevstudios/bumblevue/utils/object';
 import Theme from '../config/index.js';
 
 export const $t = (theme = {}) => {
@@ -6,7 +6,7 @@ export const $t = (theme = {}) => {
 
     return {
         preset(value) {
-            _preset = _preset ? mergeKeys(_preset, value) : value;
+            _preset = _preset ? deepMerge(_preset, value) : value;
 
             return this;
         },
@@ -47,7 +47,7 @@ export const $t = (theme = {}) => {
         },
         update({ mergePresets = true, mergeOptions = true } = {}) {
             const newTheme = {
-                preset: mergePresets ? mergeKeys(Theme.getPreset(), _preset) : _preset,
+                preset: mergePresets ? deepMerge(Theme.getPreset(), _preset) : _preset,
                 options: mergeOptions ? { ...Theme.getOptions(), ..._options } : _options
             };
 

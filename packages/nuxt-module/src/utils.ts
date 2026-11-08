@@ -1,4 +1,4 @@
-import { createStyleAsString } from '@cjdevstudios/bumblevue/utils/dom';
+import { createStyleMarkup } from '@cjdevstudios/bumblevue/utils/dom';
 import { isFunction } from '@cjdevstudios/bumblevue/utils/object';
 import type { MetaType } from '@cjdevstudios/bumblevue/resolver';
 import type { ConstructsType, ResolvePathOptions } from './types';
@@ -14,7 +14,7 @@ export const Utils = {
         createStyleAsString(css: string, options = { name: '' }) {
             const { name, ...rest } = options;
 
-            return createStyleAsString(css, { 'data-bumblevue-style-id': name, ...rest });
+            return createStyleMarkup(css, { 'data-bumblevue-style-id': name, ...rest });
         }
     }
 };

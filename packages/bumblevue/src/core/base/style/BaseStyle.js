@@ -1,5 +1,5 @@
 import { css as Css, Theme, dt } from '@cjdevstudios/bumblevue/styled';
-import { isNotEmpty, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import { useStyle } from '@cjdevstudios/bumblevue/core/usestyle';
 
 export const style = /*css*/ `
@@ -177,7 +177,7 @@ export default {
     load(style, options = {}, transform = (cs) => cs) {
         const computedStyle = transform(Css`${style}`);
 
-        return isNotEmpty(computedStyle) ? useStyle(minifyCSS(computedStyle), { name: this.name, ...options }) : {};
+        return !isEmpty(computedStyle) ? useStyle(minifyCSS(computedStyle), { name: this.name, ...options }) : {};
     },
     loadCSS(options = {}) {
         return this.load(this.css, options);
@@ -208,7 +208,7 @@ export default {
                 .reduce((acc, [k, v]) => acc.push(`${k}="${v}"`) && acc, [])
                 .join(' ');
 
-            return isNotEmpty(_style) ? `<style type="text/css" data-bumblevue-style-id="${this.name}" ${_props}>${_style}</style>` : '';
+            return !isEmpty(_style) ? `<style type="text/css" data-bumblevue-style-id="${this.name}" ${_props}>${_style}</style>` : '';
         }
 
         return '';
@@ -227,7 +227,7 @@ export default {
                 .reduce((acc, [k, v]) => acc.push(`${k}="${v}"`) && acc, [])
                 .join(' ');
 
-            isNotEmpty(_style) && css.push(`<style type="text/css" data-bumblevue-style-id="${name}" ${_props}>${_style}</style>`);
+            !isEmpty(_style) && css.push(`<style type="text/css" data-bumblevue-style-id="${name}" ${_props}>${_style}</style>`);
         }
 
         return css.join('');

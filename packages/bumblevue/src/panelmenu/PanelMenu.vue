@@ -1,6 +1,6 @@
 <script>
     import { findSingle, focus, getAttribute } from '@cjdevstudios/bumblevue/utils/dom';
-    import { equals, isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, isEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
     import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
@@ -74,7 +74,7 @@
                 return equals(item, this.activeItem);
             },
             isItemGroup(item) {
-                return isNotEmpty(item.items);
+                return !isEmpty(item.items);
             },
             getPanelId(index) {
                 return `${this.$id}_${index}`;

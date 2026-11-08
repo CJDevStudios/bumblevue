@@ -1,5 +1,5 @@
 import { createStyleMarkup } from '@cjdevstudios/bumblevue/utils/dom';
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
 class StyleSheet {
     _styles;
@@ -21,7 +21,7 @@ class StyleSheet {
         this._styles.clear();
     }
     add(key, css) {
-        if (isNotEmpty(css)) {
+        if (!isEmpty(css)) {
             const meta = {
                 name: key,
                 css,

@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
 export default class {
     helpers;
@@ -23,7 +23,7 @@ export default class {
         const children = this._get(parentInstance, slots);
         const computed = children ? this._recursive([...this.helpers], children) : null;
 
-        return isNotEmpty(computed) ? computed : null;
+        return !isEmpty(computed) ? computed : null;
     }
     _isMatched(instance, key) {
         const parent = instance?.parent;
@@ -41,7 +41,7 @@ export default class {
                 components = components.concat(this._recursive(helpers, child.children));
             } else if (child.type.name === this.type) {
                 components.push(child);
-            } else if (isNotEmpty(child.key)) {
+            } else if (!isEmpty(child.key)) {
                 components = components.concat(helpers.filter((c) => this._isMatched(c, child.key)).map((c) => c.vnode));
             }
         });

@@ -20,7 +20,7 @@
         removeClass,
         setAttribute
     } from '@cjdevstudios/bumblevue/utils/dom';
-    import { equals, findIndexInList, isEmpty, isNotEmpty, localeComparator, reorderArray, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, findIndexInList, isEmpty, localeComparator, reorderArray, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
     import { FilterMatchMode, FilterOperator, FilterService } from '@cjdevstudios/bumblevue/core/api';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
@@ -1888,7 +1888,7 @@
                         this.$refs.table.style.minWidth = this.tableWidthState;
                     }
 
-                    if (isNotEmpty(widths)) {
+                    if (!isEmpty(widths)) {
                         this.addColumnWidthStyles(widths);
                     }
                 }
@@ -2021,7 +2021,7 @@
                 return this.$refs.virtualScroller;
             },
             hasSpacerStyle(style) {
-                return isNotEmpty(style);
+                return !isEmpty(style);
             }
         },
         computed: {
@@ -2103,7 +2103,7 @@
                 } else {
                     const val = this.frozenValue ? [...this.frozenValue, ...this.processedData] : this.processedData;
 
-                    return isNotEmpty(val) && this.selection && Array.isArray(this.selection) && val.every((v) => this.selection.some((s) => this.equals(s, v)));
+                    return !isEmpty(val) && this.selection && Array.isArray(this.selection) && val.every((v) => this.selection.some((s) => this.equals(s, v)));
                 }
             },
             groupRowSortField() {

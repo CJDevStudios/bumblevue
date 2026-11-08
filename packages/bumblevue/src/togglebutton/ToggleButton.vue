@@ -1,6 +1,6 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
-    import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
     import Ripple from '@cjdevstudios/bumblevue/ripple';
     import ToggleButtonStyle from '@cjdevstudios/bumblevue/togglebutton/style';
@@ -79,7 +79,7 @@
                 return this.d_value === true;
             },
             hasLabel() {
-                return isNotEmpty(this.onLabel) && isNotEmpty(this.offLabel);
+                return !isEmpty(this.onLabel) && !isEmpty(this.offLabel);
             },
             label() {
                 return this.hasLabel ? (this.d_value ? this.onLabel : this.offLabel) : '\u00A0';

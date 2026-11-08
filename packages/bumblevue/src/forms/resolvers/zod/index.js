@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { z } from 'zod/v4';
 import { toValues } from '../utils';
 
@@ -19,7 +19,7 @@ export const zodResolver =
                 return {
                     values: toValues(raw ? values : undefined, name),
                     errors: (e.issues || e.errors).reduce((acc, error) => {
-                        const pathKey = isNotEmpty(error.path) ? z.core.toDotPath(error.path) : name;
+                        const pathKey = !isEmpty(error.path) ? z.core.toDotPath(error.path) : name;
 
                         if (pathKey) {
                             acc[pathKey] ||= [];

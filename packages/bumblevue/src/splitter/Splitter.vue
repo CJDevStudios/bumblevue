@@ -1,7 +1,7 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isArray, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { isArray, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
     import SplitterStyle from '@cjdevstudios/bumblevue/splitter/style';
@@ -79,7 +79,7 @@
                 return child.type.name === 'SplitterPanel';
             },
             getPanelSize(panel) {
-                let size = panel.props && isNotEmpty(panel.props.size) ? panel.props.size : null;
+                let size = panel.props && !isEmpty(panel.props.size) ? panel.props.size : null;
 
                 return size ?? 100 / this.panels.length;
             },

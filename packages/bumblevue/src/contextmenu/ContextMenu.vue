@@ -1,6 +1,6 @@
 <script>
     import { addStyle, findSingle, focus, getHiddenElementOuterHeight, getHiddenElementOuterWidth, getViewport, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
-    import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import ContextMenuStyle from '@cjdevstudios/bumblevue/contextmenu/style';
@@ -79,7 +79,7 @@
         },
         watch: {
             activeItemPath(newPath) {
-                if (isNotEmpty(newPath)) {
+                if (!isEmpty(newPath)) {
                     this.bindOutsideClickListener();
                     this.bindResizeListener();
                 } else if (!this.visible) {
@@ -122,7 +122,7 @@
                 return this.getItemProp(item, 'visible') !== false;
             },
             isItemGroup(item) {
-                return isNotEmpty(this.getItemProp(item, 'items'));
+                return !isEmpty(this.getItemProp(item, 'items'));
             },
             isItemSeparator(item) {
                 return this.getItemProp(item, 'separator');
@@ -131,7 +131,7 @@
                 return processedItem ? this.getItemLabel(processedItem.item) : undefined;
             },
             isProccessedItemGroup(processedItem) {
-                return processedItem && isNotEmpty(processedItem.items);
+                return processedItem && !isEmpty(processedItem.items);
             },
             toggle(event) {
                 this.visible ? this.hide() : this.show(event);
@@ -233,7 +233,7 @@
                 if (isEmpty(processedItem)) return;
 
                 const { index, key, level, parentKey, items } = processedItem;
-                const grouped = isNotEmpty(items);
+                const grouped = !isEmpty(items);
                 const activeItemPath = this.activeItemPath.filter((p) => p.parentKey !== parentKey && p.parentKey !== key);
 
                 if (grouped) {
@@ -515,7 +515,7 @@
                 return this.visibleItems.findIndex((processedItem) => this.isValidItem(processedItem));
             },
             findLastItemIndex() {
-                return findLastIndex(this.visibleItems, (processedItem) => this.isValidItem(processedItem));
+                return this.visibleItems.findLastIndex((processedItem) => this.isValidItem(processedItem));
             },
             findNextItemIndex(index) {
                 const matchedItemIndex = index < this.visibleItems.length - 1 ? this.visibleItems.slice(index + 1).findIndex((processedItem) => this.isValidItem(processedItem)) : -1;
@@ -523,7 +523,7 @@
                 return matchedItemIndex > -1 ? matchedItemIndex + index + 1 : index;
             },
             findPrevItemIndex(index) {
-                const matchedItemIndex = index > 0 ? findLastIndex(this.visibleItems.slice(0, index), (processedItem) => this.isValidItem(processedItem)) : -1;
+                const matchedItemIndex = index > 0 ? this.visibleItems.slice(0, index).findLastIndex((processedItem) => this.isValidItem(processedItem)) : -1;
 
                 return matchedItemIndex > -1 ? matchedItemIndex : index;
             },
@@ -628,7 +628,7 @@
                 return processedItem ? processedItem.items : this.processedItems;
             },
             focusedItemIdx() {
-                return this.focusedItemInfo.index !== -1 ? `${this.$id}${isNotEmpty(this.focusedItemInfo.parentKey) ? '_' + this.focusedItemInfo.parentKey : ''}_${this.focusedItemInfo.index}` : null;
+                return this.focusedItemInfo.index !== -1 ? `${this.$id}${!isEmpty(this.focusedItemInfo.parentKey) ? '_' + this.focusedItemInfo.parentKey : ''}_${this.focusedItemInfo.index}` : null;
             }
         },
         components: {

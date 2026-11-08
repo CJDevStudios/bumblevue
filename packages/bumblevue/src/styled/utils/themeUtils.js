@@ -1,4 +1,4 @@
-import { isEmpty, isNotEmpty, isObject, matchRegex, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
+import { isEmpty, isObject, matchRegex, minifyCSS, resolve } from '@cjdevstudios/bumblevue/utils/object';
 import { dt, toVariables } from '../helpers/index.js';
 import { CALC_REGEX, EXPR_REGEX, getRule, toTokenKey, VAR_REGEX } from './sharedUtils.js';
 
@@ -51,19 +51,19 @@ export default {
         let primitive_css, primitive_tokens, semantic_css, semantic_tokens, global_css, global_tokens, style;
 
         // @todo - check if options is not empty
-        if (isNotEmpty(preset) && options.transform !== 'strict') {
+        if (!isEmpty(preset) && options.transform !== 'strict') {
             const { primitive, semantic, extend } = preset;
             const { colorScheme, ...sRest } = semantic || {};
             const { colorScheme: eColorScheme, ...eRest } = extend || {};
             const { dark, ...csRest } = colorScheme || {};
             const { dark: eDark, ...ecsRest } = eColorScheme || {};
-            const prim_var = isNotEmpty(primitive) ? this._toVariables({ primitive }, options) : {};
-            const sRest_var = isNotEmpty(sRest) ? this._toVariables({ semantic: sRest }, options) : {};
-            const csRest_var = isNotEmpty(csRest) ? this._toVariables({ light: csRest }, options) : {};
-            const csDark_var = isNotEmpty(dark) ? this._toVariables({ dark }, options) : {};
-            const eRest_var = isNotEmpty(eRest) ? this._toVariables({ semantic: eRest }, options) : {};
-            const ecsRest_var = isNotEmpty(ecsRest) ? this._toVariables({ light: ecsRest }, options) : {};
-            const ecsDark_var = isNotEmpty(eDark) ? this._toVariables({ dark: eDark }, options) : {};
+            const prim_var = !isEmpty(primitive) ? this._toVariables({ primitive }, options) : {};
+            const sRest_var = !isEmpty(sRest) ? this._toVariables({ semantic: sRest }, options) : {};
+            const csRest_var = !isEmpty(csRest) ? this._toVariables({ light: csRest }, options) : {};
+            const csDark_var = !isEmpty(dark) ? this._toVariables({ dark }, options) : {};
+            const eRest_var = !isEmpty(eRest) ? this._toVariables({ semantic: eRest }, options) : {};
+            const ecsRest_var = !isEmpty(ecsRest) ? this._toVariables({ light: ecsRest }, options) : {};
+            const ecsDark_var = !isEmpty(eDark) ? this._toVariables({ dark: eDark }, options) : {};
 
             const [prim_css, prim_tokens] = [prim_var.declarations ?? '', prim_var.tokens];
             const [sRest_css, sRest_tokens] = [sRest_var.declarations ?? '', sRest_var.tokens || []];
@@ -110,15 +110,15 @@ export default {
     getPreset({ name = '', preset = {}, options, params, set, defaults, selector }) {
         let p_css, p_tokens, p_style;
 
-        if (isNotEmpty(preset) && options.transform !== 'strict') {
+        if (!isEmpty(preset) && options.transform !== 'strict') {
             const _name = name.replace('-directive', '');
             const { colorScheme, extend, css, ...vRest } = preset;
             const { colorScheme: eColorScheme, ...evRest } = extend || {};
             const { dark, ...csRest } = colorScheme || {};
             const { dark: ecsDark, ...ecsRest } = eColorScheme || {};
-            const vRest_var = isNotEmpty(vRest) ? this._toVariables({ [_name]: { ...vRest, ...evRest } }, options) : {};
-            const csRest_var = isNotEmpty(csRest) ? this._toVariables({ [_name]: { ...csRest, ...ecsRest } }, options) : {};
-            const csDark_var = isNotEmpty(dark) ? this._toVariables({ [_name]: { ...dark, ...ecsDark } }, options) : {};
+            const vRest_var = !isEmpty(vRest) ? this._toVariables({ [_name]: { ...vRest, ...evRest } }, options) : {};
+            const csRest_var = !isEmpty(csRest) ? this._toVariables({ [_name]: { ...csRest, ...ecsRest } }, options) : {};
+            const csDark_var = !isEmpty(dark) ? this._toVariables({ [_name]: { ...dark, ...ecsDark } }, options) : {};
 
             const [vRest_css, vRest_tokens] = [vRest_var.declarations ?? '', vRest_var.tokens || []];
             const [csRest_css, csRest_tokens] = [csRest_var.declarations ?? '', csRest_var.tokens || []];
@@ -322,10 +322,10 @@ export default {
               }, undefined);
     },
     getSelectorRule(selector1, selector2, type, css) {
-        return type === 'class' || type === 'attr' ? getRule(isNotEmpty(selector2) ? `${selector1}${selector2},${selector1} ${selector2}` : selector1, css) : getRule(selector1, getRule(selector2 ?? ':root,:host', css));
+        return type === 'class' || type === 'attr' ? getRule(!isEmpty(selector2) ? `${selector1}${selector2},${selector1} ${selector2}` : selector1, css) : getRule(selector1, getRule(selector2 ?? ':root,:host', css));
     },
     transformCSS(name, css, mode, type, options = {}, set, defaults, selector) {
-        if (isNotEmpty(css)) {
+        if (!isEmpty(css)) {
             const { cssLayer } = options;
 
             if (type !== 'style') {
@@ -334,7 +334,7 @@ export default {
                 css =
                     mode === 'dark'
                         ? colorSchemeOption.reduce((acc, { type, selector: _selector }) => {
-                              if (isNotEmpty(_selector)) {
+                              if (!isEmpty(_selector)) {
                                   acc += _selector.includes('[CSS]') ? _selector.replace('[CSS]', css) : this.getSelectorRule(_selector, selector, type, css);
                               }
 
@@ -351,7 +351,7 @@ export default {
 
                 isObject(cssLayer) && (layerOptions.name = resolve(cssLayer.name, { name, type }));
 
-                if (isNotEmpty(layerOptions.name)) {
+                if (!isEmpty(layerOptions.name)) {
                     css = getRule(`@layer ${layerOptions.name}`, css);
                     set?.layerNames(layerOptions.name);
                 }

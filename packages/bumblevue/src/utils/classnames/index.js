@@ -25,12 +25,3 @@ export function cn(...args) {
 
     return undefined;
 }
-
-/**
- * @deprecated Use `cn` instead.
- * @param args
- * @returns
- */
-export function classNames(...args) {
-    return cn(...args);
-}

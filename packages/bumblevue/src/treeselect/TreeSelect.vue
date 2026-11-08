@@ -1,6 +1,6 @@
 <script>
     import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
     import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
@@ -531,7 +531,7 @@
                 let label;
 
                 if (value.length) {
-                    if (isNotEmpty(this.maxSelectedLabels) && value.length > this.maxSelectedLabels) {
+                    if (!isEmpty(this.maxSelectedLabels) && value.length > this.maxSelectedLabels) {
                         label = this.getSelectedItemsLabel();
                     } else {
                         label = value.map((node) => node.label).join(', ');
@@ -543,7 +543,7 @@
                 return label;
             },
             chipSelectedItems() {
-                return isNotEmpty(this.maxSelectedLabels) && this.d_value && Object.keys(this.d_value).length > this.maxSelectedLabels;
+                return !isEmpty(this.maxSelectedLabels) && this.d_value && Object.keys(this.d_value).length > this.maxSelectedLabels;
             },
             emptyMessageText() {
                 return this.emptyMessage || this.$bumblevue.config.locale.emptyMessage;
@@ -561,7 +561,7 @@
                 return isEmpty(this.fluid) ? !!this.$pcFluid : this.fluid;
             },
             isClearIconVisible() {
-                return this.showClear && this.d_value != null && isNotEmpty(this.options) && !this.disabled && !this.loading;
+                return this.showClear && this.d_value != null && !isEmpty(this.options) && !this.disabled && !this.loading;
             }
         },
         components: {

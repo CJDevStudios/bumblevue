@@ -32,8 +32,11 @@ const ALIAS_ENTRIES = [
         find: /^@cjdevstudios\/bumblevue\/(.*)$/,
         replacement: '@cjdevstudios/bumblevue/$1',
         customResolver(source) {
-            const target = LOCAL_EXPORTS[source.replace(/^@cjdevstudios\/bumblevue/, '.')];
+            let target = LOCAL_EXPORTS[source.replace(/^@cjdevstudios\/bumblevue/, '.')];
 
+            if (typeof target === 'object') {
+                target = target.default;
+            }
             return target && target !== './*' ? path.resolve(__dirname, target) : null;
         }
     }

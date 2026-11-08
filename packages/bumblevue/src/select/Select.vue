@@ -1,7 +1,7 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isAndroid, isTouchDevice, isVisible, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
-    import { equals, findLastIndex, isNotEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import { equals, isEmpty, isPrintableCharacter, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import { FilterService } from '@cjdevstudios/bumblevue/core/api';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
@@ -442,7 +442,7 @@
 
                 this.updateModel(event, value);
 
-                !this.overlayVisible && isNotEmpty(value) && this.show();
+                !this.overlayVisible && !isEmpty(value) && this.show();
             },
             onContainerClick(event) {
                 if (this.disabled || this.loading) {
@@ -835,7 +835,7 @@
                 return this.isValidOption(option) && typeof this.getOptionLabel(option) === 'string' && this.getOptionLabel(option)?.toLocaleLowerCase(this.filterLocale).startsWith(this.searchValue.toLocaleLowerCase(this.filterLocale));
             },
             isValidOption(option) {
-                return isNotEmpty(option) && !(this.isOptionDisabled(option) || this.isOptionGroup(option));
+                return !isEmpty(option) && !(this.isOptionDisabled(option) || this.isOptionGroup(option));
             },
             isValidSelectedOption(option) {
                 return this.isValidOption(option) && this.isSelected(option);
@@ -847,7 +847,7 @@
                 return this.visibleOptions.findIndex((option) => this.isValidOption(option));
             },
             findLastOptionIndex() {
-                return findLastIndex(this.visibleOptions, (option) => this.isValidOption(option));
+                return this.visibleOptions.findLastIndex((option) => this.isValidOption(option));
             },
             findNextOptionIndex(index) {
                 const matchedOptionIndex = index < this.visibleOptions.length - 1 ? this.visibleOptions.slice(index + 1).findIndex((option) => this.isValidOption(option)) : -1;
@@ -855,7 +855,7 @@
                 return matchedOptionIndex > -1 ? matchedOptionIndex + index + 1 : index;
             },
             findPrevOptionIndex(index) {
-                const matchedOptionIndex = index > 0 ? findLastIndex(this.visibleOptions.slice(0, index), (option) => this.isValidOption(option)) : -1;
+                const matchedOptionIndex = index > 0 ? this.visibleOptions.slice(0, index).findLastIndex((option) => this.isValidOption(option)) : -1;
 
                 return matchedOptionIndex > -1 ? matchedOptionIndex : index;
             },
@@ -878,7 +878,7 @@
                 let optionIndex = -1;
                 let matched = false;
 
-                if (isNotEmpty(this.searchValue)) {
+                if (!isEmpty(this.searchValue)) {
                     optionIndex = this.visibleOptions.findIndex((option) => this.isOptionExactMatched(option));
 
                     if (optionIndex === -1) {
@@ -1020,7 +1020,7 @@
                 return this.filterFields || [this.optionLabel];
             },
             filterResultMessageText() {
-                return isNotEmpty(this.visibleOptions) ? this.filterMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptyFilterMessageText;
+                return !isEmpty(this.visibleOptions) ? this.filterMessageText.replaceAll('{0}', this.visibleOptions.length) : this.emptyFilterMessageText;
             },
             filterMessageText() {
                 return this.filterMessage || this.$bumblevue.config.locale.searchMessage || '';

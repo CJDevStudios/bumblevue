@@ -1,4 +1,4 @@
-import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
+import { isEmpty } from '@cjdevstudios/bumblevue/utils';
 import { toValues } from '../utils';
 
 export const joiResolver =
@@ -18,7 +18,7 @@ export const joiResolver =
                 return {
                     values: toValues(raw ? values : undefined, name),
                     errors: e.details.reduce((acc, error) => {
-                        const pathKey = isNotEmpty(error.path) ? error.path.join('.') : name;
+                        const pathKey = !isEmpty(error.path) ? error.path.join('.') : name;
 
                         if (pathKey) {
                             acc[pathKey] ||= [];

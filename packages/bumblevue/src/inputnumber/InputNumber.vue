@@ -1,7 +1,7 @@
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { clearSelection, getSelection } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
     import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
     import AngleUpIcon from '@cjdevstudios/bumblevue/icons/angleup';
@@ -655,7 +655,7 @@
                     case 'Home':
                         event.preventDefault();
 
-                        if (isNotEmpty(this.min)) {
+                        if (!isEmpty(this.min)) {
                             this.updateModel(event, this.min);
                         }
 
@@ -664,7 +664,7 @@
                     case 'End':
                         event.preventDefault();
 
-                        if (isNotEmpty(this.max)) {
+                        if (!isEmpty(this.max)) {
                             this.updateModel(event, this.max);
                         }
 

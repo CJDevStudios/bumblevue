@@ -1,7 +1,7 @@
 <script>
     import { Theme, ThemeService } from '@cjdevstudios/bumblevue/styled';
     import { findSingle, isElement } from '@cjdevstudios/bumblevue/utils/dom';
-    import { getKeyValue, isArray, isFunction, isNotEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
+    import { getKeyValue, isArray, isFunction, isEmpty, isString, resolve, toFlatCase } from '@cjdevstudios/bumblevue/utils/object';
     import Base from '@cjdevstudios/bumblevue/core/base';
     import BaseStyle from '@cjdevstudios/bumblevue/core/base/style';
     import { useAttrSelector } from '@cjdevstudios/bumblevue/core/useattrselector';
@@ -155,12 +155,12 @@
                  * const selfCSS = this._getPTClassValue(this.pt, 'css', this.$params);
                  * const defaultCSS = this._getPTClassValue(this.defaultPT, 'css', this.$params);
                  * const mergedCSS = mergeProps(selfCSS, defaultCSS);
-                 * isNotEmpty(mergedCSS?.class) && this.$css.loadCustomStyle(mergedCSS?.class);
+                 * !isEmpty(mergedCSS?.class) && this.$css.loadCustomStyle(mergedCSS?.class);
                  */
 
                 const globalCSS = this._useGlobalPT(this._getOptionValue, 'global.css', this.$params);
 
-                isNotEmpty(globalCSS) && BaseStyle.load(globalCSS, { name: 'global', ...this.$styleOptions });
+                !isEmpty(globalCSS) && BaseStyle.load(globalCSS, { name: 'global', ...this.$styleOptions });
             },
             _loadThemeStyles() {
                 if (this.isUnstyled || this.$theme === 'none') return;
@@ -240,7 +240,7 @@
             },
             _getPTDatasets(key = '') {
                 const datasetPrefix = 'data-pc-';
-                const isExtended = key === 'root' && isNotEmpty(this.pt?.['data-pc-section']);
+                const isExtended = key === 'root' && !isEmpty(this.pt?.['data-pc-section']);
 
                 return (
                     key !== 'transition' && {

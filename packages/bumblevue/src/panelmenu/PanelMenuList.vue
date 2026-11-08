@@ -1,7 +1,7 @@
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { findSingle, focus } from '@cjdevstudios/bumblevue/utils/dom';
-    import { resolve, isNotEmpty, isPrintableCharacter, findLast, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { resolve, isPrintableCharacter, isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import PanelMenuSub from './PanelMenuSub.vue';
 
     export default {
@@ -61,7 +61,7 @@
                 return this.activeItemPath.some((path) => path.key === processedItem.parentKey);
             },
             isItemGroup(processedItem) {
-                return isNotEmpty(processedItem.items);
+                return !isEmpty(processedItem.items);
             },
             onFocus(event) {
                 this.focused = true;
@@ -128,32 +128,32 @@
                 }
             },
             onArrowDownKey(event) {
-                const processedItem = isNotEmpty(this.focusedItem) ? this.findNextItem(this.focusedItem) : this.findFirstItem();
+                const processedItem = !isEmpty(this.focusedItem) ? this.findNextItem(this.focusedItem) : this.findFirstItem();
 
                 this.changeFocusedItem({ originalEvent: event, processedItem, focusOnNext: true });
                 event.preventDefault();
             },
             onArrowUpKey(event) {
-                const processedItem = isNotEmpty(this.focusedItem) ? this.findPrevItem(this.focusedItem) : this.findLastItem();
+                const processedItem = !isEmpty(this.focusedItem) ? this.findPrevItem(this.focusedItem) : this.findLastItem();
 
                 this.changeFocusedItem({ originalEvent: event, processedItem, selfCheck: true });
                 event.preventDefault();
             },
             onArrowLeftKey(event) {
-                if (isNotEmpty(this.focusedItem)) {
+                if (!isEmpty(this.focusedItem)) {
                     const matched = this.activeItemPath.some((p) => p.key === this.focusedItem.key);
 
                     if (matched) {
                         this.activeItemPath = this.activeItemPath.filter((p) => p.key !== this.focusedItem.key);
                     } else {
-                        this.focusedItem = isNotEmpty(this.focusedItem.parent) ? this.focusedItem.parent : this.focusedItem;
+                        this.focusedItem = !isEmpty(this.focusedItem.parent) ? this.focusedItem.parent : this.focusedItem;
                     }
 
                     event.preventDefault();
                 }
             },
             onArrowRightKey(event) {
-                if (isNotEmpty(this.focusedItem)) {
+                if (!isEmpty(this.focusedItem)) {
                     const grouped = this.isItemGroup(this.focusedItem);
 
                     if (grouped) {
@@ -179,7 +179,7 @@
                 event.preventDefault();
             },
             onEnterKey(event) {
-                if (isNotEmpty(this.focusedItem)) {
+                if (!isEmpty(this.focusedItem)) {
                     const element = findSingle(this.$el, `li[id="${`${this.focusedItemId}`}"]`);
                     const anchorElement = element && (findSingle(element, '[data-pc-section="itemlink"]') || findSingle(element, 'a,button'));
 
@@ -227,7 +227,7 @@
                 return this.visibleItems.find((processedItem) => this.isValidItem(processedItem));
             },
             findLastItem() {
-                return findLast(this.visibleItems, (processedItem) => this.isValidItem(processedItem));
+                return this.visibleItems.findLast((processedItem) => this.isValidItem(processedItem));
             },
             findNextItem(processedItem) {
                 const index = this.visibleItems.findIndex((item) => item.key === processedItem.key);
@@ -237,7 +237,7 @@
             },
             findPrevItem(processedItem) {
                 const index = this.visibleItems.findIndex((item) => item.key === processedItem.key);
-                const matchedItem = index > 0 ? findLast(this.visibleItems.slice(0, index), (pItem) => this.isValidItem(pItem)) : undefined;
+                const matchedItem = index > 0 ? this.visibleItems.slice(0, index).findLast((pItem) => this.isValidItem(pItem)) : undefined;
 
                 return matchedItem || processedItem;
             },
@@ -247,7 +247,7 @@
                 let matchedItem = null;
                 let matched = false;
 
-                if (isNotEmpty(this.focusedItem)) {
+                if (!isEmpty(this.focusedItem)) {
                     const focusedItemIndex = this.visibleItems.findIndex((processedItem) => processedItem.key === this.focusedItem.key);
 
                     matchedItem = this.visibleItems.slice(focusedItemIndex).find((processedItem) => this.isItemMatched(processedItem));
@@ -256,7 +256,7 @@
                     matchedItem = this.visibleItems.find((processedItem) => this.isItemMatched(processedItem));
                 }
 
-                if (isNotEmpty(matchedItem)) {
+                if (!isEmpty(matchedItem)) {
                     matched = true;
                 }
 
@@ -264,7 +264,7 @@
                     matchedItem = this.findFirstItem();
                 }
 
-                if (isNotEmpty(matchedItem)) {
+                if (!isEmpty(matchedItem)) {
                     this.changeFocusedItem({
                         originalEvent: event,
                         processedItem: matchedItem,
@@ -286,7 +286,7 @@
             changeFocusedItem(event) {
                 const { originalEvent, processedItem, focusOnNext, selfCheck, allowHeaderFocus = true } = event;
 
-                if (isNotEmpty(this.focusedItem) && this.focusedItem.key !== processedItem.key) {
+                if (!isEmpty(this.focusedItem) && this.focusedItem.key !== processedItem.key) {
                     this.focusedItem = processedItem;
                     this.scrollInView();
                 } else if (allowHeaderFocus) {
@@ -367,7 +367,7 @@
                 return this.flatItems(this.processedItems);
             },
             focusedItemId() {
-                return isNotEmpty(this.focusedItem) ? `${this.panelId}_${this.focusedItem.key}` : null;
+                return !isEmpty(this.focusedItem) ? `${this.panelId}_${this.focusedItem.key}` : null;
             }
         },
         components: {

@@ -34,19 +34,9 @@ declare function clearSelection(): void;
 
 declare function createElement(type: string, attributes?: Record<string, unknown>, ...children: (string | Node)[]): HTMLElement | undefined;
 
-/**
- * @deprecated Use `createStyleMarkup` instead.
- */
-declare function createStyleAsString(css?: string, options?: Record<string, unknown>): string;
-
 declare function createStyleElement(css: string, attributes?: Record<string, unknown>, container?: Element): HTMLStyleElement;
 
 declare function createStyleMarkup(css?: string, attributes?: Record<string, unknown>): string;
-
-/**
- * @deprecated Use `createStyleElement` instead.
- */
-declare function createStyleTag(attributes?: Record<string, unknown>, container?: Element): HTMLStyleElement;
 
 declare function fadeIn(element: HTMLElement, duration: number): void;
 
@@ -229,10 +219,8 @@ export {
     calculateScrollbarWidth,
     clearSelection,
     createElement,
-    createStyleAsString,
     createStyleElement,
     createStyleMarkup,
-    createStyleTag,
     exportCSV,
     fadeIn,
     fadeOut,

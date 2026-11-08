@@ -1,6 +1,6 @@
 <script>
     import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@cjdevstudios/bumblevue/utils/dom';
-    import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
 
     export default {
         props: ['docs'],
@@ -84,7 +84,7 @@
             },
             scrollCurrentUrl() {
                 const hash = window.location.hash.substring(1);
-                const hasHash = isNotEmpty(hash);
+                const hasHash = !isEmpty(hash);
                 const id = hasHash ? hash : (this.docs[0] || {}).id;
 
                 this.activeId = id;

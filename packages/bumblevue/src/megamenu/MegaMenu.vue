@@ -1,6 +1,6 @@
 <script>
     import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
-    import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import { isEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import BarsIcon from '@cjdevstudios/bumblevue/icons/bars';
@@ -73,7 +73,7 @@
         },
         watch: {
             activeItem(newItem) {
-                if (isNotEmpty(newItem)) {
+                if (!isEmpty(newItem)) {
                     this.bindOutsideClickListener();
                     this.bindResizeListener();
                 } else {
@@ -105,7 +105,7 @@
                 return this.getItemProp(item, 'visible') !== false;
             },
             isItemGroup(item) {
-                return isNotEmpty(this.getItemProp(item, 'items'));
+                return !isEmpty(this.getItemProp(item, 'items'));
             },
             isItemSeparator(item) {
                 return this.getItemProp(item, 'separator');
@@ -114,7 +114,7 @@
                 return processedItem ? this.getItemLabel(processedItem.item) : undefined;
             },
             isProccessedItemGroup(processedItem) {
-                return processedItem && isNotEmpty(processedItem.items);
+                return processedItem && !isEmpty(processedItem.items);
             },
             toggle(event) {
                 if (this.mobileActive) {
@@ -243,7 +243,7 @@
                 if (isEmpty(processedItem)) return;
 
                 const { index, key, parentKey, items } = processedItem;
-                const grouped = isNotEmpty(items);
+                const grouped = !isEmpty(items);
 
                 grouped && (this.activeItem = processedItem);
                 this.focusedItemInfo = { index, key, parentKey };
@@ -289,7 +289,7 @@
             },
             onArrowDownKey(event) {
                 if (this.horizontal) {
-                    if (isNotEmpty(this.activeItem) && this.activeItem.key === this.focusedItemInfo.key) {
+                    if (!isEmpty(this.activeItem) && this.activeItem.key === this.focusedItemInfo.key) {
                         this.focusedItemInfo = { index: -1, key: '', parentKey: this.activeItem.key };
                     } else {
                         const processedItem = this.findVisibleItem(this.focusedItemInfo.index);
@@ -314,7 +314,7 @@
                         const processedItem = this.findVisibleItem(this.focusedItemInfo.index);
                         const grouped = this.isProccessedItemGroup(processedItem);
 
-                        if (!grouped && isNotEmpty(this.activeItem)) {
+                        if (!grouped && !isEmpty(this.activeItem)) {
                             if (this.focusedItemInfo.index === 0) {
                                 this.focusedItemInfo = { index: this.activeItem.index, key: this.activeItem.key, parentKey: this.activeItem.parentKey };
                                 this.activeItem = null;
@@ -343,7 +343,7 @@
                         this.changeFocusedItemInfo(event, itemIndex);
                     }
                 } else {
-                    if (this.vertical && isNotEmpty(this.activeItem)) {
+                    if (this.vertical && !isEmpty(this.activeItem)) {
                         if (processedItem.columnIndex === 0) {
                             this.focusedItemInfo = { index: this.activeItem.index, key: this.activeItem.key, parentKey: this.activeItem.parentKey };
                             this.activeItem = null;
@@ -364,7 +364,7 @@
 
                 if (grouped) {
                     if (this.vertical) {
-                        if (isNotEmpty(this.activeItem) && this.activeItem.key === processedItem.key) {
+                        if (!isEmpty(this.activeItem) && this.activeItem.key === processedItem.key) {
                             this.focusedItemInfo = { index: -1, key: '', parentKey: this.activeItem.key };
                         } else {
                             const processedItem = this.findVisibleItem(this.focusedItemInfo.index);
@@ -417,7 +417,7 @@
                 this.onEnterKey(event);
             },
             onEscapeKey(event) {
-                if (isNotEmpty(this.activeItem)) {
+                if (!isEmpty(this.activeItem)) {
                     this.focusedItemInfo = { index: this.activeItem.index, key: this.activeItem.key };
                     this.activeItem = null;
                 }
@@ -504,13 +504,13 @@
                 return this.isValidItem(processedItem) && this.isSelected(processedItem);
             },
             isSelected(processedItem) {
-                return isNotEmpty(this.activeItem) ? this.activeItem.key === processedItem.key : false;
+                return !isEmpty(this.activeItem) ? this.activeItem.key === processedItem.key : false;
             },
             findFirstItemIndex() {
                 return this.visibleItems.findIndex((processedItem) => this.isValidItem(processedItem));
             },
             findLastItemIndex() {
-                return findLastIndex(this.visibleItems, (processedItem) => this.isValidItem(processedItem));
+                return this.visibleItems.findLastIndex((processedItem) => this.isValidItem(processedItem));
             },
             findNextItemIndex(index) {
                 const matchedItemIndex = index < this.visibleItems.length - 1 ? this.visibleItems.slice(index + 1).findIndex((processedItem) => this.isValidItem(processedItem)) : -1;
@@ -518,7 +518,7 @@
                 return matchedItemIndex > -1 ? matchedItemIndex + index + 1 : index;
             },
             findPrevItemIndex(index) {
-                const matchedItemIndex = index > 0 ? findLastIndex(this.visibleItems.slice(0, index), (processedItem) => this.isValidItem(processedItem)) : -1;
+                const matchedItemIndex = index > 0 ? this.visibleItems.slice(0, index).findLastIndex((processedItem) => this.isValidItem(processedItem)) : -1;
 
                 return matchedItemIndex > -1 ? matchedItemIndex : index;
             },
@@ -536,7 +536,7 @@
                 return selectedIndex < 0 ? this.findLastItemIndex() : selectedIndex;
             },
             findVisibleItem(index) {
-                return isNotEmpty(this.visibleItems) ? this.visibleItems[index] : null;
+                return !isEmpty(this.visibleItems) ? this.visibleItems[index] : null;
             },
             searchItems(event, char) {
                 this.searchValue = (this.searchValue || '') + char;
@@ -578,7 +578,7 @@
                 const processedItem = this.findVisibleItem(index);
 
                 this.focusedItemInfo.index = index;
-                this.focusedItemInfo.key = isNotEmpty(processedItem) ? processedItem.key : '';
+                this.focusedItemInfo.key = !isEmpty(processedItem) ? processedItem.key : '';
                 this.scrollInView();
             },
             scrollInView(index = -1) {
@@ -630,7 +630,7 @@
                 return this.createProcessedItems(this.model || []);
             },
             visibleItems() {
-                const processedItem = isNotEmpty(this.activeItem) ? this.activeItem : null;
+                const processedItem = !isEmpty(this.activeItem) ? this.activeItem : null;
 
                 return processedItem && processedItem.key === this.focusedItemInfo.parentKey
                     ? processedItem.items.reduce((items, col) => {
@@ -651,7 +651,7 @@
                 return this.orientation === 'vertical';
             },
             focusedItemId() {
-                return isNotEmpty(this.focusedItemInfo.key) ? `${this.$id}_${this.focusedItemInfo.key}` : null;
+                return !isEmpty(this.focusedItemInfo.key) ? `${this.$id}_${this.focusedItemInfo.key}` : null;
             }
         },
         components: {
