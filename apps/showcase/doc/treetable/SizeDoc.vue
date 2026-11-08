@@ -1,44 +1,25 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>In addition to a regular table, alternatives with alternative sizes are available.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex justify-center mb-6">
-                <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
-            </div>
-            <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            size: { label: 'Normal', value: 'normal' },
-            sizeOptions: [
-                { label: 'Small', value: 'small' },
-                { label: 'Normal', value: 'normal' },
-                { label: 'Large', value: 'large' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                size: { label: 'Normal', value: 'normal' },
+                sizeOptions: [
+                    { label: 'Small', value: 'small' },
+                    { label: 'Normal', value: 'normal' },
+                    { label: 'Large', value: 'large' }
+                ],
+                code: {
+                    basic: `
 <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" expander style="width: 34%"></Column>
     <Column field="size" header="Size" style="width: 33%"></Column>
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
@@ -66,7 +47,7 @@ const sizeOptions = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -94,13 +75,32 @@ const sizeOptions = ref([
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>In addition to a regular table, alternatives with alternative sizes are available.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex justify-center mb-6">
+                <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
+            </div>
+            <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

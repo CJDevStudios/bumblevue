@@ -1,3 +1,156 @@
+<script>
+    import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
+    import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { mergeProps } from 'vue';
+
+    export default {
+        name: 'MegaMenuSub',
+        hostName: 'MegaMenu',
+        extends: BaseComponent,
+        emits: ['item-click', 'item-mouseenter'],
+        props: {
+            menuId: {
+                type: String,
+                default: null
+            },
+            focusedItemId: {
+                type: String,
+                default: null
+            },
+            horizontal: {
+                type: Boolean,
+                default: false
+            },
+            submenu: {
+                type: Object,
+                default: null
+            },
+            mobileActive: {
+                type: Boolean,
+                default: false
+            },
+            items: {
+                type: Array,
+                default: null
+            },
+            level: {
+                type: Number,
+                default: 0
+            },
+            templates: {
+                type: Object,
+                default: null
+            },
+            activeItem: {
+                type: Object,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            }
+        },
+        methods: {
+            getSubListId(processedItem) {
+                return `${this.getItemId(processedItem)}_list`;
+            },
+            getSubListKey(processedItem) {
+                return this.getSubListId(processedItem);
+            },
+            getItemId(processedItem) {
+                return `${this.menuId}_${processedItem.key}`;
+            },
+            getItemKey(processedItem) {
+                return this.getItemId(processedItem);
+            },
+            getItemProp(processedItem, name, params) {
+                return processedItem && processedItem.item ? resolve(processedItem.item[name], params) : undefined;
+            },
+            getItemLabel(processedItem) {
+                return this.getItemProp(processedItem, 'label');
+            },
+            getPTOptions(processedItem, index, key) {
+                return this.ptm(key, {
+                    context: {
+                        item: processedItem.item,
+                        index,
+                        active: this.isItemActive(processedItem),
+                        focused: this.isItemFocused(processedItem),
+                        disabled: this.isItemDisabled(processedItem)
+                    }
+                });
+            },
+            isItemActive(processedItem) {
+                return isNotEmpty(this.activeItem) ? this.activeItem.key === processedItem.key : false;
+            },
+            isItemVisible(processedItem) {
+                return this.getItemProp(processedItem, 'visible') !== false;
+            },
+            isItemDisabled(processedItem) {
+                return this.getItemProp(processedItem, 'disabled');
+            },
+            isItemFocused(processedItem) {
+                return this.focusedItemId === this.getItemId(processedItem);
+            },
+            isItemGroup(processedItem) {
+                return isNotEmpty(processedItem.items);
+            },
+            onItemClick(event, processedItem) {
+                this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });
+                this.$emit('item-click', { originalEvent: event, processedItem, isFocus: true });
+            },
+            onItemMouseEnter(event, processedItem) {
+                this.$emit('item-mouseenter', { originalEvent: event, processedItem });
+            },
+            getAriaSetSize() {
+                return this.items.filter((processedItem) => this.isItemVisible(processedItem) && !this.getItemProp(processedItem, 'separator')).length;
+            },
+            getAriaPosInset(index) {
+                return index - this.items.slice(0, index).filter((processedItem) => this.isItemVisible(processedItem) && this.getItemProp(processedItem, 'separator')).length + 1;
+            },
+            getMenuItemProps(processedItem, index) {
+                return {
+                    action: mergeProps(
+                        {
+                            class: this.cx('itemLink'),
+                            tabindex: -1
+                        },
+                        this.getPTOptions(processedItem, index, 'itemLink')
+                    ),
+                    icon: mergeProps(
+                        {
+                            class: [this.cx('itemIcon'), this.getItemProp(processedItem, 'icon')]
+                        },
+                        this.getPTOptions(processedItem, index, 'itemIcon')
+                    ),
+                    label: mergeProps(
+                        {
+                            class: this.cx('label')
+                        },
+                        this.getPTOptions(processedItem, index, 'label')
+                    ),
+                    submenuicon: mergeProps(
+                        {
+                            class: this.cx('submenuIcon')
+                        },
+                        this.getPTOptions(processedItem, index, 'submenuIcon')
+                    )
+                };
+            }
+        },
+        components: {
+            AngleRightIcon: AngleRightIcon,
+            AngleDownIcon: AngleDownIcon
+        },
+        directives: {
+            ripple: Ripple
+        }
+    };
+</script>
+
 <template>
     <ul :class="level === 0 ? cx('rootList') : cx('submenu')" :tabindex="tabindex" v-bind="level === 0 ? ptm('rootList') : ptm('submenu')">
         <li v-if="submenu" :class="[cx('submenuLabel', { submenu }), getItemProp(submenu, 'class')]" :style="getItemProp(submenu, 'style')" role="presentation" v-bind="ptm('submenuLabel')">{{ getItemLabel(submenu) }}</li>
@@ -72,156 +225,3 @@
         </template>
     </ul>
 </template>
-
-<script>
-import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import AngleDownIcon from '@cjdevstudios/bumblevue/icons/angledown';
-import AngleRightIcon from '@cjdevstudios/bumblevue/icons/angleright';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import { mergeProps } from 'vue';
-
-export default {
-    name: 'MegaMenuSub',
-    hostName: 'MegaMenu',
-    extends: BaseComponent,
-    emits: ['item-click', 'item-mouseenter'],
-    props: {
-        menuId: {
-            type: String,
-            default: null
-        },
-        focusedItemId: {
-            type: String,
-            default: null
-        },
-        horizontal: {
-            type: Boolean,
-            default: false
-        },
-        submenu: {
-            type: Object,
-            default: null
-        },
-        mobileActive: {
-            type: Boolean,
-            default: false
-        },
-        items: {
-            type: Array,
-            default: null
-        },
-        level: {
-            type: Number,
-            default: 0
-        },
-        templates: {
-            type: Object,
-            default: null
-        },
-        activeItem: {
-            type: Object,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: 0
-        }
-    },
-    methods: {
-        getSubListId(processedItem) {
-            return `${this.getItemId(processedItem)}_list`;
-        },
-        getSubListKey(processedItem) {
-            return this.getSubListId(processedItem);
-        },
-        getItemId(processedItem) {
-            return `${this.menuId}_${processedItem.key}`;
-        },
-        getItemKey(processedItem) {
-            return this.getItemId(processedItem);
-        },
-        getItemProp(processedItem, name, params) {
-            return processedItem && processedItem.item ? resolve(processedItem.item[name], params) : undefined;
-        },
-        getItemLabel(processedItem) {
-            return this.getItemProp(processedItem, 'label');
-        },
-        getPTOptions(processedItem, index, key) {
-            return this.ptm(key, {
-                context: {
-                    item: processedItem.item,
-                    index,
-                    active: this.isItemActive(processedItem),
-                    focused: this.isItemFocused(processedItem),
-                    disabled: this.isItemDisabled(processedItem)
-                }
-            });
-        },
-        isItemActive(processedItem) {
-            return isNotEmpty(this.activeItem) ? this.activeItem.key === processedItem.key : false;
-        },
-        isItemVisible(processedItem) {
-            return this.getItemProp(processedItem, 'visible') !== false;
-        },
-        isItemDisabled(processedItem) {
-            return this.getItemProp(processedItem, 'disabled');
-        },
-        isItemFocused(processedItem) {
-            return this.focusedItemId === this.getItemId(processedItem);
-        },
-        isItemGroup(processedItem) {
-            return isNotEmpty(processedItem.items);
-        },
-        onItemClick(event, processedItem) {
-            this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });
-            this.$emit('item-click', { originalEvent: event, processedItem, isFocus: true });
-        },
-        onItemMouseEnter(event, processedItem) {
-            this.$emit('item-mouseenter', { originalEvent: event, processedItem });
-        },
-        getAriaSetSize() {
-            return this.items.filter((processedItem) => this.isItemVisible(processedItem) && !this.getItemProp(processedItem, 'separator')).length;
-        },
-        getAriaPosInset(index) {
-            return index - this.items.slice(0, index).filter((processedItem) => this.isItemVisible(processedItem) && this.getItemProp(processedItem, 'separator')).length + 1;
-        },
-        getMenuItemProps(processedItem, index) {
-            return {
-                action: mergeProps(
-                    {
-                        class: this.cx('itemLink'),
-                        tabindex: -1
-                    },
-                    this.getPTOptions(processedItem, index, 'itemLink')
-                ),
-                icon: mergeProps(
-                    {
-                        class: [this.cx('itemIcon'), this.getItemProp(processedItem, 'icon')]
-                    },
-                    this.getPTOptions(processedItem, index, 'itemIcon')
-                ),
-                label: mergeProps(
-                    {
-                        class: this.cx('label')
-                    },
-                    this.getPTOptions(processedItem, index, 'label')
-                ),
-                submenuicon: mergeProps(
-                    {
-                        class: this.cx('submenuIcon')
-                    },
-                    this.getPTOptions(processedItem, index, 'submenuIcon')
-                )
-            };
-        }
-    },
-    components: {
-        AngleRightIcon: AngleRightIcon,
-        AngleDownIcon: AngleDownIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
-</script>

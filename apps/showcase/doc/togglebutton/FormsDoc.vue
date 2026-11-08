@@ -1,36 +1,20 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ToggleButton integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
-            <div class="flex flex-col items-center gap-1">
-                <ToggleButton name="consent" class="w-48" onLabel="Accept All" offLabel="Reject All" />
-                <Message v-if="$form.consent?.invalid" severity="error" size="small" variant="simple">{{ $form.consent.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            initialValues: {
-                consent: false
-            },
-            resolver: zodResolver(
-                z.object({
-                    consent: z.boolean().refine((val) => val === true, { message: 'Consent is mandatory.' })
-                })
-            ),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    consent: false
+                },
+                resolver: zodResolver(
+                    z.object({
+                        consent: z.boolean().refine((val) => val === true, { message: 'Consent is mandatory.' })
+                    })
+                ),
+                code: {
+                    basic: `
 <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
     <div class="flex flex-col items-center gap-1">
         <ToggleButton name="consent" class="w-48" onLabel="Accept All" offLabel="Reject All" />
@@ -39,7 +23,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
@@ -76,15 +60,31 @@ const onFormSubmit = ({ valid }) => {
 };
 <\/script>
         `
-            }
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ToggleButton integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
+            <div class="flex flex-col items-center gap-1">
+                <ToggleButton name="consent" class="w-48" onLabel="Accept All" offLabel="Reject All" />
+                <Message v-if="$form.consent?.invalid" severity="error" size="small" variant="simple">{{ $form.consent.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

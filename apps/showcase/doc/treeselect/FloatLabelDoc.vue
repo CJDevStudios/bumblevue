@@ -1,38 +1,15 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A floating label appears on top of the input field when focused. Visit <BumbleVueNuxtLink to="/floatlabel">FloatLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <FloatLabel class="w-full md:w-80">
-            <TreeSelect v-model="value1" inputId="over_label" :options="nodes" class="w-full" />
-            <label for="over_label">Over Label</label>
-        </FloatLabel>
-
-        <FloatLabel class="w-full md:w-80" variant="in">
-            <TreeSelect v-model="value2" inputId="in_label" :options="nodes" class="w-full" variant="filled" />
-            <label for="in_label">In Label</label>
-        </FloatLabel>
-
-        <FloatLabel class="w-full md:w-80" variant="on">
-            <TreeSelect v-model="value3" inputId="on_label" :options="nodes" class="w-full" />
-            <label for="on_label">On Label</label>
-        </FloatLabel>
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <FloatLabel class="w-full md:w-80">
     <TreeSelect v-model="value1" inputId="over_label" :options="nodes" class="w-full" />
     <label for="over_label">Over Label</label>
@@ -48,7 +25,7 @@ export default {
     <label for="on_label">On Label</label>
 </FloatLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">
         <FloatLabel class="w-full md:w-80">
@@ -82,7 +59,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -109,11 +86,34 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A floating label appears on top of the input field when focused. Visit <BumbleVueNuxtLink to="/floatlabel">FloatLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center items-end gap-4">
+        <FloatLabel class="w-full md:w-80">
+            <TreeSelect v-model="value1" inputId="over_label" :options="nodes" class="w-full" />
+            <label for="over_label">Over Label</label>
+        </FloatLabel>
+
+        <FloatLabel class="w-full md:w-80" variant="in">
+            <TreeSelect v-model="value2" inputId="in_label" :options="nodes" class="w-full" variant="filled" />
+            <label for="in_label">In Label</label>
+        </FloatLabel>
+
+        <FloatLabel class="w-full md:w-80" variant="on">
+            <TreeSelect v-model="value3" inputId="on_label" :options="nodes" class="w-full" />
+            <label for="on_label">On Label</label>
+        </FloatLabel>
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

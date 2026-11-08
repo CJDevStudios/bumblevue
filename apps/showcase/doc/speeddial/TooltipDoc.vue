@@ -1,63 +1,50 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Items display a tooltip on hover when a standalone <BumbleVueNuxtLink to="/tooltip">Tooltip</BumbleVueNuxtLink> is present with a target that matches the items.</p>
-    </DocSectionText>
-    <div class="card">
-        <div :style="{ position: 'relative', height: '350px' }">
-            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', right: 0, bottom: 0 }" :buttonProps="{ severity: 'help', rounded: true }" :tooltipOptions="{ position: 'left' }" />
-            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', left: 0, bottom: 0 }" :buttonProps="{ severity: 'danger', rounded: true }" :tooltipOptions="{ position: 'right' }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Add',
-                    icon: 'pi pi-pencil',
-                    command: () => {
-                        this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Add',
+                        icon: 'pi pi-pencil',
+                        command: () => {
+                            this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Update',
+                        icon: 'pi pi-refresh',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-trash',
+                        command: () => {
+                            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Upload',
+                        icon: 'pi pi-upload',
+                        command: () => {
+                            this.$router.push('/fileupload');
+                        }
+                    },
+                    {
+                        label: 'Vue Website',
+                        icon: 'pi pi-external-link',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Update',
-                    icon: 'pi pi-refresh',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-trash',
-                    command: () => {
-                        this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Upload',
-                    icon: 'pi pi-upload',
-                    command: () => {
-                        this.$router.push('/fileupload');
-                    }
-                },
-                {
-                    label: 'Vue Website',
-                    icon: 'pi pi-external-link',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', right: 0, bottom: 0 }" :buttonProps="{ severity: 'help', rounded: true }" :tooltipOptions="{ position: 'left' }" />
 <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', left: 0, bottom: 0 }" :buttonProps="{ severity: 'danger', rounded: true }" :tooltipOptions="{ position: 'right' }" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div :style="{ position: 'relative', height: '350px' }">
@@ -115,8 +102,21 @@ const items = ref([
 ])
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Items display a tooltip on hover when a standalone <BumbleVueNuxtLink to="/tooltip">Tooltip</BumbleVueNuxtLink> is present with a target that matches the items.</p>
+    </DocSectionText>
+    <div class="card">
+        <div :style="{ position: 'relative', height: '350px' }">
+            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', right: 0, bottom: 0 }" :buttonProps="{ severity: 'help', rounded: true }" :tooltipOptions="{ position: 'left' }" />
+            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', left: 0, bottom: 0 }" :buttonProps="{ severity: 'danger', rounded: true }" :tooltipOptions="{ position: 'right' }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

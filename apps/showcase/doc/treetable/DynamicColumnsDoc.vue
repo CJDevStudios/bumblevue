@@ -1,32 +1,18 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Columns can be created programmatically.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" :expander="col.expander"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            columns: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                columns: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" :expander="col.expander"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -51,7 +37,7 @@ const columns = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -79,20 +65,34 @@ const columns = ref([
 },
 ...
 `
+                }
+            };
+        },
+        created() {
+            this.columns = [
+                { field: 'name', header: 'Name', expander: true },
+                { field: 'size', header: 'Size' },
+                { field: 'type', header: 'Type' }
+            ];
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'name', header: 'Name', expander: true },
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
-        ];
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Columns can be created programmatically.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
+                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" :expander="col.expander"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

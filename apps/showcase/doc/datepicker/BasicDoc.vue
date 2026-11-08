@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>DatePicker is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <DatePicker v-model="date" />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const date = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>DatePicker is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <DatePicker v-model="date" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

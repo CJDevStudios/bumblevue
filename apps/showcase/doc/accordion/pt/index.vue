@@ -1,3 +1,47 @@
+<script>
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+    import PTViewer from './PTViewer.vue';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.viewer',
+                        label: 'Viewer',
+                        component: PTViewer
+                    },
+                    {
+                        id: 'pt.doc.accordion',
+                        label: 'Accordion PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Accordion')
+                    },
+                    {
+                        id: 'pt.doc.accordionpanel',
+                        label: 'AccordionPanel PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('AccordionPanel')
+                    },
+                    {
+                        id: 'pt.doc.accordionheader',
+                        label: 'AccordionHeader PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('AccordionHeader')
+                    },
+                    {
+                        id: 'pt.doc.accordioncontent',
+                        label: 'AccordionContent PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('AccordionContent')
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <div class="doc-main">
         <div class="doc-intro">
@@ -7,47 +51,3 @@
     </div>
     <DocSectionNav :docs="docs" />
 </template>
-
-<script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-import PTViewer from './PTViewer.vue';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.viewer',
-                    label: 'Viewer',
-                    component: PTViewer
-                },
-                {
-                    id: 'pt.doc.accordion',
-                    label: 'Accordion PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Accordion')
-                },
-                {
-                    id: 'pt.doc.accordionpanel',
-                    label: 'AccordionPanel PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('AccordionPanel')
-                },
-                {
-                    id: 'pt.doc.accordionheader',
-                    label: 'AccordionHeader PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('AccordionHeader')
-                },
-                {
-                    id: 'pt.doc.accordioncontent',
-                    label: 'AccordionContent PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('AccordionContent')
-                }
-            ]
-        };
-    }
-};
-</script>

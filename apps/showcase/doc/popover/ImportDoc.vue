@@ -1,18 +1,18 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+import Popover from '@cjdevstudios/bumblevue/popover';
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs" />
     <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-import Popover from '@cjdevstudios/bumblevue/popover';
-`
-            }
-        };
-    }
-};
-</script>

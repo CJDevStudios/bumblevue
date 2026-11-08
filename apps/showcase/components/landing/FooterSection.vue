@@ -1,3 +1,7 @@
+<script>
+    export default {};
+</script>
+
 <template>
     <section class="landing-footer pt-20 px-8 lg:px-20">
         <div class="landing-footer-container">
@@ -70,7 +74,3 @@
         </div>
     </section>
 </template>
-
-<script>
-export default {};
-</script>

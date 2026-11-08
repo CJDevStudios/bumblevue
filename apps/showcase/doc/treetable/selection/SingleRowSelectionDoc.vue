@@ -1,38 +1,14 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Single node selection is configured by setting <i>selectionMode</i> as <i>single</i> along with <i>selectionKeys</i> property to manage the selection value binding.</p>
-        <p>
-            By default, metaKey press (e.g. <i>⌘</i>) is necessary to unselect a node however this can be configured with disabling the <i>metaKeySelection</i> property. In touch enabled devices this option has no effect and behavior is same as
-            setting it to false.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex justify-center items-center mb-6 gap-2">
-                <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
-                <label for="input-metakey">MetaKey</label>
-            </div>
-            <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="metaKey" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedKey: null,
-            metaKey: true,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedKey: null,
+                metaKey: true,
+                code: {
+                    basic: `
 <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
 
 <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="metaKey" tableStyle="min-width: 50rem">
@@ -41,7 +17,7 @@ export default {
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex justify-center items-center mb-6 gap-2">
@@ -69,7 +45,7 @@ const selectedKey = ref();
 const metaKey = ref(true);
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -97,13 +73,37 @@ const metaKey = ref(true);
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Single node selection is configured by setting <i>selectionMode</i> as <i>single</i> along with <i>selectionKeys</i> property to manage the selection value binding.</p>
+        <p>
+            By default, metaKey press (e.g. <i>⌘</i>) is necessary to unselect a node however this can be configured with disabling the <i>metaKeySelection</i> property. In touch enabled devices this option has no effect and behavior is same as
+            setting it to false.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex justify-center items-center mb-6 gap-2">
+                <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
+                <label for="input-metakey">MetaKey</label>
+            </div>
+            <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="metaKey" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

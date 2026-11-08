@@ -1,26 +1,10 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <IconField>
-                <InputIcon class="pi pi-user" />
-                <InputText id="username" v-model="value" autocomplete="off" variant="filled" />
-            </IconField>
-            <label for="username">Username</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <IftaLabel>
     <IconField>
         <InputIcon class="pi pi-user" />
@@ -29,7 +13,7 @@ export default {
     <label for="username">Username</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel>
@@ -48,8 +32,24 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <IconField>
+                <InputIcon class="pi pi-user" />
+                <InputText id="username" v-model="value" autocomplete="off" variant="filled" />
+            </IconField>
+            <label for="username">Username</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

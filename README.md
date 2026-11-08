@@ -1,4 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # BumbleVue
 
 A fork of PrimeVue, born after PrimeVue was taken closed-source.

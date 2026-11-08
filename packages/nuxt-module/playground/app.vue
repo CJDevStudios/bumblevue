@@ -1,3 +1,18 @@
+<script setup>
+    import { useToast } from '#imports';
+
+    const toast = useToast();
+
+    const onShow = () => {
+        toast.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'Order submitted',
+            life: 3000
+        });
+    };
+</script>
+
 <template>
     <div>
         <Toast />
@@ -10,18 +25,3 @@
         <Button label="Show" @click="onShow" />
     </div>
 </template>
-
-<script setup>
-import { useToast } from '#imports';
-
-const toast = useToast();
-
-const onShow = () => {
-    toast.add({
-        severity: 'success',
-        summary: 'Success Message',
-        detail: 'Order submitted',
-        life: 3000
-    });
-};
-</script>

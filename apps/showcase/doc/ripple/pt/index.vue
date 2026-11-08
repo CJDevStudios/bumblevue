@@ -1,3 +1,23 @@
+<script>
+    import DocApiTable from '@/components/doc/DocApiTable.vue';
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'pt.doc.ripple',
+                        label: 'Ripple PT Options',
+                        component: DocApiTable,
+                        data: getPTOptions('Ripple')
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <div class="doc-main">
         <div class="doc-intro">
@@ -7,23 +27,3 @@
     </div>
     <DocSectionNav :docs="docs" />
 </template>
-
-<script>
-import DocApiTable from '@/components/doc/DocApiTable.vue';
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'pt.doc.ripple',
-                    label: 'Ripple PT Options',
-                    component: DocApiTable,
-                    data: getPTOptions('Ripple')
-                }
-            ]
-        };
-    }
-};
-</script>

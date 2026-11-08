@@ -1,3 +1,227 @@
+<script>
+    import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
+    import { resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import Tooltip from '@cjdevstudios/bumblevue/tooltip';
+    import { mergeProps } from 'vue';
+
+    export default {
+        name: 'DockSub',
+        hostName: 'Dock',
+        extends: BaseComponent,
+        emits: ['focus', 'blur'],
+        props: {
+            position: {
+                type: String,
+                default: 'bottom'
+            },
+            model: {
+                type: Array,
+                default: null
+            },
+            templates: {
+                type: null,
+                default: null
+            },
+            tooltipOptions: null,
+            menuId: {
+                type: String,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            }
+        },
+        data() {
+            return {
+                currentIndex: -3,
+                focused: false,
+                focusedOptionIndex: -1
+            };
+        },
+        methods: {
+            getItemId(index) {
+                return `${this.idx}_${index}`;
+            },
+            getItemProp(processedItem, name) {
+                return processedItem && processedItem.item ? resolve(processedItem.item[name]) : undefined;
+            },
+            getPTOptions(key, item, index) {
+                return this.ptm(key, {
+                    context: {
+                        index,
+                        item,
+                        active: this.isItemActive(this.getItemId(index))
+                    }
+                });
+            },
+            isSameMenuItem(event) {
+                return event.currentTarget && (event.currentTarget.isSameNode(event.target) || event.currentTarget.isSameNode(event.target.closest('[data-pc-section="item"]')));
+            },
+            isItemActive(id) {
+                return id === this.focusedOptionIndex;
+            },
+            onListMouseLeave() {
+                this.currentIndex = -3;
+            },
+            onItemMouseEnter(index) {
+                this.currentIndex = index;
+            },
+            onItemClick(event, processedItem) {
+                if (this.isSameMenuItem(event)) {
+                    const command = this.getItemProp(processedItem, 'command');
+
+                    command && command({ originalEvent: event, item: processedItem.item });
+                }
+            },
+            onListFocus(event) {
+                this.focused = true;
+                this.changeFocusedOptionIndex(0);
+                this.$emit('focus', event);
+            },
+            onListBlur(event) {
+                this.focused = false;
+                this.focusedOptionIndex = -1;
+                this.$emit('blur', event);
+            },
+            onListKeyDown(event) {
+                switch (event.code) {
+                    case 'ArrowDown': {
+                        if (this.position === 'left' || this.position === 'right') this.onArrowDownKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'ArrowUp': {
+                        if (this.position === 'left' || this.position === 'right') this.onArrowUpKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'ArrowRight': {
+                        if (this.position === 'top' || this.position === 'bottom') this.onArrowDownKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'ArrowLeft': {
+                        if (this.position === 'top' || this.position === 'bottom') this.onArrowUpKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'Home': {
+                        this.onHomeKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'End': {
+                        this.onEndKey();
+                        event.preventDefault();
+                        break;
+                    }
+
+                    case 'Enter':
+                    case 'NumpadEnter':
+
+                    case 'Space': {
+                        this.onSpaceKey(event);
+                        event.preventDefault();
+                        break;
+                    }
+
+                    default:
+                        break;
+                }
+            },
+            onArrowDownKey() {
+                const optionIndex = this.findNextOptionIndex(this.focusedOptionIndex);
+
+                this.changeFocusedOptionIndex(optionIndex);
+            },
+            onArrowUpKey() {
+                const optionIndex = this.findPrevOptionIndex(this.focusedOptionIndex);
+
+                this.changeFocusedOptionIndex(optionIndex);
+            },
+            onHomeKey() {
+                this.changeFocusedOptionIndex(0);
+            },
+            onEndKey() {
+                this.changeFocusedOptionIndex(find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]').length - 1);
+            },
+            onSpaceKey() {
+                const element = findSingle(this.$refs.list, `li[id="${`${this.focusedOptionIndex}`}"]`);
+                const anchorElement = element && findSingle(element, '[data-pc-section="itemlink"]');
+
+                anchorElement ? anchorElement.click() : element && element.click();
+            },
+            findNextOptionIndex(index) {
+                const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
+                const matchedOptionIndex = [...menuitems].findIndex((link) => link.id === index);
+
+                return matchedOptionIndex > -1 ? matchedOptionIndex + 1 : 0;
+            },
+            findPrevOptionIndex(index) {
+                const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
+                const matchedOptionIndex = [...menuitems].findIndex((link) => link.id === index);
+
+                return matchedOptionIndex > -1 ? matchedOptionIndex - 1 : 0;
+            },
+            changeFocusedOptionIndex(index) {
+                const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
+
+                let order = index >= menuitems.length ? menuitems.length - 1 : index < 0 ? 0 : index;
+
+                this.focusedOptionIndex = menuitems[order].getAttribute('id');
+            },
+            disabled(item) {
+                return typeof item.disabled === 'function' ? item.disabled() : item.disabled;
+            },
+            getMenuItemProps(item, index) {
+                return {
+                    action: mergeProps(
+                        {
+                            tabindex: -1,
+                            class: this.cx('itemLink')
+                        },
+                        this.getPTOptions('itemLink', item, index)
+                    ),
+                    icon: mergeProps(
+                        {
+                            class: [this.cx('itemIcon'), item.icon]
+                        },
+                        this.getPTOptions('itemIcon', item, index)
+                    )
+                };
+            }
+        },
+        computed: {
+            focusedOptionId() {
+                return this.focusedOptionIndex !== -1 ? this.focusedOptionIndex : null;
+            },
+            idx() {
+                return this.menuId || this.$id;
+            }
+        },
+        directives: {
+            ripple: Ripple,
+            tooltip: Tooltip
+        }
+    };
+</script>
+
 <template>
     <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
         <ul
@@ -52,227 +276,3 @@
         </ul>
     </div>
 </template>
-
-<script>
-import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
-import { resolve } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import Tooltip from '@cjdevstudios/bumblevue/tooltip';
-import { mergeProps } from 'vue';
-
-export default {
-    name: 'DockSub',
-    hostName: 'Dock',
-    extends: BaseComponent,
-    emits: ['focus', 'blur'],
-    props: {
-        position: {
-            type: String,
-            default: 'bottom'
-        },
-        model: {
-            type: Array,
-            default: null
-        },
-        templates: {
-            type: null,
-            default: null
-        },
-        tooltipOptions: null,
-        menuId: {
-            type: String,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: 0
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        }
-    },
-    data() {
-        return {
-            currentIndex: -3,
-            focused: false,
-            focusedOptionIndex: -1
-        };
-    },
-    methods: {
-        getItemId(index) {
-            return `${this.idx}_${index}`;
-        },
-        getItemProp(processedItem, name) {
-            return processedItem && processedItem.item ? resolve(processedItem.item[name]) : undefined;
-        },
-        getPTOptions(key, item, index) {
-            return this.ptm(key, {
-                context: {
-                    index,
-                    item,
-                    active: this.isItemActive(this.getItemId(index))
-                }
-            });
-        },
-        isSameMenuItem(event) {
-            return event.currentTarget && (event.currentTarget.isSameNode(event.target) || event.currentTarget.isSameNode(event.target.closest('[data-pc-section="item"]')));
-        },
-        isItemActive(id) {
-            return id === this.focusedOptionIndex;
-        },
-        onListMouseLeave() {
-            this.currentIndex = -3;
-        },
-        onItemMouseEnter(index) {
-            this.currentIndex = index;
-        },
-        onItemClick(event, processedItem) {
-            if (this.isSameMenuItem(event)) {
-                const command = this.getItemProp(processedItem, 'command');
-
-                command && command({ originalEvent: event, item: processedItem.item });
-            }
-        },
-        onListFocus(event) {
-            this.focused = true;
-            this.changeFocusedOptionIndex(0);
-            this.$emit('focus', event);
-        },
-        onListBlur(event) {
-            this.focused = false;
-            this.focusedOptionIndex = -1;
-            this.$emit('blur', event);
-        },
-        onListKeyDown(event) {
-            switch (event.code) {
-                case 'ArrowDown': {
-                    if (this.position === 'left' || this.position === 'right') this.onArrowDownKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'ArrowUp': {
-                    if (this.position === 'left' || this.position === 'right') this.onArrowUpKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'ArrowRight': {
-                    if (this.position === 'top' || this.position === 'bottom') this.onArrowDownKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'ArrowLeft': {
-                    if (this.position === 'top' || this.position === 'bottom') this.onArrowUpKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'Home': {
-                    this.onHomeKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'End': {
-                    this.onEndKey();
-                    event.preventDefault();
-                    break;
-                }
-
-                case 'Enter':
-                case 'NumpadEnter':
-
-                case 'Space': {
-                    this.onSpaceKey(event);
-                    event.preventDefault();
-                    break;
-                }
-
-                default:
-                    break;
-            }
-        },
-        onArrowDownKey() {
-            const optionIndex = this.findNextOptionIndex(this.focusedOptionIndex);
-
-            this.changeFocusedOptionIndex(optionIndex);
-        },
-        onArrowUpKey() {
-            const optionIndex = this.findPrevOptionIndex(this.focusedOptionIndex);
-
-            this.changeFocusedOptionIndex(optionIndex);
-        },
-        onHomeKey() {
-            this.changeFocusedOptionIndex(0);
-        },
-        onEndKey() {
-            this.changeFocusedOptionIndex(find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]').length - 1);
-        },
-        onSpaceKey() {
-            const element = findSingle(this.$refs.list, `li[id="${`${this.focusedOptionIndex}`}"]`);
-            const anchorElement = element && findSingle(element, '[data-pc-section="itemlink"]');
-
-            anchorElement ? anchorElement.click() : element && element.click();
-        },
-        findNextOptionIndex(index) {
-            const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
-            const matchedOptionIndex = [...menuitems].findIndex((link) => link.id === index);
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex + 1 : 0;
-        },
-        findPrevOptionIndex(index) {
-            const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
-            const matchedOptionIndex = [...menuitems].findIndex((link) => link.id === index);
-
-            return matchedOptionIndex > -1 ? matchedOptionIndex - 1 : 0;
-        },
-        changeFocusedOptionIndex(index) {
-            const menuitems = find(this.$refs.list, 'li[data-pc-section="item"][data-p-disabled="false"]');
-
-            let order = index >= menuitems.length ? menuitems.length - 1 : index < 0 ? 0 : index;
-
-            this.focusedOptionIndex = menuitems[order].getAttribute('id');
-        },
-        disabled(item) {
-            return typeof item.disabled === 'function' ? item.disabled() : item.disabled;
-        },
-        getMenuItemProps(item, index) {
-            return {
-                action: mergeProps(
-                    {
-                        tabindex: -1,
-                        class: this.cx('itemLink')
-                    },
-                    this.getPTOptions('itemLink', item, index)
-                ),
-                icon: mergeProps(
-                    {
-                        class: [this.cx('itemIcon'), item.icon]
-                    },
-                    this.getPTOptions('itemIcon', item, index)
-                )
-            };
-        }
-    },
-    computed: {
-        focusedOptionId() {
-            return this.focusedOptionIndex !== -1 ? this.focusedOptionIndex : null;
-        },
-        idx() {
-            return this.menuId || this.$id;
-        }
-    },
-    directives: {
-        ripple: Ripple,
-        tooltip: Tooltip
-    }
-};
-</script>

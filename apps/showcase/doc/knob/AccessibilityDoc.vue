@@ -1,3 +1,20 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<span id="label_number">Number</span>
+<Knob aria-labelledby="label_number" />
+
+<Knob aria-label="Number" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -60,20 +77,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<span id="label_number">Number</span>
-<Knob aria-labelledby="label_number" />
-
-<Knob aria-label="Number" />
-`
-            }
-        };
-    }
-};
-</script>

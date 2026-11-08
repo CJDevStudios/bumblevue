@@ -1,3 +1,37 @@
+<script>
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+
+    export default {
+        name: 'MeterGroupLabel',
+        hostName: 'MeterGroup',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        inject: ['$pcMeterGroup'],
+        props: {
+            value: {
+                type: Array,
+                default: null
+            },
+            labelPosition: {
+                type: String,
+                default: 'end'
+            },
+            labelOrientation: {
+                type: String,
+                default: 'horizontal'
+            }
+        },
+        computed: {
+            dataP() {
+                return cn({
+                    [this.$pcMeterGroup.labelOrientation]: this.$pcMeterGroup.labelOrientation
+                });
+            }
+        }
+    };
+</script>
+
 <template>
     <ol :class="cx('labelList')" :data-p="dataP" v-bind="ptm('labelList')">
         <li v-for="(val, index) in value" :key="index + '_label'" :class="cx('label')" v-bind="ptm('label')">
@@ -9,37 +43,3 @@
         </li>
     </ol>
 </template>
-
-<script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-
-export default {
-    name: 'MeterGroupLabel',
-    hostName: 'MeterGroup',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    inject: ['$pcMeterGroup'],
-    props: {
-        value: {
-            type: Array,
-            default: null
-        },
-        labelPosition: {
-            type: String,
-            default: 'end'
-        },
-        labelOrientation: {
-            type: String,
-            default: 'horizontal'
-        }
-    },
-    computed: {
-        dataP() {
-            return cn({
-                [this.$pcMeterGroup.labelOrientation]: this.$pcMeterGroup.labelOrientation
-            });
-        }
-    }
-};
-</script>

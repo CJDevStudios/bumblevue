@@ -1,3 +1,25 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('InputGroup'),
+                        key: 'InputGroup'
+                    },
+                    {
+                        data: getPTOptions('InputGroupAddon'),
+                        key: 'InputGroupAddon'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <InputGroup>
@@ -7,25 +29,3 @@
         </InputGroup>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('InputGroup'),
-                    key: 'InputGroup'
-                },
-                {
-                    data: getPTOptions('InputGroupAddon'),
-                    key: 'InputGroupAddon'
-                }
-            ]
-        };
-    }
-};
-</script>

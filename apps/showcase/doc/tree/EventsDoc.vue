@@ -1,36 +1,16 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>An event is provided for each type of user interaction such as expand, collapse and selection.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree
-            v-model:selectionKeys="selectedKey"
-            :value="nodes"
-            selectionMode="single"
-            :metaKeySelection="false"
-            @nodeSelect="onNodeSelect"
-            @nodeUnselect="onNodeUnselect"
-            @nodeExpand="onNodeExpand"
-            @nodeCollapse="onNodeCollapse"
-            class="w-full md:w-120"
-        ></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedKey: null,
-            code: {
-                basic: `
+    import { NodeService } from '@/service/NodeService';
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedKey: null,
+                code: {
+                    basic: `
 <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" :metaKeySelection="false"
     @nodeSelect="onNodeSelect" @nodeUnselect="onNodeUnselect" @nodeExpand="onNodeExpand" @nodeCollapse="onNodeCollapse" class="w-full md:w-120"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -69,7 +49,7 @@ const onNodeCollapse = (node) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -96,25 +76,45 @@ const onNodeCollapse = (node) => {
     ]
 },
 ...`
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        },
+        methods: {
+            onNodeSelect(node) {
+                this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.label, life: 3000 });
+            },
+            onNodeUnselect(node) {
+                this.$toast.add({ severity: 'warn', summary: 'Node Unselected', detail: node.label, life: 3000 });
+            },
+            onNodeExpand(node) {
+                this.$toast.add({ severity: 'info', summary: 'Node Expanded', detail: node.label, life: 3000 });
+            },
+            onNodeCollapse(node) {
+                this.$toast.add({ severity: 'info', summary: 'Node Collapsed', detail: node.label, life: 3000 });
             }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    },
-    methods: {
-        onNodeSelect(node) {
-            this.$toast.add({ severity: 'success', summary: 'Node Selected', detail: node.label, life: 3000 });
-        },
-        onNodeUnselect(node) {
-            this.$toast.add({ severity: 'warn', summary: 'Node Unselected', detail: node.label, life: 3000 });
-        },
-        onNodeExpand(node) {
-            this.$toast.add({ severity: 'info', summary: 'Node Expanded', detail: node.label, life: 3000 });
-        },
-        onNodeCollapse(node) {
-            this.$toast.add({ severity: 'info', summary: 'Node Collapsed', detail: node.label, life: 3000 });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>An event is provided for each type of user interaction such as expand, collapse and selection.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree
+            v-model:selectionKeys="selectedKey"
+            :value="nodes"
+            selectionMode="single"
+            :metaKeySelection="false"
+            @nodeSelect="onNodeSelect"
+            @nodeUnselect="onNodeUnselect"
+            @nodeExpand="onNodeExpand"
+            @nodeCollapse="onNodeCollapse"
+            class="w-full md:w-120"
+        ></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

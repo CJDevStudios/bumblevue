@@ -1,3 +1,20 @@
+<script>
+    export default {
+        data() {
+            return {
+                selectedCity: null,
+                cities: [
+                    { name: 'New York', code: 'NY' },
+                    { name: 'Rome', code: 'RM' },
+                    { name: 'London', code: 'LDN' },
+                    { name: 'Istanbul', code: 'IST' },
+                    { name: 'Paris', code: 'PRS' }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -10,20 +27,3 @@
         <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Unstyled Select" unstyled />
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            selectedCity: null,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ]
-        };
-    }
-};
-</script>

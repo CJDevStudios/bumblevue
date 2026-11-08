@@ -1,3 +1,30 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+import Button from "@cjdevstudios/bumblevue/button"
+
+const app = createApp(App);
+app.component('Button', Button);
+`,
+                    composition: `
+<template>
+    <div class="card flex justify-center">
+        <Button label="Verify" />
+    </div>
+</template>
+
+<script setup>
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -10,30 +37,3 @@
     </div>
     <DocSectionCode :code="code" importCode />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-import Button from "@cjdevstudios/bumblevue/button"
-
-const app = createApp(App);
-app.component('Button', Button);
-`,
-                composition: `
-<template>
-    <div class="card flex justify-center">
-        <Button label="Verify" />
-    </div>
-</template>
-
-<script setup>
-<\/script>
-`
-            }
-        };
-    }
-};
-</script>

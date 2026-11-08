@@ -1,30 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Headless mode is enabled by defining a <i>container</i> slot that lets you implement entire confirmation UI instead of the default elements.</p>
-    </DocSectionText>
-    <ConfirmPopup group="headless">
-        <template #container="{ message, acceptCallback, rejectCallback }">
-            <div class="rounded-sm p-4">
-                <span>{{ message.message }}</span>
-                <div class="flex items-center gap-2 mt-4">
-                    <Button label="Save" @click="acceptCallback" size="small"></Button>
-                    <Button label="Cancel" variant="outlined" @click="rejectCallback" severity="secondary" size="small" text></Button>
-                </div>
-            </div>
-        </template>
-    </ConfirmPopup>
-    <div class="card flex justify-center">
-        <Button @click="requireConfirmation($event)" label="Save"></Button>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <ConfirmPopup group="headless">
     <template #container="{ message, acceptCallback, rejectCallback }">
         <div class="rounded-sm p-4">
@@ -38,7 +17,7 @@ export default {
 </ConfirmPopup>
 <Button @click="requireConfirmation($event)" label="Save"></Button>
 `,
-                composition: `
+                    composition: `
 <template>
     <Toast />
     <ConfirmPopup group="headless">
@@ -79,23 +58,44 @@ const requireConfirmation = (event) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        requireConfirmation(event) {
-            this.$confirm.require({
-                target: event.currentTarget,
-                group: 'headless',
-                message: 'Save your current process?',
-                accept: () => {
-                    this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
-                },
-                reject: () => {
-                    this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
                 }
-            });
+            };
+        },
+        methods: {
+            requireConfirmation(event) {
+                this.$confirm.require({
+                    target: event.currentTarget,
+                    group: 'headless',
+                    message: 'Save your current process?',
+                    accept: () => {
+                        this.$toast.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted', life: 3000 });
+                    },
+                    reject: () => {
+                        this.$toast.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
+                    }
+                });
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Headless mode is enabled by defining a <i>container</i> slot that lets you implement entire confirmation UI instead of the default elements.</p>
+    </DocSectionText>
+    <ConfirmPopup group="headless">
+        <template #container="{ message, acceptCallback, rejectCallback }">
+            <div class="rounded-sm p-4">
+                <span>{{ message.message }}</span>
+                <div class="flex items-center gap-2 mt-4">
+                    <Button label="Save" @click="acceptCallback" size="small"></Button>
+                    <Button label="Cancel" variant="outlined" @click="rejectCallback" severity="secondary" size="small" text></Button>
+                </div>
+            </div>
+        </template>
+    </ConfirmPopup>
+    <div class="card flex justify-center">
+        <Button @click="requireConfirmation($event)" label="Save"></Button>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,45 +1,35 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SplitButton label="Save" @click="save" :model="items" disabled />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Update',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        command: () => {
+                            this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Quit',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Delete',
-                    command: () => {
-                        this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Quit',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SplitButton label="Save" @click="save" :model="items" disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Toast />
@@ -80,13 +70,23 @@ const save = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            save() {
+                this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
             }
-        };
-    },
-    methods: {
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SplitButton label="Save" @click="save" :model="items" disabled />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

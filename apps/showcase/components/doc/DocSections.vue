@@ -1,3 +1,9 @@
+<script>
+    export default {
+        props: ['docs']
+    };
+</script>
+
 <template>
     <template v-for="(doc, i) of docs" :key="doc.label + '_' + i">
         <section class="py-6">
@@ -18,9 +24,3 @@
         </section>
     </template>
 </template>
-
-<script>
-export default {
-    props: ['docs']
-};
-</script>

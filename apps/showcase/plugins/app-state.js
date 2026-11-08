@@ -11,7 +11,7 @@ const $appState = {
             codeSandbox: false,
             newsActive: false,
             announcement: null,
-            storageKey: 'bumblevue',
+            storageKey: 'bumblevue'
         });
 
         Vue.config.globalProperties.$appState = appState;

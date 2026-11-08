@@ -1,3 +1,37 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Form'),
+                        key: 'Form'
+                    }
+                ],
+                initialValues: {
+                    username: ''
+                },
+                resolver: zodResolver(
+                    z.object({
+                        username: z.string().min(1, { message: 'Username is required.' })
+                    })
+                )
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
+            }
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
@@ -9,37 +43,3 @@
         </Form>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Form'),
-                    key: 'Form'
-                }
-            ],
-            initialValues: {
-                username: ''
-            },
-            resolver: zodResolver(
-                z.object({
-                    username: z.string().min(1, { message: 'Username is required.' })
-                })
-            )
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
-            }
-        }
-    }
-};
-</script>

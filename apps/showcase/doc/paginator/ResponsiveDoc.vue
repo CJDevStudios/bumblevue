@@ -1,3 +1,45 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<Paginator
+    :template="{
+        '640px': 'PrevPageLink CurrentPageReport NextPageLink',
+        '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+        '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+        default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
+    }"
+    :rows="10"
+    :totalRecords="120">
+</Paginator>
+`,
+                    composition: `
+<template>
+    <div class="card">
+        <Paginator
+            :template="{
+                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
+                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
+                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
+                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
+            }"
+            :rows="10"
+            :totalRecords="120">
+        </Paginator>
+    </div>
+</template>
+
+<script setup>
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -19,45 +61,3 @@
     </div>
     <DocSectionCode :code="code" />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<Paginator
-    :template="{
-        '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-        '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-        '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-        default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
-    }"
-    :rows="10"
-    :totalRecords="120">
-</Paginator>
-`,
-                composition: `
-<template>
-    <div class="card">
-        <Paginator
-            :template="{
-                '640px': 'PrevPageLink CurrentPageReport NextPageLink',
-                '960px': 'FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink',
-                '1300px': 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink',
-                default: 'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink JumpToPageDropdown JumpToPageInput'
-            }"
-            :rows="10"
-            :totalRecords="120">
-        </Paginator>
-    </div>
-</template>
-
-<script setup>
-<\/script>
-`
-            }
-        };
-    }
-};
-</script>

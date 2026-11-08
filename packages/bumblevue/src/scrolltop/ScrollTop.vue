@@ -1,3 +1,127 @@
+<script>
+    import { getWindowScrollTop } from '@cjdevstudios/bumblevue/utils/dom';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';
+    import Button from '@cjdevstudios/bumblevue/button';
+    import ScrollTopStyle from '@cjdevstudios/bumblevue/scrolltop/style';
+
+    export default {
+        name: 'ScrollTop',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            target: {
+                type: String,
+                default: 'window'
+            },
+            threshold: {
+                type: Number,
+                default: 400
+            },
+            icon: {
+                type: String,
+                default: undefined
+            },
+            behavior: {
+                type: String,
+                default: 'smooth'
+            },
+            buttonProps: {
+                type: Object,
+                default: () => {
+                    return { rounded: true };
+                }
+            }
+        },
+        style: ScrollTopStyle,
+        provide() {
+            return {
+                $pcScrollTop: this,
+                $parentInstance: this
+            };
+        },
+        scrollListener: null,
+        container: null,
+        data() {
+            return {
+                visible: false
+            };
+        },
+        mounted() {
+            if (this.target === 'window') this.bindDocumentScrollListener();
+            else if (this.target === 'parent') this.bindParentScrollListener();
+        },
+        beforeUnmount() {
+            if (this.target === 'window') this.unbindDocumentScrollListener();
+            else if (this.target === 'parent') this.unbindParentScrollListener();
+
+            if (this.container) {
+                ZIndex.clear(this.container);
+                this.overlay = null;
+            }
+        },
+        methods: {
+            onClick() {
+                let scrollElement = this.target === 'window' ? window : this.$el.parentElement;
+
+                scrollElement.scroll({
+                    top: 0,
+                    behavior: this.behavior
+                });
+            },
+            checkVisibility(scrollY) {
+                if (scrollY > this.threshold) this.visible = true;
+                else this.visible = false;
+            },
+            bindParentScrollListener() {
+                this.scrollListener = () => {
+                    this.checkVisibility(this.$el.parentElement.scrollTop);
+                };
+
+                this.$el.parentElement.addEventListener('scroll', this.scrollListener);
+            },
+            bindDocumentScrollListener() {
+                this.scrollListener = () => {
+                    this.checkVisibility(getWindowScrollTop());
+                };
+
+                window.addEventListener('scroll', this.scrollListener);
+            },
+            unbindParentScrollListener() {
+                if (this.scrollListener) {
+                    this.$el.parentElement.removeEventListener('scroll', this.scrollListener);
+                    this.scrollListener = null;
+                }
+            },
+            unbindDocumentScrollListener() {
+                if (this.scrollListener) {
+                    window.removeEventListener('scroll', this.scrollListener);
+                    this.scrollListener = null;
+                }
+            },
+            onEnter(el) {
+                ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
+            },
+            onAfterLeave(el) {
+                ZIndex.clear(el);
+            },
+            containerRef(el) {
+                this.container = el ? el.$el : undefined;
+            }
+        },
+        computed: {
+            scrollTopAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.scrollTop : undefined;
+            }
+        },
+        components: {
+            ChevronUpIcon,
+            Button
+        }
+    };
+</script>
+
 <template>
     <transition name="p-scrolltop" appear @enter="onEnter" @after-leave="onAfterLeave" v-bind="ptm('transition')">
         <Button v-if="visible" :ref="containerRef" :class="cx('root')" @click="onClick" :aria-label="scrollTopAriaLabel" :unstyled="unstyled" v-bind="buttonProps" :pt="ptm('root')">
@@ -9,127 +133,3 @@
         </Button>
     </transition>
 </template>
-
-<script>
-import { getWindowScrollTop } from '@cjdevstudios/bumblevue/utils/dom';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ChevronUpIcon from '@cjdevstudios/bumblevue/icons/chevronup';
-import Button from '@cjdevstudios/bumblevue/button';
-import ScrollTopStyle from '@cjdevstudios/bumblevue/scrolltop/style';
-
-export default {
-    name: 'ScrollTop',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        target: {
-            type: String,
-            default: 'window'
-        },
-        threshold: {
-            type: Number,
-            default: 400
-        },
-        icon: {
-            type: String,
-            default: undefined
-        },
-        behavior: {
-            type: String,
-            default: 'smooth'
-        },
-        buttonProps: {
-            type: Object,
-            default: () => {
-                return { rounded: true };
-            }
-        }
-    },
-    style: ScrollTopStyle,
-    provide() {
-        return {
-            $pcScrollTop: this,
-            $parentInstance: this
-        };
-    },
-    scrollListener: null,
-    container: null,
-    data() {
-        return {
-            visible: false
-        };
-    },
-    mounted() {
-        if (this.target === 'window') this.bindDocumentScrollListener();
-        else if (this.target === 'parent') this.bindParentScrollListener();
-    },
-    beforeUnmount() {
-        if (this.target === 'window') this.unbindDocumentScrollListener();
-        else if (this.target === 'parent') this.unbindParentScrollListener();
-
-        if (this.container) {
-            ZIndex.clear(this.container);
-            this.overlay = null;
-        }
-    },
-    methods: {
-        onClick() {
-            let scrollElement = this.target === 'window' ? window : this.$el.parentElement;
-
-            scrollElement.scroll({
-                top: 0,
-                behavior: this.behavior
-            });
-        },
-        checkVisibility(scrollY) {
-            if (scrollY > this.threshold) this.visible = true;
-            else this.visible = false;
-        },
-        bindParentScrollListener() {
-            this.scrollListener = () => {
-                this.checkVisibility(this.$el.parentElement.scrollTop);
-            };
-
-            this.$el.parentElement.addEventListener('scroll', this.scrollListener);
-        },
-        bindDocumentScrollListener() {
-            this.scrollListener = () => {
-                this.checkVisibility(getWindowScrollTop());
-            };
-
-            window.addEventListener('scroll', this.scrollListener);
-        },
-        unbindParentScrollListener() {
-            if (this.scrollListener) {
-                this.$el.parentElement.removeEventListener('scroll', this.scrollListener);
-                this.scrollListener = null;
-            }
-        },
-        unbindDocumentScrollListener() {
-            if (this.scrollListener) {
-                window.removeEventListener('scroll', this.scrollListener);
-                this.scrollListener = null;
-            }
-        },
-        onEnter(el) {
-            ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
-        },
-        onAfterLeave(el) {
-            ZIndex.clear(el);
-        },
-        containerRef(el) {
-            this.container = el ? el.$el : undefined;
-        }
-    },
-    computed: {
-        scrollTopAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.scrollTop : undefined;
-        }
-    },
-    components: {
-        ChevronUpIcon,
-        Button
-    }
-};
-</script>

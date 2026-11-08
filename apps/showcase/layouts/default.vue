@@ -1,3 +1,54 @@
+<script>
+    import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils/dom';
+
+    export default {
+        data() {
+            return {
+                sidebarActive: false
+            };
+        },
+        watch: {
+            $route: {
+                immediate: true,
+                handler() {
+                    if (!process.client || typeof window === 'undefined') {
+                        return;
+                    }
+
+                    this.sidebarActive = false;
+                    unblockBodyScroll('blocked-scroll');
+                    this.$toast.removeAllGroups();
+                }
+            }
+        },
+        methods: {
+            onMenuButtonClick() {
+                if (this.sidebarActive) {
+                    this.sidebarActive = false;
+                    unblockBodyScroll('blocked-scroll');
+                } else {
+                    this.sidebarActive = true;
+                    blockBodyScroll('blocked-scroll');
+                }
+            },
+            onMaskClick() {
+                this.sidebarActive = false;
+                unblockBodyScroll('blocked-scroll');
+            }
+        },
+        computed: {
+            containerClass() {
+                return [
+                    'layout-wrapper',
+                    {
+                        'layout-news-active': this.$appState.newsActive
+                    }
+                ];
+            }
+        }
+    };
+</script>
+
 <template>
     <div :class="containerClass" :data-p-theme="$appState.theme">
         <!--<AppNews />-->
@@ -18,54 +69,3 @@
         <Toast position="bottom-right" group="br" />
     </div>
 </template>
-
-<script>
-import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils/dom';
-
-export default {
-    data() {
-        return {
-            sidebarActive: false
-        };
-    },
-    watch: {
-        $route: {
-            immediate: true,
-            handler() {
-                if (!process.client || typeof window === 'undefined') {
-                    return;
-                }
-
-                this.sidebarActive = false;
-                unblockBodyScroll('blocked-scroll');
-                this.$toast.removeAllGroups();
-            }
-        }
-    },
-    methods: {
-        onMenuButtonClick() {
-            if (this.sidebarActive) {
-                this.sidebarActive = false;
-                unblockBodyScroll('blocked-scroll');
-            } else {
-                this.sidebarActive = true;
-                blockBodyScroll('blocked-scroll');
-            }
-        },
-        onMaskClick() {
-            this.sidebarActive = false;
-            unblockBodyScroll('blocked-scroll');
-        },
-    },
-    computed: {
-        containerClass() {
-            return [
-                'layout-wrapper',
-                {
-                    'layout-news-active': this.$appState.newsActive
-                }
-            ];
-        }
-    }
-};
-</script>

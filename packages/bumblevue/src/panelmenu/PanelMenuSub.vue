@@ -1,3 +1,141 @@
+<script>
+    import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+    import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import { mergeProps } from 'vue';
+
+    export default {
+        name: 'PanelMenuSub',
+        hostName: 'PanelMenu',
+        extends: BaseComponent,
+        emits: ['item-toggle', 'item-mousemove'],
+        props: {
+            panelId: {
+                type: String,
+                default: null
+            },
+            focusedItemId: {
+                type: String,
+                default: null
+            },
+            items: {
+                type: Array,
+                default: null
+            },
+            level: {
+                type: Number,
+                default: 0
+            },
+            templates: {
+                type: Object,
+                default: null
+            },
+            activeItemPath: {
+                type: Object,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: -1
+            }
+        },
+        methods: {
+            getItemId(processedItem) {
+                return `${this.panelId}_${processedItem.key}`;
+            },
+            getItemKey(processedItem) {
+                return this.getItemId(processedItem);
+            },
+            getItemProp(processedItem, name, params) {
+                return processedItem && processedItem.item ? resolve(processedItem.item[name], params) : undefined;
+            },
+            getItemLabel(processedItem) {
+                return this.getItemProp(processedItem, 'label');
+            },
+            getPTOptions(key, processedItem, index) {
+                return this.ptm(key, {
+                    context: {
+                        item: processedItem.item,
+                        index,
+                        active: this.isItemActive(processedItem),
+                        focused: this.isItemFocused(processedItem),
+                        disabled: this.isItemDisabled(processedItem)
+                    }
+                });
+            },
+            isItemActive(processedItem) {
+                return this.activeItemPath.some((path) => path.key === processedItem.key);
+            },
+            isItemVisible(processedItem) {
+                return this.getItemProp(processedItem, 'visible') !== false;
+            },
+            isItemDisabled(processedItem) {
+                return this.getItemProp(processedItem, 'disabled');
+            },
+            isItemFocused(processedItem) {
+                return this.focusedItemId === this.getItemId(processedItem);
+            },
+            isItemGroup(processedItem) {
+                return isNotEmpty(processedItem.items);
+            },
+            onItemClick(event, processedItem) {
+                this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });
+                this.$emit('item-toggle', { processedItem, expanded: !this.isItemActive(processedItem) });
+            },
+            onItemToggle(event) {
+                this.$emit('item-toggle', event);
+            },
+            onItemMouseMove(event, processedItem) {
+                this.$emit('item-mousemove', { originalEvent: event, processedItem });
+            },
+            getAriaSetSize() {
+                return this.items.filter((processedItem) => this.isItemVisible(processedItem) && !this.getItemProp(processedItem, 'separator')).length;
+            },
+            getAriaPosInset(index) {
+                return index - this.items.slice(0, index).filter((processedItem) => this.isItemVisible(processedItem) && this.getItemProp(processedItem, 'separator')).length + 1;
+            },
+            getMenuItemProps(processedItem, index) {
+                return {
+                    action: mergeProps(
+                        {
+                            class: this.cx('itemLink'),
+                            tabindex: -1
+                        },
+                        this.getPTOptions('itemLink', processedItem, index)
+                    ),
+                    icon: mergeProps(
+                        {
+                            class: [this.cx('itemIcon'), this.getItemProp(processedItem, 'icon')]
+                        },
+                        this.getPTOptions('itemIcon', processedItem, index)
+                    ),
+                    label: mergeProps(
+                        {
+                            class: this.cx('itemLabel')
+                        },
+                        this.getPTOptions('itemLabel', processedItem, index)
+                    ),
+                    submenuicon: mergeProps(
+                        {
+                            class: this.cx('submenuIcon')
+                        },
+                        this.getPTOptions('submenuicon', processedItem, index)
+                    )
+                };
+            }
+        },
+        components: {
+            ChevronRightIcon: ChevronRightIcon,
+            ChevronDownIcon: ChevronDownIcon
+        },
+        directives: {
+            ripple: Ripple
+        }
+    };
+</script>
+
 <template>
     <ul :class="cx('submenu')" :tabindex="tabindex">
         <template v-for="(processedItem, index) of items" :key="getItemKey(processedItem)">
@@ -72,141 +210,3 @@
         </template>
     </ul>
 </template>
-
-<script>
-import { isNotEmpty, resolve } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
-import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import { mergeProps } from 'vue';
-
-export default {
-    name: 'PanelMenuSub',
-    hostName: 'PanelMenu',
-    extends: BaseComponent,
-    emits: ['item-toggle', 'item-mousemove'],
-    props: {
-        panelId: {
-            type: String,
-            default: null
-        },
-        focusedItemId: {
-            type: String,
-            default: null
-        },
-        items: {
-            type: Array,
-            default: null
-        },
-        level: {
-            type: Number,
-            default: 0
-        },
-        templates: {
-            type: Object,
-            default: null
-        },
-        activeItemPath: {
-            type: Object,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: -1
-        }
-    },
-    methods: {
-        getItemId(processedItem) {
-            return `${this.panelId}_${processedItem.key}`;
-        },
-        getItemKey(processedItem) {
-            return this.getItemId(processedItem);
-        },
-        getItemProp(processedItem, name, params) {
-            return processedItem && processedItem.item ? resolve(processedItem.item[name], params) : undefined;
-        },
-        getItemLabel(processedItem) {
-            return this.getItemProp(processedItem, 'label');
-        },
-        getPTOptions(key, processedItem, index) {
-            return this.ptm(key, {
-                context: {
-                    item: processedItem.item,
-                    index,
-                    active: this.isItemActive(processedItem),
-                    focused: this.isItemFocused(processedItem),
-                    disabled: this.isItemDisabled(processedItem)
-                }
-            });
-        },
-        isItemActive(processedItem) {
-            return this.activeItemPath.some((path) => path.key === processedItem.key);
-        },
-        isItemVisible(processedItem) {
-            return this.getItemProp(processedItem, 'visible') !== false;
-        },
-        isItemDisabled(processedItem) {
-            return this.getItemProp(processedItem, 'disabled');
-        },
-        isItemFocused(processedItem) {
-            return this.focusedItemId === this.getItemId(processedItem);
-        },
-        isItemGroup(processedItem) {
-            return isNotEmpty(processedItem.items);
-        },
-        onItemClick(event, processedItem) {
-            this.getItemProp(processedItem, 'command', { originalEvent: event, item: processedItem.item });
-            this.$emit('item-toggle', { processedItem, expanded: !this.isItemActive(processedItem) });
-        },
-        onItemToggle(event) {
-            this.$emit('item-toggle', event);
-        },
-        onItemMouseMove(event, processedItem) {
-            this.$emit('item-mousemove', { originalEvent: event, processedItem });
-        },
-        getAriaSetSize() {
-            return this.items.filter((processedItem) => this.isItemVisible(processedItem) && !this.getItemProp(processedItem, 'separator')).length;
-        },
-        getAriaPosInset(index) {
-            return index - this.items.slice(0, index).filter((processedItem) => this.isItemVisible(processedItem) && this.getItemProp(processedItem, 'separator')).length + 1;
-        },
-        getMenuItemProps(processedItem, index) {
-            return {
-                action: mergeProps(
-                    {
-                        class: this.cx('itemLink'),
-                        tabindex: -1
-                    },
-                    this.getPTOptions('itemLink', processedItem, index)
-                ),
-                icon: mergeProps(
-                    {
-                        class: [this.cx('itemIcon'), this.getItemProp(processedItem, 'icon')]
-                    },
-                    this.getPTOptions('itemIcon', processedItem, index)
-                ),
-                label: mergeProps(
-                    {
-                        class: this.cx('itemLabel')
-                    },
-                    this.getPTOptions('itemLabel', processedItem, index)
-                ),
-                submenuicon: mergeProps(
-                    {
-                        class: this.cx('submenuIcon')
-                    },
-                    this.getPTOptions('submenuicon', processedItem, index)
-                )
-            };
-        }
-    },
-    components: {
-        ChevronRightIcon: ChevronRightIcon,
-        ChevronDownIcon: ChevronDownIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
-</script>

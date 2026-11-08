@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
+                colors: ['emerald', 'green', 'lime', 'red', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone'],
+                code1: {
+                    basic: `
+// With CSS
+var(--p-blue-500)
+
+// With JS
+$dt('blue.500').value
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>Color palette of a preset is defined by the <i>primitive</i> design token group. You can access colors using CSS variables or the <i>$dt</i> utility.</p>
@@ -17,23 +37,3 @@
         </ul>
     </div>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            shades: [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950],
-            colors: ['emerald', 'green', 'lime', 'red', 'orange', 'amber', 'yellow', 'teal', 'cyan', 'sky', 'blue', 'indigo', 'violet', 'purple', 'fuchsia', 'pink', 'rose', 'slate', 'gray', 'zinc', 'neutral', 'stone'],
-            code1: {
-                basic: `
-// With CSS
-var(--p-blue-500)
-
-// With JS
-$dt('blue.500').value
-`
-            }
-        };
-    }
-};
-</script>

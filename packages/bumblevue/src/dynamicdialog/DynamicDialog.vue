@@ -1,3 +1,77 @@
+<script>
+    import { uuid } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Dialog from '@cjdevstudios/bumblevue/dialog';
+    import DynamicDialogStyle from '@cjdevstudios/bumblevue/dynamicdialog/style';
+    import DynamicDialogEventBus from '@cjdevstudios/bumblevue/dynamicdialogeventbus';
+
+    export default {
+        name: 'DynamicDialog',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {},
+        style: DynamicDialogStyle,
+        provide() {
+            return {
+                $pcDynamicDialog: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                instanceMap: {}
+            };
+        },
+        openListener: null,
+        closeListener: null,
+        currentInstance: null,
+        mounted() {
+            this.openListener = ({ instance }) => {
+                const key = uuid() + '_dynamic_dialog';
+
+                instance.visible = true;
+                instance.key = key;
+                this.instanceMap[key] = instance;
+            };
+
+            this.closeListener = ({ instance, params }) => {
+                const key = instance.key;
+                const currentInstance = this.instanceMap[key];
+
+                if (currentInstance) {
+                    currentInstance.visible = false;
+                    currentInstance.options.onClose && currentInstance.options.onClose({ data: params, type: 'config-close' });
+
+                    this.currentInstance = currentInstance;
+                }
+            };
+
+            DynamicDialogEventBus.on('open', this.openListener);
+            DynamicDialogEventBus.on('close', this.closeListener);
+        },
+        beforeUnmount() {
+            DynamicDialogEventBus.off('open', this.openListener);
+            DynamicDialogEventBus.off('close', this.closeListener);
+        },
+        methods: {
+            onDialogHide(instance) {
+                !this.currentInstance && instance.options.onClose && instance.options.onClose({ type: 'dialog-close' });
+            },
+            onDialogAfterHide(instance) {
+                this.currentInstance && delete this.currentInstance;
+                this.currentInstance = null;
+                delete this.instanceMap[instance.key];
+            },
+            getTemplateItems(template) {
+                return Array.isArray(template) ? template : [template];
+            }
+        },
+        components: {
+            DDialog: Dialog
+        }
+    };
+</script>
+
 <template>
     <template v-for="(instance, key) in instanceMap" :key="key">
         <DDialog v-model:visible="instance.visible" :_instance="instance" v-bind="instance.options.props" @hide="onDialogHide(instance)" @after-hide="onDialogAfterHide(instance)">
@@ -11,77 +85,3 @@
         </DDialog>
     </template>
 </template>
-
-<script>
-import { uuid } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Dialog from '@cjdevstudios/bumblevue/dialog';
-import DynamicDialogStyle from '@cjdevstudios/bumblevue/dynamicdialog/style';
-import DynamicDialogEventBus from '@cjdevstudios/bumblevue/dynamicdialogeventbus';
-
-export default {
-    name: 'DynamicDialog',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {},
-    style: DynamicDialogStyle,
-    provide() {
-        return {
-            $pcDynamicDialog: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            instanceMap: {}
-        };
-    },
-    openListener: null,
-    closeListener: null,
-    currentInstance: null,
-    mounted() {
-        this.openListener = ({ instance }) => {
-            const key = uuid() + '_dynamic_dialog';
-
-            instance.visible = true;
-            instance.key = key;
-            this.instanceMap[key] = instance;
-        };
-
-        this.closeListener = ({ instance, params }) => {
-            const key = instance.key;
-            const currentInstance = this.instanceMap[key];
-
-            if (currentInstance) {
-                currentInstance.visible = false;
-                currentInstance.options.onClose && currentInstance.options.onClose({ data: params, type: 'config-close' });
-
-                this.currentInstance = currentInstance;
-            }
-        };
-
-        DynamicDialogEventBus.on('open', this.openListener);
-        DynamicDialogEventBus.on('close', this.closeListener);
-    },
-    beforeUnmount() {
-        DynamicDialogEventBus.off('open', this.openListener);
-        DynamicDialogEventBus.off('close', this.closeListener);
-    },
-    methods: {
-        onDialogHide(instance) {
-            !this.currentInstance && instance.options.onClose && instance.options.onClose({ type: 'dialog-close' });
-        },
-        onDialogAfterHide(instance) {
-            this.currentInstance && delete this.currentInstance;
-            this.currentInstance = null;
-            delete this.instanceMap[instance.key];
-        },
-        getTemplateItems(template) {
-            return Array.isArray(template) ? template : [template];
-        }
-    },
-    components: {
-        DDialog: Dialog
-    }
-};
-</script>

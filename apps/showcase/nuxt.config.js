@@ -5,7 +5,7 @@ const baseUrl = '/';
 
 const alias = {
     '@cjdevstudios/bumblevue/tailwind.css': path.resolve(__dirname, '../../packages/bumblevue/src/tailwind/index.css'),
-    '@cjdevstudios/bumblevue': path.resolve(__dirname, '../../packages/bumblevue/src'),
+    '@cjdevstudios/bumblevue': path.resolve(__dirname, '../../packages/bumblevue/src')
     // bumblevue: path.resolve(__dirname, '../../packages/bumblevue/src'),
 };
 

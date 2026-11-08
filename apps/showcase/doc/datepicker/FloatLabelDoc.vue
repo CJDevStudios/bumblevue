@@ -1,35 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A floating label appears on top of the input field when focused. Visit <BumbleVueNuxtLink to="/floatlabel">FloatLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <FloatLabel>
-            <DatePicker v-model="value1" inputId="over_label" showIcon iconDisplay="input" />
-            <label for="over_label">Over Label</label>
-        </FloatLabel>
-
-        <FloatLabel variant="in">
-            <DatePicker v-model="value2" inputId="in_label" showIcon iconDisplay="input" variant="filled" />
-            <label for="in_label">In Label</label>
-        </FloatLabel>
-
-        <FloatLabel variant="on">
-            <DatePicker v-model="value3" inputId="on_label" showIcon iconDisplay="input" />
-            <label for="on_label">On Label</label>
-        </FloatLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                value3: null,
+                code: {
+                    basic: `
 <FloatLabel>
     <DatePicker v-model="value1" inputId="over_label" showIcon iconDisplay="input" />
     <label for="over_label">Over Label</label>
@@ -45,7 +22,7 @@ export default {
     <label for="on_label">On Label</label>
 </FloatLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">
         <FloatLabel>
@@ -73,8 +50,31 @@ const value2 = ref(null);
 const value3 = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A floating label appears on top of the input field when focused. Visit <BumbleVueNuxtLink to="/floatlabel">FloatLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center items-end gap-4">
+        <FloatLabel>
+            <DatePicker v-model="value1" inputId="over_label" showIcon iconDisplay="input" />
+            <label for="over_label">Over Label</label>
+        </FloatLabel>
+
+        <FloatLabel variant="in">
+            <DatePicker v-model="value2" inputId="in_label" showIcon iconDisplay="input" variant="filled" />
+            <label for="in_label">In Label</label>
+        </FloatLabel>
+
+        <FloatLabel variant="on">
+            <DatePicker v-model="value3" inputId="on_label" showIcon iconDisplay="input" />
+            <label for="on_label">On Label</label>
+        </FloatLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

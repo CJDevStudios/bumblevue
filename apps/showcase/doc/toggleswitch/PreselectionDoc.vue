@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Enabling <i>checked</i> property displays the component as active initially.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ToggleSwitch v-model="checked" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            checked: true,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: true,
+                code: {
+                    basic: `
 <ToggleSwitch v-model="checked" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ToggleSwitch v-model="checked" />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const checked = ref(true);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Enabling <i>checked</i> property displays the component as active initially.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ToggleSwitch v-model="checked" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

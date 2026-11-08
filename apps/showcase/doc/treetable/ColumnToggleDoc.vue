@@ -1,34 +1,14 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Column visibility based on a condition can be implemented with dynamic columns, in this sample a MultiSelect is used to manage the visible columns.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-                <template #header>
-                    <div style="text-align: left">
-                        <MultiSelect :modelValue="selectedColumns" @update:modelValue="onToggle" :options="columns" optionLabel="header" class="w-full sm:w-64" display="chip" />
-                    </div>
-                </template>
-                <Column field="name" header="Name" :expander="true"></Column>
-                <Column v-for="col of selectedColumns" :key="col.field" :field="col.field" :header="col.header"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedColumns: null,
-            columns: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedColumns: null,
+                columns: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <template #header>
         <div style="text-align:left">
@@ -39,7 +19,7 @@ export default {
     <Column v-for="col of selectedColumns" :field="col.field" :header="col.header" :key="col.field"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -73,7 +53,7 @@ const onToggle = (val) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -101,24 +81,44 @@ const onToggle = (val) => {
 },
 ...
 `
-            }
-        };
-    },
-    created() {
-        this.columns = [
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
-        ];
-
-        this.selectedColumns = this.columns;
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+                }
+            };
         },
-        onToggle(value) {
-            this.selectedColumns = this.columns.filter((col) => value.includes(col));
+        created() {
+            this.columns = [
+                { field: 'size', header: 'Size' },
+                { field: 'type', header: 'Type' }
+            ];
+
+            this.selectedColumns = this.columns;
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+            },
+            onToggle(value) {
+                this.selectedColumns = this.columns.filter((col) => value.includes(col));
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Column visibility based on a condition can be implemented with dynamic columns, in this sample a MultiSelect is used to manage the visible columns.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
+                <template #header>
+                    <div style="text-align: left">
+                        <MultiSelect :modelValue="selectedColumns" @update:modelValue="onToggle" :options="columns" optionLabel="header" class="w-full sm:w-64" display="chip" />
+                    </div>
+                </template>
+                <Column field="name" header="Name" :expander="true"></Column>
+                <Column v-for="col of selectedColumns" :key="col.field" :field="col.field" :header="col.header"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

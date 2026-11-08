@@ -1,3 +1,212 @@
+<script>
+    import { isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+    import InputOtpStyle from '@cjdevstudios/bumblevue/inputotp/style';
+    import InputText from '@cjdevstudios/bumblevue/inputtext';
+
+    export default {
+        name: 'InputOtp',
+        extends: BaseInput,
+        inheritAttrs: false,
+        props: {
+            readonly: {
+                type: Boolean,
+                default: false
+            },
+            tabindex: {
+                type: Number,
+                default: null
+            },
+            length: {
+                type: Number,
+                default: 4
+            },
+            mask: {
+                type: Boolean,
+                default: false
+            },
+            integerOnly: {
+                type: Boolean,
+                default: false
+            }
+        },
+        emits: ['change', 'focus', 'blur'],
+        style: InputOtpStyle,
+        provide() {
+            return {
+                $pcInputOtp: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                tokens: []
+            };
+        },
+        watch: {
+            modelValue: {
+                immediate: true,
+                handler(newValue) {
+                    this.tokens = newValue ? newValue.split('') : new Array(this.length);
+                }
+            }
+        },
+        methods: {
+            getTemplateAttrs(index) {
+                return {
+                    value: this.tokens[index]
+                };
+            },
+            getTemplateEvents(index) {
+                return {
+                    input: (event) => this.onInput(event, index),
+                    keydown: (event) => this.onKeyDown(event),
+                    focus: (event) => this.onFocus(event),
+                    blur: (event) => this.onBlur(event),
+                    paste: (event) => this.onPaste(event)
+                };
+            },
+            onInput(event, index) {
+                this.tokens[index] = event.target.value;
+                this.updateModel(event);
+
+                if (event.inputType === 'deleteContentBackward') {
+                    this.moveToPrev(event);
+                } else if (event.inputType === 'insertText' || event.inputType === 'deleteContentForward' || (isTouchDevice() && event instanceof CustomEvent)) {
+                    this.moveToNext(event);
+                }
+            },
+            updateModel(event) {
+                const newValue = this.tokens.join('');
+
+                this.writeValue(newValue, event);
+                this.$emit('change', {
+                    originalEvent: event,
+                    value: newValue
+                });
+            },
+            moveToPrev(event) {
+                let prevInput = this.findPrevInput(event.target);
+
+                if (prevInput) {
+                    prevInput.focus();
+                    prevInput.select();
+                }
+            },
+            moveToNext(event) {
+                let nextInput = this.findNextInput(event.target);
+
+                if (nextInput) {
+                    nextInput.focus();
+                    nextInput.select();
+                }
+            },
+            findNextInput(element) {
+                let nextElement = element.nextElementSibling;
+
+                if (!nextElement) return;
+
+                return nextElement.nodeName === 'INPUT' ? nextElement : this.findNextInput(nextElement);
+            },
+            findPrevInput(element) {
+                let prevElement = element.previousElementSibling;
+
+                if (!prevElement) return;
+
+                return prevElement.nodeName === 'INPUT' ? prevElement : this.findPrevInput(prevElement);
+            },
+            onFocus(event) {
+                event.target.select();
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.$emit('blur', event);
+            },
+            onClick(event) {
+                setTimeout(() => event.target.select(), 1);
+            },
+            onKeyDown(event) {
+                if (event.ctrlKey || event.metaKey) {
+                    return;
+                }
+
+                switch (event.key) {
+                    case 'ArrowLeft':
+                        this.moveToPrev(event);
+                        event.preventDefault();
+
+                        break;
+
+                    case 'ArrowUp':
+                    case 'ArrowDown':
+                        event.preventDefault();
+
+                        break;
+
+                    case 'Backspace':
+                        if (event.target.value.length === 0) {
+                            this.moveToPrev(event);
+                            event.preventDefault();
+                        }
+
+                        break;
+
+                    case 'ArrowRight':
+                        this.moveToNext(event);
+                        event.preventDefault();
+
+                        break;
+
+                    case 'Enter':
+                    case 'Tab':
+                        break;
+
+                    default:
+                        const target = event.target;
+                        const hasSelection = target.selectionStart !== target.selectionEnd;
+                        const isAtMaxLength = this.tokens.join('').length >= this.length;
+                        const isValidKey = this.integerOnly ? /^[0-9]$/.test(event.key) : true;
+
+                        if (!isValidKey || (isAtMaxLength && event.key !== 'Delete' && !hasSelection)) {
+                            event.preventDefault();
+                        }
+
+                        break;
+                }
+            },
+            onPaste(event) {
+                if (this.readonly || this.disabled) {
+                    return;
+                }
+
+                let paste = event.clipboardData.getData('text');
+
+                if (paste.length) {
+                    let pastedCode = paste.substring(0, this.length);
+
+                    if (!this.integerOnly || !isNaN(pastedCode)) {
+                        this.tokens = pastedCode.split('');
+                        this.updateModel(event);
+                    }
+                }
+
+                event.preventDefault();
+            }
+        },
+        computed: {
+            inputMode() {
+                return this.integerOnly ? 'numeric' : 'text';
+            },
+            inputType() {
+                return this.mask ? 'password' : 'text';
+            }
+        },
+        components: {
+            OtpInputText: InputText
+        }
+    };
+</script>
+
 <template>
     <div :class="cx('root')" v-bind="ptmi('root')">
         <template v-for="i in length" :key="i">
@@ -27,212 +236,3 @@
         </template>
     </div>
 </template>
-
-<script>
-import { isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
-import InputOtpStyle from '@cjdevstudios/bumblevue/inputotp/style';
-import InputText from '@cjdevstudios/bumblevue/inputtext';
-
-export default {
-    name: 'InputOtp',
-    extends: BaseInput,
-    inheritAttrs: false,
-    props: {
-        readonly: {
-            type: Boolean,
-            default: false
-        },
-        tabindex: {
-            type: Number,
-            default: null
-        },
-        length: {
-            type: Number,
-            default: 4
-        },
-        mask: {
-            type: Boolean,
-            default: false
-        },
-        integerOnly: {
-            type: Boolean,
-            default: false
-        }
-    },
-    emits: ['change', 'focus', 'blur'],
-    style: InputOtpStyle,
-    provide() {
-        return {
-            $pcInputOtp: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            tokens: []
-        };
-    },
-    watch: {
-        modelValue: {
-            immediate: true,
-            handler(newValue) {
-                this.tokens = newValue ? newValue.split('') : new Array(this.length);
-            }
-        }
-    },
-    methods: {
-        getTemplateAttrs(index) {
-            return {
-                value: this.tokens[index]
-            };
-        },
-        getTemplateEvents(index) {
-            return {
-                input: (event) => this.onInput(event, index),
-                keydown: (event) => this.onKeyDown(event),
-                focus: (event) => this.onFocus(event),
-                blur: (event) => this.onBlur(event),
-                paste: (event) => this.onPaste(event)
-            };
-        },
-        onInput(event, index) {
-            this.tokens[index] = event.target.value;
-            this.updateModel(event);
-
-            if (event.inputType === 'deleteContentBackward') {
-                this.moveToPrev(event);
-            } else if (event.inputType === 'insertText' || event.inputType === 'deleteContentForward' || (isTouchDevice() && event instanceof CustomEvent)) {
-                this.moveToNext(event);
-            }
-        },
-        updateModel(event) {
-            const newValue = this.tokens.join('');
-
-            this.writeValue(newValue, event);
-            this.$emit('change', {
-                originalEvent: event,
-                value: newValue
-            });
-        },
-        moveToPrev(event) {
-            let prevInput = this.findPrevInput(event.target);
-
-            if (prevInput) {
-                prevInput.focus();
-                prevInput.select();
-            }
-        },
-        moveToNext(event) {
-            let nextInput = this.findNextInput(event.target);
-
-            if (nextInput) {
-                nextInput.focus();
-                nextInput.select();
-            }
-        },
-        findNextInput(element) {
-            let nextElement = element.nextElementSibling;
-
-            if (!nextElement) return;
-
-            return nextElement.nodeName === 'INPUT' ? nextElement : this.findNextInput(nextElement);
-        },
-        findPrevInput(element) {
-            let prevElement = element.previousElementSibling;
-
-            if (!prevElement) return;
-
-            return prevElement.nodeName === 'INPUT' ? prevElement : this.findPrevInput(prevElement);
-        },
-        onFocus(event) {
-            event.target.select();
-            this.$emit('focus', event);
-        },
-        onBlur(event) {
-            this.$emit('blur', event);
-        },
-        onClick(event) {
-            setTimeout(() => event.target.select(), 1);
-        },
-        onKeyDown(event) {
-            if (event.ctrlKey || event.metaKey) {
-                return;
-            }
-
-            switch (event.key) {
-                case 'ArrowLeft':
-                    this.moveToPrev(event);
-                    event.preventDefault();
-
-                    break;
-
-                case 'ArrowUp':
-                case 'ArrowDown':
-                    event.preventDefault();
-
-                    break;
-
-                case 'Backspace':
-                    if (event.target.value.length === 0) {
-                        this.moveToPrev(event);
-                        event.preventDefault();
-                    }
-
-                    break;
-
-                case 'ArrowRight':
-                    this.moveToNext(event);
-                    event.preventDefault();
-
-                    break;
-
-                case 'Enter':
-                case 'Tab':
-                    break;
-
-                default:
-                    const target = event.target;
-                    const hasSelection = target.selectionStart !== target.selectionEnd;
-                    const isAtMaxLength = this.tokens.join('').length >= this.length;
-                    const isValidKey = this.integerOnly ? /^[0-9]$/.test(event.key) : true;
-
-                    if (!isValidKey || (isAtMaxLength && event.key !== 'Delete' && !hasSelection)) {
-                        event.preventDefault();
-                    }
-
-                    break;
-            }
-        },
-        onPaste(event) {
-            if (this.readonly || this.disabled) {
-                return;
-            }
-
-            let paste = event.clipboardData.getData('text');
-
-            if (paste.length) {
-                let pastedCode = paste.substring(0, this.length);
-
-                if (!this.integerOnly || !isNaN(pastedCode)) {
-                    this.tokens = pastedCode.split('');
-                    this.updateModel(event);
-                }
-            }
-
-            event.preventDefault();
-        }
-    },
-    computed: {
-        inputMode() {
-            return this.integerOnly ? 'numeric' : 'text';
-        },
-        inputType() {
-            return this.mask ? 'password' : 'text';
-        }
-    },
-    components: {
-        OtpInputText: InputText
-    }
-};
-</script>

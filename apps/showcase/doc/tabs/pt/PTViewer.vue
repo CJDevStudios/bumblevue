@@ -1,3 +1,36 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Tabs'),
+                        key: 'Tabs'
+                    },
+                    {
+                        data: getPTOptions('TabList'),
+                        key: 'TabList'
+                    },
+                    {
+                        data: getPTOptions('Tab'),
+                        key: 'Tab'
+                    },
+                    {
+                        data: getPTOptions('TabPanels'),
+                        key: 'TabPanels'
+                    },
+                    {
+                        data: getPTOptions('TabPanel'),
+                        key: 'TabPanel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Tabs value="0">
@@ -29,36 +62,3 @@
         </Tabs>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Tabs'),
-                    key: 'Tabs'
-                },
-                {
-                    data: getPTOptions('TabList'),
-                    key: 'TabList'
-                },
-                {
-                    data: getPTOptions('Tab'),
-                    key: 'Tab'
-                },
-                {
-                    data: getPTOptions('TabPanels'),
-                    key: 'TabPanels'
-                },
-                {
-                    data: getPTOptions('TabPanel'),
-                    key: 'TabPanel'
-                }
-            ]
-        };
-    }
-};
-</script>

@@ -44,8 +44,10 @@
         "security:check": "pnpm audit --prod --audit-level high",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "format": "prettier --write \"**/*.{js,mjs,jsx,ts,tsx,json,md}\"",
-        "format:check": "prettier --check \"**/*.{js,mjs,jsx,ts,tsx,json,md}\"",
+        "lint:list-errored-rules": "eslint . --quiet --format json | jq -r '.[] | select(.errorCount > 0) | .messages[] | select(.severity == 2) | .ruleId' | sort -u",
+        "lint:errors": "eslint --quiet . --fix",
+        "format": "prettier --write \"**/*.{js,mjs,jsx,ts,tsx,json,md,vue}\"",
+        "format:check": "prettier --check \"**/*.{js,mjs,jsx,ts,tsx,json,md,vue}\"",
         "test:unit": "pnpm --filter primevue test:unit"
     },
     "devDependencies": {
@@ -63,7 +65,8 @@
         "prettier": "^3.5.2",
         "rollup-plugin-postcss": "^4.0.0",
         "rollup-plugin-vue": "^6.0.0-beta.9",
-        "typescript": "5.7.3"
+        "typescript": "5.7.3",
+        "typescript-eslint": "^8.72.1"
     },
     "publishConfig": {
         "access": "public"

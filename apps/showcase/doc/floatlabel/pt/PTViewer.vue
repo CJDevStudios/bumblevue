@@ -1,3 +1,21 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('FloatLabel'),
+                        key: 'FloatLabel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <FloatLabel>
@@ -6,21 +24,3 @@
         </FloatLabel>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('FloatLabel'),
-                    key: 'FloatLabel'
-                }
-            ]
-        };
-    }
-};
-</script>

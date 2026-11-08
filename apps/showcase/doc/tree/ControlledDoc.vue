@@ -1,37 +1,20 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Tree state can be controlled programmatically with the <i>expandedKeys</i> property that defines the keys that are expanded. This property is a Map instance whose key is the key of a node and value is a boolean. Note that
-            <i>expandedKeys</i> also supports two-way binding with the v-model directive.
-        </p>
-    </DocSectionText>
-    <div class="card">
-        <div class="flex flex-wrap gap-2 mb-6">
-            <Button type="button" icon="pi pi-plus" label="Expand All" @click="expandAll" />
-            <Button type="button" icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
-        </div>
-        <Tree v-model:expandedKeys="expandedKeys" :value="nodes" class="w-full md:w-120"></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            expandedKeys: {},
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                expandedKeys: {},
+                code: {
+                    basic: `
 <div class="flex flex-wrap gap-2 mb-6">
     <Button type="button" icon="pi pi-plus" label="Expand All" @click="expandAll" />
     <Button type="button" icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
 </div>
 <Tree v-model:expandedKeys="expandedKeys" :value="nodes" class="w-full md:w-120"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-2 mb-6">
@@ -76,7 +59,7 @@ const expandNode = (node) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -103,32 +86,49 @@ const expandNode = (node) => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    },
-    methods: {
-        expandAll() {
-            for (let node of this.nodes) {
-                this.expandNode(node);
-            }
-
-            this.expandedKeys = { ...this.expandedKeys };
+                }
+            };
         },
-        collapseAll() {
-            this.expandedKeys = {};
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
         },
-        expandNode(node) {
-            if (node.children && node.children.length) {
-                this.expandedKeys[node.key] = true;
+        methods: {
+            expandAll() {
+                for (let node of this.nodes) {
+                    this.expandNode(node);
+                }
 
-                for (let child of node.children) {
-                    this.expandNode(child);
+                this.expandedKeys = { ...this.expandedKeys };
+            },
+            collapseAll() {
+                this.expandedKeys = {};
+            },
+            expandNode(node) {
+                if (node.children && node.children.length) {
+                    this.expandedKeys[node.key] = true;
+
+                    for (let child of node.children) {
+                        this.expandNode(child);
+                    }
                 }
             }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Tree state can be controlled programmatically with the <i>expandedKeys</i> property that defines the keys that are expanded. This property is a Map instance whose key is the key of a node and value is a boolean. Note that
+            <i>expandedKeys</i> also supports two-way binding with the v-model directive.
+        </p>
+    </DocSectionText>
+    <div class="card">
+        <div class="flex flex-wrap gap-2 mb-6">
+            <Button type="button" icon="pi pi-plus" label="Expand All" @click="expandAll" />
+            <Button type="button" icon="pi pi-minus" label="Collapse All" @click="collapseAll" />
+        </div>
+        <Tree v-model:expandedKeys="expandedKeys" :value="nodes" class="w-full md:w-120"></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

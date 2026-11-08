@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('ScrollTop'),
+                        key: 'ScrollTop'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <ScrollPanel style="width: 250px; height: 200px">
@@ -12,20 +29,3 @@
         </ScrollPanel>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('ScrollTop'),
-                    key: 'ScrollTop'
-                }
-            ]
-        };
-    }
-};
-</script>

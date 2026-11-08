@@ -1,47 +1,23 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Galleria can be controlled programmatically using a binding to <i>activeIndex</i>.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="mb-4">
-                <Button icon="pi pi-minus" @click="prev" />
-                <Button icon="pi pi-plus" @click="next" severity="secondary" class="ml-2" />
-            </div>
-
-            <Galleria v-model:activeIndex="activeIndex" :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
-                </template>
-                <template #thumbnail="slotProps">
-                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            activeIndex: 2,
-            responsiveOptions: [
-                {
-                    breakpoint: '1300px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                activeIndex: 2,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1300px',
+                        numVisible: 4
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1
+                    }
+                ],
+                code: {
+                    basic: `
 <div>
     <Button icon="pi pi-minus" @click="prev" />
     <Button icon="pi pi-plus" @click="next" severity="secondary" class="ml-2" />
@@ -56,7 +32,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="mb-4">
@@ -104,7 +80,7 @@ const prev = () => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -114,19 +90,43 @@ const prev = () => {
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
+            },
+            next() {
+                this.activeIndex = this.activeIndex === this.images.length - 1 ? this.images.length - 1 : this.activeIndex + 1;
+            },
+            prev() {
+                this.activeIndex = this.activeIndex === 0 ? 0 : this.activeIndex - 1;
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
-        },
-        next() {
-            this.activeIndex = this.activeIndex === this.images.length - 1 ? this.images.length - 1 : this.activeIndex + 1;
-        },
-        prev() {
-            this.activeIndex = this.activeIndex === 0 ? 0 : this.activeIndex - 1;
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Galleria can be controlled programmatically using a binding to <i>activeIndex</i>.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="mb-4">
+                <Button icon="pi pi-minus" @click="prev" />
+                <Button icon="pi pi-plus" @click="next" severity="secondary" class="ml-2" />
+            </div>
+
+            <Galleria v-model:activeIndex="activeIndex" :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

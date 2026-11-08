@@ -1,3 +1,78 @@
+<script>
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
+    import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
+    import FieldsetStyle from '@cjdevstudios/bumblevue/fieldset/style';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+
+    export default {
+        name: 'Fieldset',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            legend: String,
+            toggleable: Boolean,
+            collapsed: Boolean,
+            toggleButtonProps: {
+                type: null,
+                default: null
+            }
+        },
+        emits: ['update:collapsed', 'toggle'],
+        style: FieldsetStyle,
+        provide() {
+            return {
+                $pcFieldset: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                d_collapsed: this.collapsed
+            };
+        },
+        watch: {
+            collapsed(newValue) {
+                this.d_collapsed = newValue;
+            }
+        },
+        methods: {
+            toggle(event) {
+                this.d_collapsed = !this.d_collapsed;
+                this.$emit('update:collapsed', this.d_collapsed);
+                this.$emit('toggle', {
+                    originalEvent: event,
+                    value: this.d_collapsed
+                });
+            },
+            onKeyDown(event) {
+                if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.code === 'Space') {
+                    this.toggle(event);
+                    event.preventDefault();
+                }
+            }
+        },
+        computed: {
+            buttonAriaLabel() {
+                return this.toggleButtonProps && this.toggleButtonProps.ariaLabel ? this.toggleButtonProps.ariaLabel : this.legend;
+            },
+            dataP() {
+                return cn({
+                    toggleable: this.toggleable
+                });
+            }
+        },
+        directives: {
+            ripple: Ripple
+        },
+        components: {
+            PlusIcon,
+            MinusIcon
+        }
+    };
+</script>
+
 <template>
     <fieldset :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
         <legend :class="cx('legend')" :data-p="dataP" v-bind="ptm('legend')">
@@ -34,78 +109,3 @@
         </transition>
     </fieldset>
 </template>
-
-<script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import MinusIcon from '@cjdevstudios/bumblevue/icons/minus';
-import PlusIcon from '@cjdevstudios/bumblevue/icons/plus';
-import FieldsetStyle from '@cjdevstudios/bumblevue/fieldset/style';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-
-export default {
-    name: 'Fieldset',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        legend: String,
-        toggleable: Boolean,
-        collapsed: Boolean,
-        toggleButtonProps: {
-            type: null,
-            default: null
-        }
-    },
-    emits: ['update:collapsed', 'toggle'],
-    style: FieldsetStyle,
-    provide() {
-        return {
-            $pcFieldset: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            d_collapsed: this.collapsed
-        };
-    },
-    watch: {
-        collapsed(newValue) {
-            this.d_collapsed = newValue;
-        }
-    },
-    methods: {
-        toggle(event) {
-            this.d_collapsed = !this.d_collapsed;
-            this.$emit('update:collapsed', this.d_collapsed);
-            this.$emit('toggle', {
-                originalEvent: event,
-                value: this.d_collapsed
-            });
-        },
-        onKeyDown(event) {
-            if (event.code === 'Enter' || event.code === 'NumpadEnter' || event.code === 'Space') {
-                this.toggle(event);
-                event.preventDefault();
-            }
-        }
-    },
-    computed: {
-        buttonAriaLabel() {
-            return this.toggleButtonProps && this.toggleButtonProps.ariaLabel ? this.toggleButtonProps.ariaLabel : this.legend;
-        },
-        dataP() {
-            return cn({
-                toggleable: this.toggleable
-            });
-        }
-    },
-    directives: {
-        ripple: Ripple
-    },
-    components: {
-        PlusIcon,
-        MinusIcon
-    }
-};
-</script>

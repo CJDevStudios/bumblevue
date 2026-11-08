@@ -1,3 +1,34 @@
+<script>
+    import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
+
+    export default {
+        name: 'Portal',
+        props: {
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data() {
+            return {
+                mounted: false
+            };
+        },
+        mounted() {
+            this.mounted = isClient();
+        },
+        computed: {
+            inline() {
+                return this.disabled || this.appendTo === 'self';
+            }
+        }
+    };
+</script>
+
 <template>
     <template v-if="inline">
         <slot></slot>
@@ -8,34 +39,3 @@
         </Teleport>
     </template>
 </template>
-
-<script>
-import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
-
-export default {
-    name: 'Portal',
-    props: {
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-        disabled: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            mounted: false
-        };
-    },
-    mounted() {
-        this.mounted = isClient();
-    },
-    computed: {
-        inline() {
-            return this.disabled || this.appendTo === 'self';
-        }
-    }
-};
-</script>

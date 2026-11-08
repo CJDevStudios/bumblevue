@@ -1,3 +1,103 @@
+<script>
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import GalleriaItem from './GalleriaItem.vue';
+    import GalleriaThumbnails from './GalleriaThumbnails.vue';
+
+    export default {
+        name: 'GalleriaContent',
+        hostName: 'Galleria',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        interval: null,
+        emits: ['activeitem-change', 'mask-hide'],
+        data() {
+            return {
+                activeIndex: this.$attrs.activeIndex,
+                numVisible: this.$attrs.numVisible,
+                slideShowActive: false
+            };
+        },
+        watch: {
+            '$attrs.value': function (newVal) {
+                if (newVal && newVal.length < this.numVisible) {
+                    this.numVisible = newVal.length;
+                }
+            },
+            '$attrs.activeIndex': function (newVal) {
+                this.activeIndex = newVal;
+            },
+            '$attrs.numVisible': function (newVal) {
+                this.numVisible = newVal;
+            },
+            '$attrs.autoPlay': function (newVal) {
+                newVal ? this.startSlideShow() : this.stopSlideShow();
+            }
+        },
+        updated() {
+            this.$emit('activeitem-change', this.activeIndex);
+        },
+        beforeUnmount() {
+            if (this.slideShowActive) {
+                this.stopSlideShow();
+            }
+        },
+        methods: {
+            getPTOptions(key) {
+                return this.ptm(key, {
+                    props: {
+                        ...this.$attrs,
+                        pt: this.pt,
+                        unstyled: this.unstyled
+                    }
+                });
+            },
+            isAutoPlayActive() {
+                return this.slideShowActive;
+            },
+            startSlideShow() {
+                this.interval = setInterval(() => {
+                    let activeIndex = this.$attrs.circular && this.$attrs.value.length - 1 === this.activeIndex ? 0 : this.activeIndex + 1;
+
+                    this.activeIndex = activeIndex;
+                }, this.$attrs.transitionInterval);
+
+                this.slideShowActive = true;
+            },
+            stopSlideShow() {
+                if (this.interval) {
+                    clearInterval(this.interval);
+                }
+
+                this.slideShowActive = false;
+            },
+            getPositionClass(preClassName, position) {
+                const positions = ['top', 'left', 'bottom', 'right'];
+                const pos = positions.find((item) => item === position);
+
+                return pos ? `${preClassName}-${pos}` : '';
+            },
+            isVertical() {
+                return this.$attrs.thumbnailsPosition === 'left' || this.$attrs.thumbnailsPosition === 'right';
+            }
+        },
+        computed: {
+            closeAriaLabel() {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
+            }
+        },
+        components: {
+            GalleriaItem: GalleriaItem,
+            GalleriaThumbnails: GalleriaThumbnails,
+            TimesIcon: TimesIcon
+        },
+        directives: {
+            ripple: Ripple
+        }
+    };
+</script>
+
 <template>
     <div
         v-if="$attrs.value && $attrs.value.length > 0"
@@ -58,103 +158,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import GalleriaItem from './GalleriaItem.vue';
-import GalleriaThumbnails from './GalleriaThumbnails.vue';
-
-export default {
-    name: 'GalleriaContent',
-    hostName: 'Galleria',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    interval: null,
-    emits: ['activeitem-change', 'mask-hide'],
-    data() {
-        return {
-            activeIndex: this.$attrs.activeIndex,
-            numVisible: this.$attrs.numVisible,
-            slideShowActive: false
-        };
-    },
-    watch: {
-        '$attrs.value': function (newVal) {
-            if (newVal && newVal.length < this.numVisible) {
-                this.numVisible = newVal.length;
-            }
-        },
-        '$attrs.activeIndex': function (newVal) {
-            this.activeIndex = newVal;
-        },
-        '$attrs.numVisible': function (newVal) {
-            this.numVisible = newVal;
-        },
-        '$attrs.autoPlay': function (newVal) {
-            newVal ? this.startSlideShow() : this.stopSlideShow();
-        }
-    },
-    updated() {
-        this.$emit('activeitem-change', this.activeIndex);
-    },
-    beforeUnmount() {
-        if (this.slideShowActive) {
-            this.stopSlideShow();
-        }
-    },
-    methods: {
-        getPTOptions(key) {
-            return this.ptm(key, {
-                props: {
-                    ...this.$attrs,
-                    pt: this.pt,
-                    unstyled: this.unstyled
-                }
-            });
-        },
-        isAutoPlayActive() {
-            return this.slideShowActive;
-        },
-        startSlideShow() {
-            this.interval = setInterval(() => {
-                let activeIndex = this.$attrs.circular && this.$attrs.value.length - 1 === this.activeIndex ? 0 : this.activeIndex + 1;
-
-                this.activeIndex = activeIndex;
-            }, this.$attrs.transitionInterval);
-
-            this.slideShowActive = true;
-        },
-        stopSlideShow() {
-            if (this.interval) {
-                clearInterval(this.interval);
-            }
-
-            this.slideShowActive = false;
-        },
-        getPositionClass(preClassName, position) {
-            const positions = ['top', 'left', 'bottom', 'right'];
-            const pos = positions.find((item) => item === position);
-
-            return pos ? `${preClassName}-${pos}` : '';
-        },
-        isVertical() {
-            return this.$attrs.thumbnailsPosition === 'left' || this.$attrs.thumbnailsPosition === 'right';
-        }
-    },
-    computed: {
-        closeAriaLabel() {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.close : undefined;
-        }
-    },
-    components: {
-        GalleriaItem: GalleriaItem,
-        GalleriaThumbnails: GalleriaThumbnails,
-        TimesIcon: TimesIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
-</script>

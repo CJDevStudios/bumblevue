@@ -1,30 +1,16 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Advanced uploader provides dragdrop support, multi file uploads, auto uploading, progress tracking and validations.</p>
-    </DocSectionText>
-    <div class="card">
-        <FileUpload name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000">
-            <template #empty>
-                <span>Drag and drop files to here to upload.</span>
-            </template>
-        </FileUpload>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <FileUpload name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000">
     <template #empty>
         <span>Drag and drop files to here to upload.</span>
     </template>
 </FileUpload>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -45,13 +31,27 @@ const onAdvancedUpload = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            onAdvancedUpload() {
+                this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
             }
-        };
-    },
-    methods: {
-        onAdvancedUpload() {
-            this.$toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Advanced uploader provides dragdrop support, multi file uploads, auto uploading, progress tracking and validations.</p>
+    </DocSectionText>
+    <div class="card">
+        <FileUpload name="demo[]" url="/api/upload" @upload="onAdvancedUpload($event)" :multiple="true" accept="image/*" :maxFileSize="1000000">
+            <template #empty>
+                <span>Drag and drop files to here to upload.</span>
+            </template>
+        </FileUpload>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

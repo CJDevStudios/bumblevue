@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Items with navigation are defined with templating to be able to use a router link component, an external link or programmatic navigation.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <MegaMenu :model="items">
     <template #item="{ item }">
         <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
@@ -26,7 +19,7 @@ export default {
     </template>
 </MegaMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <MegaMenu :model="items">
@@ -99,8 +92,15 @@ const items = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Items with navigation are defined with templating to be able to use a router link component, an external link or programmatic navigation.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

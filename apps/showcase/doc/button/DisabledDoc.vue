@@ -1,22 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be used.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button label="Submit" disabled />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Submit" disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Submit" disabled />
@@ -26,8 +16,18 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be used.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button label="Submit" disabled />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,28 +1,10 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <InputGroup class="md:w-80">
-            <InputGroupAddon>
-                <i class="pi pi-shopping-cart"></i>
-            </InputGroupAddon>
-            <IftaLabel>
-                <InputNumber v-model="value" inputId="price" mode="currency" currency="USD" locale="en-US" />
-                <label for="price">Price</label>
-            </IftaLabel>
-        </InputGroup>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: 10,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 10,
+                code: {
+                    basic: `
 <InputGroup class="md:w-80">
     <InputGroupAddon>
         <i class="pi pi-shopping-cart"></i>
@@ -33,7 +15,7 @@ export default {
     </IftaLabel>
 </InputGroup>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputGroup class="md:w-80">
@@ -54,8 +36,26 @@ import { ref } from 'vue';
 const value = ref(10);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <InputGroup class="md:w-80">
+            <InputGroupAddon>
+                <i class="pi pi-shopping-cart"></i>
+            </InputGroupAddon>
+            <IftaLabel>
+                <InputNumber v-model="value" inputId="price" mode="currency" currency="USD" locale="en-US" />
+                <label for="price">Price</label>
+            </IftaLabel>
+        </InputGroup>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Editor is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card">
-        <Editor v-model="value" editorStyle="height: 320px" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                code: {
+                    basic: `
 <Editor v-model="value" editorStyle="height: 320px" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Editor v-model="value" editorStyle="height: 320px" />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const value = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Editor is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card">
+        <Editor v-model="value" editorStyle="height: 320px" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
+</template>

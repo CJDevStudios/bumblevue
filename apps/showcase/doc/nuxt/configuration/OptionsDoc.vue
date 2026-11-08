@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Main configuration settings of BumbleVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export default defineNuxtConfig({
@@ -33,8 +26,15 @@ export default defineNuxtConfig({
     }
 })
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Main configuration settings of BumbleVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+</template>

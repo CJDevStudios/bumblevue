@@ -1,30 +1,20 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the MultiSelect.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <MultiSelect v-model="selectedCities" showClear :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-80" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            selectedCities: null,
-            cities: [
-                { name: 'New York', code: 'NY' },
-                { name: 'Rome', code: 'RM' },
-                { name: 'London', code: 'LDN' },
-                { name: 'Istanbul', code: 'IST' },
-                { name: 'Paris', code: 'PRS' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                selectedCities: null,
+                cities: [
+                    { name: 'New York', code: 'NY' },
+                    { name: 'Rome', code: 'RM' },
+                    { name: 'London', code: 'LDN' },
+                    { name: 'Istanbul', code: 'IST' },
+                    { name: 'Paris', code: 'PRS' }
+                ],
+                code: {
+                    basic: `
 <MultiSelect v-model="selectedCities" showClear :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-80" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <MultiSelect v-model="selectedCities" showClear :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-80" />
@@ -44,8 +34,18 @@ const cities = ref([
 ]);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the MultiSelect.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <MultiSelect v-model="selectedCities" showClear :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" class="w-full md:w-80" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,3 +1,37 @@
+<script>
+    import { ProductService } from '@/service/ProductService';
+    import InfoDemo from './InfoDemo.vue';
+
+    export default {
+        inject: ['dialogRef'],
+        data() {
+            return {
+                products: null
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
+        },
+        methods: {
+            selectProduct(data) {
+                this.dialogRef.close(data);
+            },
+            showInfo() {
+                this.$dialog.open(InfoDemo, {
+                    props: {
+                        header: 'Information',
+                        modal: true,
+                        dismissableMask: true
+                    },
+                    data: {
+                        totalProducts: this.products ? this.products.length : 0
+                    }
+                });
+            }
+        }
+    };
+</script>
+
 <template>
     <div>
         <div class="flex justify-end mt-1 mb-4">
@@ -21,37 +55,3 @@
         </DataTable>
     </div>
 </template>
-
-<script>
-import { ProductService } from '@/service/ProductService';
-import InfoDemo from './InfoDemo.vue';
-
-export default {
-    inject: ['dialogRef'],
-    data() {
-        return {
-            products: null
-        };
-    },
-    mounted() {
-        ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 5)));
-    },
-    methods: {
-        selectProduct(data) {
-            this.dialogRef.close(data);
-        },
-        showInfo() {
-            this.$dialog.open(InfoDemo, {
-                props: {
-                    header: 'Information',
-                    modal: true,
-                    dismissableMask: true
-                },
-                data: {
-                    totalProducts: this.products ? this.products.length : 0
-                }
-            });
-        }
-    }
-};
-</script>

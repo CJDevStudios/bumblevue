@@ -1,3 +1,24 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Badge'),
+                        key: 'Badge'
+                    },
+                    {
+                        data: getPTOptions('OverlayBadge'),
+                        key: 'OverlayBadge'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <div class="flex flex-wrap gap-8">
@@ -8,24 +29,3 @@
         </div>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Badge'),
-                    key: 'Badge'
-                },
-                {
-                    data: getPTOptions('OverlayBadge'),
-                    key: 'OverlayBadge'
-                }
-            ]
-        };
-    }
-};
-</script>

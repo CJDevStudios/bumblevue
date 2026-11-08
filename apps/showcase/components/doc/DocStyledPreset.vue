@@ -1,3 +1,14 @@
+<script>
+    export default {
+        data() {
+            return {
+                headers: ['Preset', 'Implementation', 'Types'],
+                presets: ['Aura', 'Lara', 'Nora', 'Material']
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText>
         <p>BumbleVue offers various preset options that allow you to customize the component's styling to match your application's design system. Below you'll find links to the implementation and type definitions for each preset.</p>
@@ -43,14 +54,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            headers: ['Preset', 'Implementation', 'Types'],
-            presets: ['Aura', 'Lara', 'Nora', 'Material']
-        };
-    }
-};
-</script>

@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Paginator'),
+                        key: 'Paginator'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <div class="w-full">
@@ -5,20 +22,3 @@
         </div>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Paginator'),
-                    key: 'Paginator'
-                }
-            ]
-        };
-    }
-};
-</script>

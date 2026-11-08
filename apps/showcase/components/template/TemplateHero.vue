@@ -1,3 +1,15 @@
+<script>
+    export default {
+        name: 'TemplateHero',
+        props: {
+            templateHeroData: {
+                type: null,
+                default: null
+            }
+        }
+    };
+</script>
+
 <template>
     <div class="w-full h-224 md:h-128 xl:h-145 bg-primary rounded-3xl overflow-hidden relative">
         <img :class="templateHeroData.pattern.className" :src="templateHeroData.pattern.src" alt="Template Hero Pattern" />
@@ -51,15 +63,3 @@
         />
     </div>
 </template>
-
-<script>
-export default {
-    name: 'TemplateHero',
-    props: {
-        templateHeroData: {
-            type: null,
-            default: null
-        }
-    }
-};
-</script>

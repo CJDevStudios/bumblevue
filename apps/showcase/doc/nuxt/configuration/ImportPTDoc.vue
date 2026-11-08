@@ -1,25 +1,16 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configures the global pass through import path.</p>
-        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
-        <p><i>mycustompt.js</i> file defines the configuration and exports it.</p>
-        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     importPT: { from: '@/passthrough/mycustompt.js' }
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 const MyCustomPT = {
     ...
     button: {
@@ -31,8 +22,17 @@ const MyCustomPT = {
 
 export default MyCustomPT;
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configures the global pass through import path.</p>
+        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
+        <p><i>mycustompt.js</i> file defines the configuration and exports it.</p>
+        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

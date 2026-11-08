@@ -1,35 +1,19 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Adding <i>scrollable</i> property along with a <i>scrollHeight</i> for the data viewport enables vertical scrolling with fixed headers.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" scrollable scrollHeight="270px" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" scrollable scrollHeight="270px" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" expander style="width: 34%"></Column>
     <Column field="size" header="Size" style="width: 33%"></Column>
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" scrollable scrollHeight="270px" tableStyle="min-width: 50rem">
@@ -51,7 +35,7 @@ onMounted(() => {
 const nodes = ref();
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -79,13 +63,29 @@ const nodes = ref();
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Adding <i>scrollable</i> property along with a <i>scrollHeight</i> for the data viewport enables vertical scrolling with fixed headers.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" scrollable scrollHeight="270px" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

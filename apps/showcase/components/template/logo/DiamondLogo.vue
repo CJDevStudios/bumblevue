@@ -1,3 +1,13 @@
+<script>
+    export default {
+        computed: {
+            fillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
+            }
+        }
+    };
+</script>
+
 <template>
     <svg width="185" height="40" viewBox="0 0 185 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#clip0_2373_6060)">
@@ -33,13 +43,3 @@
         </defs>
     </svg>
 </template>
-
-<script>
-export default {
-    computed: {
-        fillColor() {
-            return this.$appState.darkTheme ? 'var(--p-surface-900)' : 'var(--p-surface-0)';
-        }
-    }
-};
-</script>

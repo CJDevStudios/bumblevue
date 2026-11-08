@@ -1,49 +1,32 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>severity</i> property defines the variant of a button.</p>
-    </DocSectionText>
-    <div class="card flex justify-center flex-wrap gap-4">
-        <SplitButton label="Save" :model="items" @click="save"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="secondary"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="success"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="info"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="warn"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="help"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="danger"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" severity="contrast"></SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Update',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        command: () => {
+                            this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Quit',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Delete',
-                    command: () => {
-                        this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Quit',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SplitButton label="Save" :model="items" @click="save"></SplitButton>
 <SplitButton label="Save" :model="items" @click="save" severity="secondary"></SplitButton>
 <SplitButton label="Save" :model="items" @click="save" severity="success"></SplitButton>
@@ -53,7 +36,7 @@ export default {
 <SplitButton label="Save" :model="items" @click="save" severity="danger"></SplitButton>
 <SplitButton label="Save" :model="items" @click="save" severity="contrast"></SplitButton>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center flex-wrap gap-4">
         <Toast />
@@ -101,13 +84,30 @@ const save = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            save() {
+                this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
             }
-        };
-    },
-    methods: {
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>severity</i> property defines the variant of a button.</p>
+    </DocSectionText>
+    <div class="card flex justify-center flex-wrap gap-4">
+        <SplitButton label="Save" :model="items" @click="save"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="secondary"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="success"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="info"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="warn"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="help"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="danger"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" severity="contrast"></SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

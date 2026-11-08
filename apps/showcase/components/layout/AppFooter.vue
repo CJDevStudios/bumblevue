@@ -1,3 +1,15 @@
+<script>
+    import pkg from '@/package.json';
+
+    export default {
+        data() {
+            return {
+                version: pkg.version
+            };
+        }
+    };
+</script>
+
 <template>
     <div class="layout-footer">
         <div>
@@ -7,15 +19,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import pkg from '@/package.json';
-
-export default {
-    data() {
-        return {
-            version: pkg.version
-        };
-    }
-};
-</script>

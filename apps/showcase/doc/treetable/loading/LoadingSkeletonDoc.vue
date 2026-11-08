@@ -1,39 +1,10 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Skeleton component can be used as a placeholder during the loading process.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" style="width: 34%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-                <Column field="size" header="Size" style="width: 33%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-                <Column field="type" header="Type" style="width: 33%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" style="width: 34%">
         <template #body>
@@ -52,7 +23,7 @@ export default {
     </Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" tableStyle="min-width: 50rem">
@@ -85,14 +56,42 @@ onMounted(() => {
 const nodes = ref();
 
 <\/script>
-`,
+`
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                this.nodes = Array.from({ length: 10 }).map((_, i) => ({ id: i.toString() }));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            this.nodes = Array.from({ length: 10 }).map((_, i) => ({id: i.toString()}));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Skeleton component can be used as a placeholder during the loading process.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" style="width: 34%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+                <Column field="size" header="Size" style="width: 33%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+                <Column field="type" header="Type" style="width: 33%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" />
+</template>

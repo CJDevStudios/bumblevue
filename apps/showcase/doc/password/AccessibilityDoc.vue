@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="pwd1">Password</label>
+<Password inputId="pwd1" />
+
+<span id="pwd2">Password</span>
+<Password aria-labelledby="pwd2" />
+
+<Password aria-label="Password"/>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -30,23 +50,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<label for="pwd1">Password</label>
-<Password inputId="pwd1" />
-
-<span id="pwd2">Password</span>
-<Password aria-labelledby="pwd2" />
-
-<Password aria-label="Password"/>
-`
-            }
-        };
-    }
-};
-</script>

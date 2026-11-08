@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Inplace'),
+                        key: 'Inplace'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Inplace>
@@ -11,20 +28,3 @@
         </Inplace>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Inplace'),
-                    key: 'Inplace'
-                }
-            ]
-        };
-    }
-};
-</script>

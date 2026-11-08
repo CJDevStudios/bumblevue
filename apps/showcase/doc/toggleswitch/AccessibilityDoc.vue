@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="switch1">Remember Me</label>
+<ToggleSwitch inputId="switch1" />
+
+<span id="switch2">Remember Me</span>
+<ToggleSwitch aria-labelledby="switch2" />
+
+<ToggleSwitch aria-label="Remember Me" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -30,23 +50,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<label for="switch1">Remember Me</label>
-<ToggleSwitch inputId="switch1" />
-
-<span id="switch2">Remember Me</span>
-<ToggleSwitch aria-labelledby="switch2" />
-
-<ToggleSwitch aria-label="Remember Me" />
-`
-            }
-        };
-    }
-};
-</script>

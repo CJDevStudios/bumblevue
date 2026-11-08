@@ -1,36 +1,36 @@
 <script setup lang="ts">
-const features = [
-    {
-        icon: 'objects-column',
-        color: 'text-purple-500',
-        title: '80+ UI Components',
-        description: '80+ free, ready to use UI components for your web applications.'
-    },
-    {
-        icon: 'palette',
-        color: 'text-red-500',
-        title: 'Styled or Unstyled',
-        description: 'Choose from a variety of pre-built themes or implement your design systems with the CSS library of your choice like TailwindCSS.'
-    },
-    {
-        icon: 'users',
-        color: 'text-cyan-500',
-        title: 'Accessibility',
-        description: 'Compliant with the Web Content Accessibility Guidelines (WCAG 2.2, Level AA).'
-    },
-    {
-        icon: 'mobile',
-        color: 'text-sky-500',
-        title: 'Mobile',
-        description: 'Responsive components that work seamlessly on mobile devices and tablets.'
-    },
-    {
-        icon: 'check-circle',
-        color: 'text-blue-800',
-        title: 'Typescript',
-        description: 'Typescript support for all components and directives.'
-    }
-];
+    const features = [
+        {
+            icon: 'objects-column',
+            color: 'text-purple-500',
+            title: '80+ UI Components',
+            description: '80+ free, ready to use UI components for your web applications.'
+        },
+        {
+            icon: 'palette',
+            color: 'text-red-500',
+            title: 'Styled or Unstyled',
+            description: 'Choose from a variety of pre-built themes or implement your design systems with the CSS library of your choice like TailwindCSS.'
+        },
+        {
+            icon: 'users',
+            color: 'text-cyan-500',
+            title: 'Accessibility',
+            description: 'Compliant with the Web Content Accessibility Guidelines (WCAG 2.2, Level AA).'
+        },
+        {
+            icon: 'mobile',
+            color: 'text-sky-500',
+            title: 'Mobile',
+            description: 'Responsive components that work seamlessly on mobile devices and tablets.'
+        },
+        {
+            icon: 'check-circle',
+            color: 'text-blue-800',
+            title: 'Typescript',
+            description: 'Typescript support for all components and directives.'
+        }
+    ];
 </script>
 <template>
     <section class="landing-features py-20">

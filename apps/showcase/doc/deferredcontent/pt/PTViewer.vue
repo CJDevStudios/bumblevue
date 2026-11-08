@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('DeferredContent'),
+                        key: 'DeferredContent'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <DeferredContent>
@@ -5,20 +22,3 @@
         </DeferredContent>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('DeferredContent'),
-                    key: 'DeferredContent'
-                }
-            ]
-        };
-    }
-};
-</script>

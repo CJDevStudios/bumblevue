@@ -1,3 +1,214 @@
+<script>
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+    import { mergeProps } from 'vue';
+    import FilterHeaderCell from './FilterHeaderCell.vue';
+    import HeaderCell from './HeaderCell.vue';
+
+    export default {
+        name: 'TableHeader',
+        hostName: 'DataTable',
+        extends: BaseComponent,
+        emits: [
+            'column-click',
+            'column-mousedown',
+            'column-dragstart',
+            'column-dragover',
+            'column-dragleave',
+            'column-drop',
+            'column-resizestart',
+            'checkbox-change',
+            'filter-change',
+            'filter-apply',
+            'operator-change',
+            'matchmode-change',
+            'constraint-add',
+            'constraint-remove',
+            'filter-clear',
+            'apply-click'
+        ],
+        props: {
+            columnGroup: {
+                type: null,
+                default: null
+            },
+            columns: {
+                type: null,
+                default: null
+            },
+            rowGroupMode: {
+                type: String,
+                default: null
+            },
+            groupRowsBy: {
+                type: [Array, String, Function],
+                default: null
+            },
+            resizableColumns: {
+                type: Boolean,
+                default: false
+            },
+            allRowsSelected: {
+                type: Boolean,
+                default: false
+            },
+            empty: {
+                type: Boolean,
+                default: false
+            },
+            sortMode: {
+                type: String,
+                default: 'single'
+            },
+            groupRowSortField: {
+                type: [String, Function],
+                default: null
+            },
+            sortField: {
+                type: [String, Function],
+                default: null
+            },
+            sortOrder: {
+                type: Number,
+                default: null
+            },
+            multiSortMeta: {
+                type: Array,
+                default: null
+            },
+            filterDisplay: {
+                type: String,
+                default: null
+            },
+            filters: {
+                type: Object,
+                default: null
+            },
+            filtersStore: {
+                type: Object,
+                default: null
+            },
+            reorderableColumns: {
+                type: Boolean,
+                default: false
+            },
+            first: {
+                type: Number,
+                default: 0
+            },
+            filterInputProps: {
+                type: null,
+                default: null
+            },
+            filterButtonProps: {
+                type: null,
+                default: null
+            }
+        },
+        provide() {
+            return {
+                $rows: this.d_headerRows,
+                $columns: this.d_headerColumns
+            };
+        },
+        data() {
+            return {
+                d_headerRows: new HelperSet({ type: 'Row' }),
+                d_headerColumns: new HelperSet({ type: 'Column' })
+            };
+        },
+        beforeUnmount() {
+            this.d_headerRows.clear();
+            this.d_headerColumns.clear();
+        },
+        methods: {
+            columnProp(col, prop) {
+                return getVNodeProp(col, prop);
+            },
+            getColumnGroupPT(key) {
+                const columnGroupMetaData = {
+                    props: this.getColumnGroupProps(),
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        type: 'header',
+                        scrollable: this.$parentInstance?.$parentInstance?.scrollable
+                    }
+                };
+
+                return mergeProps(this.ptm(`columnGroup.${key}`, { columnGroup: columnGroupMetaData }), this.ptm(`columnGroup.${key}`, columnGroupMetaData), this.ptmo(this.getColumnGroupProps(), key, columnGroupMetaData));
+            },
+            getColumnGroupProps() {
+                return this.columnGroup && this.columnGroup.props && this.columnGroup.props.pt ? this.columnGroup.props.pt : undefined; //@todo
+            },
+            getRowPT(row, key, index) {
+                const rowMetaData = {
+                    props: row.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        index
+                    }
+                };
+
+                return mergeProps(this.ptm(`row.${key}`, { row: rowMetaData }), this.ptm(`row.${key}`, rowMetaData), this.ptmo(this.getRowProp(row), key, rowMetaData));
+            },
+            getRowProp(row) {
+                return row.props && row.props.pt ? row.props.pt : undefined; //@todo
+            },
+            getColumnPT(column, key, index) {
+                const columnMetaData = {
+                    props: column.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        index
+                    }
+                };
+
+                return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(column), key, columnMetaData));
+            },
+            getColumnProp(column) {
+                return column.props && column.props.pt ? column.props.pt : undefined; //@todo
+            },
+            getFilterColumnHeaderClass(column) {
+                return [this.cx('headerCell', { column }), this.columnProp(column, 'filterHeaderClass'), this.columnProp(column, 'class')];
+            },
+            getFilterColumnHeaderStyle(column) {
+                return [this.columnProp(column, 'filterHeaderStyle'), this.columnProp(column, 'style')];
+            },
+            getHeaderRows() {
+                return this.d_headerRows?.get(this.columnGroup, this.columnGroup.children);
+            },
+            getHeaderColumns(row) {
+                return this.d_headerColumns?.get(row, row.children);
+            }
+        },
+        computed: {
+            ptmTHeadOptions() {
+                return {
+                    context: {
+                        scrollable: this.$parentInstance?.$parentInstance?.scrollable
+                    }
+                };
+            }
+        },
+        components: {
+            DTHeaderCell: HeaderCell,
+            DTFilterHeaderCell: FilterHeaderCell
+        }
+    };
+</script>
+
 <template>
     <thead
         :class="cx('thead')"
@@ -114,214 +325,3 @@
         </tr>
     </thead>
 </template>
-
-<script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
-import { mergeProps } from 'vue';
-import FilterHeaderCell from './FilterHeaderCell.vue';
-import HeaderCell from './HeaderCell.vue';
-
-export default {
-    name: 'TableHeader',
-    hostName: 'DataTable',
-    extends: BaseComponent,
-    emits: [
-        'column-click',
-        'column-mousedown',
-        'column-dragstart',
-        'column-dragover',
-        'column-dragleave',
-        'column-drop',
-        'column-resizestart',
-        'checkbox-change',
-        'filter-change',
-        'filter-apply',
-        'operator-change',
-        'matchmode-change',
-        'constraint-add',
-        'constraint-remove',
-        'filter-clear',
-        'apply-click'
-    ],
-    props: {
-        columnGroup: {
-            type: null,
-            default: null
-        },
-        columns: {
-            type: null,
-            default: null
-        },
-        rowGroupMode: {
-            type: String,
-            default: null
-        },
-        groupRowsBy: {
-            type: [Array, String, Function],
-            default: null
-        },
-        resizableColumns: {
-            type: Boolean,
-            default: false
-        },
-        allRowsSelected: {
-            type: Boolean,
-            default: false
-        },
-        empty: {
-            type: Boolean,
-            default: false
-        },
-        sortMode: {
-            type: String,
-            default: 'single'
-        },
-        groupRowSortField: {
-            type: [String, Function],
-            default: null
-        },
-        sortField: {
-            type: [String, Function],
-            default: null
-        },
-        sortOrder: {
-            type: Number,
-            default: null
-        },
-        multiSortMeta: {
-            type: Array,
-            default: null
-        },
-        filterDisplay: {
-            type: String,
-            default: null
-        },
-        filters: {
-            type: Object,
-            default: null
-        },
-        filtersStore: {
-            type: Object,
-            default: null
-        },
-        reorderableColumns: {
-            type: Boolean,
-            default: false
-        },
-        first: {
-            type: Number,
-            default: 0
-        },
-        filterInputProps: {
-            type: null,
-            default: null
-        },
-        filterButtonProps: {
-            type: null,
-            default: null
-        }
-    },
-    provide() {
-        return {
-            $rows: this.d_headerRows,
-            $columns: this.d_headerColumns
-        };
-    },
-    data() {
-        return {
-            d_headerRows: new HelperSet({ type: 'Row' }),
-            d_headerColumns: new HelperSet({ type: 'Column' })
-        };
-    },
-    beforeUnmount() {
-        this.d_headerRows.clear();
-        this.d_headerColumns.clear();
-    },
-    methods: {
-        columnProp(col, prop) {
-            return getVNodeProp(col, prop);
-        },
-        getColumnGroupPT(key) {
-            const columnGroupMetaData = {
-                props: this.getColumnGroupProps(),
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    type: 'header',
-                    scrollable: this.$parentInstance?.$parentInstance?.scrollable
-                }
-            };
-
-            return mergeProps(this.ptm(`columnGroup.${key}`, { columnGroup: columnGroupMetaData }), this.ptm(`columnGroup.${key}`, columnGroupMetaData), this.ptmo(this.getColumnGroupProps(), key, columnGroupMetaData));
-        },
-        getColumnGroupProps() {
-            return this.columnGroup && this.columnGroup.props && this.columnGroup.props.pt ? this.columnGroup.props.pt : undefined; //@todo
-        },
-        getRowPT(row, key, index) {
-            const rowMetaData = {
-                props: row.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    index
-                }
-            };
-
-            return mergeProps(this.ptm(`row.${key}`, { row: rowMetaData }), this.ptm(`row.${key}`, rowMetaData), this.ptmo(this.getRowProp(row), key, rowMetaData));
-        },
-        getRowProp(row) {
-            return row.props && row.props.pt ? row.props.pt : undefined; //@todo
-        },
-        getColumnPT(column, key, index) {
-            const columnMetaData = {
-                props: column.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    index
-                }
-            };
-
-            return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(column), key, columnMetaData));
-        },
-        getColumnProp(column) {
-            return column.props && column.props.pt ? column.props.pt : undefined; //@todo
-        },
-        getFilterColumnHeaderClass(column) {
-            return [this.cx('headerCell', { column }), this.columnProp(column, 'filterHeaderClass'), this.columnProp(column, 'class')];
-        },
-        getFilterColumnHeaderStyle(column) {
-            return [this.columnProp(column, 'filterHeaderStyle'), this.columnProp(column, 'style')];
-        },
-        getHeaderRows() {
-            return this.d_headerRows?.get(this.columnGroup, this.columnGroup.children);
-        },
-        getHeaderColumns(row) {
-            return this.d_headerColumns?.get(row, row.children);
-        }
-    },
-    computed: {
-        ptmTHeadOptions() {
-            return {
-                context: {
-                    scrollable: this.$parentInstance?.$parentInstance?.scrollable
-                }
-            };
-        }
-    },
-    components: {
-        DTHeaderCell: HeaderCell,
-        DTFilterHeaderCell: FilterHeaderCell
-    }
-};
-</script>

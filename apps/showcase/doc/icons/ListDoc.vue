@@ -1,3 +1,31 @@
+<script>
+    import * as Icons from '@cjdevstudios/bumblevue/icons';
+    import { markRaw } from 'vue';
+
+    export default {
+        data() {
+            return {
+                icons: Object.keys(Icons)
+                    .filter((name) => name.endsWith('Icon') && name !== 'BaseIcon')
+                    .sort()
+                    .map((name) => ({
+                        name,
+                        path: `@cjdevstudios/bumblevue/icons/${name.slice(0, -4).toLowerCase()}`,
+                        component: markRaw(Icons[name])
+                    })),
+                filter: null
+            };
+        },
+        computed: {
+            filteredIcons() {
+                const query = this.filter?.replace(/[^\w]/gi, '').toLowerCase();
+
+                return query ? this.icons.filter((icon) => icon.name.toLowerCase().includes(query)) : this.icons;
+            }
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -18,31 +46,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import * as Icons from '@cjdevstudios/bumblevue/icons';
-import { markRaw } from 'vue';
-
-export default {
-    data() {
-        return {
-            icons: Object.keys(Icons)
-                .filter((name) => name.endsWith('Icon') && name !== 'BaseIcon')
-                .sort()
-                .map((name) => ({
-                    name,
-                    path: `@cjdevstudios/bumblevue/icons/${name.slice(0, -4).toLowerCase()}`,
-                    component: markRaw(Icons[name])
-                })),
-            filter: null
-        };
-    },
-    computed: {
-        filteredIcons() {
-            const query = this.filter?.replace(/[^\w]/gi, '').toLowerCase();
-
-            return query ? this.icons.filter((icon) => icon.name.toLowerCase().includes(query)) : this.icons;
-        }
-    }
-};
-</script>

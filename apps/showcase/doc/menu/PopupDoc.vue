@@ -1,39 +1,28 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Overlay mode is enabled by adding <i>popup</i> property and calling <i>toggle</i> function of the menu ref with an event of the target.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Options',
-                    items: [
-                        {
-                            label: 'Refresh',
-                            icon: 'pi pi-refresh'
-                        },
-                        {
-                            label: 'Export',
-                            icon: 'pi pi-upload'
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Options',
+                        items: [
+                            {
+                                label: 'Refresh',
+                                icon: 'pi pi-refresh'
+                            },
+                            {
+                                label: 'Export',
+                                icon: 'pi pi-upload'
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
 <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
@@ -66,16 +55,27 @@ const toggle = (event) => {
 };
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        toggle(event) {
-            this.$refs.menu.toggle(event);
+                }
+            };
         },
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
+        methods: {
+            toggle(event) {
+                this.$refs.menu.toggle(event);
+            },
+            save() {
+                this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Overlay mode is enabled by adding <i>popup</i> property and calling <i>toggle</i> function of the menu ref with an event of the target.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button type="button" icon="pi pi-ellipsis-v" @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+        <Menu ref="menu" id="overlay_menu" :model="items" :popup="true" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

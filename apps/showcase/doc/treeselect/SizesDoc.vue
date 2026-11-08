@@ -1,32 +1,20 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>TreeSelect provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <TreeSelect v-model="value1" :options="nodes" size="small" placeholder="Small" class="md:w-80 w-full" />
-        <TreeSelect v-model="value2" :options="nodes" placeholder="Normal" class="md:w-80 w-full" />
-        <TreeSelect v-model="value3" :options="nodes" size="large" placeholder="Large" class="md:w-80 w-full" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            value1: null,
-            value2: null,
-            value3: null,
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value1: null,
+                value2: null,
+                value3: null,
+                nodes: null,
+                code: {
+                    basic: `
 <TreeSelect v-model="value1" :options="nodes" size="small" placeholder="Small" class="md:w-80 w-full" />
 <TreeSelect v-model="value2" :options="nodes" placeholder="Normal" class="md:w-80 w-full" />
 <TreeSelect v-model="value3" :options="nodes" size="large" placeholder="Large" class="md:w-80 w-full" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center gap-4">
         <TreeSelect v-model="value1" :options="nodes" size="small" placeholder="Small" class="md:w-80 w-full" />
@@ -49,7 +37,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -76,11 +64,23 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>TreeSelect provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <TreeSelect v-model="value1" :options="nodes" size="small" placeholder="Small" class="md:w-80 w-full" />
+        <TreeSelect v-model="value2" :options="nodes" placeholder="Normal" class="md:w-80 w-full" />
+        <TreeSelect v-model="value3" :options="nodes" size="large" placeholder="Large" class="md:w-80 w-full" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

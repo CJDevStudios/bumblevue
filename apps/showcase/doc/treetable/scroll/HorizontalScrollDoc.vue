@@ -1,31 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Horizontal scrollbar is displayed when table width exceeds the parent width.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" scrollable scrollHeight="300px">
-                <Column field="name" header="Name" expander style="min-width: 250px"></Column>
-                <Column field="size" header="Size" style="min-width: 200px"></Column>
-                <Column field="type" header="Type 2" style="min-width: 200px"></Column>
-                <Column field="size" header="Size 2" style="min-width: 200px"></Column>
-                <Column field="type" header="Type 3" style="min-width: 200px"></Column>
-                <Column field="size" header="Size 3" style="min-width: 200px"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <TreeTable :value="nodes" scrollable scrollHeight="300px">
     <Column field="name" header="Name" expander style="min-width: 250px"></Column>
     <Column field="size" header="Size" style="min-width: 200px"></Column>
@@ -35,7 +16,7 @@ export default {
     <Column field="size" header="Size 3" style="min-width: 200px"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <TreeTable :value="nodes" scrollable scrollHeight="300px">
@@ -60,7 +41,7 @@ onMounted(() => {
 const nodes = ref();
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -88,13 +69,32 @@ const nodes = ref();
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Horizontal scrollbar is displayed when table width exceeds the parent width.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" scrollable scrollHeight="300px">
+                <Column field="name" header="Name" expander style="min-width: 250px"></Column>
+                <Column field="size" header="Size" style="min-width: 200px"></Column>
+                <Column field="type" header="Type 2" style="min-width: 200px"></Column>
+                <Column field="size" header="Size 2" style="min-width: 200px"></Column>
+                <Column field="type" header="Type 3" style="min-width: 200px"></Column>
+                <Column field="size" header="Size 3" style="min-width: 200px"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>InputText is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <InputText v-model="value" type="text" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputText type="text" v-model="value" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputText type="text" v-model="value" />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>InputText is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <InputText v-model="value" type="text" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

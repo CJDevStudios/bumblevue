@@ -1,29 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Adding <i>scrollable</i> property along with a <i>scrollHeight</i> for the data viewport enables vertical scrolling with fixed headers.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="customers" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name"></Column>
-                <Column field="country.name" header="Country"></Column>
-                <Column field="representative.name" header="Representative"></Column>
-                <Column field="company" header="Company"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CustomerService']" />
-</template>
-
 <script>
-import { CustomerService } from '@/service/CustomerService';
+    import { CustomerService } from '@/service/CustomerService';
 
-export default {
-    data() {
-        return {
-            customers: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                customers: null,
+                code: {
+                    basic: `
 <DataTable :value="customers" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
     <Column field="name" header="Name"></Column>
     <Column field="country.name" header="Country"></Column>
@@ -31,7 +14,7 @@ export default {
     <Column field="company" header="Company"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="customers" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
@@ -56,7 +39,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1000,
     name: 'James Butt',
@@ -77,15 +60,32 @@ onMounted(() => {
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                CustomerService.getCustomersMedium().then((data) => {
+                    this.customers = data;
+                });
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            CustomerService.getCustomersMedium().then((data) => {
-                this.customers = data;
-            });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Adding <i>scrollable</i> property along with a <i>scrollHeight</i> for the data viewport enables vertical scrolling with fixed headers.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="customers" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name"></Column>
+                <Column field="country.name" header="Country"></Column>
+                <Column field="representative.name" header="Representative"></Column>
+                <Column field="company" header="Company"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CustomerService']" />
+</template>

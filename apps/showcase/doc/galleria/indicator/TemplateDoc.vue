@@ -1,31 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Indicator content can be customized with the <i>indicator</i> property that takes an index as a parameter and expects content.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="true" indicatorsPosition="left">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-                <template #indicator="{ index }">
-                    <span style="color: #ffffff; cursor: pointer">{{ index + 1 }}</span>
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                code: {
+                    basic: `
 <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
     :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="true" indicatorsPosition="left">
     <template #item="slotProps">
@@ -36,7 +17,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
@@ -62,7 +43,7 @@ onMounted(() => {
 const images = ref();
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -72,13 +53,32 @@ const images = ref();
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Indicator content can be customized with the <i>indicator</i> property that takes an index as a parameter and expects content.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="true" indicatorsPosition="left">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+                <template #indicator="{ index }">
+                    <span style="color: #ffffff; cursor: pointer">{{ index + 1 }}</span>
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

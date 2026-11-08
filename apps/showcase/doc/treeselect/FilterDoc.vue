@@ -1,33 +1,18 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Filtering is enabled by adding the <i>filter</i> property, by default label property of a node is used to compare against the value in the text field, in order to customize which field(s) should be used during search define
-            <i>filterBy</i> property. In addition <i>filterMode</i> specifies the filtering strategy. In <i>lenient</i> mode when the query matches a node, children of the node are not searched further as all descendants of the node are included. On
-            the other hand, in <i>strict</i> mode when the query matches a node, filtering continues on all descendants.
-        </p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-        <TreeSelect v-model="selectedValue2" filter filterMode="strict" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            selectedValue2: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedValue: null,
+                selectedValue2: null,
+                code: {
+                    basic: `
 <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
 <TreeSelect v-model="selectedValue" filter filterMode="strict" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-wrap justify-center items-end gap-4">
         <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
@@ -48,7 +33,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -75,11 +60,26 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Filtering is enabled by adding the <i>filter</i> property, by default label property of a node is used to compare against the value in the text field, in order to customize which field(s) should be used during search define
+            <i>filterBy</i> property. In addition <i>filterMode</i> specifies the filtering strategy. In <i>lenient</i> mode when the query matches a node, children of the node are not searched further as all descendants of the node are included. On
+            the other hand, in <i>strict</i> mode when the query matches a node, filtering continues on all descendants.
+        </p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center items-end gap-4">
+        <TreeSelect v-model="selectedValue" filter filterMode="lenient" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
+        <TreeSelect v-model="selectedValue2" filter filterMode="strict" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

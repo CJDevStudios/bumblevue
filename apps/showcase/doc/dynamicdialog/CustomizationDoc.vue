@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>DynamicDialog uses the Dialog component internally, visit <NuxtLink to="/dialog">dialog</NuxtLink> for more information about the available props.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import ProductListDemo from './ProductListDemo';
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -32,8 +25,15 @@ const showProducts = () => {
     });
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>DynamicDialog uses the Dialog component internally, visit <NuxtLink to="/dialog">dialog</NuxtLink> for more information about the available props.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

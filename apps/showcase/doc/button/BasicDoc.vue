@@ -1,22 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Text to display on a button is defined with the <i>label</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button label="Submit" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Button label="Submit" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Button label="Submit" />
@@ -26,8 +16,18 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Text to display on a button is defined with the <i>label</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button label="Submit" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

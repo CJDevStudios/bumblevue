@@ -1,3 +1,44 @@
+<script>
+    import { $dt } from '@cjdevstudios/bumblevue/styled';
+    import { setCSSProperty } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ImageCompareStyle from '@cjdevstudios/bumblevue/imagecompare/style';
+
+    export default {
+        name: 'ImageCompare',
+        extends: BaseComponent,
+        props: {
+            tabindex: {
+                type: Number,
+                default: 0
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            }
+        },
+        style: ImageCompareStyle,
+        provide() {
+            return {
+                $pcImageCompare: this,
+                $parentInstance: this
+            };
+        },
+        methods: {
+            onSlide(event) {
+                const value = event.target.value;
+                const image = event.target.previousElementSibling;
+
+                setCSSProperty(image, $dt('imagecompare.scope.x').name, `${value}%`);
+            }
+        }
+    };
+</script>
+
 <template>
     <div :class="cx('root')" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptmi('root')">
         <slot name="left"></slot>
@@ -5,44 +46,3 @@
         <input type="range" min="0" max="100" value="50" @input="onSlide" :class="cx('slider')" v-bind="ptm('slider')" />
     </div>
 </template>
-
-<script>
-import { $dt } from '@cjdevstudios/bumblevue/styled';
-import { setCSSProperty } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ImageCompareStyle from '@cjdevstudios/bumblevue/imagecompare/style';
-
-export default {
-    name: 'ImageCompare',
-    extends: BaseComponent,
-    props: {
-        tabindex: {
-            type: Number,
-            default: 0
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    style: ImageCompareStyle,
-    provide() {
-        return {
-            $pcImageCompare: this,
-            $parentInstance: this
-        };
-    },
-    methods: {
-        onSlide(event) {
-            const value = event.target.value;
-            const image = event.target.previousElementSibling;
-
-            setCSSProperty(image, $dt('imagecompare.scope.x').name, `${value}%`);
-        }
-    }
-};
-</script>

@@ -1,3 +1,20 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<span id="lb"></span>Options</span>
+<Listbox aria-labelledby="lb" />
+
+<Listbox aria-label="City" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -138,20 +155,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<span id="lb"></span>Options</span>
-<Listbox aria-labelledby="lb" />
-
-<Listbox aria-label="City" />
-`
-            }
-        };
-    }
-};
-</script>

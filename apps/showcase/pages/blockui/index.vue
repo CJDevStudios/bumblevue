@@ -15,6 +15,5 @@
 </script>
 
 <template>
-    <DocComponent title="Vue BlockUI Component" header="BlockUI" description="BlockUI can either block other components or the whole page."
-                  :componentDocs="docs" :apiDocs="['BlockUI']" :ptTabComponent="PTComponent" :themingDocs="ThemingDoc" />
+    <DocComponent title="Vue BlockUI Component" header="BlockUI" description="BlockUI can either block other components or the whole page." :componentDocs="docs" :apiDocs="['BlockUI']" :ptTabComponent="PTComponent" :themingDocs="ThemingDoc" />
 </template>

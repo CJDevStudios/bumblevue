@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Updates the primary colors, this is a shorthand to do the same update using <i>updatePreset</i>.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { updatePrimaryPalette } from '@cjdevstudios/bumblevue/themes';
 
 const changePrimaryColor() {
@@ -29,8 +22,15 @@ const changePrimaryColor() {
     });
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Updates the primary colors, this is a shorthand to do the same update using <i>updatePreset</i>.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

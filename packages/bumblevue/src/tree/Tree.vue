@@ -1,3 +1,567 @@
+<script>
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { isFunction, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
+    import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
+    import IconField from '@cjdevstudios/bumblevue/iconfield';
+    import InputIcon from '@cjdevstudios/bumblevue/inputicon';
+    import InputText from '@cjdevstudios/bumblevue/inputtext';
+    import TreeStyle from '@cjdevstudios/bumblevue/tree/style';
+    import { useTreeDragDropService } from './TreeDragDropService';
+    import TreeNode from './TreeNode.vue';
+
+    export default {
+        name: 'Tree',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: {
+                type: null,
+                default: null
+            },
+            expandedKeys: {
+                type: null,
+                default: null
+            },
+            selectionKeys: {
+                type: null,
+                default: null
+            },
+            selectionMode: {
+                type: String,
+                default: null
+            },
+            metaKeySelection: {
+                type: Boolean,
+                default: false
+            },
+            loading: {
+                type: Boolean,
+                default: false
+            },
+            loadingIcon: {
+                type: String,
+                default: undefined
+            },
+            loadingMode: {
+                type: String,
+                default: 'mask'
+            },
+            filter: {
+                type: Boolean,
+                default: false
+            },
+            filterBy: {
+                type: [String, Function],
+                default: 'label'
+            },
+            filterMode: {
+                type: String,
+                default: 'lenient'
+            },
+            filterPlaceholder: {
+                type: String,
+                default: null
+            },
+            filterLocale: {
+                type: String,
+                default: undefined
+            },
+            highlightOnSelect: {
+                type: Boolean,
+                default: false
+            },
+            scrollHeight: {
+                type: String,
+                default: null
+            },
+            level: {
+                type: Number,
+                default: 0
+            },
+            draggableNodes: {
+                type: Boolean,
+                default: null
+            },
+            droppableNodes: {
+                type: Boolean,
+                default: null
+            },
+            draggableScope: {
+                type: [String, Array],
+                default: null
+            },
+            droppableScope: {
+                type: [String, Array],
+                default: null
+            },
+            validateDrop: {
+                type: Boolean,
+                default: false
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            }
+        },
+        emits: ['node-expand', 'node-collapse', 'update:expandedKeys', 'update:selectionKeys', 'node-select', 'node-unselect', 'filter', 'node-drop', 'node-dragenter', 'node-dragleave', 'update:value', 'drag-enter', 'drag-leave'],
+        style: TreeStyle,
+        provide() {
+            return {
+                $pcTree: this,
+                $parentInstance: this
+            };
+        },
+        data() {
+            return {
+                d_expandedKeys: this.expandedKeys || {},
+                filterValue: null,
+                dragNode: null,
+                dragNodeSubNodes: null,
+                dragNodeIndex: null,
+                dragNodeScope: null,
+                dragHover: null
+            };
+        },
+        inject: {
+            $pcTreeSelect: { default: null }
+        },
+        dragDropService: null,
+        dragStartCleanup: null,
+        dragStopCleanup: null,
+        watch: {
+            expandedKeys(newValue) {
+                this.d_expandedKeys = newValue;
+            },
+            droppableNodes(newValue) {
+                if (newValue) {
+                    this.initDragDropService();
+                } else {
+                    this.cleanupDragDropService();
+                }
+            }
+        },
+        mounted() {
+            if (this.droppableNodes) {
+                this.initDragDropService();
+            }
+        },
+        beforeUnmount() {
+            this.cleanupDragDropService();
+        },
+        methods: {
+            initDragDropService() {
+                if (this.dragDropService) return;
+
+                this.dragDropService = useTreeDragDropService();
+
+                this.dragStartCleanup = this.dragDropService.onDragStart((event) => {
+                    this.dragNode = event.node;
+                    this.dragNodeSubNodes = event.subNodes;
+                    this.dragNodeIndex = event.index;
+                    this.dragNodeScope = event.scope;
+                });
+
+                this.dragStopCleanup = this.dragDropService.onDragStop(() => {
+                    this.dragNode = null;
+                    this.dragNodeSubNodes = null;
+                    this.dragNodeIndex = null;
+                    this.dragNodeScope = null;
+                    this.dragHover = false;
+                });
+            },
+            cleanupDragDropService() {
+                if (this.dragStartCleanup) {
+                    this.dragStartCleanup();
+                    this.dragStartCleanup = null;
+                }
+
+                if (this.dragStopCleanup) {
+                    this.dragStopCleanup();
+                    this.dragStopCleanup = null;
+                }
+
+                this.dragDropService = null;
+            },
+            onNodeToggle(node) {
+                const key = node.key;
+
+                if (this.d_expandedKeys[key]) {
+                    delete this.d_expandedKeys[key];
+                    this.$emit('node-collapse', node);
+                } else {
+                    this.d_expandedKeys[key] = true;
+                    this.$emit('node-expand', node);
+                }
+
+                this.d_expandedKeys = { ...this.d_expandedKeys };
+                this.$emit('update:expandedKeys', this.d_expandedKeys);
+            },
+            onNodeClick(event) {
+                if (this.selectionMode != null && event.node.selectable !== false) {
+                    const metaSelection = event.nodeTouched ? false : this.metaKeySelection;
+                    const _selectionKeys = metaSelection ? this.handleSelectionWithMetaKey(event) : this.handleSelectionWithoutMetaKey(event);
+
+                    this.$emit('update:selectionKeys', _selectionKeys);
+                }
+            },
+            onCheckboxChange(event) {
+                this.$emit('update:selectionKeys', event.selectionKeys);
+
+                if (event.check) this.$emit('node-select', event.node);
+                else this.$emit('node-unselect', event.node);
+            },
+            handleSelectionWithMetaKey(event) {
+                const originalEvent = event.originalEvent;
+                const node = event.node;
+                const metaKey = originalEvent.metaKey || originalEvent.ctrlKey;
+                const selected = this.isNodeSelected(node);
+                let _selectionKeys;
+
+                if (selected && metaKey) {
+                    if (this.isSingleSelectionMode()) {
+                        _selectionKeys = {};
+                    } else {
+                        _selectionKeys = { ...this.selectionKeys };
+                        delete _selectionKeys[node.key];
+                    }
+
+                    this.$emit('node-unselect', node);
+                } else {
+                    if (this.isSingleSelectionMode()) {
+                        _selectionKeys = {};
+                    } else if (this.isMultipleSelectionMode()) {
+                        _selectionKeys = !metaKey ? {} : this.selectionKeys ? { ...this.selectionKeys } : {};
+                    }
+
+                    _selectionKeys[node.key] = true;
+                    this.$emit('node-select', node);
+                }
+
+                return _selectionKeys;
+            },
+            handleSelectionWithoutMetaKey(event) {
+                const node = event.node;
+                const selected = this.isNodeSelected(node);
+                let _selectionKeys;
+
+                if (this.isSingleSelectionMode()) {
+                    if (selected) {
+                        _selectionKeys = {};
+                        this.$emit('node-unselect', node);
+                    } else {
+                        _selectionKeys = {};
+                        _selectionKeys[node.key] = true;
+                        this.$emit('node-select', node);
+                    }
+                } else {
+                    if (selected) {
+                        _selectionKeys = { ...this.selectionKeys };
+                        delete _selectionKeys[node.key];
+
+                        this.$emit('node-unselect', node);
+                    } else {
+                        _selectionKeys = this.selectionKeys ? { ...this.selectionKeys } : {};
+                        _selectionKeys[node.key] = true;
+
+                        this.$emit('node-select', node);
+                    }
+                }
+
+                return _selectionKeys;
+            },
+            isSingleSelectionMode() {
+                return this.selectionMode === 'single';
+            },
+            isMultipleSelectionMode() {
+                return this.selectionMode === 'multiple';
+            },
+            isNodeSelected(node) {
+                return this.selectionMode && this.selectionKeys ? this.selectionKeys[node.key] === true : false;
+            },
+            isChecked(node) {
+                return this.selectionKeys ? this.selectionKeys[node.key] && this.selectionKeys[node.key].checked : false;
+            },
+            isNodeLeaf(node) {
+                return node.leaf === false ? false : !(node.children && node.children.length);
+            },
+            onFilterKeyup(event) {
+                if (event.code === 'Enter' || event.code === 'NumpadEnter') {
+                    event.preventDefault();
+                }
+
+                this.$emit('filter', { originalEvent: event, value: event.target.value, filteredNodes: this.valueToRender });
+            },
+            findFilteredNodes(node, paramsWithoutNode) {
+                if (node) {
+                    let matched = false;
+
+                    if (node.children) {
+                        let childNodes = [...node.children];
+
+                        node.children = [];
+
+                        for (let childNode of childNodes) {
+                            let copyChildNode = { ...childNode };
+
+                            if (this.isFilterMatched(copyChildNode, paramsWithoutNode)) {
+                                matched = true;
+                                node.children.push(copyChildNode);
+                            }
+                        }
+                    }
+
+                    if (matched) {
+                        return true;
+                    }
+                }
+            },
+            isFilterMatched(node, { searchFields, filterText, strict }) {
+                let matched = false;
+
+                for (let field of searchFields) {
+                    let fieldValue = String(resolveFieldData(node, field)).toLocaleLowerCase(this.filterLocale);
+
+                    if (fieldValue.indexOf(filterText) > -1) {
+                        matched = true;
+                    }
+                }
+
+                if (!matched || (strict && !this.isNodeLeaf(node))) {
+                    matched = this.findFilteredNodes(node, { searchFields, filterText, strict }) || matched;
+                }
+
+                return matched;
+            },
+            onNodeDrop(event) {
+                this.$emit('node-drop', event);
+            },
+            onNodeDragEnter(event) {
+                this.$emit('node-dragenter', event);
+            },
+            onNodeDragLeave(event) {
+                this.$emit('node-dragleave', event);
+            },
+            onValueChanged(event) {
+                this.dragNodeSubNodes.splice(this.dragNodeIndex, 1);
+                this.$emit('update:value', event.nodes);
+            },
+            isDescendantOf(node, target) {
+                if (!node || !node.children) {
+                    return false;
+                }
+
+                for (let child of node.children) {
+                    if (child === target || this.isDescendantOf(child, target)) {
+                        return true;
+                    }
+                }
+
+                return false;
+            },
+            allowDrop(dragNode, dropNode, dragNodeScope) {
+                if (!dragNode) {
+                    return false;
+                }
+
+                if (!this.isValidDragScope(dragNodeScope)) {
+                    return false;
+                }
+
+                if (dropNode && (dragNode === dropNode || this.isDescendantOf(dragNode, dropNode))) {
+                    return false;
+                }
+
+                return true;
+            },
+            allowNodeDrop(dropNode) {
+                return this.allowDrop(this.dragNode, dropNode, this.dragNodeScope);
+            },
+            hasCommonScope(dragScope, dropScope) {
+                if (dragScope === null && dropScope === null) {
+                    return true;
+                } else if (dragScope === null || dropScope === null) {
+                    return false;
+                }
+
+                if (typeof dropScope === 'string') {
+                    if (typeof dragScope === 'string') {
+                        return dragScope === dropScope;
+                    } else if (Array.isArray(dragScope)) {
+                        return dragScope.indexOf(dropScope) !== -1;
+                    }
+                } else if (Array.isArray(dropScope)) {
+                    if (typeof dragScope === 'string') {
+                        return dropScope.indexOf(dragScope) !== -1;
+                    } else if (Array.isArray(dragScope)) {
+                        for (let ds of dragScope) {
+                            if (dropScope.indexOf(ds) !== -1) {
+                                return true;
+                            }
+                        }
+                        return false;
+                    }
+                }
+
+                return false;
+            },
+            isValidDragScope(dragScope) {
+                if (this.droppableScope === null) {
+                    return true;
+                }
+
+                return this.hasCommonScope(dragScope, this.droppableScope);
+            },
+            isSameTreeScope(dragScope) {
+                return this.hasCommonScope(dragScope, this.draggableScope);
+            },
+            onDragOver(event) {
+                if (this.droppableNodes && this.allowDrop(this.dragNode, null, this.dragNodeScope)) {
+                    event.dataTransfer.dropEffect = 'copy';
+                } else {
+                    event.dataTransfer.dropEffect = 'none';
+                }
+
+                event.preventDefault();
+            },
+            onDragEnter(event) {
+                if (this.droppableNodes && this.allowDrop(this.dragNode, null, this.dragNodeScope)) {
+                    this.dragHover = true;
+
+                    this.$emit('drag-enter', {
+                        originalEvent: event,
+                        value: this.value,
+                        dragNode: this.dragNode,
+                        dragNodeScope: this.dragNodeScope
+                    });
+                }
+            },
+            onDragLeave(event) {
+                if (this.droppableNodes) {
+                    let rect = event.currentTarget.getBoundingClientRect();
+
+                    if (event.x >= parseInt(rect.right) || event.x <= parseInt(rect.left) || event.y >= parseInt(rect.bottom) || event.y <= parseInt(rect.top)) {
+                        this.dragHover = false;
+                    }
+
+                    this.$emit('drag-leave', {
+                        originalEvent: event,
+                        value: this.value,
+                        dragNode: this.dragNode,
+                        dragNodeScope: this.dragNodeScope
+                    });
+                }
+            },
+            processTreeDrop(dragNode, dragNodeIndex) {
+                this.dragNodeSubNodes.splice(dragNodeIndex, 1);
+                const newValue = [...(this.value || []), dragNode];
+                this.$emit('update:value', newValue);
+
+                this.dragDropService.stopDrag({
+                    node: dragNode
+                });
+            },
+            onDrop(event) {
+                if (this.droppableNodes) {
+                    event.preventDefault();
+                    let dragNode = this.dragNode;
+
+                    if (this.allowDrop(dragNode, null, this.dragNodeScope)) {
+                        let dragNodeIndex = this.dragNodeIndex;
+
+                        if (this.isSameTreeScope(this.dragNodeScope)) {
+                            this.dragDropService.stopDrag({
+                                node: dragNode
+                            });
+
+                            return;
+                        }
+
+                        if (this.validateDrop) {
+                            this.$emit('node-drop', {
+                                originalEvent: event,
+                                value: this.value,
+                                dragNode: dragNode,
+                                dropNode: null,
+                                index: dragNodeIndex,
+                                accept: () => {
+                                    this.processTreeDrop(dragNode, dragNodeIndex);
+                                }
+                            });
+                        } else {
+                            this.$emit('node-drop', {
+                                originalEvent: event,
+                                value: this.value,
+                                dragNode: dragNode,
+                                dropNode: null,
+                                index: dragNodeIndex
+                            });
+
+                            this.processTreeDrop(dragNode, dragNodeIndex);
+                        }
+                    }
+                }
+            }
+        },
+        computed: {
+            filteredValue() {
+                let filteredNodes = [];
+                const searchFields = isFunction(this.filterBy) ? [this.filterBy] : this.filterBy.split(',');
+                const filterText = this.filterValue.trim().toLocaleLowerCase(this.filterLocale);
+                const strict = this.filterMode === 'strict';
+
+                for (let node of this.value) {
+                    let _node = { ...node };
+                    let paramsWithoutNode = { searchFields, filterText, strict };
+
+                    if (
+                        (strict && (this.findFilteredNodes(_node, paramsWithoutNode) || this.isFilterMatched(_node, paramsWithoutNode))) ||
+                        (!strict && (this.isFilterMatched(_node, paramsWithoutNode) || this.findFilteredNodes(_node, paramsWithoutNode)))
+                    ) {
+                        filteredNodes.push(_node);
+                    }
+                }
+
+                return filteredNodes;
+            },
+            valueToRender() {
+                if (this.filterValue && this.filterValue.trim().length > 0) return this.filteredValue;
+                else return this.value;
+            },
+            empty() {
+                return !this.valueToRender || this.valueToRender.length === 0;
+            },
+            emptyMessageText() {
+                return this.$bumblevue.config?.locale?.emptyMessage || '';
+            },
+            containerDataP() {
+                return cn({
+                    loading: this.loading,
+                    scrollable: this.scrollHeight === 'flex'
+                });
+            },
+            wrapperDataP() {
+                return cn({
+                    scrollable: this.scrollHeight === 'flex'
+                });
+            }
+        },
+        components: {
+            TreeNode,
+            InputText,
+            InputIcon,
+            IconField,
+            SearchIcon,
+            SpinnerIcon
+        }
+    };
+</script>
+
 <template>
     <div :class="cx('root')" @dragover="onDragOver" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop" :data-p="containerDataP" v-bind="ptmi('root')">
         <transition name="p-overlay-mask">
@@ -55,567 +619,3 @@
         </div>
     </div>
 </template>
-
-<script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { isFunction, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import SearchIcon from '@cjdevstudios/bumblevue/icons/search';
-import SpinnerIcon from '@cjdevstudios/bumblevue/icons/spinner';
-import IconField from '@cjdevstudios/bumblevue/iconfield';
-import InputIcon from '@cjdevstudios/bumblevue/inputicon';
-import InputText from '@cjdevstudios/bumblevue/inputtext';
-import TreeStyle from '@cjdevstudios/bumblevue/tree/style';
-import { useTreeDragDropService } from './TreeDragDropService';
-import TreeNode from './TreeNode.vue';
-
-export default {
-    name: 'Tree',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: {
-            type: null,
-            default: null
-        },
-        expandedKeys: {
-            type: null,
-            default: null
-        },
-        selectionKeys: {
-            type: null,
-            default: null
-        },
-        selectionMode: {
-            type: String,
-            default: null
-        },
-        metaKeySelection: {
-            type: Boolean,
-            default: false
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        },
-        loadingIcon: {
-            type: String,
-            default: undefined
-        },
-        loadingMode: {
-            type: String,
-            default: 'mask'
-        },
-        filter: {
-            type: Boolean,
-            default: false
-        },
-        filterBy: {
-            type: [String, Function],
-            default: 'label'
-        },
-        filterMode: {
-            type: String,
-            default: 'lenient'
-        },
-        filterPlaceholder: {
-            type: String,
-            default: null
-        },
-        filterLocale: {
-            type: String,
-            default: undefined
-        },
-        highlightOnSelect: {
-            type: Boolean,
-            default: false
-        },
-        scrollHeight: {
-            type: String,
-            default: null
-        },
-        level: {
-            type: Number,
-            default: 0
-        },
-        draggableNodes: {
-            type: Boolean,
-            default: null
-        },
-        droppableNodes: {
-            type: Boolean,
-            default: null
-        },
-        draggableScope: {
-            type: [String, Array],
-            default: null
-        },
-        droppableScope: {
-            type: [String, Array],
-            default: null
-        },
-        validateDrop: {
-            type: Boolean,
-            default: false
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        }
-    },
-    emits: ['node-expand', 'node-collapse', 'update:expandedKeys', 'update:selectionKeys', 'node-select', 'node-unselect', 'filter', 'node-drop', 'node-dragenter', 'node-dragleave', 'update:value', 'drag-enter', 'drag-leave'],
-    style: TreeStyle,
-    provide() {
-        return {
-            $pcTree: this,
-            $parentInstance: this
-        };
-    },
-    data() {
-        return {
-            d_expandedKeys: this.expandedKeys || {},
-            filterValue: null,
-            dragNode: null,
-            dragNodeSubNodes: null,
-            dragNodeIndex: null,
-            dragNodeScope: null,
-            dragHover: null
-        };
-    },
-    inject: {
-        $pcTreeSelect: { default: null }
-    },
-    dragDropService: null,
-    dragStartCleanup: null,
-    dragStopCleanup: null,
-    watch: {
-        expandedKeys(newValue) {
-            this.d_expandedKeys = newValue;
-        },
-        droppableNodes(newValue) {
-            if (newValue) {
-                this.initDragDropService();
-            } else {
-                this.cleanupDragDropService();
-            }
-        }
-    },
-    mounted() {
-        if (this.droppableNodes) {
-            this.initDragDropService();
-        }
-    },
-    beforeUnmount() {
-        this.cleanupDragDropService();
-    },
-    methods: {
-        initDragDropService() {
-            if (this.dragDropService) return;
-
-            this.dragDropService = useTreeDragDropService();
-
-            this.dragStartCleanup = this.dragDropService.onDragStart((event) => {
-                this.dragNode = event.node;
-                this.dragNodeSubNodes = event.subNodes;
-                this.dragNodeIndex = event.index;
-                this.dragNodeScope = event.scope;
-            });
-
-            this.dragStopCleanup = this.dragDropService.onDragStop(() => {
-                this.dragNode = null;
-                this.dragNodeSubNodes = null;
-                this.dragNodeIndex = null;
-                this.dragNodeScope = null;
-                this.dragHover = false;
-            });
-        },
-        cleanupDragDropService() {
-            if (this.dragStartCleanup) {
-                this.dragStartCleanup();
-                this.dragStartCleanup = null;
-            }
-
-            if (this.dragStopCleanup) {
-                this.dragStopCleanup();
-                this.dragStopCleanup = null;
-            }
-
-            this.dragDropService = null;
-        },
-        onNodeToggle(node) {
-            const key = node.key;
-
-            if (this.d_expandedKeys[key]) {
-                delete this.d_expandedKeys[key];
-                this.$emit('node-collapse', node);
-            } else {
-                this.d_expandedKeys[key] = true;
-                this.$emit('node-expand', node);
-            }
-
-            this.d_expandedKeys = { ...this.d_expandedKeys };
-            this.$emit('update:expandedKeys', this.d_expandedKeys);
-        },
-        onNodeClick(event) {
-            if (this.selectionMode != null && event.node.selectable !== false) {
-                const metaSelection = event.nodeTouched ? false : this.metaKeySelection;
-                const _selectionKeys = metaSelection ? this.handleSelectionWithMetaKey(event) : this.handleSelectionWithoutMetaKey(event);
-
-                this.$emit('update:selectionKeys', _selectionKeys);
-            }
-        },
-        onCheckboxChange(event) {
-            this.$emit('update:selectionKeys', event.selectionKeys);
-
-            if (event.check) this.$emit('node-select', event.node);
-            else this.$emit('node-unselect', event.node);
-        },
-        handleSelectionWithMetaKey(event) {
-            const originalEvent = event.originalEvent;
-            const node = event.node;
-            const metaKey = originalEvent.metaKey || originalEvent.ctrlKey;
-            const selected = this.isNodeSelected(node);
-            let _selectionKeys;
-
-            if (selected && metaKey) {
-                if (this.isSingleSelectionMode()) {
-                    _selectionKeys = {};
-                } else {
-                    _selectionKeys = { ...this.selectionKeys };
-                    delete _selectionKeys[node.key];
-                }
-
-                this.$emit('node-unselect', node);
-            } else {
-                if (this.isSingleSelectionMode()) {
-                    _selectionKeys = {};
-                } else if (this.isMultipleSelectionMode()) {
-                    _selectionKeys = !metaKey ? {} : this.selectionKeys ? { ...this.selectionKeys } : {};
-                }
-
-                _selectionKeys[node.key] = true;
-                this.$emit('node-select', node);
-            }
-
-            return _selectionKeys;
-        },
-        handleSelectionWithoutMetaKey(event) {
-            const node = event.node;
-            const selected = this.isNodeSelected(node);
-            let _selectionKeys;
-
-            if (this.isSingleSelectionMode()) {
-                if (selected) {
-                    _selectionKeys = {};
-                    this.$emit('node-unselect', node);
-                } else {
-                    _selectionKeys = {};
-                    _selectionKeys[node.key] = true;
-                    this.$emit('node-select', node);
-                }
-            } else {
-                if (selected) {
-                    _selectionKeys = { ...this.selectionKeys };
-                    delete _selectionKeys[node.key];
-
-                    this.$emit('node-unselect', node);
-                } else {
-                    _selectionKeys = this.selectionKeys ? { ...this.selectionKeys } : {};
-                    _selectionKeys[node.key] = true;
-
-                    this.$emit('node-select', node);
-                }
-            }
-
-            return _selectionKeys;
-        },
-        isSingleSelectionMode() {
-            return this.selectionMode === 'single';
-        },
-        isMultipleSelectionMode() {
-            return this.selectionMode === 'multiple';
-        },
-        isNodeSelected(node) {
-            return this.selectionMode && this.selectionKeys ? this.selectionKeys[node.key] === true : false;
-        },
-        isChecked(node) {
-            return this.selectionKeys ? this.selectionKeys[node.key] && this.selectionKeys[node.key].checked : false;
-        },
-        isNodeLeaf(node) {
-            return node.leaf === false ? false : !(node.children && node.children.length);
-        },
-        onFilterKeyup(event) {
-            if (event.code === 'Enter' || event.code === 'NumpadEnter') {
-                event.preventDefault();
-            }
-
-            this.$emit('filter', { originalEvent: event, value: event.target.value, filteredNodes: this.valueToRender });
-        },
-        findFilteredNodes(node, paramsWithoutNode) {
-            if (node) {
-                let matched = false;
-
-                if (node.children) {
-                    let childNodes = [...node.children];
-
-                    node.children = [];
-
-                    for (let childNode of childNodes) {
-                        let copyChildNode = { ...childNode };
-
-                        if (this.isFilterMatched(copyChildNode, paramsWithoutNode)) {
-                            matched = true;
-                            node.children.push(copyChildNode);
-                        }
-                    }
-                }
-
-                if (matched) {
-                    return true;
-                }
-            }
-        },
-        isFilterMatched(node, { searchFields, filterText, strict }) {
-            let matched = false;
-
-            for (let field of searchFields) {
-                let fieldValue = String(resolveFieldData(node, field)).toLocaleLowerCase(this.filterLocale);
-
-                if (fieldValue.indexOf(filterText) > -1) {
-                    matched = true;
-                }
-            }
-
-            if (!matched || (strict && !this.isNodeLeaf(node))) {
-                matched = this.findFilteredNodes(node, { searchFields, filterText, strict }) || matched;
-            }
-
-            return matched;
-        },
-        onNodeDrop(event) {
-            this.$emit('node-drop', event);
-        },
-        onNodeDragEnter(event) {
-            this.$emit('node-dragenter', event);
-        },
-        onNodeDragLeave(event) {
-            this.$emit('node-dragleave', event);
-        },
-        onValueChanged(event) {
-            this.dragNodeSubNodes.splice(this.dragNodeIndex, 1);
-            this.$emit('update:value', event.nodes);
-        },
-        isDescendantOf(node, target) {
-            if (!node || !node.children) {
-                return false;
-            }
-
-            for (let child of node.children) {
-                if (child === target || this.isDescendantOf(child, target)) {
-                    return true;
-                }
-            }
-
-            return false;
-        },
-        allowDrop(dragNode, dropNode, dragNodeScope) {
-            if (!dragNode) {
-                return false;
-            }
-
-            if (!this.isValidDragScope(dragNodeScope)) {
-                return false;
-            }
-
-            if (dropNode && (dragNode === dropNode || this.isDescendantOf(dragNode, dropNode))) {
-                return false;
-            }
-
-            return true;
-        },
-        allowNodeDrop(dropNode) {
-            return this.allowDrop(this.dragNode, dropNode, this.dragNodeScope);
-        },
-        hasCommonScope(dragScope, dropScope) {
-            if (dragScope === null && dropScope === null) {
-                return true;
-            } else if (dragScope === null || dropScope === null) {
-                return false;
-            }
-
-            if (typeof dropScope === 'string') {
-                if (typeof dragScope === 'string') {
-                    return dragScope === dropScope;
-                } else if (Array.isArray(dragScope)) {
-                    return dragScope.indexOf(dropScope) !== -1;
-                }
-            } else if (Array.isArray(dropScope)) {
-                if (typeof dragScope === 'string') {
-                    return dropScope.indexOf(dragScope) !== -1;
-                } else if (Array.isArray(dragScope)) {
-                    for (let ds of dragScope) {
-                        if (dropScope.indexOf(ds) !== -1) {
-                            return true;
-                        }
-                    }
-                    return false;
-                }
-            }
-
-            return false;
-        },
-        isValidDragScope(dragScope) {
-            if (this.droppableScope === null) {
-                return true;
-            }
-
-            return this.hasCommonScope(dragScope, this.droppableScope);
-        },
-        isSameTreeScope(dragScope) {
-            return this.hasCommonScope(dragScope, this.draggableScope);
-        },
-        onDragOver(event) {
-            if (this.droppableNodes && this.allowDrop(this.dragNode, null, this.dragNodeScope)) {
-                event.dataTransfer.dropEffect = 'copy';
-            } else {
-                event.dataTransfer.dropEffect = 'none';
-            }
-
-            event.preventDefault();
-        },
-        onDragEnter(event) {
-            if (this.droppableNodes && this.allowDrop(this.dragNode, null, this.dragNodeScope)) {
-                this.dragHover = true;
-
-                this.$emit('drag-enter', {
-                    originalEvent: event,
-                    value: this.value,
-                    dragNode: this.dragNode,
-                    dragNodeScope: this.dragNodeScope
-                });
-            }
-        },
-        onDragLeave(event) {
-            if (this.droppableNodes) {
-                let rect = event.currentTarget.getBoundingClientRect();
-
-                if (event.x >= parseInt(rect.right) || event.x <= parseInt(rect.left) || event.y >= parseInt(rect.bottom) || event.y <= parseInt(rect.top)) {
-                    this.dragHover = false;
-                }
-
-                this.$emit('drag-leave', {
-                    originalEvent: event,
-                    value: this.value,
-                    dragNode: this.dragNode,
-                    dragNodeScope: this.dragNodeScope
-                });
-            }
-        },
-        processTreeDrop(dragNode, dragNodeIndex) {
-            this.dragNodeSubNodes.splice(dragNodeIndex, 1);
-            const newValue = [...(this.value || []), dragNode];
-            this.$emit('update:value', newValue);
-
-            this.dragDropService.stopDrag({
-                node: dragNode
-            });
-        },
-        onDrop(event) {
-            if (this.droppableNodes) {
-                event.preventDefault();
-                let dragNode = this.dragNode;
-
-                if (this.allowDrop(dragNode, null, this.dragNodeScope)) {
-                    let dragNodeIndex = this.dragNodeIndex;
-
-                    if (this.isSameTreeScope(this.dragNodeScope)) {
-                        this.dragDropService.stopDrag({
-                            node: dragNode
-                        });
-
-                        return;
-                    }
-
-                    if (this.validateDrop) {
-                        this.$emit('node-drop', {
-                            originalEvent: event,
-                            value: this.value,
-                            dragNode: dragNode,
-                            dropNode: null,
-                            index: dragNodeIndex,
-                            accept: () => {
-                                this.processTreeDrop(dragNode, dragNodeIndex);
-                            }
-                        });
-                    } else {
-                        this.$emit('node-drop', {
-                            originalEvent: event,
-                            value: this.value,
-                            dragNode: dragNode,
-                            dropNode: null,
-                            index: dragNodeIndex
-                        });
-
-                        this.processTreeDrop(dragNode, dragNodeIndex);
-                    }
-                }
-            }
-        }
-    },
-    computed: {
-        filteredValue() {
-            let filteredNodes = [];
-            const searchFields = isFunction(this.filterBy) ? [this.filterBy] : this.filterBy.split(',');
-            const filterText = this.filterValue.trim().toLocaleLowerCase(this.filterLocale);
-            const strict = this.filterMode === 'strict';
-
-            for (let node of this.value) {
-                let _node = { ...node };
-                let paramsWithoutNode = { searchFields, filterText, strict };
-
-                if (
-                    (strict && (this.findFilteredNodes(_node, paramsWithoutNode) || this.isFilterMatched(_node, paramsWithoutNode))) ||
-                    (!strict && (this.isFilterMatched(_node, paramsWithoutNode) || this.findFilteredNodes(_node, paramsWithoutNode)))
-                ) {
-                    filteredNodes.push(_node);
-                }
-            }
-
-            return filteredNodes;
-        },
-        valueToRender() {
-            if (this.filterValue && this.filterValue.trim().length > 0) return this.filteredValue;
-            else return this.value;
-        },
-        empty() {
-            return !this.valueToRender || this.valueToRender.length === 0;
-        },
-        emptyMessageText() {
-            return this.$bumblevue.config?.locale?.emptyMessage || '';
-        },
-        containerDataP() {
-            return cn({
-                loading: this.loading,
-                scrollable: this.scrollHeight === 'flex'
-            });
-        },
-        wrapperDataP() {
-            return cn({
-                scrollable: this.scrollHeight === 'flex'
-            });
-        }
-    },
-    components: {
-        TreeNode,
-        InputText,
-        InputIcon,
-        IconField,
-        SearchIcon,
-        SpinnerIcon
-    }
-};
-</script>

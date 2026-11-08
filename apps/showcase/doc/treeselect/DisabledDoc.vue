@@ -1,25 +1,15 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
-import { NodeService } from '/service/NodeService';
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            code: {
-                basic: `
+    import { NodeService } from '/service/NodeService';
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedValue: null,
+                code: {
+                    basic: `
 <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
@@ -38,7 +28,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -65,11 +55,21 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

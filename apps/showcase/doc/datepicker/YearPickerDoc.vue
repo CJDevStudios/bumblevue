@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Specifying <i>view</i> as <i>year</i> in addition to a suitable <i>dateFormat</i> enables the year picker.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" view="year" dateFormat="yy" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            date: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
 <DatePicker v-model="date" view="year" dateFormat="yy" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <DatePicker v-model="date" view="year" dateFormat="yy" />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const date = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Specifying <i>view</i> as <i>year</i> in addition to a suitable <i>dateFormat</i> enables the year picker.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <DatePicker v-model="date" view="year" dateFormat="yy" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

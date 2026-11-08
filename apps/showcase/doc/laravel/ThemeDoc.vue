@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configure BumbleVue to use a theme like Aura.</p>
-        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { createApp } from 'vue';
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
@@ -22,8 +15,15 @@ app.use(BumbleVue, {
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configure BumbleVue to use a theme like Aura.</p>
+        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

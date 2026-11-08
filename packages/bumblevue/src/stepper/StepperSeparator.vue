@@ -1,16 +1,16 @@
+<script>
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+
+    export default {
+        name: 'StepperSeparator',
+        hostName: 'Stepper',
+        extends: BaseComponent,
+        inject: {
+            $pcStepper: { default: null }
+        }
+    };
+</script>
+
 <template>
     <span :class="cx('separator')" v-bind="ptmo($pcStepper.pt, 'separator')" />
 </template>
-
-<script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-
-export default {
-    name: 'StepperSeparator',
-    hostName: 'Stepper',
-    extends: BaseComponent,
-    inject: {
-        $pcStepper: { default: null }
-    }
-};
-</script>

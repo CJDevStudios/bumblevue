@@ -1,24 +1,14 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Specify the <i>variant</i> property as <i>filled</i> to display the component with a higher visual emphasis than the default <i>outlined</i> style.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="value" :suggestions="items" @complete="search" variant="filled" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                items: [],
+                code: {
+                    basic: `
 <AutoComplete v-model="value" :suggestions="items" @complete="search" variant="filled" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="value" :suggestions="items" @complete="search" variant="filled" />
@@ -36,13 +26,23 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Specify the <i>variant</i> property as <i>filled</i> to display the component with a higher visual emphasis than the default <i>outlined</i> style.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <AutoComplete v-model="value" :suggestions="items" @complete="search" variant="filled" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
-    </DocSectionText>
-    <div class="card">
-        <InputText v-model="value" type="text" fluid />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputText type="text" v-model="value" fluid />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <InputText type="text" v-model="value" fluid />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
         `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
+    </DocSectionText>
+    <div class="card">
+        <InputText v-model="value" type="text" fluid />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

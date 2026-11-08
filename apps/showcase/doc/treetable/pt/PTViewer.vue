@@ -1,3 +1,29 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { NodeService } from '@/service/NodeService';
+
+    export default {
+        data() {
+            return {
+                nodes: null,
+                docs: [
+                    {
+                        data: getPTOptions('TreeTable'),
+                        key: 'TreeTable'
+                    },
+                    {
+                        data: getPTOptions('Column'),
+                        key: 'Column'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <TreeTable :value="nodes" tableStyle="min-width: 30rem">
@@ -7,29 +33,3 @@
         </TreeTable>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-import { NodeService } from '@/service/NodeService';
-
-export default {
-    data() {
-        return {
-            nodes: null,
-            docs: [
-                {
-                    data: getPTOptions('TreeTable'),
-                    key: 'TreeTable'
-                },
-                {
-                    data: getPTOptions('Column'),
-                    key: 'Column'
-                }
-            ]
-        };
-    },
-    mounted() {
-        NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-    }
-};
-</script>

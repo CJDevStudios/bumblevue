@@ -1,3 +1,28 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+import {createApp} from 'vue';
+import ToastService from '@cjdevstudios/bumblevue/toastservice';
+
+const app = createApp(App);
+app.use(ToastService);
+`
+                },
+                code2: {
+                    basic: `
+import { useToast } from '@cjdevstudios/bumblevue/usetoast';
+
+const toast = useToast();
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>Toast component is controlled via the <i>ToastService</i> that needs to be installed as an application plugin.</p>
@@ -8,28 +33,3 @@
     </div>
     <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-import {createApp} from 'vue';
-import ToastService from '@cjdevstudios/bumblevue/toastservice';
-
-const app = createApp(App);
-app.use(ToastService);
-`
-            },
-            code2: {
-                basic: `
-import { useToast } from '@cjdevstudios/bumblevue/usetoast';
-
-const toast = useToast();
-`
-            }
-        };
-    }
-};
-</script>

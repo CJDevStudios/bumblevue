@@ -1,30 +1,17 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
-            <label for="ac">Identifier</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                items: [],
+                code: {
+                    basic: `
 <IftaLabel>
     <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
     <label for="ac">Identifier</label>
 </IftaLabel>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <IftaLabel>
@@ -45,13 +32,26 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
+            <label for="ac">Identifier</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

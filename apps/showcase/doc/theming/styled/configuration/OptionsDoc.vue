@@ -1,3 +1,36 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+options: {
+    prefix: 'my'
+}
+`
+                },
+                code2: {
+                    basic: `
+options: {
+    darkModeSelector: '.my-app-dark'
+}
+`
+                },
+                code3: {
+                    basic: `
+options: {
+    cssLayer: {
+        name: 'primevue',
+        order: 'app-styles, primevue, another-css-library'
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>The <i>options</i> property defines the how the CSS would be generated from the design tokens of the preset.</p>
@@ -18,36 +51,3 @@
         <DocSectionCode :code="code3" importCode hideToggleCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-options: {
-    prefix: 'my'
-}
-`
-            },
-            code2: {
-                basic: `
-options: {
-    darkModeSelector: '.my-app-dark'
-}
-`
-            },
-            code3: {
-                basic: `
-options: {
-    cssLayer: {
-        name: 'primevue',
-        order: 'app-styles, primevue, another-css-library'
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>

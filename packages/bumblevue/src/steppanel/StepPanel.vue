@@ -1,3 +1,121 @@
+<script>
+    import { cn } from '@cjdevstudios/bumblevue/utils';
+    import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
+    import { findIndexInList } from '@cjdevstudios/bumblevue/utils/object';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import StepPanelStyle from '@cjdevstudios/bumblevue/steppanel/style';
+    import StepperSeparator from '../stepper/StepperSeparator.vue';
+
+    export default {
+        name: 'StepPanel',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            value: {
+                type: [String, Number],
+                default: undefined
+            },
+            asChild: {
+                type: Boolean,
+                default: false
+            },
+            as: {
+                type: [String, Object],
+                default: 'DIV'
+            }
+        },
+        style: StepPanelStyle,
+        provide() {
+            return {
+                $pcStepPanel: this,
+                $parentInstance: this
+            };
+        },
+        inject: {
+            $pcStepper: { default: null },
+            $pcStepItem: { default: null },
+            $pcStepList: { default: null }
+        },
+        data() {
+            return {
+                isSeparatorVisible: false
+            };
+        },
+        mounted() {
+            this.updateSeparator();
+        },
+        updated() {
+            this.updateSeparator();
+        },
+        methods: {
+            updateSeparator() {
+                if (this.$el) {
+                    let stepElements = find(this.$pcStepper.$el, '[data-pc-name="step"]');
+                    let stepPanelEl = findSingle(this.isVertical ? this.$pcStepItem?.$el : this.$pcStepList?.$el, '[data-pc-name="step"]');
+                    let stepPanelIndex = findIndexInList(stepPanelEl, stepElements);
+
+                    this.isSeparatorVisible = this.isVertical && stepPanelIndex !== stepElements.length - 1;
+                }
+            },
+            getPTOptions(key) {
+                const _ptm = key === 'root' ? this.ptmi : this.ptm;
+
+                return _ptm(key, {
+                    context: {
+                        active: this.active
+                    }
+                });
+            },
+            updateValue(val) {
+                this.$pcStepper.updateValue(val);
+            }
+        },
+        computed: {
+            active() {
+                let activeValue = !!this.$pcStepItem ? this.$pcStepItem?.value : this.value;
+
+                return activeValue === this.$pcStepper?.d_value;
+            },
+            isVertical() {
+                return !!this.$pcStepItem;
+            },
+            activeValue() {
+                return this.isVertical ? this.$pcStepItem?.value : this.value;
+            },
+            id() {
+                return `${this.$pcStepper?.$id}_steppanel_${this.activeValue}`;
+            },
+            ariaControls() {
+                return `${this.$pcStepper?.$id}_step_${this.activeValue}`;
+            },
+            a11yAttrs() {
+                return {
+                    id: this.id,
+                    role: 'tabpanel',
+                    'aria-controls': this.ariaControls,
+                    'data-pc-name': 'steppanel',
+                    'data-p-active': this.active
+                };
+            },
+            ptParams() {
+                return {
+                    context: {
+                        active: this.active
+                    }
+                };
+            },
+            dataP() {
+                return cn({
+                    vertical: this.$pcStepItem != null
+                });
+            }
+        },
+        components: {
+            StepperSeparator
+        }
+    };
+</script>
+
 <template>
     <template v-if="isVertical">
         <template v-if="!asChild">
@@ -23,121 +141,3 @@
         <slot v-else-if="asChild && active" :active="active" :a11yAttrs="a11yAttrs" :activateCallback="(val) => updateValue(val)" />
     </template>
 </template>
-
-<script>
-import { cn } from '@cjdevstudios/bumblevue/utils';
-import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
-import { findIndexInList } from '@cjdevstudios/bumblevue/utils/object';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import StepPanelStyle from '@cjdevstudios/bumblevue/steppanel/style';
-import StepperSeparator from '../stepper/StepperSeparator.vue';
-
-export default {
-    name: 'StepPanel',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        value: {
-            type: [String, Number],
-            default: undefined
-        },
-        asChild: {
-            type: Boolean,
-            default: false
-        },
-        as: {
-            type: [String, Object],
-            default: 'DIV'
-        }
-    },
-    style: StepPanelStyle,
-    provide() {
-        return {
-            $pcStepPanel: this,
-            $parentInstance: this
-        };
-    },
-    inject: {
-        $pcStepper: { default: null },
-        $pcStepItem: { default: null },
-        $pcStepList: { default: null }
-    },
-    data() {
-        return {
-            isSeparatorVisible: false
-        };
-    },
-    mounted() {
-        this.updateSeparator();
-    },
-    updated() {
-        this.updateSeparator();
-    },
-    methods: {
-        updateSeparator() {
-            if (this.$el) {
-                let stepElements = find(this.$pcStepper.$el, '[data-pc-name="step"]');
-                let stepPanelEl = findSingle(this.isVertical ? this.$pcStepItem?.$el : this.$pcStepList?.$el, '[data-pc-name="step"]');
-                let stepPanelIndex = findIndexInList(stepPanelEl, stepElements);
-
-                this.isSeparatorVisible = this.isVertical && stepPanelIndex !== stepElements.length - 1;
-            }
-        },
-        getPTOptions(key) {
-            const _ptm = key === 'root' ? this.ptmi : this.ptm;
-
-            return _ptm(key, {
-                context: {
-                    active: this.active
-                }
-            });
-        },
-        updateValue(val) {
-            this.$pcStepper.updateValue(val);
-        }
-    },
-    computed: {
-        active() {
-            let activeValue = !!this.$pcStepItem ? this.$pcStepItem?.value : this.value;
-
-            return activeValue === this.$pcStepper?.d_value;
-        },
-        isVertical() {
-            return !!this.$pcStepItem;
-        },
-        activeValue() {
-            return this.isVertical ? this.$pcStepItem?.value : this.value;
-        },
-        id() {
-            return `${this.$pcStepper?.$id}_steppanel_${this.activeValue}`;
-        },
-        ariaControls() {
-            return `${this.$pcStepper?.$id}_step_${this.activeValue}`;
-        },
-        a11yAttrs() {
-            return {
-                id: this.id,
-                role: 'tabpanel',
-                'aria-controls': this.ariaControls,
-                'data-pc-name': 'steppanel',
-                'data-p-active': this.active
-            };
-        },
-        ptParams() {
-            return {
-                context: {
-                    active: this.active
-                }
-            };
-        },
-        dataP() {
-            return cn({
-                vertical: this.$pcStepItem != null
-            });
-        }
-    },
-    components: {
-        StepperSeparator
-    }
-};
-</script>

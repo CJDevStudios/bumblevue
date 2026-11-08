@@ -1,3 +1,17 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<Button label="Verify" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>The nuxt-bumblevue module registers the components automatically with tree-shaking support so you may start using them instantly.</p>
@@ -7,17 +21,3 @@
     </div>
     <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<Button label="Verify" />
-`
-            }
-        };
-    }
-};
-</script>

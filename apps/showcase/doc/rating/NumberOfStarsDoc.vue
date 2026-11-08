@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Number of stars to display is defined with <i>stars</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Rating v-model="value" :stars="10" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: 5,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: 5,
+                code: {
+                    basic: `
 <Rating v-model="value" :stars="10" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Rating v-model="value" :stars="10" />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const value = ref(5);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Number of stars to display is defined with <i>stars</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Rating v-model="value" :stars="10" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

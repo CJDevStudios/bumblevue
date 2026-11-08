@@ -1,25 +1,15 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Single node selection is configured by setting <i>selectionMode</i> as <i>single</i> along with <i>selectionKeys</i> property to manage the selection value binding.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" class="w-full md:w-120"></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedKey: null,
-            code: {
-                basic: `
+    import { NodeService } from '@/service/NodeService';
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedKey: null,
+                code: {
+                    basic: `
 <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" class="w-full md:w-120"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Toast />
@@ -39,7 +29,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -66,11 +56,21 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Single node selection is configured by setting <i>selectionMode</i> as <i>single</i> along with <i>selectionKeys</i> property to manage the selection value binding.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="single" class="w-full md:w-120"></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

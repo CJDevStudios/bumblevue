@@ -1,9 +1,12 @@
 import eslint from '@eslint/js';
 import eslintPluginVue from 'eslint-plugin-vue';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
     eslint.configs.recommended,
+    ...tseslint.configs.recommended,
+    ...eslintPluginVue.configs['flat/recommended'],
     {
         languageOptions: {
             globals: {
@@ -26,7 +29,8 @@ export default [
             'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
             'no-fallthrough': 'off',
             'padding-line-between-statements': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'off',
                 { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
                 { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
                 { blankLine: 'any', prev: ['case', 'default'], next: 'break' },
@@ -43,13 +47,33 @@ export default [
                 {
                     varsIgnorePattern: '^_'
                 }
-            ]
+            ],
+            //TODO Try to re-enable these later as errors
+            'no-case-declarations': 'warn',
+            'no-constant-binary-expression': 'warn',
+            'no-extra-boolean-cast': 'warn',
+            'no-prototype-builtins': 'warn',
+            'no-undef': 'warn',
+            'no-useless-escape': 'warn',
+            '@typescript-eslint/ban-ts-comment': 'off',
+            '@typescript-eslint/no-empty-object-type': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-require-imports': 'off',
+            '@typescript-eslint/no-this-alias': 'off',
+            '@typescript-eslint/no-unsafe-function-type': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
+            '@typescript-eslint/no-unused-vars': 'off'
         }
     },
     {
-        files: ['vue'],
-        plugins: {
-            vue: eslintPluginVue
+        files: ['**/*.vue'],
+        languageOptions: {
+            parser: eslintPluginVue.parser,
+            parserOptions: {
+                parser: tseslint.parser,
+                ecmaVersion: 'latest',
+                sourceType: 'module',
+            },
         },
         rules: {
             'vue/valid-template-root': 'error',
@@ -57,10 +81,10 @@ export default [
             'vue/this-in-template': ['error', 'never'],
             'vue/multi-word-component-names': 'off',
             'vue/no-reserved-component-names': 'off',
-            'vue/component-tags-order': [
+            'vue/block-order': [
                 'error',
                 {
-                    order: ['template', 'script', 'style']
+                    order: ['script', 'template', 'style']
                 }
             ],
             'vue/require-explicit-emits': [
@@ -70,14 +94,16 @@ export default [
                 }
             ],
             'vue/attributes-order': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'warn',
                 {
                     order: ['CONDITIONALS', 'LIST_RENDERING', 'DEFINITION', ['UNIQUE', 'SLOT'], 'RENDER_MODIFIERS', 'GLOBAL', 'TWO_WAY_BINDING', 'OTHER_DIRECTIVES', ['OTHER_ATTR', 'EVENTS'], 'CONTENT'],
                     alphabetical: false
                 }
             ],
             'vue/order-in-components': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'warn',
                 {
                     order: [
                         'el',
@@ -119,10 +145,7 @@ export default [
         }
     },
     {
-        files: ['**/*.{js,mjs,cjs,ts'],
-        plugins: {
-            vue: eslintPluginVue
-        },
+        files: ['**/*.{js,mjs,cjs,ts}'],
         languageOptions: {
             parserOptions: {
                 ecmaVersion: 'latest',

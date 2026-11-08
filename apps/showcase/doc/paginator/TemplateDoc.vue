@@ -1,3 +1,39 @@
+<script>
+    export default {
+        data() {
+            return {
+                first: 0,
+                code: {
+                    basic: `
+<Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
+
+<div class="p-4 text-center">
+    <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded-sm w-full sm:w-120" />
+</div>
+`,
+                    composition: `
+<template>
+    <div class="card">
+        <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
+
+        <div class="p-4 text-center">
+            <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded-sm w-full sm:w-120" />
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+const first = ref(0);
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -25,39 +61,3 @@
     </div>
     <DocSectionCode :code="code" />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            first: 0,
-            code: {
-                basic: `
-<Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
-
-<div class="p-4 text-center">
-    <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded-sm w-full sm:w-120" />
-</div>
-`,
-                composition: `
-<template>
-    <div class="card">
-        <Paginator v-model:first="first" :rows="1" :totalRecords="12" template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink" />
-
-        <div class="p-4 text-center">
-            <img :src="\`https://primefaces.org/cdn/primevue/images/nature/nature\${first + 1}.jpg\`" :alt="first" class="rounded-sm w-full sm:w-120" />
-        </div>
-    </div>
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const first = ref(0);
-<\/script>
-`
-            }
-        };
-    }
-};
-</script>

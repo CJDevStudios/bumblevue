@@ -1,3 +1,85 @@
+<script>
+    import { useStackBlitz } from './codeeditor';
+
+    export default {
+        inheritAttrs: false,
+        props: {
+            code: {
+                type: null,
+                default: null
+            },
+            format: {
+                type: String,
+                default: null
+            },
+            service: {
+                type: Array,
+                default: null
+            },
+            hideToggleCode: {
+                type: Boolean,
+                default: false
+            },
+            hideCodeSandbox: {
+                type: Boolean,
+                default: true
+            },
+            hideStackBlitz: {
+                type: Boolean,
+                default: false
+            },
+            dependencies: {
+                type: null,
+                default: null
+            },
+            component: {
+                type: String,
+                default: null
+            },
+            extFiles: {
+                type: null,
+                default: null
+            },
+            importCode: {
+                type: Boolean,
+                default: false
+            },
+            embedded: {
+                type: Boolean,
+                default: false
+            },
+            scrollable: {
+                type: Boolean,
+                default: false
+            }
+        },
+        data() {
+            return {
+                codeMode: 'basic',
+                codeLang: this.code['options'] ? 'composition' : 'basic'
+            };
+        },
+        mounted() {
+            this.embedded && useStackBlitz(this.codeLang, this.code['composition'], this.service, this.code.pages, this.dependencies, this.component, this.extFiles, this.embedded);
+        },
+        methods: {
+            toggleCodeMode(content) {
+                this.codeMode = this.codeMode === 'basic' ? content : 'basic';
+            },
+            onToggleData() {
+                this.toggleCodeMode('data');
+                this.codeLang = 'data';
+            },
+            async copyCode() {
+                await navigator.clipboard.writeText(this.code[this.codeLang]);
+            },
+            showStackblitz() {
+                useStackBlitz(this.codeLang, this.code[this.codeLang === 'data' ? 'options' : this.codeLang], this.service, this.code.pages, this.dependencies, this.component, this.extFiles);
+            }
+        }
+    };
+</script>
+
 <template>
     <div v-if="!embedded" class="doc-section-code">
         <div class="doc-section-code-buttons animate-scalein animate-duration-300">
@@ -55,85 +137,3 @@
     </div>
     <div v-else id="embed"></div>
 </template>
-
-<script>
-import { useStackBlitz } from './codeeditor';
-
-export default {
-    inheritAttrs: false,
-    props: {
-        code: {
-            type: null,
-            default: null
-        },
-        format: {
-            type: String,
-            default: null
-        },
-        service: {
-            type: Array,
-            default: null
-        },
-        hideToggleCode: {
-            type: Boolean,
-            default: false
-        },
-        hideCodeSandbox: {
-            type: Boolean,
-            default: true
-        },
-        hideStackBlitz: {
-            type: Boolean,
-            default: false
-        },
-        dependencies: {
-            type: null,
-            default: null
-        },
-        component: {
-            type: String,
-            default: null
-        },
-        extFiles: {
-            type: null,
-            default: null
-        },
-        importCode: {
-            type: Boolean,
-            default: false
-        },
-        embedded: {
-            type: Boolean,
-            default: false
-        },
-        scrollable: {
-            type: Boolean,
-            default: false
-        }
-    },
-    data() {
-        return {
-            codeMode: 'basic',
-            codeLang: this.code['options'] ? 'composition' : 'basic'
-        };
-    },
-    mounted() {
-        this.embedded && useStackBlitz(this.codeLang, this.code['composition'], this.service, this.code.pages, this.dependencies, this.component, this.extFiles, this.embedded);
-    },
-    methods: {
-        toggleCodeMode(content) {
-            this.codeMode = this.codeMode === 'basic' ? content : 'basic';
-        },
-        onToggleData() {
-            this.toggleCodeMode('data');
-            this.codeLang = 'data';
-        },
-        async copyCode() {
-            await navigator.clipboard.writeText(this.code[this.codeLang]);
-        },
-        showStackblitz() {
-            useStackBlitz(this.codeLang, this.code[this.codeLang === 'data' ? 'options' : this.codeLang], this.service, this.code.pages, this.dependencies, this.component, this.extFiles);
-        }
-    }
-};
-</script>

@@ -1,3 +1,26 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import { markRaw } from 'vue';
+
+    export default {
+        data() {
+            return {
+                visible: true,
+                docs: [
+                    {
+                        data: getPTOptions('Drawer'),
+                        key: 'Drawer'
+                    }
+                ]
+            };
+        },
+        components: {
+            TimesIcon: markRaw(TimesIcon)
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs" class="justify-start!">
         <div class="">
@@ -31,26 +54,3 @@
         </div>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import { markRaw } from 'vue';
-
-export default {
-    data() {
-        return {
-            visible: true,
-            docs: [
-                {
-                    data: getPTOptions('Drawer'),
-                    key: 'Drawer'
-                }
-            ]
-        };
-    },
-    components: {
-        TimesIcon: markRaw(TimesIcon)
-    }
-};
-</script>

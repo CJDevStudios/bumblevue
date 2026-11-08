@@ -1,3 +1,62 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+bumblevue: {
+    components: {
+        include: ['Button', 'DataTable']
+    }
+}
+`
+                },
+                code2: {
+                    basic: `
+bumblevue: {
+    components: {
+        include: '*',
+        exclude: ['Galleria', 'Carousel']
+    }
+}
+`
+                },
+                code3: {
+                    basic: `
+bumblevue: {
+    components: {
+        exclude: []
+    }
+}
+`
+                },
+                code4: {
+                    basic: `
+bumblevue: {
+    components: {
+        prefix: 'Bumble'
+        include: ['Button', 'DataTable']    /* Used as <BumbleButton /> and <BumbleDataTable /> */
+    }
+}
+`
+                },
+                code5: {
+                    basic: `
+bumblevue: {
+    components: {
+        name: ({ name, as, from }) => {
+            return name === 'Button' ? \`My\${name}\` : name;
+        },
+        include: ['Button', 'DataTable']    /* Used as <MyButton /> and <DataTable /> */
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>When <i>autoImport</i> is disabled, use the <i>include</i> and <i>exclude</i> for manual registration.</p>
@@ -16,62 +75,3 @@
         <DocSectionCode :code="code5" importCode hideToggleCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-bumblevue: {
-    components: {
-        include: ['Button', 'DataTable']
-    }
-}
-`
-            },
-            code2: {
-                basic: `
-bumblevue: {
-    components: {
-        include: '*',
-        exclude: ['Galleria', 'Carousel']
-    }
-}
-`
-            },
-            code3: {
-                basic: `
-bumblevue: {
-    components: {
-        exclude: []
-    }
-}
-`
-            },
-            code4: {
-                basic: `
-bumblevue: {
-    components: {
-        prefix: 'Bumble'
-        include: ['Button', 'DataTable']    /* Used as <BumbleButton /> and <BumbleDataTable /> */
-    }
-}
-`
-            },
-            code5: {
-                basic: `
-bumblevue: {
-    components: {
-        name: ({ name, as, from }) => {
-            return name === 'Button' ? \`My\${name}\` : name;
-        },
-        include: ['Button', 'DataTable']    /* Used as <MyButton /> and <DataTable /> */
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>

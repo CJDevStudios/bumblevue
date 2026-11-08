@@ -1,3 +1,22 @@
+<script>
+    export default {
+        inject: ['dialogRef'],
+        data() {
+            return {
+                totalProducts: 0
+            };
+        },
+        mounted() {
+            this.totalProducts = this.dialogRef.data.totalProducts;
+        },
+        methods: {
+            closeDialog() {
+                this.dialogRef.close();
+            }
+        }
+    };
+</script>
+
 <template>
     <div>
         <p>
@@ -8,22 +27,3 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    inject: ['dialogRef'],
-    data() {
-        return {
-            totalProducts: 0
-        };
-    },
-    mounted() {
-        this.totalProducts = this.dialogRef.data.totalProducts;
-    },
-    methods: {
-        closeDialog() {
-            this.dialogRef.close();
-        }
-    }
-};
-</script>

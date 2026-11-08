@@ -1,3 +1,22 @@
+<script>
+    export default {
+        props: {
+            templateData: {
+                type: Object,
+                required: true
+            }
+        },
+        computed: {
+            components() {
+                return this.templateData?.components?.map(({ name, ...rest }) => ({
+                    ...rest,
+                    name
+                }));
+            }
+        }
+    };
+</script>
+
 <template>
     <div class="flex flex-col gap-8">
         <template v-for="(component, index) in components" :key="'component-' + index">
@@ -10,22 +29,3 @@
         </template>
     </div>
 </template>
-
-<script>
-export default {
-    props: {
-        templateData: {
-            type: Object,
-            required: true
-        }
-    },
-    computed: {
-        components() {
-            return this.templateData?.components?.map(({ name, ...rest }) => ({
-                ...rest,
-                name
-            }));
-        }
-    }
-};
-</script>

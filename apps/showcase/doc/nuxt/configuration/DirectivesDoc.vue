@@ -1,3 +1,41 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+bumblevue: {
+    directives: {
+        include: ['Ripple', 'Tooltip']
+    }
+}
+`
+                },
+                code2: {
+                    basic: `
+bumblevue: {
+    directives: {
+        include: '*',
+        exclude: ['Ripple']
+    }
+}
+`
+                },
+                code3: {
+                    basic: `
+bumblevue: {
+    directives: {
+        prefix: 'p'
+        include: ['Ripple', 'Tooltip']    /* Used as v-pripple and v-ptooltip */
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>When <i>autoImport</i> is disabled, use the <i>include</i> and <i>exclude</i> for manual registration.</p>
@@ -8,41 +46,3 @@
         <DocSectionCode :code="code3" importCode hideToggleCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-bumblevue: {
-    directives: {
-        include: ['Ripple', 'Tooltip']
-    }
-}
-`
-            },
-            code2: {
-                basic: `
-bumblevue: {
-    directives: {
-        include: '*',
-        exclude: ['Ripple']
-    }
-}
-`
-            },
-            code3: {
-                basic: `
-bumblevue: {
-    directives: {
-        prefix: 'p'
-        include: ['Ripple', 'Tooltip']    /* Used as v-pripple and v-ptooltip */
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>

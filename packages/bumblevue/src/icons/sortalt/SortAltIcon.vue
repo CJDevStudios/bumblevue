@@ -1,3 +1,12 @@
+<script>
+    import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
+
+    export default {
+        name: 'SortAltIcon',
+        extends: BaseIcon
+    };
+</script>
+
 <template>
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" v-bind="pti()">
         <path
@@ -12,12 +21,3 @@
         <path d="M10.6129 14C10.2426 14 9.93552 13.6929 9.93552 13.3226V0.677419C9.93552 0.307097 10.2426 0 10.6129 0C10.9833 0 11.2904 0.307097 11.2904 0.677419V13.3226C11.2904 13.6929 10.9832 14 10.6129 14Z" fill="currentColor" />
     </svg>
 </template>
-
-<script>
-import BaseIcon from '@cjdevstudios/bumblevue/icons/baseicon';
-
-export default {
-    name: 'SortAltIcon',
-    extends: BaseIcon
-};
-</script>

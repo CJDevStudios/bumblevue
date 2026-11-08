@@ -1,3 +1,47 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+.p-collapsible-enter-active {
+    animation: demo-collapsible-expand 500ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.p-collapsible-leave-active {
+    animation: demo-collapsible-collapse 500ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes demo-collapsible-expand {
+    from {
+        opacity: 0;
+        grid-template-rows: 0fr;
+        transform: scale(0.93);
+    }
+    to {
+        opacity: 1;
+        grid-template-rows: 1fr;
+    }
+}
+
+@keyframes demo-collapsible-collapse {
+    from {
+        opacity: 1;
+        grid-template-rows: 1fr;
+    }
+    to {
+        opacity: 0;
+        grid-template-rows: 0fr;
+        transform: scale(0.93);
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -40,80 +84,36 @@
     <DocSectionCode :code="code" hideToggleCode hideStackBlitz format="css" />
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-.p-collapsible-enter-active {
-    animation: demo-collapsible-expand 500ms cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-.p-collapsible-leave-active {
-    animation: demo-collapsible-collapse 500ms cubic-bezier(0.65, 0, 0.35, 1);
-}
-
-@keyframes demo-collapsible-expand {
-    from {
-        opacity: 0;
-        grid-template-rows: 0fr;
-        transform: scale(0.93);
-    }
-    to {
-        opacity: 1;
-        grid-template-rows: 1fr;
-    }
-}
-
-@keyframes demo-collapsible-collapse {
-    from {
-        opacity: 1;
-        grid-template-rows: 1fr;
-    }
-    to {
-        opacity: 0;
-        grid-template-rows: 0fr;
-        transform: scale(0.93);
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>
-
 <style>
-.demo-accordion.p-collapsible-enter-active {
-    animation: demo-accordion-expand 500ms cubic-bezier(0.65, 0, 0.35, 1);
-}
+    .demo-accordion.p-collapsible-enter-active {
+        animation: demo-accordion-expand 500ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
 
-.demo-accordion.p-collapsible-leave-active {
-    animation: demo-accordion-collapse 500ms cubic-bezier(0.65, 0, 0.35, 1);
-}
+    .demo-accordion.p-collapsible-leave-active {
+        animation: demo-accordion-collapse 500ms cubic-bezier(0.65, 0, 0.35, 1);
+    }
 
-@keyframes demo-accordion-expand {
-    from {
-        opacity: 0;
-        grid-template-rows: 0fr;
-        transform: scale(0.93);
+    @keyframes demo-accordion-expand {
+        from {
+            opacity: 0;
+            grid-template-rows: 0fr;
+            transform: scale(0.93);
+        }
+        to {
+            opacity: 1;
+            grid-template-rows: 1fr;
+        }
     }
-    to {
-        opacity: 1;
-        grid-template-rows: 1fr;
-    }
-}
 
-@keyframes demo-accordion-collapse {
-    from {
-        opacity: 1;
-        grid-template-rows: 1fr;
+    @keyframes demo-accordion-collapse {
+        from {
+            opacity: 1;
+            grid-template-rows: 1fr;
+        }
+        to {
+            opacity: 0;
+            grid-template-rows: 0fr;
+            transform: scale(0.93);
+        }
     }
-    to {
-        opacity: 0;
-        grid-template-rows: 0fr;
-        transform: scale(0.93);
-    }
-}
 </style>

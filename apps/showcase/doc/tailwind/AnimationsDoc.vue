@@ -1,3 +1,42 @@
+<script>
+    export default {
+        data() {
+            return {
+                animation: null,
+                animations: [
+                    'fadein',
+                    'fadeout',
+                    'slideup',
+                    'scalein',
+                    'fadeinleft',
+                    'fadeoutleft',
+                    'fadeinright',
+                    'fadeoutright',
+                    'fadeinup',
+                    'fadeoutup',
+                    'width',
+                    'flipup',
+                    'flipleft',
+                    'flipright',
+                    'zoomin',
+                    'zoomindown',
+                    'zoominleft',
+                    'zoominright',
+                    'zoominup'
+                ],
+                code: {
+                    basic: `
+<Select v-model="animation" :options="animations" placeholder="Select One" class="w-full sm:w-44" />
+<div class="py-8 overflow-hidden">
+    <div :class="\`rounded-border bg-primary w-16 h-16 mx-auto animate-\${animation} animate-once animate-duration-1000\`"></div>
+</div>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>The plugin also adds extended animation utilities that can be used with the <NuxtLink to="/styleclass">styleclass</NuxtLink> and <NuxtLink to="/animateonscroll">animateonscroll</NuxtLink> directives.</p>
@@ -536,42 +575,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            animation: null,
-            animations: [
-                'fadein',
-                'fadeout',
-                'slideup',
-                'scalein',
-                'fadeinleft',
-                'fadeoutleft',
-                'fadeinright',
-                'fadeoutright',
-                'fadeinup',
-                'fadeoutup',
-                'width',
-                'flipup',
-                'flipleft',
-                'flipright',
-                'zoomin',
-                'zoomindown',
-                'zoominleft',
-                'zoominright',
-                'zoominup'
-            ],
-            code: {
-                basic: `
-<Select v-model="animation" :options="animations" placeholder="Select One" class="w-full sm:w-44" />
-<div class="py-8 overflow-hidden">
-    <div :class="\`rounded-border bg-primary w-16 h-16 mx-auto animate-\${animation} animate-once animate-duration-1000\`"></div>
-</div>
-`
-            }
-        };
-    }
-};
-</script>

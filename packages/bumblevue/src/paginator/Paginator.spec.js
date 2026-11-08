@@ -65,8 +65,8 @@ describe('Paginator.vue', () => {
             }
         });
 
-        expect(wrapper.getComponent({ name: "RowsPerPageDropdown" }).props().appendTo).toBe('#test_container');
-        expect(wrapper.getComponent({ name: "JumpToPageDropdown" }).props().appendTo).toBe('#test_container');
+        expect(wrapper.getComponent({ name: 'RowsPerPageDropdown' }).props().appendTo).toBe('#test_container');
+        expect(wrapper.getComponent({ name: 'JumpToPageDropdown' }).props().appendTo).toBe('#test_container');
     });
 
     it('should render page link icon slots', () => {

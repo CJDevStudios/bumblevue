@@ -1,30 +1,16 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            TreeSelect is used with the <i>v-model</i> property for two-way value binding along with the <i>options</i> collection. Internally <BumbleVueNuxtLink to="/tree">Tree</BumbleVueNuxtLink> component is used so the options model is based on
-            TreeNode API.
-        </p>
-        <p>In single selection mode, value binding should be the <i>key</i> value of a node.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
-import { NodeService } from '/service/NodeService';
+    import { NodeService } from '/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedValue: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedValue: null,
+                code: {
+                    basic: `
 <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
@@ -43,7 +29,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -70,11 +56,25 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            TreeSelect is used with the <i>v-model</i> property for two-way value binding along with the <i>options</i> collection. Internally <BumbleVueNuxtLink to="/tree">Tree</BumbleVueNuxtLink> component is used so the options model is based on
+            TreeNode API.
+        </p>
+        <p>In single selection mode, value binding should be the <i>key</i> value of a node.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

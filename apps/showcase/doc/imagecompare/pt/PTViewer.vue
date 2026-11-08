@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('ImageCompare'),
+                        key: 'ImageCompare'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <ImageCompare style="width: 728px; height: 410px">
@@ -10,20 +27,3 @@
         </ImageCompare>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('ImageCompare'),
-                    key: 'ImageCompare'
-                }
-            ]
-        };
-    }
-};
-</script>

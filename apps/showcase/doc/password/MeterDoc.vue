@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Strength meter is displayed as a popup while a value is being entered.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Password v-model="value" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <Password v-model="value" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Password v-model="value" />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Strength meter is displayed as a popup while a value is being entered.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Password v-model="value" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

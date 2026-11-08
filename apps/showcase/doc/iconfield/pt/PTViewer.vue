@@ -1,3 +1,25 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('IconField'),
+                        key: 'IconField'
+                    },
+                    {
+                        data: getPTOptions('InputIcon'),
+                        key: 'InputIcon'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <IconField>
@@ -6,25 +28,3 @@
         </IconField>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('IconField'),
-                    key: 'IconField'
-                },
-                {
-                    data: getPTOptions('InputIcon'),
-                    key: 'InputIcon'
-                }
-            ]
-        };
-    }
-};
-</script>

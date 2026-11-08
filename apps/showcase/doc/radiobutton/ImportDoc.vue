@@ -1,19 +1,19 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+import RadioButton from '@cjdevstudios/bumblevue/radiobutton';
+import RadioButtonGroup from '@cjdevstudios/bumblevue/radiobuttongroup';
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs" />
     <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-import RadioButton from '@cjdevstudios/bumblevue/radiobutton';
-import RadioButtonGroup from '@cjdevstudios/bumblevue/radiobuttongroup';
-`
-            }
-        };
-    }
-};
-</script>

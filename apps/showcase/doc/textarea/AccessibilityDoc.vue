@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="address1">Address 1</label>
+<Textarea id="address1" />
+
+<span id="address2">Address 2</span>
+<Textarea aria-labelledby="address2" />
+
+<Textarea aria-label="Address Details"/>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -27,23 +47,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<label for="address1">Address 1</label>
-<Textarea id="address1" />
-
-<span id="address2">Address 2</span>
-<Textarea aria-labelledby="address2" />
-
-<Textarea aria-label="Address Details"/>
-`
-            }
-        };
-    }
-};
-</script>

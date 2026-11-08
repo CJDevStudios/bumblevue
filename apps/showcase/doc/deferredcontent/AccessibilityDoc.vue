@@ -1,3 +1,19 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<DeferredContent role="region" aria-live="polite" aria-label="Content loaded after page scrolled down">
+    Content
+</DeferredContent>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -11,19 +27,3 @@
         <p>Component does not include any interactive elements.</p>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<DeferredContent role="region" aria-live="polite" aria-label="Content loaded after page scrolled down">
-    Content
-</DeferredContent>
-`
-            }
-        };
-    }
-};
-</script>

@@ -1,3 +1,5 @@
+<script></script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -10,5 +12,3 @@
         </p>
     </DocSectionText>
 </template>
-
-<script></script>

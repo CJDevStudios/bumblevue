@@ -1,62 +1,18 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Filtering is enabled by adding the <i>filter</i> property to a Column. The <i>filterMode</i> specifies the filtering strategy, in <i>lenient</i> mode when the query matches a node, children of the node are not searched further as all
-            descendants of the node are included. On the other hand, in <i>strict</i> mode when the query matches a node, filtering continues on all descendants. A general filled called <i>globalFilter</i> is also provided to search all columns that
-            support filtering.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex justify-center mb-6">
-                <SelectButton v-model="filterMode" optionLabel="label" dataKey="label" :options="filterOptions" />
-            </div>
-            <TreeTable :value="nodes" :filters="filters" :filterMode="filterMode.value">
-                <template #header>
-                    <div class="flex justify-end">
-                        <IconField>
-                            <InputIcon class="pi pi-search" />
-                            <InputText v-model="filters['global']" placeholder="Global Search" />
-                        </IconField>
-                    </div>
-                </template>
-                <template #empty> No customers found.</template>
-                <Column field="name" header="Name" expander style="min-width: 12rem">
-                    <template #filter>
-                        <InputText v-model="filters['name']" type="text" placeholder="Filter by name" />
-                    </template>
-                </Column>
-                <Column field="size" header="Size" style="min-width: 12rem">
-                    <template #filter>
-                        <InputText v-model="filters['size']" type="text" placeholder="Filter by size" />
-                    </template>
-                </Column>
-                <Column field="type" header="Type" style="min-width: 12rem">
-                    <template #filter>
-                        <InputText v-model="filters['type']" type="text" placeholder="Filter by type" />
-                    </template>
-                </Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            filters: {},
-            filterMode: { label: 'Lenient', value: 'lenient' },
-            filterOptions: [
-                { label: 'Lenient', value: 'lenient' },
-                { label: 'Strict', value: 'strict' }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                filters: {},
+                filterMode: { label: 'Lenient', value: 'lenient' },
+                filterOptions: [
+                    { label: 'Lenient', value: 'lenient' },
+                    { label: 'Strict', value: 'strict' }
+                ],
+                code: {
+                    basic: `
 <SelectButton v-model="filterMode" optionLabel="label" dataKey="label" :options="filterOptions" />
 <TreeTable :value="nodes" :filters="filters" :filterMode="filterMode.value">
     <template #header>
@@ -85,7 +41,7 @@ export default {
     </Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex justify-center mb-6">
@@ -137,7 +93,7 @@ const filterOptions = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -165,13 +121,57 @@ const filterOptions = ref([
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Filtering is enabled by adding the <i>filter</i> property to a Column. The <i>filterMode</i> specifies the filtering strategy, in <i>lenient</i> mode when the query matches a node, children of the node are not searched further as all
+            descendants of the node are included. On the other hand, in <i>strict</i> mode when the query matches a node, filtering continues on all descendants. A general filled called <i>globalFilter</i> is also provided to search all columns that
+            support filtering.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex justify-center mb-6">
+                <SelectButton v-model="filterMode" optionLabel="label" dataKey="label" :options="filterOptions" />
+            </div>
+            <TreeTable :value="nodes" :filters="filters" :filterMode="filterMode.value">
+                <template #header>
+                    <div class="flex justify-end">
+                        <IconField>
+                            <InputIcon class="pi pi-search" />
+                            <InputText v-model="filters['global']" placeholder="Global Search" />
+                        </IconField>
+                    </div>
+                </template>
+                <template #empty> No customers found.</template>
+                <Column field="name" header="Name" expander style="min-width: 12rem">
+                    <template #filter>
+                        <InputText v-model="filters['name']" type="text" placeholder="Filter by name" />
+                    </template>
+                </Column>
+                <Column field="size" header="Size" style="min-width: 12rem">
+                    <template #filter>
+                        <InputText v-model="filters['size']" type="text" placeholder="Filter by size" />
+                    </template>
+                </Column>
+                <Column field="type" header="Type" style="min-width: 12rem">
+                    <template #filter>
+                        <InputText v-model="filters['type']" type="text" placeholder="Filter by type" />
+                    </template>
+                </Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

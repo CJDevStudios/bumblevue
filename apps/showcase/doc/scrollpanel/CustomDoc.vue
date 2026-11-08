@@ -1,3 +1,45 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<ScrollPanel
+    style="width: 100%; height: 200px"
+    :dt="{
+        bar: {
+            background: '{primary.color}'
+        }
+    }"
+>
+    ...
+</ScrollPanel>
+`,
+                    composition: `
+<template>
+    <div class="card">
+        <ScrollPanel
+            style="width: 100%; height: 200px"
+            :dt="{
+                bar: {
+                    background: '{primary.color}'
+                }
+            }"
+        >
+            ...
+        </ScrollPanel>
+    </div>
+</template>
+
+<script setup>
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>Scrollbar visuals can be styled for a unified look across different platforms.</p>
@@ -39,45 +81,3 @@
     </div>
     <DocSectionCode :code="code" />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<ScrollPanel
-    style="width: 100%; height: 200px"
-    :dt="{
-        bar: {
-            background: '{primary.color}'
-        }
-    }"
->
-    ...
-</ScrollPanel>
-`,
-                composition: `
-<template>
-    <div class="card">
-        <ScrollPanel
-            style="width: 100%; height: 200px"
-            :dt="{
-                bar: {
-                    background: '{primary.color}'
-                }
-            }"
-        >
-            ...
-        </ScrollPanel>
-    </div>
-</template>
-
-<script setup>
-<\/script>
-`
-            }
-        };
-    }
-};
-</script>

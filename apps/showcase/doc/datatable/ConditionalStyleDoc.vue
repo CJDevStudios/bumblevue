@@ -1,33 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Particular rows and cells can be styled based on conditions. The <i>rowClass</i> receives a row data as a parameter to return a style class for a row whereas cells are customized using the <i>body</i> template.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" :rowClass="rowClass" :rowStyle="rowStyle" tableStyle="min-width: 50rem">
-                <Column field="code" header="Code"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="quantity" header="Quantity">
-                    <template #body="slotProps">
-                        <Badge :value="slotProps.data.quantity" :severity="stockSeverity(slotProps.data)" />
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" :rowClass="rowClass" :rowStyle="rowStyle" tableStyle="min-width: 50rem">
     <Column field="code" header="Code"></Column>
     <Column field="name" header="Name"></Column>
@@ -39,7 +18,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" :rowClass="rowClass" :rowStyle="rowStyle" tableStyle="min-width: 50rem">
@@ -81,7 +60,7 @@ const stockSeverity = (data) => {
 
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -95,26 +74,47 @@ const stockSeverity = (data) => {
     rating: 5
 },
 ...`
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsSmall().then((data) => (this.products = data));
+            },
+            rowClass(data) {
+                return [{ 'bg-primary! text-primary-contrast!': data.category === 'Fitness' }];
+            },
+            rowStyle(data) {
+                if (data.quantity === 0) {
+                    return { fontWeight: 'bold', fontStyle: 'italic' };
+                }
+            },
+            stockSeverity(data) {
+                if (data.quantity === 0) return 'danger';
+                else if (data.quantity > 0 && data.quantity < 10) return 'warn';
+                else return 'success';
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsSmall().then((data) => (this.products = data));
-        },
-        rowClass(data) {
-            return [{ 'bg-primary! text-primary-contrast!': data.category === 'Fitness' }];
-        },
-        rowStyle(data) {
-            if (data.quantity === 0) {
-                return { fontWeight: 'bold', fontStyle: 'italic' };
-            }
-        },
-        stockSeverity(data) {
-            if (data.quantity === 0) return 'danger';
-            else if (data.quantity > 0 && data.quantity < 10) return 'warn';
-            else return 'success';
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Particular rows and cells can be styled based on conditions. The <i>rowClass</i> receives a row data as a parameter to return a style class for a row whereas cells are customized using the <i>body</i> template.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" :rowClass="rowClass" :rowStyle="rowStyle" tableStyle="min-width: 50rem">
+                <Column field="code" header="Code"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="category" header="Category"></Column>
+                <Column field="quantity" header="Quantity">
+                    <template #body="slotProps">
+                        <Badge :value="slotProps.data.quantity" :severity="stockSeverity(slotProps.data)" />
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

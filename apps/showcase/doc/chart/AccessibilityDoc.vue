@@ -1,3 +1,17 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<Chart type="line" :data="data" :canvasProps="{'role': 'img', 'aria-label': 'Data'}" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -9,17 +23,3 @@
         <DocSectionCode :code="code" hideToggleCode hideStackBlitz v-bind="$attrs" />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<Chart type="line" :data="data" :canvasProps="{'role': 'img', 'aria-label': 'Data'}" />
-`
-            }
-        };
-    }
-};
-</script>

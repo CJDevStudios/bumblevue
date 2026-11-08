@@ -1,73 +1,27 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Validations are implemented with the <i>resolver</i> property. A custom resolver is responsible for handling the validation and returning an <i>errors</i> object with key-value pairs where key is the form field name and value is an array
-            of error object data. For productivity, we recommend using a schema validation library instead of building your own custom validation logic. The forms library provide built-in resolvers for popular options including
-            <a href="https://zod.dev/">Zod</a>, <a href="https://github.com/jquense/yup">Yup</a>, <a href="https://joi.dev/">Joi</a>, <a href="https://valibot.dev/">Valibot</a>, and <a href="https://docs.superstructjs.org/">Superstruct</a> that can
-            be imported from <i>@cjdevstudios/bumblevue/forms/resolvers</i> path. The schema validation library itself is not bundled and needs to be installed separately.
-        </p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-5">
-        <Fieldset legend="Schema">
-            <RadioButtonGroup v-model="selectedSchema" name="schema" class="flex flex-wrap gap-4" @update:modelValue="changeResolver">
-                <div class="flex items-center gap-2">
-                    <RadioButton inputId="zod" value="Zod" />
-                    <label for="zod">Zod</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <RadioButton inputId="yup" value="Yup" />
-                    <label for="yup">Yup</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <RadioButton inputId="valibot" value="Valibot" />
-                    <label for="valibot">Valibot</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <RadioButton inputId="superStruct" value="SuperStruct" />
-                    <label for="superStruct">SuperStruct</label>
-                </div>
-                <div class="flex items-center gap-2">
-                    <RadioButton inputId="custom" value="Custom" />
-                    <label for="custom">Custom</label>
-                </div>
-            </RadioButtonGroup>
-        </Fieldset>
-
-        <Form v-slot="$form" :initialValues :resolver="resolver" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-            <div class="flex flex-col gap-1">
-                <InputText name="username" type="text" placeholder="Username" fluid />
-                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76', yup: '1.4.0', valibot: '0.42.1', superstruct: '2.0.2' }" />
-</template>
-
 <script>
-import { superStructResolver } from '@cjdevstudios/bumblevue/forms/resolvers/superstruct';
-import { valibotResolver } from '@cjdevstudios/bumblevue/forms/resolvers/valibot';
-import { yupResolver } from '@cjdevstudios/bumblevue/forms/resolvers/yup';
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import * as s from 'superstruct';
-import * as v from 'valibot';
-import * as yup from 'yup';
-import { z } from 'zod';
+    import { superStructResolver } from '@cjdevstudios/bumblevue/forms/resolvers/superstruct';
+    import { valibotResolver } from '@cjdevstudios/bumblevue/forms/resolvers/valibot';
+    import { yupResolver } from '@cjdevstudios/bumblevue/forms/resolvers/yup';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import * as s from 'superstruct';
+    import * as v from 'valibot';
+    import * as yup from 'yup';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            initialValues: {
-                username: ''
-            },
-            selectedSchema: 'Zod',
-            resolver: zodResolver(
-                z.object({
-                    username: z.string().min(1, { message: 'Username is required via Zod.' })
-                })
-            ),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    username: ''
+                },
+                selectedSchema: 'Zod',
+                resolver: zodResolver(
+                    z.object({
+                        username: z.string().min(1, { message: 'Username is required via Zod.' })
+                    })
+                ),
+                code: {
+                    basic: `
 <Form v-slot="$form" :initialValues :resolver="resolver" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
     <div class="flex flex-col gap-1">
         <InputText name="username" type="text" placeholder="Username" fluid />
@@ -76,7 +30,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex flex-col items-center gap-5">
         <Toast />
@@ -193,55 +147,101 @@ const onFormSubmit = ({ valid }) => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        changeResolver(schema) {
-            if (schema === 'Zod') {
-                this.resolver = zodResolver(
-                    z.object({
-                        username: z.string().min(1, { message: 'Username is required via Zod.' })
-                    })
-                );
-            } else if (schema === 'Yup') {
-                this.resolver = yupResolver(
-                    yup.object().shape({
-                        username: yup.string().required('Username is required via Yup.')
-                    })
-                );
-            } else if (schema === 'Valibot') {
-                this.resolver = valibotResolver(
-                    v.object({
-                        username: v.pipe(v.string(), v.minLength(1, 'Username is required via Valibot.'))
-                    })
-                );
-            } else if (schema === 'SuperStruct') {
-                this.resolver = superStructResolver(
-                    s.object({
-                        username: s.nonempty(s.string())
-                    })
-                );
-            } else if (schema === 'Custom') {
-                this.resolver = ({ values }) => {
-                    const errors = {};
-
-                    if (!values.username) {
-                        errors.username = [{ message: 'Username is required.' }];
-                    }
-
-                    return {
-                        values,
-                        errors
-                    };
-                };
-            }
+                }
+            };
         },
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+        methods: {
+            changeResolver(schema) {
+                if (schema === 'Zod') {
+                    this.resolver = zodResolver(
+                        z.object({
+                            username: z.string().min(1, { message: 'Username is required via Zod.' })
+                        })
+                    );
+                } else if (schema === 'Yup') {
+                    this.resolver = yupResolver(
+                        yup.object().shape({
+                            username: yup.string().required('Username is required via Yup.')
+                        })
+                    );
+                } else if (schema === 'Valibot') {
+                    this.resolver = valibotResolver(
+                        v.object({
+                            username: v.pipe(v.string(), v.minLength(1, 'Username is required via Valibot.'))
+                        })
+                    );
+                } else if (schema === 'SuperStruct') {
+                    this.resolver = superStructResolver(
+                        s.object({
+                            username: s.nonempty(s.string())
+                        })
+                    );
+                } else if (schema === 'Custom') {
+                    this.resolver = ({ values }) => {
+                        const errors = {};
+
+                        if (!values.username) {
+                            errors.username = [{ message: 'Username is required.' }];
+                        }
+
+                        return {
+                            values,
+                            errors
+                        };
+                    };
+                }
+            },
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Validations are implemented with the <i>resolver</i> property. A custom resolver is responsible for handling the validation and returning an <i>errors</i> object with key-value pairs where key is the form field name and value is an array
+            of error object data. For productivity, we recommend using a schema validation library instead of building your own custom validation logic. The forms library provide built-in resolvers for popular options including
+            <a href="https://zod.dev/">Zod</a>, <a href="https://github.com/jquense/yup">Yup</a>, <a href="https://joi.dev/">Joi</a>, <a href="https://valibot.dev/">Valibot</a>, and <a href="https://docs.superstructjs.org/">Superstruct</a> that can
+            be imported from <i>@cjdevstudios/bumblevue/forms/resolvers</i> path. The schema validation library itself is not bundled and needs to be installed separately.
+        </p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-5">
+        <Fieldset legend="Schema">
+            <RadioButtonGroup v-model="selectedSchema" name="schema" class="flex flex-wrap gap-4" @update:modelValue="changeResolver">
+                <div class="flex items-center gap-2">
+                    <RadioButton inputId="zod" value="Zod" />
+                    <label for="zod">Zod</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioButton inputId="yup" value="Yup" />
+                    <label for="yup">Yup</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioButton inputId="valibot" value="Valibot" />
+                    <label for="valibot">Valibot</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioButton inputId="superStruct" value="SuperStruct" />
+                    <label for="superStruct">SuperStruct</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <RadioButton inputId="custom" value="Custom" />
+                    <label for="custom">Custom</label>
+                </div>
+            </RadioButtonGroup>
+        </Fieldset>
+
+        <Form v-slot="$form" :initialValues :resolver="resolver" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+            <div class="flex flex-col gap-1">
+                <InputText name="username" type="text" placeholder="Username" fluid />
+                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76', yup: '1.4.0', valibot: '0.42.1', superstruct: '2.0.2' }" />
+</template>

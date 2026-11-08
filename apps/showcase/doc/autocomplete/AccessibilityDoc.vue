@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="ac1">;Username</label>
+<AutoComplete inputId="ac1" />
+
+<span id="ac2">Email</span>
+<AutoComplete aria-labelledby="ac2" />
+
+<AutoComplete aria-label="City" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -175,23 +195,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<label for="ac1">;Username</label>
-<AutoComplete inputId="ac1" />
-
-<span id="ac2">Email</span>
-<AutoComplete aria-labelledby="ac2" />
-
-<AutoComplete aria-label="City" />
-`
-            }
-        };
-    }
-};
-</script>

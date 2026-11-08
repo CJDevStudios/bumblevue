@@ -1,25 +1,15 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Tree component requires an array of TreeNode objects as its <i>value</i>.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree :value="nodes" class="w-full md:w-120"></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                code: {
+                    basic: `
 <Tree :value="nodes" class="w-full md:w-120"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Tree :value="nodes" class="w-full md:w-120"></Tree>
@@ -37,7 +27,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -64,11 +54,21 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Tree component requires an array of TreeNode objects as its <i>value</i>.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree :value="nodes" class="w-full md:w-120"></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

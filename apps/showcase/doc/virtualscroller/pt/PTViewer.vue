@@ -1,3 +1,24 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                items: null,
+                docs: [
+                    {
+                        data: getPTOptions('VirtualScroller'),
+                        key: 'VirtualScroller'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <VirtualScroller :items="items" :itemSize="50" class="border border-surface-200 dark:border-surface-700 rounded-sm" style="width: 200px; height: 200px">
@@ -7,24 +28,3 @@
         </VirtualScroller>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            items: null,
-            docs: [
-                {
-                    data: getPTOptions('VirtualScroller'),
-                    key: 'VirtualScroller'
-                }
-            ]
-        };
-    },
-    mounted() {
-        this.items = Array.from({ length: 100000 }).map((_, i) => `Item #${i}`);
-    }
-};
-</script>

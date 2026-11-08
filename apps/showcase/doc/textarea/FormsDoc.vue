@@ -1,36 +1,20 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Textarea integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
-            <div class="flex flex-col gap-1">
-                <Textarea name="address" rows="5" cols="30" style="resize: none" />
-                <Message v-if="$form.address?.invalid" severity="error" size="small" variant="simple">{{ $form.address.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
-import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
-import { z } from 'zod';
+    import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
+    import { z } from 'zod';
 
-export default {
-    data() {
-        return {
-            initialValues: {
-                address: ''
-            },
-            resolver: zodResolver(
-                z.object({
-                    address: z.string().min(1, { message: 'Address is required.' })
-                })
-            ),
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                initialValues: {
+                    address: ''
+                },
+                resolver: zodResolver(
+                    z.object({
+                        address: z.string().min(1, { message: 'Address is required.' })
+                    })
+                ),
+                code: {
+                    basic: `
 <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
     <div class="flex flex-col gap-1">
         <Textarea name="address" rows="5" cols="30" style="resize: none" />
@@ -39,7 +23,7 @@ export default {
     <Button type="submit" severity="secondary" label="Submit" />
 </Form>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
@@ -75,15 +59,31 @@ const onFormSubmit = ({ valid }) => {
 };
 <\/script>
         `
-            }
-        };
-    },
-    methods: {
-        onFormSubmit({ valid }) {
-            if (valid) {
-                this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
+            };
+        },
+        methods: {
+            onFormSubmit({ valid }) {
+                if (valid) {
+                    this.$toast.add({ severity: 'success', summary: 'Form is submitted.', life: 3000 });
+                }
             }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Textarea integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4">
+            <div class="flex flex-col gap-1">
+                <Textarea name="address" rows="5" cols="30" style="resize: none" />
+                <Message v-if="$form.address?.invalid" severity="error" size="small" variant="simple">{{ $form.address.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

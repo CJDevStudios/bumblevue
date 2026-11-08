@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ColorPicker v-model="color" disabled />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            color: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                color: null,
+                code: {
+                    basic: `
 <ColorPicker v-model="color" disabled />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <ColorPicker v-model="color" disabled />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const color = ref();
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ColorPicker v-model="color" disabled />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

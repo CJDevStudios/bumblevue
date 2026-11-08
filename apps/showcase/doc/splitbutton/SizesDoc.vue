@@ -1,49 +1,37 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>SplitButton provides <i>small</i> and <i>large</i> sizes as alternatives to the standard.</p>
-    </DocSectionText>
-    <div class="card flex items-center justify-center flex-wrap gap-4">
-        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="small"></SplitButton>
-        <SplitButton label="Save" :model="items" icon="pi pi-plus"></SplitButton>
-        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="large"></SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Update',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Update',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Updated', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        command: () => {
+                            this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Quit',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Delete',
-                    command: () => {
-                        this.$toast.add({ severity: 'warn', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Quit',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SplitButton label="Save" :model="items" icon="pi pi-plus" size="small"></SplitButton>
 <SplitButton label="Save" :model="items" icon="pi pi-plus"></SplitButton>
 <SplitButton label="Save" :model="items" icon="pi pi-plus" size="large"></SplitButton>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex items-center justify-center flex-wrap gap-4">
         <Toast />
@@ -86,13 +74,25 @@ const save = () => {
 };
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            save() {
+                this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
             }
-        };
-    },
-    methods: {
-        save() {
-            this.$toast.add({ severity: 'success', summary: 'Success', detail: 'Data Saved', life: 3000 });
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>SplitButton provides <i>small</i> and <i>large</i> sizes as alternatives to the standard.</p>
+    </DocSectionText>
+    <div class="card flex items-center justify-center flex-wrap gap-4">
+        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="small"></SplitButton>
+        <SplitButton label="Save" :model="items" icon="pi pi-plus"></SplitButton>
+        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="large"></SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

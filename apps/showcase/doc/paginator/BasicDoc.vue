@@ -1,3 +1,27 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
+`,
+                    composition: `
+<template>
+    <div class="card">
+        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
+    </div>
+</template>
+
+<script setup>
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -10,27 +34,3 @@
     </div>
     <DocSectionCode :code="code" />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
-`,
-                composition: `
-<template>
-    <div class="card">
-        <Paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></Paginator>
-    </div>
-</template>
-
-<script setup>
-<\/script>
-`
-            }
-        };
-    }
-};
-</script>

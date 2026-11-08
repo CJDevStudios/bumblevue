@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>theme</i> property is used to customize the initial theme.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -28,8 +21,15 @@ app.use(BumbleVue, {
     }
  });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>theme</i> property is used to customize the initial theme.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

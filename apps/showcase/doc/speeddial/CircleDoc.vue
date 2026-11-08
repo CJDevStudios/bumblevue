@@ -1,61 +1,49 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Items can be displayed around the button when <i>type</i> is set to <i>circle</i>. Additional <i>radius</i> property defines the radius of the circle.</p>
-    </DocSectionText>
-    <div class="card">
-        <div :style="{ position: 'relative', height: '500px' }" class="flex items-center justify-center">
-            <SpeedDial :model="items" :radius="80" type="circle" :style="{ position: 'absolute' }" :buttonProps="{ severity: 'warn', rounded: true }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Add',
-                    icon: 'pi pi-pencil',
-                    command: () => {
-                        this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+    export default {
+        data() {
+            return {
+                items: [
+                    {
+                        label: 'Add',
+                        icon: 'pi pi-pencil',
+                        command: () => {
+                            this.$toast.add({ severity: 'info', summary: 'Add', detail: 'Data Added', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Update',
+                        icon: 'pi pi-refresh',
+                        command: () => {
+                            this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Delete',
+                        icon: 'pi pi-trash',
+                        command: () => {
+                            this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
+                        }
+                    },
+                    {
+                        label: 'Upload',
+                        icon: 'pi pi-upload',
+                        command: () => {
+                            this.$router.push('/fileupload');
+                        }
+                    },
+                    {
+                        label: 'Vue Website',
+                        icon: 'pi pi-external-link',
+                        command: () => {
+                            window.location.href = 'https://vuejs.org/';
+                        }
                     }
-                },
-                {
-                    label: 'Update',
-                    icon: 'pi pi-refresh',
-                    command: () => {
-                        this.$toast.add({ severity: 'success', summary: 'Update', detail: 'Data Updated', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Delete',
-                    icon: 'pi pi-trash',
-                    command: () => {
-                        this.$toast.add({ severity: 'error', summary: 'Delete', detail: 'Data Deleted', life: 3000 });
-                    }
-                },
-                {
-                    label: 'Upload',
-                    icon: 'pi pi-upload',
-                    command: () => {
-                        this.$router.push('/fileupload');
-                    }
-                },
-                {
-                    label: 'Vue Website',
-                    icon: 'pi pi-external-link',
-                    command: () => {
-                        window.location.href = 'https://vuejs.org/';
-                    }
-                }
-            ],
-            code: {
-                basic: `
+                ],
+                code: {
+                    basic: `
 <SpeedDial :model="items" :radius="80" type="circle" :style="{ position: 'absolute' }" :buttonProps="{ severity: 'warn', rounded: true }" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div :style="{ position: 'relative', height: '500px' }" class="flex items-center justify-center">
@@ -112,8 +100,20 @@ const items = ref([
 ])
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Items can be displayed around the button when <i>type</i> is set to <i>circle</i>. Additional <i>radius</i> property defines the radius of the circle.</p>
+    </DocSectionText>
+    <div class="card">
+        <div :style="{ position: 'relative', height: '500px' }" class="flex items-center justify-center">
+            <SpeedDial :model="items" :radius="80" type="circle" :style="{ position: 'absolute' }" :buttonProps="{ severity: 'warn', rounded: true }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

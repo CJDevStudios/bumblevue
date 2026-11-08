@@ -1,3 +1,57 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+import BumbleVue from '@cjdevstudios/bumblevue/config';
+import Aura from '@cjdevstudios/bumblevue/themes/aura';
+
+const app = createApp(App);
+
+app.use(BumbleVue, {
+    // Default theme configuration
+    theme: {
+        preset: Aura,
+        options: {
+            darkModeSelector: '.my-app-dark',
+        }
+    }
+ });
+`
+                },
+                code2: {
+                    basic: `
+<Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
+`
+                },
+                code3: {
+                    basic: `
+function toggleDarkMode() {
+    document.documentElement.classList.toggle('my-app-dark');
+}
+`
+                },
+                code4: {
+                    basic: `
+<html class="my-app-dark">
+`
+                },
+                code5: {
+                    basic: `
+theme: {
+    preset: Aura,
+    options: {
+        darkModeSelector: false || 'none',
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -17,57 +71,3 @@
         <DocSectionCode :code="code5" hideToggleCode importCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-import BumbleVue from '@cjdevstudios/bumblevue/config';
-import Aura from '@cjdevstudios/bumblevue/themes/aura';
-
-const app = createApp(App);
-
-app.use(BumbleVue, {
-    // Default theme configuration
-    theme: {
-        preset: Aura,
-        options: {
-            darkModeSelector: '.my-app-dark',
-        }
-    }
- });
-`
-            },
-            code2: {
-                basic: `
-<Button label="Toggle Dark Mode" @click="toggleDarkMode()" />
-`
-            },
-            code3: {
-                basic: `
-function toggleDarkMode() {
-    document.documentElement.classList.toggle('my-app-dark');
-}
-`
-            },
-            code4: {
-                basic: `
-<html class="my-app-dark">
-`
-            },
-            code5: {
-                basic: `
-theme: {
-    preset: Aura,
-    options: {
-        darkModeSelector: false || 'none',
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>

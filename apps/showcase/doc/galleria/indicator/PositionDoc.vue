@@ -1,58 +1,32 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Indicators can be placed at four different sides using the <i>indicatorsPosition</i> property. In addition, enabling <i>showIndicatorsOnItem</i> moves the indicators inside the image section.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex flex-wrap gap-4 mb-8">
-                <div v-for="option in positionOptions" :key="option.label" class="flex items-center">
-                    <RadioButton v-model="position" :inputId="option.label" name="option" :value="option.value" />
-                    <label :for="option.label" class="ml-2"> {{ option.label }} </label>
-                </div>
-            </div>
-            <div class="flex items-center mb-8">
-                <Checkbox v-model="inside" inputId="inside_cbox" :binary="true"></Checkbox>
-                <label for="inside_cbox" class="ml-2"> Inside </label>
-            </div>
-            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="inside" :indicatorsPosition="position">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            inside: false,
-            position: 'bottom',
-            positionOptions: [
-                {
-                    label: 'Bottom',
-                    value: 'bottom'
-                },
-                {
-                    label: 'Top',
-                    value: 'top'
-                },
-                {
-                    label: 'Left',
-                    value: 'left'
-                },
-                {
-                    label: 'Right',
-                    value: 'right'
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                inside: false,
+                position: 'bottom',
+                positionOptions: [
+                    {
+                        label: 'Bottom',
+                        value: 'bottom'
+                    },
+                    {
+                        label: 'Top',
+                        value: 'top'
+                    },
+                    {
+                        label: 'Left',
+                        value: 'left'
+                    },
+                    {
+                        label: 'Right',
+                        value: 'right'
+                    }
+                ],
+                code: {
+                    basic: `
 <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false"
     :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="inside" :indicatorsPosition="position">
     <template #item="slotProps">
@@ -60,7 +34,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex flex-wrap gap-4 mb-8">
@@ -114,7 +88,7 @@ const positionOptions = ref([
 
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -124,13 +98,39 @@ const positionOptions = ref([
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Indicators can be placed at four different sides using the <i>indicatorsPosition</i> property. In addition, enabling <i>showIndicatorsOnItem</i> moves the indicators inside the image section.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex flex-wrap gap-4 mb-8">
+                <div v-for="option in positionOptions" :key="option.label" class="flex items-center">
+                    <RadioButton v-model="position" :inputId="option.label" name="option" :value="option.value" />
+                    <label :for="option.label" class="ml-2"> {{ option.label }} </label>
+                </div>
+            </div>
+            <div class="flex items-center mb-8">
+                <Checkbox v-model="inside" inputId="inside_cbox" :binary="true"></Checkbox>
+                <label for="inside_cbox" class="ml-2"> Inside </label>
+            </div>
+            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true" :changeItemOnIndicatorHover="true" :showIndicatorsOnItem="inside" :indicatorsPosition="position">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

@@ -1,3 +1,30 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+<style module>
+.myinput {
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    border-width: 2px;
+}
+</style>
+`
+                },
+                code2: {
+                    basic: `
+<template>
+    <InputText :class="$style.myinput" placeholder="Search" />
+</template>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -12,37 +39,10 @@
     </DocSectionText>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
 <style module>
-.myinput {
-    border-radius: 2rem;
-    padding: 1rem 2rem;
-    border-width: 2px;
-}
-</style>
-`
-            },
-            code2: {
-                basic: `
-<template>
-    <InputText :class="$style.myinput" placeholder="Search" />
-</template>
-`
-            }
-        };
+    .myinput {
+        border-radius: 2rem;
+        padding: 1rem 2rem;
+        border-width: 2px;
     }
-};
-</script>
-
-<style module>
-.myinput {
-    border-radius: 2rem;
-    padding: 1rem 2rem;
-    border-width: 2px;
-}
 </style>

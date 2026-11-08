@@ -1,24 +1,14 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the AutoComplete.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="value" showClear :suggestions="items" @complete="search" inputClass="w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            items: [],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                items: [],
+                code: {
+                    basic: `
 <AutoComplete v-model="value" showClear :suggestions="items" @complete="search" inputClass="w-56" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <AutoComplete v-model="value" showClear :suggestions="items" @complete="search" inputClass="w-56" />
@@ -36,13 +26,23 @@ const search = (event) => {
 }
 <\/script>
 `
+                }
+            };
+        },
+        methods: {
+            search(event) {
+                this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
             }
-        };
-    },
-    methods: {
-        search(event) {
-            this.items = [...Array(10).keys()].map((item) => event.query + '-' + item);
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the AutoComplete.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <AutoComplete v-model="value" showClear :suggestions="items" @complete="search" inputClass="w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

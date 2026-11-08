@@ -1,34 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Virtual Scrolling is an efficient way to render large amount data. Usage is similar to regular scrolling with the addition of <i>virtualScrollerOptions</i> property to define a fixed <i>itemSize</i>. Internally,
-            <BumbleVueNuxtLink to="/virtualscroller">VirtualScroller</BumbleVueNuxtLink> component is utilized so refer to the API of VirtualScroller for more information about the available options.
-        </p>
-        <p>In this example, <strong>100000</strong> preloaded records are rendered by the Table.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 44 }" tableStyle="min-width: 50rem">
-                <Column field="id" header="Id" style="width: 20%; height: 44px"></Column>
-                <Column field="vin" header="Vin" style="width: 20%; height: 44px"></Column>
-                <Column field="year" header="Year" style="width: 20%; height: 44px"></Column>
-                <Column field="brand" header="Brand" style="width: 20%; height: 44px"></Column>
-                <Column field="color" header="Color" style="width: 20%; height: 44px"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CarService']" />
-</template>
-
 <script>
-import { CarService } from '@/service/CarService';
+    import { CarService } from '@/service/CarService';
 
-export default {
-    data() {
-        return {
-            cars: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                cars: null,
+                code: {
+                    basic: `
 <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 44 }" tableStyle="min-width: 50rem">
     <Column field="id" header="Id" style="width: 20%; height: 44px"></Column>
     <Column field="vin" header="Vin" style="width: 20%; height: 44px"></Column>
@@ -37,7 +15,7 @@ export default {
     <Column field="color" header="Color" style="width: 20%; height: 44px"></Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 44 }" tableStyle="min-width: 50rem">
@@ -61,7 +39,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: 1
     vin: tvACo,
@@ -69,13 +47,35 @@ onMounted(() => {
     color: Black,
     year: 2002
 }`
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                this.cars = Array.from({ length: 100000 }).map((_, i) => CarService.generateCar(i + 1));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            this.cars = Array.from({ length: 100000 }).map((_, i) => CarService.generateCar(i + 1));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Virtual Scrolling is an efficient way to render large amount data. Usage is similar to regular scrolling with the addition of <i>virtualScrollerOptions</i> property to define a fixed <i>itemSize</i>. Internally,
+            <BumbleVueNuxtLink to="/virtualscroller">VirtualScroller</BumbleVueNuxtLink> component is utilized so refer to the API of VirtualScroller for more information about the available options.
+        </p>
+        <p>In this example, <strong>100000</strong> preloaded records are rendered by the Table.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="cars" scrollable scrollHeight="400px" :virtualScrollerOptions="{ itemSize: 44 }" tableStyle="min-width: 50rem">
+                <Column field="id" header="Id" style="width: 20%; height: 44px"></Column>
+                <Column field="vin" header="Vin" style="width: 20%; height: 44px"></Column>
+                <Column field="year" header="Year" style="width: 20%; height: 44px"></Column>
+                <Column field="brand" header="Brand" style="width: 20%; height: 44px"></Column>
+                <Column field="color" header="Color" style="width: 20%; height: 44px"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CarService']" />
+</template>

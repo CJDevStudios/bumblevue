@@ -1,3 +1,582 @@
+<script>
+    import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
+    import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
+    import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
+    import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
+    import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
+    import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
+    import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
+    import Chip from '@cjdevstudios/bumblevue/chip';
+    import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
+    import Portal from '@cjdevstudios/bumblevue/portal';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+    import Tree from '@cjdevstudios/bumblevue/tree';
+    import TreeSelectStyle from '@cjdevstudios/bumblevue/treeselect/style';
+
+    export default {
+        name: 'TreeSelect',
+        extends: BaseInput,
+        inheritAttrs: false,
+        props: {
+            options: Array,
+            scrollHeight: {
+                type: String,
+                default: '20rem'
+            },
+            placeholder: {
+                type: String,
+                default: null
+            },
+            tabindex: {
+                type: Number,
+                default: null
+            },
+            selectionMode: {
+                type: String,
+                default: 'single'
+            },
+            selectedItemsLabel: {
+                type: String,
+                default: null
+            },
+            maxSelectedLabels: {
+                type: Number,
+                default: null
+            },
+            appendTo: {
+                type: [String, Object],
+                default: 'body'
+            },
+            emptyMessage: {
+                type: String,
+                default: null
+            },
+            display: {
+                type: String,
+                default: 'comma'
+            },
+            metaKeySelection: {
+                type: Boolean,
+                default: false
+            },
+            loading: {
+                type: Boolean,
+                default: false
+            },
+            loadingIcon: {
+                type: String,
+                default: undefined
+            },
+            loadingMode: {
+                type: String,
+                default: 'mask'
+            },
+            showClear: {
+                type: Boolean,
+                default: false
+            },
+            clearIcon: {
+                type: String,
+                default: undefined
+            },
+            filter: {
+                type: Boolean,
+                default: false
+            },
+            filterBy: {
+                type: [String, Function],
+                default: 'label'
+            },
+            filterMode: {
+                type: String,
+                default: 'lenient'
+            },
+            filterPlaceholder: {
+                type: String,
+                default: null
+            },
+            filterLocale: {
+                type: String,
+                default: undefined
+            },
+            inputId: {
+                type: String,
+                default: null
+            },
+            inputClass: {
+                type: [String, Object],
+                default: null
+            },
+            inputStyle: {
+                type: Object,
+                default: null
+            },
+            inputProps: {
+                type: null,
+                default: null
+            },
+            panelClass: {
+                type: [String, Object],
+                default: null
+            },
+            panelProps: {
+                type: null,
+                default: null
+            },
+            ariaLabelledby: {
+                type: String,
+                default: null
+            },
+            ariaLabel: {
+                type: String,
+                default: null
+            },
+            expandedKeys: {
+                type: null,
+                default: null
+            }
+        },
+        emits: ['before-show', 'before-hide', 'change', 'show', 'hide', 'node-select', 'node-unselect', 'node-expand', 'node-collapse', 'filter', 'focus', 'blur', 'update:expandedKeys'],
+        style: TreeSelectStyle,
+        provide() {
+            return {
+                $pcTreeSelect: this,
+                $parentInstance: this
+            };
+        },
+        inject: {
+            $pcFluid: { default: null }
+        },
+        data() {
+            return {
+                focused: false,
+                overlayVisible: false,
+                d_expandedKeys: this.expandedKeys || {}
+            };
+        },
+        watch: {
+            modelValue: {
+                handler: function () {
+                    if (!this.selfChange) {
+                        this.updateTreeState();
+                    }
+
+                    this.selfChange = false;
+                },
+                immediate: true
+            },
+            options() {
+                this.updateTreeState();
+            },
+            expandedKeys(value) {
+                this.d_expandedKeys = value;
+            }
+        },
+        outsideClickListener: null,
+        resizeListener: null,
+        scrollHandler: null,
+        overlay: null,
+        selfChange: false,
+        selfClick: false,
+        beforeUnmount() {
+            this.unbindOutsideClickListener();
+            this.unbindResizeListener();
+
+            if (this.scrollHandler) {
+                this.scrollHandler.destroy();
+                this.scrollHandler = null;
+            }
+
+            if (this.overlay) {
+                ZIndex.clear(this.overlay);
+                this.overlay = null;
+            }
+        },
+        mounted() {
+            this.updateTreeState();
+        },
+        methods: {
+            show() {
+                this.$emit('before-show');
+                this.overlayVisible = true;
+            },
+            hide() {
+                this.$emit('before-hide');
+                this.overlayVisible = false;
+                this.$refs.focusInput.focus();
+            },
+            onFocus(event) {
+                this.focused = true;
+                this.$emit('focus', event);
+            },
+            onBlur(event) {
+                this.focused = false;
+                this.$emit('blur', event);
+                this.formField.onBlur?.();
+            },
+            onClick(event) {
+                if (this.disabled) {
+                    return;
+                }
+
+                if (event.target.tagName === 'INPUT' || event.target.getAttribute('data-pc-section') === 'clearicon' || event.target.closest('[data-pc-section="clearicon"]')) {
+                    return;
+                } else if (!this.overlay || !this.overlay.contains(event.target)) {
+                    if (this.overlayVisible) this.hide();
+                    else this.show();
+
+                    focus(this.$refs.focusInput);
+                }
+            },
+            onClearClick() {
+                this.onSelectionChange(null);
+            },
+            onSelectionChange(keys) {
+                this.selfChange = true;
+                this.writeValue(keys);
+                this.$emit('change', keys);
+            },
+            onNodeSelect(node) {
+                this.$emit('node-select', node);
+
+                if (this.selectionMode === 'single') {
+                    this.hide();
+                }
+            },
+            onNodeUnselect(node) {
+                this.$emit('node-unselect', node);
+            },
+            onNodeToggle(keys) {
+                this.d_expandedKeys = keys;
+
+                this.$emit('update:expandedKeys', this.d_expandedKeys);
+            },
+            getSelectedItemsLabel() {
+                let pattern = /{(.*?)}/;
+                const selectedItemsLabel = this.selectedItemsLabel || this.$bumblevue.config.locale.selectionMessage;
+
+                if (pattern.test(selectedItemsLabel)) {
+                    return selectedItemsLabel.replace(selectedItemsLabel.match(pattern)[0], Object.keys(this.d_value).length + '');
+                }
+
+                return selectedItemsLabel;
+            },
+            onFirstHiddenFocus(event) {
+                const focusableEl = event.relatedTarget === this.$refs.focusInput ? getFirstFocusableElement(this.overlay, ':not([data-p-hidden-focusable="true"])') : this.$refs.focusInput;
+
+                focus(focusableEl);
+            },
+            onLastHiddenFocus(event) {
+                const focusableEl = event.relatedTarget === this.$refs.focusInput ? getLastFocusableElement(this.overlay, ':not([data-p-hidden-focusable="true"])') : this.$refs.focusInput;
+
+                focus(focusableEl);
+            },
+            onKeyDown(event) {
+                switch (event.code) {
+                    case 'ArrowDown':
+                        this.onArrowDownKey(event);
+                        break;
+
+                    case 'Space':
+                    case 'Enter':
+                    case 'NumpadEnter':
+                        this.onEnterKey(event);
+                        break;
+
+                    case 'Escape':
+                        this.onEscapeKey(event);
+                        break;
+
+                    case 'Tab':
+                        this.onTabKey(event);
+                        break;
+
+                    default:
+                        break;
+                }
+            },
+            onArrowDownKey(event) {
+                if (this.overlayVisible) return;
+
+                this.show();
+
+                this.$nextTick(() => {
+                    const treeNodeEl = find(this.$refs.tree.$el, '[data-pc-section="treeitem"]');
+                    const focusedElement = [...treeNodeEl].find((item) => item.getAttribute('tabindex') === '0');
+
+                    focus(focusedElement);
+                });
+
+                event.preventDefault();
+            },
+            onEnterKey(event) {
+                if (this.overlayVisible) {
+                    this.hide();
+                } else {
+                    this.onArrowDownKey(event);
+                }
+
+                event.preventDefault();
+            },
+            onEscapeKey(event) {
+                if (this.overlayVisible) {
+                    this.hide();
+                    event.preventDefault();
+                }
+            },
+            onTabKey(event, pressedInInputText = false) {
+                if (!pressedInInputText) {
+                    if (this.overlayVisible && this.hasFocusableElements()) {
+                        focus(this.$refs.firstHiddenFocusableElementOnOverlay);
+
+                        event.preventDefault();
+                    }
+                }
+            },
+            hasFocusableElements() {
+                return getFocusableElements(this.overlay, ':not([data-p-hidden-focusable="true"])').length > 0;
+            },
+            onOverlayEnter(el) {
+                ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
+
+                addStyle(el, { position: 'absolute', top: '0' });
+                this.alignOverlay();
+                this.focus();
+
+                // Issue: #7508
+                this.$attrSelector && el.setAttribute(this.$attrSelector, '');
+            },
+            onOverlayAfterEnter() {
+                this.bindOutsideClickListener();
+                this.bindScrollListener();
+                this.bindResizeListener();
+                this.scrollValueInView();
+                this.$emit('show');
+            },
+            onOverlayLeave() {
+                this.unbindOutsideClickListener();
+                this.unbindScrollListener();
+                this.unbindResizeListener();
+                this.$emit('hide');
+                this.overlay = null;
+            },
+            onOverlayAfterLeave(el) {
+                ZIndex.clear(el);
+            },
+            focus() {
+                let focusableElements = getFocusableElements(this.overlay);
+
+                if (focusableElements && focusableElements.length > 0) {
+                    focusableElements[0].focus();
+                }
+            },
+            alignOverlay() {
+                if (this.appendTo === 'self') {
+                    relativePosition(this.overlay, this.$el);
+                } else {
+                    this.overlay.style.minWidth = getOuterWidth(this.$el) + 'px';
+                    absolutePosition(this.overlay, this.$el);
+                }
+            },
+            bindOutsideClickListener() {
+                if (!this.outsideClickListener) {
+                    this.outsideClickListener = (event) => {
+                        if (this.overlayVisible && !this.selfClick && this.isOutsideClicked(event)) {
+                            this.hide();
+                        }
+
+                        this.selfClick = false;
+                    };
+
+                    document.addEventListener('click', this.outsideClickListener, true);
+                }
+            },
+            unbindOutsideClickListener() {
+                if (this.outsideClickListener) {
+                    document.removeEventListener('click', this.outsideClickListener, true);
+                    this.outsideClickListener = null;
+                }
+            },
+            bindScrollListener() {
+                if (!this.scrollHandler) {
+                    this.scrollHandler = new ConnectedOverlayScrollHandler(this.$refs.container, () => {
+                        if (this.overlayVisible) {
+                            this.hide();
+                        }
+                    });
+                }
+
+                this.scrollHandler.bindScrollListener();
+            },
+            unbindScrollListener() {
+                if (this.scrollHandler) {
+                    this.scrollHandler.unbindScrollListener();
+                }
+            },
+            bindResizeListener() {
+                if (!this.resizeListener) {
+                    this.resizeListener = () => {
+                        if (this.overlayVisible && !isTouchDevice()) {
+                            this.hide();
+                        }
+                    };
+
+                    window.addEventListener('resize', this.resizeListener);
+                }
+            },
+            unbindResizeListener() {
+                if (this.resizeListener) {
+                    window.removeEventListener('resize', this.resizeListener);
+                    this.resizeListener = null;
+                }
+            },
+            isOutsideClicked(event) {
+                return !(this.$el.isSameNode(event.target) || this.$el.contains(event.target) || (this.overlay && this.overlay.contains(event.target)));
+            },
+            overlayRef(el) {
+                this.overlay = el;
+            },
+            onOverlayClick(event) {
+                OverlayEventBus.emit('overlay-click', {
+                    originalEvent: event,
+                    target: this.$el
+                });
+
+                this.selfClick = true;
+            },
+            onOverlayKeydown(event) {
+                if (event.code === 'Escape') this.hide();
+            },
+            fillNodeMap(node, nodeMap) {
+                nodeMap[node.key] = node;
+
+                if (node.children && node.children.length > 0) {
+                    node.children.forEach((children) => this.fillNodeMap(children, nodeMap));
+                }
+            },
+            isSelected(node, keys) {
+                return this.selectionMode === 'checkbox' ? keys[node?.key] && keys[node?.key].checked : keys[node?.key];
+            },
+            updateTreeState() {
+                let keys = { ...this.d_value };
+
+                if (keys && this.options && this.options.length > 0) {
+                    this.updateTreeBranchState(null, null, keys);
+                }
+            },
+            updateTreeBranchState(node, path, keys) {
+                if (node) {
+                    if (this.isSelected(node, keys)) {
+                        this.expandPath(path);
+                        delete keys[node.key];
+                    }
+
+                    if (Object.keys(keys).length && node.children) {
+                        for (let childNode of node.children) {
+                            path.push(node.key);
+                            this.updateTreeBranchState(childNode, path, keys);
+                        }
+                    }
+                } else {
+                    for (let childNode of this.options) {
+                        this.updateTreeBranchState(childNode, [], keys);
+                    }
+                }
+            },
+            expandPath(path) {
+                if (path.length > 0) {
+                    for (let key of path) {
+                        this.d_expandedKeys[key] = true;
+                    }
+
+                    this.d_expandedKeys = { ...this.d_expandedKeys };
+                    this.$emit('update:expandedKeys', this.d_expandedKeys);
+                }
+            },
+            scrollValueInView() {
+                if (this.overlay) {
+                    let selectedItem = findSingle(this.overlay, '[data-p-selected="true"]');
+
+                    if (selectedItem) {
+                        selectedItem.scrollIntoView({ block: 'nearest', inline: 'start' });
+                    }
+                }
+            }
+        },
+        computed: {
+            nodeMap() {
+                const nodeMap = {};
+
+                this.options?.forEach((node) => this.fillNodeMap(node, nodeMap));
+
+                return nodeMap;
+            },
+            selectedNodes() {
+                let selectedNodes = [];
+
+                if (this.d_value && this.options && this.options.length > 0) {
+                    Object.keys(this.d_value).forEach((key) => {
+                        const node = this.nodeMap[key];
+
+                        if (this.isSelected(node, this.d_value)) {
+                            selectedNodes.push(node);
+                        }
+                    });
+                }
+
+                return selectedNodes;
+            },
+            label() {
+                let value = this.selectedNodes;
+                let label;
+
+                if (value.length) {
+                    if (isNotEmpty(this.maxSelectedLabels) && value.length > this.maxSelectedLabels) {
+                        label = this.getSelectedItemsLabel();
+                    } else {
+                        label = value.map((node) => node.label).join(', ');
+                    }
+                } else {
+                    label = this.placeholder;
+                }
+
+                return label;
+            },
+            chipSelectedItems() {
+                return isNotEmpty(this.maxSelectedLabels) && this.d_value && Object.keys(this.d_value).length > this.maxSelectedLabels;
+            },
+            emptyMessageText() {
+                return this.emptyMessage || this.$bumblevue.config.locale.emptyMessage;
+            },
+            emptyValue() {
+                return !this.$filled;
+            },
+            emptyOptions() {
+                return !this.options || this.options.length === 0;
+            },
+            listId() {
+                return this.$id + '_list';
+            },
+            hasFluid() {
+                return isEmpty(this.fluid) ? !!this.$pcFluid : this.fluid;
+            },
+            isClearIconVisible() {
+                return this.showClear && this.d_value != null && isNotEmpty(this.options) && !this.disabled && !this.loading;
+            }
+        },
+        components: {
+            TSTree: Tree,
+            Chip,
+            Portal,
+            ChevronDownIcon,
+            TimesIcon
+        },
+        directives: {
+            ripple: Ripple
+        }
+    };
+</script>
+
 <template>
     <div ref="container" :class="cx('root')" :style="sx('root')" @click="onClick" v-bind="ptmi('root')">
         <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
@@ -124,582 +703,3 @@
         </Portal>
     </div>
 </template>
-
-<script>
-import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
-import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
-import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
-import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
-import { ConnectedOverlayScrollHandler } from '@cjdevstudios/bumblevue/core/utils';
-import ChevronDownIcon from '@cjdevstudios/bumblevue/icons/chevrondown';
-import TimesIcon from '@cjdevstudios/bumblevue/icons/times';
-import Chip from '@cjdevstudios/bumblevue/chip';
-import OverlayEventBus from '@cjdevstudios/bumblevue/overlayeventbus';
-import Portal from '@cjdevstudios/bumblevue/portal';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-import Tree from '@cjdevstudios/bumblevue/tree';
-import TreeSelectStyle from '@cjdevstudios/bumblevue/treeselect/style';
-
-export default {
-    name: 'TreeSelect',
-    extends: BaseInput,
-    inheritAttrs: false,
-    props: {
-        options: Array,
-        scrollHeight: {
-            type: String,
-            default: '20rem'
-        },
-        placeholder: {
-            type: String,
-            default: null
-        },
-        tabindex: {
-            type: Number,
-            default: null
-        },
-        selectionMode: {
-            type: String,
-            default: 'single'
-        },
-        selectedItemsLabel: {
-            type: String,
-            default: null
-        },
-        maxSelectedLabels: {
-            type: Number,
-            default: null
-        },
-        appendTo: {
-            type: [String, Object],
-            default: 'body'
-        },
-        emptyMessage: {
-            type: String,
-            default: null
-        },
-        display: {
-            type: String,
-            default: 'comma'
-        },
-        metaKeySelection: {
-            type: Boolean,
-            default: false
-        },
-        loading: {
-            type: Boolean,
-            default: false
-        },
-        loadingIcon: {
-            type: String,
-            default: undefined
-        },
-        loadingMode: {
-            type: String,
-            default: 'mask'
-        },
-        showClear: {
-            type: Boolean,
-            default: false
-        },
-        clearIcon: {
-            type: String,
-            default: undefined
-        },
-        filter: {
-            type: Boolean,
-            default: false
-        },
-        filterBy: {
-            type: [String, Function],
-            default: 'label'
-        },
-        filterMode: {
-            type: String,
-            default: 'lenient'
-        },
-        filterPlaceholder: {
-            type: String,
-            default: null
-        },
-        filterLocale: {
-            type: String,
-            default: undefined
-        },
-        inputId: {
-            type: String,
-            default: null
-        },
-        inputClass: {
-            type: [String, Object],
-            default: null
-        },
-        inputStyle: {
-            type: Object,
-            default: null
-        },
-        inputProps: {
-            type: null,
-            default: null
-        },
-        panelClass: {
-            type: [String, Object],
-            default: null
-        },
-        panelProps: {
-            type: null,
-            default: null
-        },
-        ariaLabelledby: {
-            type: String,
-            default: null
-        },
-        ariaLabel: {
-            type: String,
-            default: null
-        },
-        expandedKeys: {
-            type: null,
-            default: null
-        }
-    },
-    emits: ['before-show', 'before-hide', 'change', 'show', 'hide', 'node-select', 'node-unselect', 'node-expand', 'node-collapse', 'filter', 'focus', 'blur', 'update:expandedKeys'],
-    style: TreeSelectStyle,
-    provide() {
-        return {
-            $pcTreeSelect: this,
-            $parentInstance: this
-        };
-    },
-    inject: {
-        $pcFluid: { default: null }
-    },
-    data() {
-        return {
-            focused: false,
-            overlayVisible: false,
-            d_expandedKeys: this.expandedKeys || {}
-        };
-    },
-    watch: {
-        modelValue: {
-            handler: function () {
-                if (!this.selfChange) {
-                    this.updateTreeState();
-                }
-
-                this.selfChange = false;
-            },
-            immediate: true
-        },
-        options() {
-            this.updateTreeState();
-        },
-        expandedKeys(value) {
-            this.d_expandedKeys = value;
-        }
-    },
-    outsideClickListener: null,
-    resizeListener: null,
-    scrollHandler: null,
-    overlay: null,
-    selfChange: false,
-    selfClick: false,
-    beforeUnmount() {
-        this.unbindOutsideClickListener();
-        this.unbindResizeListener();
-
-        if (this.scrollHandler) {
-            this.scrollHandler.destroy();
-            this.scrollHandler = null;
-        }
-
-        if (this.overlay) {
-            ZIndex.clear(this.overlay);
-            this.overlay = null;
-        }
-    },
-    mounted() {
-        this.updateTreeState();
-    },
-    methods: {
-        show() {
-            this.$emit('before-show');
-            this.overlayVisible = true;
-        },
-        hide() {
-            this.$emit('before-hide');
-            this.overlayVisible = false;
-            this.$refs.focusInput.focus();
-        },
-        onFocus(event) {
-            this.focused = true;
-            this.$emit('focus', event);
-        },
-        onBlur(event) {
-            this.focused = false;
-            this.$emit('blur', event);
-            this.formField.onBlur?.();
-        },
-        onClick(event) {
-            if (this.disabled) {
-                return;
-            }
-
-            if (event.target.tagName === 'INPUT' || event.target.getAttribute('data-pc-section') === 'clearicon' || event.target.closest('[data-pc-section="clearicon"]')) {
-                return;
-            } else if (!this.overlay || !this.overlay.contains(event.target)) {
-                if (this.overlayVisible) this.hide();
-                else this.show();
-
-                focus(this.$refs.focusInput);
-            }
-        },
-        onClearClick() {
-            this.onSelectionChange(null);
-        },
-        onSelectionChange(keys) {
-            this.selfChange = true;
-            this.writeValue(keys);
-            this.$emit('change', keys);
-        },
-        onNodeSelect(node) {
-            this.$emit('node-select', node);
-
-            if (this.selectionMode === 'single') {
-                this.hide();
-            }
-        },
-        onNodeUnselect(node) {
-            this.$emit('node-unselect', node);
-        },
-        onNodeToggle(keys) {
-            this.d_expandedKeys = keys;
-
-            this.$emit('update:expandedKeys', this.d_expandedKeys);
-        },
-        getSelectedItemsLabel() {
-            let pattern = /{(.*?)}/;
-            const selectedItemsLabel = this.selectedItemsLabel || this.$bumblevue.config.locale.selectionMessage;
-
-            if (pattern.test(selectedItemsLabel)) {
-                return selectedItemsLabel.replace(selectedItemsLabel.match(pattern)[0], Object.keys(this.d_value).length + '');
-            }
-
-            return selectedItemsLabel;
-        },
-        onFirstHiddenFocus(event) {
-            const focusableEl = event.relatedTarget === this.$refs.focusInput ? getFirstFocusableElement(this.overlay, ':not([data-p-hidden-focusable="true"])') : this.$refs.focusInput;
-
-            focus(focusableEl);
-        },
-        onLastHiddenFocus(event) {
-            const focusableEl = event.relatedTarget === this.$refs.focusInput ? getLastFocusableElement(this.overlay, ':not([data-p-hidden-focusable="true"])') : this.$refs.focusInput;
-
-            focus(focusableEl);
-        },
-        onKeyDown(event) {
-            switch (event.code) {
-                case 'ArrowDown':
-                    this.onArrowDownKey(event);
-                    break;
-
-                case 'Space':
-                case 'Enter':
-                case 'NumpadEnter':
-                    this.onEnterKey(event);
-                    break;
-
-                case 'Escape':
-                    this.onEscapeKey(event);
-                    break;
-
-                case 'Tab':
-                    this.onTabKey(event);
-                    break;
-
-                default:
-                    break;
-            }
-        },
-        onArrowDownKey(event) {
-            if (this.overlayVisible) return;
-
-            this.show();
-
-            this.$nextTick(() => {
-                const treeNodeEl = find(this.$refs.tree.$el, '[data-pc-section="treeitem"]');
-                const focusedElement = [...treeNodeEl].find((item) => item.getAttribute('tabindex') === '0');
-
-                focus(focusedElement);
-            });
-
-            event.preventDefault();
-        },
-        onEnterKey(event) {
-            if (this.overlayVisible) {
-                this.hide();
-            } else {
-                this.onArrowDownKey(event);
-            }
-
-            event.preventDefault();
-        },
-        onEscapeKey(event) {
-            if (this.overlayVisible) {
-                this.hide();
-                event.preventDefault();
-            }
-        },
-        onTabKey(event, pressedInInputText = false) {
-            if (!pressedInInputText) {
-                if (this.overlayVisible && this.hasFocusableElements()) {
-                    focus(this.$refs.firstHiddenFocusableElementOnOverlay);
-
-                    event.preventDefault();
-                }
-            }
-        },
-        hasFocusableElements() {
-            return getFocusableElements(this.overlay, ':not([data-p-hidden-focusable="true"])').length > 0;
-        },
-        onOverlayEnter(el) {
-            ZIndex.set('overlay', el, this.$bumblevue.config.zIndex.overlay);
-
-            addStyle(el, { position: 'absolute', top: '0' });
-            this.alignOverlay();
-            this.focus();
-
-            // Issue: #7508
-            this.$attrSelector && el.setAttribute(this.$attrSelector, '');
-        },
-        onOverlayAfterEnter() {
-            this.bindOutsideClickListener();
-            this.bindScrollListener();
-            this.bindResizeListener();
-            this.scrollValueInView();
-            this.$emit('show');
-        },
-        onOverlayLeave() {
-            this.unbindOutsideClickListener();
-            this.unbindScrollListener();
-            this.unbindResizeListener();
-            this.$emit('hide');
-            this.overlay = null;
-        },
-        onOverlayAfterLeave(el) {
-            ZIndex.clear(el);
-        },
-        focus() {
-            let focusableElements = getFocusableElements(this.overlay);
-
-            if (focusableElements && focusableElements.length > 0) {
-                focusableElements[0].focus();
-            }
-        },
-        alignOverlay() {
-            if (this.appendTo === 'self') {
-                relativePosition(this.overlay, this.$el);
-            } else {
-                this.overlay.style.minWidth = getOuterWidth(this.$el) + 'px';
-                absolutePosition(this.overlay, this.$el);
-            }
-        },
-        bindOutsideClickListener() {
-            if (!this.outsideClickListener) {
-                this.outsideClickListener = (event) => {
-                    if (this.overlayVisible && !this.selfClick && this.isOutsideClicked(event)) {
-                        this.hide();
-                    }
-
-                    this.selfClick = false;
-                };
-
-                document.addEventListener('click', this.outsideClickListener, true);
-            }
-        },
-        unbindOutsideClickListener() {
-            if (this.outsideClickListener) {
-                document.removeEventListener('click', this.outsideClickListener, true);
-                this.outsideClickListener = null;
-            }
-        },
-        bindScrollListener() {
-            if (!this.scrollHandler) {
-                this.scrollHandler = new ConnectedOverlayScrollHandler(this.$refs.container, () => {
-                    if (this.overlayVisible) {
-                        this.hide();
-                    }
-                });
-            }
-
-            this.scrollHandler.bindScrollListener();
-        },
-        unbindScrollListener() {
-            if (this.scrollHandler) {
-                this.scrollHandler.unbindScrollListener();
-            }
-        },
-        bindResizeListener() {
-            if (!this.resizeListener) {
-                this.resizeListener = () => {
-                    if (this.overlayVisible && !isTouchDevice()) {
-                        this.hide();
-                    }
-                };
-
-                window.addEventListener('resize', this.resizeListener);
-            }
-        },
-        unbindResizeListener() {
-            if (this.resizeListener) {
-                window.removeEventListener('resize', this.resizeListener);
-                this.resizeListener = null;
-            }
-        },
-        isOutsideClicked(event) {
-            return !(this.$el.isSameNode(event.target) || this.$el.contains(event.target) || (this.overlay && this.overlay.contains(event.target)));
-        },
-        overlayRef(el) {
-            this.overlay = el;
-        },
-        onOverlayClick(event) {
-            OverlayEventBus.emit('overlay-click', {
-                originalEvent: event,
-                target: this.$el
-            });
-
-            this.selfClick = true;
-        },
-        onOverlayKeydown(event) {
-            if (event.code === 'Escape') this.hide();
-        },
-        fillNodeMap(node, nodeMap) {
-            nodeMap[node.key] = node;
-
-            if (node.children && node.children.length > 0) {
-                node.children.forEach((children) => this.fillNodeMap(children, nodeMap));
-            }
-        },
-        isSelected(node, keys) {
-            return this.selectionMode === 'checkbox' ? keys[node?.key] && keys[node?.key].checked : keys[node?.key];
-        },
-        updateTreeState() {
-            let keys = { ...this.d_value };
-
-            if (keys && this.options && this.options.length > 0) {
-                this.updateTreeBranchState(null, null, keys);
-            }
-        },
-        updateTreeBranchState(node, path, keys) {
-            if (node) {
-                if (this.isSelected(node, keys)) {
-                    this.expandPath(path);
-                    delete keys[node.key];
-                }
-
-                if (Object.keys(keys).length && node.children) {
-                    for (let childNode of node.children) {
-                        path.push(node.key);
-                        this.updateTreeBranchState(childNode, path, keys);
-                    }
-                }
-            } else {
-                for (let childNode of this.options) {
-                    this.updateTreeBranchState(childNode, [], keys);
-                }
-            }
-        },
-        expandPath(path) {
-            if (path.length > 0) {
-                for (let key of path) {
-                    this.d_expandedKeys[key] = true;
-                }
-
-                this.d_expandedKeys = { ...this.d_expandedKeys };
-                this.$emit('update:expandedKeys', this.d_expandedKeys);
-            }
-        },
-        scrollValueInView() {
-            if (this.overlay) {
-                let selectedItem = findSingle(this.overlay, '[data-p-selected="true"]');
-
-                if (selectedItem) {
-                    selectedItem.scrollIntoView({ block: 'nearest', inline: 'start' });
-                }
-            }
-        }
-    },
-    computed: {
-        nodeMap() {
-            const nodeMap = {};
-
-            this.options?.forEach((node) => this.fillNodeMap(node, nodeMap));
-
-            return nodeMap;
-        },
-        selectedNodes() {
-            let selectedNodes = [];
-
-            if (this.d_value && this.options && this.options.length > 0) {
-                Object.keys(this.d_value).forEach((key) => {
-                    const node = this.nodeMap[key];
-
-                    if (this.isSelected(node, this.d_value)) {
-                        selectedNodes.push(node);
-                    }
-                });
-            }
-
-            return selectedNodes;
-        },
-        label() {
-            let value = this.selectedNodes;
-            let label;
-
-            if (value.length) {
-                if (isNotEmpty(this.maxSelectedLabels) && value.length > this.maxSelectedLabels) {
-                    label = this.getSelectedItemsLabel();
-                } else {
-                    label = value.map((node) => node.label).join(', ');
-                }
-            } else {
-                label = this.placeholder;
-            }
-
-            return label;
-        },
-        chipSelectedItems() {
-            return isNotEmpty(this.maxSelectedLabels) && this.d_value && Object.keys(this.d_value).length > this.maxSelectedLabels;
-        },
-        emptyMessageText() {
-            return this.emptyMessage || this.$bumblevue.config.locale.emptyMessage;
-        },
-        emptyValue() {
-            return !this.$filled;
-        },
-        emptyOptions() {
-            return !this.options || this.options.length === 0;
-        },
-        listId() {
-            return this.$id + '_list';
-        },
-        hasFluid() {
-            return isEmpty(this.fluid) ? !!this.$pcFluid : this.fluid;
-        },
-        isClearIconVisible() {
-            return this.showClear && this.d_value != null && isNotEmpty(this.options) && !this.disabled && !this.loading;
-        }
-    },
-    components: {
-        TSTree: Tree,
-        Chip,
-        Portal,
-        ChevronDownIcon,
-        TimesIcon
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
-</script>

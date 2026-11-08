@@ -1,3 +1,21 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+import { createApp } from "vue";
+import BumbleVue from "@cjdevstudios/bumblevue/config";
+const app = createApp(App);
+
+app.use(BumbleVue, { unstyled: true });
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -8,21 +26,3 @@
         <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-import { createApp } from "vue";
-import BumbleVue from "@cjdevstudios/bumblevue/config";
-const app = createApp(App);
-
-app.use(BumbleVue, { unstyled: true });
-`
-            }
-        };
-    }
-};
-</script>

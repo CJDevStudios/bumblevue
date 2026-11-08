@@ -1,18 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>emits</i> object defines callbacks to handle events emitted by the component within the Dialog.</p>
-
-        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
-        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import ProductListDemo from './ProductListDemo';
 import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
 
@@ -31,9 +22,9 @@ const showProducts = () => {
     });
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 <script setup>
 /* ProductListDemo.vue */
 const emit = defineEmits(['cancel', 'save'])
@@ -47,8 +38,17 @@ function saveButtonClick() {
 }
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>emits</i> object defines callbacks to handle events emitted by the component within the Dialog.</p>
+
+        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
+        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

@@ -1,3 +1,24 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Splitter'),
+                        key: 'Splitter'
+                    },
+                    {
+                        data: getPTOptions('SplitterPanel'),
+                        key: 'SplitterPanel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Splitter style="height: 300px" class="w-full">
@@ -6,24 +27,3 @@
         </Splitter>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Splitter'),
-                    key: 'Splitter'
-                },
-                {
-                    data: getPTOptions('SplitterPanel'),
-                    key: 'SplitterPanel'
-                }
-            ]
-        };
-    }
-};
-</script>

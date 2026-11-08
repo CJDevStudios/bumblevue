@@ -1,3 +1,297 @@
+<script>
+    import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
+    import SortAltIcon from '@cjdevstudios/bumblevue/icons/sortalt';
+    import SortAmountDownIcon from '@cjdevstudios/bumblevue/icons/sortamountdown';
+    import SortAmountUpAltIcon from '@cjdevstudios/bumblevue/icons/sortamountupalt';
+    import Badge from '@cjdevstudios/bumblevue/badge';
+    import { mergeProps } from 'vue';
+    import ColumnFilter from './ColumnFilter.vue';
+    import HeaderCheckbox from './HeaderCheckbox.vue';
+
+    export default {
+        name: 'HeaderCell',
+        hostName: 'DataTable',
+        extends: BaseComponent,
+        emits: [
+            'column-click',
+            'column-mousedown',
+            'column-dragstart',
+            'column-dragover',
+            'column-dragleave',
+            'column-drop',
+            'column-resizestart',
+            'checkbox-change',
+            'filter-change',
+            'filter-apply',
+            'operator-change',
+            'matchmode-change',
+            'constraint-add',
+            'constraint-remove',
+            'filter-clear',
+            'apply-click'
+        ],
+        props: {
+            column: {
+                type: Object,
+                default: null
+            },
+            index: {
+                type: Number,
+                default: null
+            },
+            resizableColumns: {
+                type: Boolean,
+                default: false
+            },
+            groupRowsBy: {
+                type: [Array, String, Function],
+                default: null
+            },
+            sortMode: {
+                type: String,
+                default: 'single'
+            },
+            groupRowSortField: {
+                type: [String, Function],
+                default: null
+            },
+            sortField: {
+                type: [String, Function],
+                default: null
+            },
+            sortOrder: {
+                type: Number,
+                default: null
+            },
+            multiSortMeta: {
+                type: Array,
+                default: null
+            },
+            allRowsSelected: {
+                type: Boolean,
+                default: false
+            },
+            empty: {
+                type: Boolean,
+                default: false
+            },
+            filterDisplay: {
+                type: String,
+                default: null
+            },
+            filters: {
+                type: Object,
+                default: null
+            },
+            filtersStore: {
+                type: Object,
+                default: null
+            },
+            filterColumn: {
+                type: Boolean,
+                default: false
+            },
+            reorderableColumns: {
+                type: Boolean,
+                default: false
+            },
+            filterInputProps: {
+                type: null,
+                default: null
+            },
+            filterButtonProps: {
+                type: null,
+                default: null
+            }
+        },
+        data() {
+            return {
+                styleObject: {}
+            };
+        },
+        mounted() {
+            if (this.columnProp('frozen')) {
+                this.updateStickyPosition();
+            }
+        },
+        updated() {
+            if (this.columnProp('frozen')) {
+                this.updateStickyPosition();
+            }
+        },
+        methods: {
+            columnProp(prop) {
+                return getVNodeProp(this.column, prop);
+            },
+            getColumnPT(key) {
+                const columnMetaData = {
+                    props: this.column.props,
+                    parent: {
+                        instance: this,
+                        props: this.$props,
+                        state: this.$data
+                    },
+                    context: {
+                        index: this.index,
+                        sortable: this.columnProp('sortable') === '' || this.columnProp('sortable'),
+                        sorted: this.isColumnSorted(),
+                        resizable: this.resizableColumns,
+                        size: this.$parentInstance?.$parentInstance?.size,
+                        showGridlines: this.$parentInstance?.$parentInstance?.showGridlines || false
+                    }
+                };
+
+                return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
+            },
+            getColumnProp() {
+                return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo:
+            },
+            onClick(event) {
+                this.$emit('column-click', { originalEvent: event, column: this.column });
+            },
+            onKeyDown(event) {
+                if ((event.code === 'Enter' || event.code === 'NumpadEnter' || event.code === 'Space') && event.currentTarget.nodeName === 'TH' && getAttribute(event.currentTarget, 'data-p-sortable-column')) {
+                    this.$emit('column-click', { originalEvent: event, column: this.column });
+                    event.preventDefault();
+                }
+            },
+            onMouseDown(event) {
+                this.$emit('column-mousedown', { originalEvent: event, column: this.column });
+            },
+            onDragStart(event) {
+                this.$emit('column-dragstart', { originalEvent: event, column: this.column });
+            },
+            onDragOver(event) {
+                this.$emit('column-dragover', { originalEvent: event, column: this.column });
+            },
+            onDragLeave(event) {
+                this.$emit('column-dragleave', { originalEvent: event, column: this.column });
+            },
+            onDrop(event) {
+                this.$emit('column-drop', { originalEvent: event, column: this.column });
+            },
+            onResizeStart(event) {
+                this.$emit('column-resizestart', event);
+            },
+            getMultiSortMetaIndex() {
+                return this.multiSortMeta.findIndex((meta) => meta.field === this.columnProp('field') || meta.field === this.columnProp('sortField'));
+            },
+            getBadgeValue() {
+                let index = this.getMultiSortMetaIndex();
+
+                return this.groupRowsBy && this.groupRowsBy === this.groupRowSortField && index > -1 ? index : index + 1;
+            },
+            isMultiSorted() {
+                return this.sortMode === 'multiple' && this.columnProp('sortable') && this.getMultiSortMetaIndex() > -1;
+            },
+            isColumnSorted() {
+                return this.sortMode === 'single' ? this.sortField && (this.sortField === this.columnProp('field') || this.sortField === this.columnProp('sortField')) : this.isMultiSorted();
+            },
+            updateStickyPosition() {
+                if (this.columnProp('frozen')) {
+                    let align = this.columnProp('alignFrozen');
+
+                    if (align === 'right') {
+                        let pos = 0;
+                        let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (next) {
+                            pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
+                        }
+
+                        this.styleObject.insetInlineEnd = pos + 'px';
+                    } else {
+                        let pos = 0;
+                        let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
+
+                        if (prev) {
+                            pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
+                        }
+
+                        this.styleObject.insetInlineStart = pos + 'px';
+                    }
+
+                    let filterRow = this.$el.parentElement.nextElementSibling;
+
+                    if (filterRow) {
+                        let index = getIndex(this.$el);
+
+                        if (filterRow.children[index]) {
+                            filterRow.children[index].style['inset-inline-start'] = this.styleObject['inset-inline-start'];
+                            filterRow.children[index].style['inset-inline-end'] = this.styleObject['inset-inline-end'];
+                        }
+                    }
+                }
+            },
+            onHeaderCheckboxChange(event) {
+                this.$emit('checkbox-change', event);
+            }
+        },
+        computed: {
+            containerClass() {
+                return [this.cx('headerCell'), this.filterColumn ? this.columnProp('filterHeaderClass') : this.columnProp('headerClass'), this.columnProp('class')];
+            },
+            containerStyle() {
+                let headerStyle = this.filterColumn ? this.columnProp('filterHeaderStyle') : this.columnProp('headerStyle');
+                let columnStyle = this.columnProp('style');
+
+                return this.columnProp('frozen') ? [columnStyle, headerStyle, this.styleObject] : [columnStyle, headerStyle];
+            },
+            sortState() {
+                let sorted = false;
+                let sortOrder = null;
+
+                if (this.sortMode === 'single') {
+                    sorted = this.sortField && (this.sortField === this.columnProp('field') || this.sortField === this.columnProp('sortField'));
+                    sortOrder = sorted ? this.sortOrder : 0;
+                } else if (this.sortMode === 'multiple') {
+                    let metaIndex = this.getMultiSortMetaIndex();
+
+                    if (metaIndex > -1) {
+                        sorted = true;
+                        sortOrder = this.multiSortMeta[metaIndex].order;
+                    }
+                }
+
+                return {
+                    sorted,
+                    sortOrder
+                };
+            },
+            sortableColumnIcon() {
+                const { sorted, sortOrder } = this.sortState;
+
+                if (!sorted) return SortAltIcon;
+                else if (sorted && sortOrder > 0) return SortAmountUpAltIcon;
+                else if (sorted && sortOrder < 0) return SortAmountDownIcon;
+
+                return null;
+            },
+            ariaSort() {
+                if (this.columnProp('sortable')) {
+                    const { sorted, sortOrder } = this.sortState;
+
+                    if (sorted && sortOrder < 0) return 'descending';
+                    else if (sorted && sortOrder > 0) return 'ascending';
+                    else return 'none';
+                } else {
+                    return null;
+                }
+            }
+        },
+        components: {
+            Badge,
+            DTHeaderCheckbox: HeaderCheckbox,
+            DTColumnFilter: ColumnFilter,
+            SortAltIcon: SortAltIcon,
+            SortAmountUpAltIcon: SortAmountUpAltIcon,
+            SortAmountDownIcon: SortAmountDownIcon
+        }
+    };
+</script>
+
 <template>
     <th
         :style="containerStyle"
@@ -82,297 +376,3 @@
         </div>
     </th>
 </template>
-
-<script>
-import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import { getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
-import SortAltIcon from '@cjdevstudios/bumblevue/icons/sortalt';
-import SortAmountDownIcon from '@cjdevstudios/bumblevue/icons/sortamountdown';
-import SortAmountUpAltIcon from '@cjdevstudios/bumblevue/icons/sortamountupalt';
-import Badge from '@cjdevstudios/bumblevue/badge';
-import { mergeProps } from 'vue';
-import ColumnFilter from './ColumnFilter.vue';
-import HeaderCheckbox from './HeaderCheckbox.vue';
-
-export default {
-    name: 'HeaderCell',
-    hostName: 'DataTable',
-    extends: BaseComponent,
-    emits: [
-        'column-click',
-        'column-mousedown',
-        'column-dragstart',
-        'column-dragover',
-        'column-dragleave',
-        'column-drop',
-        'column-resizestart',
-        'checkbox-change',
-        'filter-change',
-        'filter-apply',
-        'operator-change',
-        'matchmode-change',
-        'constraint-add',
-        'constraint-remove',
-        'filter-clear',
-        'apply-click'
-    ],
-    props: {
-        column: {
-            type: Object,
-            default: null
-        },
-        index: {
-            type: Number,
-            default: null
-        },
-        resizableColumns: {
-            type: Boolean,
-            default: false
-        },
-        groupRowsBy: {
-            type: [Array, String, Function],
-            default: null
-        },
-        sortMode: {
-            type: String,
-            default: 'single'
-        },
-        groupRowSortField: {
-            type: [String, Function],
-            default: null
-        },
-        sortField: {
-            type: [String, Function],
-            default: null
-        },
-        sortOrder: {
-            type: Number,
-            default: null
-        },
-        multiSortMeta: {
-            type: Array,
-            default: null
-        },
-        allRowsSelected: {
-            type: Boolean,
-            default: false
-        },
-        empty: {
-            type: Boolean,
-            default: false
-        },
-        filterDisplay: {
-            type: String,
-            default: null
-        },
-        filters: {
-            type: Object,
-            default: null
-        },
-        filtersStore: {
-            type: Object,
-            default: null
-        },
-        filterColumn: {
-            type: Boolean,
-            default: false
-        },
-        reorderableColumns: {
-            type: Boolean,
-            default: false
-        },
-        filterInputProps: {
-            type: null,
-            default: null
-        },
-        filterButtonProps: {
-            type: null,
-            default: null
-        }
-    },
-    data() {
-        return {
-            styleObject: {}
-        };
-    },
-    mounted() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-    },
-    updated() {
-        if (this.columnProp('frozen')) {
-            this.updateStickyPosition();
-        }
-    },
-    methods: {
-        columnProp(prop) {
-            return getVNodeProp(this.column, prop);
-        },
-        getColumnPT(key) {
-            const columnMetaData = {
-                props: this.column.props,
-                parent: {
-                    instance: this,
-                    props: this.$props,
-                    state: this.$data
-                },
-                context: {
-                    index: this.index,
-                    sortable: this.columnProp('sortable') === '' || this.columnProp('sortable'),
-                    sorted: this.isColumnSorted(),
-                    resizable: this.resizableColumns,
-                    size: this.$parentInstance?.$parentInstance?.size,
-                    showGridlines: this.$parentInstance?.$parentInstance?.showGridlines || false
-                }
-            };
-
-            return mergeProps(this.ptm(`column.${key}`, { column: columnMetaData }), this.ptm(`column.${key}`, columnMetaData), this.ptmo(this.getColumnProp(), key, columnMetaData));
-        },
-        getColumnProp() {
-            return this.column.props && this.column.props.pt ? this.column.props.pt : undefined; //@todo:
-        },
-        onClick(event) {
-            this.$emit('column-click', { originalEvent: event, column: this.column });
-        },
-        onKeyDown(event) {
-            if ((event.code === 'Enter' || event.code === 'NumpadEnter' || event.code === 'Space') && event.currentTarget.nodeName === 'TH' && getAttribute(event.currentTarget, 'data-p-sortable-column')) {
-                this.$emit('column-click', { originalEvent: event, column: this.column });
-                event.preventDefault();
-            }
-        },
-        onMouseDown(event) {
-            this.$emit('column-mousedown', { originalEvent: event, column: this.column });
-        },
-        onDragStart(event) {
-            this.$emit('column-dragstart', { originalEvent: event, column: this.column });
-        },
-        onDragOver(event) {
-            this.$emit('column-dragover', { originalEvent: event, column: this.column });
-        },
-        onDragLeave(event) {
-            this.$emit('column-dragleave', { originalEvent: event, column: this.column });
-        },
-        onDrop(event) {
-            this.$emit('column-drop', { originalEvent: event, column: this.column });
-        },
-        onResizeStart(event) {
-            this.$emit('column-resizestart', event);
-        },
-        getMultiSortMetaIndex() {
-            return this.multiSortMeta.findIndex((meta) => meta.field === this.columnProp('field') || meta.field === this.columnProp('sortField'));
-        },
-        getBadgeValue() {
-            let index = this.getMultiSortMetaIndex();
-
-            return this.groupRowsBy && this.groupRowsBy === this.groupRowSortField && index > -1 ? index : index + 1;
-        },
-        isMultiSorted() {
-            return this.sortMode === 'multiple' && this.columnProp('sortable') && this.getMultiSortMetaIndex() > -1;
-        },
-        isColumnSorted() {
-            return this.sortMode === 'single' ? this.sortField && (this.sortField === this.columnProp('field') || this.sortField === this.columnProp('sortField')) : this.isMultiSorted();
-        },
-        updateStickyPosition() {
-            if (this.columnProp('frozen')) {
-                let align = this.columnProp('alignFrozen');
-
-                if (align === 'right') {
-                    let pos = 0;
-                    let next = getNextElementSibling(this.$el, '[data-p-frozen-column="true"]');
-
-                    if (next) {
-                        pos = getOuterWidth(next) + parseFloat(next.style['inset-inline-end'] || 0);
-                    }
-
-                    this.styleObject.insetInlineEnd = pos + 'px';
-                } else {
-                    let pos = 0;
-                    let prev = getPreviousElementSibling(this.$el, '[data-p-frozen-column="true"]');
-
-                    if (prev) {
-                        pos = getOuterWidth(prev) + parseFloat(prev.style['inset-inline-start'] || 0);
-                    }
-
-                    this.styleObject.insetInlineStart = pos + 'px';
-                }
-
-                let filterRow = this.$el.parentElement.nextElementSibling;
-
-                if (filterRow) {
-                    let index = getIndex(this.$el);
-
-                    if (filterRow.children[index]) {
-                        filterRow.children[index].style['inset-inline-start'] = this.styleObject['inset-inline-start'];
-                        filterRow.children[index].style['inset-inline-end'] = this.styleObject['inset-inline-end'];
-                    }
-                }
-            }
-        },
-        onHeaderCheckboxChange(event) {
-            this.$emit('checkbox-change', event);
-        }
-    },
-    computed: {
-        containerClass() {
-            return [this.cx('headerCell'), this.filterColumn ? this.columnProp('filterHeaderClass') : this.columnProp('headerClass'), this.columnProp('class')];
-        },
-        containerStyle() {
-            let headerStyle = this.filterColumn ? this.columnProp('filterHeaderStyle') : this.columnProp('headerStyle');
-            let columnStyle = this.columnProp('style');
-
-            return this.columnProp('frozen') ? [columnStyle, headerStyle, this.styleObject] : [columnStyle, headerStyle];
-        },
-        sortState() {
-            let sorted = false;
-            let sortOrder = null;
-
-            if (this.sortMode === 'single') {
-                sorted = this.sortField && (this.sortField === this.columnProp('field') || this.sortField === this.columnProp('sortField'));
-                sortOrder = sorted ? this.sortOrder : 0;
-            } else if (this.sortMode === 'multiple') {
-                let metaIndex = this.getMultiSortMetaIndex();
-
-                if (metaIndex > -1) {
-                    sorted = true;
-                    sortOrder = this.multiSortMeta[metaIndex].order;
-                }
-            }
-
-            return {
-                sorted,
-                sortOrder
-            };
-        },
-        sortableColumnIcon() {
-            const { sorted, sortOrder } = this.sortState;
-
-            if (!sorted) return SortAltIcon;
-            else if (sorted && sortOrder > 0) return SortAmountUpAltIcon;
-            else if (sorted && sortOrder < 0) return SortAmountDownIcon;
-
-            return null;
-        },
-        ariaSort() {
-            if (this.columnProp('sortable')) {
-                const { sorted, sortOrder } = this.sortState;
-
-                if (sorted && sortOrder < 0) return 'descending';
-                else if (sorted && sortOrder > 0) return 'ascending';
-                else return 'none';
-            } else {
-                return null;
-            }
-        }
-    },
-    components: {
-        Badge,
-        DTHeaderCheckbox: HeaderCheckbox,
-        DTColumnFilter: ColumnFilter,
-        SortAltIcon: SortAltIcon,
-        SortAmountUpAltIcon: SortAmountUpAltIcon,
-        SortAmountDownIcon: SortAmountDownIcon
-    }
-};
-</script>

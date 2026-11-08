@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the InputNumber.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <InputNumber v-model="value" showClear />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: null,
+                code: {
+                    basic: `
 <InputNumber v-model="value" showClear />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <InputNumber v-model="value" showClear />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const value = ref(null);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the InputNumber.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <InputNumber v-model="value" showClear />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

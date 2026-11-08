@@ -1,36 +1,17 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            TreeTable has exclusive integration with ContextMenu using the <i>contextMenu</i> event to open a menu on right click along with <i>contextMenuSelection</i> property and <i>row-contextmenu</i> event to control the selection via the menu.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
-            <TreeTable v-model:contextMenuSelection="selectedNode" :value="nodes" contextMenu @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            nodes: null,
-            selectedNode: null,
-            menuModel: [
-                { label: 'View', icon: 'pi pi-fw pi-search', command: () => this.viewNode(this.selectedNode) },
-                { label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.deleteNode(this.selectedNode) }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                nodes: null,
+                selectedNode: null,
+                menuModel: [
+                    { label: 'View', icon: 'pi pi-fw pi-search', command: () => this.viewNode(this.selectedNode) },
+                    { label: 'Delete', icon: 'pi pi-fw pi-times', command: () => this.deleteNode(this.selectedNode) }
+                ],
+                code: {
+                    basic: `
 <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
 <TreeTable v-model:contextMenuSelection="selectedNode" :value="nodes" contextMenu @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
     <Column field="name" header="Name" expander style="width: 34%"></Column>
@@ -38,7 +19,7 @@ export default {
     <Column field="type" header="Type" style="width: 33%"></Column>
 </TreeTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
@@ -104,7 +85,7 @@ const filterNodes = (nodeList, keyToRemove) => {
 }
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -132,41 +113,60 @@ const filterNodes = (nodeList, keyToRemove) => {
 },
 ...
 `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
+            },
+            onRowContextMenu(event) {
+                this.$refs.cm.show(event.originalEvent);
+            },
+            viewNode(node) {
+                this.$toast.add({ severity: 'info', summary: 'Node Selected', detail: node.data.name, life: 3000 });
+            },
+            deleteNode(node) {
+                this.nodes = this.filterNodes(this.nodes, node.key);
+                this.$toast.add({ severity: 'error', summary: 'Node Deleted', detail: node.data.name, life: 3000 });
+                this.selectedNode = null;
+            },
+            filterNodes(nodes, keyToRemove) {
+                return nodes
+                    .map((node) => {
+                        if (node.key === keyToRemove) {
+                            return null;
+                        }
+
+                        if (node.children) {
+                            const filteredChildren = this.filterNodes(node.children, keyToRemove);
+
+                            return { ...node, children: filteredChildren };
+                        }
+
+                        return node;
+                    })
+                    .filter((node) => node !== null);
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            NodeService.getTreeTableNodes().then((data) => (this.nodes = data));
-        },
-        onRowContextMenu(event) {
-            this.$refs.cm.show(event.originalEvent);
-        },
-        viewNode(node) {
-            this.$toast.add({ severity: 'info', summary: 'Node Selected', detail: node.data.name, life: 3000 });
-        },
-        deleteNode(node) {
-            this.nodes = this.filterNodes(this.nodes, node.key);
-            this.$toast.add({ severity: 'error', summary: 'Node Deleted', detail: node.data.name, life: 3000 });
-            this.selectedNode = null;
-        },
-        filterNodes(nodes, keyToRemove) {
-            return nodes
-                .map((node) => {
-                    if (node.key === keyToRemove) {
-                        return null;
-                    }
-
-                    if (node.children) {
-                        const filteredChildren = this.filterNodes(node.children, keyToRemove);
-
-                        return { ...node, children: filteredChildren };
-                    }
-
-                    return node;
-                })
-                .filter((node) => node !== null);
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            TreeTable has exclusive integration with ContextMenu using the <i>contextMenu</i> event to open a menu on right click along with <i>contextMenuSelection</i> property and <i>row-contextmenu</i> event to control the selection via the menu.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
+            <TreeTable v-model:contextMenuSelection="selectedNode" :value="nodes" contextMenu @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

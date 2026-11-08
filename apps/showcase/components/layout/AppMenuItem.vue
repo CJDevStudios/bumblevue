@@ -1,3 +1,26 @@
+<script>
+    export default {
+        props: {
+            root: {
+                type: Boolean,
+                default: true
+            },
+            menu: {
+                type: Object,
+                default: null
+            }
+        },
+        methods: {
+            isActiveRootmenuItem(menuitem) {
+                return (
+                    menuitem.children &&
+                    !menuitem.children.some((item) => item.to === `/${this.$router.currentRoute.value?.name?.replaceAll('-', '/')}` || (item.children && item.children.some((it) => it.to === `/${this.$router.currentRoute.value.name}`)))
+                );
+            }
+        }
+    };
+</script>
+
 <template>
     <li v-for="(menuitem, index) in menu" :key="`_root${index}`">
         <button v-if="menuitem.children && root" v-styleclass="{ selector: '@next', enterFromClass: 'hidden', enterActiveClass: 'animate-slidedown', leaveToClass: 'hidden', leaveActiveClass: 'animate-slideup' }" type="button">
@@ -35,26 +58,3 @@
         </div>
     </li>
 </template>
-
-<script>
-export default {
-    props: {
-        root: {
-            type: Boolean,
-            default: true
-        },
-        menu: {
-            type: Object,
-            default: null
-        }
-    },
-    methods: {
-        isActiveRootmenuItem(menuitem) {
-            return (
-                menuitem.children &&
-                !menuitem.children.some((item) => item.to === `/${this.$router.currentRoute.value?.name?.replaceAll('-', '/')}` || (item.children && item.children.some((it) => it.to === `/${this.$router.currentRoute.value.name}`)))
-            );
-        }
-    }
-};
-</script>

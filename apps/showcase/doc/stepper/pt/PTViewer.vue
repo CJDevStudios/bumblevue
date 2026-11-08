@@ -1,3 +1,36 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Stepper'),
+                        key: 'Stepper'
+                    },
+                    {
+                        data: getPTOptions('StepList'),
+                        key: 'StepList'
+                    },
+                    {
+                        data: getPTOptions('Step'),
+                        key: 'Step'
+                    },
+                    {
+                        data: getPTOptions('StepPanels'),
+                        key: 'StepPanels'
+                    },
+                    {
+                        data: getPTOptions('StepPanel'),
+                        key: 'StepPanel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Stepper value="1" class="basis-200" linear>
@@ -36,36 +69,3 @@
         </Stepper>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Stepper'),
-                    key: 'Stepper'
-                },
-                {
-                    data: getPTOptions('StepList'),
-                    key: 'StepList'
-                },
-                {
-                    data: getPTOptions('Step'),
-                    key: 'Step'
-                },
-                {
-                    data: getPTOptions('StepPanels'),
-                    key: 'StepPanels'
-                },
-                {
-                    data: getPTOptions('StepPanel'),
-                    key: 'StepPanel'
-                }
-            ]
-        };
-    }
-};
-</script>

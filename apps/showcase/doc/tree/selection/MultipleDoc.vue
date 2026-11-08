@@ -1,36 +1,18 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            More than one node is selectable by setting <i>selectionMode</i> to <i>multiple</i>. By default in multiple selection mode, metaKey press (e.g. <i>⌘</i>) is not necessary to add to existing selections. When the optional
-            <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new node requires meta key to be present. Note that in touch enabled devices, Tree always ignores metaKey.
-        </p>
-        <p>In multiple selection mode, value binding should be a key-value pair where key is the node key and value is a boolean to indicate selection.</p>
-    </DocSectionText>
-    <div class="card">
-        <div class="flex items-center mb-6 gap-2">
-            <ToggleSwitch v-model="checked" inputId="input-metakey" />
-            <label for="input-metakey">MetaKey</label>
-        </div>
-        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-120"></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
-import { NodeService } from '@/service/NodeService';
+    import { NodeService } from '@/service/NodeService';
 
-export default {
-    data() {
-        return {
-            checked: false,
-            nodes: null,
-            selectedKeys: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: false,
+                nodes: null,
+                selectedKeys: null,
+                code: {
+                    basic: `
 <Tree v-model:selectionKeys="selectedKeys" :value="nodes"
     selectionMode="multiple" :metaKeySelection="checked"></Tree>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <div class="flex items-center mb-6 gap-2">
@@ -54,7 +36,7 @@ onMounted(() => {
 });
 <\/script>
 `,
-                data: `
+                    data: `
 {
     key: '0',
     label: 'Documents',
@@ -81,11 +63,29 @@ onMounted(() => {
     ]
 },
 ...`
-            }
-        };
-    },
-    mounted() {
-        NodeService.getTreeNodes().then((data) => (this.nodes = data));
-    }
-};
+                }
+            };
+        },
+        mounted() {
+            NodeService.getTreeNodes().then((data) => (this.nodes = data));
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            More than one node is selectable by setting <i>selectionMode</i> to <i>multiple</i>. By default in multiple selection mode, metaKey press (e.g. <i>⌘</i>) is not necessary to add to existing selections. When the optional
+            <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new node requires meta key to be present. Note that in touch enabled devices, Tree always ignores metaKey.
+        </p>
+        <p>In multiple selection mode, value binding should be a key-value pair where key is the node key and value is a boolean to indicate selection.</p>
+    </DocSectionText>
+    <div class="card">
+        <div class="flex items-center mb-6 gap-2">
+            <ToggleSwitch v-model="checked" inputId="input-metakey" />
+            <label for="input-metakey">MetaKey</label>
+        </div>
+        <Tree v-model:selectionKeys="selectedKeys" :value="nodes" selectionMode="multiple" :metaKeySelection="checked" class="w-full md:w-120"></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

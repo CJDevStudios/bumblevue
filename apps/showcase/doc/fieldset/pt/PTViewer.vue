@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Fieldset'),
+                        key: 'Fieldset'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Fieldset legend="Header" toggleable>
@@ -8,20 +25,3 @@
         </Fieldset>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Fieldset'),
-                    key: 'Fieldset'
-                }
-            ]
-        };
-    }
-};
-</script>

@@ -1,22 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Loading state can be used <i>loading</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <CascadeSelect loading placeholder="Loading..." class="w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <CascadeSelect loading placeholder="Loading..." class="w-56" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <CascadeSelect loading placeholder="Loading..." class="w-56" />
@@ -27,8 +17,18 @@ export default {
 
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Loading state can be used <i>loading</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <CascadeSelect loading placeholder="Loading..." class="w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

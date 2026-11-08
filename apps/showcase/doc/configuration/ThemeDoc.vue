@@ -1,17 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Style mode offers theming based on a design token based architecture. See the <NuxtLink to="/theming/styled">styled mode</NuxtLink> documentation for details such as building your own theme.</p>
-
-        <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -28,8 +20,16 @@ app.use(BumbleVue, {
     }
  });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Style mode offers theming based on a design token based architecture. See the <NuxtLink to="/theming/styled">styled mode</NuxtLink> documentation for details such as building your own theme.</p>
+
+        <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+    </DocSectionText>
+</template>

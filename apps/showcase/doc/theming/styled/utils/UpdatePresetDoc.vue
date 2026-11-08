@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Merges the provided tokens to the current preset, an example would be changing the primary color palette dynamically.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import { updatePreset } from '@cjdevstudios/bumblevue/themes';
 
 const changePrimaryColor() {
@@ -33,8 +26,15 @@ const changePrimaryColor() {
     })
 }
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Merges the provided tokens to the current preset, an example would be changing the primary color palette dynamically.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

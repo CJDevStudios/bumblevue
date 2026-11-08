@@ -1,3 +1,32 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+bumblevue: {
+    autoImport: true|false
+}
+`
+                },
+                code2: {
+                    basic: `
+bumblevue: {
+    autoImport: true|false,
+    components: {
+        prefix: 'org'
+    },
+    directives: {
+        prefix: 'org'
+    }
+}
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -9,32 +38,3 @@
         <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-bumblevue: {
-    autoImport: true|false
-}
-`
-            },
-            code2: {
-                basic: `
-bumblevue: {
-    autoImport: true|false,
-    components: {
-        prefix: 'org'
-    },
-    directives: {
-        prefix: 'org'
-    }
-}
-`
-            }
-        };
-    }
-};
-</script>

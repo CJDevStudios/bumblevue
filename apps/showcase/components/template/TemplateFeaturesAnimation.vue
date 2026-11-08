@@ -1,3 +1,97 @@
+<script>
+    export default {
+        props: {
+            featuresData: {
+                type: null,
+                default: null
+            },
+            title: {
+                type: String,
+                default: null
+            }
+        },
+        observer: null,
+        timeout: null,
+        data() {
+            return {
+                selectedID: 1,
+                intervalIds: [],
+                cancelInterval: false,
+                hoveredID: null,
+                visible: false,
+                animationSeconds: 8000
+            };
+        },
+        mounted() {
+            this.observer = new IntersectionObserver(([entry]) => {
+                clearTimeout(this.timeout);
+
+                if (entry.isIntersecting) {
+                    this.timeout = setTimeout(
+                        () => {
+                            this.visible = entry.isIntersecting;
+                            this.createInterval();
+                            this.observer.unobserve(this.$el);
+                        },
+                        { threshold: 0.2 }
+                    );
+                }
+            });
+
+            this.observer.observe(this.$el);
+        },
+        beforeUnmount() {
+            !this.visible && this.$el && this.observer?.unobserve(this.$el);
+            this.intervalIds = [];
+        },
+        methods: {
+            enterCardArea(id) {
+                this.hoveredID = id;
+                this.handleHover(id, 'onMouseEnter');
+            },
+            leaveCardArea(id) {
+                this.hoveredID = null;
+                this.handleHover(id, 'onMouseLeave');
+            },
+            orderNumber(index) {
+                return (index + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
+            },
+            clearAllIntervals() {
+                if (this.intervalIds.length <= 0) {
+                    return;
+                }
+
+                this.intervalIds.forEach((intervalId) => clearInterval(intervalId));
+                this.intervalIds = [];
+            },
+            createInterval() {
+                const interval = setInterval(() => {
+                    this.selectedID = this.selectedID === this.featuresData.length ? 1 : this.selectedID + 1;
+                }, 4000);
+
+                this.intervalIds = [...this.intervalIds, interval];
+            },
+            handleClick(cardId) {
+                this.clearAllIntervals();
+                this.selectedID = cardId;
+                this.cancelInterval = true;
+            },
+            handleHover(cardId, type) {
+                if (this.cancelInterval || cardId !== this.selectedID) {
+                    return;
+                }
+
+                this.clearAllIntervals();
+
+                if (type === 'onMouseLeave') {
+                    this.selectedID = cardId;
+                    this.createInterval();
+                }
+            }
+        }
+    };
+</script>
+
 <template>
     <div class="template-features px-6 py-6 sm:px-10 sm:py-5 lg:py-20 lg:px-8 rounded-2xl lg:rounded-3xl bg-surface-0 dark:bg-surface-900">
         <h2 v-if="title" class="text-center text-surface-900 dark:text-surface-0 text-3xl lg:text-5xl font-semibold lg:pt-0 pt-6 mb-12">{{ title }}</h2>
@@ -54,97 +148,3 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    props: {
-        featuresData: {
-            type: null,
-            default: null
-        },
-        title: {
-            type: String,
-            default: null
-        }
-    },
-    observer: null,
-    timeout: null,
-    data() {
-        return {
-            selectedID: 1,
-            intervalIds: [],
-            cancelInterval: false,
-            hoveredID: null,
-            visible: false,
-            animationSeconds: 8000
-        };
-    },
-    mounted() {
-        this.observer = new IntersectionObserver(([entry]) => {
-            clearTimeout(this.timeout);
-
-            if (entry.isIntersecting) {
-                this.timeout = setTimeout(
-                    () => {
-                        this.visible = entry.isIntersecting;
-                        this.createInterval();
-                        this.observer.unobserve(this.$el);
-                    },
-                    { threshold: 0.2 }
-                );
-            }
-        });
-
-        this.observer.observe(this.$el);
-    },
-    beforeUnmount() {
-        !this.visible && this.$el && this.observer?.unobserve(this.$el);
-        this.intervalIds = [];
-    },
-    methods: {
-        enterCardArea(id) {
-            this.hoveredID = id;
-            this.handleHover(id, 'onMouseEnter');
-        },
-        leaveCardArea(id) {
-            this.hoveredID = null;
-            this.handleHover(id, 'onMouseLeave');
-        },
-        orderNumber(index) {
-            return (index + 1).toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
-        },
-        clearAllIntervals() {
-            if (this.intervalIds.length <= 0) {
-                return;
-            }
-
-            this.intervalIds.forEach((intervalId) => clearInterval(intervalId));
-            this.intervalIds = [];
-        },
-        createInterval() {
-            const interval = setInterval(() => {
-                this.selectedID = this.selectedID === this.featuresData.length ? 1 : this.selectedID + 1;
-            }, 4000);
-
-            this.intervalIds = [...this.intervalIds, interval];
-        },
-        handleClick(cardId) {
-            this.clearAllIntervals();
-            this.selectedID = cardId;
-            this.cancelInterval = true;
-        },
-        handleHover(cardId, type) {
-            if (this.cancelInterval || cardId !== this.selectedID) {
-                return;
-            }
-
-            this.clearAllIntervals();
-
-            if (type === 'onMouseLeave') {
-                this.selectedID = cardId;
-                this.createInterval();
-            }
-        }
-    }
-};
-</script>

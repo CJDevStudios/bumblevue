@@ -1,34 +1,12 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Row selection with an element inside a column is implemented with templating.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" tableStyle="min-width: 50rem">
-                <Column field="code" header="Code"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="quantity" header="Quantity"></Column>
-                <Column class="w-24 text-end!">
-                    <template #body="{ data }">
-                        <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                code: {
+                    basic: `
 <DataTable :value="products" tableStyle="min-width: 50rem">
     <Column field="code" header="Code"></Column>
     <Column field="name" header="Name"></Column>
@@ -41,7 +19,7 @@ export default {
     </Column>
 </DataTable>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <DataTable :value="products" tableStyle="min-width: 50rem">
@@ -75,7 +53,7 @@ const selectRow = (data) => {
 };
 <\/script>
 `,
-                data: `
+                    data: `
 {
     id: '1000',
     code: 'f230fh0g3',
@@ -90,16 +68,38 @@ const selectRow = (data) => {
 },
 ...
         `
-            }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            ProductService.getProductsMini().then((data) => (this.products = data));
+                }
+            };
         },
-        selectRow(data) {
-            this.$toast.add({ severity: 'info', summary: data.name, detail: data.inventoryStatus + ' | $' + data.price, life: 3000 });
+        methods: {
+            loadDemoData() {
+                ProductService.getProductsMini().then((data) => (this.products = data));
+            },
+            selectRow(data) {
+                this.$toast.add({ severity: 'info', summary: data.name, detail: data.inventoryStatus + ' | $' + data.price, life: 3000 });
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Row selection with an element inside a column is implemented with templating.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" tableStyle="min-width: 50rem">
+                <Column field="code" header="Code"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="category" header="Category"></Column>
+                <Column field="quantity" header="Quantity"></Column>
+                <Column class="w-24 text-end!">
+                    <template #body="{ data }">
+                        <Button icon="pi pi-search" @click="selectRow(data)" severity="secondary" rounded></Button>
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

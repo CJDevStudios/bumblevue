@@ -1,3 +1,19 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+https://unpkg.com/vue@3/dist/vue.global.js
+https://unpkg.com/@cjdevstudios/bumblevue/umd/bumblevue.min.js
+https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/aura.min.js  // see theming for alternatives
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -8,19 +24,3 @@
     </DocSectionText>
     <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-https://unpkg.com/vue@3/dist/vue.global.js
-https://unpkg.com/@cjdevstudios/bumblevue/umd/bumblevue.min.js
-https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/aura.min.js  // see theming for alternatives
-`
-            }
-        };
-    }
-};
-</script>

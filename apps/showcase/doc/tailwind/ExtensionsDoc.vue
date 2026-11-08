@@ -1,3 +1,5 @@
+<script></script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>The plugin extends the default configuration with a new set of utilities whose values are derived from the BumbleVue theme in use. All variants and breakpoints are supported e.g. <i>dark:sm:hover:bg-primary</i>.</p>
@@ -72,5 +74,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script></script>

@@ -1,3 +1,21 @@
+<script>
+    import StyledDoc from './StyledDoc.vue';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        id: 'theming.styled',
+                        label: 'Styled',
+                        component: StyledDoc
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <div class="doc-main">
         <div class="doc-intro">
@@ -7,21 +25,3 @@
     </div>
     <DocSectionNav :docs="docs" />
 </template>
-
-<script>
-import StyledDoc from './StyledDoc.vue';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    id: 'theming.styled',
-                    label: 'Styled',
-                    component: StyledDoc
-                }
-            ]
-        };
-    }
-};
-</script>

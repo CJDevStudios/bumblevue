@@ -1,3 +1,37 @@
+<script>
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
+    import BreadcrumbStyle from '@cjdevstudios/bumblevue/breadcrumb/style';
+    import BreadcrumbItem from './BreadcrumbItem.vue';
+
+    export default {
+        name: 'Breadcrumb',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        props: {
+            model: {
+                type: Array,
+                default: null
+            },
+            home: {
+                type: null,
+                default: null
+            }
+        },
+        style: BreadcrumbStyle,
+        provide() {
+            return {
+                $pcBreadcrumb: this,
+                $parentInstance: this
+            };
+        },
+        components: {
+            BreadcrumbItem,
+            ChevronRightIcon
+        }
+    };
+</script>
+
 <template>
     <nav :class="cx('root')" v-bind="ptmi('root')">
         <ol :class="cx('list')" v-bind="ptm('list')">
@@ -13,37 +47,3 @@
         </ol>
     </nav>
 </template>
-
-<script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import ChevronRightIcon from '@cjdevstudios/bumblevue/icons/chevronright';
-import BreadcrumbStyle from '@cjdevstudios/bumblevue/breadcrumb/style';
-import BreadcrumbItem from './BreadcrumbItem.vue';
-
-export default {
-    name: 'Breadcrumb',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    props: {
-        model: {
-            type: Array,
-            default: null
-        },
-        home: {
-            type: null,
-            default: null
-        }
-    },
-    style: BreadcrumbStyle,
-    provide() {
-        return {
-            $pcBreadcrumb: this,
-            $parentInstance: this
-        };
-    },
-    components: {
-        BreadcrumbItem,
-        ChevronRightIcon
-    }
-};
-</script>

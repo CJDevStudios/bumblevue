@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Textarea is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Textarea v-model="value" rows="5" cols="30" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            value: '',
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                value: '',
+                code: {
+                    basic: `
 <Textarea v-model="value" rows="5" cols="30" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Textarea v-model="value" rows="5" cols="30" />
@@ -30,8 +20,18 @@ import { ref } from 'vue';
 const value = ref('');
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Textarea is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Textarea v-model="value" rows="5" cols="30" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

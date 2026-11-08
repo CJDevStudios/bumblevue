@@ -61,7 +61,7 @@ export default defineNuxtModule<ModuleOptions>({
         nuxt.options.build.transpile.push('bumblevue');
         hasTheme && nuxt.options.build.transpile.push('@cjdevstudios/bumblevue/themes');
 
-        let registeredStyles: MetaType[] = registered.styles;
+        const registeredStyles: MetaType[] = registered.styles;
 
         if (autoImport) {
             const dts = isNotEmpty(moduleOptions.components?.prefix) || isNotEmpty(moduleOptions.directives?.prefix);

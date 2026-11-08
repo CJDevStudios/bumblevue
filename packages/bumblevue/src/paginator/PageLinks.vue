@@ -1,3 +1,41 @@
+<script>
+    import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
+    import Ripple from '@cjdevstudios/bumblevue/ripple';
+
+    export default {
+        name: 'PageLinks',
+        hostName: 'Paginator',
+        extends: BaseComponent,
+        inheritAttrs: false,
+        emits: ['click'],
+        props: {
+            value: Array,
+            page: Number
+        },
+        methods: {
+            getPTOptions(pageLink, key) {
+                return this.ptm(key, {
+                    context: {
+                        active: pageLink === this.page
+                    }
+                });
+            },
+            onPageLinkClick(event, pageLink) {
+                this.$emit('click', {
+                    originalEvent: event,
+                    value: pageLink
+                });
+            },
+            ariaPageLabel(value) {
+                return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.pageLabel.replace(/{page}/g, value) : undefined;
+            }
+        },
+        directives: {
+            ripple: Ripple
+        }
+    };
+</script>
+
 <template>
     <span :class="cx('pages')" v-bind="ptm('pages')">
         <button
@@ -16,41 +54,3 @@
         </button>
     </span>
 </template>
-
-<script>
-import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
-import Ripple from '@cjdevstudios/bumblevue/ripple';
-
-export default {
-    name: 'PageLinks',
-    hostName: 'Paginator',
-    extends: BaseComponent,
-    inheritAttrs: false,
-    emits: ['click'],
-    props: {
-        value: Array,
-        page: Number
-    },
-    methods: {
-        getPTOptions(pageLink, key) {
-            return this.ptm(key, {
-                context: {
-                    active: pageLink === this.page
-                }
-            });
-        },
-        onPageLinkClick(event, pageLink) {
-            this.$emit('click', {
-                originalEvent: event,
-                value: pageLink
-            });
-        },
-        ariaPageLabel(value) {
-            return this.$bumblevue.config.locale.aria ? this.$bumblevue.config.locale.aria.pageLabel.replace(/{page}/g, value) : undefined;
-        }
-    },
-    directives: {
-        ripple: Ripple
-    }
-};
-</script>

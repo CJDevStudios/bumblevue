@@ -1,16 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configure the module to use a theme like Aura.</p>
-        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
 export default defineNuxtConfig({
@@ -26,8 +19,15 @@ export default defineNuxtConfig({
     }
 })
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configure the module to use a theme like Aura.</p>
+        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

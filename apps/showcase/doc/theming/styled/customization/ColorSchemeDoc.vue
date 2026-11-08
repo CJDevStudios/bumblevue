@@ -1,31 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A token can be defined per color scheme using <i>light</i> and <i>dark</i> properties of the <i>colorScheme</i> property. Each token can have specific values based on the current color scheme.</p>
-        <DocSectionCode :code="code1" hideToggleCode importCode hideStackBlitz />
-        <div class="font-bold mb-4">Common Pitfall</div>
-        <p>
-            When customizing an existing preset, your token overrides may be ignored if you don't properly account for color scheme variations. If the original preset defines a token using the <i>colorScheme</i> property, but your customization only
-            provides a direct value, your override will be ignored because the <i>colorScheme</i> property takes precedence over direct values and the system will continue using the preset's scheme-specific values. When customizing tokens that are
-            not defined with <i>colorScheme</i> in the original preset, your customizations will be applied successfully regardless of how you structure them; whether direct or under colorScheme.
-        </p>
-        <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
-        <div class="font-bold mb-4">Best Practices</div>
-        <ul class="leading-normal list-disc list-inside mb-4">
-            <li>Check how tokens are defined in the preset before customizing from the <a href="https://github.com/CJDevStudios/bumblevue/tree/master/packages/bumblevue/src/themes" target="_blank" rel="noopener noreferrer">source</a>.</li>
-            <li>Always maintain the same structure (direct value or colorScheme) as the original preset.</li>
-            <li>Consider both light and dark mode values when overriding scheme-dependent tokens.</li>
-        </ul>
-        <DocSectionCode :code="code3" hideToggleCode importCode hideStackBlitz />
-        <p>This approach ensures your customizations will be applied correctly regardless of the user's selected color scheme.</p>
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 import BumbleVue from '@cjdevstudios/bumblevue/config';
 import { definePreset } from '@cjdevstudios/bumblevue/themes';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
@@ -49,9 +27,9 @@ app.use(BumbleVue, {
     }
  });
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 /* Fails as Aura defines highlight tokens in colorScheme */
 const MyPreset = definePreset(Aura, {
     semantic: {
@@ -62,9 +40,9 @@ const MyPreset = definePreset(Aura, {
     }
 });
 `
-            },
-            code3: {
-                basic: `
+                },
+                code3: {
+                    basic: `
 /* Works because highlight tokens are defined under colorScheme */
 const MyPreset = definePreset(Aura, {
     semantic: {
@@ -89,8 +67,30 @@ const MyPreset = definePreset(Aura, {
     }
 });
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A token can be defined per color scheme using <i>light</i> and <i>dark</i> properties of the <i>colorScheme</i> property. Each token can have specific values based on the current color scheme.</p>
+        <DocSectionCode :code="code1" hideToggleCode importCode hideStackBlitz />
+        <div class="font-bold mb-4">Common Pitfall</div>
+        <p>
+            When customizing an existing preset, your token overrides may be ignored if you don't properly account for color scheme variations. If the original preset defines a token using the <i>colorScheme</i> property, but your customization only
+            provides a direct value, your override will be ignored because the <i>colorScheme</i> property takes precedence over direct values and the system will continue using the preset's scheme-specific values. When customizing tokens that are
+            not defined with <i>colorScheme</i> in the original preset, your customizations will be applied successfully regardless of how you structure them; whether direct or under colorScheme.
+        </p>
+        <DocSectionCode :code="code2" hideToggleCode importCode hideStackBlitz />
+        <div class="font-bold mb-4">Best Practices</div>
+        <ul class="leading-normal list-disc list-inside mb-4">
+            <li>Check how tokens are defined in the preset before customizing from the <a href="https://github.com/CJDevStudios/bumblevue/tree/master/packages/bumblevue/src/themes" target="_blank" rel="noopener noreferrer">source</a>.</li>
+            <li>Always maintain the same structure (direct value or colorScheme) as the original preset.</li>
+            <li>Consider both light and dark mode values when overriding scheme-dependent tokens.</li>
+        </ul>
+        <DocSectionCode :code="code3" hideToggleCode importCode hideStackBlitz />
+        <p>This approach ensures your customizations will be applied correctly regardless of the user's selected color scheme.</p>
+    </DocSectionText>
+</template>

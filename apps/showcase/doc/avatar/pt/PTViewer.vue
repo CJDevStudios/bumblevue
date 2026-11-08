@@ -1,3 +1,24 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Avatar'),
+                        key: 'Avatar'
+                    },
+                    {
+                        data: getPTOptions('AvatarGroup'),
+                        key: 'AvatarGroup'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <div class="flex flex-wrap gap-8">
@@ -9,24 +30,3 @@
         </div>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            docs: [
-                {
-                    data: getPTOptions('Avatar'),
-                    key: 'Avatar'
-                },
-                {
-                    data: getPTOptions('AvatarGroup'),
-                    key: 'AvatarGroup'
-                }
-            ]
-        };
-    }
-};
-</script>

@@ -1,25 +1,14 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Enabling <i>fullScreen</i> property controls the document.</p>
-    </DocSectionText>
-    <div class="card">
-        <BlockUI :blocked="blocked" fullScreen />
-        <Button label="Block" @click="blockDocument" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            blocked: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                blocked: false,
+                code: {
+                    basic: `
 <BlockUI :blocked="blocked" fullScreen />
 <Button label="Block" @click="blocked = true" />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <BlockUI :blocked="blocked" fullScreen />
@@ -40,17 +29,28 @@ const blockDocument = () => {
 }
 <\/script>
 `
-            }
-        };
-    },
-    methods: {
-        blockDocument() {
-            this.blocked = true;
+                }
+            };
+        },
+        methods: {
+            blockDocument() {
+                this.blocked = true;
 
-            setTimeout(() => {
-                this.blocked = false;
-            }, 3000);
+                setTimeout(() => {
+                    this.blocked = false;
+                }, 3000);
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Enabling <i>fullScreen</i> property controls the document.</p>
+    </DocSectionText>
+    <div class="card">
+        <BlockUI :blocked="blocked" fullScreen />
+        <Button label="Block" @click="blockDocument" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

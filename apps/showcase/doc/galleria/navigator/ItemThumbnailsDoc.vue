@@ -1,41 +1,22 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Add <i>showItemNavigators</i> to display navigator elements and the left and right side.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px" :showItemNavigators="true">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-                <template #thumbnail="slotProps">
-                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
-import { PhotoService } from '@/service/PhotoService';
+    import { PhotoService } from '@/service/PhotoService';
 
-export default {
-    data() {
-        return {
-            images: null,
-            responsiveOptions: [
-                {
-                    breakpoint: '1300px',
-                    numVisible: 4
-                },
-                {
-                    breakpoint: '575px',
-                    numVisible: 1
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                images: null,
+                responsiveOptions: [
+                    {
+                        breakpoint: '1300px',
+                        numVisible: 4
+                    },
+                    {
+                        breakpoint: '575px',
+                        numVisible: 1
+                    }
+                ],
+                code: {
+                    basic: `
 <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
     :showItemNavigators="true">
     <template #item="slotProps">
@@ -46,7 +27,7 @@ export default {
     </template>
 </Galleria>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card">
         <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
@@ -82,7 +63,7 @@ const responsiveOptions = ref([
 ]);
 <\/script>
 `,
-                data: `
+                    data: `
 /* PhotoService */
 {
     itemImageSrc: 'https://primefaces.org/cdn/primevue/images/galleria/galleria1.jpg',
@@ -92,13 +73,32 @@ const responsiveOptions = ref([
 },
 ...
         `
+                }
+            };
+        },
+        methods: {
+            loadDemoData() {
+                PhotoService.getImages().then((data) => (this.images = data));
             }
-        };
-    },
-    methods: {
-        loadDemoData() {
-            PhotoService.getImages().then((data) => (this.images = data));
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Add <i>showItemNavigators</i> to display navigator elements and the left and right side.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px" :showItemNavigators="true">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

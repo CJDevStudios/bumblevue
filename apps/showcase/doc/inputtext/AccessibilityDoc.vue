@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="firstname">Firstname</label>
+<InputText id="firstname" />
+
+<span id="lastname">Lastname</span>
+<InputText aria-labelledby="lastname" />
+
+<InputText aria-label="Age"/>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -29,23 +49,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<label for="firstname">Firstname</label>
-<InputText id="firstname" />
-
-<span id="lastname">Lastname</span>
-<InputText aria-labelledby="lastname" />
-
-<InputText aria-label="Age"/>
-`
-            }
-        };
-    }
-};
-</script>

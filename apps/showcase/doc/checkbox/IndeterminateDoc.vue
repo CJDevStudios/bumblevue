@@ -1,23 +1,13 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>indeterminate</i> is present, the checkbox masks the actual value visually.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Checkbox v-model="checked" indeterminate binary />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            checked: false,
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                checked: false,
+                code: {
+                    basic: `
 <Checkbox v-model="checked" indeterminate binary />
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center">
         <Checkbox v-model="checked" indeterminate binary />
@@ -30,8 +20,18 @@ import { ref } from "vue";
 const checked = ref(false);
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>indeterminate</i> is present, the checkbox masks the actual value visually.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Checkbox v-model="checked" indeterminate binary />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

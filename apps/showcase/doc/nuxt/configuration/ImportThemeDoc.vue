@@ -1,25 +1,16 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configures the theme configuration path for the customizations of a theme in styled mode.</p>
-        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
-        <p>The <i>mytheme.js</i> file contains the theme configuration.</p>
-        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
 bumblevue: {
     importTheme: { from: '@/themes/mytheme.js' },
 }
 `
-            },
-            code2: {
-                basic: `
+                },
+                code2: {
+                    basic: `
 import { definePreset } from '@cjdevstudios/bumblevue/themes';
 import Aura from '@cjdevstudios/bumblevue/themes/aura';
 
@@ -49,8 +40,17 @@ export default {
 };
 
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configures the theme configuration path for the customizations of a theme in styled mode.</p>
+        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
+        <p>The <i>mytheme.js</i> file contains the theme configuration.</p>
+        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

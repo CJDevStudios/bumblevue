@@ -1,3 +1,21 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                value: null,
+                docs: [
+                    {
+                        data: getPTOptions('IftaLabel'),
+                        key: 'IftaLabel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <IftaLabel>
@@ -6,21 +24,3 @@
         </IftaLabel>
     </DocPTViewer>
 </template>
-
-<script>
-import { getPTOptions } from '@/components/doc/helpers';
-
-export default {
-    data() {
-        return {
-            value: null,
-            docs: [
-                {
-                    data: getPTOptions('IftaLabel'),
-                    key: 'IftaLabel'
-                }
-            ]
-        };
-    }
-};
-</script>

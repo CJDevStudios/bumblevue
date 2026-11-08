@@ -1,3 +1,19 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<Card role="region">
+    Content
+</Card>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -12,19 +28,3 @@
         <p>Component does not include any interactive elements.</p>
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
-<Card role="region">
-    Content
-</Card>
-`
-            }
-        };
-    }
-};
-</script>

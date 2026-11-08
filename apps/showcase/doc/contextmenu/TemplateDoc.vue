@@ -1,84 +1,44 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ContextMenu offers item customization with the <i>item</i> template that receives the menuitem instance from the model as a parameter.</p>
-    </DocSectionText>
-    <div class="card flex md:justify-center">
-        <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120">
-            <li
-                v-for="product in products"
-                :key="product.id"
-                :class="['p-2 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-sm border border-transparent transition-all transition-duration-200', { 'border-primary': selectedId === product.id }]"
-                @contextmenu="onRightClick($event, product.id)"
-            >
-                <div class="flex flex-wrap p-2 items-center gap-4">
-                    <img class="w-16 shrink-0 rounded-sm" :src="'https://primefaces.org/cdn/primevue/images/product/' + product.image" :alt="product.name" />
-                    <div class="flex-1 flex flex-col gap-1">
-                        <span class="font-bold">{{ product.name }}</span>
-                        <div class="flex items-center gap-2">
-                            <i class="pi pi-tag text-sm"></i>
-                            <span>{{ product.category }}</span>
-                        </div>
-                    </div>
-                    <span class="font-bold ml-8">${{ product.price }}</span>
-                </div>
-            </li>
-        </ul>
-        <ContextMenu ref="menu" :model="items" @hide="selectedId = null">
-            <template #item="{ item, props }">
-                <a v-ripple class="flex items-center" v-bind="props.action">
-                    <span :class="item.icon" />
-                    <span class="ml-2">{{ item.label }}</span>
-                    <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-                    <i v-if="item.items" class="pi pi-angle-right ml-auto"></i>
-                </a>
-            </template>
-        </ContextMenu>
-    </div>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
-import { ProductService } from '@/service/ProductService';
+    import { ProductService } from '@/service/ProductService';
 
-export default {
-    data() {
-        return {
-            products: null,
-            selectedId: null,
-            items: [
-                {
-                    label: 'Favorite',
-                    icon: 'pi pi-star',
-                    shortcut: '⌘+D'
-                },
-                {
-                    label: 'Add',
-                    icon: 'pi pi-shopping-cart',
-                    shortcut: '⌘+A'
-                },
-                {
-                    separator: true
-                },
-                {
-                    label: 'Share',
-                    icon: 'pi pi-share-alt',
-                    items: [
-                        {
-                            label: 'Whatsapp',
-                            icon: 'pi pi-whatsapp',
-                            badge: 2
-                        },
-                        {
-                            label: 'Instagram',
-                            icon: 'pi pi-instagram',
-                            badge: 3
-                        }
-                    ]
-                }
-            ],
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                products: null,
+                selectedId: null,
+                items: [
+                    {
+                        label: 'Favorite',
+                        icon: 'pi pi-star',
+                        shortcut: '⌘+D'
+                    },
+                    {
+                        label: 'Add',
+                        icon: 'pi pi-shopping-cart',
+                        shortcut: '⌘+A'
+                    },
+                    {
+                        separator: true
+                    },
+                    {
+                        label: 'Share',
+                        icon: 'pi pi-share-alt',
+                        items: [
+                            {
+                                label: 'Whatsapp',
+                                icon: 'pi pi-whatsapp',
+                                badge: 2
+                            },
+                            {
+                                label: 'Instagram',
+                                icon: 'pi pi-instagram',
+                                badge: 3
+                            }
+                        ]
+                    }
+                ],
+                code: {
+                    basic: `
 <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120">
     <li
         v-for="product in products"
@@ -111,7 +71,7 @@ export default {
     </template>
 </ContextMenu>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex md:justify-center">
         <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120" @hide="selectedId = null">
@@ -199,8 +159,8 @@ const onRightClick = (event, id) => {
 
 <\/script>
 `
-            },
-            data: `
+                },
+                data: `
 /* ProductService */
 {
     id: '1000',
@@ -215,16 +175,56 @@ const onRightClick = (event, id) => {
     rating: 5
 },
 ...`
-        };
-    },
-    mounted() {
-        ProductService.getProductsMini().then((data) => (this.products = data));
-    },
-    methods: {
-        onRightClick(event, id) {
-            this.selectedId = id;
-            this.$refs.menu.show(event);
+            };
+        },
+        mounted() {
+            ProductService.getProductsMini().then((data) => (this.products = data));
+        },
+        methods: {
+            onRightClick(event, id) {
+                this.selectedId = id;
+                this.$refs.menu.show(event);
+            }
         }
-    }
-};
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ContextMenu offers item customization with the <i>item</i> template that receives the menuitem instance from the model as a parameter.</p>
+    </DocSectionText>
+    <div class="card flex md:justify-center">
+        <ul class="m-0 p-0 list-none border border-surface-200 dark:border-surface-700 rounded-sm p-4 flex flex-col gap-2 w-full md:w-120">
+            <li
+                v-for="product in products"
+                :key="product.id"
+                :class="['p-2 hover:bg-surface-100 dark:hover:bg-surface-800 rounded-sm border border-transparent transition-all transition-duration-200', { 'border-primary': selectedId === product.id }]"
+                @contextmenu="onRightClick($event, product.id)"
+            >
+                <div class="flex flex-wrap p-2 items-center gap-4">
+                    <img class="w-16 shrink-0 rounded-sm" :src="'https://primefaces.org/cdn/primevue/images/product/' + product.image" :alt="product.name" />
+                    <div class="flex-1 flex flex-col gap-1">
+                        <span class="font-bold">{{ product.name }}</span>
+                        <div class="flex items-center gap-2">
+                            <i class="pi pi-tag text-sm"></i>
+                            <span>{{ product.category }}</span>
+                        </div>
+                    </div>
+                    <span class="font-bold ml-8">${{ product.price }}</span>
+                </div>
+            </li>
+        </ul>
+        <ContextMenu ref="menu" :model="items" @hide="selectedId = null">
+            <template #item="{ item, props }">
+                <a v-ripple class="flex items-center" v-bind="props.action">
+                    <span :class="item.icon" />
+                    <span class="ml-2">{{ item.label }}</span>
+                    <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
+                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                    <i v-if="item.items" class="pi pi-angle-right ml-auto"></i>
+                </a>
+            </template>
+        </ContextMenu>
+    </div>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

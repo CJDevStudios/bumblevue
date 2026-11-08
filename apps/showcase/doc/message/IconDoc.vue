@@ -1,25 +1,9 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Icon property and the <i>icon</i> slots are available to customize the icon of the message.</p>
-    </DocSectionText>
-    <div class="card flex justify-center items-center gap-4">
-        <Message severity="info" icon="pi pi-send">Info Message</Message>
-        <Message severity="success">
-            <template #icon>
-                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-            </template>
-            <span class="ml-2">How may I help you?</span>
-        </Message>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
-export default {
-    data() {
-        return {
-            code: {
-                basic: `
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
 <Message severity="info" icon="pi pi-send">Info Message</Message>
 <Message severity="success">
     <template #icon>
@@ -28,7 +12,7 @@ export default {
     <span class="ml-2">How may I help you?</span>
 </Message>
 `,
-                composition: `
+                    composition: `
 <template>
     <div class="card flex justify-center gap-4">
         <Message severity="info" icon="pi pi-send">Info Message</Message>
@@ -44,8 +28,24 @@ export default {
 <script setup>
 <\/script>
 `
-            }
-        };
-    }
-};
+                }
+            };
+        }
+    };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Icon property and the <i>icon</i> slots are available to customize the icon of the message.</p>
+    </DocSectionText>
+    <div class="card flex justify-center items-center gap-4">
+        <Message severity="info" icon="pi pi-send">Info Message</Message>
+        <Message severity="success">
+            <template #icon>
+                <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
+            </template>
+            <span class="ml-2">How may I help you?</span>
+        </Message>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

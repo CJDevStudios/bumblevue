@@ -1,3 +1,37 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+<DynamicDialog />
+`
+                },
+                code2: {
+                    basic: `
+import {createApp} from 'vue';
+import DialogService from '@cjdevstudios/bumblevue/dialogservice';
+
+const app = createApp(App);
+app.use(DialogService);
+`
+                },
+                code3: {
+                    basic: `
+/* Composition API */
+import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
+
+const dialog = useDialog();
+
+/* Options API */
+const dialog = this.$dialog;
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>A single shared dialog instance is required in the application, ideal location would be defining it once at the main application template.</p>
@@ -8,37 +42,3 @@
         <DocSectionCode :code="code3" hideToggleCode importCode hideStackBlitz />
     </DocSectionText>
 </template>
-
-<script>
-export default {
-    data() {
-        return {
-            code1: {
-                basic: `
-<DynamicDialog />
-`
-            },
-            code2: {
-                basic: `
-import {createApp} from 'vue';
-import DialogService from '@cjdevstudios/bumblevue/dialogservice';
-
-const app = createApp(App);
-app.use(DialogService);
-`
-            },
-            code3: {
-                basic: `
-/* Composition API */
-import { useDialog } from '@cjdevstudios/bumblevue/usedialog';
-
-const dialog = useDialog();
-
-/* Options API */
-const dialog = this.$dialog;
-`
-            }
-        };
-    }
-};
-</script>
