@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Breadcrumb requires a collection of menuitems as its <i>model</i>, the root item is defined with the <i>home</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Breadcrumb :home="home" :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -47,3 +37,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Breadcrumb requires a collection of menuitems as its <i>model</i>, the root item is defined with the <i>home</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Breadcrumb :home="home" :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

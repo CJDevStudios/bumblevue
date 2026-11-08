@@ -1,13 +1,3 @@
-<template>
-    <aside class="layout-sidebar" :class="{ active: active }">
-        <nav>
-            <ol class="layout-menu">
-                <AppMenuItem :menu="menu"></AppMenuItem>
-            </ol>
-        </nav>
-    </aside>
-</template>
-
 <script>
     import menudata from '@/assets/menu/menu.json';
     import AppMenuItem from './AppMenuItem.vue';
@@ -33,3 +23,13 @@
         }
     };
 </script>
+
+<template>
+    <aside class="layout-sidebar" :class="{ active: active }">
+        <nav>
+            <ol class="layout-menu">
+                <AppMenuItem :menu="menu"></AppMenuItem>
+            </ol>
+        </nav>
+    </aside>
+</template>

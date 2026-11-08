@@ -1,40 +1,3 @@
-<template>
-    <fieldset :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
-        <legend :class="cx('legend')" :data-p="dataP" v-bind="ptm('legend')">
-            <slot name="legend" :toggleCallback="toggle">
-                <span v-if="!toggleable" :id="$id + '_header'" :class="cx('legendLabel')" v-bind="ptm('legendLabel')">{{ legend }}</span>
-                <button
-                    v-if="toggleable"
-                    :id="$id + '_header'"
-                    v-ripple
-                    type="button"
-                    :aria-controls="$id + '_content'"
-                    :aria-expanded="!d_collapsed"
-                    :aria-label="buttonAriaLabel"
-                    :class="cx('toggleButton')"
-                    @click="toggle"
-                    @keydown="onKeyDown"
-                    v-bind="{ ...toggleButtonProps, ...ptm('toggleButton') }"
-                >
-                    <slot name="toggleicon" :collapsed="d_collapsed" :class="cx('toggleIcon')">
-                        <component :is="d_collapsed ? 'PlusIcon' : 'MinusIcon'" :class="cx('toggleIcon')" v-bind="ptm('toggleIcon')" />
-                    </slot>
-                    <span :class="cx('legendLabel')" v-bind="ptm('legendLabel')">{{ legend }}</span>
-                </button>
-            </slot>
-        </legend>
-        <transition name="p-collapsible" v-bind="ptm('transition')">
-            <div v-show="!d_collapsed" :id="$id + '_content'" :class="cx('contentContainer')" role="region" :aria-labelledby="$id + '_header'" v-bind="ptm('contentContainer')">
-                <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper')">
-                    <div :class="cx('content')" v-bind="ptm('content')">
-                        <slot></slot>
-                    </div>
-                </div>
-            </div>
-        </transition>
-    </fieldset>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -109,3 +72,40 @@
         }
     };
 </script>
+
+<template>
+    <fieldset :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
+        <legend :class="cx('legend')" :data-p="dataP" v-bind="ptm('legend')">
+            <slot name="legend" :toggleCallback="toggle">
+                <span v-if="!toggleable" :id="$id + '_header'" :class="cx('legendLabel')" v-bind="ptm('legendLabel')">{{ legend }}</span>
+                <button
+                    v-if="toggleable"
+                    :id="$id + '_header'"
+                    v-ripple
+                    type="button"
+                    :aria-controls="$id + '_content'"
+                    :aria-expanded="!d_collapsed"
+                    :aria-label="buttonAriaLabel"
+                    :class="cx('toggleButton')"
+                    @click="toggle"
+                    @keydown="onKeyDown"
+                    v-bind="{ ...toggleButtonProps, ...ptm('toggleButton') }"
+                >
+                    <slot name="toggleicon" :collapsed="d_collapsed" :class="cx('toggleIcon')">
+                        <component :is="d_collapsed ? 'PlusIcon' : 'MinusIcon'" :class="cx('toggleIcon')" v-bind="ptm('toggleIcon')" />
+                    </slot>
+                    <span :class="cx('legendLabel')" v-bind="ptm('legendLabel')">{{ legend }}</span>
+                </button>
+            </slot>
+        </legend>
+        <transition name="p-collapsible" v-bind="ptm('transition')">
+            <div v-show="!d_collapsed" :id="$id + '_content'" :class="cx('contentContainer')" role="region" :aria-labelledby="$id + '_header'" v-bind="ptm('contentContainer')">
+                <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper')">
+                    <div :class="cx('content')" v-bind="ptm('content')">
+                        <slot></slot>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </fieldset>
+</template>

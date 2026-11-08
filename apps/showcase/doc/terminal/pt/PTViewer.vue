@@ -1,12 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <div>
-            <p>Enter "<strong>date</strong>" to display the current date, "<strong>greet {0}</strong>" for a message and "<strong>random</strong>" to get a random number.</p>
-            <Terminal welcomeMessage="Welcome to BumbleVue" prompt="primevue $" aria-label="BumbleVue Terminal Service" />
-        </div>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
     import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
@@ -56,3 +47,12 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <div>
+            <p>Enter "<strong>date</strong>" to display the current date, "<strong>greet {0}</strong>" for a message and "<strong>random</strong>" to get a random number.</p>
+            <Terminal welcomeMessage="Welcome to BumbleVue" prompt="primevue $" aria-label="BumbleVue Terminal Service" />
+        </div>
+    </DocPTViewer>
+</template>

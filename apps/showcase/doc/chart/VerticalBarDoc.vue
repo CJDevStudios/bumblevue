@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A bar chart or bar graph is a chart that presents grouped data with rectangular bars with lengths proportional to the values that they represent.</p>
-    </DocSectionText>
-    <div class="card">
-        <Chart type="bar" :data="chartData" :options="chartOptions" class="h-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -187,3 +177,13 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A bar chart or bar graph is a chart that presents grouped data with rectangular bars with lengths proportional to the values that they represent.</p>
+    </DocSectionText>
+    <div class="card">
+        <Chart type="bar" :data="chartData" :options="chartOptions" class="h-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

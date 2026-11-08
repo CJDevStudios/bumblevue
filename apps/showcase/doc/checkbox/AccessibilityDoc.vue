@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="chkbox1">Remember Me</label>
+<Checkbox inputId="chkbox1" />
+
+<span id="chkbox2">Remember Me</span>
+<Checkbox aria-labelledby="chkbox2" />
+
+<Checkbox aria-label="Remember Me" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -31,23 +51,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<label for="chkbox1">Remember Me</label>
-<Checkbox inputId="chkbox1" />
-
-<span id="chkbox2">Remember Me</span>
-<Checkbox aria-labelledby="chkbox2" />
-
-<Checkbox aria-label="Remember Me" />
-`
-                }
-            };
-        }
-    };
-</script>

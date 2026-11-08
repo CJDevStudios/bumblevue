@@ -1,7 +1,3 @@
-<template>
-    <div :class="cx('root')" :style="[sx('root'), containerStyle]" aria-hidden="true" v-bind="ptmi('root')" :data-p="dataP"></div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -57,3 +53,7 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :style="[sx('root'), containerStyle]" aria-hidden="true" v-bind="ptmi('root')" :data-p="dataP"></div>
+</template>

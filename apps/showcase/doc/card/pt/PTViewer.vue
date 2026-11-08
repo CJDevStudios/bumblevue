@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Card'),
+                        key: 'Card'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Card style="width: 25rem">
@@ -18,20 +35,3 @@
         </Card>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                docs: [
-                    {
-                        data: getPTOptions('Card'),
-                        key: 'Card'
-                    }
-                ]
-            };
-        }
-    };
-</script>

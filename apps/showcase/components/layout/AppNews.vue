@@ -1,19 +1,3 @@
-<template>
-    <div v-if="$appState.newsActive" class="layout-news" :style="$appState.announcement.backgroundStyle">
-        <div class="layout-news-container">
-            <i></i>
-            <div class="layout-news-content">
-                <span class="layout-news-text" :style="$appState.announcement.textStyle">{{ $appState.announcement.content }}</span>
-                <a v-if="$appState.announcement.linkHref" class="layout-news-link" :href="$appState.announcement.linkHref" :target="$appState.announcement.target" rel="noopener noreferrer">{{ $appState.announcement.linkText }}</a>
-                <NuxtLink v-if="$appState.announcement.to" :to="$appState.announcement.to" class="layout-news-link">{{ $appState.announcement.linkText }}</NuxtLink>
-            </div>
-            <a class="layout-news-close" :style="$appState.announcement.textStyle" @click="onClose">
-                <span class="pi pi-times"></span>
-            </a>
-        </div>
-    </div>
-</template>
-
 <script>
     import News from '@/assets/data/news.json';
 
@@ -47,3 +31,19 @@
         }
     };
 </script>
+
+<template>
+    <div v-if="$appState.newsActive" class="layout-news" :style="$appState.announcement.backgroundStyle">
+        <div class="layout-news-container">
+            <i></i>
+            <div class="layout-news-content">
+                <span class="layout-news-text" :style="$appState.announcement.textStyle">{{ $appState.announcement.content }}</span>
+                <a v-if="$appState.announcement.linkHref" class="layout-news-link" :href="$appState.announcement.linkHref" :target="$appState.announcement.target" rel="noopener noreferrer">{{ $appState.announcement.linkText }}</a>
+                <NuxtLink v-if="$appState.announcement.to" :to="$appState.announcement.to" class="layout-news-link">{{ $appState.announcement.linkText }}</NuxtLink>
+            </div>
+            <a class="layout-news-close" :style="$appState.announcement.textStyle" @click="onClose">
+                <span class="pi pi-times"></span>
+            </a>
+        </div>
+    </div>
+</template>

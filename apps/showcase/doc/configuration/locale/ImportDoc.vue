@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Locale values are stored in the global configuration that becomes accessible after installing BumbleVue.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -20,3 +13,10 @@ app.use(BumbleVue);`
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Locale values are stored in the global configuration that becomes accessible after installing BumbleVue.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

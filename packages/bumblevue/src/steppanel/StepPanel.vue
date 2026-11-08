@@ -1,29 +1,3 @@
-<template>
-    <template v-if="isVertical">
-        <template v-if="!asChild">
-            <transition name="p-collapsible" v-bind="ptm('transition')">
-                <component v-show="active" :is="as" :id="id" :class="cx('root')" role="tabpanel" :aria-controls="ariaControls" :data-p="dataP" v-bind="getPTOptions('root')">
-                    <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper', ptParams)">
-                        <StepperSeparator v-if="isSeparatorVisible" :data-p="dataP" />
-                        <div :class="cx('content')" :data-p="dataP" v-bind="getPTOptions('content')">
-                            <slot :active="active" :activateCallback="(val) => updateValue(val)" />
-                        </div>
-                    </div>
-                </component>
-            </transition>
-        </template>
-        <slot v-else :active="active" :a11yAttrs="a11yAttrs" :activateCallback="(val) => updateValue(val)" />
-    </template>
-    <template v-else>
-        <template v-if="!asChild">
-            <component v-show="active" :is="as" :id="id" :class="cx('root')" role="tabpanel" :aria-controls="ariaControls" v-bind="getPTOptions('root')">
-                <slot :active="active" :activateCallback="(val) => updateValue(val)" />
-            </component>
-        </template>
-        <slot v-else-if="asChild && active" :active="active" :a11yAttrs="a11yAttrs" :activateCallback="(val) => updateValue(val)" />
-    </template>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
@@ -141,3 +115,29 @@
         }
     };
 </script>
+
+<template>
+    <template v-if="isVertical">
+        <template v-if="!asChild">
+            <transition name="p-collapsible" v-bind="ptm('transition')">
+                <component v-show="active" :is="as" :id="id" :class="cx('root')" role="tabpanel" :aria-controls="ariaControls" :data-p="dataP" v-bind="getPTOptions('root')">
+                    <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper', ptParams)">
+                        <StepperSeparator v-if="isSeparatorVisible" :data-p="dataP" />
+                        <div :class="cx('content')" :data-p="dataP" v-bind="getPTOptions('content')">
+                            <slot :active="active" :activateCallback="(val) => updateValue(val)" />
+                        </div>
+                    </div>
+                </component>
+            </transition>
+        </template>
+        <slot v-else :active="active" :a11yAttrs="a11yAttrs" :activateCallback="(val) => updateValue(val)" />
+    </template>
+    <template v-else>
+        <template v-if="!asChild">
+            <component v-show="active" :is="as" :id="id" :class="cx('root')" role="tabpanel" :aria-controls="ariaControls" v-bind="getPTOptions('root')">
+                <slot :active="active" :activateCallback="(val) => updateValue(val)" />
+            </component>
+        </template>
+        <slot v-else-if="asChild && active" :active="active" :a11yAttrs="a11yAttrs" :activateCallback="(val) => updateValue(val)" />
+    </template>
+</template>

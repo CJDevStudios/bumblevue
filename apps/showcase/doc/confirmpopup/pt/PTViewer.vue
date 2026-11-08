@@ -1,10 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <ConfirmPopup group="ptviewer"></ConfirmPopup>
-        <Button ref="btn" @click="confirm1($event)" label="Open Popup" outlined></Button>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -44,3 +37,10 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <ConfirmPopup group="ptviewer"></ConfirmPopup>
+        <Button ref="btn" @click="confirm1($event)" label="Open Popup" outlined></Button>
+    </DocPTViewer>
+</template>

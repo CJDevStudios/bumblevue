@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <ConfirmDialog group="ptviewer" pt:mask="!relative" class="my-auto!"></ConfirmDialog>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -44,3 +38,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <ConfirmDialog group="ptviewer" pt:mask="!relative" class="my-auto!"></ConfirmDialog>
+    </DocPTViewer>
+</template>

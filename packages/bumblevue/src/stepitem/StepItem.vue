@@ -1,9 +1,3 @@
-<template>
-    <div :class="cx('root')" :data-p-active="isActive" v-bind="ptmi('root')">
-        <slot />
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import StepItemStyle from '@cjdevstudios/bumblevue/stepitem/style';
@@ -33,3 +27,9 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :data-p-active="isActive" v-bind="ptmi('root')">
+        <slot />
+    </div>
+</template>

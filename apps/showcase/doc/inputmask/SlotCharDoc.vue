@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Default placeholder for a mask is underscore that can be customized using <i>slotChar</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref('');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Default placeholder for a mask is underscore that can be customized using <i>slotChar</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <InputMask id="basic" v-model="value" placeholder="99/99/9999" mask="99/99/9999" slotChar="mm/dd/yyyy" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

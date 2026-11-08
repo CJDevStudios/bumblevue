@@ -1,327 +1,3 @@
-<template>
-    <div :class="cx('root')" data-scrollselectors=".p-datatable-wrapper" :data-p="dataP" v-bind="ptmi('root')">
-        <slot></slot>
-        <transition name="p-overlay-mask">
-            <div v-if="loading" :class="cx('mask')" v-bind="ptm('mask')">
-                <slot v-if="$slots.loading" name="loading"></slot>
-                <template v-else>
-                    <component v-if="$slots.loadingicon" :is="$slots.loadingicon" :class="cx('loadingIcon')" />
-                    <i v-else-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
-                    <SpinnerIcon v-else spin :class="cx('loadingIcon')" v-bind="ptm('loadingIcon')" />
-                </template>
-            </div>
-        </transition>
-        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
-            <slot name="header"></slot>
-        </div>
-        <DTPaginator
-            v-if="paginatorTop"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="totalRecordsLength"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'top' })"
-            @page="onPage($event)"
-            :alwaysShow="alwaysShowPaginator"
-            :unstyled="unstyled"
-            :data-p-top="true"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :pageLinks="slotProps.pageLinks"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
-                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
-                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
-                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
-                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
-                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
-                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-        </DTPaginator>
-        <div :class="cx('tableContainer')" :style="[sx('tableContainer'), { maxHeight: virtualScrollerDisabled ? scrollHeight : '' }]" :data-p="dataP" v-bind="ptm('tableContainer')">
-            <DTVirtualScroller
-                ref="virtualScroller"
-                v-bind="virtualScrollerOptions"
-                :items="processedData"
-                :columns="columns"
-                :style="scrollHeight !== 'flex' ? { height: scrollHeight } : undefined"
-                :scrollHeight="scrollHeight !== 'flex' ? undefined : '100%'"
-                :disabled="virtualScrollerDisabled"
-                loaderDisabled
-                inline
-                autoSize
-                :showSpacer="false"
-                :pt="ptm('virtualScroller')"
-            >
-                <template #content="slotProps">
-                    <table ref="table" role="table" :class="[cx('table'), tableClass]" :style="[tableStyle, slotProps.spacerStyle]" v-bind="{ ...tableProps, ...ptm('table') }">
-                        <DTTableHeader
-                            v-if="showHeaders"
-                            :columnGroup="headerColumnGroup"
-                            :columns="slotProps.columns"
-                            :rowGroupMode="rowGroupMode"
-                            :groupRowsBy="groupRowsBy"
-                            :groupRowSortField="groupRowSortField"
-                            :reorderableColumns="reorderableColumns"
-                            :resizableColumns="resizableColumns"
-                            :allRowsSelected="allRowsSelected"
-                            :empty="empty"
-                            :sortMode="sortMode"
-                            :sortField="d_sortField"
-                            :sortOrder="d_sortOrder"
-                            :multiSortMeta="d_multiSortMeta"
-                            :filters="d_filters"
-                            :filtersStore="filters"
-                            :filterDisplay="filterDisplay"
-                            :filterButtonProps="headerFilterButtonProps"
-                            :filterInputProps="filterInputProps"
-                            :first="d_first"
-                            @column-click="onColumnHeaderClick($event)"
-                            @column-mousedown="onColumnHeaderMouseDown($event)"
-                            @filter-change="onFilterChange"
-                            @filter-apply="onFilterApply"
-                            @column-dragstart="onColumnHeaderDragStart($event)"
-                            @column-dragover="onColumnHeaderDragOver($event)"
-                            @column-dragleave="onColumnHeaderDragLeave($event)"
-                            @column-drop="onColumnHeaderDrop($event)"
-                            @column-resizestart="onColumnResizeStart($event)"
-                            @checkbox-change="toggleRowsWithCheckbox($event)"
-                            :unstyled="unstyled"
-                            :pt="pt"
-                        />
-                        <DTTableBody
-                            v-if="frozenValue"
-                            ref="frozenBodyRef"
-                            :value="frozenValue"
-                            :frozenRow="true"
-                            :columns="slotProps.columns"
-                            :first="d_first"
-                            :dataKey="dataKey"
-                            :selection="selection"
-                            :selectionKeys="d_selectionKeys"
-                            :selectionMode="selectionMode"
-                            :rowHover="rowHover"
-                            :contextMenu="contextMenu"
-                            :contextMenuSelection="contextMenuSelection"
-                            :rowGroupMode="rowGroupMode"
-                            :groupRowsBy="groupRowsBy"
-                            :expandableRowGroups="expandableRowGroups"
-                            :rowClass="rowClass"
-                            :rowStyle="rowStyle"
-                            :editMode="editMode"
-                            :compareSelectionBy="compareSelectionBy"
-                            :scrollable="scrollable"
-                            :expandedRowIcon="expandedRowIcon"
-                            :collapsedRowIcon="collapsedRowIcon"
-                            :expandedRows="expandedRows"
-                            :expandedRowGroups="expandedRowGroups"
-                            :editingRows="editingRows"
-                            :editingRowKeys="d_editingRowKeys"
-                            :templates="$slots"
-                            :editButtonProps="rowEditButtonProps"
-                            :isVirtualScrollerDisabled="true"
-                            @rowgroup-toggle="toggleRowGroup"
-                            @row-click="onRowClick($event)"
-                            @row-dblclick="onRowDblClick($event)"
-                            @row-rightclick="onRowRightClick($event)"
-                            @row-touchend="onRowTouchEnd"
-                            @row-keydown="onRowKeyDown"
-                            @row-mousedown="onRowMouseDown"
-                            @row-dragstart="onRowDragStart($event)"
-                            @row-dragover="onRowDragOver($event)"
-                            @row-dragleave="onRowDragLeave($event)"
-                            @row-dragend="onRowDragEnd($event)"
-                            @row-drop="onRowDrop($event)"
-                            @row-toggle="toggleRow($event)"
-                            @radio-change="toggleRowWithRadio($event)"
-                            @checkbox-change="toggleRowWithCheckbox($event)"
-                            @cell-edit-init="onCellEditInit($event)"
-                            @cell-edit-complete="onCellEditComplete($event)"
-                            @cell-edit-cancel="onCellEditCancel($event)"
-                            @row-edit-init="onRowEditInit($event)"
-                            @row-edit-save="onRowEditSave($event)"
-                            @row-edit-cancel="onRowEditCancel($event)"
-                            :editingMeta="d_editingMeta"
-                            @editing-meta-change="onEditingMetaChange"
-                            :unstyled="unstyled"
-                            :pt="pt"
-                        />
-                        <DTTableBody
-                            ref="bodyRef"
-                            :value="dataToRender(slotProps.rows)"
-                            :class="slotProps.styleClass"
-                            :columns="slotProps.columns"
-                            :empty="empty"
-                            :first="d_first"
-                            :dataKey="dataKey"
-                            :selection="selection"
-                            :selectionKeys="d_selectionKeys"
-                            :selectionMode="selectionMode"
-                            :rowHover="rowHover"
-                            :contextMenu="contextMenu"
-                            :contextMenuSelection="contextMenuSelection"
-                            :rowGroupMode="rowGroupMode"
-                            :groupRowsBy="groupRowsBy"
-                            :expandableRowGroups="expandableRowGroups"
-                            :rowClass="rowClass"
-                            :rowStyle="rowStyle"
-                            :editMode="editMode"
-                            :compareSelectionBy="compareSelectionBy"
-                            :scrollable="scrollable"
-                            :expandedRowIcon="expandedRowIcon"
-                            :collapsedRowIcon="collapsedRowIcon"
-                            :expandedRows="expandedRows"
-                            :expandedRowGroups="expandedRowGroups"
-                            :editingRows="editingRows"
-                            :editingRowKeys="d_editingRowKeys"
-                            :templates="$slots"
-                            :editButtonProps="rowEditButtonProps"
-                            :virtualScrollerContentProps="slotProps"
-                            :isVirtualScrollerDisabled="virtualScrollerDisabled"
-                            @rowgroup-toggle="toggleRowGroup"
-                            @row-click="onRowClick($event)"
-                            @row-dblclick="onRowDblClick($event)"
-                            @row-rightclick="onRowRightClick($event)"
-                            @row-touchend="onRowTouchEnd"
-                            @row-keydown="onRowKeyDown($event, slotProps)"
-                            @row-mousedown="onRowMouseDown"
-                            @row-dragstart="onRowDragStart($event)"
-                            @row-dragover="onRowDragOver($event)"
-                            @row-dragleave="onRowDragLeave($event)"
-                            @row-dragend="onRowDragEnd($event)"
-                            @row-drop="onRowDrop($event)"
-                            @row-toggle="toggleRow($event)"
-                            @radio-change="toggleRowWithRadio($event)"
-                            @checkbox-change="toggleRowWithCheckbox($event)"
-                            @cell-edit-init="onCellEditInit($event)"
-                            @cell-edit-complete="onCellEditComplete($event)"
-                            @cell-edit-cancel="onCellEditCancel($event)"
-                            @row-edit-init="onRowEditInit($event)"
-                            @row-edit-save="onRowEditSave($event)"
-                            @row-edit-cancel="onRowEditCancel($event)"
-                            :editingMeta="d_editingMeta"
-                            @editing-meta-change="onEditingMetaChange"
-                            :unstyled="unstyled"
-                            :pt="pt"
-                        />
-                        <tbody
-                            v-if="hasSpacerStyle(slotProps.spacerStyle)"
-                            :class="cx('virtualScrollerSpacer')"
-                            :style="{ height: `calc(${slotProps.spacerStyle.height} - ${slotProps.rows.length * slotProps.itemSize}px)` }"
-                            v-bind="ptm('virtualScrollerSpacer')"
-                        ></tbody>
-                        <DTTableFooter :columnGroup="footerColumnGroup" :columns="slotProps.columns" :pt="pt" />
-                    </table>
-                </template>
-            </DTVirtualScroller>
-        </div>
-        <DTPaginator
-            v-if="paginatorBottom"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="totalRecordsLength"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'bottom' })"
-            @page="onPage($event)"
-            :alwaysShow="alwaysShowPaginator"
-            :unstyled="unstyled"
-            :data-p-bottom="true"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :pageLinks="slotProps.pageLinks"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
-                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
-                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
-                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
-                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
-                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
-                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-        </DTPaginator>
-        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
-            <slot name="footer"></slot>
-        </div>
-        <div ref="resizeHelper" :class="cx('columnResizeIndicator')" style="display: none" v-bind="ptm('columnResizeIndicator')"></div>
-        <span v-if="reorderableColumns" ref="reorderIndicatorUp" :class="cx('rowReorderIndicatorUp')" style="position: absolute; display: none" v-bind="ptm('rowReorderIndicatorUp')">
-            <component :is="$slots.rowreorderindicatorupicon || 'ArrowDownIcon'" />
-        </span>
-        <span v-if="reorderableColumns" ref="reorderIndicatorDown" :class="cx('rowReorderIndicatorDown')" style="position: absolute; display: none" v-bind="ptm('rowReorderIndicatorDown')">
-            <component :is="$slots.rowreorderindicatordownicon || 'ArrowUpIcon'" />
-        </span>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import {
@@ -2485,3 +2161,327 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" data-scrollselectors=".p-datatable-wrapper" :data-p="dataP" v-bind="ptmi('root')">
+        <slot></slot>
+        <transition name="p-overlay-mask">
+            <div v-if="loading" :class="cx('mask')" v-bind="ptm('mask')">
+                <slot v-if="$slots.loading" name="loading"></slot>
+                <template v-else>
+                    <component v-if="$slots.loadingicon" :is="$slots.loadingicon" :class="cx('loadingIcon')" />
+                    <i v-else-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
+                    <SpinnerIcon v-else spin :class="cx('loadingIcon')" v-bind="ptm('loadingIcon')" />
+                </template>
+            </div>
+        </transition>
+        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
+            <slot name="header"></slot>
+        </div>
+        <DTPaginator
+            v-if="paginatorTop"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="totalRecordsLength"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'top' })"
+            @page="onPage($event)"
+            :alwaysShow="alwaysShowPaginator"
+            :unstyled="unstyled"
+            :data-p-top="true"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :pageLinks="slotProps.pageLinks"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
+                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
+                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
+                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
+                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
+                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
+                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+        </DTPaginator>
+        <div :class="cx('tableContainer')" :style="[sx('tableContainer'), { maxHeight: virtualScrollerDisabled ? scrollHeight : '' }]" :data-p="dataP" v-bind="ptm('tableContainer')">
+            <DTVirtualScroller
+                ref="virtualScroller"
+                v-bind="virtualScrollerOptions"
+                :items="processedData"
+                :columns="columns"
+                :style="scrollHeight !== 'flex' ? { height: scrollHeight } : undefined"
+                :scrollHeight="scrollHeight !== 'flex' ? undefined : '100%'"
+                :disabled="virtualScrollerDisabled"
+                loaderDisabled
+                inline
+                autoSize
+                :showSpacer="false"
+                :pt="ptm('virtualScroller')"
+            >
+                <template #content="slotProps">
+                    <table ref="table" role="table" :class="[cx('table'), tableClass]" :style="[tableStyle, slotProps.spacerStyle]" v-bind="{ ...tableProps, ...ptm('table') }">
+                        <DTTableHeader
+                            v-if="showHeaders"
+                            :columnGroup="headerColumnGroup"
+                            :columns="slotProps.columns"
+                            :rowGroupMode="rowGroupMode"
+                            :groupRowsBy="groupRowsBy"
+                            :groupRowSortField="groupRowSortField"
+                            :reorderableColumns="reorderableColumns"
+                            :resizableColumns="resizableColumns"
+                            :allRowsSelected="allRowsSelected"
+                            :empty="empty"
+                            :sortMode="sortMode"
+                            :sortField="d_sortField"
+                            :sortOrder="d_sortOrder"
+                            :multiSortMeta="d_multiSortMeta"
+                            :filters="d_filters"
+                            :filtersStore="filters"
+                            :filterDisplay="filterDisplay"
+                            :filterButtonProps="headerFilterButtonProps"
+                            :filterInputProps="filterInputProps"
+                            :first="d_first"
+                            @column-click="onColumnHeaderClick($event)"
+                            @column-mousedown="onColumnHeaderMouseDown($event)"
+                            @filter-change="onFilterChange"
+                            @filter-apply="onFilterApply"
+                            @column-dragstart="onColumnHeaderDragStart($event)"
+                            @column-dragover="onColumnHeaderDragOver($event)"
+                            @column-dragleave="onColumnHeaderDragLeave($event)"
+                            @column-drop="onColumnHeaderDrop($event)"
+                            @column-resizestart="onColumnResizeStart($event)"
+                            @checkbox-change="toggleRowsWithCheckbox($event)"
+                            :unstyled="unstyled"
+                            :pt="pt"
+                        />
+                        <DTTableBody
+                            v-if="frozenValue"
+                            ref="frozenBodyRef"
+                            :value="frozenValue"
+                            :frozenRow="true"
+                            :columns="slotProps.columns"
+                            :first="d_first"
+                            :dataKey="dataKey"
+                            :selection="selection"
+                            :selectionKeys="d_selectionKeys"
+                            :selectionMode="selectionMode"
+                            :rowHover="rowHover"
+                            :contextMenu="contextMenu"
+                            :contextMenuSelection="contextMenuSelection"
+                            :rowGroupMode="rowGroupMode"
+                            :groupRowsBy="groupRowsBy"
+                            :expandableRowGroups="expandableRowGroups"
+                            :rowClass="rowClass"
+                            :rowStyle="rowStyle"
+                            :editMode="editMode"
+                            :compareSelectionBy="compareSelectionBy"
+                            :scrollable="scrollable"
+                            :expandedRowIcon="expandedRowIcon"
+                            :collapsedRowIcon="collapsedRowIcon"
+                            :expandedRows="expandedRows"
+                            :expandedRowGroups="expandedRowGroups"
+                            :editingRows="editingRows"
+                            :editingRowKeys="d_editingRowKeys"
+                            :templates="$slots"
+                            :editButtonProps="rowEditButtonProps"
+                            :isVirtualScrollerDisabled="true"
+                            @rowgroup-toggle="toggleRowGroup"
+                            @row-click="onRowClick($event)"
+                            @row-dblclick="onRowDblClick($event)"
+                            @row-rightclick="onRowRightClick($event)"
+                            @row-touchend="onRowTouchEnd"
+                            @row-keydown="onRowKeyDown"
+                            @row-mousedown="onRowMouseDown"
+                            @row-dragstart="onRowDragStart($event)"
+                            @row-dragover="onRowDragOver($event)"
+                            @row-dragleave="onRowDragLeave($event)"
+                            @row-dragend="onRowDragEnd($event)"
+                            @row-drop="onRowDrop($event)"
+                            @row-toggle="toggleRow($event)"
+                            @radio-change="toggleRowWithRadio($event)"
+                            @checkbox-change="toggleRowWithCheckbox($event)"
+                            @cell-edit-init="onCellEditInit($event)"
+                            @cell-edit-complete="onCellEditComplete($event)"
+                            @cell-edit-cancel="onCellEditCancel($event)"
+                            @row-edit-init="onRowEditInit($event)"
+                            @row-edit-save="onRowEditSave($event)"
+                            @row-edit-cancel="onRowEditCancel($event)"
+                            :editingMeta="d_editingMeta"
+                            @editing-meta-change="onEditingMetaChange"
+                            :unstyled="unstyled"
+                            :pt="pt"
+                        />
+                        <DTTableBody
+                            ref="bodyRef"
+                            :value="dataToRender(slotProps.rows)"
+                            :class="slotProps.styleClass"
+                            :columns="slotProps.columns"
+                            :empty="empty"
+                            :first="d_first"
+                            :dataKey="dataKey"
+                            :selection="selection"
+                            :selectionKeys="d_selectionKeys"
+                            :selectionMode="selectionMode"
+                            :rowHover="rowHover"
+                            :contextMenu="contextMenu"
+                            :contextMenuSelection="contextMenuSelection"
+                            :rowGroupMode="rowGroupMode"
+                            :groupRowsBy="groupRowsBy"
+                            :expandableRowGroups="expandableRowGroups"
+                            :rowClass="rowClass"
+                            :rowStyle="rowStyle"
+                            :editMode="editMode"
+                            :compareSelectionBy="compareSelectionBy"
+                            :scrollable="scrollable"
+                            :expandedRowIcon="expandedRowIcon"
+                            :collapsedRowIcon="collapsedRowIcon"
+                            :expandedRows="expandedRows"
+                            :expandedRowGroups="expandedRowGroups"
+                            :editingRows="editingRows"
+                            :editingRowKeys="d_editingRowKeys"
+                            :templates="$slots"
+                            :editButtonProps="rowEditButtonProps"
+                            :virtualScrollerContentProps="slotProps"
+                            :isVirtualScrollerDisabled="virtualScrollerDisabled"
+                            @rowgroup-toggle="toggleRowGroup"
+                            @row-click="onRowClick($event)"
+                            @row-dblclick="onRowDblClick($event)"
+                            @row-rightclick="onRowRightClick($event)"
+                            @row-touchend="onRowTouchEnd"
+                            @row-keydown="onRowKeyDown($event, slotProps)"
+                            @row-mousedown="onRowMouseDown"
+                            @row-dragstart="onRowDragStart($event)"
+                            @row-dragover="onRowDragOver($event)"
+                            @row-dragleave="onRowDragLeave($event)"
+                            @row-dragend="onRowDragEnd($event)"
+                            @row-drop="onRowDrop($event)"
+                            @row-toggle="toggleRow($event)"
+                            @radio-change="toggleRowWithRadio($event)"
+                            @checkbox-change="toggleRowWithCheckbox($event)"
+                            @cell-edit-init="onCellEditInit($event)"
+                            @cell-edit-complete="onCellEditComplete($event)"
+                            @cell-edit-cancel="onCellEditCancel($event)"
+                            @row-edit-init="onRowEditInit($event)"
+                            @row-edit-save="onRowEditSave($event)"
+                            @row-edit-cancel="onRowEditCancel($event)"
+                            :editingMeta="d_editingMeta"
+                            @editing-meta-change="onEditingMetaChange"
+                            :unstyled="unstyled"
+                            :pt="pt"
+                        />
+                        <tbody
+                            v-if="hasSpacerStyle(slotProps.spacerStyle)"
+                            :class="cx('virtualScrollerSpacer')"
+                            :style="{ height: `calc(${slotProps.spacerStyle.height} - ${slotProps.rows.length * slotProps.itemSize}px)` }"
+                            v-bind="ptm('virtualScrollerSpacer')"
+                        ></tbody>
+                        <DTTableFooter :columnGroup="footerColumnGroup" :columns="slotProps.columns" :pt="pt" />
+                    </table>
+                </template>
+            </DTVirtualScroller>
+        </div>
+        <DTPaginator
+            v-if="paginatorBottom"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="totalRecordsLength"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'bottom' })"
+            @page="onPage($event)"
+            :alwaysShow="alwaysShowPaginator"
+            :unstyled="unstyled"
+            :data-p-bottom="true"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :pageLinks="slotProps.pageLinks"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
+                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
+                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
+                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
+                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
+                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
+                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+        </DTPaginator>
+        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
+            <slot name="footer"></slot>
+        </div>
+        <div ref="resizeHelper" :class="cx('columnResizeIndicator')" style="display: none" v-bind="ptm('columnResizeIndicator')"></div>
+        <span v-if="reorderableColumns" ref="reorderIndicatorUp" :class="cx('rowReorderIndicatorUp')" style="position: absolute; display: none" v-bind="ptm('rowReorderIndicatorUp')">
+            <component :is="$slots.rowreorderindicatorupicon || 'ArrowDownIcon'" />
+        </span>
+        <span v-if="reorderableColumns" ref="reorderIndicatorDown" :class="cx('rowReorderIndicatorDown')" style="position: absolute; display: none" v-bind="ptm('rowReorderIndicatorDown')">
+            <component :is="$slots.rowreorderindicatordownicon || 'ArrowUpIcon'" />
+        </span>
+    </div>
+</template>

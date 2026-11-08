@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Setting global property attaches the context menu to the document.</p>
-    </DocSectionText>
-    <div class="card text-center">
-        <p class="mb-0">Right-Click anywhere on this page to view the global ContextMenu.</p>
-        <ContextMenu global :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -89,3 +78,14 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Setting global property attaches the context menu to the document.</p>
+    </DocSectionText>
+    <div class="card text-center">
+        <p class="mb-0">Right-Click anywhere on this page to view the global ContextMenu.</p>
+        <ContextMenu global :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

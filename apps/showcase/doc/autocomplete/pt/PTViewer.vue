@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" appendTo="self" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -29,3 +23,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" appendTo="self" />
+    </DocPTViewer>
+</template>

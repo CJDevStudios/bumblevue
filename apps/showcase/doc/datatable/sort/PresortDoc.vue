@@ -1,28 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Defining a default <i>sortField</i> and <i>sortOrder</i> displays data as sorted initially in single column sorting. In <i>multiple</i> sort mode, <i>multiSortMeta</i> should be used instead by providing an array of
-            <i>DataTableSortMeta</i> objects.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" sortField="price" :sortOrder="-1" tableStyle="min-width: 50rem">
-                <Column field="code" header="Code" sortable style="width: 20%"></Column>
-                <Column field="name" header="Name" sortable style="width: 20%"></Column>
-                <Column field="price" header="Price" :sortable="true">
-                    <template #body="slotProps">
-                        {{ formatCurrency(slotProps.data.price) }}
-                    </template>
-                </Column>
-                <Column field="category" header="Category" sortable style="width: 20%"></Column>
-                <Column field="quantity" header="Quantity" sortable style="width: 20%"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -104,3 +79,28 @@ const formatCurrency = (value) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Defining a default <i>sortField</i> and <i>sortOrder</i> displays data as sorted initially in single column sorting. In <i>multiple</i> sort mode, <i>multiSortMeta</i> should be used instead by providing an array of
+            <i>DataTableSortMeta</i> objects.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" sortField="price" :sortOrder="-1" tableStyle="min-width: 50rem">
+                <Column field="code" header="Code" sortable style="width: 20%"></Column>
+                <Column field="name" header="Name" sortable style="width: 20%"></Column>
+                <Column field="price" header="Price" :sortable="true">
+                    <template #body="slotProps">
+                        {{ formatCurrency(slotProps.data.price) }}
+                    </template>
+                </Column>
+                <Column field="category" header="Category" sortable style="width: 20%"></Column>
+                <Column field="quantity" header="Quantity" sortable style="width: 20%"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

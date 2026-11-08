@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A sample implementation to demonstrate loading components asynchronously, nested content and passing data.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button label="Select a Product" icon="pi pi-search" @click="showProducts" />
-
-        <DynamicDialog />
-    </div>
-    <DocSectionCode :code="code" :extFiles="extFiles" :service="['ProductService']" />
-</template>
-
 <script>
     import { markRaw } from 'vue';
     import FooterDemo from './demo/FooterDemo';
@@ -346,3 +334,15 @@ const closeDialog = (e) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A sample implementation to demonstrate loading components asynchronously, nested content and passing data.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button label="Select a Product" icon="pi pi-search" @click="showProducts" />
+
+        <DynamicDialog />
+    </div>
+    <DocSectionCode :code="code" :extFiles="extFiles" :service="['ProductService']" />
+</template>

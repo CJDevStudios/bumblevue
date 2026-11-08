@@ -1,18 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Custom content inside a button is defined as children.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SplitButton :model="items" @click="save" severity="contrast">
-            <span class="flex items-center font-bold">
-                <img alt="logo" src="https://primefaces.org/cdn/primevue/images/logo.svg" style="height: 1rem; margin-right: 0.5rem" />
-                <span>BumbleVue</span>
-            </span>
-        </SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -105,3 +90,18 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Custom content inside a button is defined as children.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SplitButton :model="items" @click="save" severity="contrast">
+            <span class="flex items-center font-bold">
+                <img alt="logo" src="https://primefaces.org/cdn/primevue/images/logo.svg" style="height: 1rem; margin-right: 0.5rem" />
+                <span>BumbleVue</span>
+            </span>
+        </SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

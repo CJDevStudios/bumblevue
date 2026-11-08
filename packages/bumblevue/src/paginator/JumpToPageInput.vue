@@ -1,7 +1,3 @@
-<template>
-    <JTPInput ref="jtpInput" :modelValue="d_page" :class="cx('pcJumpToPageInputText')" :aria-label="inputArialabel" :disabled="disabled" @update:modelValue="onChange" :unstyled="unstyled" :pt="ptm('pcJumpToPageInputText')"></JTPInput>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import InputNumber from '@cjdevstudios/bumblevue/inputnumber';
@@ -45,3 +41,7 @@
         }
     };
 </script>
+
+<template>
+    <JTPInput ref="jtpInput" :modelValue="d_page" :class="cx('pcJumpToPageInputText')" :aria-label="inputArialabel" :disabled="disabled" @update:modelValue="onChange" :unstyled="unstyled" :pt="ptm('pcJumpToPageInputText')"></JTPInput>
+</template>

@@ -1,12 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <FloatLabel>
-            <InputText id="username" v-model="value" autocomplete="off" />
-            <label for="username">Username</label>
-        </FloatLabel>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -24,3 +15,12 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <FloatLabel>
+            <InputText id="username" v-model="value" autocomplete="off" />
+            <label for="username">Username</label>
+        </FloatLabel>
+    </DocPTViewer>
+</template>

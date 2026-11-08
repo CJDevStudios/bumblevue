@@ -1,7 +1,3 @@
-<template>
-    <Button type="submit" :severity :label />
-</template>
-
 <script setup>
     import Button from '@cjdevstudios/bumblevue/button';
 
@@ -16,3 +12,7 @@
         }
     });
 </script>
+
+<template>
+    <Button type="submit" :severity :label />
+</template>

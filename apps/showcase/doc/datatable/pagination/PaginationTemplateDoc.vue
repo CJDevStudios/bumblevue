@@ -1,37 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Paginator UI is customized using the <i>paginatorTemplate</i> property. Each element can also be customized further with your own UI to replace the default one, refer to the
-            <BumbleVueNuxtLink to="/paginator">Paginator</BumbleVueNuxtLink> component for more information about the advanced customization options.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable
-                :value="customers"
-                paginator
-                :rows="5"
-                :rowsPerPageOptions="[5, 10, 20, 50]"
-                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} to {last} of {totalRecords}"
-                tableStyle="min-width: 50rem"
-            >
-                <template #paginatorstart>
-                    <Button type="button" icon="pi pi-refresh" text />
-                </template>
-                <template #paginatorend>
-                    <Button type="button" icon="pi pi-download" text />
-                </template>
-                <Column field="name" header="Name" style="width: 25%"></Column>
-                <Column field="country.name" header="Country" style="width: 25%"></Column>
-                <Column field="company" header="Company" style="width: 25%"></Column>
-                <Column field="representative.name" header="Representative" style="width: 25%"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CustomerService']" />
-</template>
-
 <script>
     import { CustomerService } from '@/service/CustomerService';
 
@@ -119,3 +85,37 @@ const customers = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Paginator UI is customized using the <i>paginatorTemplate</i> property. Each element can also be customized further with your own UI to replace the default one, refer to the
+            <BumbleVueNuxtLink to="/paginator">Paginator</BumbleVueNuxtLink> component for more information about the advanced customization options.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable
+                :value="customers"
+                paginator
+                :rows="5"
+                :rowsPerPageOptions="[5, 10, 20, 50]"
+                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                currentPageReportTemplate="{first} to {last} of {totalRecords}"
+                tableStyle="min-width: 50rem"
+            >
+                <template #paginatorstart>
+                    <Button type="button" icon="pi pi-refresh" text />
+                </template>
+                <template #paginatorend>
+                    <Button type="button" icon="pi pi-download" text />
+                </template>
+                <Column field="name" header="Name" style="width: 25%"></Column>
+                <Column field="country.name" header="Country" style="width: 25%"></Column>
+                <Column field="company" header="Company" style="width: 25%"></Column>
+                <Column field="representative.name" header="Representative" style="width: 25%"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CustomerService']" />
+</template>

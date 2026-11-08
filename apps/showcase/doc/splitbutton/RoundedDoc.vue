@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Rounded buttons have a circular border radius.</p>
-    </DocSectionText>
-    <div class="card flex justify-center flex-wrap gap-4">
-        <SplitButton label="Save" :model="items" @click="save" rounded></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="secondary"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="success"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="info"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="warn"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="help"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="danger"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" rounded severity="contrast"></SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -111,3 +94,20 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Rounded buttons have a circular border radius.</p>
+    </DocSectionText>
+    <div class="card flex justify-center flex-wrap gap-4">
+        <SplitButton label="Save" :model="items" @click="save" rounded></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="secondary"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="success"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="info"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="warn"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="help"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="danger"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" rounded severity="contrast"></SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

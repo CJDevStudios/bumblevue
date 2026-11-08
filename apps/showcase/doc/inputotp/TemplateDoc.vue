@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Define a template with your own UI elements with bindings to the provided events and attributes to replace the default design.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <InputOtp v-model="value">
-            <template #default="{ attrs, events }">
-                <input type="text" v-bind="attrs" v-on="events" class="custom-otp-input" />
-            </template>
-        </InputOtp>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -65,6 +51,20 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Define a template with your own UI elements with bindings to the provided events and attributes to replace the default design.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <InputOtp v-model="value">
+            <template #default="{ attrs, events }">
+                <input type="text" v-bind="attrs" v-on="events" class="custom-otp-input" />
+            </template>
+        </InputOtp>
+    </div>
+    <DocSectionCode :code="code" />
+</template>
 
 <style scoped>
     .custom-otp-input {

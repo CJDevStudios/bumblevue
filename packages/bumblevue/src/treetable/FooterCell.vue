@@ -1,10 +1,3 @@
-<template>
-    <td :style="containerStyle" :class="containerClass" role="cell" v-bind="{ ...getColumnPT('root'), ...getColumnPT('footerCell') }" :data-p-frozen-column="columnProp('frozen')">
-        <component v-if="column.children && column.children.footer" :is="column.children.footer" :column="column" />
-        <span v-if="columnProp('footer')" :class="cx('columnFooter')" v-bind="getColumnPT('columnFooter')">{{ columnProp('footer') }}</span>
-    </td>
-</template>
-
 <script>
     import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -103,3 +96,10 @@
         }
     };
 </script>
+
+<template>
+    <td :style="containerStyle" :class="containerClass" role="cell" v-bind="{ ...getColumnPT('root'), ...getColumnPT('footerCell') }" :data-p-frozen-column="columnProp('frozen')">
+        <component v-if="column.children && column.children.footer" :is="column.children.footer" :column="column" />
+        <span v-if="columnProp('footer')" :class="cx('columnFooter')" v-bind="getColumnPT('columnFooter')">{{ columnProp('footer') }}</span>
+    </td>
+</template>

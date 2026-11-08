@@ -1,13 +1,3 @@
-<template>
-    <div class="doc-main">
-        <div class="doc-intro">
-            <h1>Accordion Theming</h1>
-        </div>
-        <DocSections :docs="docs" />
-    </div>
-    <DocSectionNav :docs="docs" />
-</template>
-
 <script>
     import DocApiTable from '@/components/doc/DocApiTable.vue';
     import DocStyledPreset from '@/components/doc/DocStyledPreset.vue';
@@ -69,3 +59,13 @@
         }
     };
 </script>
+
+<template>
+    <div class="doc-main">
+        <div class="doc-intro">
+            <h1>Accordion Theming</h1>
+        </div>
+        <DocSections :docs="docs" />
+    </div>
+    <DocSectionNav :docs="docs" />
+</template>

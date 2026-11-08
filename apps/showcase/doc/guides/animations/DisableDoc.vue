@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Individual animations can be reduced and even disabled completely using the animation duration.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz format="css" />
-</template>
-
 <script>
     export default {
         data() {
@@ -23,3 +16,10 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Individual animations can be reduced and even disabled completely using the animation duration.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz format="css" />
+</template>

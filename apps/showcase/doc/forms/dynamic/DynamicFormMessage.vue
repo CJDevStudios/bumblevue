@@ -1,9 +1,3 @@
-<template>
-    <Message v-if="visible" :severity :icon size="small" variant="simple">
-        <slot>{{ message }}</slot>
-    </Message>
-</template>
-
 <script setup>
     import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
     import { computed, inject } from 'vue';
@@ -34,3 +28,9 @@
     const message = computed(() => (props.errorType ? error.value?.message : errors.value?.[0]?.message));
     const visible = computed(() => invalid.value && (error.value || props.errorType === undefined));
 </script>
+
+<template>
+    <Message v-if="visible" :severity :icon size="small" variant="simple">
+        <slot>{{ message }}</slot>
+    </Message>
+</template>

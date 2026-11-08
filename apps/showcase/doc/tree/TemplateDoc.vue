@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Each node can have a distinct template by matching the <i>type</i> property to the slot name.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree :value="nodes" class="w-full md:w-120">
-            <template #default="slotProps">
-                <b>{{ slotProps.node.label }}</b>
-            </template>
-            <template #url="slotProps">
-                <a :href="slotProps.node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-0 hover:text-primary">{{ slotProps.node.label }}</a>
-            </template>
-        </Tree>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -120,3 +103,20 @@ const nodes = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Each node can have a distinct template by matching the <i>type</i> property to the slot name.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree :value="nodes" class="w-full md:w-120">
+            <template #default="slotProps">
+                <b>{{ slotProps.node.label }}</b>
+            </template>
+            <template #url="slotProps">
+                <a :href="slotProps.node.data" target="_blank" rel="noopener noreferrer" class="text-surface-700 dark:text-surface-0 hover:text-primary">{{ slotProps.node.label }}</a>
+            </template>
+        </Tree>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

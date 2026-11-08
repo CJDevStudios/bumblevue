@@ -1,18 +1,3 @@
-<template>
-    <Form v-slot="$form" :initialValues :resolver @submit="$emit('submit', $event)" class="flex flex-col gap-4 w-full sm:w-56">
-        <slot v-bind="$form">
-            <template v-for="({ groupId, label, messages, ...rest }, name) in fields" :key="name">
-                <DynamicFormField :groupId :name>
-                    <DynamicFormLabel>{{ label }}</DynamicFormLabel>
-                    <DynamicFormControl v-bind="rest" />
-                    <DynamicFormMessage v-for="(message, index) in messages || [{}]" :key="index" v-bind="message" />
-                </DynamicFormField>
-            </template>
-            <DynamicFormSubmit />
-        </slot>
-    </Form>
-</template>
-
 <script setup>
     import { isNotEmpty } from '@cjdevstudios/bumblevue/utils';
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
@@ -44,3 +29,18 @@
         addField
     });
 </script>
+
+<template>
+    <Form v-slot="$form" :initialValues :resolver @submit="$emit('submit', $event)" class="flex flex-col gap-4 w-full sm:w-56">
+        <slot v-bind="$form">
+            <template v-for="({ groupId, label, messages, ...rest }, name) in fields" :key="name">
+                <DynamicFormField :groupId :name>
+                    <DynamicFormLabel>{{ label }}</DynamicFormLabel>
+                    <DynamicFormControl v-bind="rest" />
+                    <DynamicFormMessage v-for="(message, index) in messages || [{}]" :key="index" v-bind="message" />
+                </DynamicFormField>
+            </template>
+            <DynamicFormSubmit />
+        </slot>
+    </Form>
+</template>

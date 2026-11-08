@@ -1,228 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick" :data-p="containerDataP" v-bind="ptmi('root')">
-        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
-            <input
-                ref="focusInput"
-                :id="inputId"
-                type="text"
-                readonly
-                :disabled="disabled"
-                :placeholder="placeholder"
-                :tabindex="!disabled ? tabindex : -1"
-                role="combobox"
-                :aria-label="ariaLabel"
-                :aria-labelledby="ariaLabelledby"
-                aria-haspopup="listbox"
-                :aria-expanded="overlayVisible"
-                :aria-controls="overlayVisible ? $id + '_list' : undefined"
-                :aria-activedescendant="focused ? focusedOptionId : undefined"
-                :aria-invalid="invalid || undefined"
-                @focus="onFocus"
-                @blur="onBlur"
-                @keydown="onKeyDown"
-                v-bind="ptm('hiddenInput')"
-            />
-        </div>
-        <div :class="cx('labelContainer')" v-bind="ptm('labelContainer')">
-            <div :class="cx('label')" :data-p="labelDataP" v-bind="ptm('label')">
-                <slot name="value" :value="d_value" :placeholder="placeholder">
-                    <template v-if="display === 'comma'">
-                        {{ label || 'empty' }}
-                    </template>
-                    <template v-else-if="display === 'chip'">
-                        <template v-if="loading && (!options || options.length === 0)">{{ placeholder || 'empty' }}</template>
-                        <template v-else-if="chipSelectedItems">
-                            <span>{{ label }}</span>
-                        </template>
-                        <template v-else>
-                            <span v-for="(item, idx) of d_value" :key="`chip-${getLabelByValue(item)}_${idx}`" :class="cx('chipItem')" v-bind="ptm('chipItem')">
-                                <slot name="chip" :value="item" :removeCallback="(event) => removeOption(event, item)">
-                                    <!-- TODO: removetokenicon and removeTokenIcon  deprecated since v4.0. Use chipicon slot and chipIcon prop-->
-                                    <Chip :class="cx('pcChip')" :label="getLabelByValue(item)" :removeIcon="chipIcon || removeTokenIcon" removable :unstyled="unstyled" @remove="removeOption($event, item)" :pt="ptm('pcChip')">
-                                        <template #removeicon>
-                                            <slot :name="$slots.chipicon ? 'chipicon' : 'removetokenicon'" :class="cx('chipIcon')" :item="item" :removeCallback="(event) => removeOption(event, item)" />
-                                        </template>
-                                    </Chip>
-                                </slot>
-                            </span>
-                        </template>
-                        <template v-if="!d_value || d_value.length === 0">{{ placeholder || 'empty' }}</template>
-                    </template>
-                </slot>
-            </div>
-        </div>
-        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
-        </slot>
-        <div :class="cx('dropdown')" v-bind="ptm('dropdown')">
-            <slot v-if="loading" name="loadingicon" :class="cx('loadingIcon')">
-                <span v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" aria-hidden="true" v-bind="ptm('loadingIcon')" />
-                <SpinnerIcon v-else :class="cx('loadingIcon')" spin aria-hidden="true" v-bind="ptm('loadingIcon')" />
-            </slot>
-            <slot v-else name="dropdownicon" :class="cx('dropdownIcon')">
-                <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('dropdownIcon'), dropdownIcon]" aria-hidden="true" :data-p="dropdownIconDataP" v-bind="ptm('dropdownIcon')" />
-            </slot>
-        </div>
-        <Portal :appendTo="appendTo">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div v-if="overlayVisible" :ref="overlayRef" :style="[panelStyle, overlayStyle]" :class="[cx('overlay'), panelClass, overlayClass]" @click="onOverlayClick" @keydown="onOverlayKeyDown" :data-p="overlayDataP" v-bind="ptm('overlay')">
-                    <span
-                        ref="firstHiddenFocusableElementOnOverlay"
-                        role="presentation"
-                        aria-hidden="true"
-                        class="p-hidden-accessible p-hidden-focusable"
-                        :tabindex="0"
-                        @focus="onFirstHiddenFocus"
-                        v-bind="ptm('hiddenFirstFocusableEl')"
-                        :data-p-hidden-accessible="true"
-                        :data-p-hidden-focusable="true"
-                    ></span>
-                    <slot name="header" :value="d_value" :options="visibleOptions"></slot>
-                    <div v-if="(showToggleAll && selectionLimit == null) || filter" :class="cx('header')" v-bind="ptm('header')">
-                        <Checkbox
-                            v-if="showToggleAll && selectionLimit == null"
-                            :modelValue="allSelected"
-                            :binary="true"
-                            :disabled="disabled"
-                            :variant="variant"
-                            :aria-label="toggleAllAriaLabel"
-                            @change="onToggleAll"
-                            :unstyled="unstyled"
-                            :pt="getHeaderCheckboxPTOptions('pcHeaderCheckbox')"
-                            :formControl="{ novalidate: true }"
-                        >
-                            <template #icon="slotProps">
-                                <component v-if="$slots.headercheckboxicon" :is="$slots.headercheckboxicon" :checked="slotProps.checked" :class="slotProps.class" />
-                                <component v-else-if="slotProps.checked" :is="checkboxIcon ? 'span' : 'CheckIcon'" :class="[slotProps.class, { [checkboxIcon]: slotProps.checked }]" v-bind="getHeaderCheckboxPTOptions('pcHeaderCheckbox.icon')" />
-                            </template>
-                        </Checkbox>
-                        <IconField v-if="filter" :class="cx('pcFilterContainer')" :unstyled="unstyled" :pt="ptm('pcFilterContainer')">
-                            <InputText
-                                ref="filterInput"
-                                :value="filterValue"
-                                @vue:mounted="onFilterUpdated"
-                                @vue:updated="onFilterUpdated"
-                                :class="cx('pcFilter')"
-                                :placeholder="filterPlaceholder"
-                                :disabled="disabled"
-                                :variant="variant"
-                                :unstyled="unstyled"
-                                role="searchbox"
-                                autocomplete="off"
-                                :aria-owns="$id + '_list'"
-                                :aria-activedescendant="focusedOptionId"
-                                @keydown="onFilterKeyDown"
-                                @blur="onFilterBlur"
-                                @input="onFilterChange"
-                                :pt="ptm('pcFilter')"
-                                :formControl="{ novalidate: true }"
-                            />
-                            <InputIcon :unstyled="unstyled" :pt="ptm('pcFilterIconContainer')">
-                                <slot name="filtericon">
-                                    <span v-if="filterIcon" :class="filterIcon" v-bind="ptm('filterIcon')" />
-                                    <SearchIcon v-else v-bind="ptm('filterIcon')" />
-                                </slot>
-                            </InputIcon>
-                        </IconField>
-                        <span v-if="filter" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenFilterResult')" :data-p-hidden-accessible="true">
-                            {{ filterResultMessageText }}
-                        </span>
-                    </div>
-                    <div :class="cx('listContainer')" :style="{ 'max-height': virtualScrollerDisabled ? scrollHeight : '' }" v-bind="ptm('listContainer')">
-                        <VirtualScroller :ref="virtualScrollerRef" v-bind="virtualScrollerOptions" :items="visibleOptions" :style="{ height: scrollHeight }" :tabindex="-1" :disabled="virtualScrollerDisabled" :pt="ptm('virtualScroller')">
-                            <template v-slot:content="{ styleClass, contentRef, items, getItemOptions, contentStyle, itemSize }">
-                                <ul :ref="(el) => listRef(el, contentRef)" :id="$id + '_list'" :class="[cx('list'), styleClass]" :style="contentStyle" role="listbox" aria-multiselectable="true" :aria-label="listAriaLabel" v-bind="ptm('list')">
-                                    <template v-for="(option, i) of items" :key="getOptionRenderKey(option, getOptionIndex(i, getItemOptions))">
-                                        <li
-                                            v-if="isOptionGroup(option)"
-                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
-                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
-                                            :class="cx('optionGroup')"
-                                            role="option"
-                                            v-bind="ptm('optionGroup')"
-                                        >
-                                            <slot name="optiongroup" :option="option.optionGroup" :index="getOptionIndex(i, getItemOptions)">{{ getOptionGroupLabel(option.optionGroup) }}</slot>
-                                        </li>
-                                        <li
-                                            v-else
-                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
-                                            v-ripple
-                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
-                                            :class="cx('option', { option, index: i, getItemOptions })"
-                                            role="option"
-                                            :aria-label="getOptionLabel(option)"
-                                            :aria-selected="isSelected(option)"
-                                            :aria-disabled="isOptionDisabled(option)"
-                                            :aria-setsize="ariaSetSize"
-                                            :aria-posinset="getAriaPosInset(getOptionIndex(i, getItemOptions))"
-                                            @click="onOptionSelect($event, option, getOptionIndex(i, getItemOptions), true)"
-                                            @mousemove="onOptionMouseMove($event, getOptionIndex(i, getItemOptions))"
-                                            v-bind="getCheckboxPTOptions(option, getItemOptions, i, 'option')"
-                                            :data-p-selected="isSelected(option)"
-                                            :data-p-focused="focusedOptionIndex === getOptionIndex(i, getItemOptions)"
-                                            :data-p-disabled="isOptionDisabled(option)"
-                                        >
-                                            <Checkbox
-                                                :defaultValue="isSelected(option)"
-                                                :binary="true"
-                                                :tabindex="-1"
-                                                :variant="variant"
-                                                :unstyled="unstyled"
-                                                :pt="getCheckboxPTOptions(option, getItemOptions, i, 'pcOptionCheckbox')"
-                                                :formControl="{ novalidate: true }"
-                                            >
-                                                <template #icon="slotProps">
-                                                    <component v-if="$slots.optioncheckboxicon || $slots.itemcheckboxicon" :is="$slots.optioncheckboxicon || $slots.itemcheckboxicon" :checked="slotProps.checked" :class="slotProps.class" />
-                                                    <component
-                                                        v-else-if="slotProps.checked"
-                                                        :is="checkboxIcon ? 'span' : 'CheckIcon'"
-                                                        :class="[slotProps.class, { [checkboxIcon]: slotProps.checked }]"
-                                                        v-bind="getCheckboxPTOptions(option, getItemOptions, i, 'pcOptionCheckbox.icon')"
-                                                    />
-                                                </template>
-                                            </Checkbox>
-                                            <slot name="option" :option="option" :selected="isSelected(option)" :index="getOptionIndex(i, getItemOptions)">
-                                                <span v-bind="ptm('optionLabel')">{{ getOptionLabel(option) }}</span>
-                                            </slot>
-                                        </li>
-                                    </template>
-                                    <li v-if="filterValue && (!items || (items && items.length === 0))" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
-                                        <slot name="emptyfilter">{{ emptyFilterMessageText }}</slot>
-                                    </li>
-                                    <li v-else-if="!options || (options && options.length === 0)" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
-                                        <slot name="empty">{{ emptyMessageText }}</slot>
-                                    </li>
-                                </ul>
-                            </template>
-                            <template v-if="$slots.loader" v-slot:loader="{ options }">
-                                <slot name="loader" :options="options"></slot>
-                            </template>
-                        </VirtualScroller>
-                    </div>
-                    <slot name="footer" :value="d_value" :options="visibleOptions"></slot>
-                    <span v-if="!options || (options && options.length === 0)" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenEmptyMessage')" :data-p-hidden-accessible="true">
-                        {{ emptyMessageText }}
-                    </span>
-                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
-                        {{ selectedMessageText }}
-                    </span>
-                    <span
-                        ref="lastHiddenFocusableElementOnOverlay"
-                        role="presentation"
-                        aria-hidden="true"
-                        class="p-hidden-accessible p-hidden-focusable"
-                        :tabindex="0"
-                        @focus="onLastHiddenFocus"
-                        v-bind="ptm('hiddenLastFocusableEl')"
-                        :data-p-hidden-accessible="true"
-                        :data-p-hidden-focusable="true"
-                    ></span>
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
@@ -1386,3 +1161,228 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick" :data-p="containerDataP" v-bind="ptmi('root')">
+        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
+            <input
+                ref="focusInput"
+                :id="inputId"
+                type="text"
+                readonly
+                :disabled="disabled"
+                :placeholder="placeholder"
+                :tabindex="!disabled ? tabindex : -1"
+                role="combobox"
+                :aria-label="ariaLabel"
+                :aria-labelledby="ariaLabelledby"
+                aria-haspopup="listbox"
+                :aria-expanded="overlayVisible"
+                :aria-controls="overlayVisible ? $id + '_list' : undefined"
+                :aria-activedescendant="focused ? focusedOptionId : undefined"
+                :aria-invalid="invalid || undefined"
+                @focus="onFocus"
+                @blur="onBlur"
+                @keydown="onKeyDown"
+                v-bind="ptm('hiddenInput')"
+            />
+        </div>
+        <div :class="cx('labelContainer')" v-bind="ptm('labelContainer')">
+            <div :class="cx('label')" :data-p="labelDataP" v-bind="ptm('label')">
+                <slot name="value" :value="d_value" :placeholder="placeholder">
+                    <template v-if="display === 'comma'">
+                        {{ label || 'empty' }}
+                    </template>
+                    <template v-else-if="display === 'chip'">
+                        <template v-if="loading && (!options || options.length === 0)">{{ placeholder || 'empty' }}</template>
+                        <template v-else-if="chipSelectedItems">
+                            <span>{{ label }}</span>
+                        </template>
+                        <template v-else>
+                            <span v-for="(item, idx) of d_value" :key="`chip-${getLabelByValue(item)}_${idx}`" :class="cx('chipItem')" v-bind="ptm('chipItem')">
+                                <slot name="chip" :value="item" :removeCallback="(event) => removeOption(event, item)">
+                                    <!-- TODO: removetokenicon and removeTokenIcon  deprecated since v4.0. Use chipicon slot and chipIcon prop-->
+                                    <Chip :class="cx('pcChip')" :label="getLabelByValue(item)" :removeIcon="chipIcon || removeTokenIcon" removable :unstyled="unstyled" @remove="removeOption($event, item)" :pt="ptm('pcChip')">
+                                        <template #removeicon>
+                                            <slot :name="$slots.chipicon ? 'chipicon' : 'removetokenicon'" :class="cx('chipIcon')" :item="item" :removeCallback="(event) => removeOption(event, item)" />
+                                        </template>
+                                    </Chip>
+                                </slot>
+                            </span>
+                        </template>
+                        <template v-if="!d_value || d_value.length === 0">{{ placeholder || 'empty' }}</template>
+                    </template>
+                </slot>
+            </div>
+        </div>
+        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
+        </slot>
+        <div :class="cx('dropdown')" v-bind="ptm('dropdown')">
+            <slot v-if="loading" name="loadingicon" :class="cx('loadingIcon')">
+                <span v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" aria-hidden="true" v-bind="ptm('loadingIcon')" />
+                <SpinnerIcon v-else :class="cx('loadingIcon')" spin aria-hidden="true" v-bind="ptm('loadingIcon')" />
+            </slot>
+            <slot v-else name="dropdownicon" :class="cx('dropdownIcon')">
+                <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('dropdownIcon'), dropdownIcon]" aria-hidden="true" :data-p="dropdownIconDataP" v-bind="ptm('dropdownIcon')" />
+            </slot>
+        </div>
+        <Portal :appendTo="appendTo">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div v-if="overlayVisible" :ref="overlayRef" :style="[panelStyle, overlayStyle]" :class="[cx('overlay'), panelClass, overlayClass]" @click="onOverlayClick" @keydown="onOverlayKeyDown" :data-p="overlayDataP" v-bind="ptm('overlay')">
+                    <span
+                        ref="firstHiddenFocusableElementOnOverlay"
+                        role="presentation"
+                        aria-hidden="true"
+                        class="p-hidden-accessible p-hidden-focusable"
+                        :tabindex="0"
+                        @focus="onFirstHiddenFocus"
+                        v-bind="ptm('hiddenFirstFocusableEl')"
+                        :data-p-hidden-accessible="true"
+                        :data-p-hidden-focusable="true"
+                    ></span>
+                    <slot name="header" :value="d_value" :options="visibleOptions"></slot>
+                    <div v-if="(showToggleAll && selectionLimit == null) || filter" :class="cx('header')" v-bind="ptm('header')">
+                        <Checkbox
+                            v-if="showToggleAll && selectionLimit == null"
+                            :modelValue="allSelected"
+                            :binary="true"
+                            :disabled="disabled"
+                            :variant="variant"
+                            :aria-label="toggleAllAriaLabel"
+                            @change="onToggleAll"
+                            :unstyled="unstyled"
+                            :pt="getHeaderCheckboxPTOptions('pcHeaderCheckbox')"
+                            :formControl="{ novalidate: true }"
+                        >
+                            <template #icon="slotProps">
+                                <component v-if="$slots.headercheckboxicon" :is="$slots.headercheckboxicon" :checked="slotProps.checked" :class="slotProps.class" />
+                                <component v-else-if="slotProps.checked" :is="checkboxIcon ? 'span' : 'CheckIcon'" :class="[slotProps.class, { [checkboxIcon]: slotProps.checked }]" v-bind="getHeaderCheckboxPTOptions('pcHeaderCheckbox.icon')" />
+                            </template>
+                        </Checkbox>
+                        <IconField v-if="filter" :class="cx('pcFilterContainer')" :unstyled="unstyled" :pt="ptm('pcFilterContainer')">
+                            <InputText
+                                ref="filterInput"
+                                :value="filterValue"
+                                @vue:mounted="onFilterUpdated"
+                                @vue:updated="onFilterUpdated"
+                                :class="cx('pcFilter')"
+                                :placeholder="filterPlaceholder"
+                                :disabled="disabled"
+                                :variant="variant"
+                                :unstyled="unstyled"
+                                role="searchbox"
+                                autocomplete="off"
+                                :aria-owns="$id + '_list'"
+                                :aria-activedescendant="focusedOptionId"
+                                @keydown="onFilterKeyDown"
+                                @blur="onFilterBlur"
+                                @input="onFilterChange"
+                                :pt="ptm('pcFilter')"
+                                :formControl="{ novalidate: true }"
+                            />
+                            <InputIcon :unstyled="unstyled" :pt="ptm('pcFilterIconContainer')">
+                                <slot name="filtericon">
+                                    <span v-if="filterIcon" :class="filterIcon" v-bind="ptm('filterIcon')" />
+                                    <SearchIcon v-else v-bind="ptm('filterIcon')" />
+                                </slot>
+                            </InputIcon>
+                        </IconField>
+                        <span v-if="filter" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenFilterResult')" :data-p-hidden-accessible="true">
+                            {{ filterResultMessageText }}
+                        </span>
+                    </div>
+                    <div :class="cx('listContainer')" :style="{ 'max-height': virtualScrollerDisabled ? scrollHeight : '' }" v-bind="ptm('listContainer')">
+                        <VirtualScroller :ref="virtualScrollerRef" v-bind="virtualScrollerOptions" :items="visibleOptions" :style="{ height: scrollHeight }" :tabindex="-1" :disabled="virtualScrollerDisabled" :pt="ptm('virtualScroller')">
+                            <template v-slot:content="{ styleClass, contentRef, items, getItemOptions, contentStyle, itemSize }">
+                                <ul :ref="(el) => listRef(el, contentRef)" :id="$id + '_list'" :class="[cx('list'), styleClass]" :style="contentStyle" role="listbox" aria-multiselectable="true" :aria-label="listAriaLabel" v-bind="ptm('list')">
+                                    <template v-for="(option, i) of items" :key="getOptionRenderKey(option, getOptionIndex(i, getItemOptions))">
+                                        <li
+                                            v-if="isOptionGroup(option)"
+                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
+                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
+                                            :class="cx('optionGroup')"
+                                            role="option"
+                                            v-bind="ptm('optionGroup')"
+                                        >
+                                            <slot name="optiongroup" :option="option.optionGroup" :index="getOptionIndex(i, getItemOptions)">{{ getOptionGroupLabel(option.optionGroup) }}</slot>
+                                        </li>
+                                        <li
+                                            v-else
+                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
+                                            v-ripple
+                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
+                                            :class="cx('option', { option, index: i, getItemOptions })"
+                                            role="option"
+                                            :aria-label="getOptionLabel(option)"
+                                            :aria-selected="isSelected(option)"
+                                            :aria-disabled="isOptionDisabled(option)"
+                                            :aria-setsize="ariaSetSize"
+                                            :aria-posinset="getAriaPosInset(getOptionIndex(i, getItemOptions))"
+                                            @click="onOptionSelect($event, option, getOptionIndex(i, getItemOptions), true)"
+                                            @mousemove="onOptionMouseMove($event, getOptionIndex(i, getItemOptions))"
+                                            v-bind="getCheckboxPTOptions(option, getItemOptions, i, 'option')"
+                                            :data-p-selected="isSelected(option)"
+                                            :data-p-focused="focusedOptionIndex === getOptionIndex(i, getItemOptions)"
+                                            :data-p-disabled="isOptionDisabled(option)"
+                                        >
+                                            <Checkbox
+                                                :defaultValue="isSelected(option)"
+                                                :binary="true"
+                                                :tabindex="-1"
+                                                :variant="variant"
+                                                :unstyled="unstyled"
+                                                :pt="getCheckboxPTOptions(option, getItemOptions, i, 'pcOptionCheckbox')"
+                                                :formControl="{ novalidate: true }"
+                                            >
+                                                <template #icon="slotProps">
+                                                    <component v-if="$slots.optioncheckboxicon || $slots.itemcheckboxicon" :is="$slots.optioncheckboxicon || $slots.itemcheckboxicon" :checked="slotProps.checked" :class="slotProps.class" />
+                                                    <component
+                                                        v-else-if="slotProps.checked"
+                                                        :is="checkboxIcon ? 'span' : 'CheckIcon'"
+                                                        :class="[slotProps.class, { [checkboxIcon]: slotProps.checked }]"
+                                                        v-bind="getCheckboxPTOptions(option, getItemOptions, i, 'pcOptionCheckbox.icon')"
+                                                    />
+                                                </template>
+                                            </Checkbox>
+                                            <slot name="option" :option="option" :selected="isSelected(option)" :index="getOptionIndex(i, getItemOptions)">
+                                                <span v-bind="ptm('optionLabel')">{{ getOptionLabel(option) }}</span>
+                                            </slot>
+                                        </li>
+                                    </template>
+                                    <li v-if="filterValue && (!items || (items && items.length === 0))" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
+                                        <slot name="emptyfilter">{{ emptyFilterMessageText }}</slot>
+                                    </li>
+                                    <li v-else-if="!options || (options && options.length === 0)" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
+                                        <slot name="empty">{{ emptyMessageText }}</slot>
+                                    </li>
+                                </ul>
+                            </template>
+                            <template v-if="$slots.loader" v-slot:loader="{ options }">
+                                <slot name="loader" :options="options"></slot>
+                            </template>
+                        </VirtualScroller>
+                    </div>
+                    <slot name="footer" :value="d_value" :options="visibleOptions"></slot>
+                    <span v-if="!options || (options && options.length === 0)" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenEmptyMessage')" :data-p-hidden-accessible="true">
+                        {{ emptyMessageText }}
+                    </span>
+                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
+                        {{ selectedMessageText }}
+                    </span>
+                    <span
+                        ref="lastHiddenFocusableElementOnOverlay"
+                        role="presentation"
+                        aria-hidden="true"
+                        class="p-hidden-accessible p-hidden-focusable"
+                        :tabindex="0"
+                        @focus="onLastHiddenFocus"
+                        v-bind="ptm('hiddenLastFocusableEl')"
+                        :data-p-hidden-accessible="true"
+                        :data-p-hidden-focusable="true"
+                    ></span>
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A practical example that triggers a fetch when the table becomes visible in viewport.</p>
-    </DocSectionText>
-    <div class="card">
-        <div style="height: 800px">Scroll down to lazy load a DataTable.</div>
-
-        <DeferredContent @load="onDataLoad" role="region" aria-live="polite" aria-label="Content loaded after page scrolled down">
-            <DataTable :value="products">
-                <Column field="code" header="Code"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="quantity" header="Quantity"></Column>
-            </DataTable>
-        </DeferredContent>
-    </div>
-    <DocSectionCode :code="code" :service="['ProductService']" v-bind="$attrs" />
-</template>
-
 <script>
     import { ProductService } from '/service/ProductService';
     export default {
@@ -74,3 +55,22 @@ const onDataLoad = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A practical example that triggers a fetch when the table becomes visible in viewport.</p>
+    </DocSectionText>
+    <div class="card">
+        <div style="height: 800px">Scroll down to lazy load a DataTable.</div>
+
+        <DeferredContent @load="onDataLoad" role="region" aria-live="polite" aria-label="Content loaded after page scrolled down">
+            <DataTable :value="products">
+                <Column field="code" header="Code"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="category" header="Category"></Column>
+                <Column field="quantity" header="Quantity"></Column>
+            </DataTable>
+        </DeferredContent>
+    </div>
+    <DocSectionCode :code="code" :service="['ProductService']" v-bind="$attrs" />
+</template>

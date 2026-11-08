@@ -1,68 +1,3 @@
-<template>
-    <Portal :appendTo="appendTo" :disabled="!popup">
-        <transition name="p-anchored-overlay" @enter="onEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
-            <div v-if="popup ? overlayVisible : true" :ref="containerRef" :id="$id" :class="cx('root')" @click="onOverlayClick" :data-p="dataP" v-bind="ptmi('root')">
-                <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
-                    <slot name="start"></slot>
-                </div>
-                <ul
-                    :ref="listRef"
-                    :id="$id + '_list'"
-                    :class="cx('list')"
-                    role="menu"
-                    :tabindex="tabindex"
-                    :aria-activedescendant="focused ? focusedOptionId : undefined"
-                    :aria-label="ariaLabel"
-                    :aria-labelledby="ariaLabelledby"
-                    @focus="onListFocus"
-                    @blur="onListBlur"
-                    @keydown="onListKeyDown"
-                    v-bind="ptm('list')"
-                >
-                    <template v-for="(item, i) of model" :key="label(item) + i.toString()">
-                        <template v-if="item.items && visible(item) && !item.separator">
-                            <li v-if="item.items" :id="$id + '_' + i" :class="[cx('submenuLabel'), item.class]" role="none" v-bind="ptm('submenuLabel')">
-                                <slot name="submenulabel" :item="item">{{ label(item) }}</slot>
-                            </li>
-                            <template v-for="(child, j) of item.items" :key="child.label + i + '_' + j">
-                                <PVMenuitem
-                                    v-if="visible(child) && !child.separator"
-                                    :id="$id + '_' + i + '_' + j"
-                                    :item="child"
-                                    :templates="$slots"
-                                    :focusedOptionId="focusedOptionId"
-                                    :unstyled="unstyled"
-                                    @item-click="itemClick"
-                                    @item-mousemove="itemMouseMove"
-                                    :pt="pt"
-                                />
-                                <li v-else-if="visible(child) && child.separator" :key="'separator' + i + j" :class="[cx('separator'), item.class]" :style="child.style" role="separator" v-bind="ptm('separator')"></li>
-                            </template>
-                        </template>
-                        <li v-else-if="visible(item) && item.separator" :key="'separator' + i.toString()" :class="[cx('separator'), item.class]" :style="item.style" role="separator" v-bind="ptm('separator')"></li>
-                        <PVMenuitem
-                            v-else
-                            :key="label(item) + i.toString()"
-                            :id="$id + '_' + i"
-                            :item="item"
-                            :index="i"
-                            :templates="$slots"
-                            :focusedOptionId="focusedOptionId"
-                            :unstyled="unstyled"
-                            @item-click="itemClick"
-                            @item-mousemove="itemMouseMove"
-                            :pt="pt"
-                        />
-                    </template>
-                </ul>
-                <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
-                    <slot name="end"></slot>
-                </div>
-            </div>
-        </transition>
-    </Portal>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, find, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
@@ -429,3 +364,68 @@
         }
     };
 </script>
+
+<template>
+    <Portal :appendTo="appendTo" :disabled="!popup">
+        <transition name="p-anchored-overlay" @enter="onEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
+            <div v-if="popup ? overlayVisible : true" :ref="containerRef" :id="$id" :class="cx('root')" @click="onOverlayClick" :data-p="dataP" v-bind="ptmi('root')">
+                <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
+                    <slot name="start"></slot>
+                </div>
+                <ul
+                    :ref="listRef"
+                    :id="$id + '_list'"
+                    :class="cx('list')"
+                    role="menu"
+                    :tabindex="tabindex"
+                    :aria-activedescendant="focused ? focusedOptionId : undefined"
+                    :aria-label="ariaLabel"
+                    :aria-labelledby="ariaLabelledby"
+                    @focus="onListFocus"
+                    @blur="onListBlur"
+                    @keydown="onListKeyDown"
+                    v-bind="ptm('list')"
+                >
+                    <template v-for="(item, i) of model" :key="label(item) + i.toString()">
+                        <template v-if="item.items && visible(item) && !item.separator">
+                            <li v-if="item.items" :id="$id + '_' + i" :class="[cx('submenuLabel'), item.class]" role="none" v-bind="ptm('submenuLabel')">
+                                <slot name="submenulabel" :item="item">{{ label(item) }}</slot>
+                            </li>
+                            <template v-for="(child, j) of item.items" :key="child.label + i + '_' + j">
+                                <PVMenuitem
+                                    v-if="visible(child) && !child.separator"
+                                    :id="$id + '_' + i + '_' + j"
+                                    :item="child"
+                                    :templates="$slots"
+                                    :focusedOptionId="focusedOptionId"
+                                    :unstyled="unstyled"
+                                    @item-click="itemClick"
+                                    @item-mousemove="itemMouseMove"
+                                    :pt="pt"
+                                />
+                                <li v-else-if="visible(child) && child.separator" :key="'separator' + i + j" :class="[cx('separator'), item.class]" :style="child.style" role="separator" v-bind="ptm('separator')"></li>
+                            </template>
+                        </template>
+                        <li v-else-if="visible(item) && item.separator" :key="'separator' + i.toString()" :class="[cx('separator'), item.class]" :style="item.style" role="separator" v-bind="ptm('separator')"></li>
+                        <PVMenuitem
+                            v-else
+                            :key="label(item) + i.toString()"
+                            :id="$id + '_' + i"
+                            :item="item"
+                            :index="i"
+                            :templates="$slots"
+                            :focusedOptionId="focusedOptionId"
+                            :unstyled="unstyled"
+                            @item-click="itemClick"
+                            @item-mousemove="itemMouseMove"
+                            :pt="pt"
+                        />
+                    </template>
+                </ul>
+                <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
+                    <slot name="end"></slot>
+                </div>
+            </div>
+        </transition>
+    </Portal>
+</template>

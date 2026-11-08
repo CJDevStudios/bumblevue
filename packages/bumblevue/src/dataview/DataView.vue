@@ -1,105 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
-            <slot name="header"></slot>
-        </div>
-        <DVPaginator
-            v-if="paginatorTop"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="getTotalRecords"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'top' })"
-            :alwaysShow="alwaysShowPaginator"
-            @page="onPage($event)"
-            :unstyled="unstyled"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :pageLinks="slotProps.pageLinks"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-        </DVPaginator>
-        <div :class="cx('content')" v-bind="ptm('content')">
-            <template v-if="!empty">
-                <slot v-if="$slots.list && layout === 'list'" name="list" :items="items"></slot>
-                <slot v-if="$slots.grid && layout === 'grid'" name="grid" :items="items"></slot>
-            </template>
-            <div v-else :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
-                <slot name="empty" :layout="layout">
-                    {{ emptyMessageText }}
-                </slot>
-            </div>
-        </div>
-        <DVPaginator
-            v-if="paginatorBottom"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="getTotalRecords"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'bottom' })"
-            :alwaysShow="alwaysShowPaginator"
-            @page="onPage($event)"
-            :unstyled="unstyled"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :pageLinks="slotProps.pageLinks"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-        </DVPaginator>
-        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
-            <slot name="footer"></slot>
-        </div>
-    </div>
-</template>
-
 <script>
     import { localeComparator, resolveFieldData, sort } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -280,3 +178,105 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
+            <slot name="header"></slot>
+        </div>
+        <DVPaginator
+            v-if="paginatorTop"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="getTotalRecords"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'top' })"
+            :alwaysShow="alwaysShowPaginator"
+            @page="onPage($event)"
+            :unstyled="unstyled"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :pageLinks="slotProps.pageLinks"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+        </DVPaginator>
+        <div :class="cx('content')" v-bind="ptm('content')">
+            <template v-if="!empty">
+                <slot v-if="$slots.list && layout === 'list'" name="list" :items="items"></slot>
+                <slot v-if="$slots.grid && layout === 'grid'" name="grid" :items="items"></slot>
+            </template>
+            <div v-else :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
+                <slot name="empty" :layout="layout">
+                    {{ emptyMessageText }}
+                </slot>
+            </div>
+        </div>
+        <DVPaginator
+            v-if="paginatorBottom"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="getTotalRecords"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'bottom' })"
+            :alwaysShow="alwaysShowPaginator"
+            @page="onPage($event)"
+            :unstyled="unstyled"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :pageLinks="slotProps.pageLinks"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+        </DVPaginator>
+        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
+            <slot name="footer"></slot>
+        </div>
+    </div>
+</template>

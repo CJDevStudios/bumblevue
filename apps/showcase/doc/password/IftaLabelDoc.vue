@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <Password v-model="value" inputId="password" variant="filled" />
-            <label for="password">Password</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -44,3 +31,16 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <Password v-model="value" inputId="password" variant="filled" />
+            <label for="password">Password</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

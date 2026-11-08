@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Create an app container element and setup the application using <i>createApp</i>.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +28,10 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Create an app container element and setup the application using <i>createApp</i>.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the CascadeSelect.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <CascadeSelect v-model="selectedCity" showClear :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Select a City" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -185,3 +175,13 @@ const countries = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the CascadeSelect.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <CascadeSelect v-model="selectedCity" showClear :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Select a City" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Only one root menuitem at a time can be active by default, enabling <i>multiple</i> property changes this behavior to allow multiple root menuitems.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <PanelMenu :model="items" multiple class="w-full md:w-80" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -189,3 +179,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Only one root menuitem at a time can be active by default, enabling <i>multiple</i> property changes this behavior to allow multiple root menuitems.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <PanelMenu :model="items" multiple class="w-full md:w-80" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

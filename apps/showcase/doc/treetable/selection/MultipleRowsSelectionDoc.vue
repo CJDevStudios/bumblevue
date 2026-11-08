@@ -1,27 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            More than one node is selectable by setting <i>selectionMode</i> to <i>multiple</i>. By default in multiple selection mode, metaKey press (e.g. <i>⌘</i>) is not necessary to add to existing selections. When the optional
-            <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new node requires meta key to be present. Note that in touch enabled devices, TreeTable always ignores metaKey.
-        </p>
-        <p>In multiple selection mode, value binding should be a key-value pair where key is the node key and value is a boolean to indicate selection.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex justify-center items-center mb-6 gap-2">
-                <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
-                <label for="input-metakey">MetaKey</label>
-            </div>
-            <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="multiple" :metaKeySelection="metaKey" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -107,3 +83,27 @@ const metaKey = ref(true);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            More than one node is selectable by setting <i>selectionMode</i> to <i>multiple</i>. By default in multiple selection mode, metaKey press (e.g. <i>⌘</i>) is not necessary to add to existing selections. When the optional
+            <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new node requires meta key to be present. Note that in touch enabled devices, TreeTable always ignores metaKey.
+        </p>
+        <p>In multiple selection mode, value binding should be a key-value pair where key is the node key and value is a boolean to indicate selection.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex justify-center items-center mb-6 gap-2">
+                <ToggleSwitch v-model="metaKey" inputId="input-metakey" />
+                <label for="input-metakey">MetaKey</label>
+            </div>
+            <TreeTable v-model:selectionKeys="selectedKey" :value="nodes" selectionMode="multiple" :metaKeySelection="metaKey" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

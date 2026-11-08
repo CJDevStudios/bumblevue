@@ -1,11 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Fluid>
-            <InputText />
-        </Fluid>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -22,3 +14,11 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Fluid>
+            <InputText />
+        </Fluid>
+    </DocPTViewer>
+</template>

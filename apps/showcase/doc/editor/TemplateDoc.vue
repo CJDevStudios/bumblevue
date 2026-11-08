@@ -1,21 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Editor provides a default toolbar with common options, to customize it define your elements inside the header element. Refer to <a href="http://quilljs.com/docs/modules/toolbar/">Quill documentation</a> for available controls.</p>
-    </DocSectionText>
-    <div class="card">
-        <Editor v-model="value" editorStyle="height: 320px">
-            <template v-slot:toolbar>
-                <span class="ql-formats">
-                    <button v-tooltip.bottom="'Bold'" class="ql-bold"></button>
-                    <button v-tooltip.bottom="'Italic'" class="ql-italic"></button>
-                    <button v-tooltip.bottom="'Underline'" class="ql-underline"></button>
-                </span>
-            </template>
-        </Editor>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
-</template>
-
 <script>
     export default {
         data() {
@@ -59,3 +41,21 @@ const value = ref('<div>Hello World!</div><div>BumbleVue <b>Editor</b> Rocks</di
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Editor provides a default toolbar with common options, to customize it define your elements inside the header element. Refer to <a href="http://quilljs.com/docs/modules/toolbar/">Quill documentation</a> for available controls.</p>
+    </DocSectionText>
+    <div class="card">
+        <Editor v-model="value" editorStyle="height: 320px">
+            <template v-slot:toolbar>
+                <span class="ql-formats">
+                    <button v-tooltip.bottom="'Bold'" class="ql-bold"></button>
+                    <button v-tooltip.bottom="'Italic'" class="ql-italic"></button>
+                    <button v-tooltip.bottom="'Underline'" class="ql-underline"></button>
+                </span>
+            </template>
+        </Editor>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
+</template>

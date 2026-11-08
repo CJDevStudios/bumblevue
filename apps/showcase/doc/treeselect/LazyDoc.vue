@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Lazy loading is useful when dealing with huge datasets, in this example nodes are dynamically loaded on demand using <i>loading</i> property and <i>node-expand</i> method.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" loadingMode="icon" :options="nodes" @node-expand="onNodeExpand" placeholder="Select Item" class="md:w-80 w-full" />
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" />
-</template>
-
 <script>
     export default {
         data() {
@@ -140,3 +130,13 @@ const initiateNodes = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Lazy loading is useful when dealing with huge datasets, in this example nodes are dynamically loaded on demand using <i>loading</i> property and <i>node-expand</i> method.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" loadingMode="icon" :options="nodes" @node-expand="onNodeExpand" placeholder="Select Item" class="md:w-80 w-full" />
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" />
+</template>

@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Listbox allows choosing a single item by default, enable <i>multiple</i> property to choose more than one. When the optional <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new item requires meta key to
-            be present.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Listbox v-model="selectedCity" :options="cities" multiple optionLabel="name" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -52,3 +39,16 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Listbox allows choosing a single item by default, enable <i>multiple</i> property to choose more than one. When the optional <i>metaKeySelection</i> is present, behavior is changed in a way that selecting a new item requires meta key to
+            be present.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Listbox v-model="selectedCity" :options="cities" multiple optionLabel="name" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

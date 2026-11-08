@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Breadcrumb :home="home" :model="items" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -24,3 +18,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Breadcrumb :home="home" :model="items" />
+    </DocPTViewer>
+</template>

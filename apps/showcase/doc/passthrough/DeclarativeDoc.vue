@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            The declarative syntax provides an alternative to the programmatic syntax. The attributes that start with <i>pt</i> are interpreted differently by the component based on the format below. An IDE extension is also being planned to
-            autocomplete the values for better developer experience in the future.
-        </p>
-        <DocSectionCode :code="code1" hideToggleCode hideStackBlitz />
-        <p>Here is another example using both syntax alternatives for the same options.</p>
-        <DocSectionCode :code="code2" hideToggleCode hideStackBlitz />
-        <DocSectionCode :code="code3" hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
     export default {
         data() {
@@ -51,3 +38,16 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            The declarative syntax provides an alternative to the programmatic syntax. The attributes that start with <i>pt</i> are interpreted differently by the component based on the format below. An IDE extension is also being planned to
+            autocomplete the values for better developer experience in the future.
+        </p>
+        <DocSectionCode :code="code1" hideToggleCode hideStackBlitz />
+        <p>Here is another example using both syntax alternatives for the same options.</p>
+        <DocSectionCode :code="code2" hideToggleCode hideStackBlitz />
+        <DocSectionCode :code="code3" hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

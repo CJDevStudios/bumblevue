@@ -1,18 +1,3 @@
-<template>
-    <template v-if="!asChild">
-        <transition name="p-collapsible" v-bind="ptm('transition', ptParams)">
-            <component v-if="$pcAccordion.lazy ? $pcAccordionPanel.active : true" v-show="$pcAccordion.lazy ? true : $pcAccordionPanel.active" :is="as" :class="cx('root')" v-bind="attrs">
-                <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper', ptParams)">
-                    <div :class="cx('content')" v-bind="ptm('content', ptParams)">
-                        <slot></slot>
-                    </div>
-                </div>
-            </component>
-        </transition>
-    </template>
-    <slot v-else :class="cx('root')" :active="$pcAccordionPanel.active" :a11yAttrs="a11yAttrs"></slot>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AccordionContentStyle from '@cjdevstudios/bumblevue/accordioncontent/style';
@@ -69,3 +54,18 @@
         }
     };
 </script>
+
+<template>
+    <template v-if="!asChild">
+        <transition name="p-collapsible" v-bind="ptm('transition', ptParams)">
+            <component v-if="$pcAccordion.lazy ? $pcAccordionPanel.active : true" v-show="$pcAccordion.lazy ? true : $pcAccordionPanel.active" :is="as" :class="cx('root')" v-bind="attrs">
+                <div :class="cx('contentWrapper')" v-bind="ptm('contentWrapper', ptParams)">
+                    <div :class="cx('content')" v-bind="ptm('content', ptParams)">
+                        <slot></slot>
+                    </div>
+                </div>
+            </component>
+        </transition>
+    </template>
+    <slot v-else :class="cx('root')" :active="$pcAccordionPanel.active" :a11yAttrs="a11yAttrs"></slot>
+</template>

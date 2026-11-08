@@ -1,30 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-disabled="disabled" :data-p="dataP">
-        <input
-            :id="inputId"
-            type="radio"
-            :class="[cx('input'), inputClass]"
-            :style="inputStyle"
-            :value="value"
-            :name="groupName"
-            :checked="checked"
-            :tabindex="tabindex"
-            :disabled="disabled"
-            :readonly="readonly"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-invalid="invalid || undefined"
-            @focus="onFocus"
-            @blur="onBlur"
-            @change="onChange"
-            v-bind="getPTOptions('input')"
-        />
-        <div :class="cx('box')" v-bind="getPTOptions('box')" :data-p="dataP">
-            <div :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP"></div>
-        </div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { equals } from '@cjdevstudios/bumblevue/utils/object';
@@ -128,3 +101,30 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-disabled="disabled" :data-p="dataP">
+        <input
+            :id="inputId"
+            type="radio"
+            :class="[cx('input'), inputClass]"
+            :style="inputStyle"
+            :value="value"
+            :name="groupName"
+            :checked="checked"
+            :tabindex="tabindex"
+            :disabled="disabled"
+            :readonly="readonly"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-invalid="invalid || undefined"
+            @focus="onFocus"
+            @blur="onBlur"
+            @change="onChange"
+            v-bind="getPTOptions('input')"
+        />
+        <div :class="cx('box')" v-bind="getPTOptions('box')" :data-p="dataP">
+            <div :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP"></div>
+        </div>
+    </div>
+</template>

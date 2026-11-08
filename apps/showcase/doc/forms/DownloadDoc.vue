@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Forms is included in the <i>@cjdevstudios/bumblevue</i> package, no additional installation is required. To validate with one of the built-in resolvers, install the schema validation library of your choice, such as Zod.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -25,3 +18,10 @@ pnpm add zod
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Forms is included in the <i>@cjdevstudios/bumblevue</i> package, no additional installation is required. To validate with one of the built-in resolvers, install the schema validation library of your choice, such as Zod.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

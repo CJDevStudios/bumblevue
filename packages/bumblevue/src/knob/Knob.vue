@@ -1,32 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <svg
-            viewBox="0 0 100 100"
-            role="slider"
-            :width="size"
-            :height="size"
-            :tabindex="readonly || disabled ? -1 : tabindex"
-            :aria-valuemin="min"
-            :aria-valuemax="max"
-            :aria-valuenow="d_value"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            @click="onClick"
-            @blur="onBlur"
-            @keydown="onKeyDown"
-            @mousedown="onMouseDown"
-            @mouseup="onMouseUp"
-            @touchstart="onTouchStart"
-            @touchend="onTouchEnd"
-            v-bind="ptm('svg')"
-        >
-            <path :d="rangePath" :stroke-width="strokeWidth" :stroke="rangeColor" :class="cx('range')" v-bind="ptm('range')"></path>
-            <path :d="valuePath" :stroke-width="strokeWidth" :stroke="valueColor" :class="cx('value')" v-bind="ptm('value')"></path>
-            <text v-if="showValue" :x="50" :y="57" text-anchor="middle" :fill="textColor" :class="cx('text')" v-bind="ptm('text')">{{ valueToDisplay }}</text>
-        </svg>
-    </div>
-</template>
-
 <script>
     import { $dt } from '@cjdevstudios/bumblevue/styled';
     import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
@@ -302,3 +273,32 @@
     };
     //Derived and forked from https://github.com/kramer99/vue-knob-control
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <svg
+            viewBox="0 0 100 100"
+            role="slider"
+            :width="size"
+            :height="size"
+            :tabindex="readonly || disabled ? -1 : tabindex"
+            :aria-valuemin="min"
+            :aria-valuemax="max"
+            :aria-valuenow="d_value"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            @click="onClick"
+            @blur="onBlur"
+            @keydown="onKeyDown"
+            @mousedown="onMouseDown"
+            @mouseup="onMouseUp"
+            @touchstart="onTouchStart"
+            @touchend="onTouchEnd"
+            v-bind="ptm('svg')"
+        >
+            <path :d="rangePath" :stroke-width="strokeWidth" :stroke="rangeColor" :class="cx('range')" v-bind="ptm('range')"></path>
+            <path :d="valuePath" :stroke-width="strokeWidth" :stroke="valueColor" :class="cx('value')" v-bind="ptm('value')"></path>
+            <text v-if="showValue" :x="50" :y="57" text-anchor="middle" :fill="textColor" :class="cx('text')" v-bind="ptm('text')">{{ valueToDisplay }}</text>
+        </svg>
+    </div>
+</template>

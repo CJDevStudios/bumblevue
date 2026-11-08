@@ -1,16 +1,3 @@
-<template>
-    <slot v-if="!$pcTabs"></slot>
-    <template v-else>
-        <template v-if="!asChild">
-            <component v-if="$pcTabs?.lazy ? active : true" v-show="$pcTabs?.lazy ? true : active" :is="as" :class="cx('root')" v-bind="attrs">
-                <slot></slot>
-            </component>
-        </template>
-
-        <slot v-else :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs"></slot>
-    </template>
-</template>
-
 <script>
     import { equals } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -76,3 +63,16 @@
         }
     };
 </script>
+
+<template>
+    <slot v-if="!$pcTabs"></slot>
+    <template v-else>
+        <template v-if="!asChild">
+            <component v-if="$pcTabs?.lazy ? active : true" v-show="$pcTabs?.lazy ? true : active" :is="as" :class="cx('root')" v-bind="attrs">
+                <slot></slot>
+            </component>
+        </template>
+
+        <slot v-else :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs"></slot>
+    </template>
+</template>

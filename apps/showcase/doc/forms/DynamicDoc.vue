@@ -1,39 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            This section demonstrates how to create a dynamic form using a custom Form component. It showcases an example where form fields are generated dynamically based on the provided configuration, allowing for flexible form structures. The
-            components named <i>Dynamic*</i> shown in this example are not built-in, and only available for sampling purposes. First form uses a declarative approach whereas second form goes for a programmatic approach. We suggest running this sample
-            in StackBlitz to view the comprehensive implementation.
-        </p>
-    </DocSectionText>
-    <div class="card grid md:grid-cols-2 gap-4 w-full">
-        <Fieldset legend="Form 1" pt:content:class="flex justify-center">
-            <DynamicForm @submit="onFormSubmit('Form 1', $event)">
-                <DynamicFormField groupId="userId_1" name="username">
-                    <DynamicFormLabel>Username</DynamicFormLabel>
-                    <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
-                    <DynamicFormMessage />
-                </DynamicFormField>
-                <DynamicFormField groupId="passId_1" name="password">
-                    <DynamicFormLabel>Password</DynamicFormLabel>
-                    <DynamicFormControl as="Password" :feedback="false" toggleMask fluid :schema="passwordSchema" />
-                    <DynamicFormMessage errorType="minimum" />
-                    <DynamicFormMessage errorType="maximum" />
-                    <DynamicFormMessage errorType="uppercase" severity="warn" />
-                    <DynamicFormMessage errorType="lowercase" severity="warn" />
-                    <DynamicFormMessage errorType="number" severity="secondary" />
-                </DynamicFormField>
-                <DynamicFormSubmit />
-            </DynamicForm>
-        </Fieldset>
-
-        <Fieldset legend="Form 2" pt:content:class="flex justify-center">
-            <DynamicForm :fields @submit="onFormSubmit('Form 2', $event)" />
-        </Fieldset>
-    </div>
-    <DocSectionCode :code="code" :extFiles="extFiles" :dependencies="{ zod: '3.25.76', valibot: '0.42.1' }" />
-</template>
-
 <script>
     import { markRaw } from 'vue';
     import { z } from 'zod';
@@ -620,3 +584,39 @@ const props = defineProps({
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            This section demonstrates how to create a dynamic form using a custom Form component. It showcases an example where form fields are generated dynamically based on the provided configuration, allowing for flexible form structures. The
+            components named <i>Dynamic*</i> shown in this example are not built-in, and only available for sampling purposes. First form uses a declarative approach whereas second form goes for a programmatic approach. We suggest running this sample
+            in StackBlitz to view the comprehensive implementation.
+        </p>
+    </DocSectionText>
+    <div class="card grid md:grid-cols-2 gap-4 w-full">
+        <Fieldset legend="Form 1" pt:content:class="flex justify-center">
+            <DynamicForm @submit="onFormSubmit('Form 1', $event)">
+                <DynamicFormField groupId="userId_1" name="username">
+                    <DynamicFormLabel>Username</DynamicFormLabel>
+                    <DynamicFormControl defaultValue="BumbleVue" fluid :schema="userNameSchema" />
+                    <DynamicFormMessage />
+                </DynamicFormField>
+                <DynamicFormField groupId="passId_1" name="password">
+                    <DynamicFormLabel>Password</DynamicFormLabel>
+                    <DynamicFormControl as="Password" :feedback="false" toggleMask fluid :schema="passwordSchema" />
+                    <DynamicFormMessage errorType="minimum" />
+                    <DynamicFormMessage errorType="maximum" />
+                    <DynamicFormMessage errorType="uppercase" severity="warn" />
+                    <DynamicFormMessage errorType="lowercase" severity="warn" />
+                    <DynamicFormMessage errorType="number" severity="secondary" />
+                </DynamicFormField>
+                <DynamicFormSubmit />
+            </DynamicForm>
+        </Fieldset>
+
+        <Fieldset legend="Form 2" pt:content:class="flex justify-center">
+            <DynamicForm :fields @submit="onFormSubmit('Form 2', $event)" />
+        </Fieldset>
+    </div>
+    <DocSectionCode :code="code" :extFiles="extFiles" :dependencies="{ zod: '3.25.76', valibot: '0.42.1' }" />
+</template>

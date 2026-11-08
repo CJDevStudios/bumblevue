@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Busy state is controlled with the <i>loading</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button type="button" label="Search" icon="pi pi-check" :loading="loading" @click="load" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -50,3 +40,13 @@ const load = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Busy state is controlled with the <i>loading</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button type="button" label="Search" icon="pi pi-check" :loading="loading" @click="load" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,29 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            VirtualScroller is used to render a long list of options efficiently like 100K records in this demo. The configuration is done with <i>virtualScrollerOptions</i> property, refer to the
-            <NuxtLink to="/virtualscroller">VirtualScroller</NuxtLink> for more information about the available options as it is used internally by MultiSelect.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <MultiSelect
-            v-model="selectedItems"
-            :options="items"
-            :maxSelectedLabels="3"
-            :selectAll="selectAll"
-            @selectall-change="onSelectAllChange($event)"
-            @change="onChange($event)"
-            optionLabel="label"
-            optionValue="value"
-            :virtualScrollerOptions="{ itemSize: 44 }"
-            filter
-            placeholder="Select Item"
-            class="w-full md:w-80"
-        />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -76,3 +50,29 @@ const onChange = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            VirtualScroller is used to render a long list of options efficiently like 100K records in this demo. The configuration is done with <i>virtualScrollerOptions</i> property, refer to the
+            <NuxtLink to="/virtualscroller">VirtualScroller</NuxtLink> for more information about the available options as it is used internally by MultiSelect.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <MultiSelect
+            v-model="selectedItems"
+            :options="items"
+            :maxSelectedLabels="3"
+            :selectAll="selectAll"
+            @selectall-change="onSelectAllChange($event)"
+            @change="onChange($event)"
+            optionLabel="label"
+            optionValue="value"
+            :virtualScrollerOptions="{ itemSize: 44 }"
+            filter
+            placeholder="Select Item"
+            class="w-full md:w-80"
+        />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

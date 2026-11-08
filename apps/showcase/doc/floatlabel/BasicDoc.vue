@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>FloatLabel is used by wrapping the input and its label.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <FloatLabel>
-            <InputText id="username" v-model="value" autocomplete="off" />
-            <label for="username">Username</label>
-        </FloatLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -44,3 +31,16 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>FloatLabel is used by wrapping the input and its label.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <FloatLabel>
+            <InputText id="username" v-model="value" autocomplete="off" />
+            <label for="username">Username</label>
+        </FloatLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

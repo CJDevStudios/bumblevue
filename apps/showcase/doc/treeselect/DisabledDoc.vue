@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
     import { NodeService } from '/service/NodeService';
     export default {
@@ -73,3 +63,13 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" disabled class="md:w-80 w-full" :options="nodes" placeholder="TreeSelect" />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

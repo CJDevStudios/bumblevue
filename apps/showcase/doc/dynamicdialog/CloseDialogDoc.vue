@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>close</i> function is available through a <i>dialogRef</i> that is injected to the component loaded by the dialog.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -24,3 +17,10 @@ const closeDialog = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>close</i> function is available through a <i>dialogRef</i> that is injected to the component loaded by the dialog.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <SelectButton v-model="value" :options="options" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -22,3 +16,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <SelectButton v-model="value" :options="options" />
+    </DocPTViewer>
+</template>

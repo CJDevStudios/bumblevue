@@ -1,24 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Nodes can be transferred between multiple trees as well. The <i>draggableScope</i> and <i>droppableScope</i> properties defines keys to restrict the actions between trees. In this example, nodes can only be transferred from start to the
-            end.
-        </p>
-    </DocSectionText>
-    <div class="card flex flex-col md:flex-row gap-4">
-        <Tree v-model:value="value1" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes draggableScope="first" droppableScope="none">
-            <template #empty> No Items Left </template>
-        </Tree>
-        <Tree v-model:value="value2" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes draggableScope="second" droppableScope="first">
-            <template #empty> Drag Nodes Here </template>
-        </Tree>
-        <Tree v-model:value="value3" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes :droppableScope="['first', 'second']">
-            <template #empty> Drag Nodes Here </template>
-        </Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" />
-</template>
-
 <script>
     export default {
         data() {
@@ -446,6 +425,27 @@ const value3 = ref([]);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Nodes can be transferred between multiple trees as well. The <i>draggableScope</i> and <i>droppableScope</i> properties defines keys to restrict the actions between trees. In this example, nodes can only be transferred from start to the
+            end.
+        </p>
+    </DocSectionText>
+    <div class="card flex flex-col md:flex-row gap-4">
+        <Tree v-model:value="value1" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes draggableScope="first" droppableScope="none">
+            <template #empty> No Items Left </template>
+        </Tree>
+        <Tree v-model:value="value2" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes draggableScope="second" droppableScope="first">
+            <template #empty> Drag Nodes Here </template>
+        </Tree>
+        <Tree v-model:value="value3" class="flex-1 border border-surface rounded-lg" draggableNodes droppableNodes :droppableScope="['first', 'second']">
+            <template #empty> Drag Nodes Here </template>
+        </Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" />
+</template>
 
 <style scoped>
     .p-tree-node-dragover {

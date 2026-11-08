@@ -1,74 +1,3 @@
-<template>
-    <tr
-        ref="node"
-        :class="containerClass"
-        :style="node.style"
-        :tabindex="tabindex"
-        role="row"
-        :aria-expanded="node.children && node.children.length ? expanded : undefined"
-        :aria-level="level + 1"
-        :aria-setsize="ariaSetSize"
-        :aria-posinset="ariaPosInset"
-        :aria-selected="getAriaSelected"
-        :aria-checked="checked || undefined"
-        @click="onClick"
-        @keydown="onKeyDown"
-        @touchend="onTouchEnd"
-        @contextmenu="onRowRightClick"
-        v-bind="ptm('row', ptmOptions)"
-        :data-p-selected="selected"
-        :data-p-selected-contextmenu="contextMenuSelection && isSelectedWithContextMenu"
-    >
-        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-            <TTBodyCell
-                v-if="!columnProp(col, 'hidden')"
-                :column="col"
-                :node="node"
-                :level="level"
-                :leaf="leaf"
-                :indentation="indentation"
-                :expanded="expanded"
-                :selectionMode="selectionMode"
-                :checked="checked"
-                :partialChecked="partialChecked"
-                :templates="templates"
-                @node-toggle="$emit('node-toggle', $event)"
-                @checkbox-toggle="toggleCheckbox"
-                :index="i"
-                :loadingMode="loadingMode"
-                :unstyled="unstyled"
-                :pt="pt"
-            ></TTBodyCell>
-        </template>
-    </tr>
-    <template v-if="expanded && node.children && node.children.length">
-        <TreeTableRow
-            v-for="childNode of node.children"
-            :key="nodeKey(childNode)"
-            :dataKey="dataKey"
-            :columns="columns"
-            :node="childNode"
-            :parentNode="node"
-            :level="level + 1"
-            :expandedKeys="expandedKeys"
-            :selectionMode="selectionMode"
-            :selectionKeys="selectionKeys"
-            :contextMenu="contextMenu"
-            :contextMenuSelection="contextMenuSelection"
-            :indentation="indentation"
-            :ariaPosInset="node.children.indexOf(childNode) + 1"
-            :ariaSetSize="node.children.length"
-            :templates="templates"
-            @node-toggle="$emit('node-toggle', $event)"
-            @node-click="$emit('node-click', $event)"
-            @row-rightclick="$emit('row-rightclick', $event)"
-            @checkbox-change="onCheckboxChange"
-            :unstyled="unstyled"
-            :pt="pt"
-        />
-    </template>
-</template>
-
 <script>
     import { find, findSingle, focus, getAttribute, isClickable } from '@cjdevstudios/bumblevue/utils/dom';
     import { equals, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -476,3 +405,74 @@
         }
     };
 </script>
+
+<template>
+    <tr
+        ref="node"
+        :class="containerClass"
+        :style="node.style"
+        :tabindex="tabindex"
+        role="row"
+        :aria-expanded="node.children && node.children.length ? expanded : undefined"
+        :aria-level="level + 1"
+        :aria-setsize="ariaSetSize"
+        :aria-posinset="ariaPosInset"
+        :aria-selected="getAriaSelected"
+        :aria-checked="checked || undefined"
+        @click="onClick"
+        @keydown="onKeyDown"
+        @touchend="onTouchEnd"
+        @contextmenu="onRowRightClick"
+        v-bind="ptm('row', ptmOptions)"
+        :data-p-selected="selected"
+        :data-p-selected-contextmenu="contextMenuSelection && isSelectedWithContextMenu"
+    >
+        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+            <TTBodyCell
+                v-if="!columnProp(col, 'hidden')"
+                :column="col"
+                :node="node"
+                :level="level"
+                :leaf="leaf"
+                :indentation="indentation"
+                :expanded="expanded"
+                :selectionMode="selectionMode"
+                :checked="checked"
+                :partialChecked="partialChecked"
+                :templates="templates"
+                @node-toggle="$emit('node-toggle', $event)"
+                @checkbox-toggle="toggleCheckbox"
+                :index="i"
+                :loadingMode="loadingMode"
+                :unstyled="unstyled"
+                :pt="pt"
+            ></TTBodyCell>
+        </template>
+    </tr>
+    <template v-if="expanded && node.children && node.children.length">
+        <TreeTableRow
+            v-for="childNode of node.children"
+            :key="nodeKey(childNode)"
+            :dataKey="dataKey"
+            :columns="columns"
+            :node="childNode"
+            :parentNode="node"
+            :level="level + 1"
+            :expandedKeys="expandedKeys"
+            :selectionMode="selectionMode"
+            :selectionKeys="selectionKeys"
+            :contextMenu="contextMenu"
+            :contextMenuSelection="contextMenuSelection"
+            :indentation="indentation"
+            :ariaPosInset="node.children.indexOf(childNode) + 1"
+            :ariaSetSize="node.children.length"
+            :templates="templates"
+            @node-toggle="$emit('node-toggle', $event)"
+            @node-click="$emit('node-click', $event)"
+            @row-rightclick="$emit('row-rightclick', $event)"
+            @checkbox-change="onCheckboxChange"
+            :unstyled="unstyled"
+            :pt="pt"
+        />
+    </template>
+</template>

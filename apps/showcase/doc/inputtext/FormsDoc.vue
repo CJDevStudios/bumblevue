@@ -1,23 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>InputText integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-            <div class="flex flex-col gap-1">
-                <InputText name="username" type="text" placeholder="Username" fluid />
-                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error?.message }}</Message>
-            </div>
-            <div class="flex flex-col gap-1">
-                <InputText name="email" type="text" placeholder="Email" fluid />
-                <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{ $form.email.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -104,3 +84,23 @@ const onFormSubmit = ({ valid }) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>InputText integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+            <div class="flex flex-col gap-1">
+                <InputText name="username" type="text" placeholder="Username" fluid />
+                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error?.message }}</Message>
+            </div>
+            <div class="flex flex-col gap-1">
+                <InputText name="email" type="text" placeholder="Email" fluid />
+                <Message v-if="$form.email?.invalid" severity="error" size="small" variant="simple">{{ $form.email.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

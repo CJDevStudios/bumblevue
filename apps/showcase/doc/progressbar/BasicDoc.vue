@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ProgressBar is used with the <i>value</i> property.</p>
-    </DocSectionText>
-    <div class="card">
-        <ProgressBar :value="50"></ProgressBar>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -32,3 +22,13 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ProgressBar is used with the <i>value</i> property.</p>
+    </DocSectionText>
+    <div class="card">
+        <ProgressBar :value="50"></ProgressBar>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

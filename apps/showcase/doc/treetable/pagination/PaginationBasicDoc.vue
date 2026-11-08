@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Pagination is enabled by adding <i>paginator</i> property and defining <i>rows</i> per page.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" :paginator="true" :rows="5" :rowsPerPageOptions="[5, 10, 25]" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -106,3 +90,19 @@ nodes.value = files;
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Pagination is enabled by adding <i>paginator</i> property and defining <i>rows</i> per page.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" :paginator="true" :rows="5" :rowsPerPageOptions="[5, 10, 25]" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" />
+</template>

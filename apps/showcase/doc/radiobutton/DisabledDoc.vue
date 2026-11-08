@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center gap-2">
-        <RadioButton v-model="value" :value="1" disabled />
-        <RadioButton v-model="value" :value="2" disabled />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -38,3 +27,14 @@ const value = ref(2);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center gap-2">
+        <RadioButton v-model="value" :value="1" disabled />
+        <RadioButton v-model="value" :value="2" disabled />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

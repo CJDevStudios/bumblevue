@@ -1,72 +1,3 @@
-<template>
-    <div :class="cx('root')" @click="onBarClick" v-bind="ptmi('root')" :data-p-sliding="false" :data-p="dataP">
-        <span :class="cx('range')" :style="[sx('range'), rangeStyle()]" v-bind="ptm('range')" :data-p="dataP"></span>
-        <span
-            v-if="!range"
-            :class="cx('handle')"
-            :style="[sx('handle'), handleStyle()]"
-            @touchstart.passive="onDragStart($event)"
-            @touchmove.passive="onDrag($event)"
-            @touchend="onDragEnd($event)"
-            @mousedown="onMouseDown($event)"
-            @keydown="onKeyDown($event)"
-            @blur="onBlur($event)"
-            :tabindex="tabindex"
-            role="slider"
-            :aria-valuemin="min"
-            :aria-valuenow="d_value"
-            :aria-valuemax="max"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-orientation="orientation"
-            v-bind="ptm('handle')"
-            :data-p="dataP"
-        ></span>
-        <span
-            v-if="range"
-            :class="cx('handle')"
-            :style="[sx('handle'), rangeStartHandleStyle()]"
-            @touchstart.passive="onDragStart($event, 0)"
-            @touchmove.passive="onDrag($event)"
-            @touchend="onDragEnd($event)"
-            @mousedown="onMouseDown($event, 0)"
-            @keydown="onKeyDown($event, 0)"
-            @blur="onBlur($event, 0)"
-            :tabindex="tabindex"
-            role="slider"
-            :aria-valuemin="min"
-            :aria-valuenow="d_value ? d_value[0] : null"
-            :aria-valuemax="max"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-orientation="orientation"
-            v-bind="ptm('startHandler')"
-            :data-p="dataP"
-        ></span>
-        <span
-            v-if="range"
-            :class="cx('handle')"
-            :style="[sx('handle'), rangeEndHandleStyle()]"
-            @touchstart.passive="onDragStart($event, 1)"
-            @touchmove.passive="onDrag($event)"
-            @touchend="onDragEnd($event)"
-            @mousedown="onMouseDown($event, 1)"
-            @keydown="onKeyDown($event, 1)"
-            @blur="onBlur($event, 1)"
-            :tabindex="tabindex"
-            role="slider"
-            :aria-valuemin="min"
-            :aria-valuenow="d_value ? d_value[1] : null"
-            :aria-valuemax="max"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-orientation="orientation"
-            v-bind="ptm('endHandler')"
-            :data-p="dataP"
-        ></span>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { getAttribute, getWindowScrollLeft, getWindowScrollTop, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
@@ -414,3 +345,72 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" @click="onBarClick" v-bind="ptmi('root')" :data-p-sliding="false" :data-p="dataP">
+        <span :class="cx('range')" :style="[sx('range'), rangeStyle()]" v-bind="ptm('range')" :data-p="dataP"></span>
+        <span
+            v-if="!range"
+            :class="cx('handle')"
+            :style="[sx('handle'), handleStyle()]"
+            @touchstart.passive="onDragStart($event)"
+            @touchmove.passive="onDrag($event)"
+            @touchend="onDragEnd($event)"
+            @mousedown="onMouseDown($event)"
+            @keydown="onKeyDown($event)"
+            @blur="onBlur($event)"
+            :tabindex="tabindex"
+            role="slider"
+            :aria-valuemin="min"
+            :aria-valuenow="d_value"
+            :aria-valuemax="max"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-orientation="orientation"
+            v-bind="ptm('handle')"
+            :data-p="dataP"
+        ></span>
+        <span
+            v-if="range"
+            :class="cx('handle')"
+            :style="[sx('handle'), rangeStartHandleStyle()]"
+            @touchstart.passive="onDragStart($event, 0)"
+            @touchmove.passive="onDrag($event)"
+            @touchend="onDragEnd($event)"
+            @mousedown="onMouseDown($event, 0)"
+            @keydown="onKeyDown($event, 0)"
+            @blur="onBlur($event, 0)"
+            :tabindex="tabindex"
+            role="slider"
+            :aria-valuemin="min"
+            :aria-valuenow="d_value ? d_value[0] : null"
+            :aria-valuemax="max"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-orientation="orientation"
+            v-bind="ptm('startHandler')"
+            :data-p="dataP"
+        ></span>
+        <span
+            v-if="range"
+            :class="cx('handle')"
+            :style="[sx('handle'), rangeEndHandleStyle()]"
+            @touchstart.passive="onDragStart($event, 1)"
+            @touchmove.passive="onDrag($event)"
+            @touchend="onDragEnd($event)"
+            @mousedown="onMouseDown($event, 1)"
+            @keydown="onKeyDown($event, 1)"
+            @blur="onBlur($event, 1)"
+            :tabindex="tabindex"
+            role="slider"
+            :aria-valuemin="min"
+            :aria-valuenow="d_value ? d_value[1] : null"
+            :aria-valuemax="max"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-orientation="orientation"
+            v-bind="ptm('endHandler')"
+            :data-p="dataP"
+        ></span>
+    </div>
+</template>

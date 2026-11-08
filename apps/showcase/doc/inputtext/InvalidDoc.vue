@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <InputText v-model="value1" :invalid="!value1" placeholder="Name" />
-        <InputText v-model="value2" :invalid="!value2" variant="filled" placeholder="Name" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -40,3 +29,14 @@ const value2 = ref('');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center gap-4">
+        <InputText v-model="value1" :invalid="!value1" placeholder="Name" />
+        <InputText v-model="value2" :invalid="!value2" variant="filled" placeholder="Name" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

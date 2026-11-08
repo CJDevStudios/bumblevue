@@ -1,8 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs" />
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -18,3 +13,8 @@ app.directive('keyfilter', KeyFilter);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs" />
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

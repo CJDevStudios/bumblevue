@@ -1,23 +1,3 @@
-<template>
-    <JTPSelect
-        :modelValue="page"
-        :options="pageOptions"
-        optionLabel="label"
-        optionValue="value"
-        @update:modelValue="onChange($event)"
-        :class="cx('pcJumpToPageDropdown')"
-        :disabled="disabled"
-        :unstyled="unstyled"
-        :pt="ptm('pcJumpToPageDropdown')"
-        data-pc-group-section="pagedropdown"
-        :appendTo="appendTo"
-    >
-        <template v-if="templates['jumptopagedropdownicon']" #dropdownicon="slotProps">
-            <component :is="templates['jumptopagedropdownicon']" :class="slotProps.class" />
-        </template>
-    </JTPSelect>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import Select from '@cjdevstudios/bumblevue/select';
@@ -58,3 +38,23 @@
         }
     };
 </script>
+
+<template>
+    <JTPSelect
+        :modelValue="page"
+        :options="pageOptions"
+        optionLabel="label"
+        optionValue="value"
+        @update:modelValue="onChange($event)"
+        :class="cx('pcJumpToPageDropdown')"
+        :disabled="disabled"
+        :unstyled="unstyled"
+        :pt="ptm('pcJumpToPageDropdown')"
+        data-pc-group-section="pagedropdown"
+        :appendTo="appendTo"
+    >
+        <template v-if="templates['jumptopagedropdownicon']" #dropdownicon="slotProps">
+            <component :is="templates['jumptopagedropdownicon']" :class="slotProps.class" />
+        </template>
+    </JTPSelect>
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Multi-level menus are supported with a nested menu hierarchy.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SplitButton label="Save" @click="save" :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -178,3 +168,13 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Multi-level menus are supported with a nested menu hierarchy.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SplitButton label="Save" @click="save" :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

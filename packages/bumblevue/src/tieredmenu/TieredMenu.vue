@@ -1,46 +1,3 @@
-<template>
-    <Portal :appendTo="appendTo" :disabled="!popup">
-        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
-            <div v-if="visible" :ref="containerRef" :id="$id" :class="cx('root')" @click="onOverlayClick" v-bind="ptmi('root')">
-                <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
-                    <slot name="start"></slot>
-                </div>
-                <TieredMenuSub
-                    :ref="menubarRef"
-                    :id="$id + '_list'"
-                    :class="cx('rootList')"
-                    :tabindex="!disabled ? tabindex : -1"
-                    role="menubar"
-                    :aria-label="ariaLabel"
-                    :aria-labelledby="ariaLabelledby"
-                    :aria-disabled="disabled || undefined"
-                    aria-orientation="vertical"
-                    :aria-activedescendant="focused ? focusedItemId : undefined"
-                    :menuId="$id"
-                    :focusedItemId="focused ? focusedItemId : undefined"
-                    :items="processedItems"
-                    :templates="$slots"
-                    :activeItemPath="activeItemPath"
-                    :level="0"
-                    :visible="submenuVisible"
-                    :pt="pt"
-                    :unstyled="unstyled"
-                    @focus="onFocus"
-                    @blur="onBlur"
-                    @keydown="onKeyDown"
-                    @item-click="onItemClick"
-                    @item-mouseenter="onItemMouseEnter"
-                    @item-mousemove="onItemMouseMove"
-                    v-bind="ptm('rootList')"
-                />
-                <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
-                    <slot name="end"></slot>
-                </div>
-            </div>
-        </transition>
-    </Portal>
-</template>
-
 <script>
     import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
     import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
@@ -712,3 +669,46 @@
         }
     };
 </script>
+
+<template>
+    <Portal :appendTo="appendTo" :disabled="!popup">
+        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
+            <div v-if="visible" :ref="containerRef" :id="$id" :class="cx('root')" @click="onOverlayClick" v-bind="ptmi('root')">
+                <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
+                    <slot name="start"></slot>
+                </div>
+                <TieredMenuSub
+                    :ref="menubarRef"
+                    :id="$id + '_list'"
+                    :class="cx('rootList')"
+                    :tabindex="!disabled ? tabindex : -1"
+                    role="menubar"
+                    :aria-label="ariaLabel"
+                    :aria-labelledby="ariaLabelledby"
+                    :aria-disabled="disabled || undefined"
+                    aria-orientation="vertical"
+                    :aria-activedescendant="focused ? focusedItemId : undefined"
+                    :menuId="$id"
+                    :focusedItemId="focused ? focusedItemId : undefined"
+                    :items="processedItems"
+                    :templates="$slots"
+                    :activeItemPath="activeItemPath"
+                    :level="0"
+                    :visible="submenuVisible"
+                    :pt="pt"
+                    :unstyled="unstyled"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @keydown="onKeyDown"
+                    @item-click="onItemClick"
+                    @item-mouseenter="onItemMouseEnter"
+                    @item-mousemove="onItemMouseMove"
+                    v-bind="ptm('rootList')"
+                />
+                <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
+                    <slot name="end"></slot>
+                </div>
+            </div>
+        </transition>
+    </Portal>
+</template>

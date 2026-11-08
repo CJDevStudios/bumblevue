@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>editable</i> is present, the input can also be entered with typing.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Select v-model="selectedCity" editable :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +39,13 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>editable</i> is present, the input can also be entered with typing.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Select v-model="selectedCity" editable :options="cities" optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

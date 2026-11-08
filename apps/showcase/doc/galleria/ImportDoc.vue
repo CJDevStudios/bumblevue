@@ -1,8 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs"></DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -16,3 +11,8 @@ import Galleria from '@cjdevstudios/bumblevue/galleria';
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs"></DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

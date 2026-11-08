@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Slider is connected to an input field using two-way binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <div class="w-56">
-            <InputText v-model.number="value" class="w-full mb-4" />
-            <Slider v-model="value" class="w-full" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -42,3 +29,16 @@ const value = ref(50);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Slider is connected to an input field using two-way binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <div class="w-56">
+            <InputText v-model.number="value" class="w-full mb-4" />
+            <Slider v-model="value" class="w-full" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

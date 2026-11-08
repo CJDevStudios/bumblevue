@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" resizableColumns columnResizeMode="expand" showGridlines tableStyle="min-width: 50rem">
-                <Column field="code" header="Code"></Column>
-                <Column field="name" header="Name"></Column>
-                <Column field="category" header="Category"></Column>
-                <Column field="quantity" header="Quantity"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -78,3 +61,20 @@ const products = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" resizableColumns columnResizeMode="expand" showGridlines tableStyle="min-width: 50rem">
+                <Column field="code" header="Code"></Column>
+                <Column field="name" header="Name"></Column>
+                <Column field="category" header="Category"></Column>
+                <Column field="quantity" header="Quantity"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

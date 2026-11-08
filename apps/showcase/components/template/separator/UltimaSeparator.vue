@@ -1,3 +1,13 @@
+<script>
+    export default {
+        computed: {
+            fillColor() {
+                return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
+            }
+        }
+    };
+</script>
+
 <template>
     <TemplateSeparator>
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="49" viewBox="0 0 48 49" fill="none">
@@ -10,13 +20,3 @@
         </svg>
     </TemplateSeparator>
 </template>
-
-<script>
-    export default {
-        computed: {
-            fillColor() {
-                return this.$appState.darkTheme ? 'var(--p-surface-0)' : 'var(--p-surface-900)';
-            }
-        }
-    };
-</script>

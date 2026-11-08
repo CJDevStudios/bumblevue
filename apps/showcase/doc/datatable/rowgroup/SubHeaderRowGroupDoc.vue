@@ -1,45 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Rows are grouped with the <i>groupRowsBy</i> property. When <i>rowGroupMode</i> is set as <i>subheader</i>, a header and footer can be displayed for each group. The content of a group header is provided with <i>groupheader</i> and footer
-            with <i>groupfooter</i> slots.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
-                <template #groupheader="slotProps">
-                    <div class="flex items-center gap-2">
-                        <img :alt="slotProps.data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${slotProps.data.representative.image}`" width="32" style="vertical-align: middle" />
-                        <span>{{ slotProps.data.representative.name }}</span>
-                    </div>
-                </template>
-                <Column field="representative.name" header="Representative"></Column>
-                <Column field="name" header="Name" style="min-width: 200px"></Column>
-                <Column field="country" header="Country" style="min-width: 200px">
-                    <template #body="slotProps">
-                        <div class="flex items-center gap-2">
-                            <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${slotProps.data.country.code}`" style="width: 24px" />
-                            <span>{{ slotProps.data.country.name }}</span>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="company" header="Company" style="min-width: 200px"></Column>
-                <Column field="status" header="Status" style="min-width: 200px">
-                    <template #body="slotProps">
-                        <Tag :value="slotProps.data.status" :severity="getSeverity(slotProps.data.status)" />
-                    </template>
-                </Column>
-                <Column field="date" header="Date" style="min-width: 200px"></Column>
-                <template #groupfooter="slotProps">
-                    <div class="flex justify-end font-bold w-full">Total Customers: {{ calculateCustomerTotal(slotProps.data.representative.name) }}</div>
-                </template>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CustomerService']" />
-</template>
-
 <script>
     import { CustomerService } from '@/service/CustomerService';
 
@@ -217,3 +175,45 @@ const getSeverity = (status) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Rows are grouped with the <i>groupRowsBy</i> property. When <i>rowGroupMode</i> is set as <i>subheader</i>, a header and footer can be displayed for each group. The content of a group header is provided with <i>groupheader</i> and footer
+            with <i>groupfooter</i> slots.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="customers" rowGroupMode="subheader" groupRowsBy="representative.name" sortMode="single" sortField="representative.name" :sortOrder="1" scrollable scrollHeight="400px" tableStyle="min-width: 50rem">
+                <template #groupheader="slotProps">
+                    <div class="flex items-center gap-2">
+                        <img :alt="slotProps.data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${slotProps.data.representative.image}`" width="32" style="vertical-align: middle" />
+                        <span>{{ slotProps.data.representative.name }}</span>
+                    </div>
+                </template>
+                <Column field="representative.name" header="Representative"></Column>
+                <Column field="name" header="Name" style="min-width: 200px"></Column>
+                <Column field="country" header="Country" style="min-width: 200px">
+                    <template #body="slotProps">
+                        <div class="flex items-center gap-2">
+                            <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${slotProps.data.country.code}`" style="width: 24px" />
+                            <span>{{ slotProps.data.country.name }}</span>
+                        </div>
+                    </template>
+                </Column>
+                <Column field="company" header="Company" style="min-width: 200px"></Column>
+                <Column field="status" header="Status" style="min-width: 200px">
+                    <template #body="slotProps">
+                        <Tag :value="slotProps.data.status" :severity="getSeverity(slotProps.data.status)" />
+                    </template>
+                </Column>
+                <Column field="date" header="Date" style="min-width: 200px"></Column>
+                <template #groupfooter="slotProps">
+                    <div class="flex justify-end font-bold w-full">Total Customers: {{ calculateCustomerTotal(slotProps.data.representative.name) }}</div>
+                </template>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CustomerService']" />
+</template>

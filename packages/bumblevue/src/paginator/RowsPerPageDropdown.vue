@@ -1,23 +1,3 @@
-<template>
-    <RPPSelect
-        :modelValue="rows"
-        :options="rowsOptions"
-        optionLabel="label"
-        optionValue="value"
-        @update:modelValue="onChange($event)"
-        :class="cx('pcRowPerPageDropdown')"
-        :disabled="disabled"
-        :unstyled="unstyled"
-        :pt="ptm('pcRowPerPageDropdown')"
-        data-pc-group-section="pagedropdown"
-        :appendTo="appendTo"
-    >
-        <template v-if="templates['rowsperpagedropdownicon']" #dropdownicon="slotProps">
-            <component :is="templates['rowsperpagedropdownicon']" :class="slotProps.class" />
-        </template>
-    </RPPSelect>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import Select from '@cjdevstudios/bumblevue/select';
@@ -60,3 +40,23 @@
         }
     };
 </script>
+
+<template>
+    <RPPSelect
+        :modelValue="rows"
+        :options="rowsOptions"
+        optionLabel="label"
+        optionValue="value"
+        @update:modelValue="onChange($event)"
+        :class="cx('pcRowPerPageDropdown')"
+        :disabled="disabled"
+        :unstyled="unstyled"
+        :pt="ptm('pcRowPerPageDropdown')"
+        data-pc-group-section="pagedropdown"
+        :appendTo="appendTo"
+    >
+        <template v-if="templates['rowsperpagedropdownicon']" #dropdownicon="slotProps">
+            <component :is="templates['rowsperpagedropdownicon']" :class="slotProps.class" />
+        </template>
+    </RPPSelect>
+</template>

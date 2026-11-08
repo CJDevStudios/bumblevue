@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ColorPicker is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ColorPicker v-model="color" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const color = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ColorPicker is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ColorPicker v-model="color" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

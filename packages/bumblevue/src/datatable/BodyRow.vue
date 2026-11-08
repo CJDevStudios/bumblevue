@@ -1,97 +1,3 @@
-<template>
-    <template v-if="!empty">
-        <tr v-if="templates['groupheader'] && rowGroupMode === 'subheader' && shouldRenderRowGroupHeader" :class="cx('rowGroupHeader')" :style="rowGroupHeaderStyle" role="row" v-bind="ptm('rowGroupHeader')">
-            <td :colspan="columnsLength - 1" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowGroupHeaderCell') }">
-                <button v-if="expandableRowGroups" :class="cx('rowToggleButton')" @click="onRowGroupToggle" type="button" v-bind="ptm('rowToggleButton')">
-                    <component v-if="templates['rowtoggleicon'] || templates['rowgrouptogglericon']" :is="templates['rowtoggleicon'] || templates['rowgrouptogglericon']" :expanded="isRowGroupExpanded" />
-                    <template v-else>
-                        <span v-if="isRowGroupExpanded && expandedRowIcon" :class="[cx('rowToggleIcon'), expandedRowIcon]" v-bind="ptm('rowToggleIcon')" />
-                        <ChevronDownIcon v-else-if="isRowGroupExpanded && !expandedRowIcon" :class="cx('rowToggleIcon')" v-bind="ptm('rowToggleIcon')" />
-                        <span v-else-if="!isRowGroupExpanded && collapsedRowIcon" :class="[cx('rowToggleIcon'), collapsedRowIcon]" v-bind="ptm('rowToggleIcon')" />
-                        <ChevronRightIcon v-else-if="!isRowGroupExpanded && !collapsedRowIcon" :class="cx('rowToggleIcon')" v-bind="ptm('rowToggleIcon')" />
-                    </template>
-                </button>
-                <component :is="templates['groupheader']" :data="rowData" :index="rowIndex" />
-            </td>
-        </tr>
-        <tr
-            v-if="expandableRowGroups ? isRowGroupExpanded : true"
-            :class="rowClasses"
-            :style="rowStyles"
-            :tabindex="rowTabindex"
-            role="row"
-            :aria-selected="selectionMode ? isSelected : null"
-            @click="onRowClick"
-            @dblclick="onRowDblClick"
-            @contextmenu="onRowRightClick"
-            @touchend="onRowTouchEnd"
-            @keydown.self="onRowKeyDown"
-            @mousedown="onRowMouseDown"
-            @dragstart="onRowDragStart"
-            @dragover="onRowDragOver"
-            @dragleave="onRowDragLeave"
-            @dragend="onRowDragEnd"
-            @drop="onRowDrop"
-            v-bind="getBodyRowPTOptions('bodyRow')"
-            :data-p-index="rowIndex"
-            :data-p-selectable-row="selectionMode ? true : false"
-            :data-p-selected="selection && isSelected"
-            :data-p-selected-contextmenu="contextMenuSelection && isSelectedWithContextMenu"
-        >
-            <template v-for="(col, i) of columns">
-                <DTBodyCell
-                    v-if="shouldRenderBodyCell(col)"
-                    :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i"
-                    :rowData="rowData"
-                    :column="col"
-                    :rowIndex="rowIndex"
-                    :index="i"
-                    :selected="isSelected"
-                    :frozenRow="frozenRow"
-                    :rowspan="rowGroupMode === 'rowspan' ? calculateRowGroupSize(col) : null"
-                    :editMode="editMode"
-                    :editing="editMode === 'row' && isRowEditing"
-                    :editingMeta="editingMeta"
-                    :virtualScrollerContentProps="virtualScrollerContentProps"
-                    :ariaControls="expandedRowId + '_' + rowIndex + '_expansion'"
-                    :name="nameAttributeSelector"
-                    :isRowExpanded="d_rowExpanded"
-                    :expandedRowIcon="expandedRowIcon"
-                    :collapsedRowIcon="collapsedRowIcon"
-                    :editButtonProps="editButtonProps"
-                    @radio-change="onRadioChange"
-                    @checkbox-change="onCheckboxChange"
-                    @row-toggle="onRowToggle"
-                    @cell-edit-init="onCellEditInit"
-                    @cell-edit-complete="onCellEditComplete"
-                    @cell-edit-cancel="onCellEditCancel"
-                    @row-edit-init="onRowEditInit"
-                    @row-edit-save="onRowEditSave"
-                    @row-edit-cancel="onRowEditCancel"
-                    @editing-meta-change="onEditingMetaChange"
-                    :unstyled="unstyled"
-                    :pt="pt"
-                />
-            </template>
-        </tr>
-        <tr v-if="templates['expansion'] && expandedRows && d_rowExpanded" :id="expandedRowId + '_' + rowIndex + '_expansion'" :class="cx('rowExpansion')" role="row" v-bind="ptm('rowExpansion')">
-            <td :colspan="columnsLength" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowExpansionCell') }">
-                <component :is="templates['expansion']" :data="rowData" :index="rowIndex" />
-            </td>
-        </tr>
-        <tr v-if="templates['groupfooter'] && rowGroupMode === 'subheader' && shouldRenderRowGroupFooter" :class="cx('rowGroupFooter')" role="row" v-bind="ptm('rowGroupFooter')">
-            <td :colspan="columnsLength - 1" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowGroupFooterCell') }">
-                <component :is="templates['groupfooter']" :data="rowData" :index="rowIndex" />
-            </td>
-        </tr>
-    </template>
-    <tr v-else :class="cx('emptyMessage')" role="row" v-bind="ptm('emptyMessage')">
-        <td :colspan="columnsLength" v-bind="{ ...getColumnPT('bodycell'), ...ptm('emptyMessageCell') }">
-            <component v-if="templates.empty" :is="templates.empty" />
-        </td>
-    </tr>
-</template>
-
 <script>
     import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -601,3 +507,97 @@
         }
     };
 </script>
+
+<template>
+    <template v-if="!empty">
+        <tr v-if="templates['groupheader'] && rowGroupMode === 'subheader' && shouldRenderRowGroupHeader" :class="cx('rowGroupHeader')" :style="rowGroupHeaderStyle" role="row" v-bind="ptm('rowGroupHeader')">
+            <td :colspan="columnsLength - 1" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowGroupHeaderCell') }">
+                <button v-if="expandableRowGroups" :class="cx('rowToggleButton')" @click="onRowGroupToggle" type="button" v-bind="ptm('rowToggleButton')">
+                    <component v-if="templates['rowtoggleicon'] || templates['rowgrouptogglericon']" :is="templates['rowtoggleicon'] || templates['rowgrouptogglericon']" :expanded="isRowGroupExpanded" />
+                    <template v-else>
+                        <span v-if="isRowGroupExpanded && expandedRowIcon" :class="[cx('rowToggleIcon'), expandedRowIcon]" v-bind="ptm('rowToggleIcon')" />
+                        <ChevronDownIcon v-else-if="isRowGroupExpanded && !expandedRowIcon" :class="cx('rowToggleIcon')" v-bind="ptm('rowToggleIcon')" />
+                        <span v-else-if="!isRowGroupExpanded && collapsedRowIcon" :class="[cx('rowToggleIcon'), collapsedRowIcon]" v-bind="ptm('rowToggleIcon')" />
+                        <ChevronRightIcon v-else-if="!isRowGroupExpanded && !collapsedRowIcon" :class="cx('rowToggleIcon')" v-bind="ptm('rowToggleIcon')" />
+                    </template>
+                </button>
+                <component :is="templates['groupheader']" :data="rowData" :index="rowIndex" />
+            </td>
+        </tr>
+        <tr
+            v-if="expandableRowGroups ? isRowGroupExpanded : true"
+            :class="rowClasses"
+            :style="rowStyles"
+            :tabindex="rowTabindex"
+            role="row"
+            :aria-selected="selectionMode ? isSelected : null"
+            @click="onRowClick"
+            @dblclick="onRowDblClick"
+            @contextmenu="onRowRightClick"
+            @touchend="onRowTouchEnd"
+            @keydown.self="onRowKeyDown"
+            @mousedown="onRowMouseDown"
+            @dragstart="onRowDragStart"
+            @dragover="onRowDragOver"
+            @dragleave="onRowDragLeave"
+            @dragend="onRowDragEnd"
+            @drop="onRowDrop"
+            v-bind="getBodyRowPTOptions('bodyRow')"
+            :data-p-index="rowIndex"
+            :data-p-selectable-row="selectionMode ? true : false"
+            :data-p-selected="selection && isSelected"
+            :data-p-selected-contextmenu="contextMenuSelection && isSelectedWithContextMenu"
+        >
+            <template v-for="(col, i) of columns">
+                <DTBodyCell
+                    v-if="shouldRenderBodyCell(col)"
+                    :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i"
+                    :rowData="rowData"
+                    :column="col"
+                    :rowIndex="rowIndex"
+                    :index="i"
+                    :selected="isSelected"
+                    :frozenRow="frozenRow"
+                    :rowspan="rowGroupMode === 'rowspan' ? calculateRowGroupSize(col) : null"
+                    :editMode="editMode"
+                    :editing="editMode === 'row' && isRowEditing"
+                    :editingMeta="editingMeta"
+                    :virtualScrollerContentProps="virtualScrollerContentProps"
+                    :ariaControls="expandedRowId + '_' + rowIndex + '_expansion'"
+                    :name="nameAttributeSelector"
+                    :isRowExpanded="d_rowExpanded"
+                    :expandedRowIcon="expandedRowIcon"
+                    :collapsedRowIcon="collapsedRowIcon"
+                    :editButtonProps="editButtonProps"
+                    @radio-change="onRadioChange"
+                    @checkbox-change="onCheckboxChange"
+                    @row-toggle="onRowToggle"
+                    @cell-edit-init="onCellEditInit"
+                    @cell-edit-complete="onCellEditComplete"
+                    @cell-edit-cancel="onCellEditCancel"
+                    @row-edit-init="onRowEditInit"
+                    @row-edit-save="onRowEditSave"
+                    @row-edit-cancel="onRowEditCancel"
+                    @editing-meta-change="onEditingMetaChange"
+                    :unstyled="unstyled"
+                    :pt="pt"
+                />
+            </template>
+        </tr>
+        <tr v-if="templates['expansion'] && expandedRows && d_rowExpanded" :id="expandedRowId + '_' + rowIndex + '_expansion'" :class="cx('rowExpansion')" role="row" v-bind="ptm('rowExpansion')">
+            <td :colspan="columnsLength" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowExpansionCell') }">
+                <component :is="templates['expansion']" :data="rowData" :index="rowIndex" />
+            </td>
+        </tr>
+        <tr v-if="templates['groupfooter'] && rowGroupMode === 'subheader' && shouldRenderRowGroupFooter" :class="cx('rowGroupFooter')" role="row" v-bind="ptm('rowGroupFooter')">
+            <td :colspan="columnsLength - 1" v-bind="{ ...getColumnPT('bodycell'), ...ptm('rowGroupFooterCell') }">
+                <component :is="templates['groupfooter']" :data="rowData" :index="rowIndex" />
+            </td>
+        </tr>
+    </template>
+    <tr v-else :class="cx('emptyMessage')" role="row" v-bind="ptm('emptyMessage')">
+        <td :colspan="columnsLength" v-bind="{ ...getColumnPT('bodycell'), ...ptm('emptyMessageCell') }">
+            <component v-if="templates.empty" :is="templates.empty" />
+        </td>
+    </tr>
+</template>

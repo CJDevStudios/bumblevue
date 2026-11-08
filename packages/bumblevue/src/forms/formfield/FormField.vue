@@ -1,10 +1,3 @@
-<template>
-    <component v-if="!asChild" :is="as" :class="cx('root')" v-bind="ptmi('root')">
-        <slot :props="field.props" v-bind="fieldAttrs"></slot>
-    </component>
-    <slot v-else :class="cx('root')" :props="field.props" v-bind="fieldAttrs"></slot>
-</template>
-
 <script>
     import BaseFormField from './BaseFormField.vue';
 
@@ -49,3 +42,10 @@
         }
     };
 </script>
+
+<template>
+    <component v-if="!asChild" :is="as" :class="cx('root')" v-bind="ptmi('root')">
+        <slot :props="field.props" v-bind="fieldAttrs"></slot>
+    </component>
+    <slot v-else :class="cx('root')" :props="field.props" v-bind="fieldAttrs"></slot>
+</template>

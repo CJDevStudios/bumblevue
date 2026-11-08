@@ -1,9 +1,3 @@
-<template>
-    <button v-ripple :class="cx('last')" type="button" v-bind="getPTOptions('last')" data-pc-group-section="pagebutton">
-        <component :is="template || 'AngleDoubleRightIcon'" :class="cx('lastIcon')" v-bind="getPTOptions('lastIcon')" />
-    </button>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AngleDoubleRightIcon from '@cjdevstudios/bumblevue/icons/angledoubleright';
@@ -36,3 +30,9 @@
         }
     };
 </script>
+
+<template>
+    <button v-ripple :class="cx('last')" type="button" v-bind="getPTOptions('last')" data-pc-group-section="pagebutton">
+        <component :is="template || 'AngleDoubleRightIcon'" :class="cx('lastIcon')" v-bind="getPTOptions('lastIcon')" />
+    </button>
+</template>

@@ -1,7 +1,3 @@
-<template>
-    <component :is="component" :id :name class="w-full" />
-</template>
-
 <script setup>
     import * as BumbleVue from '@cjdevstudios/bumblevue';
     import { computed, inject } from 'vue';
@@ -26,3 +22,7 @@
 
     $fcDynamicForm?.addField(name.value, props.schema, props.defaultValue);
 </script>
+
+<template>
+    <component :is="component" :id :name class="w-full" />
+</template>

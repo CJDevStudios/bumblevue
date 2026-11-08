@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Multiple axes can be added using the <i>scales</i> option.</p>
-    </DocSectionText>
-    <div class="card">
-        <Chart type="line" :data="chartData" :options="chartOptions" class="h-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -217,3 +207,13 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Multiple axes can be added using the <i>scales</i> option.</p>
+    </DocSectionText>
+    <div class="card">
+        <Chart type="line" :data="chartData" :options="chartOptions" class="h-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

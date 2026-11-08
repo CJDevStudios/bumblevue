@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Updates the primary colors, this is a shorthand to do the same update using <i>updatePreset</i>.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -34,3 +27,10 @@ const changePrimaryColor() {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Updates the primary colors, this is a shorthand to do the same update using <i>updatePreset</i>.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

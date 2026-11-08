@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Value is reactive so updating it dynamically changes the bar as well.</p>
-    </DocSectionText>
-    <div class="card">
-        <ProgressBar :value="value"></ProgressBar>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -87,3 +77,13 @@ const endProgress = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Value is reactive so updating it dynamically changes the bar as well.</p>
+    </DocSectionText>
+    <div class="card">
+        <ProgressBar :value="value"></ProgressBar>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

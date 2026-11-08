@@ -1,42 +1,3 @@
-<template>
-    <div ref="list" :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
-        <button
-            v-if="showNavigators && isPrevButtonEnabled"
-            ref="prevButton"
-            type="button"
-            v-ripple
-            :class="cx('prevButton')"
-            :aria-label="prevButtonAriaLabel"
-            :tabindex="$pcTabs.tabindex"
-            @click="onPrevButtonClick"
-            v-bind="ptm('prevButton')"
-            data-pc-group-section="navigator"
-        >
-            <component :is="templates.previcon || 'ChevronLeftIcon'" aria-hidden="true" v-bind="ptm('prevIcon')" />
-        </button>
-        <div ref="content" :class="cx('content')" @scroll="onScroll" :data-p="dataP" v-bind="ptm('content')">
-            <div ref="tabs" :class="cx('tabList')" role="tablist" :aria-orientation="$pcTabs.orientation || 'horizontal'" v-bind="ptm('tabList')">
-                <slot></slot>
-                <span ref="inkbar" :class="cx('activeBar')" role="presentation" aria-hidden="true" v-bind="ptm('activeBar')"></span>
-            </div>
-        </div>
-        <button
-            v-if="showNavigators && isNextButtonEnabled"
-            ref="nextButton"
-            type="button"
-            v-ripple
-            :class="cx('nextButton')"
-            :aria-label="nextButtonAriaLabel"
-            :tabindex="$pcTabs.tabindex"
-            @click="onNextButtonClick"
-            v-bind="ptm('nextButton')"
-            data-pc-group-section="navigator"
-        >
-            <component :is="templates.nexticon || 'ChevronRightIcon'" aria-hidden="true" v-bind="ptm('nextIcon')" />
-        </button>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { findSingle, getHeight, getOffset, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
@@ -220,3 +181,42 @@
         }
     };
 </script>
+
+<template>
+    <div ref="list" :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
+        <button
+            v-if="showNavigators && isPrevButtonEnabled"
+            ref="prevButton"
+            type="button"
+            v-ripple
+            :class="cx('prevButton')"
+            :aria-label="prevButtonAriaLabel"
+            :tabindex="$pcTabs.tabindex"
+            @click="onPrevButtonClick"
+            v-bind="ptm('prevButton')"
+            data-pc-group-section="navigator"
+        >
+            <component :is="templates.previcon || 'ChevronLeftIcon'" aria-hidden="true" v-bind="ptm('prevIcon')" />
+        </button>
+        <div ref="content" :class="cx('content')" @scroll="onScroll" :data-p="dataP" v-bind="ptm('content')">
+            <div ref="tabs" :class="cx('tabList')" role="tablist" :aria-orientation="$pcTabs.orientation || 'horizontal'" v-bind="ptm('tabList')">
+                <slot></slot>
+                <span ref="inkbar" :class="cx('activeBar')" role="presentation" aria-hidden="true" v-bind="ptm('activeBar')"></span>
+            </div>
+        </div>
+        <button
+            v-if="showNavigators && isNextButtonEnabled"
+            ref="nextButton"
+            type="button"
+            v-ripple
+            :class="cx('nextButton')"
+            :aria-label="nextButtonAriaLabel"
+            :tabindex="$pcTabs.tabindex"
+            @click="onNextButtonClick"
+            v-bind="ptm('nextButton')"
+            data-pc-group-section="navigator"
+        >
+            <component :is="templates.nexticon || 'ChevronRightIcon'" aria-hidden="true" v-bind="ptm('nextIcon')" />
+        </button>
+    </div>
+</template>

@@ -1,39 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Using <i>activeIndex</i>, Galleria is displayed with a specific initial image.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card flex justify-center">
-            <Galleria
-                v-model:activeIndex="activeIndex"
-                v-model:visible="displayCustom"
-                :value="images"
-                :responsiveOptions="responsiveOptions"
-                :numVisible="7"
-                containerStyle="max-width: 850px"
-                :circular="true"
-                :fullScreen="true"
-                :showItemNavigators="true"
-                :showThumbnails="false"
-            >
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-                <template #thumbnail="slotProps">
-                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
-                </template>
-            </Galleria>
-
-            <div v-if="images" class="grid grid-cols-12 gap-4" style="max-width: 400px">
-                <div v-for="(image, index) of images" :key="index" class="col-span-4">
-                    <img :src="image.thumbnailImageSrc" :alt="image.alt" style="cursor: pointer" @click="imageClick(index)" />
-                </div>
-            </div>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
     import { PhotoService } from '@/service/PhotoService';
 
@@ -146,3 +110,39 @@ const imageClick = (index) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Using <i>activeIndex</i>, Galleria is displayed with a specific initial image.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card flex justify-center">
+            <Galleria
+                v-model:activeIndex="activeIndex"
+                v-model:visible="displayCustom"
+                :value="images"
+                :responsiveOptions="responsiveOptions"
+                :numVisible="7"
+                containerStyle="max-width: 850px"
+                :circular="true"
+                :fullScreen="true"
+                :showItemNavigators="true"
+                :showThumbnails="false"
+            >
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
+                </template>
+            </Galleria>
+
+            <div v-if="images" class="grid grid-cols-12 gap-4" style="max-width: 400px">
+                <div v-for="(image, index) of images" :key="index" class="col-span-4">
+                    <img :src="image.thumbnailImageSrc" :alt="image.alt" style="cursor: pointer" @click="imageClick(index)" />
+                </div>
+            </div>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

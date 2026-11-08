@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>PanelMenu offers item customization with the <i>item</i> template that receives the menuitem instance from the model as a parameter.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <PanelMenu :model="items" class="w-full md:w-80">
-            <template #item="{ item }">
-                <a v-ripple class="flex items-center px-4 py-2 cursor-pointer group">
-                    <span :class="[item.icon, 'text-primary group-hover:text-inherit']" />
-                    <span :class="['ml-2', { 'font-semibold': item.items }]">{{ item.label }}</span>
-                    <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
-                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
-                </a>
-            </template>
-        </PanelMenu>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -186,3 +167,22 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>PanelMenu offers item customization with the <i>item</i> template that receives the menuitem instance from the model as a parameter.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <PanelMenu :model="items" class="w-full md:w-80">
+            <template #item="{ item }">
+                <a v-ripple class="flex items-center px-4 py-2 cursor-pointer group">
+                    <span :class="[item.icon, 'text-primary group-hover:text-inherit']" />
+                    <span :class="['ml-2', { 'font-semibold': item.items }]">{{ item.label }}</span>
+                    <Badge v-if="item.badge" class="ml-auto" :value="item.badge" />
+                    <span v-if="item.shortcut" class="ml-auto border border-surface rounded-sm bg-emphasis text-muted-color text-xs p-1">{{ item.shortcut }}</span>
+                </a>
+            </template>
+        </PanelMenu>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

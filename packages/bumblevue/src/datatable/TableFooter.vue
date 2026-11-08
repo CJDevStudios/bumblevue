@@ -1,28 +1,3 @@
-<template>
-    <tfoot
-        v-if="hasFooter"
-        :class="cx('tfoot')"
-        :style="sx('tfoot')"
-        role="rowgroup"
-        v-bind="columnGroup ? { ...ptm('tfoot', ptmTFootOptions), ...getColumnGroupPT('root') } : ptm('tfoot', ptmTFootOptions)"
-        :data-p-scrollable="$parentInstance?.$parentInstance?.scrollable"
-        data-pc-section="tfoot"
-    >
-        <tr v-if="!columnGroup" role="row" v-bind="ptm('footerRow')">
-            <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                <DTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :pt="pt" />
-            </template>
-        </tr>
-        <template v-else>
-            <tr v-for="(row, i) of getFooterRows()" :key="i" role="row" v-bind="{ ...ptm('footerRow'), ...getRowPT(row, 'root', i) }">
-                <template v-for="(col, j) of getFooterColumns(row)" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || j">
-                    <DTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :index="i" :pt="pt" />
-                </template>
-            </tr>
-        </template>
-    </tfoot>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
@@ -137,3 +112,28 @@
         }
     };
 </script>
+
+<template>
+    <tfoot
+        v-if="hasFooter"
+        :class="cx('tfoot')"
+        :style="sx('tfoot')"
+        role="rowgroup"
+        v-bind="columnGroup ? { ...ptm('tfoot', ptmTFootOptions), ...getColumnGroupPT('root') } : ptm('tfoot', ptmTFootOptions)"
+        :data-p-scrollable="$parentInstance?.$parentInstance?.scrollable"
+        data-pc-section="tfoot"
+    >
+        <tr v-if="!columnGroup" role="row" v-bind="ptm('footerRow')">
+            <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                <DTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :pt="pt" />
+            </template>
+        </tr>
+        <template v-else>
+            <tr v-for="(row, i) of getFooterRows()" :key="i" role="row" v-bind="{ ...ptm('footerRow'), ...getRowPT(row, 'root', i) }">
+                <template v-for="(col, j) of getFooterColumns(row)" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || j">
+                    <DTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :index="i" :pt="pt" />
+                </template>
+            </tr>
+        </template>
+    </tfoot>
+</template>

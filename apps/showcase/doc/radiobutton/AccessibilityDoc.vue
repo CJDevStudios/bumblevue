@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="rb1">One</label>
+<RadioButton inputId="rb1" />
+
+<span id="rb2">Two</span>
+<RadioButton aria-labelledby="rb2" />
+
+<RadioButton aria-label="Three" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -48,23 +68,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<label for="rb1">One</label>
-<RadioButton inputId="rb1" />
-
-<span id="rb2">Two</span>
-<RadioButton aria-labelledby="rb2" />
-
-<RadioButton aria-label="Three" />
-`
-                }
-            };
-        }
-    };
-</script>

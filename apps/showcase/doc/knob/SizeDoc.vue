@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Diameter of the knob is defined in pixels using the <i>size</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Knob v-model="value" :size="200" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(60);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Diameter of the knob is defined in pixels using the <i>size</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Knob v-model="value" :size="200" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

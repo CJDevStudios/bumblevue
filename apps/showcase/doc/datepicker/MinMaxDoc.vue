@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Boundaries for the permitted dates that can be entered are defined with <i>minDate</i> and <i>maxDate</i> properties.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" :minDate="minDate" :maxDate="maxDate" :manualInput="false" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -68,3 +58,13 @@ maxDate.value.setFullYear(nextYear);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Boundaries for the permitted dates that can be entered are defined with <i>minDate</i> and <i>maxDate</i> properties.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <DatePicker v-model="date" :minDate="minDate" :maxDate="maxDate" :manualInput="false" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

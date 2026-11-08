@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>BumbleVue components need to be imported and configured individually. In the next section, we'll cleanup the code using auto imports.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -27,3 +20,10 @@ app.component('Button', Button);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>BumbleVue components need to be imported and configured individually. In the next section, we'll cleanup the code using auto imports.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

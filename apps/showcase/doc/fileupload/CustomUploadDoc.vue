@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Uploading implementation can be overridden by enabling <i>customUpload</i> property. This sample, displays the image on the client side with a grayscale filter.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-6">
-        <FileUpload mode="basic" @select="onFileSelect" customUpload auto severity="secondary" class="p-button-outlined" />
-        <img v-if="src" :src="src" alt="Image" class="shadow-md rounded-xl w-full sm:w-64" style="filter: grayscale(100%)" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -61,3 +50,14 @@ function onFileSelect(event) {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Uploading implementation can be overridden by enabling <i>customUpload</i> property. This sample, displays the image on the client side with a grayscale filter.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-6">
+        <FileUpload mode="basic" @select="onFileSelect" customUpload auto severity="secondary" class="p-button-outlined" />
+        <img v-if="src" :src="src" alt="Image" class="shadow-md rounded-xl w-full sm:w-64" style="filter: grayscale(100%)" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

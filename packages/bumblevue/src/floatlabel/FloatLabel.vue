@@ -1,9 +1,3 @@
-<template>
-    <span :class="cx('root')" v-bind="ptmi('root')">
-        <slot />
-    </span>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import FloatLabelStyle from '@cjdevstudios/bumblevue/floatlabel/style';
@@ -27,3 +21,9 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('root')" v-bind="ptmi('root')">
+        <slot />
+    </span>
+</template>

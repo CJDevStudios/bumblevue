@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            In case BumbleVue components have visual issues in your application, a Reset CSS may be the culprit. CSS layers would be an efficient solution that involves enabling the BumbleVue layer, wrapping the Reset CSS in another layer and
-            defining the layer order. This way, your Reset CSS does not get in the way of BumbleVue components.
-        </p>
-        <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
     export default {
         data() {
@@ -31,3 +21,13 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            In case BumbleVue components have visual issues in your application, a Reset CSS may be the culprit. CSS layers would be an efficient solution that involves enabling the BumbleVue layer, wrapping the Reset CSS in another layer and
+            defining the layer order. This way, your Reset CSS does not get in the way of BumbleVue components.
+        </p>
+        <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+    </DocSectionText>
+</template>

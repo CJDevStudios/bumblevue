@@ -1,26 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When the form element is invalid, the label is also highlighted.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center items-end gap-4">
-        <FloatLabel>
-            <InputText id="value1" v-model="value1" autocomplete="off" :invalid="!value1" />
-            <label for="value1">Username</label>
-        </FloatLabel>
-
-        <FloatLabel variant="in">
-            <InputText id="value2" v-model="value2" autocomplete="off" :invalid="!value2" />
-            <label for="value2">Username</label>
-        </FloatLabel>
-
-        <FloatLabel variant="on">
-            <InputText id="value3" v-model="value3" autocomplete="off" :invalid="!value3" />
-            <label for="value3">Username</label>
-        </FloatLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -78,3 +55,26 @@ const value3 = ref('');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When the form element is invalid, the label is also highlighted.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center items-end gap-4">
+        <FloatLabel>
+            <InputText id="value1" v-model="value1" autocomplete="off" :invalid="!value1" />
+            <label for="value1">Username</label>
+        </FloatLabel>
+
+        <FloatLabel variant="in">
+            <InputText id="value2" v-model="value2" autocomplete="off" :invalid="!value2" />
+            <label for="value2">Username</label>
+        </FloatLabel>
+
+        <FloatLabel variant="on">
+            <InputText id="value3" v-model="value3" autocomplete="off" :invalid="!value3" />
+            <label for="value3">Username</label>
+        </FloatLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

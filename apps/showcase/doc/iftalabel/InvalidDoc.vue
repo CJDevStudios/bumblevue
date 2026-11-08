@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When the form element is invalid, the label is also highlighted.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <InputText id="username" v-model="value" autocomplete="off" :invalid="!value" />
-            <label for="username">Username</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -44,3 +31,16 @@ const value = ref('');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When the form element is invalid, the label is also highlighted.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <InputText id="username" v-model="value" autocomplete="off" :invalid="!value" />
+            <label for="username">Username</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

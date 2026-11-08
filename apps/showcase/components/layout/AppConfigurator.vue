@@ -1,56 +1,3 @@
-<template>
-    <div class="config-panel hidden">
-        <div class="config-panel-content">
-            <div class="config-panel-colors">
-                <span class="config-panel-label">Primary</span>
-                <div>
-                    <button
-                        v-for="primaryColor of primaryColors"
-                        :key="primaryColor.name"
-                        type="button"
-                        :title="primaryColor.name"
-                        @click="updateColors('primary', primaryColor)"
-                        :class="{ 'active-color': selectedPrimaryColor === primaryColor.name }"
-                        :style="{ backgroundColor: `${primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500']}` }"
-                    ></button>
-                </div>
-            </div>
-            <div class="config-panel-colors">
-                <span class="config-panel-label">Surface</span>
-                <div>
-                    <button
-                        v-for="surface of surfaces"
-                        :key="surface.name"
-                        type="button"
-                        :title="surface.name"
-                        @click="updateColors('surface', surface)"
-                        :class="{ 'active-color': selectedSurfaceColor ? selectedSurfaceColor === surface.name : $appState.darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
-                        :style="{ backgroundColor: `${surface.palette['500']}` }"
-                    ></button>
-                </div>
-            </div>
-            <div class="config-panel-settings">
-                <span class="config-panel-label">Theme</span>
-                <SelectButton v-model="$appState.preset" @update:modelValue="onPresetChange" :options="presetOptions" optionLabel="label" optionValue="value" :allowEmpty="false" size="small" />
-            </div>
-            <div class="flex">
-                <div class="flex-1">
-                    <div class="config-panel-settings">
-                        <span class="config-panel-label">Ripple</span>
-                        <ToggleSwitch :modelValue="rippleActive" @update:modelValue="onRippleChange" />
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <div class="config-panel-settings items-end">
-                        <span class="config-panel-label">RTL</span>
-                        <ToggleSwitch v-model="isRTL" @update:modelValue="onRTLChange" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
     import { $t, updatePreset, updateSurfacePalette } from '@cjdevstudios/bumblevue/themes';
@@ -354,3 +301,56 @@
         }
     };
 </script>
+
+<template>
+    <div class="config-panel hidden">
+        <div class="config-panel-content">
+            <div class="config-panel-colors">
+                <span class="config-panel-label">Primary</span>
+                <div>
+                    <button
+                        v-for="primaryColor of primaryColors"
+                        :key="primaryColor.name"
+                        type="button"
+                        :title="primaryColor.name"
+                        @click="updateColors('primary', primaryColor)"
+                        :class="{ 'active-color': selectedPrimaryColor === primaryColor.name }"
+                        :style="{ backgroundColor: `${primaryColor.name === 'noir' ? 'var(--text-color)' : primaryColor.palette['500']}` }"
+                    ></button>
+                </div>
+            </div>
+            <div class="config-panel-colors">
+                <span class="config-panel-label">Surface</span>
+                <div>
+                    <button
+                        v-for="surface of surfaces"
+                        :key="surface.name"
+                        type="button"
+                        :title="surface.name"
+                        @click="updateColors('surface', surface)"
+                        :class="{ 'active-color': selectedSurfaceColor ? selectedSurfaceColor === surface.name : $appState.darkTheme ? surface.name === 'zinc' : surface.name === 'slate' }"
+                        :style="{ backgroundColor: `${surface.palette['500']}` }"
+                    ></button>
+                </div>
+            </div>
+            <div class="config-panel-settings">
+                <span class="config-panel-label">Theme</span>
+                <SelectButton v-model="$appState.preset" @update:modelValue="onPresetChange" :options="presetOptions" optionLabel="label" optionValue="value" :allowEmpty="false" size="small" />
+            </div>
+            <div class="flex">
+                <div class="flex-1">
+                    <div class="config-panel-settings">
+                        <span class="config-panel-label">Ripple</span>
+                        <ToggleSwitch :modelValue="rippleActive" @update:modelValue="onRippleChange" />
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="config-panel-settings items-end">
+                        <span class="config-panel-label">RTL</span>
+                        <ToggleSwitch v-model="isRTL" @update:modelValue="onRTLChange" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

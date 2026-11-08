@@ -1,13 +1,3 @@
-<template>
-    <div class="doc-main">
-        <div class="doc-intro">
-            <h1>Form Theming</h1>
-        </div>
-        <DocSections :docs="docs" />
-    </div>
-    <DocSectionNav :docs="docs" />
-</template>
-
 <script>
     import StyledDoc from './StyledDoc.vue';
 
@@ -25,3 +15,13 @@
         }
     };
 </script>
+
+<template>
+    <div class="doc-main">
+        <div class="doc-intro">
+            <h1>Form Theming</h1>
+        </div>
+        <DocSections :docs="docs" />
+    </div>
+    <DocSectionNav :docs="docs" />
+</template>

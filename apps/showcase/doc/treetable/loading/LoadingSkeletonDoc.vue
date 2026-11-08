@@ -1,31 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Skeleton component can be used as a placeholder during the loading process.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" style="width: 34%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-                <Column field="size" header="Size" style="width: 33%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-                <Column field="type" header="Type" style="width: 33%">
-                    <template #body>
-                        <Skeleton />
-                    </template>
-                </Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -95,3 +67,31 @@ const nodes = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Skeleton component can be used as a placeholder during the loading process.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" style="width: 34%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+                <Column field="size" header="Size" style="width: 33%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+                <Column field="type" header="Type" style="width: 33%">
+                    <template #body>
+                        <Skeleton />
+                    </template>
+                </Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" />
+</template>

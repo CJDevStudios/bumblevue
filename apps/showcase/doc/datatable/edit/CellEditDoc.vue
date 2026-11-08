@@ -1,41 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Cell editing is enabled by setting <i>editMode</i> as <i>cell</i>, defining input elements with <i>editor</i> templating of a Column and implementing <i>cell-edit-complete</i> to update the state.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable
-                :value="products"
-                editMode="cell"
-                @cell-edit-complete="onCellEditComplete"
-                :pt="{
-                    table: { style: 'min-width: 50rem' },
-                    column: {
-                        bodycell: ({ state }) => ({
-                            class: [{ 'py-0!': state['d_editing'] }]
-                        })
-                    }
-                }"
-            >
-                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" style="width: 25%">
-                    <template #body="{ data, field }">
-                        {{ field === 'price' ? formatCurrency(data[field]) : data[field] }}
-                    </template>
-                    <template #editor="{ data, field }">
-                        <template v-if="field !== 'price'">
-                            <InputText v-model="data[field]" autofocus fluid />
-                        </template>
-                        <template v-else>
-                            <InputNumber v-model="data[field]" mode="currency" currency="USD" locale="en-US" autofocus fluid />
-                        </template>
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" :dependencies="{ sass: '1.45.0', 'sass-loader': '8.0.2' }" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -216,3 +178,41 @@ const formatCurrency = (value) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Cell editing is enabled by setting <i>editMode</i> as <i>cell</i>, defining input elements with <i>editor</i> templating of a Column and implementing <i>cell-edit-complete</i> to update the state.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable
+                :value="products"
+                editMode="cell"
+                @cell-edit-complete="onCellEditComplete"
+                :pt="{
+                    table: { style: 'min-width: 50rem' },
+                    column: {
+                        bodycell: ({ state }) => ({
+                            class: [{ 'py-0!': state['d_editing'] }]
+                        })
+                    }
+                }"
+            >
+                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header" style="width: 25%">
+                    <template #body="{ data, field }">
+                        {{ field === 'price' ? formatCurrency(data[field]) : data[field] }}
+                    </template>
+                    <template #editor="{ data, field }">
+                        <template v-if="field !== 'price'">
+                            <InputText v-model="data[field]" autofocus fluid />
+                        </template>
+                        <template v-else>
+                            <InputNumber v-model="data[field]" mode="currency" currency="USD" locale="en-US" autofocus fluid />
+                        </template>
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" :dependencies="{ sass: '1.45.0', 'sass-loader': '8.0.2' }" />
+</template>

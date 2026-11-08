@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <CascadeSelect v-model="selectedCity" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" showClear style="min-width: 14rem" placeholder="Select a City" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -95,3 +89,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <CascadeSelect v-model="selectedCity" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" showClear style="min-width: 14rem" placeholder="Select a City" />
+    </DocPTViewer>
+</template>

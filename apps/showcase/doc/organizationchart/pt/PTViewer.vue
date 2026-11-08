@@ -1,13 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <OrganizationChart :value="data" collapsible>
-            <template #default="slotProps">
-                <span>{{ slotProps.node.label }}</span>
-            </template>
-        </OrganizationChart>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -51,3 +41,13 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <OrganizationChart :value="data" collapsible>
+            <template #default="slotProps">
+                <span>{{ slotProps.node.label }}</span>
+            </template>
+        </OrganizationChart>
+    </DocPTViewer>
+</template>

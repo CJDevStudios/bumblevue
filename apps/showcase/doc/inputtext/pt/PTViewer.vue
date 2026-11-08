@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <InputText v-model="value" placeholder="Username" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <InputText v-model="value" placeholder="Username" />
+    </DocPTViewer>
+</template>

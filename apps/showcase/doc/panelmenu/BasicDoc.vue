@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>PanelMenu requires a collection of menuitems as its <i>model</i>.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <PanelMenu :model="items" class="w-full md:w-80" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -189,3 +179,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>PanelMenu requires a collection of menuitems as its <i>model</i>.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <PanelMenu :model="items" class="w-full md:w-80" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

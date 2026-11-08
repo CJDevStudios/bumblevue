@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Editor is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card">
-        <Editor v-model="value" editorStyle="height: 320px" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref('');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Editor is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card">
+        <Editor v-model="value" editorStyle="height: 320px" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ quill: '2.0.0' }" component="Editor" />
+</template>

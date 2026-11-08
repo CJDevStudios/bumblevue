@@ -1,41 +1,3 @@
-<template>
-    <td :style="containerStyle" :class="containerClass" role="cell" v-bind="{ ...getColumnPT('root'), ...getColumnPT('bodyCell') }" :data-p-frozen-column="columnProp('frozen')">
-        <div :class="cx('bodyCellContent')" v-bind="getColumnPT('bodyCellContent')">
-            <button v-if="columnProp('expander')" v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" :style="togglerStyle" tabindex="-1" v-bind="getColumnPT('nodeToggleButton')" data-pc-group-section="rowactionbutton">
-                <template v-if="node.loading && loadingMode === 'icon'">
-                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" />
-                    <SpinnerIcon v-else spin v-bind="ptm('nodetoggleicon')" />
-                </template>
-                <template v-else>
-                    <component v-if="column.children && column.children.rowtoggleicon" :is="column.children.rowtoggleicon" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
-                    <component v-else-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
-                    <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
-                    <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
-                </template>
-            </button>
-            <Checkbox
-                v-if="checkboxSelectionMode && columnProp('expander')"
-                :modelValue="checked"
-                :binary="true"
-                :class="cx('pcNodeCheckbox')"
-                :disabled="node.selectable === false"
-                @change="toggleCheckbox"
-                :tabindex="-1"
-                :indeterminate="partialChecked"
-                :unstyled="unstyled"
-                :pt="getColumnCheckboxPT('pcNodeCheckbox')"
-                :data-p-partialchecked="partialChecked"
-            >
-                <template #icon="slotProps">
-                    <component v-if="templates['checkboxicon']" :is="templates['checkboxicon']" :checked="slotProps.checked" :partialChecked="partialChecked" :class="slotProps.class" />
-                </template>
-            </Checkbox>
-            <component v-if="column.children && column.children.body" :is="column.children.body" :node="node" :column="column" />
-            <template v-else>{{ resolveFieldData(node.data, columnProp('field')) }}</template>
-        </div>
-    </td>
-</template>
-
 <script>
     import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
     import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -234,3 +196,41 @@
         }
     };
 </script>
+
+<template>
+    <td :style="containerStyle" :class="containerClass" role="cell" v-bind="{ ...getColumnPT('root'), ...getColumnPT('bodyCell') }" :data-p-frozen-column="columnProp('frozen')">
+        <div :class="cx('bodyCellContent')" v-bind="getColumnPT('bodyCellContent')">
+            <button v-if="columnProp('expander')" v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" :style="togglerStyle" tabindex="-1" v-bind="getColumnPT('nodeToggleButton')" data-pc-group-section="rowactionbutton">
+                <template v-if="node.loading && loadingMode === 'icon'">
+                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" />
+                    <SpinnerIcon v-else spin v-bind="ptm('nodetoggleicon')" />
+                </template>
+                <template v-else>
+                    <component v-if="column.children && column.children.rowtoggleicon" :is="column.children.rowtoggleicon" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <component v-else-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
+                    <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getColumnPT('nodeToggleIcon')" />
+                </template>
+            </button>
+            <Checkbox
+                v-if="checkboxSelectionMode && columnProp('expander')"
+                :modelValue="checked"
+                :binary="true"
+                :class="cx('pcNodeCheckbox')"
+                :disabled="node.selectable === false"
+                @change="toggleCheckbox"
+                :tabindex="-1"
+                :indeterminate="partialChecked"
+                :unstyled="unstyled"
+                :pt="getColumnCheckboxPT('pcNodeCheckbox')"
+                :data-p-partialchecked="partialChecked"
+            >
+                <template #icon="slotProps">
+                    <component v-if="templates['checkboxicon']" :is="templates['checkboxicon']" :checked="slotProps.checked" :partialChecked="partialChecked" :class="slotProps.class" />
+                </template>
+            </Checkbox>
+            <component v-if="column.children && column.children.body" :is="column.children.body" :node="node" :column="column" />
+            <template v-else>{{ resolveFieldData(node.data, columnProp('field')) }}</template>
+        </div>
+    </td>
+</template>

@@ -1,11 +1,3 @@
-<template>
-    <div :class="cx('root')" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptmi('root')">
-        <slot name="left"></slot>
-        <slot name="right"></slot>
-        <input type="range" min="0" max="100" value="50" @input="onSlide" :class="cx('slider')" v-bind="ptm('slider')" />
-    </div>
-</template>
-
 <script>
     import { $dt } from '@cjdevstudios/bumblevue/styled';
     import { setCSSProperty } from '@cjdevstudios/bumblevue/utils/dom';
@@ -46,3 +38,11 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptmi('root')">
+        <slot name="left"></slot>
+        <slot name="right"></slot>
+        <input type="range" min="0" max="100" value="50" @input="onSlide" :class="cx('slider')" v-bind="ptm('slider')" />
+    </div>
+</template>

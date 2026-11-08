@@ -1,33 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
-        <template v-for="value in stars" :key="value">
-            <div :class="cx('option', { value })" @click="onOptionClick($event, value)" v-bind="getPTOptions('option', value)" :data-p-active="value <= d_value" :data-p-focused="value === focusedOptionIndex" :data-p="dataOption(value)">
-                <span class="p-hidden-accessible" v-bind="ptm('hiddenOptionInputContainer')" :data-p-hidden-accessible="true">
-                    <input
-                        type="radio"
-                        :value="value"
-                        :name="namex"
-                        :checked="d_value === value"
-                        :disabled="disabled"
-                        :readonly="readonly"
-                        :aria-label="starAriaLabel(value)"
-                        @focus="onFocus($event, value)"
-                        @blur="onBlur"
-                        @change="onChange($event, value)"
-                        v-bind="ptm('hiddenOptionInput')"
-                    />
-                </span>
-                <slot v-if="value <= d_value" name="onicon" :value="value" :toggleCallback="(event) => onChange(event, value)" :class="cx('onIcon')">
-                    <component :is="onIcon ? 'span' : 'StarFillIcon'" :class="[cx('onIcon'), onIcon]" v-bind="ptm('onIcon')" />
-                </slot>
-                <slot v-else name="officon" :value="value" :class="cx('offIcon')" :toggleCallback="(event) => onChange(event, value)">
-                    <component :is="offIcon ? 'span' : 'StarIcon'" :class="[cx('offIcon'), offIcon]" v-bind="ptm('offIcon')" />
-                </slot>
-            </div>
-        </template>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { focus, getFirstFocusableElement } from '@cjdevstudios/bumblevue/utils/dom';
@@ -149,3 +119,33 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
+        <template v-for="value in stars" :key="value">
+            <div :class="cx('option', { value })" @click="onOptionClick($event, value)" v-bind="getPTOptions('option', value)" :data-p-active="value <= d_value" :data-p-focused="value === focusedOptionIndex" :data-p="dataOption(value)">
+                <span class="p-hidden-accessible" v-bind="ptm('hiddenOptionInputContainer')" :data-p-hidden-accessible="true">
+                    <input
+                        type="radio"
+                        :value="value"
+                        :name="namex"
+                        :checked="d_value === value"
+                        :disabled="disabled"
+                        :readonly="readonly"
+                        :aria-label="starAriaLabel(value)"
+                        @focus="onFocus($event, value)"
+                        @blur="onBlur"
+                        @change="onChange($event, value)"
+                        v-bind="ptm('hiddenOptionInput')"
+                    />
+                </span>
+                <slot v-if="value <= d_value" name="onicon" :value="value" :toggleCallback="(event) => onChange(event, value)" :class="cx('onIcon')">
+                    <component :is="onIcon ? 'span' : 'StarFillIcon'" :class="[cx('onIcon'), onIcon]" v-bind="ptm('onIcon')" />
+                </slot>
+                <slot v-else name="officon" :value="value" :class="cx('offIcon')" :toggleCallback="(event) => onChange(event, value)">
+                    <component :is="offIcon ? 'span' : 'StarIcon'" :class="[cx('offIcon'), offIcon]" v-bind="ptm('offIcon')" />
+                </slot>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,61 +1,3 @@
-<template>
-    <div :ref="containerRef" :id="$id" :class="cx('root')" v-bind="ptmi('root')">
-        <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
-            <slot name="start"></slot>
-        </div>
-        <slot :id="$id" name="button" :class="cx('button')" :toggleCallback="(event) => menuButtonClick(event)">
-            <a
-                v-if="model && model.length > 0"
-                ref="menubutton"
-                role="button"
-                tabindex="0"
-                :class="cx('button')"
-                :aria-haspopup="model.length && model.length > 0 ? true : false"
-                :aria-expanded="mobileActive"
-                :aria-controls="$id"
-                :aria-label="$bumblevue.config.locale.aria?.navigation"
-                @click="menuButtonClick($event)"
-                @keydown="menuButtonKeydown($event)"
-                v-bind="ptm('button')"
-            >
-                <slot name="buttonicon">
-                    <BarsIcon v-bind="ptm('buttonIcon')" />
-                </slot>
-            </a>
-        </slot>
-        <MegaMenuSub
-            :ref="menubarRef"
-            :id="$id + '_list'"
-            :tabindex="!disabled ? tabindex : -1"
-            role="menubar"
-            :aria-label="ariaLabel"
-            :aria-labelledby="ariaLabelledby"
-            :aria-disabled="disabled || undefined"
-            :aria-orientation="orientation"
-            :aria-activedescendant="focused ? focusedItemId : undefined"
-            :menuId="$id"
-            :focusedItemId="focused ? focusedItemId : undefined"
-            :items="processedItems"
-            :horizontal="horizontal"
-            :templates="$slots"
-            :activeItem="activeItem"
-            :mobileActive="mobileActive"
-            :level="0"
-            :style="sx('rootList')"
-            :pt="pt"
-            :unstyled="unstyled"
-            @focus="onFocus"
-            @blur="onBlur"
-            @keydown="onKeyDown"
-            @item-click="onItemClick"
-            @item-mouseenter="onItemMouseEnter"
-        />
-        <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
-            <slot name="end"></slot>
-        </div>
-    </div>
-</template>
-
 <script>
     import { findSingle, focus, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
     import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
@@ -718,3 +660,61 @@
         }
     };
 </script>
+
+<template>
+    <div :ref="containerRef" :id="$id" :class="cx('root')" v-bind="ptmi('root')">
+        <div v-if="$slots.start" :class="cx('start')" v-bind="ptm('start')">
+            <slot name="start"></slot>
+        </div>
+        <slot :id="$id" name="button" :class="cx('button')" :toggleCallback="(event) => menuButtonClick(event)">
+            <a
+                v-if="model && model.length > 0"
+                ref="menubutton"
+                role="button"
+                tabindex="0"
+                :class="cx('button')"
+                :aria-haspopup="model.length && model.length > 0 ? true : false"
+                :aria-expanded="mobileActive"
+                :aria-controls="$id"
+                :aria-label="$bumblevue.config.locale.aria?.navigation"
+                @click="menuButtonClick($event)"
+                @keydown="menuButtonKeydown($event)"
+                v-bind="ptm('button')"
+            >
+                <slot name="buttonicon">
+                    <BarsIcon v-bind="ptm('buttonIcon')" />
+                </slot>
+            </a>
+        </slot>
+        <MegaMenuSub
+            :ref="menubarRef"
+            :id="$id + '_list'"
+            :tabindex="!disabled ? tabindex : -1"
+            role="menubar"
+            :aria-label="ariaLabel"
+            :aria-labelledby="ariaLabelledby"
+            :aria-disabled="disabled || undefined"
+            :aria-orientation="orientation"
+            :aria-activedescendant="focused ? focusedItemId : undefined"
+            :menuId="$id"
+            :focusedItemId="focused ? focusedItemId : undefined"
+            :items="processedItems"
+            :horizontal="horizontal"
+            :templates="$slots"
+            :activeItem="activeItem"
+            :mobileActive="mobileActive"
+            :level="0"
+            :style="sx('rootList')"
+            :pt="pt"
+            :unstyled="unstyled"
+            @focus="onFocus"
+            @blur="onBlur"
+            @keydown="onKeyDown"
+            @item-click="onItemClick"
+            @item-mouseenter="onItemMouseEnter"
+        />
+        <div v-if="$slots.end" :class="cx('end')" v-bind="ptm('end')">
+            <slot name="end"></slot>
+        </div>
+    </div>
+</template>

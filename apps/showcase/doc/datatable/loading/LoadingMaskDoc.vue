@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>loading</i> property enables a loading mask overlay on the DataTable to indicate data is being processed.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" :loading="true" tableStyle="min-width: 50rem">
-                <Column field="code" header="Code" style="width: 25%"></Column>
-                <Column field="name" header="Name" style="width: 25%"></Column>
-                <Column field="category" header="Category" style="width: 25%"></Column>
-                <Column field="quantity" header="Quantity" style="width: 25%"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -81,3 +64,20 @@ const products = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>loading</i> property enables a loading mask overlay on the DataTable to indicate data is being processed.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" :loading="true" tableStyle="min-width: 50rem">
+                <Column field="code" header="Code" style="width: 25%"></Column>
+                <Column field="name" header="Name" style="width: 25%"></Column>
+                <Column field="category" header="Category" style="width: 25%"></Column>
+                <Column field="quantity" header="Quantity" style="width: 25%"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

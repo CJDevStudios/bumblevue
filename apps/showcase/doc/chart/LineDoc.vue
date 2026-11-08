@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments.</p>
-    </DocSectionText>
-    <div class="card">
-        <Chart type="line" :data="chartData" :options="chartOptions" class="h-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -181,3 +171,13 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A line chart or line graph is a type of chart which displays information as a series of data points called 'markers' connected by straight line segments.</p>
+    </DocSectionText>
+    <div class="card">
+        <Chart type="line" :data="chartData" :options="chartOptions" class="h-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

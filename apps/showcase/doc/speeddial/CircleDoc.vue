@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Items can be displayed around the button when <i>type</i> is set to <i>circle</i>. Additional <i>radius</i> property defines the radius of the circle.</p>
-    </DocSectionText>
-    <div class="card">
-        <div :style="{ position: 'relative', height: '500px' }" class="flex items-center justify-center">
-            <SpeedDial :model="items" :radius="80" type="circle" :style="{ position: 'absolute' }" :buttonProps="{ severity: 'warn', rounded: true }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -117,3 +105,15 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Items can be displayed around the button when <i>type</i> is set to <i>circle</i>. Additional <i>radius</i> property defines the radius of the circle.</p>
+    </DocSectionText>
+    <div class="card">
+        <div :style="{ position: 'relative', height: '500px' }" class="flex items-center justify-center">
+            <SpeedDial :model="items" :radius="80" type="circle" :style="{ position: 'absolute' }" :buttonProps="{ severity: 'warn', rounded: true }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

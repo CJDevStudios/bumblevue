@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Additional content at the other side of the line can be provided with the <i>opposite</i> property.</p>
-    </DocSectionText>
-    <div class="card">
-        <Timeline :value="events">
-            <template #opposite="slotProps">
-                <small class="text-surface-500 dark:text-surface-400">{{ slotProps.item.date }}</small>
-            </template>
-            <template #content="slotProps">
-                {{ slotProps.item.status }}
-            </template>
-        </Timeline>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -67,3 +50,20 @@ const events = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Additional content at the other side of the line can be provided with the <i>opposite</i> property.</p>
+    </DocSectionText>
+    <div class="card">
+        <Timeline :value="events">
+            <template #opposite="slotProps">
+                <small class="text-surface-500 dark:text-surface-400">{{ slotProps.item.date }}</small>
+            </template>
+            <template #content="slotProps">
+                {{ slotProps.item.status }}
+            </template>
+        </Timeline>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <slot />
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import IconFieldStyle from '@cjdevstudios/bumblevue/iconfield/style';
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <slot />
+    </div>
+</template>

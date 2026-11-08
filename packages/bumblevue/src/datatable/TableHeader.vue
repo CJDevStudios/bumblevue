@@ -1,120 +1,3 @@
-<template>
-    <thead
-        :class="cx('thead')"
-        :style="sx('thead')"
-        role="rowgroup"
-        v-bind="columnGroup ? { ...ptm('thead', ptmTHeadOptions), ...getColumnGroupPT('root') } : ptm('thead', ptmTHeadOptions)"
-        :data-p-scrollable="$parentInstance?.$parentInstance?.scrollable"
-        data-pc-section="thead"
-    >
-        <template v-if="!columnGroup">
-            <tr role="row" v-bind="ptm('headerRow')">
-                <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                    <DTHeaderCell
-                        v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field'))"
-                        :column="col"
-                        :index="i"
-                        @column-click="$emit('column-click', $event)"
-                        @column-mousedown="$emit('column-mousedown', $event)"
-                        @column-dragstart="$emit('column-dragstart', $event)"
-                        @column-dragover="$emit('column-dragover', $event)"
-                        @column-dragleave="$emit('column-dragleave', $event)"
-                        @column-drop="$emit('column-drop', $event)"
-                        :groupRowsBy="groupRowsBy"
-                        :groupRowSortField="groupRowSortField"
-                        :reorderableColumns="reorderableColumns"
-                        :resizableColumns="resizableColumns"
-                        @column-resizestart="$emit('column-resizestart', $event)"
-                        :sortMode="sortMode"
-                        :sortField="sortField"
-                        :sortOrder="sortOrder"
-                        :multiSortMeta="multiSortMeta"
-                        :allRowsSelected="allRowsSelected"
-                        :empty="empty"
-                        @checkbox-change="$emit('checkbox-change', $event)"
-                        :filters="filters"
-                        :filterDisplay="filterDisplay"
-                        :filtersStore="filtersStore"
-                        :filterInputProps="filterInputProps"
-                        :filterButtonProps="filterButtonProps"
-                        :first="first"
-                        @filter-change="$emit('filter-change', $event)"
-                        @filter-apply="$emit('filter-apply')"
-                        @operator-change="$emit('operator-change', $event)"
-                        @matchmode-change="$emit('matchmode-change', $event)"
-                        @constraint-add="$emit('constraint-add', $event)"
-                        @constraint-remove="$emit('constraint-remove', $event)"
-                        @apply-click="$emit('apply-click', $event)"
-                        :unstyled="unstyled"
-                        :pt="pt"
-                    />
-                </template>
-            </tr>
-        </template>
-        <template v-else>
-            <tr v-for="(row, i) of getHeaderRows()" :key="i" role="row" v-bind="{ ...ptm('headerRow'), ...getRowPT(row, 'root', i) }">
-                <template v-for="(col, j) of getHeaderColumns(row)" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || j">
-                    <DTHeaderCell
-                        v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field')) && typeof col.children !== 'string'"
-                        :column="col"
-                        @column-click="$emit('column-click', $event)"
-                        @column-mousedown="$emit('column-mousedown', $event)"
-                        :groupRowsBy="groupRowsBy"
-                        :groupRowSortField="groupRowSortField"
-                        :sortMode="sortMode"
-                        :sortField="sortField"
-                        :sortOrder="sortOrder"
-                        :multiSortMeta="multiSortMeta"
-                        :allRowsSelected="allRowsSelected"
-                        :empty="empty"
-                        @checkbox-change="$emit('checkbox-change', $event)"
-                        :filters="filters"
-                        :filterDisplay="filterDisplay"
-                        :filtersStore="filtersStore"
-                        :filterInputProps="filterInputProps"
-                        :filterButtonProps="filterButtonProps"
-                        @filter-change="$emit('filter-change', $event)"
-                        @filter-apply="$emit('filter-apply')"
-                        @operator-change="$emit('operator-change', $event)"
-                        @matchmode-change="$emit('matchmode-change', $event)"
-                        @constraint-add="$emit('constraint-add', $event)"
-                        @constraint-remove="$emit('constraint-remove', $event)"
-                        @apply-click="$emit('apply-click', $event)"
-                        :unstyled="unstyled"
-                        :pt="pt"
-                    />
-                </template>
-            </tr>
-        </template>
-        <tr v-if="filterDisplay === 'row'" role="row" v-bind="ptm('headerRow')">
-            <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                <DTFilterHeaderCell
-                    v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field'))"
-                    :column="col"
-                    :index="i"
-                    :allRowsSelected="allRowsSelected"
-                    :empty="empty"
-                    display="row"
-                    :filters="filters"
-                    :filtersStore="filtersStore"
-                    :filterInputProps="filterInputProps"
-                    :filterButtonProps="filterButtonProps"
-                    @filter-change="$emit('filter-change', $event)"
-                    @filter-apply="$emit('filter-apply')"
-                    @operator-change="$emit('operator-change', $event)"
-                    @matchmode-change="$emit('matchmode-change', $event)"
-                    @constraint-add="$emit('constraint-add', $event)"
-                    @constraint-remove="$emit('constraint-remove', $event)"
-                    @apply-click="$emit('apply-click', $event)"
-                    @checkbox-change="$emit('checkbox-change', $event)"
-                    :unstyled="unstyled"
-                    :pt="pt"
-                />
-            </template>
-        </tr>
-    </thead>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { HelperSet, getVNodeProp } from '@cjdevstudios/bumblevue/core/utils';
@@ -325,3 +208,120 @@
         }
     };
 </script>
+
+<template>
+    <thead
+        :class="cx('thead')"
+        :style="sx('thead')"
+        role="rowgroup"
+        v-bind="columnGroup ? { ...ptm('thead', ptmTHeadOptions), ...getColumnGroupPT('root') } : ptm('thead', ptmTHeadOptions)"
+        :data-p-scrollable="$parentInstance?.$parentInstance?.scrollable"
+        data-pc-section="thead"
+    >
+        <template v-if="!columnGroup">
+            <tr role="row" v-bind="ptm('headerRow')">
+                <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                    <DTHeaderCell
+                        v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field'))"
+                        :column="col"
+                        :index="i"
+                        @column-click="$emit('column-click', $event)"
+                        @column-mousedown="$emit('column-mousedown', $event)"
+                        @column-dragstart="$emit('column-dragstart', $event)"
+                        @column-dragover="$emit('column-dragover', $event)"
+                        @column-dragleave="$emit('column-dragleave', $event)"
+                        @column-drop="$emit('column-drop', $event)"
+                        :groupRowsBy="groupRowsBy"
+                        :groupRowSortField="groupRowSortField"
+                        :reorderableColumns="reorderableColumns"
+                        :resizableColumns="resizableColumns"
+                        @column-resizestart="$emit('column-resizestart', $event)"
+                        :sortMode="sortMode"
+                        :sortField="sortField"
+                        :sortOrder="sortOrder"
+                        :multiSortMeta="multiSortMeta"
+                        :allRowsSelected="allRowsSelected"
+                        :empty="empty"
+                        @checkbox-change="$emit('checkbox-change', $event)"
+                        :filters="filters"
+                        :filterDisplay="filterDisplay"
+                        :filtersStore="filtersStore"
+                        :filterInputProps="filterInputProps"
+                        :filterButtonProps="filterButtonProps"
+                        :first="first"
+                        @filter-change="$emit('filter-change', $event)"
+                        @filter-apply="$emit('filter-apply')"
+                        @operator-change="$emit('operator-change', $event)"
+                        @matchmode-change="$emit('matchmode-change', $event)"
+                        @constraint-add="$emit('constraint-add', $event)"
+                        @constraint-remove="$emit('constraint-remove', $event)"
+                        @apply-click="$emit('apply-click', $event)"
+                        :unstyled="unstyled"
+                        :pt="pt"
+                    />
+                </template>
+            </tr>
+        </template>
+        <template v-else>
+            <tr v-for="(row, i) of getHeaderRows()" :key="i" role="row" v-bind="{ ...ptm('headerRow'), ...getRowPT(row, 'root', i) }">
+                <template v-for="(col, j) of getHeaderColumns(row)" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || j">
+                    <DTHeaderCell
+                        v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field')) && typeof col.children !== 'string'"
+                        :column="col"
+                        @column-click="$emit('column-click', $event)"
+                        @column-mousedown="$emit('column-mousedown', $event)"
+                        :groupRowsBy="groupRowsBy"
+                        :groupRowSortField="groupRowSortField"
+                        :sortMode="sortMode"
+                        :sortField="sortField"
+                        :sortOrder="sortOrder"
+                        :multiSortMeta="multiSortMeta"
+                        :allRowsSelected="allRowsSelected"
+                        :empty="empty"
+                        @checkbox-change="$emit('checkbox-change', $event)"
+                        :filters="filters"
+                        :filterDisplay="filterDisplay"
+                        :filtersStore="filtersStore"
+                        :filterInputProps="filterInputProps"
+                        :filterButtonProps="filterButtonProps"
+                        @filter-change="$emit('filter-change', $event)"
+                        @filter-apply="$emit('filter-apply')"
+                        @operator-change="$emit('operator-change', $event)"
+                        @matchmode-change="$emit('matchmode-change', $event)"
+                        @constraint-add="$emit('constraint-add', $event)"
+                        @constraint-remove="$emit('constraint-remove', $event)"
+                        @apply-click="$emit('apply-click', $event)"
+                        :unstyled="unstyled"
+                        :pt="pt"
+                    />
+                </template>
+            </tr>
+        </template>
+        <tr v-if="filterDisplay === 'row'" role="row" v-bind="ptm('headerRow')">
+            <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                <DTFilterHeaderCell
+                    v-if="!columnProp(col, 'hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp(col, 'field'))"
+                    :column="col"
+                    :index="i"
+                    :allRowsSelected="allRowsSelected"
+                    :empty="empty"
+                    display="row"
+                    :filters="filters"
+                    :filtersStore="filtersStore"
+                    :filterInputProps="filterInputProps"
+                    :filterButtonProps="filterButtonProps"
+                    @filter-change="$emit('filter-change', $event)"
+                    @filter-apply="$emit('filter-apply')"
+                    @operator-change="$emit('operator-change', $event)"
+                    @matchmode-change="$emit('matchmode-change', $event)"
+                    @constraint-add="$emit('constraint-add', $event)"
+                    @constraint-remove="$emit('constraint-remove', $event)"
+                    @apply-click="$emit('apply-click', $event)"
+                    @checkbox-change="$emit('checkbox-change', $event)"
+                    :unstyled="unstyled"
+                    :pt="pt"
+                />
+            </template>
+        </tr>
+    </thead>
+</template>

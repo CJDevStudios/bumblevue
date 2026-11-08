@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Order of the columns and rows can be changed using drag and drop. Column reordering is configured by adding <i>reorderableColumns</i> property.</p>
-        <p>
-            Similarly, adding <i>rowReorder</i> property to a column enables draggable rows. For the drag handle a column needs to have <i>rowReorder</i> property and table needs to have <i>row-reorder</i> event is required to control the state of
-            the rows after reorder completes.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable :value="products" reorderableColumns @column-reorder="onColReorder" @row-reorder="onRowReorder" tableStyle="min-width: 50rem">
-                <Column rowReorder headerStyle="width: 3rem" :reorderableColumn="false" />
-                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -110,3 +91,22 @@ const onRowReorder = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Order of the columns and rows can be changed using drag and drop. Column reordering is configured by adding <i>reorderableColumns</i> property.</p>
+        <p>
+            Similarly, adding <i>rowReorder</i> property to a column enables draggable rows. For the drag handle a column needs to have <i>rowReorder</i> property and table needs to have <i>row-reorder</i> event is required to control the state of
+            the rows after reorder completes.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable :value="products" reorderableColumns @column-reorder="onColReorder" @row-reorder="onRowReorder" tableStyle="min-width: 50rem">
+                <Column rowReorder headerStyle="width: 3rem" :reorderableColumn="false" />
+                <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['ProductService']" />
+</template>

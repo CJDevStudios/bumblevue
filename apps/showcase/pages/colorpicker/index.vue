@@ -1,7 +1,3 @@
-<template>
-    <DocComponent title="Vue ColorPicker Component" header="ColorPicker" description="ColorPicker is an input component to select a color." :componentDocs="docs" :apiDocs="['ColorPicker']" :ptTabComponent="PTComponent" :themingDocs="ThemingDoc" />
-</template>
-
 <script setup lang="ts">
     import AccessibilityDoc from '@/doc/colorpicker/AccessibilityDoc.vue';
     import BasicDoc from '@/doc/colorpicker/BasicDoc.vue';
@@ -23,3 +19,7 @@
         { id: 'accessibility', label: 'Accessibility', component: AccessibilityDoc }
     ];
 </script>
+
+<template>
+    <DocComponent title="Vue ColorPicker Component" header="ColorPicker" description="ColorPicker is an input component to select a color." :componentDocs="docs" :apiDocs="['ColorPicker']" :ptTabComponent="PTComponent" :themingDocs="ThemingDoc" />
+</template>

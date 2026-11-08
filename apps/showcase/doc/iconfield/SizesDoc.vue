@@ -1,27 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IconField is compatible with the size setting of the input field.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <IconField>
-            <InputIcon class="pi pi-search" />
-            <InputText v-model="value1" placeholder="Small" size="small" />
-        </IconField>
-
-        <IconField>
-            <InputText v-model="value2" placeholder="Normal" />
-            <InputIcon class="pi pi-user" />
-        </IconField>
-
-        <IconField>
-            <InputIcon class="pi pi-lock" />
-            <InputText v-model="value3" placeholder="Large" size="large" />
-            <InputIcon class="pi pi-spin pi-spinner" />
-        </IconField>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -79,3 +55,27 @@ const value3 = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IconField is compatible with the size setting of the input field.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <IconField>
+            <InputIcon class="pi pi-search" />
+            <InputText v-model="value1" placeholder="Small" size="small" />
+        </IconField>
+
+        <IconField>
+            <InputText v-model="value2" placeholder="Normal" />
+            <InputIcon class="pi pi-user" />
+        </IconField>
+
+        <IconField>
+            <InputIcon class="pi pi-lock" />
+            <InputText v-model="value3" placeholder="Large" size="large" />
+            <InputIcon class="pi pi-spin pi-spinner" />
+        </IconField>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,60 +1,3 @@
-<template>
-    <span :class="containerClass" :style="style" v-bind="ptmi('root')">
-        <slot name="image" :errorCallback="onError">
-            <img :style="imageStyle" :class="imageClass" @error="onError" v-bind="{ ...$attrs, ...ptm('image') }" />
-        </slot>
-        <button v-if="preview" ref="previewButton" :aria-label="zoomImageAriaLabel" type="button" :class="cx('previewMask')" @click="onImageClick" v-bind="{ ...previewButtonProps, ...ptm('previewMask') }">
-            <!-- TODO: indicator* deprecated since v4.0-->
-            <slot :name="$slots.previewicon ? 'previewicon' : 'indicatoricon'">
-                <component :is="previewIcon || indicatorIcon ? 'i' : 'EyeIcon'" :class="[cx('previewIcon'), previewIcon]" v-bind="ptm('previewIcon')" />
-            </slot>
-        </button>
-        <Portal>
-            <div v-if="maskVisible" :ref="maskRef" v-focustrap role="dialog" :class="cx('mask')" :aria-modal="maskVisible" @click="onMaskClick" @keydown="onMaskKeydown" v-bind="ptm('mask')">
-                <div :class="cx('toolbar')" v-bind="ptm('toolbar')">
-                    <button :class="cx('rotateRightButton')" @click="rotateRight" type="button" :aria-label="rightAriaLabel" v-bind="ptm('rotateRightButton')" data-pc-group-section="action">
-                        <slot name="refresh">
-                            <RefreshIcon v-bind="ptm('rotateRightIcon')" />
-                        </slot>
-                    </button>
-
-                    <button :class="cx('rotateLeftButton')" @click="rotateLeft" type="button" :aria-label="leftAriaLabel" v-bind="ptm('rotateLeftButton')" data-pc-group-section="action">
-                        <slot name="undo">
-                            <UndoIcon v-bind="ptm('rotateLeftIcon')" />
-                        </slot>
-                    </button>
-
-                    <button :class="cx('zoomOutButton')" @click="zoomOut" type="button" :disabled="isZoomOutDisabled" :aria-label="zoomOutAriaLabel" v-bind="ptm('zoomOutButton')" data-pc-group-section="action">
-                        <slot name="zoomout">
-                            <SearchMinusIcon v-bind="ptm('zoomOutIcon')" />
-                        </slot>
-                    </button>
-
-                    <button :class="cx('zoomInButton')" @click="zoomIn" type="button" :disabled="isZoomInDisabled" :aria-label="zoomInAriaLabel" v-bind="ptm('zoomInButton')" data-pc-group-section="action">
-                        <slot name="zoomin">
-                            <SearchPlusIcon v-bind="ptm('zoomInIcon')" />
-                        </slot>
-                    </button>
-
-                    <button :class="cx('closeButton')" type="button" @click="hidePreview" :aria-label="closeAriaLabel" autofocus v-bind="ptm('closeButton')" data-pc-group-section="action">
-                        <slot name="close">
-                            <TimesIcon v-bind="ptm('closeIcon')" />
-                        </slot>
-                    </button>
-                </div>
-                <transition name="p-image-original" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" @before-leave="onBeforeLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
-                    <div v-if="previewVisible" v-bind="ptm('originalContainer')">
-                        <!-- TODO: preview deprecated since v4.0-->
-                        <slot :name="$slots.original ? 'original' : 'preview'" :class="cx('original')" :style="imagePreviewStyle" :previewCallback="onPreviewImageClick">
-                            <img :src="$attrs.src" :class="cx('original')" :style="imagePreviewStyle" @click="onPreviewImageClick" v-bind="ptm('original')" />
-                        </slot>
-                    </div>
-                </transition>
-            </div>
-        </Portal>
-    </span>
-</template>
-
 <script>
     import { addClass, focus, isAttributeEquals } from '@cjdevstudios/bumblevue/utils/dom';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
@@ -283,3 +226,60 @@
         }
     };
 </script>
+
+<template>
+    <span :class="containerClass" :style="style" v-bind="ptmi('root')">
+        <slot name="image" :errorCallback="onError">
+            <img :style="imageStyle" :class="imageClass" @error="onError" v-bind="{ ...$attrs, ...ptm('image') }" />
+        </slot>
+        <button v-if="preview" ref="previewButton" :aria-label="zoomImageAriaLabel" type="button" :class="cx('previewMask')" @click="onImageClick" v-bind="{ ...previewButtonProps, ...ptm('previewMask') }">
+            <!-- TODO: indicator* deprecated since v4.0-->
+            <slot :name="$slots.previewicon ? 'previewicon' : 'indicatoricon'">
+                <component :is="previewIcon || indicatorIcon ? 'i' : 'EyeIcon'" :class="[cx('previewIcon'), previewIcon]" v-bind="ptm('previewIcon')" />
+            </slot>
+        </button>
+        <Portal>
+            <div v-if="maskVisible" :ref="maskRef" v-focustrap role="dialog" :class="cx('mask')" :aria-modal="maskVisible" @click="onMaskClick" @keydown="onMaskKeydown" v-bind="ptm('mask')">
+                <div :class="cx('toolbar')" v-bind="ptm('toolbar')">
+                    <button :class="cx('rotateRightButton')" @click="rotateRight" type="button" :aria-label="rightAriaLabel" v-bind="ptm('rotateRightButton')" data-pc-group-section="action">
+                        <slot name="refresh">
+                            <RefreshIcon v-bind="ptm('rotateRightIcon')" />
+                        </slot>
+                    </button>
+
+                    <button :class="cx('rotateLeftButton')" @click="rotateLeft" type="button" :aria-label="leftAriaLabel" v-bind="ptm('rotateLeftButton')" data-pc-group-section="action">
+                        <slot name="undo">
+                            <UndoIcon v-bind="ptm('rotateLeftIcon')" />
+                        </slot>
+                    </button>
+
+                    <button :class="cx('zoomOutButton')" @click="zoomOut" type="button" :disabled="isZoomOutDisabled" :aria-label="zoomOutAriaLabel" v-bind="ptm('zoomOutButton')" data-pc-group-section="action">
+                        <slot name="zoomout">
+                            <SearchMinusIcon v-bind="ptm('zoomOutIcon')" />
+                        </slot>
+                    </button>
+
+                    <button :class="cx('zoomInButton')" @click="zoomIn" type="button" :disabled="isZoomInDisabled" :aria-label="zoomInAriaLabel" v-bind="ptm('zoomInButton')" data-pc-group-section="action">
+                        <slot name="zoomin">
+                            <SearchPlusIcon v-bind="ptm('zoomInIcon')" />
+                        </slot>
+                    </button>
+
+                    <button :class="cx('closeButton')" type="button" @click="hidePreview" :aria-label="closeAriaLabel" autofocus v-bind="ptm('closeButton')" data-pc-group-section="action">
+                        <slot name="close">
+                            <TimesIcon v-bind="ptm('closeIcon')" />
+                        </slot>
+                    </button>
+                </div>
+                <transition name="p-image-original" @before-enter="onBeforeEnter" @enter="onEnter" @leave="onLeave" @before-leave="onBeforeLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
+                    <div v-if="previewVisible" v-bind="ptm('originalContainer')">
+                        <!-- TODO: preview deprecated since v4.0-->
+                        <slot :name="$slots.original ? 'original' : 'preview'" :class="cx('original')" :style="imagePreviewStyle" :previewCallback="onPreviewImageClick">
+                            <img :src="$attrs.src" :class="cx('original')" :style="imagePreviewStyle" @click="onPreviewImageClick" v-bind="ptm('original')" />
+                        </slot>
+                    </div>
+                </transition>
+            </div>
+        </Portal>
+    </span>
+</template>

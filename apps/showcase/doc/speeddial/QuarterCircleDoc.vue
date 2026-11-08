@@ -1,18 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Setting <i>type</i> as <i>quarter-circle</i> displays the items at one of four corners of a button based on the <i>direction</i>.</p>
-    </DocSectionText>
-    <div class="card">
-        <div style="position: relative; height: 500px">
-            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="up-left" :style="{ position: 'absolute', right: 0, bottom: 0 }" />
-            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="up-right" :style="{ position: 'absolute', left: 0, bottom: 0 }" />
-            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="down-left" :style="{ position: 'absolute', right: 0, top: 0 }" />
-            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="down-right" :style="{ position: 'absolute', left: 0, top: 0 }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -126,3 +111,18 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Setting <i>type</i> as <i>quarter-circle</i> displays the items at one of four corners of a button based on the <i>direction</i>.</p>
+    </DocSectionText>
+    <div class="card">
+        <div style="position: relative; height: 500px">
+            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="up-left" :style="{ position: 'absolute', right: 0, bottom: 0 }" />
+            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="up-right" :style="{ position: 'absolute', left: 0, bottom: 0 }" />
+            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="down-left" :style="{ position: 'absolute', right: 0, top: 0 }" />
+            <SpeedDial :model="items" :radius="120" type="quarter-circle" direction="down-right" :style="{ position: 'absolute', left: 0, top: 0 }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,3 +1,42 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+    import { ProductService } from '@/service/ProductService';
+
+    export default {
+        data() {
+            return {
+                products: null,
+                docs: [
+                    {
+                        data: getPTOptions('DataView'),
+                        key: 'DataView'
+                    }
+                ]
+            };
+        },
+        mounted() {
+            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 3)));
+        },
+        methods: {
+            getSeverity(product) {
+                switch (product.inventoryStatus) {
+                    case 'INSTOCK':
+                        return 'success';
+
+                    case 'LOWSTOCK':
+                        return 'warn';
+
+                    case 'OUTOFSTOCK':
+                        return 'danger';
+
+                    default:
+                        return null;
+                }
+            }
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <DataView :value="products">
@@ -47,42 +86,3 @@
         </DataView>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-    import { ProductService } from '@/service/ProductService';
-
-    export default {
-        data() {
-            return {
-                products: null,
-                docs: [
-                    {
-                        data: getPTOptions('DataView'),
-                        key: 'DataView'
-                    }
-                ]
-            };
-        },
-        mounted() {
-            ProductService.getProductsSmall().then((data) => (this.products = data.slice(0, 3)));
-        },
-        methods: {
-            getSeverity(product) {
-                switch (product.inventoryStatus) {
-                    case 'INSTOCK':
-                        return 'success';
-
-                    case 'LOWSTOCK':
-                        return 'warn';
-
-                    case 'OUTOFSTOCK':
-                        return 'danger';
-
-                    default:
-                        return null;
-                }
-            }
-        }
-    };
-</script>

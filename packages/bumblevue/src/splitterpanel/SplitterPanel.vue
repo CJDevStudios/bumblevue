@@ -1,9 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" v-bind="ptmi('root', getPTOptions)">
-        <slot></slot>
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import SplitterPanelStyle from '@cjdevstudios/bumblevue/splitterpanel/style';
@@ -52,3 +46,9 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" v-bind="ptmi('root', getPTOptions)">
+        <slot></slot>
+    </div>
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <slot></slot>
-    </div>
-</template>
-
 <script setup>
     import { baseComponentProps, useComponent } from '@cjdevstudios/bumblevue/core/usecomponent';
     import AccordionStyle from '@cjdevstudios/bumblevue/accordion/style';
@@ -90,3 +84,9 @@
         emit('update:value', state.d_value);
     }
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <slot></slot>
+    </div>
+</template>

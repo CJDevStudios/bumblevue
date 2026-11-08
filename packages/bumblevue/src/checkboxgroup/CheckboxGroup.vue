@@ -1,9 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <slot />
-    </div>
-</template>
-
 <script>
     import { uuid } from '@cjdevstudios/bumblevue/utils';
     import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
@@ -35,3 +29,9 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <slot />
+    </div>
+</template>

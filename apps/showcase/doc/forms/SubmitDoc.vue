@@ -1,30 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            The <i>submit</i> callback returns an object that encapsulates the form's validity, any existing errors, and its current state. This enables access to the form values, validation status, and any errors present at the time of submission.
-            View the <i>FormSubmitEvent</i> in the API documentation for more information about the available event data.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-60">
-            <div class="flex flex-col gap-1">
-                <InputText name="username" type="text" placeholder="Username" fluid />
-                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error.message }}</Message>
-            </div>
-            <div class="flex flex-col gap-1">
-                <Password name="password" placeholder="Password" :feedback="false" toggleMask fluid />
-                <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">
-                    <ul class="my-0 px-4 flex flex-col gap-1">
-                        <li v-for="(error, index) of $form.password.errors" :key="index">{{ error.message }}</li>
-                    </ul>
-                </Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -160,3 +133,30 @@ const onFormSubmit = (e) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            The <i>submit</i> callback returns an object that encapsulates the form's validity, any existing errors, and its current state. This enables access to the form values, validation status, and any errors present at the time of submission.
+            View the <i>FormSubmitEvent</i> in the API documentation for more information about the available event data.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :initialValues :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-60">
+            <div class="flex flex-col gap-1">
+                <InputText name="username" type="text" placeholder="Username" fluid />
+                <Message v-if="$form.username?.invalid" severity="error" size="small" variant="simple">{{ $form.username.error.message }}</Message>
+            </div>
+            <div class="flex flex-col gap-1">
+                <Password name="password" placeholder="Password" :feedback="false" toggleMask fluid />
+                <Message v-if="$form.password?.invalid" severity="error" size="small" variant="simple">
+                    <ul class="my-0 px-4 flex flex-col gap-1">
+                        <li v-for="(error, index) of $form.password.errors" :key="index">{{ error.message }}</li>
+                    </ul>
+                </Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

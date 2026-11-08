@@ -1,68 +1,3 @@
-<template>
-    <ul :ref="containerRef" :class="cx('list')" v-bind="level === 0 ? ptm('list') : ptm('optionList')">
-        <template v-for="(processedOption, index) of options" :key="getOptionLabelToRender(processedOption)">
-            <li
-                :id="getOptionId(processedOption)"
-                :class="cx('option', { processedOption })"
-                role="treeitem"
-                :aria-label="getOptionLabelToRender(processedOption)"
-                :aria-selected="isOptionGroup(processedOption) ? undefined : isOptionSelected(processedOption)"
-                :aria-expanded="isOptionGroup(processedOption) ? isOptionActive(processedOption) : undefined"
-                :aria-level="level + 1"
-                :aria-setsize="options.length"
-                :aria-posinset="index + 1"
-                v-bind="getPTOptions(processedOption, index, 'option')"
-                :data-p-option-group="isOptionGroup(processedOption)"
-                :data-p-active="isOptionActive(processedOption)"
-                :data-p-focus="isOptionFocused(processedOption)"
-                :data-p-disabled="isOptionDisabled(processedOption)"
-            >
-                <div
-                    v-ripple
-                    :class="cx('optionContent')"
-                    @click="onOptionClick($event, processedOption)"
-                    @mouseenter="onOptionMouseEnter($event, processedOption)"
-                    @mousemove="onOptionMouseMove($event, processedOption)"
-                    v-bind="getPTOptions(processedOption, index, 'optionContent')"
-                >
-                    <component v-if="templates['option']" :is="templates['option']" :option="processedOption.option" :selected="isOptionGroup(processedOption) ? false : isOptionSelected(processedOption)" />
-                    <span v-else :class="cx('optionText')" v-bind="getPTOptions(processedOption, index, 'optionText')">{{ getOptionLabelToRender(processedOption) }}</span>
-                    <template v-if="isOptionGroup(processedOption)">
-                        <span :class="cx('groupIconContainer')">
-                            <component v-if="templates['optiongroupicon']" :is="templates['optiongroupicon']" :class="cx('groupIcon')" />
-                            <span v-else-if="optionGroupIcon" :class="[cx('groupIcon'), optionGroupIcon]" aria-hidden="true" v-bind="getPTOptions(processedOption, index, 'groupIcon')" />
-                            <AngleRightIcon v-else :class="cx('groupIcon')" aria-hidden="true" v-bind="getPTOptions(processedOption, index, 'groupIcon')" />
-                        </span>
-                    </template>
-                </div>
-                <CascadeSelectSub
-                    v-if="isOptionGroup(processedOption) && isOptionActive(processedOption)"
-                    role="group"
-                    :class="cx('optionList')"
-                    :selectId="selectId"
-                    :focusedOptionId="focusedOptionId"
-                    :options="getOptionGroupChildren(processedOption)"
-                    :activeOptionPath="activeOptionPath"
-                    :level="level + 1"
-                    :templates="templates"
-                    :optionLabel="optionLabel"
-                    :optionValue="optionValue"
-                    :optionDisabled="optionDisabled"
-                    :optionGroupIcon="optionGroupIcon"
-                    :optionGroupLabel="optionGroupLabel"
-                    :optionGroupChildren="optionGroupChildren"
-                    :value="value"
-                    @option-change="$emit('option-change', $event)"
-                    @option-focus-change="$emit('option-focus-change', $event)"
-                    @option-focus-enter-change="$emit('option-focus-enter-change', $event)"
-                    :pt="pt"
-                    :unstyled="unstyled"
-                />
-            </li>
-        </template>
-    </ul>
-</template>
-
 <script>
     import { equals, isNotEmpty, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -78,7 +13,7 @@
             selectId: String,
             focusedOptionId: String,
             options: Array,
-            optionLabel: String | Function,
+            optionLabel: [String, Function],
             optionValue: String,
             optionDisabled: null,
             optionGroupIcon: String,
@@ -163,3 +98,68 @@
         }
     };
 </script>
+
+<template>
+    <ul :ref="containerRef" :class="cx('list')" v-bind="level === 0 ? ptm('list') : ptm('optionList')">
+        <template v-for="(processedOption, index) of options" :key="getOptionLabelToRender(processedOption)">
+            <li
+                :id="getOptionId(processedOption)"
+                :class="cx('option', { processedOption })"
+                role="treeitem"
+                :aria-label="getOptionLabelToRender(processedOption)"
+                :aria-selected="isOptionGroup(processedOption) ? undefined : isOptionSelected(processedOption)"
+                :aria-expanded="isOptionGroup(processedOption) ? isOptionActive(processedOption) : undefined"
+                :aria-level="level + 1"
+                :aria-setsize="options.length"
+                :aria-posinset="index + 1"
+                v-bind="getPTOptions(processedOption, index, 'option')"
+                :data-p-option-group="isOptionGroup(processedOption)"
+                :data-p-active="isOptionActive(processedOption)"
+                :data-p-focus="isOptionFocused(processedOption)"
+                :data-p-disabled="isOptionDisabled(processedOption)"
+            >
+                <div
+                    v-ripple
+                    :class="cx('optionContent')"
+                    @click="onOptionClick($event, processedOption)"
+                    @mouseenter="onOptionMouseEnter($event, processedOption)"
+                    @mousemove="onOptionMouseMove($event, processedOption)"
+                    v-bind="getPTOptions(processedOption, index, 'optionContent')"
+                >
+                    <component v-if="templates['option']" :is="templates['option']" :option="processedOption.option" :selected="isOptionGroup(processedOption) ? false : isOptionSelected(processedOption)" />
+                    <span v-else :class="cx('optionText')" v-bind="getPTOptions(processedOption, index, 'optionText')">{{ getOptionLabelToRender(processedOption) }}</span>
+                    <template v-if="isOptionGroup(processedOption)">
+                        <span :class="cx('groupIconContainer')">
+                            <component v-if="templates['optiongroupicon']" :is="templates['optiongroupicon']" :class="cx('groupIcon')" />
+                            <span v-else-if="optionGroupIcon" :class="[cx('groupIcon'), optionGroupIcon]" aria-hidden="true" v-bind="getPTOptions(processedOption, index, 'groupIcon')" />
+                            <AngleRightIcon v-else :class="cx('groupIcon')" aria-hidden="true" v-bind="getPTOptions(processedOption, index, 'groupIcon')" />
+                        </span>
+                    </template>
+                </div>
+                <CascadeSelectSub
+                    v-if="isOptionGroup(processedOption) && isOptionActive(processedOption)"
+                    role="group"
+                    :class="cx('optionList')"
+                    :selectId="selectId"
+                    :focusedOptionId="focusedOptionId"
+                    :options="getOptionGroupChildren(processedOption)"
+                    :activeOptionPath="activeOptionPath"
+                    :level="level + 1"
+                    :templates="templates"
+                    :optionLabel="optionLabel"
+                    :optionValue="optionValue"
+                    :optionDisabled="optionDisabled"
+                    :optionGroupIcon="optionGroupIcon"
+                    :optionGroupLabel="optionGroupLabel"
+                    :optionGroupChildren="optionGroupChildren"
+                    :value="value"
+                    @option-change="$emit('option-change', $event)"
+                    @option-focus-change="$emit('option-focus-change', $event)"
+                    @option-focus-enter-change="$emit('option-focus-enter-change', $event)"
+                    :pt="pt"
+                    :unstyled="unstyled"
+                />
+            </li>
+        </template>
+    </ul>
+</template>

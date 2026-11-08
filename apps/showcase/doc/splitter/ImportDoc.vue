@@ -1,8 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs" />
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -17,3 +12,8 @@ import SplitterPanel from '@cjdevstudios/bumblevue/splitterpanel';
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs" />
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

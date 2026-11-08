@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>CascadeSelect provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <CascadeSelect v-model="value1" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" size="small" placeholder="Small" />
-        <CascadeSelect v-model="value2" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Normal" />
-        <CascadeSelect v-model="value3" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" size="large" placeholder="Large" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -199,3 +187,15 @@ const countries = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>CascadeSelect provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <CascadeSelect v-model="value1" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" size="small" placeholder="Small" />
+        <CascadeSelect v-model="value2" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Normal" />
+        <CascadeSelect v-model="value3" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" size="large" placeholder="Large" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Loading state can be used <i>loading</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <MultiSelect placeholder="Loading..." loading class="w-full md:w-80"></MultiSelect>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -31,3 +21,13 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Loading state can be used <i>loading</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <MultiSelect placeholder="Loading..." loading class="w-full md:w-80"></MultiSelect>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

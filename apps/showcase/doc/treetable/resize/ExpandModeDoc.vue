@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" :resizableColumns="true" columnResizeMode="expand" showGridlines tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander></Column>
-                <Column field="size" header="Size"></Column>
-                <Column field="type" header="Type"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -89,3 +73,19 @@ const nodes = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Setting <i>columnResizeMode</i> as <i>expand</i> changes the table width as well.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" :resizableColumns="true" columnResizeMode="expand" showGridlines tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander></Column>
+                <Column field="size" header="Size"></Column>
+                <Column field="type" header="Type"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

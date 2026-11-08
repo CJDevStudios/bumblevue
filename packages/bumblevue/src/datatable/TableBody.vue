@@ -1,74 +1,3 @@
-<template>
-    <tbody :ref="bodyRef" :class="cx('tbody')" role="rowgroup" :style="bodyContentStyle" :data-p="dataP" v-bind="ptm('tbody', ptmTBodyOptions)">
-        <template v-if="!empty">
-            <template v-for="(rowData, rowIndex) of value" :key="getRowKey(rowData, rowIndex)">
-                <DTBodyRow
-                    :rowData="rowData"
-                    :index="rowIndex"
-                    :value="value"
-                    :columns="columns"
-                    :frozenRow="frozenRow"
-                    :empty="empty"
-                    :first="first"
-                    :dataKey="dataKey"
-                    :selection="selection"
-                    :selectionKeys="selectionKeys"
-                    :selectionMode="selectionMode"
-                    :contextMenu="contextMenu"
-                    :contextMenuSelection="contextMenuSelection"
-                    :rowGroupMode="rowGroupMode"
-                    :groupRowsBy="groupRowsBy"
-                    :expandableRowGroups="expandableRowGroups"
-                    :rowClass="rowClass"
-                    :rowStyle="rowStyle"
-                    :editMode="editMode"
-                    :compareSelectionBy="compareSelectionBy"
-                    :scrollable="scrollable"
-                    :expandedRowIcon="expandedRowIcon"
-                    :collapsedRowIcon="collapsedRowIcon"
-                    :expandedRows="expandedRows"
-                    :expandedRowGroups="expandedRowGroups"
-                    :editingRows="editingRows"
-                    :editingRowKeys="editingRowKeys"
-                    :templates="templates"
-                    :editButtonProps="editButtonProps"
-                    :virtualScrollerContentProps="virtualScrollerContentProps"
-                    :isVirtualScrollerDisabled="isVirtualScrollerDisabled"
-                    :editingMeta="editingMeta"
-                    :rowGroupHeaderStyle="rowGroupHeaderStyle"
-                    :expandedRowId="$id"
-                    :nameAttributeSelector="$attrSelector"
-                    @rowgroup-toggle="$emit('rowgroup-toggle', $event)"
-                    @row-click="$emit('row-click', $event)"
-                    @row-dblclick="$emit('row-dblclick', $event)"
-                    @row-rightclick="$emit('row-rightclick', $event)"
-                    @row-touchend="$emit('row-touchend', $event)"
-                    @row-keydown="$emit('row-keydown', $event)"
-                    @row-mousedown="$emit('row-mousedown', $event)"
-                    @row-dragstart="$emit('row-dragstart', $event)"
-                    @row-dragover="$emit('row-dragover', $event)"
-                    @row-dragleave="$emit('row-dragleave', $event)"
-                    @row-dragend="$emit('row-dragend', $event)"
-                    @row-drop="$emit('row-drop', $event)"
-                    @row-toggle="$emit('row-toggle', $event)"
-                    @radio-change="$emit('radio-change', $event)"
-                    @checkbox-change="$emit('checkbox-change', $event)"
-                    @cell-edit-init="$emit('cell-edit-init', $event)"
-                    @cell-edit-complete="$emit('cell-edit-complete', $event)"
-                    @cell-edit-cancel="$emit('cell-edit-cancel', $event)"
-                    @row-edit-init="$emit('row-edit-init', $event)"
-                    @row-edit-save="$emit('row-edit-save', $event)"
-                    @row-edit-cancel="$emit('row-edit-cancel', $event)"
-                    @editing-meta-change="$emit('editing-meta-change', $event)"
-                    :unstyled="unstyled"
-                    :pt="pt"
-                />
-            </template>
-        </template>
-        <DTBodyRow v-else :empty="empty" :columns="columns" :templates="templates" :unstyled="unstyled" :pt="pt" />
-    </tbody>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { getOuterHeight } from '@cjdevstudios/bumblevue/utils/dom';
@@ -307,3 +236,74 @@
         }
     };
 </script>
+
+<template>
+    <tbody :ref="bodyRef" :class="cx('tbody')" role="rowgroup" :style="bodyContentStyle" :data-p="dataP" v-bind="ptm('tbody', ptmTBodyOptions)">
+        <template v-if="!empty">
+            <template v-for="(rowData, rowIndex) of value" :key="getRowKey(rowData, rowIndex)">
+                <DTBodyRow
+                    :rowData="rowData"
+                    :index="rowIndex"
+                    :value="value"
+                    :columns="columns"
+                    :frozenRow="frozenRow"
+                    :empty="empty"
+                    :first="first"
+                    :dataKey="dataKey"
+                    :selection="selection"
+                    :selectionKeys="selectionKeys"
+                    :selectionMode="selectionMode"
+                    :contextMenu="contextMenu"
+                    :contextMenuSelection="contextMenuSelection"
+                    :rowGroupMode="rowGroupMode"
+                    :groupRowsBy="groupRowsBy"
+                    :expandableRowGroups="expandableRowGroups"
+                    :rowClass="rowClass"
+                    :rowStyle="rowStyle"
+                    :editMode="editMode"
+                    :compareSelectionBy="compareSelectionBy"
+                    :scrollable="scrollable"
+                    :expandedRowIcon="expandedRowIcon"
+                    :collapsedRowIcon="collapsedRowIcon"
+                    :expandedRows="expandedRows"
+                    :expandedRowGroups="expandedRowGroups"
+                    :editingRows="editingRows"
+                    :editingRowKeys="editingRowKeys"
+                    :templates="templates"
+                    :editButtonProps="editButtonProps"
+                    :virtualScrollerContentProps="virtualScrollerContentProps"
+                    :isVirtualScrollerDisabled="isVirtualScrollerDisabled"
+                    :editingMeta="editingMeta"
+                    :rowGroupHeaderStyle="rowGroupHeaderStyle"
+                    :expandedRowId="$id"
+                    :nameAttributeSelector="$attrSelector"
+                    @rowgroup-toggle="$emit('rowgroup-toggle', $event)"
+                    @row-click="$emit('row-click', $event)"
+                    @row-dblclick="$emit('row-dblclick', $event)"
+                    @row-rightclick="$emit('row-rightclick', $event)"
+                    @row-touchend="$emit('row-touchend', $event)"
+                    @row-keydown="$emit('row-keydown', $event)"
+                    @row-mousedown="$emit('row-mousedown', $event)"
+                    @row-dragstart="$emit('row-dragstart', $event)"
+                    @row-dragover="$emit('row-dragover', $event)"
+                    @row-dragleave="$emit('row-dragleave', $event)"
+                    @row-dragend="$emit('row-dragend', $event)"
+                    @row-drop="$emit('row-drop', $event)"
+                    @row-toggle="$emit('row-toggle', $event)"
+                    @radio-change="$emit('radio-change', $event)"
+                    @checkbox-change="$emit('checkbox-change', $event)"
+                    @cell-edit-init="$emit('cell-edit-init', $event)"
+                    @cell-edit-complete="$emit('cell-edit-complete', $event)"
+                    @cell-edit-cancel="$emit('cell-edit-cancel', $event)"
+                    @row-edit-init="$emit('row-edit-init', $event)"
+                    @row-edit-save="$emit('row-edit-save', $event)"
+                    @row-edit-cancel="$emit('row-edit-cancel', $event)"
+                    @editing-meta-change="$emit('editing-meta-change', $event)"
+                    :unstyled="unstyled"
+                    :pt="pt"
+                />
+            </template>
+        </template>
+        <DTBodyRow v-else :empty="empty" :columns="columns" :templates="templates" :unstyled="unstyled" :pt="pt" />
+    </tbody>
+</template>

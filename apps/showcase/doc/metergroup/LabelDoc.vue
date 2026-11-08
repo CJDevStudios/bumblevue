@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            The position of the labels relative to the meters is defined using the <i>labelPosition</i> property. The default orientation of the labels is horizontal, and the vertical alternative is available through the
-            <i>labelOrientation</i> option.
-        </p>
-    </DocSectionText>
-    <div class="card">
-        <MeterGroup :value="value" labelPosition="start" labelOrientation="vertical" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -48,3 +35,16 @@ const value = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            The position of the labels relative to the meters is defined using the <i>labelPosition</i> property. The default orientation of the labels is horizontal, and the vertical alternative is available through the
+            <i>labelOrientation</i> option.
+        </p>
+    </DocSectionText>
+    <div class="card">
+        <MeterGroup :value="value" labelPosition="start" labelOrientation="vertical" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

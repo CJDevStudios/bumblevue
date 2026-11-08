@@ -1,10 +1,3 @@
-<template>
-    <component v-if="!asChild" :is="as" v-ripple :class="cx('root')" :data-p="dataP" @click="onClick" v-bind="attrs">
-        <slot></slot>
-    </component>
-    <slot v-else :dataP="dataP" :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs" :onClick="onClick"></slot>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { findSingle, focus, getAttribute } from '@cjdevstudios/bumblevue/utils/dom';
@@ -213,3 +206,10 @@
         }
     };
 </script>
+
+<template>
+    <component v-if="!asChild" :is="as" v-ripple :class="cx('root')" :data-p="dataP" @click="onClick" v-bind="attrs">
+        <slot></slot>
+    </component>
+    <slot v-else :dataP="dataP" :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs" :onClick="onClick"></slot>
+</template>

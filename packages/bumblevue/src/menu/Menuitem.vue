@@ -1,30 +1,3 @@
-<template>
-    <li
-        v-if="visible()"
-        :id="id"
-        :class="[cx('item'), item.class]"
-        role="menuitem"
-        :style="item.style"
-        :aria-label="label()"
-        :aria-disabled="disabled()"
-        :data-p-focused="isItemFocused()"
-        :data-p-disabled="disabled() || false"
-        :data-p="dataP"
-        v-bind="getPTOptions('item')"
-    >
-        <div :class="cx('itemContent')" @click="onItemClick($event)" @mousemove="onItemMouseMove($event)" :data-p="dataP" v-bind="getPTOptions('itemContent')">
-            <template v-if="!templates.item">
-                <a v-ripple :href="item.url" :class="cx('itemLink')" :target="item.target" tabindex="-1" v-bind="getPTOptions('itemLink')">
-                    <component v-if="templates.itemicon" :is="templates.itemicon" :item="item" :class="cx('itemIcon')" />
-                    <span v-else-if="item.icon" :class="[cx('itemIcon'), item.icon]" :data-p="dataP" v-bind="getPTOptions('itemIcon')" />
-                    <span :class="cx('itemLabel')" :data-p="dataP" v-bind="getPTOptions('itemLabel')">{{ label() }}</span>
-                </a>
-            </template>
-            <component v-else-if="templates.item" :is="templates.item" :item="item" :label="label()" :props="getMenuItemProps(item)"></component>
-        </div>
-    </li>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { resolve } from '@cjdevstudios/bumblevue/utils/object';
@@ -117,3 +90,30 @@
         }
     };
 </script>
+
+<template>
+    <li
+        v-if="visible()"
+        :id="id"
+        :class="[cx('item'), item.class]"
+        role="menuitem"
+        :style="item.style"
+        :aria-label="label()"
+        :aria-disabled="disabled()"
+        :data-p-focused="isItemFocused()"
+        :data-p-disabled="disabled() || false"
+        :data-p="dataP"
+        v-bind="getPTOptions('item')"
+    >
+        <div :class="cx('itemContent')" @click="onItemClick($event)" @mousemove="onItemMouseMove($event)" :data-p="dataP" v-bind="getPTOptions('itemContent')">
+            <template v-if="!templates.item">
+                <a v-ripple :href="item.url" :class="cx('itemLink')" :target="item.target" tabindex="-1" v-bind="getPTOptions('itemLink')">
+                    <component v-if="templates.itemicon" :is="templates.itemicon" :item="item" :class="cx('itemIcon')" />
+                    <span v-else-if="item.icon" :class="[cx('itemIcon'), item.icon]" :data-p="dataP" v-bind="getPTOptions('itemIcon')" />
+                    <span :class="cx('itemLabel')" :data-p="dataP" v-bind="getPTOptions('itemLabel')">{{ label() }}</span>
+                </a>
+            </template>
+            <component v-else-if="templates.item" :is="templates.item" :item="item" :label="label()" :props="getMenuItemProps(item)"></component>
+        </div>
+    </li>
+</template>

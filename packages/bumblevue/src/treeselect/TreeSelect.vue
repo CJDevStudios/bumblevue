@@ -1,130 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onClick" v-bind="ptmi('root')">
-        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
-            <input
-                ref="focusInput"
-                :id="inputId"
-                type="text"
-                role="combobox"
-                :class="inputClass"
-                :style="inputStyle"
-                readonly
-                :disabled="disabled"
-                :tabindex="!disabled ? tabindex : -1"
-                :aria-labelledby="ariaLabelledby"
-                :aria-label="ariaLabel"
-                aria-haspopup="tree"
-                :aria-expanded="overlayVisible"
-                :aria-controls="overlayVisible ? listId : undefined"
-                @focus="onFocus($event)"
-                @blur="onBlur($event)"
-                @keydown="onKeyDown($event)"
-                v-bind="{ ...inputProps, ...ptm('hiddenInput') }"
-            />
-        </div>
-        <div :class="cx('labelContainer')" v-bind="ptm('labelContainer')">
-            <div :class="cx('label')" v-bind="ptm('label')">
-                <slot name="value" :value="selectedNodes" :placeholder="placeholder">
-                    <template v-if="display === 'comma'">
-                        {{ label || 'empty' }}
-                    </template>
-                    <template v-else-if="display === 'chip'">
-                        <template v-if="chipSelectedItems">
-                            <span>{{ label }}</span>
-                        </template>
-                        <template v-else>
-                            <div v-for="node of selectedNodes" :key="node.key" :class="cx('chipItem')" v-bind="ptm('chipItem')">
-                                <Chip :class="cx('pcChip')" :label="node.label" :unstyled="unstyled" :pt="ptm('pcChip')" />
-                            </div>
-                            <template v-if="emptyValue">{{ placeholder || 'empty' }}</template>
-                        </template>
-                    </template>
-                </slot>
-            </div>
-        </div>
-        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
-        </slot>
-        <div :class="cx('dropdown')" role="button" aria-haspopup="tree" :aria-expanded="overlayVisible" v-bind="ptm('dropdown')">
-            <slot name="dropdownicon" :class="cx('dropdownIcon')">
-                <component :is="'ChevronDownIcon'" :class="cx('dropdownIcon')" v-bind="ptm('dropdownIcon')" />
-            </slot>
-        </div>
-        <Portal :appendTo="appendTo">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div v-if="overlayVisible" :ref="overlayRef" @click="onOverlayClick" :class="[cx('panel'), panelClass]" @keydown="onOverlayKeydown" v-bind="{ ...panelProps, ...ptm('panel') }">
-                    <span
-                        ref="firstHiddenFocusableElementOnOverlay"
-                        role="presentation"
-                        class="p-hidden-accessible p-hidden-focusable"
-                        :tabindex="0"
-                        @focus="onFirstHiddenFocus"
-                        v-bind="ptm('hiddenFirstFocusableEl')"
-                        :data-p-hidden-accessible="true"
-                        :data-p-hidden-focusable="true"
-                    ></span>
-                    <slot name="header" :value="d_value" :options="options"></slot>
-                    <div :class="cx('treeContainer')" :style="{ 'max-height': scrollHeight }" v-bind="ptm('treeContainer')">
-                        <TSTree
-                            v-if="options && options.length > 0"
-                            ref="tree"
-                            :id="listId"
-                            :value="options"
-                            :selectionMode="selectionMode"
-                            :loading="loading"
-                            :loadingIcon="loadingIcon"
-                            :loadingMode="loadingMode"
-                            :filter="filter"
-                            :filterBy="filterBy"
-                            :filterMode="filterMode"
-                            :filterPlaceholder="filterPlaceholder"
-                            :filterLocale="filterLocale"
-                            @update:selectionKeys="onSelectionChange"
-                            :selectionKeys="d_value"
-                            :expandedKeys="d_expandedKeys"
-                            @update:expandedKeys="onNodeToggle"
-                            :metaKeySelection="metaKeySelection"
-                            @node-expand="$emit('node-expand', $event)"
-                            @node-collapse="$emit('node-collapse', $event)"
-                            @node-select="onNodeSelect"
-                            @node-unselect="onNodeUnselect"
-                            @filter="$emit('filter', $event)"
-                            @click.stop
-                            :level="0"
-                            :unstyled="unstyled"
-                            :pt="ptm('pcTree')"
-                        >
-                            <template v-if="$slots.option" #default="optionSlotProps">
-                                <slot name="option" :node="optionSlotProps.node" :expanded="optionSlotProps.expanded" :selected="optionSlotProps.selected" />
-                            </template>
-                            <template v-if="$slots.itemtoggleicon" #nodetoggleicon="iconSlotProps">
-                                <slot name="itemtoggleicon" :node="iconSlotProps.node" :expanded="iconSlotProps.expanded" :class="iconSlotProps.class" />
-                            </template>
-                            <template v-if="$slots.itemcheckboxicon" #checkboxicon="iconSlotProps">
-                                <slot name="itemcheckboxicon" :checked="iconSlotProps.checked" :partialChecked="iconSlotProps.partialChecked" :class="iconSlotProps.class" />
-                            </template>
-                        </TSTree>
-                        <div v-if="emptyOptions && !loading" :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
-                            <slot name="empty">{{ emptyMessageText }}</slot>
-                        </div>
-                    </div>
-                    <slot name="footer" :value="d_value" :options="options"></slot>
-                    <span
-                        ref="lastHiddenFocusableElementOnOverlay"
-                        role="presentation"
-                        class="p-hidden-accessible p-hidden-focusable"
-                        :tabindex="0"
-                        @focus="onLastHiddenFocus"
-                        v-bind="ptm('hiddenLastFocusableEl')"
-                        :data-p-hidden-accessible="true"
-                        :data-p-hidden-focusable="true"
-                    ></span>
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { absolutePosition, addStyle, find, findSingle, focus, getFirstFocusableElement, getFocusableElements, getLastFocusableElement, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
     import { isEmpty, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
@@ -703,3 +576,130 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onClick" v-bind="ptmi('root')">
+        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
+            <input
+                ref="focusInput"
+                :id="inputId"
+                type="text"
+                role="combobox"
+                :class="inputClass"
+                :style="inputStyle"
+                readonly
+                :disabled="disabled"
+                :tabindex="!disabled ? tabindex : -1"
+                :aria-labelledby="ariaLabelledby"
+                :aria-label="ariaLabel"
+                aria-haspopup="tree"
+                :aria-expanded="overlayVisible"
+                :aria-controls="overlayVisible ? listId : undefined"
+                @focus="onFocus($event)"
+                @blur="onBlur($event)"
+                @keydown="onKeyDown($event)"
+                v-bind="{ ...inputProps, ...ptm('hiddenInput') }"
+            />
+        </div>
+        <div :class="cx('labelContainer')" v-bind="ptm('labelContainer')">
+            <div :class="cx('label')" v-bind="ptm('label')">
+                <slot name="value" :value="selectedNodes" :placeholder="placeholder">
+                    <template v-if="display === 'comma'">
+                        {{ label || 'empty' }}
+                    </template>
+                    <template v-else-if="display === 'chip'">
+                        <template v-if="chipSelectedItems">
+                            <span>{{ label }}</span>
+                        </template>
+                        <template v-else>
+                            <div v-for="node of selectedNodes" :key="node.key" :class="cx('chipItem')" v-bind="ptm('chipItem')">
+                                <Chip :class="cx('pcChip')" :label="node.label" :unstyled="unstyled" :pt="ptm('pcChip')" />
+                            </div>
+                            <template v-if="emptyValue">{{ placeholder || 'empty' }}</template>
+                        </template>
+                    </template>
+                </slot>
+            </div>
+        </div>
+        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
+        </slot>
+        <div :class="cx('dropdown')" role="button" aria-haspopup="tree" :aria-expanded="overlayVisible" v-bind="ptm('dropdown')">
+            <slot name="dropdownicon" :class="cx('dropdownIcon')">
+                <component :is="'ChevronDownIcon'" :class="cx('dropdownIcon')" v-bind="ptm('dropdownIcon')" />
+            </slot>
+        </div>
+        <Portal :appendTo="appendTo">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div v-if="overlayVisible" :ref="overlayRef" @click="onOverlayClick" :class="[cx('panel'), panelClass]" @keydown="onOverlayKeydown" v-bind="{ ...panelProps, ...ptm('panel') }">
+                    <span
+                        ref="firstHiddenFocusableElementOnOverlay"
+                        role="presentation"
+                        class="p-hidden-accessible p-hidden-focusable"
+                        :tabindex="0"
+                        @focus="onFirstHiddenFocus"
+                        v-bind="ptm('hiddenFirstFocusableEl')"
+                        :data-p-hidden-accessible="true"
+                        :data-p-hidden-focusable="true"
+                    ></span>
+                    <slot name="header" :value="d_value" :options="options"></slot>
+                    <div :class="cx('treeContainer')" :style="{ 'max-height': scrollHeight }" v-bind="ptm('treeContainer')">
+                        <TSTree
+                            v-if="options && options.length > 0"
+                            ref="tree"
+                            :id="listId"
+                            :value="options"
+                            :selectionMode="selectionMode"
+                            :loading="loading"
+                            :loadingIcon="loadingIcon"
+                            :loadingMode="loadingMode"
+                            :filter="filter"
+                            :filterBy="filterBy"
+                            :filterMode="filterMode"
+                            :filterPlaceholder="filterPlaceholder"
+                            :filterLocale="filterLocale"
+                            @update:selectionKeys="onSelectionChange"
+                            :selectionKeys="d_value"
+                            :expandedKeys="d_expandedKeys"
+                            @update:expandedKeys="onNodeToggle"
+                            :metaKeySelection="metaKeySelection"
+                            @node-expand="$emit('node-expand', $event)"
+                            @node-collapse="$emit('node-collapse', $event)"
+                            @node-select="onNodeSelect"
+                            @node-unselect="onNodeUnselect"
+                            @filter="$emit('filter', $event)"
+                            @click.stop
+                            :level="0"
+                            :unstyled="unstyled"
+                            :pt="ptm('pcTree')"
+                        >
+                            <template v-if="$slots.option" #default="optionSlotProps">
+                                <slot name="option" :node="optionSlotProps.node" :expanded="optionSlotProps.expanded" :selected="optionSlotProps.selected" />
+                            </template>
+                            <template v-if="$slots.itemtoggleicon" #nodetoggleicon="iconSlotProps">
+                                <slot name="itemtoggleicon" :node="iconSlotProps.node" :expanded="iconSlotProps.expanded" :class="iconSlotProps.class" />
+                            </template>
+                            <template v-if="$slots.itemcheckboxicon" #checkboxicon="iconSlotProps">
+                                <slot name="itemcheckboxicon" :checked="iconSlotProps.checked" :partialChecked="iconSlotProps.partialChecked" :class="iconSlotProps.class" />
+                            </template>
+                        </TSTree>
+                        <div v-if="emptyOptions && !loading" :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
+                            <slot name="empty">{{ emptyMessageText }}</slot>
+                        </div>
+                    </div>
+                    <slot name="footer" :value="d_value" :options="options"></slot>
+                    <span
+                        ref="lastHiddenFocusableElementOnOverlay"
+                        role="presentation"
+                        class="p-hidden-accessible p-hidden-focusable"
+                        :tabindex="0"
+                        @focus="onLastHiddenFocus"
+                        v-bind="ptm('hiddenLastFocusableEl')"
+                        :data-p-hidden-accessible="true"
+                        :data-p-hidden-focusable="true"
+                    ></span>
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

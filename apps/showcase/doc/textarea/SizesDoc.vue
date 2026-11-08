@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Textarea provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <Textarea v-model="value1" size="small" placeholder="Small" rows="3" />
-        <Textarea v-model="value2" placeholder="Normal" rows="3" />
-        <Textarea v-model="value3" size="large" placeholder="Large" rows="3" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +33,15 @@ const value3 = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Textarea provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <Textarea v-model="value1" size="small" placeholder="Small" rows="3" />
+        <Textarea v-model="value2" placeholder="Normal" rows="3" />
+        <Textarea v-model="value3" size="large" placeholder="Large" rows="3" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

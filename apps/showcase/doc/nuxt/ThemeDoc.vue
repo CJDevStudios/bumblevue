@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configure the module to use a theme like Aura.</p>
-        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
     export default {
         data() {
@@ -31,3 +24,10 @@ export default defineNuxtConfig({
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configure the module to use a theme like Aura.</p>
+        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

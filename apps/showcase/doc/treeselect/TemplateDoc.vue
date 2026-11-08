@@ -1,26 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>TreeSelect offers multiple slots for customization through templating.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full">
-            <template #dropdownicon>
-                <i class="pi pi-search" />
-            </template>
-            <template #header>
-                <div class="font-medium px-3 py-2">Available Files</div>
-            </template>
-            <template #footer>
-                <div class="px-3 pt-1 pb-2 flex justify-between">
-                    <Button label="Add New" severity="secondary" text size="small" icon="pi pi-plus" />
-                    <Button label="Remove All" severity="danger" text size="small" icon="pi pi-plus" />
-                </div>
-            </template>
-        </TreeSelect>
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
     import { NodeService } from '/service/NodeService';
 
@@ -113,3 +90,26 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>TreeSelect offers multiple slots for customization through templating.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" class="md:w-80 w-full">
+            <template #dropdownicon>
+                <i class="pi pi-search" />
+            </template>
+            <template #header>
+                <div class="font-medium px-3 py-2">Available Files</div>
+            </template>
+            <template #footer>
+                <div class="px-3 pt-1 pb-2 flex justify-between">
+                    <Button label="Add New" severity="secondary" text size="small" icon="pi pi-plus" />
+                    <Button label="Remove All" severity="danger" text size="small" icon="pi pi-plus" />
+                </div>
+            </template>
+        </TreeSelect>
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

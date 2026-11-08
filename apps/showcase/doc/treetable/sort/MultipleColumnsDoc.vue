@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Multiple columns can be sorted by defining <i>sortMode</i> as <i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be pressed when clicking a header.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" sortMode="multiple" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" sortable expander style="width: 34%"></Column>
-                <Column field="size" header="Size" sortable style="width: 33%"></Column>
-                <Column field="type" header="Type" sortable style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -89,3 +73,19 @@ const nodes = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Multiple columns can be sorted by defining <i>sortMode</i> as <i>multiple</i>. This mode requires metaKey (e.g. <i>⌘</i>) to be pressed when clicking a header.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" sortMode="multiple" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" sortable expander style="width: 34%"></Column>
+                <Column field="size" header="Size" sortable style="width: 33%"></Column>
+                <Column field="type" header="Type" sortable style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Chart type="bar" :data="chartData" :options="chartOptions" />
-    </DocPTViewer>
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
     import { getPTOptions } from '@/components/doc/helpers';
@@ -89,3 +83,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Chart type="bar" :data="chartData" :options="chartOptions" />
+    </DocPTViewer>
+</template>

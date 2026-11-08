@@ -1,3 +1,32 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Accordion'),
+                        key: 'Accordion'
+                    },
+                    {
+                        data: getPTOptions('AccordionPanel'),
+                        key: 'AccordionPanel'
+                    },
+                    {
+                        data: getPTOptions('AccordionHeader'),
+                        key: 'AccordionHeader'
+                    },
+                    {
+                        data: getPTOptions('AccordionContent'),
+                        key: 'AccordionContent'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Accordion value="0">
@@ -31,32 +60,3 @@
         </Accordion>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                docs: [
-                    {
-                        data: getPTOptions('Accordion'),
-                        key: 'Accordion'
-                    },
-                    {
-                        data: getPTOptions('AccordionPanel'),
-                        key: 'AccordionPanel'
-                    },
-                    {
-                        data: getPTOptions('AccordionHeader'),
-                        key: 'AccordionHeader'
-                    },
-                    {
-                        data: getPTOptions('AccordionContent'),
-                        key: 'AccordionContent'
-                    }
-                ]
-            };
-        }
-    };
-</script>

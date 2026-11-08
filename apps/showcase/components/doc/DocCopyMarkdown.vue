@@ -1,9 +1,3 @@
-<template>
-    <div class="doc-copy-markdown">
-        <SplitButton label="Copy Markdown" icon="pi pi-copy" severity="secondary" outlined @click="copyMarkdown" :model="menuItems" />
-    </div>
-</template>
-
 <script>
     export default {
         name: 'DocCopyMarkdown',
@@ -166,6 +160,12 @@
         }
     };
 </script>
+
+<template>
+    <div class="doc-copy-markdown">
+        <SplitButton label="Copy Markdown" icon="pi pi-copy" severity="secondary" outlined @click="copyMarkdown" :model="menuItems" />
+    </div>
+</template>
 
 <style scoped>
     .doc-copy-markdown {

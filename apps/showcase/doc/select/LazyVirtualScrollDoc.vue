@@ -1,21 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The virtual scrolling also supports dynamically loading items on demand.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Select
-            v-model="selectedItem"
-            :options="items"
-            optionLabel="label"
-            optionValue="value"
-            :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }"
-            placeholder="Select Item"
-            class="w-full md:w-56"
-        />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -96,3 +78,21 @@ const onLazyLoad = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The virtual scrolling also supports dynamically loading items on demand.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Select
+            v-model="selectedItem"
+            :options="items"
+            optionLabel="label"
+            optionValue="value"
+            :virtualScrollerOptions="{ lazy: true, onLazyLoad: onLazyLoad, itemSize: 38, showLoader: true, loading: loading, delay: 250 }"
+            placeholder="Select Item"
+            class="w-full md:w-56"
+        />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

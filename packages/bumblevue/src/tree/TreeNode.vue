@@ -1,102 +1,3 @@
-<template>
-    <li
-        ref="currentNode"
-        :class="cx('node')"
-        role="treeitem"
-        :aria-label="label(node)"
-        :aria-selected="ariaSelected"
-        :aria-expanded="expanded"
-        :aria-setsize="node.children ? node.children.length : 0"
-        :aria-posinset="index + 1"
-        :aria-level="level"
-        :aria-checked="ariaChecked"
-        :tabindex="index === 0 ? 0 : -1"
-        @keydown="onKeyDown"
-        v-bind="getPTOptions('node')"
-    >
-        <div v-if="isPrevDropPointActive" :class="cx('dropPoint')" aria-hidden="true" />
-        <div
-            :class="cx('nodeContent')"
-            :style="node.style"
-            :draggable="isDraggable"
-            @click="onClick"
-            @touchend="onTouchEnd"
-            @dragstart="onNodeDragStart"
-            @dragover="onNodeDragOver"
-            @dragenter="onNodeDragEnter"
-            @dragleave="onNodeDragLeave"
-            @dragend="onNodeDragEnd"
-            @drop="onNodeDrop"
-            v-bind="getPTOptions('nodeContent')"
-            :data-p-selected="checkboxMode ? checked : selected"
-            :data-p-selectable="selectable"
-        >
-            <button v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" tabindex="-1" :data-p-leaf="leaf" v-bind="getPTOptions('nodeToggleButton')">
-                <template v-if="node.loading && loadingMode === 'icon'">
-                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
-                    <SpinnerIcon v-else spin :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
-                </template>
-                <template v-else>
-                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
-                    <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
-                    <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
-                </template>
-            </button>
-            <Checkbox
-                v-if="checkboxMode"
-                :defaultValue="checked"
-                :binary="true"
-                :indeterminate="partialChecked"
-                :class="cx('nodeCheckbox')"
-                :tabindex="-1"
-                :unstyled="unstyled"
-                :pt="getPTOptions('pcNodeCheckbox')"
-                :data-p-partialchecked="partialChecked"
-            >
-                <template #icon="slotProps">
-                    <component v-if="templates['checkboxicon']" :is="templates['checkboxicon']" :checked="slotProps.checked" :partialChecked="partialChecked" :class="slotProps.class" />
-                </template>
-            </Checkbox>
-            <component v-if="templates['nodeicon']" :is="templates['nodeicon']" :node="node" :class="[cx('nodeIcon')]" v-bind="getPTOptions('nodeIcon')"></component>
-            <span v-else :class="[cx('nodeIcon'), node.icon]" v-bind="getPTOptions('nodeIcon')"></span>
-            <span :class="cx('nodeLabel')" v-bind="getPTOptions('nodeLabel')" @keydown.stop>
-                <component v-if="templates[node.type] || templates['default']" :is="templates[node.type] || templates['default']" :node="node" :expanded="expanded" :selected="checkboxMode ? checked : selected" />
-                <template v-else>{{ label(node) }}</template>
-            </span>
-        </div>
-        <div v-if="isNextDropPointActive" :class="cx('dropPoint')" aria-hidden="true" />
-        <ul v-if="hasChildren && expanded" :class="cx('nodeChildren')" role="group" v-bind="ptm('nodeChildren')">
-            <TreeNode
-                v-for="(childNode, index) of node.children"
-                :key="childNode.key"
-                :node="childNode"
-                :parentNode="node"
-                :rootNodes="rootNodes"
-                :templates="templates"
-                :level="level + 1"
-                :index="index"
-                :loadingMode="loadingMode"
-                :expandedKeys="expandedKeys"
-                @node-toggle="onChildNodeToggle"
-                @node-click="onChildNodeClick"
-                :selectionMode="selectionMode"
-                :selectionKeys="selectionKeys"
-                @checkbox-change="propagateUp"
-                :draggableScope="draggableScope"
-                :draggableNodes="draggableNodes"
-                :droppableNodes="droppableNodes"
-                :validateDrop="validateDrop"
-                @node-drop="$emit('node-drop', $event)"
-                @node-dragenter="$emit('node-dragenter', $event)"
-                @node-dragleave="$emit('node-dragleave', $event)"
-                @value-change="$emit('value-change', $event)"
-                :unstyled="unstyled"
-                :pt="pt"
-            />
-        </ul>
-    </li>
-</template>
-
 <script>
     import { find, findSingle, getAttribute, getOuterHeight, getOuterWidth } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -766,3 +667,102 @@
         }
     };
 </script>
+
+<template>
+    <li
+        ref="currentNode"
+        :class="cx('node')"
+        role="treeitem"
+        :aria-label="label(node)"
+        :aria-selected="ariaSelected"
+        :aria-expanded="expanded"
+        :aria-setsize="node.children ? node.children.length : 0"
+        :aria-posinset="index + 1"
+        :aria-level="level"
+        :aria-checked="ariaChecked"
+        :tabindex="index === 0 ? 0 : -1"
+        @keydown="onKeyDown"
+        v-bind="getPTOptions('node')"
+    >
+        <div v-if="isPrevDropPointActive" :class="cx('dropPoint')" aria-hidden="true" />
+        <div
+            :class="cx('nodeContent')"
+            :style="node.style"
+            :draggable="isDraggable"
+            @click="onClick"
+            @touchend="onTouchEnd"
+            @dragstart="onNodeDragStart"
+            @dragover="onNodeDragOver"
+            @dragenter="onNodeDragEnter"
+            @dragleave="onNodeDragLeave"
+            @dragend="onNodeDragEnd"
+            @drop="onNodeDrop"
+            v-bind="getPTOptions('nodeContent')"
+            :data-p-selected="checkboxMode ? checked : selected"
+            :data-p-selectable="selectable"
+        >
+            <button v-ripple type="button" :class="cx('nodeToggleButton')" @click="toggle" tabindex="-1" :data-p-leaf="leaf" v-bind="getPTOptions('nodeToggleButton')">
+                <template v-if="node.loading && loadingMode === 'icon'">
+                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <SpinnerIcon v-else spin :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
+                </template>
+                <template v-else>
+                    <component v-if="templates['nodetoggleicon']" :is="templates['nodetoggleicon']" :node="node" :expanded="expanded" :class="cx('nodeToggleIcon')" />
+                    <component v-else-if="expanded" :is="node.expandedIcon ? 'span' : 'ChevronDownIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
+                    <component v-else :is="node.collapsedIcon ? 'span' : 'ChevronRightIcon'" :class="cx('nodeToggleIcon')" v-bind="getPTOptions('nodeToggleIcon')" />
+                </template>
+            </button>
+            <Checkbox
+                v-if="checkboxMode"
+                :defaultValue="checked"
+                :binary="true"
+                :indeterminate="partialChecked"
+                :class="cx('nodeCheckbox')"
+                :tabindex="-1"
+                :unstyled="unstyled"
+                :pt="getPTOptions('pcNodeCheckbox')"
+                :data-p-partialchecked="partialChecked"
+            >
+                <template #icon="slotProps">
+                    <component v-if="templates['checkboxicon']" :is="templates['checkboxicon']" :checked="slotProps.checked" :partialChecked="partialChecked" :class="slotProps.class" />
+                </template>
+            </Checkbox>
+            <component v-if="templates['nodeicon']" :is="templates['nodeicon']" :node="node" :class="[cx('nodeIcon')]" v-bind="getPTOptions('nodeIcon')"></component>
+            <span v-else :class="[cx('nodeIcon'), node.icon]" v-bind="getPTOptions('nodeIcon')"></span>
+            <span :class="cx('nodeLabel')" v-bind="getPTOptions('nodeLabel')" @keydown.stop>
+                <component v-if="templates[node.type] || templates['default']" :is="templates[node.type] || templates['default']" :node="node" :expanded="expanded" :selected="checkboxMode ? checked : selected" />
+                <template v-else>{{ label(node) }}</template>
+            </span>
+        </div>
+        <div v-if="isNextDropPointActive" :class="cx('dropPoint')" aria-hidden="true" />
+        <ul v-if="hasChildren && expanded" :class="cx('nodeChildren')" role="group" v-bind="ptm('nodeChildren')">
+            <TreeNode
+                v-for="(childNode, index) of node.children"
+                :key="childNode.key"
+                :node="childNode"
+                :parentNode="node"
+                :rootNodes="rootNodes"
+                :templates="templates"
+                :level="level + 1"
+                :index="index"
+                :loadingMode="loadingMode"
+                :expandedKeys="expandedKeys"
+                @node-toggle="onChildNodeToggle"
+                @node-click="onChildNodeClick"
+                :selectionMode="selectionMode"
+                :selectionKeys="selectionKeys"
+                @checkbox-change="propagateUp"
+                :draggableScope="draggableScope"
+                :draggableNodes="draggableNodes"
+                :droppableNodes="droppableNodes"
+                :validateDrop="validateDrop"
+                @node-drop="$emit('node-drop', $event)"
+                @node-dragenter="$emit('node-dragenter', $event)"
+                @node-dragleave="$emit('node-dragleave', $event)"
+                @value-change="$emit('value-change', $event)"
+                :unstyled="unstyled"
+                :pt="pt"
+            />
+        </ul>
+    </li>
+</template>

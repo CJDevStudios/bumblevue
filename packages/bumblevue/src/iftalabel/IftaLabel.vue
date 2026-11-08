@@ -1,9 +1,3 @@
-<template>
-    <span :class="cx('root')" v-bind="ptmi('root')">
-        <slot />
-    </span>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import IftaLabelStyle from '@cjdevstudios/bumblevue/iftalabel/style';
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('root')" v-bind="ptmi('root')">
+        <slot />
+    </span>
+</template>

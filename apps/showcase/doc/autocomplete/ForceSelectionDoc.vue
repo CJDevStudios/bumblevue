@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            ForceSelection mode validates the manual input to check whether it also exists in the suggestions list, if not the input value is cleared to make sure the value passed to the model is always one of the suggestions. Simply enable
-            <i>forceSelection</i> to enforce that input is always from the suggestion list.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="selectedCountry" forceSelection optionLabel="name" :suggestions="filteredCountries" @complete="search" />
-    </div>
-    <DocSectionCode :code="code" :service="['CountryService']" />
-</template>
-
 <script>
     import { CountryService } from '@/service/CountryService';
 
@@ -78,3 +65,16 @@ const search = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            ForceSelection mode validates the manual input to check whether it also exists in the suggestions list, if not the input value is cleared to make sure the value passed to the model is always one of the suggestions. Simply enable
+            <i>forceSelection</i> to enforce that input is always from the suggestion list.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <AutoComplete v-model="selectedCountry" forceSelection optionLabel="name" :suggestions="filteredCountries" @complete="search" />
+    </div>
+    <DocSectionCode :code="code" :service="['CountryService']" />
+</template>

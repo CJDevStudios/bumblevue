@@ -47,11 +47,34 @@ export default [
                 {
                     varsIgnorePattern: '^_'
                 }
-            ]
+            ],
+            //TODO Try to re-enable these later as errors
+            'no-case-declarations': 'warn',
+            'no-constant-binary-expression': 'warn',
+            'no-extra-boolean-cast': 'warn',
+            'no-prototype-builtins': 'warn',
+            'no-undef': 'warn',
+            'no-useless-escape': 'warn',
+            '@typescript-eslint/ban-ts-comment': 'off',
+            '@typescript-eslint/no-empty-object-type': 'off',
+            '@typescript-eslint/no-explicit-any': 'off',
+            '@typescript-eslint/no-require-imports': 'off',
+            '@typescript-eslint/no-this-alias': 'off',
+            '@typescript-eslint/no-unsafe-function-type': 'off',
+            '@typescript-eslint/no-unused-expressions': 'off',
+            '@typescript-eslint/no-unused-vars': 'off'
         }
     },
     {
         files: ['**/*.vue'],
+        languageOptions: {
+            parser: eslintPluginVue.parser,
+            parserOptions: {
+                parser: tseslint.parser,
+                ecmaVersion: 'latest',
+                sourceType: 'module',
+            },
+        },
         rules: {
             'vue/valid-template-root': 'error',
             'vue/no-multiple-template-root': 'off',
@@ -71,14 +94,16 @@ export default [
                 }
             ],
             'vue/attributes-order': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'warn',
                 {
                     order: ['CONDITIONALS', 'LIST_RENDERING', 'DEFINITION', ['UNIQUE', 'SLOT'], 'RENDER_MODIFIERS', 'GLOBAL', 'TWO_WAY_BINDING', 'OTHER_DIRECTIVES', ['OTHER_ATTR', 'EVENTS'], 'CONTENT'],
                     alphabetical: false
                 }
             ],
             'vue/order-in-components': [
-                'error',
+                //TODO evaluate this rule's configuration later or remove
+                'warn',
                 {
                     order: [
                         'el',

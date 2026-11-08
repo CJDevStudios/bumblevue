@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Indicators are displayed at the bottom by enabling <i>showIndicators</i> property and interacted with the click event by default.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
     import { PhotoService } from '@/service/PhotoService';
 
@@ -73,3 +57,19 @@ const images = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Indicators are displayed at the bottom by enabling <i>showIndicators</i> property and interacted with the click event by default.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <Galleria :value="images" :numVisible="5" containerStyle="max-width: 640px" :showThumbnails="false" :showIndicators="true">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

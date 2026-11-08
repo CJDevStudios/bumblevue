@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>SplitButton has a default command button and a collection of additional options defined by the <i>model</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SplitButton label="Save" @click="save" :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -90,3 +80,13 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>SplitButton has a default command button and a collection of additional options defined by the <i>model</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SplitButton label="Save" @click="save" :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

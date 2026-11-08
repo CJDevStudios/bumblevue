@@ -1,12 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <IftaLabel>
-            <InputText id="username" v-model="value" autocomplete="off" />
-            <label for="username">Username</label>
-        </IftaLabel>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -24,3 +15,12 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <IftaLabel>
+            <InputText id="username" v-model="value" autocomplete="off" />
+            <label for="username">Username</label>
+        </IftaLabel>
+    </DocPTViewer>
+</template>

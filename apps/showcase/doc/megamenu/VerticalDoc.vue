@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Layout of the MegaMenu is configured with the <i>orientation</i> property that accepts <i>horizontal</i> and <i>vertical</i> as options.</p>
-    </DocSectionText>
-    <div class="card">
-        <MegaMenu :model="items" orientation="vertical" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -225,3 +215,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Layout of the MegaMenu is configured with the <i>orientation</i> property that accepts <i>horizontal</i> and <i>vertical</i> as options.</p>
+    </DocSectionText>
+    <div class="card">
+        <MegaMenu :model="items" orientation="vertical" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

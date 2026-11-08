@@ -1,79 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Lazy mode is handy to deal with large datasets, instead of loading the entire data, small chunks of data is loaded by invoking corresponding callbacks everytime <i>paging</i>, <i>sorting</i> and <i>filtering</i> occurs. Sample below
-            imitates lazy loading data from a remote datasource using an in-memory list and timeouts to mimic network connection.
-        </p>
-        <p>
-            Enabling the <i>lazy</i> property and assigning the logical number of rows to <i>totalRecords</i> by doing a projection query are the key elements of the implementation so that paginator displays the UI assuming there are actually records
-            of totalRecords size although in reality they are not present on page, only the records that are displayed on the current page exist.
-        </p>
-        <p>Note that, the implementation of <i>checkbox selection</i> in lazy mode needs to be handled manually as in this example since the DataTable cannot know about the whole dataset.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable
-                ref="dt"
-                v-model:filters="filters"
-                v-model:selection="selectedCustomers"
-                :value="customers"
-                lazy
-                paginator
-                :first="first"
-                :rows="10"
-                dataKey="id"
-                :totalRecords="totalRecords"
-                :loading="loading"
-                @page="onPage($event)"
-                @sort="onSort($event)"
-                @filter="onFilter($event)"
-                filterDisplay="row"
-                :globalFilterFields="['name', 'country.name', 'company', 'representative.name']"
-                :selectAll="selectAll"
-                @select-all-change="onSelectAllChange"
-                @row-select="onRowSelect"
-                @row-unselect="onRowUnselect"
-                tableStyle="min-width: 75rem"
-            >
-                <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-                <Column field="name" header="Name" filterMatchMode="startsWith" sortable>
-                    <template #filter="{ filterModel, filterCallback }">
-                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
-                    </template>
-                </Column>
-                <Column field="country.name" header="Country" filterField="country.name" filterMatchMode="contains" sortable>
-                    <template #body="{ data }">
-                        <div class="flex items-center gap-2">
-                            <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${data.country.code}`" style="width: 24px" />
-                            <span>{{ data.country.name }}</span>
-                        </div>
-                    </template>
-                    <template #filter="{ filterModel, filterCallback }">
-                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
-                    </template>
-                </Column>
-                <Column field="company" header="Company" filterMatchMode="contains" sortable>
-                    <template #filter="{ filterModel, filterCallback }">
-                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
-                    </template>
-                </Column>
-                <Column field="representative.name" header="Representative" filterField="representative.name" sortable>
-                    <template #body="{ data }">
-                        <div class="flex items-center gap-2">
-                            <img :alt="data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${data.representative.image}`" style="width: 32px" />
-                            <span>{{ data.representative.name }}</span>
-                        </div>
-                    </template>
-                    <template #filter="{ filterModel, filterCallback }">
-                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CustomerService']" />
-</template>
-
 <script>
     import { CustomerService } from '@/service/CustomerService';
 
@@ -356,3 +280,79 @@ const onRowUnselect = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Lazy mode is handy to deal with large datasets, instead of loading the entire data, small chunks of data is loaded by invoking corresponding callbacks everytime <i>paging</i>, <i>sorting</i> and <i>filtering</i> occurs. Sample below
+            imitates lazy loading data from a remote datasource using an in-memory list and timeouts to mimic network connection.
+        </p>
+        <p>
+            Enabling the <i>lazy</i> property and assigning the logical number of rows to <i>totalRecords</i> by doing a projection query are the key elements of the implementation so that paginator displays the UI assuming there are actually records
+            of totalRecords size although in reality they are not present on page, only the records that are displayed on the current page exist.
+        </p>
+        <p>Note that, the implementation of <i>checkbox selection</i> in lazy mode needs to be handled manually as in this example since the DataTable cannot know about the whole dataset.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable
+                ref="dt"
+                v-model:filters="filters"
+                v-model:selection="selectedCustomers"
+                :value="customers"
+                lazy
+                paginator
+                :first="first"
+                :rows="10"
+                dataKey="id"
+                :totalRecords="totalRecords"
+                :loading="loading"
+                @page="onPage($event)"
+                @sort="onSort($event)"
+                @filter="onFilter($event)"
+                filterDisplay="row"
+                :globalFilterFields="['name', 'country.name', 'company', 'representative.name']"
+                :selectAll="selectAll"
+                @select-all-change="onSelectAllChange"
+                @row-select="onRowSelect"
+                @row-unselect="onRowUnselect"
+                tableStyle="min-width: 75rem"
+            >
+                <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+                <Column field="name" header="Name" filterMatchMode="startsWith" sortable>
+                    <template #filter="{ filterModel, filterCallback }">
+                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
+                    </template>
+                </Column>
+                <Column field="country.name" header="Country" filterField="country.name" filterMatchMode="contains" sortable>
+                    <template #body="{ data }">
+                        <div class="flex items-center gap-2">
+                            <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${data.country.code}`" style="width: 24px" />
+                            <span>{{ data.country.name }}</span>
+                        </div>
+                    </template>
+                    <template #filter="{ filterModel, filterCallback }">
+                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
+                    </template>
+                </Column>
+                <Column field="company" header="Company" filterMatchMode="contains" sortable>
+                    <template #filter="{ filterModel, filterCallback }">
+                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
+                    </template>
+                </Column>
+                <Column field="representative.name" header="Representative" filterField="representative.name" sortable>
+                    <template #body="{ data }">
+                        <div class="flex items-center gap-2">
+                            <img :alt="data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${data.representative.image}`" style="width: 32px" />
+                            <span>{{ data.representative.name }}</span>
+                        </div>
+                    </template>
+                    <template #filter="{ filterModel, filterCallback }">
+                        <InputText v-model="filterModel.value" type="text" @keydown.enter="filterCallback()" placeholder="Search" fluid />
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CustomerService']" />
+</template>

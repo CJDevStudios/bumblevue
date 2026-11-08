@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <InputNumber v-model="value" inputId="stacked-buttons" showButtons mode="currency" currency="USD" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <InputNumber v-model="value" inputId="stacked-buttons" showButtons mode="currency" currency="USD" />
+    </DocPTViewer>
+</template>

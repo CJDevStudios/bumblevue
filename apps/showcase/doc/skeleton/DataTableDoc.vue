@@ -1,34 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Sample DataTable implementation using different Skeleton components and Tailwind CSS utilities.</p>
-    </DocSectionText>
-    <div class="card">
-        <DataTable :value="products">
-            <Column field="code" header="Code">
-                <template #body>
-                    <Skeleton></Skeleton>
-                </template>
-            </Column>
-            <Column field="name" header="Name">
-                <template #body>
-                    <Skeleton></Skeleton>
-                </template>
-            </Column>
-            <Column field="category" header="Category">
-                <template #body>
-                    <Skeleton></Skeleton>
-                </template>
-            </Column>
-            <Column field="quantity" header="Quantity">
-                <template #body>
-                    <Skeleton></Skeleton>
-                </template>
-            </Column>
-        </DataTable>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -98,3 +67,34 @@ const products = ref(new Array(4));
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Sample DataTable implementation using different Skeleton components and Tailwind CSS utilities.</p>
+    </DocSectionText>
+    <div class="card">
+        <DataTable :value="products">
+            <Column field="code" header="Code">
+                <template #body>
+                    <Skeleton></Skeleton>
+                </template>
+            </Column>
+            <Column field="name" header="Name">
+                <template #body>
+                    <Skeleton></Skeleton>
+                </template>
+            </Column>
+            <Column field="category" header="Category">
+                <template #body>
+                    <Skeleton></Skeleton>
+                </template>
+            </Column>
+            <Column field="quantity" header="Quantity">
+                <template #body>
+                    <Skeleton></Skeleton>
+                </template>
+            </Column>
+        </DataTable>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,35 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-indeterminate="d_indeterminate || undefined" :data-p-disabled="disabled" :data-p="dataP">
-        <input
-            ref="input"
-            :id="inputId"
-            type="checkbox"
-            :class="[cx('input'), inputClass]"
-            :style="inputStyle"
-            :value="value"
-            :name="groupName"
-            :checked="checked"
-            :tabindex="tabindex"
-            :disabled="disabled"
-            :readonly="readonly"
-            :required="required"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-invalid="invalid || undefined"
-            @focus="onFocus"
-            @blur="onBlur"
-            @change="onChange"
-            v-bind="getPTOptions('input')"
-        />
-        <div :class="cx('box')" v-bind="getPTOptions('box')" :data-p="dataP">
-            <slot name="icon" :checked="checked" :indeterminate="d_indeterminate" :class="cx('icon')" :data-p="dataP">
-                <CheckIcon v-if="checked" :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP" />
-                <MinusIcon v-else-if="d_indeterminate" :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP" />
-            </slot>
-        </div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { contains, equals } from '@cjdevstudios/bumblevue/utils/object';
@@ -192,3 +160,35 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-indeterminate="d_indeterminate || undefined" :data-p-disabled="disabled" :data-p="dataP">
+        <input
+            ref="input"
+            :id="inputId"
+            type="checkbox"
+            :class="[cx('input'), inputClass]"
+            :style="inputStyle"
+            :value="value"
+            :name="groupName"
+            :checked="checked"
+            :tabindex="tabindex"
+            :disabled="disabled"
+            :readonly="readonly"
+            :required="required"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-invalid="invalid || undefined"
+            @focus="onFocus"
+            @blur="onBlur"
+            @change="onChange"
+            v-bind="getPTOptions('input')"
+        />
+        <div :class="cx('box')" v-bind="getPTOptions('box')" :data-p="dataP">
+            <slot name="icon" :checked="checked" :indeterminate="d_indeterminate" :class="cx('icon')" :data-p="dataP">
+                <CheckIcon v-if="checked" :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP" />
+                <MinusIcon v-else-if="d_indeterminate" :class="cx('icon')" v-bind="getPTOptions('icon')" :data-p="dataP" />
+            </slot>
+        </div>
+    </div>
+</template>

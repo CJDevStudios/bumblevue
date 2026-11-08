@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Items display a tooltip on hover when a standalone <BumbleVueNuxtLink to="/tooltip">Tooltip</BumbleVueNuxtLink> is present with a target that matches the items.</p>
-    </DocSectionText>
-    <div class="card">
-        <div :style="{ position: 'relative', height: '350px' }">
-            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', right: 0, bottom: 0 }" :buttonProps="{ severity: 'help', rounded: true }" :tooltipOptions="{ position: 'left' }" />
-            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', left: 0, bottom: 0 }" :buttonProps="{ severity: 'danger', rounded: true }" :tooltipOptions="{ position: 'right' }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -120,3 +107,16 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Items display a tooltip on hover when a standalone <BumbleVueNuxtLink to="/tooltip">Tooltip</BumbleVueNuxtLink> is present with a target that matches the items.</p>
+    </DocSectionText>
+    <div class="card">
+        <div :style="{ position: 'relative', height: '350px' }">
+            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', right: 0, bottom: 0 }" :buttonProps="{ severity: 'help', rounded: true }" :tooltipOptions="{ position: 'left' }" />
+            <SpeedDial :model="items" direction="up" :style="{ position: 'absolute', left: 0, bottom: 0 }" :buttonProps="{ severity: 'danger', rounded: true }" :tooltipOptions="{ position: 'right' }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

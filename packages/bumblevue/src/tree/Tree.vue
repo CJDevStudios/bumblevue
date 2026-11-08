@@ -1,61 +1,3 @@
-<template>
-    <div :class="cx('root')" @dragover="onDragOver" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop" :data-p="containerDataP" v-bind="ptmi('root')">
-        <transition name="p-overlay-mask">
-            <div v-if="loading && loadingMode === 'mask'" :class="cx('mask')" v-bind="ptm('mask')">
-                <slot name="loadingicon" :class="cx('loadingIcon')">
-                    <i v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
-                    <SpinnerIcon v-else spin :class="cx('loadingIcon')" v-bind="ptm('loadingIcon')" />
-                </slot>
-            </div>
-        </transition>
-        <IconField v-if="filter" :unstyled="unstyled" :pt="{ ...ptm('pcFilter'), ...ptm('pcFilterContainer') }" :class="cx('pcFilterContainer')">
-            <InputText v-model="filterValue" autocomplete="off" :class="cx('pcFilterInput')" :placeholder="filterPlaceholder" :unstyled="unstyled" @keyup="onFilterKeyup" :pt="ptm('pcFilterInput')" />
-            <InputIcon :unstyled="unstyled" :pt="ptm('pcFilterIconContainer')">
-                <slot name="filtericon" :class="cx('filterIcon')">
-                    <SearchIcon :class="cx('filterIcon')" v-bind="ptm('filterIcon')" />
-                </slot>
-            </InputIcon>
-        </IconField>
-        <div :class="cx('wrapper')" :style="{ maxHeight: scrollHeight }" :data-p="wrapperDataP" v-bind="ptm('wrapper')">
-            <slot name="header" :value="value" :expandedKeys="expandedKeys" :selectionKeys="selectionKeys" />
-            <ul v-if="!empty" :class="cx('rootChildren')" role="tree" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptm('rootChildren')">
-                <TreeNode
-                    v-for="(node, index) of valueToRender"
-                    :key="node.key"
-                    :node="node"
-                    :rootNodes="valueToRender"
-                    :templates="$slots"
-                    :level="level + 1"
-                    :index="index"
-                    :expandedKeys="d_expandedKeys"
-                    @node-toggle="onNodeToggle"
-                    @node-click="onNodeClick"
-                    :selectionMode="selectionMode"
-                    :selectionKeys="selectionKeys"
-                    @checkbox-change="onCheckboxChange"
-                    :loadingMode="loadingMode"
-                    :draggableNodes="draggableNodes"
-                    :droppableNodes="droppableNodes"
-                    :draggableScope="draggableScope"
-                    :validateDrop="validateDrop"
-                    @node-drop="onNodeDrop"
-                    @node-dragenter="onNodeDragEnter"
-                    @node-dragleave="onNodeDragLeave"
-                    @value-change="onValueChanged"
-                    :unstyled="unstyled"
-                    :pt="pt"
-                ></TreeNode>
-            </ul>
-            <div v-else-if="empty && !$pcTreeSelect" :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
-                <slot name="empty">
-                    {{ emptyMessageText }}
-                </slot>
-            </div>
-            <slot name="footer" :value="value" :expandedKeys="expandedKeys" :selectionKeys="selectionKeys" />
-        </div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { isFunction, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -619,3 +561,61 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" @dragover="onDragOver" @dragenter="onDragEnter" @dragleave="onDragLeave" @drop="onDrop" :data-p="containerDataP" v-bind="ptmi('root')">
+        <transition name="p-overlay-mask">
+            <div v-if="loading && loadingMode === 'mask'" :class="cx('mask')" v-bind="ptm('mask')">
+                <slot name="loadingicon" :class="cx('loadingIcon')">
+                    <i v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" v-bind="ptm('loadingIcon')" />
+                    <SpinnerIcon v-else spin :class="cx('loadingIcon')" v-bind="ptm('loadingIcon')" />
+                </slot>
+            </div>
+        </transition>
+        <IconField v-if="filter" :unstyled="unstyled" :pt="{ ...ptm('pcFilter'), ...ptm('pcFilterContainer') }" :class="cx('pcFilterContainer')">
+            <InputText v-model="filterValue" autocomplete="off" :class="cx('pcFilterInput')" :placeholder="filterPlaceholder" :unstyled="unstyled" @keyup="onFilterKeyup" :pt="ptm('pcFilterInput')" />
+            <InputIcon :unstyled="unstyled" :pt="ptm('pcFilterIconContainer')">
+                <slot name="filtericon" :class="cx('filterIcon')">
+                    <SearchIcon :class="cx('filterIcon')" v-bind="ptm('filterIcon')" />
+                </slot>
+            </InputIcon>
+        </IconField>
+        <div :class="cx('wrapper')" :style="{ maxHeight: scrollHeight }" :data-p="wrapperDataP" v-bind="ptm('wrapper')">
+            <slot name="header" :value="value" :expandedKeys="expandedKeys" :selectionKeys="selectionKeys" />
+            <ul v-if="!empty" :class="cx('rootChildren')" role="tree" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptm('rootChildren')">
+                <TreeNode
+                    v-for="(node, index) of valueToRender"
+                    :key="node.key"
+                    :node="node"
+                    :rootNodes="valueToRender"
+                    :templates="$slots"
+                    :level="level + 1"
+                    :index="index"
+                    :expandedKeys="d_expandedKeys"
+                    @node-toggle="onNodeToggle"
+                    @node-click="onNodeClick"
+                    :selectionMode="selectionMode"
+                    :selectionKeys="selectionKeys"
+                    @checkbox-change="onCheckboxChange"
+                    :loadingMode="loadingMode"
+                    :draggableNodes="draggableNodes"
+                    :droppableNodes="droppableNodes"
+                    :draggableScope="draggableScope"
+                    :validateDrop="validateDrop"
+                    @node-drop="onNodeDrop"
+                    @node-dragenter="onNodeDragEnter"
+                    @node-dragleave="onNodeDragLeave"
+                    @value-change="onValueChanged"
+                    :unstyled="unstyled"
+                    :pt="pt"
+                ></TreeNode>
+            </ul>
+            <div v-else-if="empty && !$pcTreeSelect" :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
+                <slot name="empty">
+                    {{ emptyMessageText }}
+                </slot>
+            </div>
+            <slot name="footer" :value="value" :expandedKeys="expandedKeys" :selectionKeys="selectionKeys" />
+        </div>
+    </div>
+</template>

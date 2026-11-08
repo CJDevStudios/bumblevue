@@ -1,15 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <div class="relative w-full">
-            <Dock :model="items">
-                <template #itemicon="{ item }">
-                    <img v-tooltip.top="item.label" :alt="item.label" :src="item.icon" style="width: 100%" />
-                </template>
-            </Dock>
-        </div>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -44,3 +32,15 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <div class="relative w-full">
+            <Dock :model="items">
+                <template #itemicon="{ item }">
+                    <img v-tooltip.top="item.label" :alt="item.label" :src="item.icon" style="width: 100%" />
+                </template>
+            </Dock>
+        </div>
+    </DocPTViewer>
+</template>

@@ -1,15 +1,3 @@
-<template>
-    <ol :class="cx('labelList')" :data-p="dataP" v-bind="ptm('labelList')">
-        <li v-for="(val, index) in value" :key="index + '_label'" :class="cx('label')" v-bind="ptm('label')">
-            <slot name="icon" :value="val" :class="cx('labelIcon')">
-                <i v-if="val.icon" :class="[val.icon, cx('labelIcon')]" :style="{ color: val.color }" v-bind="ptm('labelIcon')" />
-                <span v-else :class="cx('labelMarker')" :style="{ backgroundColor: val.color }" v-bind="ptm('labelMarker')" />
-            </slot>
-            <span :class="cx('labelText')" v-bind="ptm('labelText')">{{ val.label }} ({{ $parentInstance.percentValue(val.value) }})</span>
-        </li>
-    </ol>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -43,3 +31,15 @@
         }
     };
 </script>
+
+<template>
+    <ol :class="cx('labelList')" :data-p="dataP" v-bind="ptm('labelList')">
+        <li v-for="(val, index) in value" :key="index + '_label'" :class="cx('label')" v-bind="ptm('label')">
+            <slot name="icon" :value="val" :class="cx('labelIcon')">
+                <i v-if="val.icon" :class="[val.icon, cx('labelIcon')]" :style="{ color: val.color }" v-bind="ptm('labelIcon')" />
+                <span v-else :class="cx('labelMarker')" :style="{ backgroundColor: val.color }" v-bind="ptm('labelMarker')" />
+            </slot>
+            <span :class="cx('labelText')" v-bind="ptm('labelText')">{{ val.label }} ({{ $parentInstance.percentValue(val.value) }})</span>
+        </li>
+    </ol>
+</template>

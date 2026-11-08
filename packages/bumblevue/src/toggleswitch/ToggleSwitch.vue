@@ -1,32 +1,3 @@
-<template>
-    <div :class="cx('root')" :style="sx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-disabled="disabled" :data-p="dataP">
-        <input
-            :id="inputId"
-            type="checkbox"
-            role="switch"
-            :class="[cx('input'), inputClass]"
-            :style="inputStyle"
-            :checked="checked"
-            :tabindex="tabindex"
-            :disabled="disabled"
-            :readonly="readonly"
-            :aria-checked="checked"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-invalid="invalid || undefined"
-            @focus="onFocus"
-            @blur="onBlur"
-            @change="onChange"
-            v-bind="getPTOptions('input')"
-        />
-        <div :class="cx('slider')" v-bind="getPTOptions('slider')" :data-p="dataP">
-            <div :class="cx('handle')" v-bind="getPTOptions('handle')" :data-p="dataP">
-                <slot name="handle" :checked="checked" />
-            </div>
-        </div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseEditableHolder from '@cjdevstudios/bumblevue/core/baseeditableholder';
@@ -123,3 +94,32 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :style="sx('root')" v-bind="getPTOptions('root')" :data-p-checked="checked" :data-p-disabled="disabled" :data-p="dataP">
+        <input
+            :id="inputId"
+            type="checkbox"
+            role="switch"
+            :class="[cx('input'), inputClass]"
+            :style="inputStyle"
+            :checked="checked"
+            :tabindex="tabindex"
+            :disabled="disabled"
+            :readonly="readonly"
+            :aria-checked="checked"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-invalid="invalid || undefined"
+            @focus="onFocus"
+            @blur="onBlur"
+            @change="onChange"
+            v-bind="getPTOptions('input')"
+        />
+        <div :class="cx('slider')" v-bind="getPTOptions('slider')" :data-p="dataP">
+            <div :class="cx('handle')" v-bind="getPTOptions('handle')" :data-p="dataP">
+                <slot name="handle" :checked="checked" />
+            </div>
+        </div>
+    </div>
+</template>

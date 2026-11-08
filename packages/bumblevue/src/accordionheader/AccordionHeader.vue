@@ -1,26 +1,3 @@
-<template>
-    <component v-if="!asChild" :is="as" v-ripple :data-p="dataP" :class="cx('root')" @click="onClick" v-bind="attrs">
-        <slot :active="$pcAccordionPanel.active"></slot>
-        <slot name="toggleicon" :active="$pcAccordionPanel.active" :class="cx('toggleicon')">
-            <component
-                v-if="$pcAccordionPanel.active"
-                :is="$pcAccordion.$slots.collapseicon ? $pcAccordion.$slots.collapseicon : $pcAccordion.collapseIcon ? 'span' : 'ChevronUpIcon'"
-                :class="[$pcAccordion.collapseIcon, cx('toggleicon')]"
-                aria-hidden="true"
-                v-bind="ptm('toggleicon', ptParams)"
-            ></component>
-            <component
-                v-else
-                :is="$pcAccordion.$slots.expandicon ? $pcAccordion.$slots.expandicon : $pcAccordion.expandIcon ? 'span' : 'ChevronDownIcon'"
-                :class="[$pcAccordion.expandIcon, cx('toggleicon')]"
-                aria-hidden="true"
-                v-bind="ptm('toggleicon', ptParams)"
-            ></component>
-        </slot>
-    </component>
-    <slot v-else :class="cx('root')" :active="$pcAccordionPanel.active" :a11yAttrs="a11yAttrs" :onClick="onClick"></slot>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { findSingle, focus, getAttribute } from '@cjdevstudios/bumblevue/utils/dom';
@@ -193,3 +170,26 @@
         }
     };
 </script>
+
+<template>
+    <component v-if="!asChild" :is="as" v-ripple :data-p="dataP" :class="cx('root')" @click="onClick" v-bind="attrs">
+        <slot :active="$pcAccordionPanel.active"></slot>
+        <slot name="toggleicon" :active="$pcAccordionPanel.active" :class="cx('toggleicon')">
+            <component
+                v-if="$pcAccordionPanel.active"
+                :is="$pcAccordion.$slots.collapseicon ? $pcAccordion.$slots.collapseicon : $pcAccordion.collapseIcon ? 'span' : 'ChevronUpIcon'"
+                :class="[$pcAccordion.collapseIcon, cx('toggleicon')]"
+                aria-hidden="true"
+                v-bind="ptm('toggleicon', ptParams)"
+            ></component>
+            <component
+                v-else
+                :is="$pcAccordion.$slots.expandicon ? $pcAccordion.$slots.expandicon : $pcAccordion.expandIcon ? 'span' : 'ChevronDownIcon'"
+                :class="[$pcAccordion.expandIcon, cx('toggleicon')]"
+                aria-hidden="true"
+                v-bind="ptm('toggleicon', ptParams)"
+            ></component>
+        </slot>
+    </component>
+    <slot v-else :class="cx('root')" :active="$pcAccordionPanel.active" :a11yAttrs="a11yAttrs" :onClick="onClick"></slot>
+</template>

@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>OrderList requires an array as its value bound with the <i>v-model</i> directive and <i>option</i> template for its content.</p>
-    </DocSectionText>
-    <div class="card sm:flex sm:justify-center">
-        <OrderList v-model="products" dataKey="id" breakpoint="575px" pt:pcListbox:root="w-full sm:w-56">
-            <template #option="{ option }">
-                {{ option.name }}
-            </template>
-        </OrderList>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -72,3 +58,17 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>OrderList requires an array as its value bound with the <i>v-model</i> directive and <i>option</i> template for its content.</p>
+    </DocSectionText>
+    <div class="card sm:flex sm:justify-center">
+        <OrderList v-model="products" dataKey="id" breakpoint="575px" pt:pcListbox:root="w-full sm:w-56">
+            <template #option="{ option }">
+                {{ option.name }}
+            </template>
+        </OrderList>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
+</template>

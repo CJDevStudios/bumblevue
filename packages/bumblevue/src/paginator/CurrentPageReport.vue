@@ -1,7 +1,3 @@
-<template>
-    <span :class="cx('current')" v-bind="ptm('current')">{{ text }}</span>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
@@ -54,3 +50,7 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('current')" v-bind="ptm('current')">{{ text }}</span>
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Textarea v-model="value" rows="5" cols="30" disabled style="resize: none" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref('Disabled');
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, the element cannot be edited and focused.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Textarea v-model="value" rows="5" cols="30" disabled style="resize: none" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

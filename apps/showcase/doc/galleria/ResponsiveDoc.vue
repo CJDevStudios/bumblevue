@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Settings per screen size is defined via the <i>responsiveOptions</i> property.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-                <template #thumbnail="slotProps">
-                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
     import { PhotoService } from '@/service/PhotoService';
 
@@ -100,3 +81,22 @@ const responsiveOptions = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Settings per screen size is defined via the <i>responsiveOptions</i> property.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

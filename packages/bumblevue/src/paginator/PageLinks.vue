@@ -1,22 +1,3 @@
-<template>
-    <span :class="cx('pages')" v-bind="ptm('pages')">
-        <button
-            v-for="pageLink of value"
-            :key="pageLink"
-            v-ripple
-            :class="cx('page', { pageLink })"
-            type="button"
-            :aria-label="ariaPageLabel(pageLink)"
-            :aria-current="pageLink - 1 === page ? 'page' : undefined"
-            @click="onPageLinkClick($event, pageLink)"
-            v-bind="getPTOptions(pageLink - 1, 'page')"
-            :data-p-active="pageLink - 1 === page"
-        >
-            {{ pageLink }}
-        </button>
-    </span>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import Ripple from '@cjdevstudios/bumblevue/ripple';
@@ -54,3 +35,22 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('pages')" v-bind="ptm('pages')">
+        <button
+            v-for="pageLink of value"
+            :key="pageLink"
+            v-ripple
+            :class="cx('page', { pageLink })"
+            type="button"
+            :aria-label="ariaPageLabel(pageLink)"
+            :aria-current="pageLink - 1 === page ? 'page' : undefined"
+            @click="onPageLinkClick($event, pageLink)"
+            v-bind="getPTOptions(pageLink - 1, 'page')"
+            :data-p-active="pageLink - 1 === page"
+        >
+            {{ pageLink }}
+        </button>
+    </span>
+</template>

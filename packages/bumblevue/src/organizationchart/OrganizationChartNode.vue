@@ -1,55 +1,3 @@
-<template>
-    <table :class="cx('table')" v-bind="ptm('table')">
-        <tbody v-bind="ptm('body')">
-            <tr v-if="node" v-bind="ptm('row')">
-                <td :colspan="colspan" v-bind="ptm('cell')">
-                    <div :class="[cx('node'), node.styleClass]" @click="onNodeClick" v-bind="getPTOptions('node')">
-                        <component :is="templates[node.type] || templates['default']" :node="node" />
-                        <a v-if="toggleable" tabindex="0" :class="cx('nodeToggleButton')" @click="toggleNode" @keydown="onKeydown" v-bind="getPTOptions('nodeToggleButton')">
-                            <component v-if="templates.toggleicon" :is="templates.toggleicon" :expanded="expanded" :class="cx('nodeToggleButtonIcon')" v-bind="getPTOptions('nodeToggleButtonIcon')" />
-                            <component v-else :is="expanded ? 'ChevronDownIcon' : 'ChevronUpIcon'" :class="cx('nodeToggleButtonIcon')" v-bind="getPTOptions('nodeToggleButtonIcon')" />
-                        </a>
-                    </div>
-                </td>
-            </tr>
-            <tr :style="childStyle" :class="cx('connectors')" v-bind="ptm('connectors')">
-                <td :colspan="colspan" v-bind="ptm('lineCell')">
-                    <div :class="cx('connectorDown')" v-bind="ptm('connectorDown')"></div>
-                </td>
-            </tr>
-            <tr :style="childStyle" :class="cx('connectors')" v-bind="ptm('connectors')">
-                <template v-if="node.children && node.children.length === 1">
-                    <td :colspan="colspan" v-bind="ptm('lineCell')">
-                        <div :class="cx('connectorDown')" v-bind="ptm('connectorDown')"></div>
-                    </td>
-                </template>
-                <template v-if="node.children && node.children.length > 1">
-                    <template v-for="(child, i) of node.children" :key="child.key">
-                        <td :class="cx('connectorLeft', { index: i })" v-bind="getNodeOptions(!(i === 0), 'connectorLeft')">&nbsp;</td>
-                        <td :class="cx('connectorRight', { index: i })" v-bind="getNodeOptions(!(i === node.children.length - 1), 'connectorRight')">&nbsp;</td>
-                    </template>
-                </template>
-            </tr>
-            <tr :style="childStyle" :class="cx('nodeChildren')" v-bind="ptm('nodeChildren')">
-                <td v-for="child of node.children" :key="child.key" colspan="2" v-bind="ptm('nodeCell')">
-                    <OrganizationChartNode
-                        :node="child"
-                        :templates="templates"
-                        :collapsedKeys="collapsedKeys"
-                        @node-toggle="onChildNodeToggle"
-                        :collapsible="collapsible"
-                        :selectionMode="selectionMode"
-                        :selectionKeys="selectionKeys"
-                        @node-click="onChildNodeClick"
-                        :pt="pt"
-                        :unstyled="unstyled"
-                    />
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</template>
-
 <script>
     import { isAttributeEquals } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -162,3 +110,55 @@
         }
     };
 </script>
+
+<template>
+    <table :class="cx('table')" v-bind="ptm('table')">
+        <tbody v-bind="ptm('body')">
+            <tr v-if="node" v-bind="ptm('row')">
+                <td :colspan="colspan" v-bind="ptm('cell')">
+                    <div :class="[cx('node'), node.styleClass]" @click="onNodeClick" v-bind="getPTOptions('node')">
+                        <component :is="templates[node.type] || templates['default']" :node="node" />
+                        <a v-if="toggleable" tabindex="0" :class="cx('nodeToggleButton')" @click="toggleNode" @keydown="onKeydown" v-bind="getPTOptions('nodeToggleButton')">
+                            <component v-if="templates.toggleicon" :is="templates.toggleicon" :expanded="expanded" :class="cx('nodeToggleButtonIcon')" v-bind="getPTOptions('nodeToggleButtonIcon')" />
+                            <component v-else :is="expanded ? 'ChevronDownIcon' : 'ChevronUpIcon'" :class="cx('nodeToggleButtonIcon')" v-bind="getPTOptions('nodeToggleButtonIcon')" />
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            <tr :style="childStyle" :class="cx('connectors')" v-bind="ptm('connectors')">
+                <td :colspan="colspan" v-bind="ptm('lineCell')">
+                    <div :class="cx('connectorDown')" v-bind="ptm('connectorDown')"></div>
+                </td>
+            </tr>
+            <tr :style="childStyle" :class="cx('connectors')" v-bind="ptm('connectors')">
+                <template v-if="node.children && node.children.length === 1">
+                    <td :colspan="colspan" v-bind="ptm('lineCell')">
+                        <div :class="cx('connectorDown')" v-bind="ptm('connectorDown')"></div>
+                    </td>
+                </template>
+                <template v-if="node.children && node.children.length > 1">
+                    <template v-for="(child, i) of node.children" :key="child.key">
+                        <td :class="cx('connectorLeft', { index: i })" v-bind="getNodeOptions(!(i === 0), 'connectorLeft')">&nbsp;</td>
+                        <td :class="cx('connectorRight', { index: i })" v-bind="getNodeOptions(!(i === node.children.length - 1), 'connectorRight')">&nbsp;</td>
+                    </template>
+                </template>
+            </tr>
+            <tr :style="childStyle" :class="cx('nodeChildren')" v-bind="ptm('nodeChildren')">
+                <td v-for="child of node.children" :key="child.key" colspan="2" v-bind="ptm('nodeCell')">
+                    <OrganizationChartNode
+                        :node="child"
+                        :templates="templates"
+                        :collapsedKeys="collapsedKeys"
+                        @node-toggle="onChildNodeToggle"
+                        :collapsible="collapsible"
+                        :selectionMode="selectionMode"
+                        :selectionKeys="selectionKeys"
+                        @node-click="onChildNodeClick"
+                        :pt="pt"
+                        :unstyled="unstyled"
+                    />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</template>

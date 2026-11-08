@@ -1,24 +1,3 @@
-<template>
-    <div :class="containerClass" :data-p-theme="$appState.theme">
-        <!--<AppNews />-->
-        <AppTopBar @menubutton-click="onMenuButtonClick" />
-        <Transition name="px-modal">
-            <div v-if="sidebarActive" class="layout-mask" @click="onMaskClick"></div>
-        </Transition>
-        <div class="layout-content">
-            <app-menu :active="sidebarActive" />
-            <div class="layout-content-slot">
-                <slot></slot>
-            </div>
-        </div>
-        <AppFooter />
-        <Toast />
-        <Toast position="top-left" group="tl" />
-        <Toast position="bottom-left" group="bl" />
-        <Toast position="bottom-right" group="br" />
-    </div>
-</template>
-
 <script>
     import { blockBodyScroll, unblockBodyScroll } from '@cjdevstudios/bumblevue/utils/dom';
 
@@ -69,3 +48,24 @@
         }
     };
 </script>
+
+<template>
+    <div :class="containerClass" :data-p-theme="$appState.theme">
+        <!--<AppNews />-->
+        <AppTopBar @menubutton-click="onMenuButtonClick" />
+        <Transition name="px-modal">
+            <div v-if="sidebarActive" class="layout-mask" @click="onMaskClick"></div>
+        </Transition>
+        <div class="layout-content">
+            <app-menu :active="sidebarActive" />
+            <div class="layout-content-slot">
+                <slot></slot>
+            </div>
+        </div>
+        <AppFooter />
+        <Toast />
+        <Toast position="top-left" group="tl" />
+        <Toast position="bottom-left" group="bl" />
+        <Toast position="bottom-right" group="br" />
+    </div>
+</template>

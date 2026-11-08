@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            TreeTable has exclusive integration with ContextMenu using the <i>contextMenu</i> event to open a menu on right click along with <i>contextMenuSelection</i> property and <i>row-contextmenu</i> event to control the selection via the menu.
-        </p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
-            <TreeTable v-model:contextMenuSelection="selectedNode" :value="nodes" contextMenu @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -170,3 +151,22 @@ const filterNodes = (nodeList, keyToRemove) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            TreeTable has exclusive integration with ContextMenu using the <i>contextMenu</i> event to open a menu on right click along with <i>contextMenuSelection</i> property and <i>row-contextmenu</i> event to control the selection via the menu.
+        </p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <ContextMenu ref="cm" :model="menuModel" @hide="selectedNode = null" />
+            <TreeTable v-model:contextMenuSelection="selectedNode" :value="nodes" contextMenu @row-contextmenu="onRowContextMenu" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

@@ -1,30 +1,3 @@
-<template>
-    <Portal>
-        <div ref="container" :class="cx('root')" :style="sx('root', true, { position })" :data-p="dataP" v-bind="ptmi('root')">
-            <transition-group name="p-toast-message" tag="div" @enter="onEnter" @leave="onLeave" v-bind="{ ...ptm('transition') }">
-                <ToastMessage
-                    v-for="msg of messages"
-                    :key="msg.id"
-                    :message="msg"
-                    :templates="$slots"
-                    :closeIcon="closeIcon"
-                    :infoIcon="infoIcon"
-                    :warnIcon="warnIcon"
-                    :errorIcon="errorIcon"
-                    :successIcon="successIcon"
-                    :closeButtonProps="closeButtonProps"
-                    :onMouseEnter="onMouseEnter"
-                    :onMouseLeave="onMouseLeave"
-                    :onClick="onClick"
-                    :unstyled="unstyled"
-                    @close="remove($event)"
-                    :pt="pt"
-                />
-            </transition-group>
-        </div>
-    </Portal>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
@@ -229,3 +202,30 @@
         }
     };
 </script>
+
+<template>
+    <Portal>
+        <div ref="container" :class="cx('root')" :style="sx('root', true, { position })" :data-p="dataP" v-bind="ptmi('root')">
+            <transition-group name="p-toast-message" tag="div" @enter="onEnter" @leave="onLeave" v-bind="{ ...ptm('transition') }">
+                <ToastMessage
+                    v-for="msg of messages"
+                    :key="msg.id"
+                    :message="msg"
+                    :templates="$slots"
+                    :closeIcon="closeIcon"
+                    :infoIcon="infoIcon"
+                    :warnIcon="warnIcon"
+                    :errorIcon="errorIcon"
+                    :successIcon="successIcon"
+                    :closeButtonProps="closeButtonProps"
+                    :onMouseEnter="onMouseEnter"
+                    :onMouseLeave="onMouseLeave"
+                    :onClick="onClick"
+                    :unstyled="unstyled"
+                    @close="remove($event)"
+                    :pt="pt"
+                />
+            </transition-group>
+        </div>
+    </Portal>
+</template>

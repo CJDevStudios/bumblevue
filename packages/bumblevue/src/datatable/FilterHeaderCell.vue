@@ -1,54 +1,3 @@
-<template>
-    <th
-        v-if="!columnProp('hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp('field'))"
-        :style="getFilterColumnHeaderStyle"
-        :class="getFilterColumnHeaderClass"
-        v-bind="{ ...getColumnPT('root'), ...getColumnPT('headerCell') }"
-        :data-p-frozen-column="columnProp('frozen')"
-    >
-        <DTHeaderCheckbox v-if="columnProp('selectionMode') === 'multiple'" :checked="allRowsSelected" :disabled="empty" @change="$emit('checkbox-change', $event)" :column="column" :unstyled="unstyled" :pt="pt" />
-        <DTColumnFilter
-            v-if="column.children && column.children.filter"
-            :field="columnProp('filterField') || columnProp('field')"
-            :type="columnProp('dataType')"
-            display="row"
-            :showMenu="columnProp('showFilterMenu')"
-            :filterElement="column.children && column.children.filter"
-            :filterHeaderTemplate="column.children && column.children.filterheader"
-            :filterFooterTemplate="column.children && column.children.filterfooter"
-            :filterClearTemplate="column.children && column.children.filterclear"
-            :filterApplyTemplate="column.children && column.children.filterapply"
-            :filterIconTemplate="column.children && column.children.filtericon"
-            :filterAddIconTemplate="column.children && column.children.filteraddicon"
-            :filterRemoveIconTemplate="column.children && column.children.filterremoveicon"
-            :filterClearIconTemplate="column.children && column.children.filterclearicon"
-            :filters="filters"
-            :filtersStore="filtersStore"
-            :filterInputProps="filterInputProps"
-            :filterButtonProps="filterButtonProps"
-            @filter-change="$emit('filter-change', $event)"
-            @filter-apply="$emit('filter-apply')"
-            :filterMenuStyle="columnProp('filterMenuStyle')"
-            :filterMenuClass="columnProp('filterMenuClass')"
-            :showOperator="columnProp('showFilterOperator')"
-            :showClearButton="columnProp('showClearButton')"
-            :showApplyButton="columnProp('showApplyButton')"
-            :showMatchModes="columnProp('showFilterMatchModes')"
-            :showAddButton="columnProp('showAddButton')"
-            :matchModeOptions="columnProp('filterMatchModeOptions')"
-            :maxConstraints="columnProp('maxConstraints')"
-            @operator-change="$emit('operator-change', $event)"
-            @matchmode-change="$emit('matchmode-change', $event)"
-            @constraint-add="$emit('constraint-add', $event)"
-            @constraint-remove="$emit('constraint-remove', $event)"
-            @apply-click="$emit('apply-click', $event)"
-            :column="column"
-            :unstyled="unstyled"
-            :pt="pt"
-        />
-    </th>
-</template>
-
 <script>
     import { getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -187,3 +136,54 @@
         }
     };
 </script>
+
+<template>
+    <th
+        v-if="!columnProp('hidden') && (rowGroupMode !== 'subheader' || groupRowsBy !== columnProp('field'))"
+        :style="getFilterColumnHeaderStyle"
+        :class="getFilterColumnHeaderClass"
+        v-bind="{ ...getColumnPT('root'), ...getColumnPT('headerCell') }"
+        :data-p-frozen-column="columnProp('frozen')"
+    >
+        <DTHeaderCheckbox v-if="columnProp('selectionMode') === 'multiple'" :checked="allRowsSelected" :disabled="empty" @change="$emit('checkbox-change', $event)" :column="column" :unstyled="unstyled" :pt="pt" />
+        <DTColumnFilter
+            v-if="column.children && column.children.filter"
+            :field="columnProp('filterField') || columnProp('field')"
+            :type="columnProp('dataType')"
+            display="row"
+            :showMenu="columnProp('showFilterMenu')"
+            :filterElement="column.children && column.children.filter"
+            :filterHeaderTemplate="column.children && column.children.filterheader"
+            :filterFooterTemplate="column.children && column.children.filterfooter"
+            :filterClearTemplate="column.children && column.children.filterclear"
+            :filterApplyTemplate="column.children && column.children.filterapply"
+            :filterIconTemplate="column.children && column.children.filtericon"
+            :filterAddIconTemplate="column.children && column.children.filteraddicon"
+            :filterRemoveIconTemplate="column.children && column.children.filterremoveicon"
+            :filterClearIconTemplate="column.children && column.children.filterclearicon"
+            :filters="filters"
+            :filtersStore="filtersStore"
+            :filterInputProps="filterInputProps"
+            :filterButtonProps="filterButtonProps"
+            @filter-change="$emit('filter-change', $event)"
+            @filter-apply="$emit('filter-apply')"
+            :filterMenuStyle="columnProp('filterMenuStyle')"
+            :filterMenuClass="columnProp('filterMenuClass')"
+            :showOperator="columnProp('showFilterOperator')"
+            :showClearButton="columnProp('showClearButton')"
+            :showApplyButton="columnProp('showApplyButton')"
+            :showMatchModes="columnProp('showFilterMatchModes')"
+            :showAddButton="columnProp('showAddButton')"
+            :matchModeOptions="columnProp('filterMatchModeOptions')"
+            :maxConstraints="columnProp('maxConstraints')"
+            @operator-change="$emit('operator-change', $event)"
+            @matchmode-change="$emit('matchmode-change', $event)"
+            @constraint-add="$emit('constraint-add', $event)"
+            @constraint-remove="$emit('constraint-remove', $event)"
+            @apply-click="$emit('apply-click', $event)"
+            :column="column"
+            :unstyled="unstyled"
+            :pt="pt"
+        />
+    </th>
+</template>

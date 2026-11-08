@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A slideshow implementation is defined by adding <i>circular</i> and <i>autoPlay</i> properties.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px" :circular="true" :autoPlay="true" :transitionInterval="2000">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
-                </template>
-                <template #thumbnail="slotProps">
-                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
-                </template>
-            </Galleria>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['PhotoService']" />
-</template>
-
 <script>
     import { PhotoService } from '@/service/PhotoService';
 
@@ -102,3 +83,22 @@ const responsiveOptions = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A slideshow implementation is defined by adding <i>circular</i> and <i>autoPlay</i> properties.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <Galleria :value="images" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px" :circular="true" :autoPlay="true" :transitionInterval="2000">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block" />
+                </template>
+                <template #thumbnail="slotProps">
+                    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block" />
+                </template>
+            </Galleria>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['PhotoService']" />
+</template>

@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Overlay mode is enabled by adding <i>popup</i> property and calling <i>toggle</i> function of the menu ref with an event of the target.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button type="button" label="Toggle" @click="toggle" aria-haspopup="true" aria-controls="overlay_tmenu" />
-        <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -184,3 +173,14 @@ const toggle = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Overlay mode is enabled by adding <i>popup</i> property and calling <i>toggle</i> function of the menu ref with an event of the target.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button type="button" label="Toggle" @click="toggle" aria-haspopup="true" aria-controls="overlay_tmenu" />
+        <TieredMenu ref="menu" id="overlay_tmenu" :model="items" popup />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

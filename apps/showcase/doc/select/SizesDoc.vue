@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Select provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <Select v-model="value1" :options="cities" optionLabel="name" size="small" placeholder="Small" class="w-full md:w-56" />
-        <Select v-model="value2" :options="cities" optionLabel="name" placeholder="Normal" class="w-full md:w-56" />
-        <Select v-model="value3" :options="cities" optionLabel="name" size="large" placeholder="Large" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -59,3 +47,15 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Select provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <Select v-model="value1" :options="cities" optionLabel="name" size="small" placeholder="Small" class="w-full md:w-56" />
+        <Select v-model="value2" :options="cities" optionLabel="name" placeholder="Normal" class="w-full md:w-56" />
+        <Select v-model="value3" :options="cities" optionLabel="name" size="large" placeholder="Large" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

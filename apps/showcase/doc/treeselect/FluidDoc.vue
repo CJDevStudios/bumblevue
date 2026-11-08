@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
-    </DocSectionText>
-    <div class="card">
-        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" fluid />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
     import { NodeService } from '/service/NodeService';
 
@@ -74,3 +64,13 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
+    </DocSectionText>
+    <div class="card">
+        <TreeSelect v-model="selectedValue" :options="nodes" placeholder="Select Item" fluid />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

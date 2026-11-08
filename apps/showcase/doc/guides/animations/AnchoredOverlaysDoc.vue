@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Anchored overlays are the components that have a floating ui positioned relatively to another element such as Select, Popover. The enter and leave animations are defined with the <i>.p-anchored-overlay-enter-active</i> and
-            <i>.p-anchored-overlay-leave-active</i>
-            classes.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select" class="w-full md:w-56" pt:overlay:class="demo-select-overlay" />
-    </div>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz format="css" />
-</template>
-
 <script>
     export default {
         data() {
@@ -53,6 +39,20 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Anchored overlays are the components that have a floating ui positioned relatively to another element such as Select, Popover. The enter and leave animations are defined with the <i>.p-anchored-overlay-enter-active</i> and
+            <i>.p-anchored-overlay-leave-active</i>
+            classes.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select" class="w-full md:w-56" pt:overlay:class="demo-select-overlay" />
+    </div>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz format="css" />
+</template>
 
 <style>
     .demo-select-overlay.p-anchored-overlay-enter-active {

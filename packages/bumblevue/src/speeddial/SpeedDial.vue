@@ -1,71 +1,3 @@
-<template>
-    <div :ref="containerRef" :class="containerClass" :style="[style, sx('root')]" v-bind="ptmi('root')">
-        <slot name="button" :visible="d_visible" :toggleCallback="onClick">
-            <Button
-                :class="[cx('pcButton'), buttonClass]"
-                :disabled="disabled"
-                :aria-expanded="d_visible"
-                :aria-haspopup="true"
-                :aria-controls="d_visible ? $id + '_list' : undefined"
-                :aria-label="ariaLabel"
-                :aria-labelledby="ariaLabelledby"
-                :unstyled="unstyled"
-                @click="onClick($event)"
-                @keydown="onTogglerKeydown"
-                v-bind="buttonProps"
-                :pt="ptm('pcButton')"
-            >
-                <template #icon="slotProps">
-                    <slot name="icon" :visible="d_visible">
-                        <component v-if="d_visible && !!hideIcon" :is="hideIcon ? 'span' : 'PlusIcon'" :class="[hideIcon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="icon" />
-                        <component v-else :is="showIcon ? 'span' : 'PlusIcon'" :class="[d_visible && !!hideIcon ? hideIcon : showIcon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="icon" />
-                    </slot>
-                </template>
-            </Button>
-        </slot>
-        <ul :ref="listRef" :id="$id + '_list'" :class="cx('list')" :style="sx('list')" role="menu" tabindex="-1" @focus="onFocus" @blur="onBlur" @keydown="onKeyDown" v-bind="ptm('list')">
-            <template v-for="(item, index) of model" :key="index">
-                <li
-                    v-if="isItemVisible(item)"
-                    :id="`${$id}_${index}`"
-                    :class="cx('item', { id: `${$id}_${index}`, item })"
-                    :style="getItemStyle(index)"
-                    role="none"
-                    :aria-disabled="isItemDisabled(item)"
-                    :data-p-active="isItemActive(`${$id}_${index}`)"
-                    :data-p-disabled="isItemDisabled(item) || false"
-                    v-bind="getPTOptions(`${$id}_${index}`, 'item')"
-                >
-                    <template v-if="!$slots.item">
-                        <Button
-                            v-tooltip:[tooltipOptions]="{ value: item.label, disabled: !tooltipOptions }"
-                            :tabindex="-1"
-                            role="menuitem"
-                            :class="cx('pcAction', { item })"
-                            :aria-label="item.label"
-                            :disabled="disabled || isItemDisabled(item)"
-                            :unstyled="unstyled"
-                            @click="onItemClick($event, item)"
-                            v-bind="actionButtonProps"
-                            :pt="getPTOptions(`${$id}_${index}`, 'pcAction')"
-                        >
-                            <template v-if="item.icon" #icon="slotProps">
-                                <slot name="itemicon" :item="item" :class="slotProps.class">
-                                    <span :class="[item.icon, slotProps.class]" v-bind="getPTOptions(`${$id}_${index}`, 'actionIcon')"></span>
-                                </slot>
-                            </template>
-                        </Button>
-                    </template>
-                    <component v-else :is="$slots.item" :item="item" :onClick="(event) => onItemClick(event, item)" :toggleCallback="(event) => onItemClick(event, item)"></component>
-                </li>
-            </template>
-        </ul>
-    </div>
-    <Transition name="p-overlay-mask">
-        <div v-if="mask && d_visible" :class="[cx('mask'), maskClass]" :style="maskStyle" v-bind="ptm('mask')"></div>
-    </Transition>
-</template>
-
 <script>
     import { $dt } from '@cjdevstudios/bumblevue/styled';
     import { find, findSingle, focus } from '@cjdevstudios/bumblevue/utils/dom';
@@ -555,3 +487,71 @@
         }
     };
 </script>
+
+<template>
+    <div :ref="containerRef" :class="containerClass" :style="[style, sx('root')]" v-bind="ptmi('root')">
+        <slot name="button" :visible="d_visible" :toggleCallback="onClick">
+            <Button
+                :class="[cx('pcButton'), buttonClass]"
+                :disabled="disabled"
+                :aria-expanded="d_visible"
+                :aria-haspopup="true"
+                :aria-controls="d_visible ? $id + '_list' : undefined"
+                :aria-label="ariaLabel"
+                :aria-labelledby="ariaLabelledby"
+                :unstyled="unstyled"
+                @click="onClick($event)"
+                @keydown="onTogglerKeydown"
+                v-bind="buttonProps"
+                :pt="ptm('pcButton')"
+            >
+                <template #icon="slotProps">
+                    <slot name="icon" :visible="d_visible">
+                        <component v-if="d_visible && !!hideIcon" :is="hideIcon ? 'span' : 'PlusIcon'" :class="[hideIcon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="icon" />
+                        <component v-else :is="showIcon ? 'span' : 'PlusIcon'" :class="[d_visible && !!hideIcon ? hideIcon : showIcon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="icon" />
+                    </slot>
+                </template>
+            </Button>
+        </slot>
+        <ul :ref="listRef" :id="$id + '_list'" :class="cx('list')" :style="sx('list')" role="menu" tabindex="-1" @focus="onFocus" @blur="onBlur" @keydown="onKeyDown" v-bind="ptm('list')">
+            <template v-for="(item, index) of model" :key="index">
+                <li
+                    v-if="isItemVisible(item)"
+                    :id="`${$id}_${index}`"
+                    :class="cx('item', { id: `${$id}_${index}`, item })"
+                    :style="getItemStyle(index)"
+                    role="none"
+                    :aria-disabled="isItemDisabled(item)"
+                    :data-p-active="isItemActive(`${$id}_${index}`)"
+                    :data-p-disabled="isItemDisabled(item) || false"
+                    v-bind="getPTOptions(`${$id}_${index}`, 'item')"
+                >
+                    <template v-if="!$slots.item">
+                        <Button
+                            v-tooltip:[tooltipOptions]="{ value: item.label, disabled: !tooltipOptions }"
+                            :tabindex="-1"
+                            role="menuitem"
+                            :class="cx('pcAction', { item })"
+                            :aria-label="item.label"
+                            :disabled="disabled || isItemDisabled(item)"
+                            :unstyled="unstyled"
+                            @click="onItemClick($event, item)"
+                            v-bind="actionButtonProps"
+                            :pt="getPTOptions(`${$id}_${index}`, 'pcAction')"
+                        >
+                            <template v-if="item.icon" #icon="slotProps">
+                                <slot name="itemicon" :item="item" :class="slotProps.class">
+                                    <span :class="[item.icon, slotProps.class]" v-bind="getPTOptions(`${$id}_${index}`, 'actionIcon')"></span>
+                                </slot>
+                            </template>
+                        </Button>
+                    </template>
+                    <component v-else :is="$slots.item" :item="item" :onClick="(event) => onItemClick(event, item)" :toggleCallback="(event) => onItemClick(event, item)"></component>
+                </li>
+            </template>
+        </ul>
+    </div>
+    <Transition name="p-overlay-mask">
+        <div v-if="mask && d_visible" :class="[cx('mask'), maskClass]" :style="maskStyle" v-bind="ptm('mask')"></div>
+    </Transition>
+</template>

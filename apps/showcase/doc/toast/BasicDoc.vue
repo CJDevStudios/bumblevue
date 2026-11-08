@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Ideal location of a Toast is the main application template so that it can be used by any component within the application. A single message is represented by the Message interface that defines properties such as severity, summary and
-            detail.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Button label="Show" @click="show()" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -47,3 +34,16 @@ const show = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Ideal location of a Toast is the main application template so that it can be used by any component within the application. A single message is represented by the Message interface that defines properties such as severity, summary and
+            detail.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Button label="Show" @click="show()" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

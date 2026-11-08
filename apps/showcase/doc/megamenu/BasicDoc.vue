@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>MegaMenu requires a collection of menuitems as its <i>model</i>.</p>
-    </DocSectionText>
-    <div class="card lg:px-20">
-        <MegaMenu :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -225,3 +215,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>MegaMenu requires a collection of menuitems as its <i>model</i>.</p>
+    </DocSectionText>
+    <div class="card lg:px-20">
+        <MegaMenu :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

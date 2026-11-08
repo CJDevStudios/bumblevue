@@ -1,33 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <template v-for="i in length" :key="i">
-            <slot :events="getTemplateEvents(i - 1)" :attrs="getTemplateAttrs(i - 1)" :index="i">
-                <OtpInputText
-                    :value="tokens[i - 1]"
-                    :type="inputType"
-                    :class="cx('pcInputText')"
-                    :name="$formName ? $formName + '_' + (i - 1) : undefined"
-                    :inputmode="inputMode"
-                    :variant="variant"
-                    :readonly="readonly"
-                    :disabled="disabled"
-                    :size="size"
-                    :invalid="invalid"
-                    :tabindex="tabindex"
-                    :unstyled="unstyled"
-                    @input="onInput($event, i - 1)"
-                    @focus="onFocus($event)"
-                    @blur="onBlur($event)"
-                    @paste="onPaste($event)"
-                    @keydown="onKeyDown($event)"
-                    @click="onClick($event)"
-                    :pt="ptm('pcInputText')"
-                />
-            </slot>
-        </template>
-    </div>
-</template>
-
 <script>
     import { isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
@@ -236,3 +206,33 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <template v-for="i in length" :key="i">
+            <slot :events="getTemplateEvents(i - 1)" :attrs="getTemplateAttrs(i - 1)" :index="i">
+                <OtpInputText
+                    :value="tokens[i - 1]"
+                    :type="inputType"
+                    :class="cx('pcInputText')"
+                    :name="$formName ? $formName + '_' + (i - 1) : undefined"
+                    :inputmode="inputMode"
+                    :variant="variant"
+                    :readonly="readonly"
+                    :disabled="disabled"
+                    :size="size"
+                    :invalid="invalid"
+                    :tabindex="tabindex"
+                    :unstyled="unstyled"
+                    @input="onInput($event, i - 1)"
+                    @focus="onFocus($event)"
+                    @blur="onBlur($event)"
+                    @paste="onPaste($event)"
+                    @keydown="onKeyDown($event)"
+                    @click="onClick($event)"
+                    :pt="ptm('pcInputText')"
+                />
+            </slot>
+        </template>
+    </div>
+</template>

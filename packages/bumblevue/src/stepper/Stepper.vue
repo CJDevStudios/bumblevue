@@ -1,11 +1,3 @@
-<template>
-    <div :class="cx('root')" role="tablist" v-bind="ptmi('root')">
-        <slot v-if="$slots.start" name="start" />
-        <slot />
-        <slot v-if="$slots.end" name="end" />
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import StepperStyle from '@cjdevstudios/bumblevue/stepper/style';
@@ -59,3 +51,11 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" role="tablist" v-bind="ptmi('root')">
+        <slot v-if="$slots.start" name="start" />
+        <slot />
+        <slot v-if="$slots.end" name="end" />
+    </div>
+</template>

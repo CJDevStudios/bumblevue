@@ -1,9 +1,3 @@
-<template>
-    <FormField class="flex flex-col gap-2">
-        <slot />
-    </FormField>
-</template>
-
 <script setup>
     import { provide } from 'vue';
 
@@ -23,3 +17,9 @@
         name: props.name
     });
 </script>
+
+<template>
+    <FormField class="flex flex-col gap-2">
+        <slot />
+    </FormField>
+</template>

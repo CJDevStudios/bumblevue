@@ -1,12 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>emits</i> object defines callbacks to handle events emitted by the component within the Dialog.</p>
-
-        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
-        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
     export default {
         data() {
@@ -52,3 +43,12 @@ function saveButtonClick() {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>emits</i> object defines callbacks to handle events emitted by the component within the Dialog.</p>
+
+        <DocSectionCode :code="code1" importCode hideToggleCode hideStackBlitz />
+        <DocSectionCode :code="code2" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

@@ -1,31 +1,3 @@
-<template>
-    <nav :id="id" :class="cx('root')" v-bind="ptmi('root')">
-        <ol ref="list" :class="cx('list')" v-bind="ptm('list')">
-            <template v-for="(item, index) of model" :key="label(item) + '_' + index.toString()">
-                <li
-                    v-if="visible(item)"
-                    :class="[cx('item', { item, index }), item.class]"
-                    :style="item.style"
-                    :aria-current="isActive(index) ? 'step' : undefined"
-                    @click="onItemClick($event, item, index)"
-                    @keydown="onItemKeydown($event, item, index)"
-                    v-bind="getPTOptions('item', item, index)"
-                    :data-p-active="isActive(index)"
-                    :data-p-disabled="isItemDisabled(item, index)"
-                >
-                    <template v-if="!$slots.item">
-                        <span :class="cx('itemLink')" v-bind="getPTOptions('itemLink', item, index)">
-                            <span :class="cx('itemNumber')" v-bind="getPTOptions('itemNumber', item, index)">{{ index + 1 }}</span>
-                            <span :class="cx('itemLabel')" v-bind="getPTOptions('itemLabel', item, index)">{{ label(item) }}</span>
-                        </span>
-                    </template>
-                    <component v-else :is="$slots.item" :item="item" :index="index" :active="index === d_activeStep" :label="label(item)" :props="getMenuItemProps(item, index)"></component>
-                </li>
-            </template>
-        </ol>
-    </nav>
-</template>
-
 <script>
     import { findSingle, find } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -241,3 +213,31 @@
         }
     };
 </script>
+
+<template>
+    <nav :id="id" :class="cx('root')" v-bind="ptmi('root')">
+        <ol ref="list" :class="cx('list')" v-bind="ptm('list')">
+            <template v-for="(item, index) of model" :key="label(item) + '_' + index.toString()">
+                <li
+                    v-if="visible(item)"
+                    :class="[cx('item', { item, index }), item.class]"
+                    :style="item.style"
+                    :aria-current="isActive(index) ? 'step' : undefined"
+                    @click="onItemClick($event, item, index)"
+                    @keydown="onItemKeydown($event, item, index)"
+                    v-bind="getPTOptions('item', item, index)"
+                    :data-p-active="isActive(index)"
+                    :data-p-disabled="isItemDisabled(item, index)"
+                >
+                    <template v-if="!$slots.item">
+                        <span :class="cx('itemLink')" v-bind="getPTOptions('itemLink', item, index)">
+                            <span :class="cx('itemNumber')" v-bind="getPTOptions('itemNumber', item, index)">{{ index + 1 }}</span>
+                            <span :class="cx('itemLabel')" v-bind="getPTOptions('itemLabel', item, index)">{{ label(item) }}</span>
+                        </span>
+                    </template>
+                    <component v-else :is="$slots.item" :item="item" :index="index" :active="index === d_activeStep" :label="label(item)" :props="getMenuItemProps(item, index)"></component>
+                </li>
+            </template>
+        </ol>
+    </nav>
+</template>

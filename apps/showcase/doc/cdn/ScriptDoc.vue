@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            You can use BumbleVue and Vue.js from a CDN with a script tag. This approach does not involve any build step, and is suitable for enhancing static HTML. This guide uses
-            <a href="https://www.unpkg.com/" rel="noopener noreferrer">unpkg</a> however other providers such as <a href="https://www.jsdelivr.com" target="_blank" rel="noopener noreferrer">jsdeliver</a> and
-            <a href="https://cdnjs.com" target="_blank" rel="noopener noreferrer">cdnjs</a> can also be used.
-        </p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -24,3 +13,14 @@ https://unpkg.com/@cjdevstudios/bumblevue/umd/themes/aura.min.js  // see theming
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            You can use BumbleVue and Vue.js from a CDN with a script tag. This approach does not involve any build step, and is suitable for enhancing static HTML. This guide uses
+            <a href="https://www.unpkg.com/" rel="noopener noreferrer">unpkg</a> however other providers such as <a href="https://www.jsdelivr.com" target="_blank" rel="noopener noreferrer">jsdeliver</a> and
+            <a href="https://cdnjs.com" target="_blank" rel="noopener noreferrer">cdnjs</a> can also be used.
+        </p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

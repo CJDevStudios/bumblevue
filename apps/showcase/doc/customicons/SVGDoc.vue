@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Inline SVGs are embedded inside the dom.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -26,3 +19,10 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Inline SVGs are embedded inside the dom.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

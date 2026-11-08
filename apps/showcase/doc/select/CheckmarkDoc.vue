@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>An alternative way to highlight the selected option is displaying a checkmark instead.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" checkmark :highlightOnSelect="false" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +39,13 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>An alternative way to highlight the selected option is displaying a checkmark instead.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" checkmark :highlightOnSelect="false" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,3 +1,20 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<span id="rememberme">Remember Me</span>
+<ToggleButton aria-labelledby="rememberme" />
+
+<ToggleButton aria-label="Remember Me" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -33,20 +50,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<span id="rememberme">Remember Me</span>
-<ToggleButton aria-labelledby="rememberme" />
-
-<ToggleButton aria-label="Remember Me" />
-`
-                }
-            };
-        }
-    };
-</script>

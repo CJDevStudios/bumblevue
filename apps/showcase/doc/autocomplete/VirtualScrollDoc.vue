@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Virtual Scrolling is a performant way to render large lists. Configuration of the scroll behavior is defined with <i>virtualScrollerOptions</i> that requires <i>itemSize</i> as the mandatory value to set the height of an item. Visit
-            <BumbleVueNuxtLink to="/virtualscroller">VirtualScroller</BumbleVueNuxtLink> documentation for more information about the configuration API.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <AutoComplete v-model="selectedItem" :suggestions="filteredItems" @complete="searchItems" :virtualScrollerOptions="{ itemSize: 38 }" optionLabel="label" dropdown />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -75,3 +62,16 @@ const searchItems = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Virtual Scrolling is a performant way to render large lists. Configuration of the scroll behavior is defined with <i>virtualScrollerOptions</i> that requires <i>itemSize</i> as the mandatory value to set the height of an item. Visit
+            <BumbleVueNuxtLink to="/virtualscroller">VirtualScroller</BumbleVueNuxtLink> documentation for more information about the configuration API.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <AutoComplete v-model="selectedItem" :suggestions="filteredItems" @complete="searchItems" :virtualScrollerOptions="{ itemSize: 38 }" optionLabel="label" dropdown />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

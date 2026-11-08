@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Layout of the MeterGroup is configured with the <i>orientation</i> property that accepts either <i>horizontal</i> or <i>vertical</i> as available options.</p>
-    </DocSectionText>
-    <div class="card flex justify-center" style="height: 360px">
-        <MeterGroup :value="value" orientation="vertical" labelOrientation="vertical" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +35,13 @@ const value = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Layout of the MeterGroup is configured with the <i>orientation</i> property that accepts either <i>horizontal</i> or <i>vertical</i> as available options.</p>
+    </DocSectionText>
+    <div class="card flex justify-center" style="height: 360px">
+        <MeterGroup :value="value" orientation="vertical" labelOrientation="vertical" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

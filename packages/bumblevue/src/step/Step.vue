@@ -1,16 +1,3 @@
-<template>
-    <component v-if="!asChild" :is="as" :class="cx('root')" :aria-current="active ? 'step' : undefined" role="presentation" :data-p-active="active" :data-p-disabled="isStepDisabled" :data-p="dataP" v-bind="getPTOptions('root')">
-        <button :id="id" :class="cx('header')" role="tab" type="button" :tabindex="isStepDisabled ? -1 : undefined" :aria-controls="ariaControls" :disabled="isStepDisabled" @click="onStepClick" :data-p="dataP" v-bind="getPTOptions('header')">
-            <span :class="cx('number')" :data-p="dataP" v-bind="getPTOptions('number')">{{ activeValue }}</span>
-            <span :class="cx('title')" :data-p="dataP" v-bind="getPTOptions('title')">
-                <slot />
-            </span>
-        </button>
-        <StepperSeparator v-if="isSeparatorVisible" :data-p="dataP" />
-    </component>
-    <slot v-else :class="cx('root')" :active="active" :value="value" :a11yAttrs="a11yAttrs" :activateCallback="onStepClick" />
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
@@ -142,3 +129,16 @@
         }
     };
 </script>
+
+<template>
+    <component v-if="!asChild" :is="as" :class="cx('root')" :aria-current="active ? 'step' : undefined" role="presentation" :data-p-active="active" :data-p-disabled="isStepDisabled" :data-p="dataP" v-bind="getPTOptions('root')">
+        <button :id="id" :class="cx('header')" role="tab" type="button" :tabindex="isStepDisabled ? -1 : undefined" :aria-controls="ariaControls" :disabled="isStepDisabled" @click="onStepClick" :data-p="dataP" v-bind="getPTOptions('header')">
+            <span :class="cx('number')" :data-p="dataP" v-bind="getPTOptions('number')">{{ activeValue }}</span>
+            <span :class="cx('title')" :data-p="dataP" v-bind="getPTOptions('title')">
+                <slot />
+            </span>
+        </button>
+        <StepperSeparator v-if="isSeparatorVisible" :data-p="dataP" />
+    </component>
+    <slot v-else :class="cx('root')" :active="active" :value="value" :a11yAttrs="a11yAttrs" :activateCallback="onStepClick" />
+</template>

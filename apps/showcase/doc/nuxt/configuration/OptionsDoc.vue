@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Main configuration settings of BumbleVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -38,3 +31,10 @@ export default defineNuxtConfig({
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Main configuration settings of BumbleVue, refer to the <BumbleVueNuxtLink to="/configuration">configuration</BumbleVueNuxtLink> documentation for details.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+</template>

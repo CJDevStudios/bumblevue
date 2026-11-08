@@ -1,21 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>InputText is used with the <i>v-model</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-64">
-            <div class="flex flex-col gap-1">
-                <Password name="password" placeholder="Password" :feedback="false" fluid />
-                <template v-if="$form.password?.invalid">
-                    <Message v-for="(error, index) of $form.password.errors" :key="index" severity="error" size="small" variant="simple">{{ error.message }}</Message>
-                </template>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -117,3 +99,21 @@ const onFormSubmit = ({ valid }) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>InputText is used with the <i>v-model</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-64">
+            <div class="flex flex-col gap-1">
+                <Password name="password" placeholder="Password" :feedback="false" fluid />
+                <template v-if="$form.password?.invalid">
+                    <Message v-for="(error, index) of $form.password.errors" :key="index" severity="error" size="small" variant="simple">{{ error.message }}</Message>
+                </template>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

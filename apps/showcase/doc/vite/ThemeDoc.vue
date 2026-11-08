@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Configure BumbleVue to use a theme like Aura.</p>
-        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
-    </DocSectionText>
-</template>
-
 <script>
     export default {
         data() {
@@ -27,3 +20,10 @@ app.use(BumbleVue, {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Configure BumbleVue to use a theme like Aura.</p>
+        <DocSectionCode :code="code" importCode hideToggleCode hideStackBlitz />
+    </DocSectionText>
+</template>

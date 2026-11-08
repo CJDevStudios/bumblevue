@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ToggleSwitch integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-48">
-            <div class="flex flex-col items-center gap-2">
-                <ToggleSwitch name="activation" />
-                <Message v-if="$form.activation?.invalid" severity="error" size="small" variant="simple">{{ $form.activation.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -81,3 +65,19 @@ const resolver = ref(zodResolver(
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ToggleSwitch integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-48">
+            <div class="flex flex-col items-center gap-2">
+                <ToggleSwitch name="activation" />
+                <Message v-if="$form.activation?.invalid" severity="error" size="small" variant="simple">{{ $form.activation.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

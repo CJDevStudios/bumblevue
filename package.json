@@ -44,6 +44,8 @@
         "security:check": "pnpm audit --prod --audit-level high",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
+        "lint:list-errored-rules": "eslint . --quiet --format json | jq -r '.[] | select(.errorCount > 0) | .messages[] | select(.severity == 2) | .ruleId' | sort -u",
+        "lint:errors": "eslint --quiet . --fix",
         "format": "prettier --write \"**/*.{js,mjs,jsx,ts,tsx,json,md,vue}\"",
         "format:check": "prettier --check \"**/*.{js,mjs,jsx,ts,tsx,json,md,vue}\"",
         "test:unit": "pnpm --filter primevue test:unit"

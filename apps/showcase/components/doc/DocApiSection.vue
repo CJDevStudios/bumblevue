@@ -1,14 +1,3 @@
-<template>
-    <div class="doc-main">
-        <div class="doc-intro">
-            <h1>{{ header }} API</h1>
-            <p>{{ description }}</p>
-        </div>
-        <DocSections :docs="docs" />
-    </div>
-    <DocSectionNav :docs="docs" />
-</template>
-
 <script>
     import APIDocs from '@/doc/common/apidoc/index.json';
     import DocApiTable from './DocApiTable.vue';
@@ -355,3 +344,14 @@
         }
     };
 </script>
+
+<template>
+    <div class="doc-main">
+        <div class="doc-intro">
+            <h1>{{ header }} API</h1>
+            <p>{{ description }}</p>
+        </div>
+        <DocSections :docs="docs" />
+    </div>
+    <DocSectionNav :docs="docs" />
+</template>

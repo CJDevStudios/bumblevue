@@ -1,20 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <OrganizationChartNode
-            :node="value"
-            :templates="$slots"
-            @node-toggle="onNodeToggle"
-            :collapsedKeys="d_collapsedKeys"
-            :collapsible="collapsible"
-            @node-click="onNodeClick"
-            :selectionMode="selectionMode"
-            :selectionKeys="selectionKeys"
-            :pt="pt"
-            :unstyled="unstyled"
-        />
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import OrganizationChartStyle from '@cjdevstudios/bumblevue/organizationchart/style';
@@ -106,3 +89,20 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <OrganizationChartNode
+            :node="value"
+            :templates="$slots"
+            @node-toggle="onNodeToggle"
+            :collapsedKeys="d_collapsedKeys"
+            :collapsible="collapsible"
+            @node-click="onNodeClick"
+            :selectionMode="selectionMode"
+            :selectionKeys="selectionKeys"
+            :pt="pt"
+            :unstyled="unstyled"
+        />
+    </div>
+</template>

@@ -1,27 +1,3 @@
-<template>
-    <div :class="cx('root')" role="group" :aria-labelledby="ariaLabelledby" v-bind="ptmi('root')" :data-p="dataP">
-        <template v-for="(option, index) of options" :key="getOptionRenderKey(option)">
-            <ToggleButton
-                :modelValue="isSelected(option)"
-                :onLabel="getOptionLabel(option)"
-                :offLabel="getOptionLabel(option)"
-                :disabled="disabled || isOptionDisabled(option)"
-                :unstyled="unstyled"
-                :size="size"
-                :readonly="isOptionReadonly(option)"
-                @change="onOptionSelect($event, option, index)"
-                :pt="ptm('pcToggleButton')"
-            >
-                <template v-if="$slots.option" #default>
-                    <slot name="option" :option="option" :index="index">
-                        <span v-bind="ptm('pcToggleButton')['label']">{{ getOptionLabel(option) }}</span>
-                    </slot>
-                </template>
-            </ToggleButton>
-        </template>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { equals, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -152,3 +128,27 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" role="group" :aria-labelledby="ariaLabelledby" v-bind="ptmi('root')" :data-p="dataP">
+        <template v-for="(option, index) of options" :key="getOptionRenderKey(option)">
+            <ToggleButton
+                :modelValue="isSelected(option)"
+                :onLabel="getOptionLabel(option)"
+                :offLabel="getOptionLabel(option)"
+                :disabled="disabled || isOptionDisabled(option)"
+                :unstyled="unstyled"
+                :size="size"
+                :readonly="isOptionReadonly(option)"
+                @change="onOptionSelect($event, option, index)"
+                :pt="ptm('pcToggleButton')"
+            >
+                <template v-if="$slots.option" #default>
+                    <slot name="option" :option="option" :index="index">
+                        <span v-bind="ptm('pcToggleButton')['label']">{{ getOptionLabel(option) }}</span>
+                    </slot>
+                </template>
+            </ToggleButton>
+        </template>
+    </div>
+</template>

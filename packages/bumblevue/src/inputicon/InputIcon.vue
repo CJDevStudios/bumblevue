@@ -1,9 +1,3 @@
-<template>
-    <span :class="containerClass" v-bind="ptmi('root')" aria-hidden="true">
-        <slot />
-    </span>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import InputIconStyle from '@cjdevstudios/bumblevue/inputicon/style';
@@ -29,3 +23,9 @@
         }
     };
 </script>
+
+<template>
+    <span :class="containerClass" v-bind="ptmi('root')" aria-hidden="true">
+        <slot />
+    </span>
+</template>

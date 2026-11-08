@@ -1,8 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs" />
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -16,3 +11,8 @@ import OrganizationChart from '@cjdevstudios/bumblevue/organizationchart';
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs" />
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

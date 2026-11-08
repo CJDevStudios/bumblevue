@@ -1,3 +1,23 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<label for="date1">Date</label>
+<DatePicker inputId="date1" />
+
+<span id="date2">Date</span>
+<DatePicker aria-labelledby="date2" />
+
+<DatePicker aria-label="Date" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -189,23 +209,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<label for="date1">Date</label>
-<DatePicker inputId="date1" />
-
-<span id="date2">Date</span>
-<DatePicker aria-labelledby="date2" />
-
-<DatePicker aria-label="Date" />
-`
-                }
-            };
-        }
-    };
-</script>

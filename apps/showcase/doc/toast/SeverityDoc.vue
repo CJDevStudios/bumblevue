@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>severity</i> option specifies the type of the message.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <div class="flex flex-wrap gap-2">
-            <Button label="Success" severity="success" @click="showSuccess" />
-            <Button label="Info" severity="info" @click="showInfo" />
-            <Button label="Warn" severity="warn" @click="showWarn" />
-            <Button label="Error" severity="danger" @click="showError" />
-            <Button label="Secondary" severity="secondary" @click="showSecondary" />
-            <Button label="Contrast" severity="contrast" @click="showContrast" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -98,3 +81,20 @@ const showContrast = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>severity</i> option specifies the type of the message.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <div class="flex flex-wrap gap-2">
+            <Button label="Success" severity="success" @click="showSuccess" />
+            <Button label="Info" severity="info" @click="showInfo" />
+            <Button label="Warn" severity="warn" @click="showWarn" />
+            <Button label="Error" severity="danger" @click="showError" />
+            <Button label="Secondary" severity="secondary" @click="showSecondary" />
+            <Button label="Contrast" severity="contrast" @click="showContrast" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

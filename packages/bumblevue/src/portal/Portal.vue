@@ -1,14 +1,3 @@
-<template>
-    <template v-if="inline">
-        <slot></slot>
-    </template>
-    <template v-else-if="mounted">
-        <Teleport :to="appendTo">
-            <slot></slot>
-        </Teleport>
-    </template>
-</template>
-
 <script>
     import { isClient } from '@cjdevstudios/bumblevue/utils/dom';
 
@@ -39,3 +28,14 @@
         }
     };
 </script>
+
+<template>
+    <template v-if="inline">
+        <slot></slot>
+    </template>
+    <template v-else-if="mounted">
+        <Teleport :to="appendTo">
+            <slot></slot>
+        </Teleport>
+    </template>
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Menubar :model="items" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -66,3 +60,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Menubar :model="items" />
+    </DocPTViewer>
+</template>

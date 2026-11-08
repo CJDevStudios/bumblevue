@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>loading</i> property enables a loading mask overlay on the TreeTable to indicate data is being processed.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" :loading="true" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -91,3 +75,19 @@ const nodes = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>loading</i> property enables a loading mask overlay on the TreeTable to indicate data is being processed.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" :loading="true" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

@@ -1,24 +1,3 @@
-<template>
-    <ol :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
-        <li v-for="(item, index) of value" :key="getKey(item, index)" :class="cx('event')" v-bind="getPTOptions('event', index)" :data-p="dataP">
-            <div :class="cx('eventOpposite', { index })" v-bind="getPTOptions('eventOpposite', index)" :data-p="dataP">
-                <slot name="opposite" :item="item" :index="index"></slot>
-            </div>
-            <div :class="cx('eventSeparator')" v-bind="getPTOptions('eventSeparator', index)" :data-p="dataP">
-                <slot name="marker" :item="item" :index="index">
-                    <div :class="cx('eventMarker')" v-bind="getPTOptions('eventMarker', index)" :data-p="dataP"></div>
-                </slot>
-                <slot v-if="index !== value.length - 1" name="connector" :item="item" :index="index">
-                    <div :class="cx('eventConnector')" v-bind="getPTOptions('eventConnector', index)" :data-p="dataP"></div>
-                </slot>
-            </div>
-            <div :class="cx('eventContent')" v-bind="getPTOptions('eventContent', index)" :data-p="dataP">
-                <slot name="content" :item="item" :index="index"></slot>
-            </div>
-        </li>
-    </ol>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -71,3 +50,24 @@
         }
     };
 </script>
+
+<template>
+    <ol :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
+        <li v-for="(item, index) of value" :key="getKey(item, index)" :class="cx('event')" v-bind="getPTOptions('event', index)" :data-p="dataP">
+            <div :class="cx('eventOpposite', { index })" v-bind="getPTOptions('eventOpposite', index)" :data-p="dataP">
+                <slot name="opposite" :item="item" :index="index"></slot>
+            </div>
+            <div :class="cx('eventSeparator')" v-bind="getPTOptions('eventSeparator', index)" :data-p="dataP">
+                <slot name="marker" :item="item" :index="index">
+                    <div :class="cx('eventMarker')" v-bind="getPTOptions('eventMarker', index)" :data-p="dataP"></div>
+                </slot>
+                <slot v-if="index !== value.length - 1" name="connector" :item="item" :index="index">
+                    <div :class="cx('eventConnector')" v-bind="getPTOptions('eventConnector', index)" :data-p="dataP"></div>
+                </slot>
+            </div>
+            <div :class="cx('eventContent')" v-bind="getPTOptions('eventContent', index)" :data-p="dataP">
+                <slot name="content" :item="item" :index="index"></slot>
+            </div>
+        </li>
+    </ol>
+</template>

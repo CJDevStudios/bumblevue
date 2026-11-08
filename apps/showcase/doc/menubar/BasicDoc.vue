@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Menubar requires a collection of menuitems as its <i>model</i>.</p>
-    </DocSectionText>
-    <div class="card">
-        <Menubar :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -125,3 +115,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Menubar requires a collection of menuitems as its <i>model</i>.</p>
+    </DocSectionText>
+    <div class="card">
+        <Menubar :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

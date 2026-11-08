@@ -1,23 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>type</i> property of an OrganizationChartNode is used to map a template to a node. If it is undefined, the default template is used.</p>
-    </DocSectionText>
-    <div class="card overflow-x-auto">
-        <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="single">
-            <template #country="slotProps">
-                <div class="flex flex-col items-center">
-                    <img :alt="slotProps.node.label" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`w-2rem flag flag-${slotProps.node.data}`" />
-                    <div class="mt-4 font-medium text-lg">{{ slotProps.node.label }}</div>
-                </div>
-            </template>
-            <template #default="slotProps">
-                <span>{{ slotProps.node.data.label }}</span>
-            </template>
-        </OrganizationChart>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -161,3 +141,23 @@ const data = ref({
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>type</i> property of an OrganizationChartNode is used to map a template to a node. If it is undefined, the default template is used.</p>
+    </DocSectionText>
+    <div class="card overflow-x-auto">
+        <OrganizationChart v-model:selectionKeys="selection" :value="data" collapsible selectionMode="single">
+            <template #country="slotProps">
+                <div class="flex flex-col items-center">
+                    <img :alt="slotProps.node.label" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`w-2rem flag flag-${slotProps.node.data}`" />
+                    <div class="mt-4 font-medium text-lg">{{ slotProps.node.label }}</div>
+                </div>
+            </template>
+            <template #default="slotProps">
+                <span>{{ slotProps.node.data.label }}</span>
+            </template>
+        </OrganizationChart>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

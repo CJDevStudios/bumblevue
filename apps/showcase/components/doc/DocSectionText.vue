@@ -1,14 +1,3 @@
-<template>
-    <component :is="headerTag" class="doc-section-label">
-        {{ $attrs.label }}
-        <Tag v-if="$attrs.badge" :value="$attrs.badge?.value ?? $attrs.badge" class="doc-section-label-badge" :severity="$attrs.badge?.severity || 'info'"></Tag>
-        <NuxtLink :id="$attrs.id" :to="`${checkRouteName}/#${$attrs.id}`" target="_self" @click="onClick"> # </NuxtLink>
-    </component>
-    <div v-if="$attrs" class="doc-section-description">
-        <slot></slot>
-    </div>
-</template>
-
 <script>
     export default {
         inheritAttrs: false,
@@ -46,3 +35,14 @@
         }
     };
 </script>
+
+<template>
+    <component :is="headerTag" class="doc-section-label">
+        {{ $attrs.label }}
+        <Tag v-if="$attrs.badge" :value="$attrs.badge?.value ?? $attrs.badge" class="doc-section-label-badge" :severity="$attrs.badge?.severity || 'info'"></Tag>
+        <NuxtLink :id="$attrs.id" :to="`${checkRouteName}/#${$attrs.id}`" target="_self" @click="onClick"> # </NuxtLink>
+    </component>
+    <div v-if="$attrs" class="doc-section-description">
+        <slot></slot>
+    </div>
+</template>

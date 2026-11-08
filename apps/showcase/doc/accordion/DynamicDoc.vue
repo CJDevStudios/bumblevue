@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>AccordionPanel can be generated dynamically using the standard <i>v-for</i> directive.</p>
-    </DocSectionText>
-    <div class="card">
-        <Accordion value="0">
-            <AccordionPanel v-for="tab in tabs" :key="tab.title" :value="tab.value">
-                <AccordionHeader>{{ tab.title }}</AccordionHeader>
-                <AccordionContent>
-                    <p class="m-0">{{ tab.content }}</p>
-                </AccordionContent>
-            </AccordionPanel>
-        </Accordion>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -64,3 +47,20 @@ const tabs = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>AccordionPanel can be generated dynamically using the standard <i>v-for</i> directive.</p>
+    </DocSectionText>
+    <div class="card">
+        <Accordion value="0">
+            <AccordionPanel v-for="tab in tabs" :key="tab.title" :value="tab.value">
+                <AccordionHeader>{{ tab.title }}</AccordionHeader>
+                <AccordionContent>
+                    <p class="m-0">{{ tab.content }}</p>
+                </AccordionContent>
+            </AccordionPanel>
+        </Accordion>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

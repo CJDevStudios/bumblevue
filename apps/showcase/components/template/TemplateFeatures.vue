@@ -1,3 +1,18 @@
+<script>
+    export default {
+        props: {
+            featuresData: {
+                type: null,
+                default: null
+            },
+            displayType: {
+                type: null,
+                default: null
+            }
+        }
+    };
+</script>
+
 <template>
     <div class="template-features">
         <div v-if="displayType === 'vertical'" class="px-6 py-6 sm:px-10 sm:py-10 lg:py-20 rounded-3xl bg-surface-0 dark:bg-surface-900">
@@ -39,18 +54,3 @@
         </div>
     </div>
 </template>
-
-<script>
-    export default {
-        props: {
-            featuresData: {
-                type: null,
-                default: null
-            },
-            displayType: {
-                type: null,
-                default: null
-            }
-        }
-    };
-</script>

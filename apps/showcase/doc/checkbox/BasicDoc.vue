@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Binary checkbox is used with the <i>v-model</i> for two-way value binding and the <i>binary</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Checkbox v-model="checked" binary />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const checked = ref(false);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Binary checkbox is used with the <i>v-model</i> for two-way value binding and the <i>binary</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Checkbox v-model="checked" binary />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

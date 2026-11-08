@@ -1,24 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <CascadeSelect v-model="selectedCity1" :invalid="!selectedCity1" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-full sm:w-56" placeholder="Select a City" />
-        <CascadeSelect
-            v-model="selectedCity2"
-            :invalid="!selectedCity2"
-            :options="countries"
-            optionLabel="cname"
-            optionGroupLabel="name"
-            :optionGroupChildren="['states', 'cities']"
-            class="w-full sm:w-56"
-            placeholder="Select a City"
-            variant="filled"
-        />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -204,3 +183,24 @@ const countries = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center gap-4">
+        <CascadeSelect v-model="selectedCity1" :invalid="!selectedCity1" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-full sm:w-56" placeholder="Select a City" />
+        <CascadeSelect
+            v-model="selectedCity2"
+            :invalid="!selectedCity2"
+            :options="countries"
+            optionLabel="cname"
+            optionGroupLabel="name"
+            :optionGroupChildren="['states', 'cities']"
+            class="w-full sm:w-56"
+            placeholder="Select a City"
+            variant="filled"
+        />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

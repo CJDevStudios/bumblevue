@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Bars can be stacked on top of each other when <i>stacked</i> option of a scale is enabled.</p>
-    </DocSectionText>
-    <div class="card">
-        <Chart type="bar" :data="chartData" :options="chartOptions" class="h-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -201,3 +191,13 @@ const setChartOptions = () =>  {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Bars can be stacked on top of each other when <i>stacked</i> option of a scale is enabled.</p>
+    </DocSectionText>
+    <div class="card">
+        <Chart type="bar" :data="chartData" :options="chartOptions" class="h-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

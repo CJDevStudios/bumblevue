@@ -1,3 +1,21 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                visible: true,
+                docs: [
+                    {
+                        data: getPTOptions('Dialog'),
+                        key: 'Dialog'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Dialog v-model:visible="visible" appendTo="#doc-ptviewer" header="Edit Profile" maximizable pt:mask="!relative" :draggable="false" class="my-auto!" :style="{ width: '25rem' }">
@@ -19,21 +37,3 @@
         </Dialog>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                visible: true,
-                docs: [
-                    {
-                        data: getPTOptions('Dialog'),
-                        key: 'Dialog'
-                    }
-                ]
-            };
-        }
-    };
-</script>

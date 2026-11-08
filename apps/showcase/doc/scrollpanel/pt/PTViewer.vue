@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('ScrollPanel'),
+                        key: 'ScrollPanel'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <ScrollPanel style="width: 100%; height: 200px" pt:bary="!visible opacity-100!">
@@ -20,20 +37,3 @@
         </ScrollPanel>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                docs: [
-                    {
-                        data: getPTOptions('ScrollPanel'),
-                        key: 'ScrollPanel'
-                    }
-                ]
-            };
-        }
-    };
-</script>

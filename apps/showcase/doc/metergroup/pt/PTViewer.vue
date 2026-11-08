@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <MeterGroup :value="value" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -26,3 +20,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <MeterGroup :value="value" />
+    </DocPTViewer>
+</template>

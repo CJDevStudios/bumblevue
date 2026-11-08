@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>SelectButton allows selecting only one item by default and setting <i>multiple</i> option enables choosing more than one item. In multiple case, model property should be an array.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SelectButton v-model="value" :options="options" optionLabel="name" multiple aria-labelledby="multiple" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +35,13 @@ const options = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>SelectButton allows selecting only one item by default and setting <i>multiple</i> option enables choosing more than one item. In multiple case, model property should be an array.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SelectButton v-model="value" :options="options" optionLabel="name" multiple aria-labelledby="multiple" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

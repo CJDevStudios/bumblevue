@@ -1,7 +1,3 @@
-<template>
-    <span :class="cx('separator')" v-bind="ptmo($pcStepper.pt, 'separator')" />
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
 
@@ -14,3 +10,7 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('separator')" v-bind="ptmo($pcStepper.pt, 'separator')" />
+</template>

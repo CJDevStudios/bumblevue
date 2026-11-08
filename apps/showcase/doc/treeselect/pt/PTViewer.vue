@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <TreeSelect v-model="selectedValue" :options="nodes" selectionMode="checkbox" showClear placeholder="Select Item" class="md:w-80 w-full" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
     import { NodeService } from '/service/NodeService';
@@ -26,3 +20,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <TreeSelect v-model="selectedValue" :options="nodes" selectionMode="checkbox" showClear placeholder="Select Item" class="md:w-80 w-full" />
+    </DocPTViewer>
+</template>

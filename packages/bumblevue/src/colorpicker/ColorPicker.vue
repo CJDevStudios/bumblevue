@@ -1,25 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" v-bind="ptmi('root')">
-        <input v-if="!inline" ref="input" :id="inputId" type="text" :class="cx('preview')" readonly :tabindex="tabindex" :disabled="disabled" @click="onInputClick" @keydown="onInputKeydown" @blur="onInputBlur" v-bind="ptm('preview')" />
-        <Portal :appendTo="appendTo" :disabled="inline">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div v-if="inline ? true : overlayVisible" :ref="pickerRef" :class="[cx('panel'), panelClass, overlayClass]" @click="onOverlayClick" v-bind="{ ...ptm('panel'), ...ptm('overlay') }">
-                    <div :class="cx('content')" v-bind="ptm('content')">
-                        <div :ref="colorSelectorRef" :class="cx('colorSelector')" @mousedown="onColorMousedown($event)" @touchstart="onColorDragStart($event)" @touchmove="onDrag($event)" @touchend="onDragEnd()" v-bind="ptm('colorSelector')">
-                            <div :class="cx('colorBackground')" v-bind="ptm('colorBackground')">
-                                <div :ref="colorHandleRef" :class="cx('colorHandle')" v-bind="ptm('colorHandle')"></div>
-                            </div>
-                        </div>
-                        <div :ref="hueViewRef" :class="cx('hue')" @mousedown="onHueMousedown($event)" @touchstart="onHueDragStart($event)" @touchmove="onDrag($event)" @touchend="onDragEnd()" v-bind="ptm('hue')">
-                            <div :ref="hueHandleRef" :class="cx('hueHandle')" v-bind="ptm('hueHandle')"></div>
-                        </div>
-                    </div>
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { absolutePosition, addClass, isTouchDevice, relativePosition, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
@@ -627,3 +605,25 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" v-bind="ptmi('root')">
+        <input v-if="!inline" ref="input" :id="inputId" type="text" :class="cx('preview')" readonly :tabindex="tabindex" :disabled="disabled" @click="onInputClick" @keydown="onInputKeydown" @blur="onInputBlur" v-bind="ptm('preview')" />
+        <Portal :appendTo="appendTo" :disabled="inline">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div v-if="inline ? true : overlayVisible" :ref="pickerRef" :class="[cx('panel'), panelClass, overlayClass]" @click="onOverlayClick" v-bind="{ ...ptm('panel'), ...ptm('overlay') }">
+                    <div :class="cx('content')" v-bind="ptm('content')">
+                        <div :ref="colorSelectorRef" :class="cx('colorSelector')" @mousedown="onColorMousedown($event)" @touchstart="onColorDragStart($event)" @touchmove="onDrag($event)" @touchend="onDragEnd()" v-bind="ptm('colorSelector')">
+                            <div :class="cx('colorBackground')" v-bind="ptm('colorBackground')">
+                                <div :ref="colorHandleRef" :class="cx('colorHandle')" v-bind="ptm('colorHandle')"></div>
+                            </div>
+                        </div>
+                        <div :ref="hueViewRef" :class="cx('hue')" @mousedown="onHueMousedown($event)" @touchstart="onHueDragStart($event)" @touchmove="onDrag($event)" @touchend="onDragEnd()" v-bind="ptm('hue')">
+                            <div :ref="hueHandleRef" :class="cx('hueHandle')" v-bind="ptm('hueHandle')"></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

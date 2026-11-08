@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Custom content can be placed inside the items using the <i>item</i> template. The divider between the items has its own <i>separator</i> template.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Breadcrumb :home="home" :model="items">
-            <template #item="{ item }">
-                <a class="cursor-pointer" :href="item.url">
-                    <span :class="item.icon"></span>
-                </a>
-            </template>
-            <template #separator> / </template>
-        </Breadcrumb>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -58,3 +41,20 @@ const items = ref([{ icon: 'pi pi-sitemap' }, { icon: 'pi pi-book' }, { icon: 'p
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Custom content can be placed inside the items using the <i>item</i> template. The divider between the items has its own <i>separator</i> template.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Breadcrumb :home="home" :model="items">
+            <template #item="{ item }">
+                <a class="cursor-pointer" :href="item.url">
+                    <span :class="item.icon"></span>
+                </a>
+            </template>
+            <template #separator> / </template>
+        </Breadcrumb>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,3 +1,30 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                members: [
+                    { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
+                    { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
+                    { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
+                ],
+                docs: [
+                    {
+                        data: getPTOptions('Popover'),
+                        key: 'Popover'
+                    }
+                ]
+            };
+        },
+        methods: {
+            toggle(event) {
+                this.$refs.op.show(event);
+            }
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <Button ref="btn" type="button" icon="pi pi-share-alt" label="Share" @click="toggle" />
@@ -39,30 +66,3 @@
         </Popover>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                members: [
-                    { name: 'Amy Elsner', image: 'amyelsner.png', email: 'amy@email.com', role: 'Owner' },
-                    { name: 'Bernardo Dominic', image: 'bernardodominic.png', email: 'bernardo@email.com', role: 'Editor' },
-                    { name: 'Ioni Bowcher', image: 'ionibowcher.png', email: 'ioni@email.com', role: 'Viewer' }
-                ],
-                docs: [
-                    {
-                        data: getPTOptions('Popover'),
-                        key: 'Popover'
-                    }
-                ]
-            };
-        },
-        methods: {
-            toggle(event) {
-                this.$refs.op.show(event);
-            }
-        }
-    };
-</script>

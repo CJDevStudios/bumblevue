@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Event to display the tooltip is defined as a modifier, default event is hover.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center gap-2">
-        <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -28,3 +18,13 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Event to display the tooltip is defined as a modifier, default event is hover.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center gap-2">
+        <InputText v-tooltip.focus.top="'Enter your username'" type="text" placeholder="Focus" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

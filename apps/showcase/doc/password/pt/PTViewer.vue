@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Password v-model="value" toggleMask />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Password v-model="value" toggleMask />
+    </DocPTViewer>
+</template>

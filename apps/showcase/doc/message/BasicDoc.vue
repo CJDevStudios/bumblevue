@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Message component requires a content to display.</p>
-    </DocSectionText>
-    <div class="card">
-        <Message>Message Content</Message>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -31,3 +21,13 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Message component requires a content to display.</p>
+    </DocSectionText>
+    <div class="card">
+        <Message>Message Content</Message>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

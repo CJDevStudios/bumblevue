@@ -1,37 +1,3 @@
-<template>
-    <div :class="cx('root')" :data-p-resizing="false" :data-p="dataP" v-bind="ptmi('root', getPTOptions)">
-        <template v-for="(panel, i) of panels" :key="i">
-            <component :is="panel" tabindex="-1"></component>
-            <div
-                v-if="i !== panels.length - 1"
-                ref="gutter"
-                :class="cx('gutter')"
-                tabindex="-1"
-                @mousedown="onGutterMouseDown($event, i)"
-                @touchstart="onGutterTouchStart($event, i)"
-                @touchmove="onGutterTouchMove($event, i)"
-                @touchend="onGutterTouchEnd($event, i)"
-                :data-p-gutter-resizing="false"
-                :data-p="dataP"
-                v-bind="ptm('gutter')"
-            >
-                <div
-                    :class="cx('gutterHandle')"
-                    role="separator"
-                    tabindex="0"
-                    :style="[gutterStyle]"
-                    :aria-orientation="layout"
-                    :aria-valuenow="prevSize"
-                    @keyup="onGutterKeyUp"
-                    @keydown="onGutterKeyDown($event, i)"
-                    :data-p="dataP"
-                    v-bind="ptm('gutterHandle')"
-                ></div>
-            </div>
-        </template>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { getHeight, getOuterHeight, getOuterWidth, getWidth, isRTL } from '@cjdevstudios/bumblevue/utils/dom';
@@ -480,3 +446,37 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :data-p-resizing="false" :data-p="dataP" v-bind="ptmi('root', getPTOptions)">
+        <template v-for="(panel, i) of panels" :key="i">
+            <component :is="panel" tabindex="-1"></component>
+            <div
+                v-if="i !== panels.length - 1"
+                ref="gutter"
+                :class="cx('gutter')"
+                tabindex="-1"
+                @mousedown="onGutterMouseDown($event, i)"
+                @touchstart="onGutterTouchStart($event, i)"
+                @touchmove="onGutterTouchMove($event, i)"
+                @touchend="onGutterTouchEnd($event, i)"
+                :data-p-gutter-resizing="false"
+                :data-p="dataP"
+                v-bind="ptm('gutter')"
+            >
+                <div
+                    :class="cx('gutterHandle')"
+                    role="separator"
+                    tabindex="0"
+                    :style="[gutterStyle]"
+                    :aria-orientation="layout"
+                    :aria-valuenow="prevSize"
+                    @keyup="onGutterKeyUp"
+                    @keydown="onGutterKeyDown($event, i)"
+                    :data-p="dataP"
+                    v-bind="ptm('gutterHandle')"
+                ></div>
+            </div>
+        </template>
+    </div>
+</template>

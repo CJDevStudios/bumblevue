@@ -1,39 +1,3 @@
-<template>
-    <Portal :appendTo="appendTo">
-        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
-            <div v-if="visible" :ref="containerRef" :class="cx('root')" v-bind="ptmi('root')">
-                <ContextMenuSub
-                    :ref="listRef"
-                    :id="$id + '_list'"
-                    :class="cx('rootList')"
-                    role="menubar"
-                    :root="true"
-                    :tabindex="tabindex"
-                    aria-orientation="vertical"
-                    :aria-activedescendant="focused ? focusedItemIdx : undefined"
-                    :menuId="$id"
-                    :focusedItemId="focused ? focusedItemIdx : undefined"
-                    :items="processedItems"
-                    :templates="$slots"
-                    :activeItemPath="activeItemPath"
-                    :aria-labelledby="ariaLabelledby"
-                    :aria-label="ariaLabel"
-                    :level="0"
-                    :visible="submenuVisible"
-                    :pt="pt"
-                    :unstyled="unstyled"
-                    @focus="onFocus"
-                    @blur="onBlur"
-                    @keydown="onKeyDown"
-                    @item-click="onItemClick"
-                    @item-mouseenter="onItemMouseEnter"
-                    @item-mousemove="onItemMouseMove"
-                />
-            </div>
-        </transition>
-    </Portal>
-</template>
-
 <script>
     import { addStyle, findSingle, focus, getHiddenElementOuterHeight, getHiddenElementOuterWidth, getViewport, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
     import { findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, resolve } from '@cjdevstudios/bumblevue/utils/object';
@@ -673,3 +637,39 @@
         }
     };
 </script>
+
+<template>
+    <Portal :appendTo="appendTo">
+        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
+            <div v-if="visible" :ref="containerRef" :class="cx('root')" v-bind="ptmi('root')">
+                <ContextMenuSub
+                    :ref="listRef"
+                    :id="$id + '_list'"
+                    :class="cx('rootList')"
+                    role="menubar"
+                    :root="true"
+                    :tabindex="tabindex"
+                    aria-orientation="vertical"
+                    :aria-activedescendant="focused ? focusedItemIdx : undefined"
+                    :menuId="$id"
+                    :focusedItemId="focused ? focusedItemIdx : undefined"
+                    :items="processedItems"
+                    :templates="$slots"
+                    :activeItemPath="activeItemPath"
+                    :aria-labelledby="ariaLabelledby"
+                    :aria-label="ariaLabel"
+                    :level="0"
+                    :visible="submenuVisible"
+                    :pt="pt"
+                    :unstyled="unstyled"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @keydown="onKeyDown"
+                    @item-click="onItemClick"
+                    @item-mouseenter="onItemMouseEnter"
+                    @item-mousemove="onItemMouseMove"
+                />
+            </div>
+        </transition>
+    </Portal>
+</template>

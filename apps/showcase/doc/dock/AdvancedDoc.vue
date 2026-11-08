@@ -1,50 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A mock desktop UI implemented with various components in addition to Dock.</p>
-    </DocSectionText>
-    <div class="card dock-demo">
-        <Toast position="top-center" group="tc" />
-        <Menubar :model="menubarItems">
-            <template #start>
-                <i class="pi pi-apple px-2"></i>
-            </template>
-            <template #end>
-                <i class="pi pi-video px-2" />
-                <i class="pi pi-wifi px-2" />
-                <i class="pi pi-volume-up px-2" />
-                <span class="px-2">Fri 13:07</span>
-                <i class="pi pi-search px-2" />
-                <i class="pi pi-bars px-2" />
-            </template>
-        </Menubar>
-
-        <div class="dock-window dock-advanced">
-            <Dock :model="items">
-                <template #item="{ item }">
-                    <a v-tooltip.top="item.label" href="#" class="p-dock-item-link" @click="onDockItemClick($event, item)">
-                        <img :alt="item.label" :src="item.icon" style="width: 100%" />
-                    </a>
-                </template>
-            </Dock>
-
-            <Dialog v-model:visible="displayTerminal" header="Terminal" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
-                <Terminal welcomeMessage="Welcome to BumbleVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
-            </Dialog>
-
-            <Dialog v-model:visible="displayFinder" header="Finder" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
-                <Tree :value="nodes" />
-            </Dialog>
-
-            <Galleria v-model:visible="displayPhotos" :value="images" :responsiveOptions="responsiveOptions" :numVisible="2" containerStyle="width: 400px" :circular="true" :fullScreen="true" :showThumbnails="false" :showItemNavigators="true">
-                <template #item="slotProps">
-                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
-                </template>
-            </Galleria>
-        </div>
-    </div>
-    <DocSectionCode :code="code" :service="['PhotoService', 'NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
     import { PhotoService } from '@/service/PhotoService';
@@ -605,6 +558,53 @@ const commandHandler = (text) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A mock desktop UI implemented with various components in addition to Dock.</p>
+    </DocSectionText>
+    <div class="card dock-demo">
+        <Toast position="top-center" group="tc" />
+        <Menubar :model="menubarItems">
+            <template #start>
+                <i class="pi pi-apple px-2"></i>
+            </template>
+            <template #end>
+                <i class="pi pi-video px-2" />
+                <i class="pi pi-wifi px-2" />
+                <i class="pi pi-volume-up px-2" />
+                <span class="px-2">Fri 13:07</span>
+                <i class="pi pi-search px-2" />
+                <i class="pi pi-bars px-2" />
+            </template>
+        </Menubar>
+
+        <div class="dock-window dock-advanced">
+            <Dock :model="items">
+                <template #item="{ item }">
+                    <a v-tooltip.top="item.label" href="#" class="p-dock-item-link" @click="onDockItemClick($event, item)">
+                        <img :alt="item.label" :src="item.icon" style="width: 100%" />
+                    </a>
+                </template>
+            </Dock>
+
+            <Dialog v-model:visible="displayTerminal" header="Terminal" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
+                <Terminal welcomeMessage="Welcome to BumbleVue(cmd: 'date', 'greet {0}' and 'random')" prompt="primevue $" />
+            </Dialog>
+
+            <Dialog v-model:visible="displayFinder" header="Finder" :breakpoints="{ '960px': '50vw' }" :style="{ width: '40vw' }" :maximizable="true">
+                <Tree :value="nodes" />
+            </Dialog>
+
+            <Galleria v-model:visible="displayPhotos" :value="images" :responsiveOptions="responsiveOptions" :numVisible="2" containerStyle="width: 400px" :circular="true" :fullScreen="true" :showThumbnails="false" :showItemNavigators="true">
+                <template #item="slotProps">
+                    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
+                </template>
+            </Galleria>
+        </div>
+    </div>
+    <DocSectionCode :code="code" :service="['PhotoService', 'NodeService']" />
+</template>
 
 <style scoped>
     .dock-demo > .dock-window {

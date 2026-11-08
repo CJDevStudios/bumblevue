@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the Select.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Select v-model="selectedCity" :options="cities" showClear optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +39,13 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the Select.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Select v-model="selectedCity" :options="cities" showClear optionLabel="name" placeholder="Select a City" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

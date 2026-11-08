@@ -1,31 +1,3 @@
-<template>
-    <button
-        v-ripple
-        type="button"
-        :class="cx('root')"
-        :tabindex="tabindex"
-        :disabled="disabled"
-        :aria-pressed="d_value"
-        @click="onChange"
-        @blur="onBlur"
-        v-bind="getPTOptions('root')"
-        :aria-label="ariaLabel"
-        :aria-labelledby="ariaLabelledby"
-        :data-p-checked="active"
-        :data-p-disabled="disabled"
-        :data-p="dataP"
-    >
-        <span :class="cx('content')" v-bind="getPTOptions('content')" :data-p="dataP">
-            <slot>
-                <slot name="icon" :value="d_value" :class="cx('icon')">
-                    <span v-if="onIcon || offIcon" :class="[cx('icon'), d_value ? onIcon : offIcon]" v-bind="getPTOptions('icon')" />
-                </slot>
-                <span :class="cx('label')" v-bind="getPTOptions('label')">{{ label }}</span>
-            </slot>
-        </span>
-    </button>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
@@ -125,3 +97,31 @@
         }
     };
 </script>
+
+<template>
+    <button
+        v-ripple
+        type="button"
+        :class="cx('root')"
+        :tabindex="tabindex"
+        :disabled="disabled"
+        :aria-pressed="d_value"
+        @click="onChange"
+        @blur="onBlur"
+        v-bind="getPTOptions('root')"
+        :aria-label="ariaLabel"
+        :aria-labelledby="ariaLabelledby"
+        :data-p-checked="active"
+        :data-p-disabled="disabled"
+        :data-p="dataP"
+    >
+        <span :class="cx('content')" v-bind="getPTOptions('content')" :data-p="dataP">
+            <slot>
+                <slot name="icon" :value="d_value" :class="cx('icon')">
+                    <span v-if="onIcon || offIcon" :class="[cx('icon'), d_value ? onIcon : offIcon]" v-bind="getPTOptions('icon')" />
+                </slot>
+                <span :class="cx('label')" v-bind="getPTOptions('label')">{{ label }}</span>
+            </slot>
+        </span>
+    </button>
+</template>

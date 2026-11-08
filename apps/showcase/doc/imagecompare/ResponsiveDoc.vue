@@ -1,20 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Apply responsive styles to the container element to optimize display per screen size.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ImageCompare class="sm:w-96! shadow-lg rounded-2xl">
-            <template #left>
-                <img src="https://primefaces.org/cdn/primevue/images/compare/island1.jpg" />
-            </template>
-            <template #right>
-                <img src="https://primefaces.org/cdn/primevue/images/compare/island2.jpg" />
-            </template>
-        </ImageCompare>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +32,20 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Apply responsive styles to the container element to optimize display per screen size.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ImageCompare class="sm:w-96! shadow-lg rounded-2xl">
+            <template #left>
+                <img src="https://primefaces.org/cdn/primevue/images/compare/island1.jpg" />
+            </template>
+            <template #right>
+                <img src="https://primefaces.org/cdn/primevue/images/compare/island2.jpg" />
+            </template>
+        </ImageCompare>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

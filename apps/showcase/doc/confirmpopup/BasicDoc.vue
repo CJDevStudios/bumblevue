@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ConfirmPopup is displayed by calling the <i>require</i> method of the <i>$confirm</i> instance by passing the options to customize the Popup. The <i>target</i> attribute is mandatory to align the popup to its referrer.</p>
-    </DocSectionText>
-    <ConfirmPopup></ConfirmPopup>
-    <div class="card flex flex-wrap gap-2 justify-center">
-        <Button @click="confirm1($event)" label="Save" variant="outlined"></Button>
-        <Button @click="confirm2($event)" label="Delete" severity="danger" variant="outlined"></Button>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -133,3 +121,15 @@ const confirm2 = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ConfirmPopup is displayed by calling the <i>require</i> method of the <i>$confirm</i> instance by passing the options to customize the Popup. The <i>target</i> attribute is mandatory to align the popup to its referrer.</p>
+    </DocSectionText>
+    <ConfirmPopup></ConfirmPopup>
+    <div class="card flex flex-wrap gap-2 justify-center">
+        <Button @click="confirm1($event)" label="Save" variant="outlined"></Button>
+        <Button @click="confirm2($event)" label="Delete" severity="danger" variant="outlined"></Button>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,14 +1,3 @@
-<template>
-    <div :class="cx('root')" aria-live="polite" v-bind="ptmi('root')">
-        <div v-if="!d_active" ref="display" :class="cx('display')" :tabindex="$attrs.tabindex || '0'" role="button" @click="open" @keydown.enter="open" :data-p-disabled="disabled" v-bind="{ ...displayProps, ...ptm('display') }">
-            <slot name="display"></slot>
-        </div>
-        <div v-else :class="cx('content')" v-bind="ptm('content')">
-            <slot name="content" :closeCallback="close" />
-        </div>
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import InplaceStyle from '@cjdevstudios/bumblevue/inplace/style';
@@ -73,3 +62,14 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" aria-live="polite" v-bind="ptmi('root')">
+        <div v-if="!d_active" ref="display" :class="cx('display')" :tabindex="$attrs.tabindex || '0'" role="button" @click="open" @keydown.enter="open" :data-p-disabled="disabled" v-bind="{ ...displayProps, ...ptm('display') }">
+            <slot name="display"></slot>
+        </div>
+        <div v-else :class="cx('content')" v-bind="ptm('content')">
+            <slot name="content" :closeCallback="close" />
+        </div>
+    </div>
+</template>

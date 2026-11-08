@@ -1,7 +1,3 @@
-<template>
-    <input type="text" :class="cx('root')" :value="d_value" :name="name" :disabled="disabled" :aria-invalid="$invalid || undefined" :data-p="dataP" @input="onInput" v-bind="attrs" />
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
@@ -47,3 +43,7 @@
         }
     };
 </script>
+
+<template>
+    <input type="text" :class="cx('root')" :value="d_value" :name="name" :disabled="disabled" :aria-invalid="$invalid || undefined" :data-p="dataP" @input="onInput" v-bind="attrs" />
+</template>

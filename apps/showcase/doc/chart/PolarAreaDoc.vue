@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Chart type="polarArea" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -147,3 +137,13 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Chart type="polarArea" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

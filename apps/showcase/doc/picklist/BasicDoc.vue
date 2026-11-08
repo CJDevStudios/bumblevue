@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>PickList requires a multidimensional array as its value bound with the <i>v-model </i>directive and a template for its content that gets the <i>option</i> instance and the index via slotProps.</p>
-    </DocSectionText>
-    <div class="card">
-        <PickList v-model="products" dataKey="id" breakpoint="1400px">
-            <template #option="{ option }">
-                {{ option.name }}
-            </template>
-        </PickList>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -73,3 +59,17 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>PickList requires a multidimensional array as its value bound with the <i>v-model </i>directive and a template for its content that gets the <i>option</i> instance and the index via slotProps.</p>
+    </DocSectionText>
+    <div class="card">
+        <PickList v-model="products" dataKey="id" breakpoint="1400px">
+            <template #option="{ option }">
+                {{ option.name }}
+            </template>
+        </PickList>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
+</template>

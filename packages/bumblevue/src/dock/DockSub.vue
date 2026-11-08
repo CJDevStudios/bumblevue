@@ -1,58 +1,3 @@
-<template>
-    <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
-        <ul
-            ref="list"
-            :id="idx"
-            :class="cx('list')"
-            role="menu"
-            :aria-orientation="position === 'bottom' || position === 'top' ? 'horizontal' : 'vertical'"
-            :aria-activedescendant="focused ? focusedOptionId : undefined"
-            :tabindex="tabindex"
-            :aria-label="ariaLabel"
-            :aria-labelledby="ariaLabelledby"
-            @focus="onListFocus"
-            @blur="onListBlur"
-            @keydown="onListKeyDown"
-            @mouseleave="onListMouseLeave"
-            v-bind="ptm('list')"
-        >
-            <template v-for="(processedItem, index) of model" :key="index">
-                <li
-                    :id="getItemId(index)"
-                    :class="cx('item', { processedItem, id: getItemId(index) })"
-                    role="menuitem"
-                    :aria-label="processedItem.label"
-                    :aria-disabled="disabled(processedItem)"
-                    @click="onItemClick($event, processedItem)"
-                    @mouseenter="onItemMouseEnter(index)"
-                    v-bind="getPTOptions('item', processedItem, index)"
-                    :data-p-focused="isItemActive(getItemId(index))"
-                    :data-p-disabled="disabled(processedItem) || false"
-                >
-                    <div :class="cx('itemContent')" v-bind="getPTOptions('itemContent', processedItem, index)">
-                        <template v-if="!templates['item']">
-                            <a
-                                v-tooltip:[tooltipOptions]="{ value: processedItem.label, disabled: !tooltipOptions }"
-                                :href="processedItem.url"
-                                :class="cx('itemLink')"
-                                :target="processedItem.target"
-                                tabindex="-1"
-                                v-bind="getPTOptions('itemLink', processedItem, index)"
-                            >
-                                <template v-if="!templates['itemicon']">
-                                    <span v-ripple :class="[cx('itemIcon'), processedItem.icon]" v-bind="getPTOptions('itemIcon', processedItem, index)"></span>
-                                </template>
-                                <component v-else :is="templates['itemicon']" :item="processedItem" :class="cx('itemIcon')"></component>
-                            </a>
-                        </template>
-                        <component v-else :is="templates['item']" :item="processedItem" :index="index" :label="processedItem.label" :props="getMenuItemProps(processedItem, index)"></component>
-                    </div>
-                </li>
-            </template>
-        </ul>
-    </div>
-</template>
-
 <script>
     import { find, findSingle } from '@cjdevstudios/bumblevue/utils/dom';
     import { resolve } from '@cjdevstudios/bumblevue/utils/object';
@@ -276,3 +221,58 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
+        <ul
+            ref="list"
+            :id="idx"
+            :class="cx('list')"
+            role="menu"
+            :aria-orientation="position === 'bottom' || position === 'top' ? 'horizontal' : 'vertical'"
+            :aria-activedescendant="focused ? focusedOptionId : undefined"
+            :tabindex="tabindex"
+            :aria-label="ariaLabel"
+            :aria-labelledby="ariaLabelledby"
+            @focus="onListFocus"
+            @blur="onListBlur"
+            @keydown="onListKeyDown"
+            @mouseleave="onListMouseLeave"
+            v-bind="ptm('list')"
+        >
+            <template v-for="(processedItem, index) of model" :key="index">
+                <li
+                    :id="getItemId(index)"
+                    :class="cx('item', { processedItem, id: getItemId(index) })"
+                    role="menuitem"
+                    :aria-label="processedItem.label"
+                    :aria-disabled="disabled(processedItem)"
+                    @click="onItemClick($event, processedItem)"
+                    @mouseenter="onItemMouseEnter(index)"
+                    v-bind="getPTOptions('item', processedItem, index)"
+                    :data-p-focused="isItemActive(getItemId(index))"
+                    :data-p-disabled="disabled(processedItem) || false"
+                >
+                    <div :class="cx('itemContent')" v-bind="getPTOptions('itemContent', processedItem, index)">
+                        <template v-if="!templates['item']">
+                            <a
+                                v-tooltip:[tooltipOptions]="{ value: processedItem.label, disabled: !tooltipOptions }"
+                                :href="processedItem.url"
+                                :class="cx('itemLink')"
+                                :target="processedItem.target"
+                                tabindex="-1"
+                                v-bind="getPTOptions('itemLink', processedItem, index)"
+                            >
+                                <template v-if="!templates['itemicon']">
+                                    <span v-ripple :class="[cx('itemIcon'), processedItem.icon]" v-bind="getPTOptions('itemIcon', processedItem, index)"></span>
+                                </template>
+                                <component v-else :is="templates['itemicon']" :item="processedItem" :class="cx('itemIcon')"></component>
+                            </a>
+                        </template>
+                        <component v-else :is="templates['item']" :item="processedItem" :index="index" :label="processedItem.label" :props="getMenuItemProps(processedItem, index)"></component>
+                    </div>
+                </li>
+            </template>
+        </ul>
+    </div>
+</template>

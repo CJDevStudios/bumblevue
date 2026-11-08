@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            ZIndexes are managed automatically to make sure layering of overlay components work seamlessly when combining multiple components. Still there may be cases where you'd like to configure the configure default values such as a custom layout
-            where header section is fixed. In a case like this, dropdown needs to be displayed below the application header but a modal dialog should be displayed above. BumbleVue configuration offers the <i>zIndex</i> property to customize the
-            default values for components categories. Default values are described below and can be customized when setting up BumbleVue.
-        </p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -33,3 +22,14 @@ app.use(BumbleVue, {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            ZIndexes are managed automatically to make sure layering of overlay components work seamlessly when combining multiple components. Still there may be cases where you'd like to configure the configure default values such as a custom layout
+            where header section is fixed. In a case like this, dropdown needs to be displayed below the application header but a modal dialog should be displayed above. BumbleVue configuration offers the <i>zIndex</i> property to customize the
+            default values for components categories. Default values are described below and can be customized when setting up BumbleVue.
+        </p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

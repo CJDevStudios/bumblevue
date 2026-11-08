@@ -1,12 +1,3 @@
-<template>
-    <div v-if="!visible">
-        <div class="card">
-            <div class="deferred-demo-loading"></div>
-        </div>
-    </div>
-    <slot v-else></slot>
-</template>
-
 <script>
     export default {
         name: 'DeferredDemo',
@@ -51,6 +42,15 @@
         }
     };
 </script>
+
+<template>
+    <div v-if="!visible">
+        <div class="card">
+            <div class="deferred-demo-loading"></div>
+        </div>
+    </div>
+    <slot v-else></slot>
+</template>
 <style>
     .deferred-demo-loading {
         border-radius: 10px;

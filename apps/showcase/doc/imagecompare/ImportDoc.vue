@@ -1,8 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs"></DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -16,3 +11,8 @@ import ImageCompare from '@cjdevstudios/bumblevue/imagecompare';
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs"></DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

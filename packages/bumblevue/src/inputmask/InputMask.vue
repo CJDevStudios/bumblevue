@@ -1,28 +1,3 @@
-<template>
-    <InputText
-        :id="id"
-        :value="currentVal"
-        :class="inputClass"
-        :readonly="readonly"
-        :disabled="disabled"
-        :invalid="invalid"
-        :size="size"
-        :name="name"
-        :variant="variant"
-        :placeholder="placeholder"
-        :fluid="$fluid"
-        :unstyled="unstyled"
-        @input="onInput"
-        @compositionend="onInput"
-        @focus="onFocus"
-        @blur="onBlur"
-        @keydown="onKeyDown"
-        @keypress="onKeyPress"
-        @paste="onPaste"
-        :pt="rootPTOptions"
-    />
-</template>
-
 <script>
     import { getUserAgent } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseInput from '@cjdevstudios/bumblevue/core/baseinput';
@@ -618,3 +593,28 @@
         }
     };
 </script>
+
+<template>
+    <InputText
+        :id="id"
+        :value="currentVal"
+        :class="inputClass"
+        :readonly="readonly"
+        :disabled="disabled"
+        :invalid="invalid"
+        :size="size"
+        :name="name"
+        :variant="variant"
+        :placeholder="placeholder"
+        :fluid="$fluid"
+        :unstyled="unstyled"
+        @input="onInput"
+        @compositionend="onInput"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown="onKeyDown"
+        @keypress="onKeyPress"
+        @paste="onPaste"
+        :pt="rootPTOptions"
+    />
+</template>

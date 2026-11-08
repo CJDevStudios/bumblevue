@@ -1,14 +1,3 @@
-<template>
-    <div>
-        <p>
-            There are <strong>{{ totalProducts }}</strong> products in total in this list.
-        </p>
-        <div class="flex justify-end">
-            <Button autofocus type="button" label="Close" @click="closeDialog"></Button>
-        </div>
-    </div>
-</template>
-
 <script>
     export default {
         inject: ['dialogRef'],
@@ -27,3 +16,14 @@
         }
     };
 </script>
+
+<template>
+    <div>
+        <p>
+            There are <strong>{{ totalProducts }}</strong> products in total in this list.
+        </p>
+        <div class="flex justify-end">
+            <Button autofocus type="button" label="Close" @click="closeDialog"></Button>
+        </div>
+    </div>
+</template>

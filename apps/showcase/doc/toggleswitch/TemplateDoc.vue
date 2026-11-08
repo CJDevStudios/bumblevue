@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>handle</i> slot is available to display custom content.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ToggleSwitch v-model="checked">
-            <template #handle="{ checked }">
-                <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
-            </template>
-        </ToggleSwitch>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -47,3 +33,17 @@ const checked = ref(false);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>handle</i> slot is available to display custom content.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ToggleSwitch v-model="checked">
+            <template #handle="{ checked }">
+                <i :class="['text-xs! pi', { 'pi-check': checked, 'pi-times': !checked }]" />
+            </template>
+        </ToggleSwitch>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

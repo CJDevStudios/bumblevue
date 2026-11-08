@@ -1,24 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>For custom content support define an <i>option</i> template that gets the item instance as a parameter. In addition <i>sourceheader</i> and <i>targetheader</i> slots are provided for further customization.</p>
-    </DocSectionText>
-    <div class="card">
-        <PickList v-model="products" dataKey="id" breakpoint="1400px" scrollHeight="20rem">
-            <template #option="{ option, selected }">
-                <div class="flex flex-wrap p-1 items-center gap-4 w-full">
-                    <img class="w-12 shrink-0 rounded-sm" :src="'https://primefaces.org/cdn/primevue/images/product/' + option.image" :alt="option.name" />
-                    <div class="flex-1 flex flex-col">
-                        <span class="font-medium text-sm">{{ option.name }}</span>
-                        <span :class="['text-sm', { 'text-surface-500 dark:text-surface-400': !selected, 'text-inherit': selected }]">{{ option.category }}</span>
-                    </div>
-                    <span class="font-bold">${{ option.price }}</span>
-                </div>
-            </template>
-        </PickList>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
-</template>
-
 <script>
     import { ProductService } from '@/service/ProductService';
 
@@ -94,3 +73,24 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>For custom content support define an <i>option</i> template that gets the item instance as a parameter. In addition <i>sourceheader</i> and <i>targetheader</i> slots are provided for further customization.</p>
+    </DocSectionText>
+    <div class="card">
+        <PickList v-model="products" dataKey="id" breakpoint="1400px" scrollHeight="20rem">
+            <template #option="{ option, selected }">
+                <div class="flex flex-wrap p-1 items-center gap-4 w-full">
+                    <img class="w-12 shrink-0 rounded-sm" :src="'https://primefaces.org/cdn/primevue/images/product/' + option.image" :alt="option.name" />
+                    <div class="flex-1 flex flex-col">
+                        <span class="font-medium text-sm">{{ option.name }}</span>
+                        <span :class="['text-sm', { 'text-surface-500 dark:text-surface-400': !selected, 'text-inherit': selected }]">{{ option.category }}</span>
+                    </div>
+                    <span class="font-bold">${{ option.price }}</span>
+                </div>
+            </template>
+        </PickList>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['ProductService']" />
+</template>

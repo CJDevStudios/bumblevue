@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Default layout of slider is <i>horizontal</i>, use <i>orientation</i> property for the alternative <i>vertical</i> mode.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Slider v-model="value" orientation="vertical" class="h-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(50);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Default layout of slider is <i>horizontal</i>, use <i>orientation</i> property for the alternative <i>vertical</i> mode.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Slider v-model="value" orientation="vertical" class="h-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

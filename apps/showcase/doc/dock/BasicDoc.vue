@@ -1,25 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Dock requires a collection of menuitems as its <i>model</i> and an <i>icon</i> template. Default location is <i>bottom</i> and other edges are also available when defined with the <i>position</i> property.</p>
-    </DocSectionText>
-    <div class="card dock-demo">
-        <div class="flex flex-wrap gap-4 mb-8">
-            <div v-for="pos of positions" :key="pos.label" class="flex items-center">
-                <RadioButton v-model="position" :value="pos.value" :inputId="pos.label" name="dock" />
-                <label :for="pos.label" class="ml-2"> {{ pos.label }} </label>
-            </div>
-        </div>
-        <div class="dock-window" style="backgroundimage: 'url(https://primefaces.org/cdn/primevue/images/dock/window.jpg)'">
-            <Dock :model="items" :position="position">
-                <template #itemicon="{ item }">
-                    <img v-tooltip.top="item.label" :alt="item.label" :src="item.icon" style="width: 100%" />
-                </template>
-            </Dock>
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -152,6 +130,28 @@ const positions = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Dock requires a collection of menuitems as its <i>model</i> and an <i>icon</i> template. Default location is <i>bottom</i> and other edges are also available when defined with the <i>position</i> property.</p>
+    </DocSectionText>
+    <div class="card dock-demo">
+        <div class="flex flex-wrap gap-4 mb-8">
+            <div v-for="pos of positions" :key="pos.label" class="flex items-center">
+                <RadioButton v-model="position" :value="pos.value" :inputId="pos.label" name="dock" />
+                <label :for="pos.label" class="ml-2"> {{ pos.label }} </label>
+            </div>
+        </div>
+        <div class="dock-window" style="backgroundimage: 'url(https://primefaces.org/cdn/primevue/images/dock/window.jpg)'">
+            <Dock :model="items" :position="position">
+                <template #itemicon="{ item }">
+                    <img v-tooltip.top="item.label" :alt="item.label" :src="item.icon" style="width: 100%" />
+                </template>
+            </Dock>
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>
 
 <style scoped>
     .dock-demo > .dock-window {

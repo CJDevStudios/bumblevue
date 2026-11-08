@@ -1,26 +1,3 @@
-<template>
-    <PanelMenuSub
-        :id="panelId + '_list'"
-        :class="cx('rootList')"
-        role="tree"
-        :tabindex="-1"
-        :aria-activedescendant="focused ? focusedItemId : undefined"
-        :panelId="panelId"
-        :focusedItemId="focused ? focusedItemId : undefined"
-        :items="processedItems"
-        :templates="templates"
-        :activeItemPath="activeItemPath"
-        @focus="onFocus"
-        @blur="onBlur"
-        @keydown="onKeyDown"
-        @item-toggle="onItemToggle"
-        @item-mousemove="onItemMouseMove"
-        :pt="pt"
-        :unstyled="unstyled"
-        v-bind="ptm('rootList')"
-    />
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import { findSingle, focus } from '@cjdevstudios/bumblevue/utils/dom';
@@ -398,3 +375,26 @@
         }
     };
 </script>
+
+<template>
+    <PanelMenuSub
+        :id="panelId + '_list'"
+        :class="cx('rootList')"
+        role="tree"
+        :tabindex="-1"
+        :aria-activedescendant="focused ? focusedItemId : undefined"
+        :panelId="panelId"
+        :focusedItemId="focused ? focusedItemId : undefined"
+        :items="processedItems"
+        :templates="templates"
+        :activeItemPath="activeItemPath"
+        @focus="onFocus"
+        @blur="onBlur"
+        @keydown="onKeyDown"
+        @item-toggle="onItemToggle"
+        @item-mousemove="onItemMouseMove"
+        :pt="pt"
+        :unstyled="unstyled"
+        v-bind="ptm('rootList')"
+    />
+</template>

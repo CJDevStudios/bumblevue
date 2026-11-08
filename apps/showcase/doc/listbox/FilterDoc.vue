@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Listbox provides built-in filtering that is enabled by adding the <i>filter</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Listbox v-model="selectedCity" :options="cities" filter optionLabel="name" class="w-full md:w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +39,13 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Listbox provides built-in filtering that is enabled by adding the <i>filter</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Listbox v-model="selectedCity" :options="cities" filter optionLabel="name" class="w-full md:w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

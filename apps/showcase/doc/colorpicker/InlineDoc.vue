@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>ColorPicker is displayed as a popup by default, add <i>inline</i> property to customize this behavior.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <ColorPicker v-model="color" inline />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const color = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>ColorPicker is displayed as a popup by default, add <i>inline</i> property to customize this behavior.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <ColorPicker v-model="color" inline />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

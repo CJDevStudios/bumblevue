@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Messages can disappear automatically by defined the <i>life</i> in milliseconds.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center justify-center">
-        <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
-        <Message v-if="visible" severity="success" :life="3000">Auto Disappear Message</Message>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -55,3 +44,14 @@ const showMessage = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Messages can disappear automatically by defined the <i>life</i> in milliseconds.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center justify-center">
+        <Button label="Show" @click="showMessage" :disabled="visible" class="mb-4" />
+        <Message v-if="visible" severity="success" :life="3000">Auto Disappear Message</Message>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

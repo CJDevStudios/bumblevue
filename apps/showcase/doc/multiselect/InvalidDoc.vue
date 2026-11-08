@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
-    </DocSectionText>
-    <div class="card flex flex-wrap justify-center gap-4">
-        <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
-        <MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -58,3 +47,14 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Invalid state is displayed using the <i>invalid</i> prop to indicate a failed validation. You can use this style when integrating with form validation libraries.</p>
+    </DocSectionText>
+    <div class="card flex flex-wrap justify-center gap-4">
+        <MultiSelect v-model="selectedCities1" :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" :invalid="selectedCities1?.length === 0" class="w-full md:w-80" />
+        <MultiSelect v-model="selectedCities2" :options="cities" optionLabel="name" filter placeholder="Select Cities" :maxSelectedLabels="3" :invalid="selectedCities2?.length === 0" class="w-full md:w-80" variant="filled" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

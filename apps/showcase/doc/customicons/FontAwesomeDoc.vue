@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p><a href="https://fontawesome.com/">Font Awesome</a> is a popular icon library with a wide range of icons.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -22,3 +15,10 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p><a href="https://fontawesome.com/">Font Awesome</a> is a popular icon library with a wide range of icons.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

@@ -1,3 +1,31 @@
+<script>
+    export default {
+        data() {
+            return {
+                date: null,
+                code: {
+                    basic: `
+<DatePicker v-model="date" dateFormat="dd/mm/yy" />
+`,
+                    composition: `
+<template>
+    <div class="card flex justify-center">
+        <DatePicker v-model="date" dateFormat="dd/mm/yy" />
+    </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+const date = ref();
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>Default date format is <i>mm/dd/yy</i> which can be customized using the <i>dateFormat</i> property. Following options can be a part of the format.</p>
@@ -26,31 +54,3 @@
     </div>
     <DocSectionCode :code="code" />
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                date: null,
-                code: {
-                    basic: `
-<DatePicker v-model="date" dateFormat="dd/mm/yy" />
-`,
-                    composition: `
-<template>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" dateFormat="dd/mm/yy" />
-    </div>
-</template>
-
-<script setup>
-import { ref } from "vue";
-
-const date = ref();
-<\/script>
-`
-                }
-            };
-        }
-    };
-</script>

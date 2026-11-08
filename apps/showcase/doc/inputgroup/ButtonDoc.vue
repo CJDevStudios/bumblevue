@@ -1,34 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Buttons can be placed at either side of an input element.</p>
-    </DocSectionText>
-    <div class="card flex flex-col md:flex-row gap-4">
-        <InputGroup>
-            <Button label="Search" />
-            <InputText placeholder="Keyword" />
-        </InputGroup>
-
-        <InputGroup>
-            <InputText placeholder="Keyword" />
-            <InputGroupAddon>
-                <Button icon="pi pi-search" severity="secondary" variant="text" @click="toggle" />
-            </InputGroupAddon>
-        </InputGroup>
-        <Menu ref="menu" :model="items" popup class="min-w-fit!" />
-
-        <InputGroup>
-            <InputGroupAddon>
-                <Button icon="pi pi-check" severity="secondary" />
-            </InputGroupAddon>
-            <InputText placeholder="Vote" />
-            <InputGroupAddon>
-                <Button icon="pi pi-times" severity="secondary" />
-            </InputGroupAddon>
-        </InputGroup>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -108,3 +77,34 @@ const toggle = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Buttons can be placed at either side of an input element.</p>
+    </DocSectionText>
+    <div class="card flex flex-col md:flex-row gap-4">
+        <InputGroup>
+            <Button label="Search" />
+            <InputText placeholder="Keyword" />
+        </InputGroup>
+
+        <InputGroup>
+            <InputText placeholder="Keyword" />
+            <InputGroupAddon>
+                <Button icon="pi pi-search" severity="secondary" variant="text" @click="toggle" />
+            </InputGroupAddon>
+        </InputGroup>
+        <Menu ref="menu" :model="items" popup class="min-w-fit!" />
+
+        <InputGroup>
+            <InputGroupAddon>
+                <Button icon="pi pi-check" severity="secondary" />
+            </InputGroupAddon>
+            <InputText placeholder="Vote" />
+            <InputGroupAddon>
+                <Button icon="pi pi-times" severity="secondary" />
+            </InputGroupAddon>
+        </InputGroup>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

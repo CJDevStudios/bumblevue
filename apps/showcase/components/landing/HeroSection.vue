@@ -1,289 +1,3 @@
-<template>
-    <section class="landing-hero py-20 px-8 lg:px-20">
-        <div class="flex flex-col items-center">
-            <h1 class="text-5xl font-bold text-center xl:text-left leading-tight">The Sweetest Framework for Rapid Vue Development</h1>
-            <p class="text-center mt-0 mb-8 text-surface-500 dark:text-surface-400 font-medium text-xl leading-relaxed lg:px-56">
-                BumbleVue is a community-driven, free and open-source UI component library for Vue.js, providing a wide range of customizable and responsive components to help developers build modern web applications with ease.
-            </p>
-            <div class="flex gap-2 my-2 flex-wrap">
-                <img src="https://img.shields.io/npm/last-update/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Last Update" />
-                <img src="https://img.shields.io/npm/dw/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Downloads" />
-                <img src="https://img.shields.io/github/stars/CJDevStudios/bumblevue?style=for-the-badge" alt="GitHub Stars" />
-            </div>
-            <div class="flex items-center gap-4">
-                <BumbleVueNuxtLink to="/setup" class="linkbox linkbox-primary" @click="onGetStartedClick">
-                    <span>Get Started </span>
-                    <i class="pi pi-arrow-right ms-4"></i>
-                </BumbleVueNuxtLink>
-                <a href="https://github.com/CJDevStudios/bumblevue" target="_blank" rel="noopener noreferrer" class="linkbox">
-                    <span>Give a Star</span>
-                    <i class="pi pi-star-fill ms-4 text-yellow-500"></i>
-                </a>
-            </div>
-        </div>
-        <div class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] rounded-3xl p-6 flex mt-20 items-start gap-6 overflow-hidden">
-            <div :class="isSlimMenu ? 'w-auto' : 'w-72'" class="rounded-2xl p-5 bg-surface-50 dark:bg-surface-900 h-full flex flex-col justify-between">
-                <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 border border-primary rounded-xl flex items-center justify-center">
-                            <img :size="32" src="/logo-icon.webp" class="block dark:hidden" aria-hidden="true" />
-                        </div>
-                        <div :class="isSlimMenu ? 'hidden' : 'block'" class="text-surface-950 dark:text-surface-0 font-medium text-3xl">BumbleVue</div>
-                    </div>
-                    <div class="mt-10 flex flex-col gap-2">
-                        <div
-                            v-for="(navItem, index) in sampleAppsSidebarNavs"
-                            :key="index"
-                            v-tooltip="isSlimMenu ? navItem.title : null"
-                            @click="setSelectedSampleAppsSidebarNav(navItem.title)"
-                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none"
-                            :class="[
-                                {
-                                    'w-12 justify-center py-4': isSlimMenu,
-                                    'w-full': !isSlimMenu
-                                },
-                                { 'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title, 'text-primary-contrast bg-primary hover:bg-primary-emphasis': selectedSampleAppsSidebarNav === navItem.title }
-                            ]"
-                        >
-                            <i :class="navItem.icon"></i>
-                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
-                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'">{{ navItem.title }}</span>
-                        </div>
-                    </div>
-                </div>
-                <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
-                    <div class="mt-10 flex flex-col gap-2">
-                        <div
-                            v-tooltip="isSlimMenu ? 'Expanded Mode' : null"
-                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none text-muted-color hover:bg-emphasis"
-                            :class="[
-                                {
-                                    'w-12 justify-center py-4': isSlimMenu,
-                                    'w-full': !isSlimMenu
-                                }
-                            ]"
-                        >
-                            <a @click="toggleSlimMenu" class="cursor-pointer block p-0 m-0 leading-none">
-                                <i :class="isSlimMenu ? 'pi pi-window-maximize' : 'pi pi-window-minimize'"></i>
-                                <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
-                                <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'"> Slim Mode</span>
-                            </a>
-                        </div>
-                        <div
-                            v-for="(navItem, index) in sampleAppsSidebarNavsMore"
-                            :key="index"
-                            v-tooltip="isSlimMenu ? navItem.title : null"
-                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none"
-                            :class="[
-                                {
-                                    'w-12 justify-center py-4': isSlimMenu,
-                                    'w-full': !isSlimMenu
-                                },
-                                { 'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title, 'text-primary-contrast bg-primary hover:bg-primary-emphasis ': selectedSampleAppsSidebarNav === navItem.title }
-                            ]"
-                            @click="visibleRight = true"
-                        >
-                            <i :class="navItem.icon"></i>
-                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
-                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'">{{ navItem.title }}</span>
-                        </div>
-                    </div>
-                    <Divider />
-                    <div :class="isSlimMenu ? 'justify-center' : ' gap-3'" class="flex items-center">
-                        <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/main-avatar.png" size="large" shape="circle" class="shrink-0" />
-                        <div>
-                            <div :class="isSlimMenu ? 'hidden' : 'text-base font-medium text-color leading-5'">Robin Jonas</div>
-                            <div :class="isSlimMenu ? 'hidden' : 'text-sm text-muted-color mt-1'">hi@robin.xyz</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <OverviewApp v-if="selectedSampleAppsSidebarNav === 'Overview'" />
-            <ChatApp v-if="selectedSampleAppsSidebarNav === 'Chat'" />
-            <MoviesApp v-if="selectedSampleAppsSidebarNav === 'Movies'" />
-            <CardsApp v-if="selectedSampleAppsSidebarNav === 'Cards'" />
-            <InboxApp v-if="selectedSampleAppsSidebarNav === 'Inbox'" />
-            <CustomersApp v-if="selectedSampleAppsSidebarNav === 'Customers'" />
-
-            <Drawer
-                v-model:visible="visibleRight"
-                :containerVisible="true"
-                header="Right Sidebar"
-                position="right"
-                closeIcon="pi pi-sign-out"
-                :pt="{
-                    root: {
-                        class: 'max-w-2xl! w-full! h-screen! rounded-l-2xl'
-                    },
-                    footer: {
-                        class: 'hidden'
-                    },
-                    content: {
-                        class: 'flex-1 flex flex-col'
-                    }
-                }"
-            >
-                <template #container="">
-                    <div class="flex flex-col h-screen overflow-auto">
-                        <div class="">
-                            <div class="flex align-items-center gap-3 p-6">
-                                <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg" size="large" class="rounded-xl overflow-hidden" />
-                                <div class="flex-1">
-                                    <div class="leading-6 text-color font-medium">Brook Simmons</div>
-                                    <div class="mt-1 leading-5 text-muted-color text-sm">Sales Executive</div>
-                                </div>
-                                <Button icon="pi pi-sign-out" text rounded severity="secondary" />
-                            </div>
-                            <SelectButton
-                                v-model="selectedSidebarOption"
-                                :options="sidebarOptions"
-                                :pt="{
-                                    root: {
-                                        class: 'px-6 py-3 w-full'
-                                    },
-                                    pcToggleButton: {
-                                        root: {
-                                            class: 'flex-1 py-2.5'
-                                        },
-                                        label: {
-                                            class: 'text-sm'
-                                        }
-                                    }
-                                }"
-                            />
-                        </div>
-                        <div v-if="selectedSidebarOption === 'Interaction Logs'" class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
-                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="flex items-start justify-between">
-                                    <div class="leading-6 font-medium text-color">Call Logs</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
-                                </div>
-                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
-                                    <div v-for="(data, index) of callLogs" :key="index" class="flex items-center gap-3 p-2">
-                                        <OverlayBadge severity="success" class="w-fit">
-                                            <Avatar :image="data.image" size="small" class="rounded-md w-10 h-10 overflow-hidden flex" />
-                                        </OverlayBadge>
-
-                                        <div class="flex-1">
-                                            <div class="text-sm leading-5 font-medium text-color">{{ data.name }}</div>
-                                            <div class="mt-1 text-sm leading-5 text-muted-color">{{ data.time }}</div>
-                                        </div>
-                                        <Button icon="pi pi-phone text-sm" text class="bg-primary/10 dark:bg-primary/20 w-8 h-8" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="flex items-start justify-between">
-                                    <div class="leading-6 font-medium text-color">Email Records</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
-                                </div>
-                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
-                                    <div v-for="(data, index) of emailRecords" :key="index" class="flex items-center gap-3 p-2">
-                                        <OverlayBadge severity="danger" class="w-fit">
-                                            <Avatar :image="data.image" size="small" class="rounded-md overflow-hidden w-10 h-10 flex" />
-                                        </OverlayBadge>
-                                        <div class="w-1/5 text-sm leading-5 font-medium text-color">{{ data.name }}</div>
-                                        <div class="flex-1">
-                                            <div class="text-sm leading-5 font-medium text-color line-clamp-2">
-                                                {{ data.title }}
-                                                <span class="text-muted-color">
-                                                    {{ data.text }}
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="w-1/6 text-sm leading-5 text-muted-color text-right">{{ data.time }}</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="flex items-start justify-between">
-                                    <div class="leading-6 font-medium text-color">Meeting Notes</div>
-                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all leading-none" severity="secondary" text />
-                                </div>
-                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 p-4 flex flex-col rounded-lg overflow-hidden">
-                                    <div class="flex items-start justify-between gap-1">
-                                        <div class="text-sm text-color font-medium max-w-60">Subject: Meeting Wrap-up & Action Items: Jacob Jones</div>
-                                        <div class="text-sm text-muted-color">February 14, 2024 / 2:00 PM</div>
-                                    </div>
-                                    <div class="text-sm text-muted-color mt-6">
-                                        Here's a quick review of our meeting with Brook Simmons and next steps. Summary:
-                                        <br />
-                                        <ul class="list-disc pl-5">
-                                            <li>Reviewed our SaaS solution and its features.</li>
-                                            <li>Arlene McCoy intrigued by user experience potential.</li>
-                                            <li>Voiced concerns on integration with current system.Action Items:</li>
-                                        </ul>
-                                        Demo: Schedule product demo with Arlene McCoy. (Assigned to: Jerome Bell)<br /><br />
-                                        Integration Blueprint: Draft and deliver technical blueprint. (Assigned to: Cameron Williamson)<br /><br />
-                                        Follow-up Meeting: Arrange to discuss any queries post-demo. (Assigned to: Dianne Russell)
-                                        <br /><br />
-                                        Please act on these items promptly.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="selectedSidebarOption === 'Preferences'" class="h-[calc(100%-72px)] flex flex-col gap-4 p-6">
-                            <div v-for="(data, i) of preferences" :key="i" class="h-1/4 flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="leading-6 font-medium text-color p-2">{{ data.title }}</div>
-                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 p-4 flex flex-col gap-3 rounded-lg">
-                                    <div v-for="(pref, j) of data.prefs" :key="j" class="flex items-center gap-2">
-                                        <i class="text-lg text-color" :class="pref.icon"></i>
-                                        <div class="font-medium text-color flex-1">{{ pref.title }}</div>
-                                        <ToggleSwitch v-model="pref.checked" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div v-if="selectedSidebarOption === 'Statistics'" class="h-[calc(100%-160px)] p-6">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <div class="font-medium text-color p-2">Customer Satisfaction Score</div>
-                                    </div>
-                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
-                                        <Knob v-model="customerSatisfaction" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
-                                    </div>
-                                </div>
-                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <div class="font-medium text-color p-2">Estimated Lifetime Value</div>
-                                    </div>
-                                    <div class="flex-1 flex items-center gap-2 justify-center mt-2 p-2 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
-                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">$</div>
-                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">272</div>
-                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">123</div>
-                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">000</div>
-                                    </div>
-                                </div>
-                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
-                                    <div class="flex items-center justify-between gap-2">
-                                        <div class="font-medium text-color p-2">Product Usage</div>
-                                    </div>
-                                    <div class="flex-1 mt-2 py-4 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
-                                        <Chart type="line" :data="lineChartData" :options="lineChartOptions" class="min-h-44 w-full" />
-                                    </div>
-                                </div>
-                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
-                                    <div class="font-medium text-color p-2">Churn Risk</div>
-                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
-                                        <Knob v-model="churnRisk" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-4 w-full flex flex-col p-3 rounded-xl bg-emphasis">
-                                <div class="font-medium text-color p-2">Total Purchases</div>
-                                <div class="flex-1 py-4 px-2 w-full mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
-                                    <Chart type="bar" :data="chartData" :options="chartOptions" class="h-60 w-full" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-            </Drawer>
-        </div>
-    </section>
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -767,3 +481,289 @@
         }
     };
 </script>
+
+<template>
+    <section class="landing-hero py-20 px-8 lg:px-20">
+        <div class="flex flex-col items-center">
+            <h1 class="text-5xl font-bold text-center xl:text-left leading-tight">The Sweetest Framework for Rapid Vue Development</h1>
+            <p class="text-center mt-0 mb-8 text-surface-500 dark:text-surface-400 font-medium text-xl leading-relaxed lg:px-56">
+                BumbleVue is a community-driven, free and open-source UI component library for Vue.js, providing a wide range of customizable and responsive components to help developers build modern web applications with ease.
+            </p>
+            <div class="flex gap-2 my-2 flex-wrap">
+                <img src="https://img.shields.io/npm/last-update/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Last Update" />
+                <img src="https://img.shields.io/npm/dw/%40cjdevstudios%2Fbumblevue?style=for-the-badge" alt="NPM Downloads" />
+                <img src="https://img.shields.io/github/stars/CJDevStudios/bumblevue?style=for-the-badge" alt="GitHub Stars" />
+            </div>
+            <div class="flex items-center gap-4">
+                <BumbleVueNuxtLink to="/setup" class="linkbox linkbox-primary" @click="onGetStartedClick">
+                    <span>Get Started </span>
+                    <i class="pi pi-arrow-right ms-4"></i>
+                </BumbleVueNuxtLink>
+                <a href="https://github.com/CJDevStudios/bumblevue" target="_blank" rel="noopener noreferrer" class="linkbox">
+                    <span>Give a Star</span>
+                    <i class="pi pi-star-fill ms-4 text-yellow-500"></i>
+                </a>
+            </div>
+        </div>
+        <div class="bg-surface-0 border border-black/10 dark:border-white/20 dark:bg-surface-950 w-full h-[85vh] max-h-[1040px] rounded-3xl p-6 flex mt-20 items-start gap-6 overflow-hidden">
+            <div :class="isSlimMenu ? 'w-auto' : 'w-72'" class="rounded-2xl p-5 bg-surface-50 dark:bg-surface-900 h-full flex flex-col justify-between">
+                <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 border border-primary rounded-xl flex items-center justify-center">
+                            <img :size="32" src="/logo-icon.webp" class="block dark:hidden" aria-hidden="true" />
+                        </div>
+                        <div :class="isSlimMenu ? 'hidden' : 'block'" class="text-surface-950 dark:text-surface-0 font-medium text-3xl">BumbleVue</div>
+                    </div>
+                    <div class="mt-10 flex flex-col gap-2">
+                        <div
+                            v-for="(navItem, index) in sampleAppsSidebarNavs"
+                            :key="index"
+                            v-tooltip="isSlimMenu ? navItem.title : null"
+                            @click="setSelectedSampleAppsSidebarNav(navItem.title)"
+                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none"
+                            :class="[
+                                {
+                                    'w-12 justify-center py-4': isSlimMenu,
+                                    'w-full': !isSlimMenu
+                                },
+                                { 'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title, 'text-primary-contrast bg-primary hover:bg-primary-emphasis': selectedSampleAppsSidebarNav === navItem.title }
+                            ]"
+                        >
+                            <i :class="navItem.icon"></i>
+                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
+                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'">{{ navItem.title }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div :class="isSlimMenu ? 'w-12 flex flex-col items-center' : 'w-auto'">
+                    <div class="mt-10 flex flex-col gap-2">
+                        <div
+                            v-tooltip="isSlimMenu ? 'Expanded Mode' : null"
+                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none text-muted-color hover:bg-emphasis"
+                            :class="[
+                                {
+                                    'w-12 justify-center py-4': isSlimMenu,
+                                    'w-full': !isSlimMenu
+                                }
+                            ]"
+                        >
+                            <a @click="toggleSlimMenu" class="cursor-pointer block p-0 m-0 leading-none">
+                                <i :class="isSlimMenu ? 'pi pi-window-maximize' : 'pi pi-window-minimize'"></i>
+                                <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
+                                <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'"> Slim Mode</span>
+                            </a>
+                        </div>
+                        <div
+                            v-for="(navItem, index) in sampleAppsSidebarNavsMore"
+                            :key="index"
+                            v-tooltip="isSlimMenu ? navItem.title : null"
+                            class="px-4 py-1 flex items-center gap-1 cursor-pointer text-base rounded-lg transition-all select-none"
+                            :class="[
+                                {
+                                    'w-12 justify-center py-4': isSlimMenu,
+                                    'w-full': !isSlimMenu
+                                },
+                                { 'text-muted-color hover:bg-emphasis bg-transparent': selectedSampleAppsSidebarNav !== navItem.title, 'text-primary-contrast bg-primary hover:bg-primary-emphasis ': selectedSampleAppsSidebarNav === navItem.title }
+                            ]"
+                            @click="visibleRight = true"
+                        >
+                            <i :class="navItem.icon"></i>
+                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-8'">・</span>
+                            <span :class="isSlimMenu ? 'hidden' : 'font-medium leading-none'">{{ navItem.title }}</span>
+                        </div>
+                    </div>
+                    <Divider />
+                    <div :class="isSlimMenu ? 'justify-center' : ' gap-3'" class="flex items-center">
+                        <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/main-avatar.png" size="large" shape="circle" class="shrink-0" />
+                        <div>
+                            <div :class="isSlimMenu ? 'hidden' : 'text-base font-medium text-color leading-5'">Robin Jonas</div>
+                            <div :class="isSlimMenu ? 'hidden' : 'text-sm text-muted-color mt-1'">hi@robin.xyz</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <OverviewApp v-if="selectedSampleAppsSidebarNav === 'Overview'" />
+            <ChatApp v-if="selectedSampleAppsSidebarNav === 'Chat'" />
+            <MoviesApp v-if="selectedSampleAppsSidebarNav === 'Movies'" />
+            <CardsApp v-if="selectedSampleAppsSidebarNav === 'Cards'" />
+            <InboxApp v-if="selectedSampleAppsSidebarNav === 'Inbox'" />
+            <CustomersApp v-if="selectedSampleAppsSidebarNav === 'Customers'" />
+
+            <Drawer
+                v-model:visible="visibleRight"
+                :containerVisible="true"
+                header="Right Sidebar"
+                position="right"
+                closeIcon="pi pi-sign-out"
+                :pt="{
+                    root: {
+                        class: 'max-w-2xl! w-full! h-screen! rounded-l-2xl'
+                    },
+                    footer: {
+                        class: 'hidden'
+                    },
+                    content: {
+                        class: 'flex-1 flex flex-col'
+                    }
+                }"
+            >
+                <template #container="">
+                    <div class="flex flex-col h-screen overflow-auto">
+                        <div class="">
+                            <div class="flex align-items-center gap-3 p-6">
+                                <Avatar image="https://www.primefaces.org/cdn/primevue/images/landing/apps/avatar11.jpg" size="large" class="rounded-xl overflow-hidden" />
+                                <div class="flex-1">
+                                    <div class="leading-6 text-color font-medium">Brook Simmons</div>
+                                    <div class="mt-1 leading-5 text-muted-color text-sm">Sales Executive</div>
+                                </div>
+                                <Button icon="pi pi-sign-out" text rounded severity="secondary" />
+                            </div>
+                            <SelectButton
+                                v-model="selectedSidebarOption"
+                                :options="sidebarOptions"
+                                :pt="{
+                                    root: {
+                                        class: 'px-6 py-3 w-full'
+                                    },
+                                    pcToggleButton: {
+                                        root: {
+                                            class: 'flex-1 py-2.5'
+                                        },
+                                        label: {
+                                            class: 'text-sm'
+                                        }
+                                    }
+                                }"
+                            />
+                        </div>
+                        <div v-if="selectedSidebarOption === 'Interaction Logs'" class="h-[calc(100%-172px)] flex flex-col gap-4 p-6">
+                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                                <div class="flex items-start justify-between">
+                                    <div class="leading-6 font-medium text-color">Call Logs</div>
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
+                                </div>
+                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
+                                    <div v-for="(data, index) of callLogs" :key="index" class="flex items-center gap-3 p-2">
+                                        <OverlayBadge severity="success" class="w-fit">
+                                            <Avatar :image="data.image" size="small" class="rounded-md w-10 h-10 overflow-hidden flex" />
+                                        </OverlayBadge>
+
+                                        <div class="flex-1">
+                                            <div class="text-sm leading-5 font-medium text-color">{{ data.name }}</div>
+                                            <div class="mt-1 text-sm leading-5 text-muted-color">{{ data.time }}</div>
+                                        </div>
+                                        <Button icon="pi pi-phone text-sm" text class="bg-primary/10 dark:bg-primary/20 w-8 h-8" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                                <div class="flex items-start justify-between">
+                                    <div class="leading-6 font-medium text-color">Email Records</div>
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all" severity="secondary" text />
+                                </div>
+                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 flex flex-col rounded-lg overflow-hidden divide-y divide-surface-200 dark:divide-surface-800">
+                                    <div v-for="(data, index) of emailRecords" :key="index" class="flex items-center gap-3 p-2">
+                                        <OverlayBadge severity="danger" class="w-fit">
+                                            <Avatar :image="data.image" size="small" class="rounded-md overflow-hidden w-10 h-10 flex" />
+                                        </OverlayBadge>
+                                        <div class="w-1/5 text-sm leading-5 font-medium text-color">{{ data.name }}</div>
+                                        <div class="flex-1">
+                                            <div class="text-sm leading-5 font-medium text-color line-clamp-2">
+                                                {{ data.title }}
+                                                <span class="text-muted-color">
+                                                    {{ data.text }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="w-1/6 text-sm leading-5 text-muted-color text-right">{{ data.time }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="h-1/3 flex flex-col p-3 rounded-xl bg-emphasis">
+                                <div class="flex items-start justify-between">
+                                    <div class="leading-6 font-medium text-color">Meeting Notes</div>
+                                    <Button icon="pi pi-download text-sm" class="w-8 h-8 border-surface! bg-surface-0! dark:bg-surface-900! hover:opacity-75 transition-all leading-none" severity="secondary" text />
+                                </div>
+                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 p-4 flex flex-col rounded-lg overflow-hidden">
+                                    <div class="flex items-start justify-between gap-1">
+                                        <div class="text-sm text-color font-medium max-w-60">Subject: Meeting Wrap-up & Action Items: Jacob Jones</div>
+                                        <div class="text-sm text-muted-color">February 14, 2024 / 2:00 PM</div>
+                                    </div>
+                                    <div class="text-sm text-muted-color mt-6">
+                                        Here's a quick review of our meeting with Brook Simmons and next steps. Summary:
+                                        <br />
+                                        <ul class="list-disc pl-5">
+                                            <li>Reviewed our SaaS solution and its features.</li>
+                                            <li>Arlene McCoy intrigued by user experience potential.</li>
+                                            <li>Voiced concerns on integration with current system.Action Items:</li>
+                                        </ul>
+                                        Demo: Schedule product demo with Arlene McCoy. (Assigned to: Jerome Bell)<br /><br />
+                                        Integration Blueprint: Draft and deliver technical blueprint. (Assigned to: Cameron Williamson)<br /><br />
+                                        Follow-up Meeting: Arrange to discuss any queries post-demo. (Assigned to: Dianne Russell)
+                                        <br /><br />
+                                        Please act on these items promptly.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="selectedSidebarOption === 'Preferences'" class="h-[calc(100%-72px)] flex flex-col gap-4 p-6">
+                            <div v-for="(data, i) of preferences" :key="i" class="h-1/4 flex flex-col p-3 rounded-xl bg-emphasis">
+                                <div class="leading-6 font-medium text-color p-2">{{ data.title }}</div>
+                                <div class="overflow-y-auto flex-1 bg-surface-0 dark:bg-surface-900 mt-2 p-4 flex flex-col gap-3 rounded-lg">
+                                    <div v-for="(pref, j) of data.prefs" :key="j" class="flex items-center gap-2">
+                                        <i class="text-lg text-color" :class="pref.icon"></i>
+                                        <div class="font-medium text-color flex-1">{{ pref.title }}</div>
+                                        <ToggleSwitch v-model="pref.checked" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="selectedSidebarOption === 'Statistics'" class="h-[calc(100%-160px)] p-6">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="font-medium text-color p-2">Customer Satisfaction Score</div>
+                                    </div>
+                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
+                                        <Knob v-model="customerSatisfaction" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
+                                    </div>
+                                </div>
+                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="font-medium text-color p-2">Estimated Lifetime Value</div>
+                                    </div>
+                                    <div class="flex-1 flex items-center gap-2 justify-center mt-2 p-2 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
+                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">$</div>
+                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">272</div>
+                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">123</div>
+                                        <div class="font-semibold text-lg leading-none text-color border border-surface py-3.5 px-2 rounded-lg">000</div>
+                                    </div>
+                                </div>
+                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
+                                    <div class="flex items-center justify-between gap-2">
+                                        <div class="font-medium text-color p-2">Product Usage</div>
+                                    </div>
+                                    <div class="flex-1 mt-2 py-4 rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
+                                        <Chart type="line" :data="lineChartData" :options="lineChartOptions" class="min-h-44 w-full" />
+                                    </div>
+                                </div>
+                                <div class="w-full h-full flex flex-col p-3 rounded-xl bg-emphasis">
+                                    <div class="font-medium text-color p-2">Churn Risk</div>
+                                    <div class="flex-1 py-4 mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
+                                        <Knob v-model="churnRisk" :size="150" :strokeWidth="8" valueTemplate="{value}%" class="pointer-events-none" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 w-full flex flex-col p-3 rounded-xl bg-emphasis">
+                                <div class="font-medium text-color p-2">Total Purchases</div>
+                                <div class="flex-1 py-4 px-2 w-full mt-2 flex items-center justify-center rounded-lg bg-surface-0 dark:bg-surface-900 shadow-xs">
+                                    <Chart type="bar" :data="chartData" :options="chartOptions" class="h-60 w-full" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </Drawer>
+        </div>
+    </section>
+</template>

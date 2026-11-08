@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Slider is used with the <i>v-model</i> property for two-way value binding.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Slider v-model="value" class="w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Slider is used with the <i>v-model</i> property for two-way value binding.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Slider v-model="value" class="w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

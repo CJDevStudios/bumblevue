@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>primary</i> defines the main color palette, default value maps to the <i>emerald</i> primitive token. Let's setup to use <i>indigo</i> instead.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -34,3 +27,10 @@ const MyPreset = definePreset(Aura, {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>primary</i> defines the main color palette, default value maps to the <i>emerald</i> primitive token. Let's setup to use <i>indigo</i> instead.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

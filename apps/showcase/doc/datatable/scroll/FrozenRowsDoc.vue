@@ -1,36 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Rows can be fixed during scrolling by enabling the <i>frozenValue</i> property.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable
-                :value="customers"
-                :frozenValue="lockedCustomers"
-                scrollable
-                scrollHeight="400px"
-                :pt="{
-                    table: { style: 'min-width: 50rem' },
-                    bodyrow: ({ props }) => ({
-                        class: [{ 'font-bold': props.frozenRow }]
-                    })
-                }"
-            >
-                <Column field="name" header="Name"></Column>
-                <Column field="country.name" header="Country"></Column>
-                <Column field="representative.name" header="Representative"></Column>
-                <Column field="status" header="Status"></Column>
-                <Column style="flex: 0 0 4rem">
-                    <template #body="{ data, frozenRow, index }">
-                        <Button type="button" :icon="frozenRow ? 'pi pi-lock-open' : 'pi pi-lock'" :disabled="frozenRow ? false : lockedCustomers.length >= 2" text size="small" @click="toggleLock(data, frozenRow, index)" />
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CustomerService']" />
-</template>
-
 <script>
     import { CustomerService } from '@/service/CustomerService';
 
@@ -201,3 +168,36 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Rows can be fixed during scrolling by enabling the <i>frozenValue</i> property.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable
+                :value="customers"
+                :frozenValue="lockedCustomers"
+                scrollable
+                scrollHeight="400px"
+                :pt="{
+                    table: { style: 'min-width: 50rem' },
+                    bodyrow: ({ props }) => ({
+                        class: [{ 'font-bold': props.frozenRow }]
+                    })
+                }"
+            >
+                <Column field="name" header="Name"></Column>
+                <Column field="country.name" header="Country"></Column>
+                <Column field="representative.name" header="Representative"></Column>
+                <Column field="status" header="Status"></Column>
+                <Column style="flex: 0 0 4rem">
+                    <template #body="{ data, frozenRow, index }">
+                        <Button type="button" :icon="frozenRow ? 'pi pi-lock-open' : 'pi pi-lock'" :disabled="frozenRow ? false : lockedCustomers.length >= 2" text size="small" @click="toggleLock(data, frozenRow, index)" />
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CustomerService']" />
+</template>

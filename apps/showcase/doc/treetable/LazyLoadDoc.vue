@@ -1,27 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Lazy mode is handy to deal with large datasets, instead of loading the entire data, small chunks of data is loaded by invoking corresponding callbacks everytime <i>paging</i>, <i>sorting</i> and <i>filtering</i> occurs. Sample below
-            imitates lazy loading data from a remote datasource using an in-memory list and timeouts to mimic network connection.
-        </p>
-        <p>
-            Enabling the <i>lazy</i> property and assigning the logical number of rows to <i>totalRecords</i> by doing a projection query are the key elements of the implementation so that paginator displays the UI assuming there are actually records
-            of totalRecords size although in reality they are not present on page, only the records that are displayed on the current page exist.
-        </p>
-        <p>In addition, only the root elements should be loaded, children can be loaded on demand using <i>nodeExpand</i> callback.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <TreeTable :value="nodes" :lazy="true" :paginator="true" :rows="rows" :loading="loading" @nodeExpand="onExpand" @page="onPage" :totalRecords="totalRecords" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander></Column>
-                <Column field="size" header="Size"></Column>
-                <Column field="type" header="Type"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -217,3 +193,27 @@ const loadNodes = (first, rows) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Lazy mode is handy to deal with large datasets, instead of loading the entire data, small chunks of data is loaded by invoking corresponding callbacks everytime <i>paging</i>, <i>sorting</i> and <i>filtering</i> occurs. Sample below
+            imitates lazy loading data from a remote datasource using an in-memory list and timeouts to mimic network connection.
+        </p>
+        <p>
+            Enabling the <i>lazy</i> property and assigning the logical number of rows to <i>totalRecords</i> by doing a projection query are the key elements of the implementation so that paginator displays the UI assuming there are actually records
+            of totalRecords size although in reality they are not present on page, only the records that are displayed on the current page exist.
+        </p>
+        <p>In addition, only the root elements should be loaded, children can be loaded on demand using <i>nodeExpand</i> callback.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <TreeTable :value="nodes" :lazy="true" :paginator="true" :rows="rows" :loading="loading" @nodeExpand="onExpand" @page="onPage" :totalRecords="totalRecords" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander></Column>
+                <Column field="size" header="Size"></Column>
+                <Column field="type" header="Type"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" />
+</template>

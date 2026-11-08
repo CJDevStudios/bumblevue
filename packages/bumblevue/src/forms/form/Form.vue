@@ -1,9 +1,3 @@
-<template>
-    <form ref="formRef" @submit.prevent="onSubmit" @reset.prevent="onReset" :class="cx('root')" v-bind="ptmi('root')">
-        <slot :register :valid :reset v-bind="states" />
-    </form>
-</template>
-
 <script>
     import { omit } from '@cjdevstudios/bumblevue/utils';
     import { useForm } from '@cjdevstudios/bumblevue/forms/useform';
@@ -52,3 +46,9 @@
         }
     };
 </script>
+
+<template>
+    <form ref="formRef" @submit.prevent="onSubmit" @reset.prevent="onReset" :class="cx('root')" v-bind="ptmi('root')">
+        <slot :register :valid :reset v-bind="states" />
+    </form>
+</template>

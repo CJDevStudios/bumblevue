@@ -1,113 +1,3 @@
-<template>
-    <div class="h-full flex-1 flex flex-col overflow-hidden border border-surface rounded-2xl p-6">
-        <div class="flex items-start gap-2 justify-between">
-            <div>
-                <div class="text-2xl leading-8 text-color font-medium">Customers</div>
-                <div class="mt-1 leading-6 text-muted-color">The analysis list here shows all users</div>
-            </div>
-            <Button icon="pi pi-circle-fill text-green-500" label="950 Active User" variant="outlined" severity="secondary" />
-        </div>
-        <div class="mt-10 mb-4 flex items-center justify-between">
-            <IconField>
-                <InputIcon class="pi pi-search"> </InputIcon>
-                <InputText v-model="search" placeholder="Search" />
-            </IconField>
-            <div class="flex items-center gap-3">
-                <Button icon="pi pi-filter" variant="outlined" severity="secondary" />
-                <Divider layout="vertical" class="m-0" />
-                <Button icon="pi pi-refresh" variant="outlined" severity="secondary" />
-                <Button label="1 of 15" variant="outlined" severity="secondary" />
-                <Button icon="pi pi-chevron-left" variant="outlined" severity="secondary" />
-                <Button icon="pi pi-chevron-right" variant="outlined" severity="secondary" />
-            </div>
-        </div>
-        <div class="flex-1 [&>td]:last:border-0 rounded-lg border border-surface w-full overflow-auto">
-            <DataTable
-                v-model:selection="selectedRows"
-                :value="tableData"
-                :rows="10"
-                :pt="{
-                    root: {
-                        class: 'w-full flex-1 overflow-auto '
-                    },
-                    thead: {
-                        class: 'sticky top-0 z-10'
-                    }
-                }"
-                :dt="{
-                    headerCell: {
-                        background: 'transparent'
-                    },
-                    row: {
-                        background: 'transparent'
-                    }
-                }"
-            >
-                <template #empty>There is no customer.</template>
-                <Column selectionMode="multiple" headerStyle="width: 1rem" style="width: 1rem"></Column>
-                <Column field="name" header="Name">
-                    <template #body="{ data }">
-                        <div class="flex items-center">
-                            <OverlayBadge :severity="data.active === undefined ? 'contrast' : data.active ? 'success' : 'danger'" class="w-fit">
-                                <Avatar
-                                    v-bind="data.image ? { image: data.image } : { label: data.capName }"
-                                    :class="{
-                                        'bg-violet-100 text-violet-950 text-xs font-medium': !data.image
-                                    }"
-                                    class="rounded-md overflow-hidden flex"
-                                />
-                            </OverlayBadge>
-                            <div class="ml-4 leading-6 text-color font-medium">{{ data.name }}</div>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="title" header="Title">
-                    <template #body="{ data }">
-                        <div class="leading-6 text-muted-color">{{ data.title }}</div>
-                    </template>
-                </Column>
-                <Column field="company" header="Company Name">
-                    <template #body="{ data }">
-                        <div class="flex items-center gap-2">
-                            <div class="flex items-center justify-center" v-html="companyLogos[data.company.logo]"></div>
-                            <div class="leading-6 text-surface-600 dark:text-surface-400">{{ data.company.name }}</div>
-                        </div>
-                    </template>
-                </Column>
-                <Column field="email" header="Email Address">
-                    <template #body="{ data }">
-                        <div class="leading-6 text-muted-color truncate">{{ data.email }}</div>
-                    </template>
-                </Column>
-                <Column field="lead" header="Lead Source">
-                    <template #body="{ data }">
-                        <div class="leading-6 text-muted-color">{{ data.lead }}</div>
-                    </template>
-                </Column>
-                <Column field="status" header="Status">
-                    <template #body="{ data }">
-                        <Tag :severity="data.status === 'Active' ? 'success' : data.status === 'Inactive' ? 'danger' : 'info'" :value="data.status" class="font-medium"></Tag>
-                    </template>
-                </Column>
-                <Column field="more" header="More">
-                    <template #body>
-                        <div class="flex justify-end w-full">
-                            <Button @click="displayPopover" icon="pi pi-search" rounded variant="outlined" severity="secondary" />
-                        </div>
-                    </template>
-                </Column>
-            </DataTable>
-
-            <Popover ref="op">
-                <div class="flex gap-2">
-                    <Button label="Details" size="small" variant="outlined" @click="hidePopover"></Button>
-                    <Button label="Delete" severity="danger" size="small" variant="outlined" @click="hidePopover"></Button>
-                </div>
-            </Popover>
-        </div>
-    </div>
-</template>
-
 <script>
     export default {
         name: 'Inbox',
@@ -262,3 +152,113 @@
         }
     };
 </script>
+
+<template>
+    <div class="h-full flex-1 flex flex-col overflow-hidden border border-surface rounded-2xl p-6">
+        <div class="flex items-start gap-2 justify-between">
+            <div>
+                <div class="text-2xl leading-8 text-color font-medium">Customers</div>
+                <div class="mt-1 leading-6 text-muted-color">The analysis list here shows all users</div>
+            </div>
+            <Button icon="pi pi-circle-fill text-green-500" label="950 Active User" variant="outlined" severity="secondary" />
+        </div>
+        <div class="mt-10 mb-4 flex items-center justify-between">
+            <IconField>
+                <InputIcon class="pi pi-search"> </InputIcon>
+                <InputText v-model="search" placeholder="Search" />
+            </IconField>
+            <div class="flex items-center gap-3">
+                <Button icon="pi pi-filter" variant="outlined" severity="secondary" />
+                <Divider layout="vertical" class="m-0" />
+                <Button icon="pi pi-refresh" variant="outlined" severity="secondary" />
+                <Button label="1 of 15" variant="outlined" severity="secondary" />
+                <Button icon="pi pi-chevron-left" variant="outlined" severity="secondary" />
+                <Button icon="pi pi-chevron-right" variant="outlined" severity="secondary" />
+            </div>
+        </div>
+        <div class="flex-1 [&>td]:last:border-0 rounded-lg border border-surface w-full overflow-auto">
+            <DataTable
+                v-model:selection="selectedRows"
+                :value="tableData"
+                :rows="10"
+                :pt="{
+                    root: {
+                        class: 'w-full flex-1 overflow-auto '
+                    },
+                    thead: {
+                        class: 'sticky top-0 z-10'
+                    }
+                }"
+                :dt="{
+                    headerCell: {
+                        background: 'transparent'
+                    },
+                    row: {
+                        background: 'transparent'
+                    }
+                }"
+            >
+                <template #empty>There is no customer.</template>
+                <Column selectionMode="multiple" headerStyle="width: 1rem" style="width: 1rem"></Column>
+                <Column field="name" header="Name">
+                    <template #body="{ data }">
+                        <div class="flex items-center">
+                            <OverlayBadge :severity="data.active === undefined ? 'contrast' : data.active ? 'success' : 'danger'" class="w-fit">
+                                <Avatar
+                                    v-bind="data.image ? { image: data.image } : { label: data.capName }"
+                                    :class="{
+                                        'bg-violet-100 text-violet-950 text-xs font-medium': !data.image
+                                    }"
+                                    class="rounded-md overflow-hidden flex"
+                                />
+                            </OverlayBadge>
+                            <div class="ml-4 leading-6 text-color font-medium">{{ data.name }}</div>
+                        </div>
+                    </template>
+                </Column>
+                <Column field="title" header="Title">
+                    <template #body="{ data }">
+                        <div class="leading-6 text-muted-color">{{ data.title }}</div>
+                    </template>
+                </Column>
+                <Column field="company" header="Company Name">
+                    <template #body="{ data }">
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center justify-center" v-html="companyLogos[data.company.logo]"></div>
+                            <div class="leading-6 text-surface-600 dark:text-surface-400">{{ data.company.name }}</div>
+                        </div>
+                    </template>
+                </Column>
+                <Column field="email" header="Email Address">
+                    <template #body="{ data }">
+                        <div class="leading-6 text-muted-color truncate">{{ data.email }}</div>
+                    </template>
+                </Column>
+                <Column field="lead" header="Lead Source">
+                    <template #body="{ data }">
+                        <div class="leading-6 text-muted-color">{{ data.lead }}</div>
+                    </template>
+                </Column>
+                <Column field="status" header="Status">
+                    <template #body="{ data }">
+                        <Tag :severity="data.status === 'Active' ? 'success' : data.status === 'Inactive' ? 'danger' : 'info'" :value="data.status" class="font-medium"></Tag>
+                    </template>
+                </Column>
+                <Column field="more" header="More">
+                    <template #body>
+                        <div class="flex justify-end w-full">
+                            <Button @click="displayPopover" icon="pi pi-search" rounded variant="outlined" severity="secondary" />
+                        </div>
+                    </template>
+                </Column>
+            </DataTable>
+
+            <Popover ref="op">
+                <div class="flex gap-2">
+                    <Button label="Details" size="small" variant="outlined" @click="hidePopover"></Button>
+                    <Button label="Delete" severity="danger" size="small" variant="outlined" @click="hidePopover"></Button>
+                </div>
+            </Popover>
+        </div>
+    </div>
+</template>

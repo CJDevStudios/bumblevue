@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <Textarea id="description" v-model="value" rows="5" cols="30" style="resize: none" />
-            <label for="description">Description</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -44,3 +31,16 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <Textarea id="description" v-model="value" rows="5" cols="30" style="resize: none" />
+            <label for="description">Description</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

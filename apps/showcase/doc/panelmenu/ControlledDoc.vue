@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            If the menuitem has a <i>key</i> defined, PanelMenu state can be controlled programmatically with the <i>expandedKeys</i> property that defines the keys that are expanded. This property is a Map instance whose key is the key of a node and
-            value is a boolean.
-        </p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <Button type="button" label="Toggle All" text @click="toggleAll" />
-        <PanelMenu v-model:expandedKeys="expandedKeys" :model="items" class="w-full md:w-80" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -225,3 +211,17 @@ const expandNode = (node) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            If the menuitem has a <i>key</i> defined, PanelMenu state can be controlled programmatically with the <i>expandedKeys</i> property that defines the keys that are expanded. This property is a Map instance whose key is the key of a node and
+            value is a boolean.
+        </p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <Button type="button" label="Toggle All" text @click="toggleAll" />
+        <PanelMenu v-model:expandedKeys="expandedKeys" :model="items" class="w-full md:w-80" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

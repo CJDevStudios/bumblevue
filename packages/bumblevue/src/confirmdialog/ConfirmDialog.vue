@@ -1,61 +1,3 @@
-<template>
-    <Dialog
-        v-model:visible="visible"
-        role="alertdialog"
-        :class="cx('root')"
-        :modal="modal"
-        :header="header"
-        :blockScroll="blockScroll"
-        :appendTo="appendTo"
-        :position="position"
-        :breakpoints="breakpoints"
-        :closeOnEscape="closeOnEscape"
-        :draggable="draggable"
-        @update:visible="onHide"
-        :pt="pt"
-        :unstyled="unstyled"
-    >
-        <template v-if="$slots.container" #container="slotProps">
-            <slot name="container" :message="confirmation" :closeCallback="slotProps.closeCallback" :acceptCallback="accept" :rejectCallback="reject" :initDragCallback="slotProps.initDragCallback" />
-        </template>
-        <template v-if="!$slots.container">
-            <template v-if="!$slots.message">
-                <slot name="icon">
-                    <component v-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
-                    <span v-else-if="confirmation.icon" :class="[confirmation.icon, cx('icon')]" v-bind="ptm('icon')" />
-                </slot>
-                <span :class="cx('message')" v-bind="ptm('message')">{{ message }}</span>
-            </template>
-            <component v-else :is="$slots.message" :message="confirmation"></component>
-        </template>
-        <template v-if="!$slots.container" #footer>
-            <Button
-                :class="[cx('pcRejectButton'), confirmation.rejectClass]"
-                :autofocus="autoFocusReject"
-                :unstyled="unstyled"
-                :text="confirmation.rejectProps?.text || false"
-                @click="reject()"
-                v-bind="confirmation.rejectProps"
-                :label="rejectLabel"
-                :pt="ptm('pcRejectButton')"
-            >
-                <template v-if="rejectIcon || $slots.rejecticon" #icon="iconProps">
-                    <slot name="rejecticon">
-                        <span :class="[rejectIcon, iconProps.class]" v-bind="ptm('pcRejectButton')['icon']" data-pc-section="rejectbuttonicon" />
-                    </slot>
-                </template>
-            </Button>
-            <Button :label="acceptLabel" :class="[cx('pcAcceptButton'), confirmation.acceptClass]" :autofocus="autoFocusAccept" :unstyled="unstyled" @click="accept()" v-bind="confirmation.acceptProps" :pt="ptm('pcAcceptButton')">
-                <template v-if="acceptIcon || $slots.accepticon" #icon="iconProps">
-                    <slot name="accepticon">
-                        <span :class="[acceptIcon, iconProps.class]" v-bind="ptm('pcAcceptButton')['icon']" data-pc-section="acceptbuttonicon" />
-                    </slot>
-                </template>
-            </Button>
-        </template>
-    </Dialog>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import Button from '@cjdevstudios/bumblevue/button';
@@ -206,3 +148,61 @@
         }
     };
 </script>
+
+<template>
+    <Dialog
+        v-model:visible="visible"
+        role="alertdialog"
+        :class="cx('root')"
+        :modal="modal"
+        :header="header"
+        :blockScroll="blockScroll"
+        :appendTo="appendTo"
+        :position="position"
+        :breakpoints="breakpoints"
+        :closeOnEscape="closeOnEscape"
+        :draggable="draggable"
+        @update:visible="onHide"
+        :pt="pt"
+        :unstyled="unstyled"
+    >
+        <template v-if="$slots.container" #container="slotProps">
+            <slot name="container" :message="confirmation" :closeCallback="slotProps.closeCallback" :acceptCallback="accept" :rejectCallback="reject" :initDragCallback="slotProps.initDragCallback" />
+        </template>
+        <template v-if="!$slots.container">
+            <template v-if="!$slots.message">
+                <slot name="icon">
+                    <component v-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
+                    <span v-else-if="confirmation.icon" :class="[confirmation.icon, cx('icon')]" v-bind="ptm('icon')" />
+                </slot>
+                <span :class="cx('message')" v-bind="ptm('message')">{{ message }}</span>
+            </template>
+            <component v-else :is="$slots.message" :message="confirmation"></component>
+        </template>
+        <template v-if="!$slots.container" #footer>
+            <Button
+                :class="[cx('pcRejectButton'), confirmation.rejectClass]"
+                :autofocus="autoFocusReject"
+                :unstyled="unstyled"
+                :text="confirmation.rejectProps?.text || false"
+                @click="reject()"
+                v-bind="confirmation.rejectProps"
+                :label="rejectLabel"
+                :pt="ptm('pcRejectButton')"
+            >
+                <template v-if="rejectIcon || $slots.rejecticon" #icon="iconProps">
+                    <slot name="rejecticon">
+                        <span :class="[rejectIcon, iconProps.class]" v-bind="ptm('pcRejectButton')['icon']" data-pc-section="rejectbuttonicon" />
+                    </slot>
+                </template>
+            </Button>
+            <Button :label="acceptLabel" :class="[cx('pcAcceptButton'), confirmation.acceptClass]" :autofocus="autoFocusAccept" :unstyled="unstyled" @click="accept()" v-bind="confirmation.acceptProps" :pt="ptm('pcAcceptButton')">
+                <template v-if="acceptIcon || $slots.accepticon" #icon="iconProps">
+                    <slot name="accepticon">
+                        <span :class="[acceptIcon, iconProps.class]" v-bind="ptm('pcAcceptButton')['icon']" data-pc-section="acceptbuttonicon" />
+                    </slot>
+                </template>
+            </Button>
+        </template>
+    </Dialog>
+</template>

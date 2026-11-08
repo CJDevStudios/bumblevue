@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A message can be targeted to a certain Toast component by matching the <i>group</i> keys whereas location is customized with the <i>position</i>.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <div class="flex flex-wrap gap-2">
-            <Button label="Top Left" @click="showTopLeft" />
-            <Button label="Bottom Left" @click="showBottomLeft" />
-            <Button label="Bottom Right" @click="showBottomRight" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -74,3 +60,17 @@ const showBottomRight = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A message can be targeted to a certain Toast component by matching the <i>group</i> keys whereas location is customized with the <i>position</i>.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <div class="flex flex-wrap gap-2">
+            <Button label="Top Left" @click="showTopLeft" />
+            <Button label="Bottom Left" @click="showBottomLeft" />
+            <Button label="Bottom Right" @click="showBottomRight" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,44 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <div :class="cx('contentContainer')" v-bind="ptm('contentContainer')">
-            <div ref="content" :id="contentId" :class="cx('content')" @scroll="onScroll" @mouseenter="moveBar" v-bind="ptm('content')">
-                <slot></slot>
-            </div>
-        </div>
-        <div
-            ref="xBar"
-            :class="cx('barx')"
-            tabindex="0"
-            role="scrollbar"
-            aria-orientation="horizontal"
-            :aria-controls="contentId"
-            :aria-valuenow="lastScrollLeft"
-            @mousedown="onXBarMouseDown"
-            @keydown="onKeyDown($event)"
-            @keyup="onKeyUp"
-            @focus="onFocus"
-            @blur="onBlur"
-            v-bind="ptm('barx')"
-            data-pc-group-section="bar"
-        ></div>
-        <div
-            ref="yBar"
-            :class="cx('bary')"
-            tabindex="0"
-            role="scrollbar"
-            aria-orientation="vertical"
-            :aria-controls="contentId"
-            :aria-valuenow="lastScrollTop"
-            @mousedown="onYBarMouseDown"
-            @keydown="onKeyDown($event)"
-            @keyup="onKeyUp"
-            @focus="onFocus"
-            v-bind="ptm('bary')"
-            data-pc-group-section="bar"
-        ></div>
-    </div>
-</template>
-
 <script>
     import { addClass, getHeight, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -399,3 +358,44 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <div :class="cx('contentContainer')" v-bind="ptm('contentContainer')">
+            <div ref="content" :id="contentId" :class="cx('content')" @scroll="onScroll" @mouseenter="moveBar" v-bind="ptm('content')">
+                <slot></slot>
+            </div>
+        </div>
+        <div
+            ref="xBar"
+            :class="cx('barx')"
+            tabindex="0"
+            role="scrollbar"
+            aria-orientation="horizontal"
+            :aria-controls="contentId"
+            :aria-valuenow="lastScrollLeft"
+            @mousedown="onXBarMouseDown"
+            @keydown="onKeyDown($event)"
+            @keyup="onKeyUp"
+            @focus="onFocus"
+            @blur="onBlur"
+            v-bind="ptm('barx')"
+            data-pc-group-section="bar"
+        ></div>
+        <div
+            ref="yBar"
+            :class="cx('bary')"
+            tabindex="0"
+            role="scrollbar"
+            aria-orientation="vertical"
+            :aria-controls="contentId"
+            :aria-valuenow="lastScrollTop"
+            @mousedown="onYBarMouseDown"
+            @keydown="onKeyDown($event)"
+            @keyup="onKeyUp"
+            @focus="onFocus"
+            v-bind="ptm('bary')"
+            data-pc-group-section="bar"
+        ></div>
+    </div>
+</template>

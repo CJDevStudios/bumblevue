@@ -1,42 +1,3 @@
-<template>
-    <div class="doc-section-nav-container">
-        <ul ref="nav" class="doc-section-nav">
-            <li v-for="doc of docs" :key="doc.label" :class="['navbar-item', { 'active-navbar-item': activeId === doc.id }]">
-                <div class="navbar-item-content">
-                    <button @click="onButtonClick(doc)">{{ doc.label }}</button>
-                </div>
-
-                <template v-if="doc.children">
-                    <ul>
-                        <li v-for="child of doc.children" :key="child.label" :class="['navbar-item', { 'active-navbar-item': activeId === child.id }]">
-                            <div class="navbar-item-content">
-                                <button @click="onButtonClick(child)">
-                                    {{ child.label }}
-                                </button>
-                            </div>
-                        </li>
-                    </ul>
-                </template>
-            </li>
-        </ul>
-
-        <!--        <div class="mt-8 px-4 py-6 rounded-lg border border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900 w-full" v-if="ad">-->
-        <!--            <img :src="ad.lightImage" class="w-full rounded-xl block dark:hidden mb-4" />-->
-        <!--            <img :src="ad.darkImage" class="w-full rounded-xl hidden dark:block mb-4" />-->
-        <!--            <div class="text-xl font-semibold flex flex-col gap-2 text-center">-->
-        <!--                <span class="leading-none">{{ ad.title }}</span>-->
-        <!--            </div>-->
-        <!--            <div class="text-center text-sm mt-4">{{ ad.details }}</div>-->
-        <!--            <span class="flex justify-center mt-4">-->
-        <!--                <Button v-if="ad.href" as="a" label="Learn More" :href="ad.href" target="_blank" rel="noopener" rounded size="small" />-->
-        <!--                <Button asChild v-slot="slotProps" v-if="ad.to" rounded size="small">-->
-        <!--                    <RouterLink :to="ad.to" :class="slotProps.class">Learn More</RouterLink>-->
-        <!--                </Button>-->
-        <!--            </span>-->
-        <!--        </div>-->
-    </div>
-</template>
-
 <script>
     import { findSingle, getHeight, getOffset, getWindowScrollTop, isVisible } from '@cjdevstudios/bumblevue/utils/dom';
     import { isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
@@ -146,3 +107,42 @@
         }
     };
 </script>
+
+<template>
+    <div class="doc-section-nav-container">
+        <ul ref="nav" class="doc-section-nav">
+            <li v-for="doc of docs" :key="doc.label" :class="['navbar-item', { 'active-navbar-item': activeId === doc.id }]">
+                <div class="navbar-item-content">
+                    <button @click="onButtonClick(doc)">{{ doc.label }}</button>
+                </div>
+
+                <template v-if="doc.children">
+                    <ul>
+                        <li v-for="child of doc.children" :key="child.label" :class="['navbar-item', { 'active-navbar-item': activeId === child.id }]">
+                            <div class="navbar-item-content">
+                                <button @click="onButtonClick(child)">
+                                    {{ child.label }}
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </template>
+            </li>
+        </ul>
+
+        <!--        <div class="mt-8 px-4 py-6 rounded-lg border border-surface-200 dark:border-surface-800 bg-surface-0 dark:bg-surface-900 w-full" v-if="ad">-->
+        <!--            <img :src="ad.lightImage" class="w-full rounded-xl block dark:hidden mb-4" />-->
+        <!--            <img :src="ad.darkImage" class="w-full rounded-xl hidden dark:block mb-4" />-->
+        <!--            <div class="text-xl font-semibold flex flex-col gap-2 text-center">-->
+        <!--                <span class="leading-none">{{ ad.title }}</span>-->
+        <!--            </div>-->
+        <!--            <div class="text-center text-sm mt-4">{{ ad.details }}</div>-->
+        <!--            <span class="flex justify-center mt-4">-->
+        <!--                <Button v-if="ad.href" as="a" label="Learn More" :href="ad.href" target="_blank" rel="noopener" rounded size="small" />-->
+        <!--                <Button asChild v-slot="slotProps" v-if="ad.to" rounded size="small">-->
+        <!--                    <RouterLink :to="ad.to" :class="slotProps.class">Learn More</RouterLink>-->
+        <!--                </Button>-->
+        <!--            </span>-->
+        <!--        </div>-->
+    </div>
+</template>

@@ -1,23 +1,3 @@
-<template>
-    <DocSectionText label="Non-BumbleVue" :level="2" v-bind="$attrs">
-        <p>Form API is not strictly tied to BumbleVue components, providing a flexible way to manage validation and state for any native HTML elements, your own custom components or third-party libraries.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
-            <FormField v-slot="$field" name="username" initialValue="" class="flex flex-col gap-1">
-                <input type="text" placeholder="Username" :class="[{ error: $field?.invalid }]" v-bind="$field.props" />
-                <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">{{ $field.error?.message }}</Message>
-            </FormField>
-            <FormField v-slot="$field" name="password" initialValue="BumbleVue" class="flex flex-col gap-1">
-                <input v-model="$field.value" type="password" placeholder="Password" :class="[{ error: $field?.invalid }]" @input="$field.onInput" @blur="$field.onBlur" @change="$field.onChange" />
-                <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">{{ $field.error?.message }}</Message>
-            </FormField>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -108,6 +88,26 @@ input.error {
         }
     };
 </script>
+
+<template>
+    <DocSectionText label="Non-BumbleVue" :level="2" v-bind="$attrs">
+        <p>Form API is not strictly tied to BumbleVue components, providing a flexible way to manage validation and state for any native HTML elements, your own custom components or third-party libraries.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form :resolver @submit="onFormSubmit" class="flex flex-col gap-4 w-full sm:w-56">
+            <FormField v-slot="$field" name="username" initialValue="" class="flex flex-col gap-1">
+                <input type="text" placeholder="Username" :class="[{ error: $field?.invalid }]" v-bind="$field.props" />
+                <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">{{ $field.error?.message }}</Message>
+            </FormField>
+            <FormField v-slot="$field" name="password" initialValue="BumbleVue" class="flex flex-col gap-1">
+                <input v-model="$field.value" type="password" placeholder="Password" :class="[{ error: $field?.invalid }]" @input="$field.onInput" @blur="$field.onBlur" @change="$field.onChange" />
+                <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">{{ $field.error?.message }}</Message>
+            </FormField>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>
 <style scoped>
     input {
         width: 100%;

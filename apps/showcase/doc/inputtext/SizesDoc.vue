@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>InputText provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center gap-4">
-        <InputText v-model="value1" type="text" size="small" placeholder="Small" />
-        <InputText v-model="value2" type="text" placeholder="Normal" />
-        <InputText v-model="value3" type="text" size="large" placeholder="Large" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +33,15 @@ const value3 = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>InputText provides <i>small</i> and <i>large</i> sizes as alternatives to the base.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center gap-4">
+        <InputText v-model="value1" type="text" size="small" placeholder="Small" />
+        <InputText v-model="value2" type="text" placeholder="Normal" />
+        <InputText v-model="value3" type="text" size="large" placeholder="Large" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

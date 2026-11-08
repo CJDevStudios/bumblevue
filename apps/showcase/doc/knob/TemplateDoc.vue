@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The label can be customized with the <i>valueTemplate</i> property using either a template string or a function.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Knob v-model="value" valueTemplate="{value}%" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(60);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The label can be customized with the <i>valueTemplate</i> property using either a template string or a function.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Knob v-model="value" valueTemplate="{value}%" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

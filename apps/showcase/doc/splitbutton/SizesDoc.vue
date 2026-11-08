@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>SplitButton provides <i>small</i> and <i>large</i> sizes as alternatives to the standard.</p>
-    </DocSectionText>
-    <div class="card flex items-center justify-center flex-wrap gap-4">
-        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="small"></SplitButton>
-        <SplitButton label="Save" :model="items" icon="pi pi-plus"></SplitButton>
-        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="large"></SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -96,3 +84,15 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>SplitButton provides <i>small</i> and <i>large</i> sizes as alternatives to the standard.</p>
+    </DocSectionText>
+    <div class="card flex items-center justify-center flex-wrap gap-4">
+        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="small"></SplitButton>
+        <SplitButton label="Save" :model="items" icon="pi pi-plus"></SplitButton>
+        <SplitButton label="Save" :model="items" icon="pi pi-plus" size="large"></SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

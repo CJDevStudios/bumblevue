@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            A chart is configured with 3 properties; <i>type</i>, <i>data</i> and <i>options</i>. Chart type is defined using the <i>type</i> property that accepts <i>pie</i>, <i>doughnut</i>, <i>line</i>, <i>bar</i>, <i>radar</i> and
-            <i>polarArea</i> as a value. The <i>data</i> defines datasets represented with the chart and the <i>options</i> provide numerous customization options to customize the presentation.
-        </p>
-    </DocSectionText>
-    <div class="card">
-        <Chart type="bar" :data="chartData" :options="chartOptions" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -164,3 +151,16 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            A chart is configured with 3 properties; <i>type</i>, <i>data</i> and <i>options</i>. Chart type is defined using the <i>type</i> property that accepts <i>pie</i>, <i>doughnut</i>, <i>line</i>, <i>bar</i>, <i>radar</i> and
+            <i>polarArea</i> as a value. The <i>data</i> defines datasets represented with the chart and the <i>options</i> provide numerous customization options to customize the presentation.
+        </p>
+    </DocSectionText>
+    <div class="card">
+        <Chart type="bar" :data="chartData" :options="chartOptions" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

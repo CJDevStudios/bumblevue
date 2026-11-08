@@ -1,24 +1,3 @@
-<template>
-    <div :class="[cx('message'), message.styleClass]" role="alert" aria-live="assertive" aria-atomic="true" :data-p="dataP" v-bind="ptm('message')" @click="onMessageClick" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-        <component v-if="templates.container" :is="templates.container" :message="message" :closeCallback="onCloseClick" />
-        <div v-else :class="[cx('messageContent'), message.contentStyleClass]" v-bind="ptm('messageContent')">
-            <template v-if="!templates.message">
-                <component :is="templates.messageicon ? templates.messageicon : iconComponent && iconComponent.name ? iconComponent : 'span'" :class="cx('messageIcon')" v-bind="ptm('messageIcon')" />
-                <div :class="cx('messageText')" :data-p="dataP" v-bind="ptm('messageText')">
-                    <span :class="cx('summary')" :data-p="dataP" v-bind="ptm('summary')">{{ message.summary }}</span>
-                    <div v-if="message.detail" :class="cx('detail')" :data-p="dataP" v-bind="ptm('detail')">{{ message.detail }}</div>
-                </div>
-            </template>
-            <component v-else :is="templates.message" :message="message"></component>
-            <div v-if="message.closable !== false" v-bind="ptm('buttonContainer')">
-                <button v-ripple :class="cx('closeButton')" type="button" :aria-label="closeAriaLabel" @click="onCloseClick" autofocus :data-p="dataP" v-bind="{ ...closeButtonProps, ...ptm('closeButton') }">
-                    <component :is="templates.closeicon || 'TimesIcon'" :class="[cx('closeIcon'), closeIcon]" v-bind="ptm('closeIcon')" />
-                </button>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -174,3 +153,24 @@
         }
     };
 </script>
+
+<template>
+    <div :class="[cx('message'), message.styleClass]" role="alert" aria-live="assertive" aria-atomic="true" :data-p="dataP" v-bind="ptm('message')" @click="onMessageClick" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+        <component v-if="templates.container" :is="templates.container" :message="message" :closeCallback="onCloseClick" />
+        <div v-else :class="[cx('messageContent'), message.contentStyleClass]" v-bind="ptm('messageContent')">
+            <template v-if="!templates.message">
+                <component :is="templates.messageicon ? templates.messageicon : iconComponent && iconComponent.name ? iconComponent : 'span'" :class="cx('messageIcon')" v-bind="ptm('messageIcon')" />
+                <div :class="cx('messageText')" :data-p="dataP" v-bind="ptm('messageText')">
+                    <span :class="cx('summary')" :data-p="dataP" v-bind="ptm('summary')">{{ message.summary }}</span>
+                    <div v-if="message.detail" :class="cx('detail')" :data-p="dataP" v-bind="ptm('detail')">{{ message.detail }}</div>
+                </div>
+            </template>
+            <component v-else :is="templates.message" :message="message"></component>
+            <div v-if="message.closable !== false" v-bind="ptm('buttonContainer')">
+                <button v-ripple :class="cx('closeButton')" type="button" :aria-label="closeAriaLabel" @click="onCloseClick" autofocus :data-p="dataP" v-bind="{ ...closeButtonProps, ...ptm('closeButton') }">
+                    <component :is="templates.closeicon || 'TimesIcon'" :class="[cx('closeIcon'), closeIcon]" v-bind="ptm('closeIcon')" />
+                </button>
+            </div>
+        </div>
+    </div>
+</template>

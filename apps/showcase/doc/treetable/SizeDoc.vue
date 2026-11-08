@@ -1,22 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>In addition to a regular table, alternatives with alternative sizes are available.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <div class="flex justify-center mb-6">
-                <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
-            </div>
-            <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
-                <Column field="name" header="Name" expander style="width: 34%"></Column>
-                <Column field="size" header="Size" style="width: 33%"></Column>
-                <Column field="type" header="Type" style="width: 33%"></Column>
-            </TreeTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -104,3 +85,22 @@ const sizeOptions = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>In addition to a regular table, alternatives with alternative sizes are available.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <div class="flex justify-center mb-6">
+                <SelectButton v-model="size" :options="sizeOptions" optionLabel="label" dataKey="label" />
+            </div>
+            <TreeTable :value="nodes" :size="size.value" tableStyle="min-width: 50rem">
+                <Column field="name" header="Name" expander style="width: 34%"></Column>
+                <Column field="size" header="Size" style="width: 33%"></Column>
+                <Column field="type" header="Type" style="width: 33%"></Column>
+            </TreeTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['NodeService']" />
+</template>

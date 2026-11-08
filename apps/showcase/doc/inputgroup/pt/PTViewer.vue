@@ -1,13 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <InputGroup>
-            <InputGroupAddon>$</InputGroupAddon>
-            <InputNumber v-model="value" placeholder="Price" />
-            <InputGroupAddon>.00</InputGroupAddon>
-        </InputGroup>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -29,3 +19,13 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <InputGroup>
+            <InputGroupAddon>$</InputGroupAddon>
+            <InputNumber v-model="value" placeholder="Price" />
+            <InputGroupAddon>.00</InputGroupAddon>
+        </InputGroup>
+    </DocPTViewer>
+</template>

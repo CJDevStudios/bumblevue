@@ -1,3 +1,24 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<span id="image_label">Compare Images</span>
+<ImageCompare class="shadow-lg rounded-2xl" aria-labelledby="image-label">
+    ...
+</ImageCompare>
+
+<ImageCompare class="shadow-lg rounded-2xl" aria-label="Compare Images">
+    ...
+</ImageCompare>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -58,24 +79,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<span id="image_label">Compare Images</span>
-<ImageCompare class="shadow-lg rounded-2xl" aria-labelledby="image-label">
-    ...
-</ImageCompare>
-
-<ImageCompare class="shadow-lg rounded-2xl" aria-label="Compare Images">
-    ...
-</ImageCompare>
-`
-                }
-            };
-        }
-    };
-</script>

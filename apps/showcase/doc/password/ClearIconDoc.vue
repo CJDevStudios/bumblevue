@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the Password.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Password v-model="value" :feedback="false" showClear inputClass="w-56" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(null);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the Password.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Password v-model="value" :feedback="false" showClear inputClass="w-56" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

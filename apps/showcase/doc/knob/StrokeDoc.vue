@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The border size is specified with the <i>stroke</i> property as a number in pixels.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Knob v-model="value" :strokeWidth="5" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(40);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The border size is specified with the <i>stroke</i> property as a number in pixels.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Knob v-model="value" :strokeWidth="5" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
-    </DocSectionText>
-    <div class="card">
-        <CascadeSelect v-model="selectedCity" fluid :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" placeholder="Select a City" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -185,3 +175,13 @@ const countries = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
+    </DocSectionText>
+    <div class="card">
+        <CascadeSelect v-model="selectedCity" fluid :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" placeholder="Select a City" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

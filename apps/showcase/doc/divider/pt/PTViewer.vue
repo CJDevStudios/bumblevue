@@ -1,3 +1,20 @@
+<script>
+    import { getPTOptions } from '@/components/doc/helpers';
+
+    export default {
+        data() {
+            return {
+                docs: [
+                    {
+                        data: getPTOptions('Divider'),
+                        key: 'Divider'
+                    }
+                ]
+            };
+        }
+    };
+</script>
+
 <template>
     <DocPTViewer :docs="docs">
         <div>
@@ -21,20 +38,3 @@
         </div>
     </DocPTViewer>
 </template>
-
-<script>
-    import { getPTOptions } from '@/components/doc/helpers';
-
-    export default {
-        data() {
-            return {
-                docs: [
-                    {
-                        data: getPTOptions('Divider'),
-                        key: 'Divider'
-                    }
-                ]
-            };
-        }
-    };
-</script>

@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Rating integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-40">
-            <div class="flex flex-col items-center gap-2">
-                <Rating name="rating" />
-                <Message v-if="$form.rating?.invalid" severity="error" size="small" variant="simple">{{ $form.rating.error?.message }}</Message>
-            </div>
-            <Button type="submit" severity="secondary" label="Submit" />
-        </Form>
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
-</template>
-
 <script>
     import { zodResolver } from '@cjdevstudios/bumblevue/forms/resolvers/zod';
     import { z } from 'zod';
@@ -87,3 +71,19 @@ const onFormSubmit = ({ valid }) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Rating integrates seamlessly with the <NuxtLink to="/forms">BumbleVue Forms</NuxtLink> library.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit" class="flex flex-col gap-4 w-40">
+            <div class="flex flex-col items-center gap-2">
+                <Rating name="rating" />
+                <Message v-if="$form.rating?.invalid" severity="error" size="small" variant="simple">{{ $form.rating.error?.message }}</Message>
+            </div>
+            <Button type="submit" severity="secondary" label="Submit" />
+        </Form>
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ zod: '3.25.76' }" />
+</template>

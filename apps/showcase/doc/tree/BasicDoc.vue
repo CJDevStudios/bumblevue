@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Tree component requires an array of TreeNode objects as its <i>value</i>.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree :value="nodes" class="w-full md:w-120"></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
 
@@ -72,3 +62,13 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Tree component requires an array of TreeNode objects as its <i>value</i>.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree :value="nodes" class="w-full md:w-120"></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

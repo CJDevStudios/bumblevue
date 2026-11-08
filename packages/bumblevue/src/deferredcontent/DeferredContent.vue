@@ -1,9 +1,3 @@
-<template>
-    <div ref="container" v-bind="ptmi('root')">
-        <slot v-if="loaded"></slot>
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import DeferredContentStyle from '@cjdevstudios/bumblevue/deferredcontent/style';
@@ -63,3 +57,9 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" v-bind="ptmi('root')">
+        <slot v-if="loaded"></slot>
+    </div>
+</template>

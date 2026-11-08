@@ -1,58 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When lazy loading is enabled via the <i>virtualScrollerOptions</i>, data is fetched on demand during scrolling instead of preload.</p>
-        <p>In sample below, an in-memory list and timeout is used to mimic fetching from a remote datasource. The <i>virtualCars</i> is an empty array that is populated on scroll.</p>
-    </DocSectionText>
-    <DeferredDemo @load="loadDemoData">
-        <div class="card">
-            <DataTable
-                :value="virtualCars"
-                scrollable
-                scrollHeight="400px"
-                :virtualScrollerOptions="{ lazy: true, onLazyLoad: loadCarsLazy, itemSize: 44, delay: 200, showLoader: true, loading: lazyLoading, numToleratedItems: 10 }"
-                tableStyle="min-width: 50rem"
-            >
-                <Column field="id" header="Id" style="width: 20%; height: 44px">
-                    <template #loading>
-                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
-                            <Skeleton width="60%" height="1rem" />
-                        </div>
-                    </template>
-                </Column>
-                <Column field="vin" header="Vin" style="width: 20%; height: 44px">
-                    <template #loading>
-                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
-                            <Skeleton width="40%" height="1rem" />
-                        </div>
-                    </template>
-                </Column>
-                <Column field="year" header="Year" style="width: 20%; height: 44px">
-                    <template #loading>
-                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
-                            <Skeleton width="30%" height="1rem" />
-                        </div>
-                    </template>
-                </Column>
-                <Column field="brand" header="Brand" style="width: 20%; height: 44px">
-                    <template #loading>
-                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
-                            <Skeleton width="40%" height="1rem" />
-                        </div>
-                    </template>
-                </Column>
-                <Column field="color" header="Color" style="width: 20%; height: 44px">
-                    <template #loading>
-                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
-                            <Skeleton width="60%" height="1rem" />
-                        </div>
-                    </template>
-                </Column>
-            </DataTable>
-        </div>
-    </DeferredDemo>
-    <DocSectionCode :code="code" :service="['CarService']" />
-</template>
-
 <script>
     import { CarService } from '@/service/CarService';
 
@@ -228,3 +173,58 @@ const loadCarsLazy = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When lazy loading is enabled via the <i>virtualScrollerOptions</i>, data is fetched on demand during scrolling instead of preload.</p>
+        <p>In sample below, an in-memory list and timeout is used to mimic fetching from a remote datasource. The <i>virtualCars</i> is an empty array that is populated on scroll.</p>
+    </DocSectionText>
+    <DeferredDemo @load="loadDemoData">
+        <div class="card">
+            <DataTable
+                :value="virtualCars"
+                scrollable
+                scrollHeight="400px"
+                :virtualScrollerOptions="{ lazy: true, onLazyLoad: loadCarsLazy, itemSize: 44, delay: 200, showLoader: true, loading: lazyLoading, numToleratedItems: 10 }"
+                tableStyle="min-width: 50rem"
+            >
+                <Column field="id" header="Id" style="width: 20%; height: 44px">
+                    <template #loading>
+                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
+                            <Skeleton width="60%" height="1rem" />
+                        </div>
+                    </template>
+                </Column>
+                <Column field="vin" header="Vin" style="width: 20%; height: 44px">
+                    <template #loading>
+                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
+                            <Skeleton width="40%" height="1rem" />
+                        </div>
+                    </template>
+                </Column>
+                <Column field="year" header="Year" style="width: 20%; height: 44px">
+                    <template #loading>
+                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
+                            <Skeleton width="30%" height="1rem" />
+                        </div>
+                    </template>
+                </Column>
+                <Column field="brand" header="Brand" style="width: 20%; height: 44px">
+                    <template #loading>
+                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
+                            <Skeleton width="40%" height="1rem" />
+                        </div>
+                    </template>
+                </Column>
+                <Column field="color" header="Color" style="width: 20%; height: 44px">
+                    <template #loading>
+                        <div class="flex items-center" :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }">
+                            <Skeleton width="60%" height="1rem" />
+                        </div>
+                    </template>
+                </Column>
+            </DataTable>
+        </div>
+    </DeferredDemo>
+    <DocSectionCode :code="code" :service="['CarService']" />
+</template>

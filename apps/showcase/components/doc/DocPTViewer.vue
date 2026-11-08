@@ -1,27 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The Pass Through attributes is an API to access the internal DOM Structure of the components. Visit the <NuxtLink to="/passthrough">Pass Through</NuxtLink> documentation for more information.</p>
-        <p>Some sections may not be visible due to the availability of the particular feature. Section names that start with the <i>pc</i> prefix indicate that the element is a BumbleVue component not a DOM element.</p>
-    </DocSectionText>
-    <div ref="container" class="doc-ptviewerwrapper card">
-        <div id="doc-ptviewer" class="doc-ptviewer">
-            <slot />
-        </div>
-        <div class="doc-ptoptions">
-            <template v-if="docs[0].data">
-                <template v-for="doc of docs" :key="doc.key">
-                    <div v-for="item of handleData(doc.data)" :key="item.value" class="doc-ptoption" @mouseenter="enterSection(item, doc.key)" @mouseleave="leaveSection">
-                        <span class="doc-ptoption-text">
-                            {{ item.label }}
-                            {{ findComponentName(item.label, doc) }}
-                        </span>
-                    </div>
-                </template>
-            </template>
-        </div>
-    </div>
-</template>
-
 <script>
     import { addClass, find, removeClass } from '@cjdevstudios/bumblevue/utils/dom';
     import { defaultOptions } from '@cjdevstudios/bumblevue/core/config';
@@ -100,3 +76,27 @@
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The Pass Through attributes is an API to access the internal DOM Structure of the components. Visit the <NuxtLink to="/passthrough">Pass Through</NuxtLink> documentation for more information.</p>
+        <p>Some sections may not be visible due to the availability of the particular feature. Section names that start with the <i>pc</i> prefix indicate that the element is a BumbleVue component not a DOM element.</p>
+    </DocSectionText>
+    <div ref="container" class="doc-ptviewerwrapper card">
+        <div id="doc-ptviewer" class="doc-ptviewer">
+            <slot />
+        </div>
+        <div class="doc-ptoptions">
+            <template v-if="docs[0].data">
+                <template v-for="doc of docs" :key="doc.key">
+                    <div v-for="item of handleData(doc.data)" :key="item.value" class="doc-ptoption" @mouseenter="enterSection(item, doc.key)" @mouseleave="leaveSection">
+                        <span class="doc-ptoption-text">
+                            {{ item.label }}
+                            {{ findComponentName(item.label, doc) }}
+                        </span>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </div>
+</template>

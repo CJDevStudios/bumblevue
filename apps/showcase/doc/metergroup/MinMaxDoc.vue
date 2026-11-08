@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Boundaries are configured with the <i>min</i> and <i>max</i> values whose defaults are 0 and 100 respectively.</p>
-    </DocSectionText>
-    <div class="card">
-        <MeterGroup :value="value" :max="200" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +35,13 @@ const value = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Boundaries are configured with the <i>min</i> and <i>max</i> values whose defaults are 0 and 100 respectively.</p>
+    </DocSectionText>
+    <div class="card">
+        <MeterGroup :value="value" :max="200" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

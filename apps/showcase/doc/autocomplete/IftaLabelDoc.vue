@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel>
-            <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
-            <label for="ac">Identifier</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -55,3 +42,16 @@ const search = (event) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel>
+            <AutoComplete v-model="value" inputId="ac" :suggestions="items" @complete="search" variant="filled" />
+            <label for="ac">Identifier</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

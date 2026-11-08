@@ -1,9 +1,3 @@
-<template>
-    <div :class="cx('root')" :style="sx('root')" v-bind="ptmi('root')">
-        <canvas ref="canvas" :width="width" :height="height" @click="onCanvasClick($event)" v-bind="{ ...canvasProps, ...ptm('canvas') }"></canvas>
-    </div>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import ChartStyle from '@cjdevstudios/bumblevue/chart/style';
@@ -121,3 +115,9 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :style="sx('root')" v-bind="ptmi('root')">
+        <canvas ref="canvas" :width="width" :height="height" @click="onCanvasClick($event)" v-bind="{ ...canvasProps, ...ptm('canvas') }"></canvas>
+    </div>
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>disabled</i> is present, a visual hint is applied to indicate that the Knob cannot be interacted with.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Rating v-model="value" disabled />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(5);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>disabled</i> is present, a visual hint is applied to indicate that the Knob cannot be interacted with.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Rating v-model="value" disabled />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

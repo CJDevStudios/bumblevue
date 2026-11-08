@@ -1,14 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Enabling <i>fullScreen</i> property controls the document.</p>
-    </DocSectionText>
-    <div class="card">
-        <BlockUI :blocked="blocked" fullScreen />
-        <Button label="Block" @click="blockDocument" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -54,3 +43,14 @@ const blockDocument = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Enabling <i>fullScreen</i> property controls the document.</p>
+    </DocSectionText>
+    <div class="card">
+        <BlockUI :blocked="blocked" fullScreen />
+        <Button label="Block" @click="blockDocument" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

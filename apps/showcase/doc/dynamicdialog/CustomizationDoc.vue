@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>DynamicDialog uses the Dialog component internally, visit <NuxtLink to="/dialog">dialog</NuxtLink> for more information about the available props.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -37,3 +30,10 @@ const showProducts = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>DynamicDialog uses the Dialog component internally, visit <NuxtLink to="/dialog">dialog</NuxtLink> for more information about the available props.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode importCode hideStackBlitz />
+</template>

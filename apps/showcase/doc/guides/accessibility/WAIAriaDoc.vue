@@ -1,3 +1,13 @@
+<script>
+    export default {
+        data() {
+            return {
+                checked: false
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText v-bind="$attrs">
         <p>
@@ -69,13 +79,3 @@
         <Checkbox id="binary" v-model="checked" binary />
     </div>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                checked: false
-            };
-        }
-    };
-</script>

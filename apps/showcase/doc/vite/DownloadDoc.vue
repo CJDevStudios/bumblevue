@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>BumbleVue is available for download on <a href="https://www.npmjs.com/package/@cjdevstudios/bumblevue">npm registry</a>.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -25,3 +18,10 @@ pnpm add @cjdevstudios/bumblevue
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>BumbleVue is available for download on <a href="https://www.npmjs.com/package/@cjdevstudios/bumblevue">npm registry</a>.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" hideToggleCode hideStackBlitz />
+</template>

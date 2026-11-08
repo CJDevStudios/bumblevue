@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>command</i> property defines the callback to run when an item is activated by click or a key event.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Menu :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -70,3 +60,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>command</i> property defines the callback to run when an item is activated by click or a key event.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Menu :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

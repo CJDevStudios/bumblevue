@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Icons can be displayed next to the labels instead of the default marker.</p>
-    </DocSectionText>
-    <div class="card">
-        <MeterGroup :value="value" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -45,3 +35,13 @@ const value = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Icons can be displayed next to the labels instead of the default marker.</p>
+    </DocSectionText>
+    <div class="card">
+        <MeterGroup :value="value" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

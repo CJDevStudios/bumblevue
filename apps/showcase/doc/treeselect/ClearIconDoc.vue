@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the TreeSelect.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TreeSelect v-model="selectedValue" showClear :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
-    </div>
-    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
-</template>
-
 <script>
     import { NodeService } from '/service/NodeService';
 
@@ -74,3 +64,13 @@ onMounted(() => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>showClear</i> is enabled, a clear icon is added to reset the TreeSelect.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TreeSelect v-model="selectedValue" showClear :options="nodes" placeholder="Select Item" class="md:w-80 w-full" />
+    </div>
+    <DocSectionCode :code="code" :service="['NodeService']" v-bind="$attrs" />
+</template>

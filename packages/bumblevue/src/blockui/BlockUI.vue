@@ -1,9 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" :aria-busy="isBlocked" v-bind="ptmi('root')">
-        <slot></slot>
-    </div>
-</template>
-
 <script>
     import { addClass, createElement, hasCSSAnimation } from '@cjdevstudios/bumblevue/utils/dom';
     import { ZIndex } from '@cjdevstudios/bumblevue/utils/zindex';
@@ -140,3 +134,9 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" :aria-busy="isBlocked" v-bind="ptmi('root')">
+        <slot></slot>
+    </div>
+</template>

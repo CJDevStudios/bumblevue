@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>A pie chart is a circular statistical graphic which is divided into slices to illustrate numerical proportion.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
-    </div>
-    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
 
@@ -122,3 +112,13 @@ const setChartOptions = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>A pie chart is a circular statistical graphic which is divided into slices to illustrate numerical proportion.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Chart type="pie" :data="chartData" :options="chartOptions" class="w-full md:w-120" />
+    </div>
+    <DocSectionCode :code="code" :dependencies="{ 'chart.js': '3.3.2' }" component="Chart" />
+</template>

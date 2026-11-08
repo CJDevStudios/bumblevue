@@ -1,213 +1,3 @@
-<template>
-    <div :class="cx('root')" data-scrollselectors=".p-treetable-scrollable-body" :data-p="dataP" v-bind="ptmi('root')">
-        <slot></slot>
-        <transition name="p-overlay-mask">
-            <div v-if="loading && loadingMode === 'mask'" :class="cx('loading')" v-bind="ptm('loading')">
-                <div :class="cx('mask')" v-bind="ptm('mask')">
-                    <slot name="loadingicon" :class="cx('loadingIcon')">
-                        <component :is="loadingIcon ? 'span' : 'SpinnerIcon'" spin :class="[cx('loadingIcon'), loadingIcon]" v-bind="ptm('loadingIcon')" />
-                    </slot>
-                </div>
-            </div>
-        </transition>
-        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
-            <slot name="header"></slot>
-        </div>
-        <TTPaginator
-            v-if="paginatorTop"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="totalRecordsLength"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'top' })"
-            @page="onPage($event)"
-            :alwaysShow="alwaysShowPaginator"
-            :unstyled="unstyled"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :pageLinks="slotProps.pageLinks"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
-                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
-                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
-                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
-                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
-                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
-                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-        </TTPaginator>
-        <div :class="cx('tableContainer')" :style="[sx('tableContainer'), { maxHeight: scrollHeight }]" v-bind="ptm('tableContainer')">
-            <table ref="table" role="treegrid" :class="[cx('table'), tableClass]" :style="tableStyle" v-bind="{ ...tableProps, ...ptm('table') }">
-                <thead :class="cx('thead')" :style="sx('thead')" role="rowgroup" v-bind="ptm('thead')">
-                    <tr role="row" v-bind="ptm('headerRow')">
-                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                            <TTHeaderCell
-                                v-if="!columnProp(col, 'hidden')"
-                                :column="col"
-                                :resizableColumns="resizableColumns"
-                                :sortField="d_sortField"
-                                :sortOrder="d_sortOrder"
-                                :multiSortMeta="d_multiSortMeta"
-                                :sortMode="sortMode"
-                                @column-click="onColumnHeaderClick($event)"
-                                @column-resizestart="onColumnResizeStart($event)"
-                                :index="i"
-                                :unstyled="unstyled"
-                                :pt="pt"
-                            ></TTHeaderCell>
-                        </template>
-                    </tr>
-                    <tr v-if="hasColumnFilter()" v-bind="ptm('headerRow')">
-                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                            <th v-if="!columnProp(col, 'hidden')" :class="getFilterColumnHeaderClass(col)" :style="[columnProp(col, 'style'), columnProp(col, 'filterHeaderStyle')]" v-bind="ptm('headerCell', ptHeaderCellOptions(col))">
-                                <component v-if="col.children && col.children.filter" :is="col.children.filter" :column="col" :index="i" />
-                            </th>
-                        </template>
-                    </tr>
-                </thead>
-                <tbody :class="cx('tbody')" role="rowgroup" v-bind="ptm('tbody')">
-                    <template v-if="!empty">
-                        <TTRow
-                            v-for="(node, index) of dataToRender"
-                            :key="nodeKey(node)"
-                            :dataKey="dataKey"
-                            :columns="columns"
-                            :node="node"
-                            :level="0"
-                            :expandedKeys="d_expandedKeys"
-                            :indentation="indentation"
-                            :selectionMode="selectionMode"
-                            :selectionKeys="selectionKeys"
-                            :ariaSetSize="dataToRender.length"
-                            :ariaPosInset="index + 1"
-                            :tabindex="setTabindex(node, index)"
-                            :loadingMode="loadingMode"
-                            :contextMenu="contextMenu"
-                            :contextMenuSelection="contextMenuSelection"
-                            :templates="$slots"
-                            @node-toggle="onNodeToggle"
-                            @node-click="onNodeClick"
-                            @checkbox-change="onCheckboxChange"
-                            @row-rightclick="onRowRightClick($event)"
-                            :unstyled="unstyled"
-                            :pt="pt"
-                        ></TTRow>
-                    </template>
-                    <tr v-else :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
-                        <td :colspan="columns.length" v-bind="ptm('emptyMessageCell')">
-                            <slot name="empty"></slot>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot v-if="hasFooter" :class="cx('tfoot')" :style="sx('tfoot')" role="rowgroup" v-bind="ptm('tfoot')">
-                    <tr role="row" v-bind="ptm('footerRow')">
-                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
-                            <TTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :index="i" :unstyled="unstyled" :pt="pt"></TTFooterCell>
-                        </template>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-        <TTPaginator
-            v-if="paginatorBottom"
-            :rows="d_rows"
-            :first="d_first"
-            :totalRecords="totalRecordsLength"
-            :pageLinkSize="pageLinkSize"
-            :template="paginatorTemplate"
-            :rowsPerPageOptions="rowsPerPageOptions"
-            :currentPageReportTemplate="currentPageReportTemplate"
-            :class="cx('pcPaginator', { position: 'bottom' })"
-            @page="onPage($event)"
-            :alwaysShow="alwaysShowPaginator"
-            :unstyled="unstyled"
-            :pt="ptm('pcPaginator')"
-        >
-            <template v-if="$slots.paginatorcontainer" #container="slotProps">
-                <slot
-                    name="paginatorcontainer"
-                    :first="slotProps.first"
-                    :last="slotProps.last"
-                    :rows="slotProps.rows"
-                    :page="slotProps.page"
-                    :pageCount="slotProps.pageCount"
-                    :pageLinks="slotProps.pageLinks"
-                    :totalRecords="slotProps.totalRecords"
-                    :firstPageCallback="slotProps.firstPageCallback"
-                    :lastPageCallback="slotProps.lastPageCallback"
-                    :prevPageCallback="slotProps.prevPageCallback"
-                    :nextPageCallback="slotProps.nextPageCallback"
-                    :rowChangeCallback="slotProps.rowChangeCallback"
-                    :changePageCallback="slotProps.changePageCallback"
-                ></slot>
-            </template>
-            <template v-if="$slots.paginatorstart" #start>
-                <slot name="paginatorstart"></slot>
-            </template>
-            <template v-if="$slots.paginatorend" #end>
-                <slot name="paginatorend"></slot>
-            </template>
-            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
-                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
-                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
-                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
-                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
-                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
-                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
-            </template>
-        </TTPaginator>
-        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
-            <slot name="footer"></slot>
-        </div>
-        <div ref="resizeHelper" :class="cx('columnResizeIndicator')" style="display: none" v-bind="ptm('columnResizeIndicator')"></div>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { addStyle, clearSelection, find, getAttribute, getIndex, getOffset, getOuterWidth, isRTL, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
@@ -1108,3 +898,213 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" data-scrollselectors=".p-treetable-scrollable-body" :data-p="dataP" v-bind="ptmi('root')">
+        <slot></slot>
+        <transition name="p-overlay-mask">
+            <div v-if="loading && loadingMode === 'mask'" :class="cx('loading')" v-bind="ptm('loading')">
+                <div :class="cx('mask')" v-bind="ptm('mask')">
+                    <slot name="loadingicon" :class="cx('loadingIcon')">
+                        <component :is="loadingIcon ? 'span' : 'SpinnerIcon'" spin :class="[cx('loadingIcon'), loadingIcon]" v-bind="ptm('loadingIcon')" />
+                    </slot>
+                </div>
+            </div>
+        </transition>
+        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
+            <slot name="header"></slot>
+        </div>
+        <TTPaginator
+            v-if="paginatorTop"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="totalRecordsLength"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'top' })"
+            @page="onPage($event)"
+            :alwaysShow="alwaysShowPaginator"
+            :unstyled="unstyled"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :pageLinks="slotProps.pageLinks"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
+                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
+                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
+                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
+                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
+                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
+                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+        </TTPaginator>
+        <div :class="cx('tableContainer')" :style="[sx('tableContainer'), { maxHeight: scrollHeight }]" v-bind="ptm('tableContainer')">
+            <table ref="table" role="treegrid" :class="[cx('table'), tableClass]" :style="tableStyle" v-bind="{ ...tableProps, ...ptm('table') }">
+                <thead :class="cx('thead')" :style="sx('thead')" role="rowgroup" v-bind="ptm('thead')">
+                    <tr role="row" v-bind="ptm('headerRow')">
+                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                            <TTHeaderCell
+                                v-if="!columnProp(col, 'hidden')"
+                                :column="col"
+                                :resizableColumns="resizableColumns"
+                                :sortField="d_sortField"
+                                :sortOrder="d_sortOrder"
+                                :multiSortMeta="d_multiSortMeta"
+                                :sortMode="sortMode"
+                                @column-click="onColumnHeaderClick($event)"
+                                @column-resizestart="onColumnResizeStart($event)"
+                                :index="i"
+                                :unstyled="unstyled"
+                                :pt="pt"
+                            ></TTHeaderCell>
+                        </template>
+                    </tr>
+                    <tr v-if="hasColumnFilter()" v-bind="ptm('headerRow')">
+                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                            <th v-if="!columnProp(col, 'hidden')" :class="getFilterColumnHeaderClass(col)" :style="[columnProp(col, 'style'), columnProp(col, 'filterHeaderStyle')]" v-bind="ptm('headerCell', ptHeaderCellOptions(col))">
+                                <component v-if="col.children && col.children.filter" :is="col.children.filter" :column="col" :index="i" />
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody :class="cx('tbody')" role="rowgroup" v-bind="ptm('tbody')">
+                    <template v-if="!empty">
+                        <TTRow
+                            v-for="(node, index) of dataToRender"
+                            :key="nodeKey(node)"
+                            :dataKey="dataKey"
+                            :columns="columns"
+                            :node="node"
+                            :level="0"
+                            :expandedKeys="d_expandedKeys"
+                            :indentation="indentation"
+                            :selectionMode="selectionMode"
+                            :selectionKeys="selectionKeys"
+                            :ariaSetSize="dataToRender.length"
+                            :ariaPosInset="index + 1"
+                            :tabindex="setTabindex(node, index)"
+                            :loadingMode="loadingMode"
+                            :contextMenu="contextMenu"
+                            :contextMenuSelection="contextMenuSelection"
+                            :templates="$slots"
+                            @node-toggle="onNodeToggle"
+                            @node-click="onNodeClick"
+                            @checkbox-change="onCheckboxChange"
+                            @row-rightclick="onRowRightClick($event)"
+                            :unstyled="unstyled"
+                            :pt="pt"
+                        ></TTRow>
+                    </template>
+                    <tr v-else :class="cx('emptyMessage')" v-bind="ptm('emptyMessage')">
+                        <td :colspan="columns.length" v-bind="ptm('emptyMessageCell')">
+                            <slot name="empty"></slot>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot v-if="hasFooter" :class="cx('tfoot')" :style="sx('tfoot')" role="rowgroup" v-bind="ptm('tfoot')">
+                    <tr role="row" v-bind="ptm('footerRow')">
+                        <template v-for="(col, i) of columns" :key="columnProp(col, 'columnKey') || columnProp(col, 'field') || i">
+                            <TTFooterCell v-if="!columnProp(col, 'hidden')" :column="col" :index="i" :unstyled="unstyled" :pt="pt"></TTFooterCell>
+                        </template>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <TTPaginator
+            v-if="paginatorBottom"
+            :rows="d_rows"
+            :first="d_first"
+            :totalRecords="totalRecordsLength"
+            :pageLinkSize="pageLinkSize"
+            :template="paginatorTemplate"
+            :rowsPerPageOptions="rowsPerPageOptions"
+            :currentPageReportTemplate="currentPageReportTemplate"
+            :class="cx('pcPaginator', { position: 'bottom' })"
+            @page="onPage($event)"
+            :alwaysShow="alwaysShowPaginator"
+            :unstyled="unstyled"
+            :pt="ptm('pcPaginator')"
+        >
+            <template v-if="$slots.paginatorcontainer" #container="slotProps">
+                <slot
+                    name="paginatorcontainer"
+                    :first="slotProps.first"
+                    :last="slotProps.last"
+                    :rows="slotProps.rows"
+                    :page="slotProps.page"
+                    :pageCount="slotProps.pageCount"
+                    :pageLinks="slotProps.pageLinks"
+                    :totalRecords="slotProps.totalRecords"
+                    :firstPageCallback="slotProps.firstPageCallback"
+                    :lastPageCallback="slotProps.lastPageCallback"
+                    :prevPageCallback="slotProps.prevPageCallback"
+                    :nextPageCallback="slotProps.nextPageCallback"
+                    :rowChangeCallback="slotProps.rowChangeCallback"
+                    :changePageCallback="slotProps.changePageCallback"
+                ></slot>
+            </template>
+            <template v-if="$slots.paginatorstart" #start>
+                <slot name="paginatorstart"></slot>
+            </template>
+            <template v-if="$slots.paginatorend" #end>
+                <slot name="paginatorend"></slot>
+            </template>
+            <template v-if="$slots.paginatorfirstpagelinkicon" #firsticon="slotProps">
+                <slot name="paginatorfirstpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorprevpagelinkicon" #previcon="slotProps">
+                <slot name="paginatorprevpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatornextpagelinkicon" #nexticon="slotProps">
+                <slot name="paginatornextpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorlastpagelinkicon" #lasticon="slotProps">
+                <slot name="paginatorlastpagelinkicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorjumptopagedropdownicon" #jumptopagedropdownicon="slotProps">
+                <slot name="paginatorjumptopagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+            <template v-if="$slots.paginatorrowsperpagedropdownicon" #rowsperpagedropdownicon="slotProps">
+                <slot name="paginatorrowsperpagedropdownicon" :class="slotProps.class"></slot>
+            </template>
+        </TTPaginator>
+        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
+            <slot name="footer"></slot>
+        </div>
+        <div ref="resizeHelper" :class="cx('columnResizeIndicator')" style="display: none" v-bind="ptm('columnResizeIndicator')"></div>
+    </div>
+</template>

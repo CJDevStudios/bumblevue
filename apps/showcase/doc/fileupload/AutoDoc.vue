@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>When <i>auto</i> property is enabled, a file gets uploaded instantly after selection.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" :auto="true" chooseLabel="Browse" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -43,3 +33,13 @@ const onUpload = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>When <i>auto</i> property is enabled, a file gets uploaded instantly after selection.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <FileUpload mode="basic" name="demo[]" url="/api/upload" accept="image/*" :maxFileSize="1000000" @upload="onUpload" :auto="true" chooseLabel="Browse" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

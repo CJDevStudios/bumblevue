@@ -1,105 +1,3 @@
-<template>
-    <div :class="cx('root')" role="region" v-bind="ptmi('root')">
-        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
-            <slot name="header"></slot>
-        </div>
-        <div v-if="!empty" :class="[cx('contentContainer'), containerClass]" v-bind="ptm('contentContainer')">
-            <div :class="[cx('content'), contentClass]" :aria-live="allowAutoplay ? 'polite' : 'off'" v-bind="ptm('content')">
-                <Button
-                    v-if="showNavigators"
-                    :class="cx('pcPrevButton')"
-                    :disabled="backwardIsDisabled"
-                    :aria-label="ariaPrevButtonLabel"
-                    :unstyled="unstyled"
-                    @click="navBackward"
-                    v-bind="prevButtonProps"
-                    :pt="ptm('pcPrevButton')"
-                    data-pc-group-section="navigator"
-                >
-                    <template #icon="slotProps">
-                        <slot name="previcon">
-                            <component :is="isVertical() ? 'ChevronUpIcon' : 'ChevronLeftIcon'" :class="slotProps.icon" v-bind="ptm('pcPrevButton')['icon']" />
-                        </slot>
-                    </template>
-                </Button>
-                <div :class="cx('viewport')" :style="[{ height: isVertical() ? verticalViewPortHeight : 'auto' }]" @touchend="onTouchEnd" @touchstart="onTouchStart" @touchmove="onTouchMove" v-bind="ptm('viewport')">
-                    <div ref="itemsContainer" :class="cx('itemList')" @transitionend="onTransitionEnd" v-bind="ptm('itemList')">
-                        <template v-if="isCircular()">
-                            <div
-                                v-for="(item, index) of value.slice(-1 * d_numVisible)"
-                                :key="index + '_scloned'"
-                                :class="cx('itemClone', { index, value, totalShiftedItems, d_numVisible })"
-                                v-bind="ptm('itemClone')"
-                                :data-p-carousel-item-active="totalShiftedItems * -1 === value.length + d_numVisible"
-                                :data-p-carousel-item-start="index === 0"
-                                :data-p-carousel-item-end="value.slice(-1 * d_numVisible).length - 1 === index"
-                            >
-                                <slot name="item" :data="item" :index="index"></slot>
-                            </div>
-                        </template>
-                        <div
-                            v-for="(item, index) of value"
-                            :key="index"
-                            :class="cx('item', { index })"
-                            role="group"
-                            :aria-hidden="firstIndex() > index || lastIndex() < index ? true : undefined"
-                            :aria-label="ariaSlideNumber(index)"
-                            :aria-roledescription="ariaSlideLabel"
-                            v-bind="getItemPTOptions('item', index)"
-                            :data-p-carousel-item-active="firstIndex() <= index && lastIndex() >= index"
-                            :data-p-carousel-item-start="firstIndex() === index"
-                            :data-p-carousel-item-end="lastIndex() === index"
-                        >
-                            <slot name="item" :data="item" :index="index"></slot>
-                        </div>
-                        <template v-if="isCircular()">
-                            <div v-for="(item, index) of value.slice(0, d_numVisible)" :key="index + '_fcloned'" :class="cx('itemClone', { index, value, totalShiftedItems, d_numVisible })" v-bind="ptm('itemClone')">
-                                <slot name="item" :data="item" :index="index"></slot>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-                <Button
-                    v-if="showNavigators"
-                    :class="cx('pcNextButton')"
-                    :disabled="forwardIsDisabled"
-                    :aria-label="ariaNextButtonLabel"
-                    :unstyled="unstyled"
-                    @click="navForward"
-                    v-bind="nextButtonProps"
-                    :pt="ptm('pcNextButton')"
-                    data-pc-group-section="navigator"
-                >
-                    <template #icon="slotProps">
-                        <slot name="nexticon">
-                            <component :is="isVertical() ? 'ChevronDownIcon' : 'ChevronRightIcon'" :class="slotProps.class" v-bind="ptm('pcNextButton')['icon']" />
-                        </slot>
-                    </template>
-                </Button>
-            </div>
-            <ul v-if="totalIndicators >= 0 && showIndicators" ref="indicatorContent" :class="[cx('indicatorList'), indicatorsContentClass]" @keydown="onIndicatorKeydown" v-bind="ptm('indicatorList')">
-                <li v-for="(indicator, i) of totalIndicators" :key="'p-carousel-indicator-' + i.toString()" :class="cx('indicator', { index: i })" v-bind="getIndicatorPTOptions('indicator', i)" :data-p-active="d_page === i">
-                    <button
-                        :class="cx('indicatorButton')"
-                        type="button"
-                        :tabindex="d_page === i ? '0' : '-1'"
-                        :aria-label="ariaPageLabel(i + 1)"
-                        :aria-current="d_page === i ? 'page' : undefined"
-                        @click="onIndicatorClick($event, i)"
-                        v-bind="getIndicatorPTOptions('indicatorButton', i)"
-                    />
-                </li>
-            </ul>
-        </div>
-        <slot v-else name="empty">
-            {{ emptyMessageText }}
-        </slot>
-        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
-            <slot name="footer"></slot>
-        </div>
-    </div>
-</template>
-
 <script>
     import { addClass, find, findSingle, getAttribute, removeClass, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
     import { localeComparator, sort } from '@cjdevstudios/bumblevue/utils/object';
@@ -724,3 +622,105 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" role="region" v-bind="ptmi('root')">
+        <div v-if="$slots.header" :class="cx('header')" v-bind="ptm('header')">
+            <slot name="header"></slot>
+        </div>
+        <div v-if="!empty" :class="[cx('contentContainer'), containerClass]" v-bind="ptm('contentContainer')">
+            <div :class="[cx('content'), contentClass]" :aria-live="allowAutoplay ? 'polite' : 'off'" v-bind="ptm('content')">
+                <Button
+                    v-if="showNavigators"
+                    :class="cx('pcPrevButton')"
+                    :disabled="backwardIsDisabled"
+                    :aria-label="ariaPrevButtonLabel"
+                    :unstyled="unstyled"
+                    @click="navBackward"
+                    v-bind="prevButtonProps"
+                    :pt="ptm('pcPrevButton')"
+                    data-pc-group-section="navigator"
+                >
+                    <template #icon="slotProps">
+                        <slot name="previcon">
+                            <component :is="isVertical() ? 'ChevronUpIcon' : 'ChevronLeftIcon'" :class="slotProps.icon" v-bind="ptm('pcPrevButton')['icon']" />
+                        </slot>
+                    </template>
+                </Button>
+                <div :class="cx('viewport')" :style="[{ height: isVertical() ? verticalViewPortHeight : 'auto' }]" @touchend="onTouchEnd" @touchstart="onTouchStart" @touchmove="onTouchMove" v-bind="ptm('viewport')">
+                    <div ref="itemsContainer" :class="cx('itemList')" @transitionend="onTransitionEnd" v-bind="ptm('itemList')">
+                        <template v-if="isCircular()">
+                            <div
+                                v-for="(item, index) of value.slice(-1 * d_numVisible)"
+                                :key="index + '_scloned'"
+                                :class="cx('itemClone', { index, value, totalShiftedItems, d_numVisible })"
+                                v-bind="ptm('itemClone')"
+                                :data-p-carousel-item-active="totalShiftedItems * -1 === value.length + d_numVisible"
+                                :data-p-carousel-item-start="index === 0"
+                                :data-p-carousel-item-end="value.slice(-1 * d_numVisible).length - 1 === index"
+                            >
+                                <slot name="item" :data="item" :index="index"></slot>
+                            </div>
+                        </template>
+                        <div
+                            v-for="(item, index) of value"
+                            :key="index"
+                            :class="cx('item', { index })"
+                            role="group"
+                            :aria-hidden="firstIndex() > index || lastIndex() < index ? true : undefined"
+                            :aria-label="ariaSlideNumber(index)"
+                            :aria-roledescription="ariaSlideLabel"
+                            v-bind="getItemPTOptions('item', index)"
+                            :data-p-carousel-item-active="firstIndex() <= index && lastIndex() >= index"
+                            :data-p-carousel-item-start="firstIndex() === index"
+                            :data-p-carousel-item-end="lastIndex() === index"
+                        >
+                            <slot name="item" :data="item" :index="index"></slot>
+                        </div>
+                        <template v-if="isCircular()">
+                            <div v-for="(item, index) of value.slice(0, d_numVisible)" :key="index + '_fcloned'" :class="cx('itemClone', { index, value, totalShiftedItems, d_numVisible })" v-bind="ptm('itemClone')">
+                                <slot name="item" :data="item" :index="index"></slot>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <Button
+                    v-if="showNavigators"
+                    :class="cx('pcNextButton')"
+                    :disabled="forwardIsDisabled"
+                    :aria-label="ariaNextButtonLabel"
+                    :unstyled="unstyled"
+                    @click="navForward"
+                    v-bind="nextButtonProps"
+                    :pt="ptm('pcNextButton')"
+                    data-pc-group-section="navigator"
+                >
+                    <template #icon="slotProps">
+                        <slot name="nexticon">
+                            <component :is="isVertical() ? 'ChevronDownIcon' : 'ChevronRightIcon'" :class="slotProps.class" v-bind="ptm('pcNextButton')['icon']" />
+                        </slot>
+                    </template>
+                </Button>
+            </div>
+            <ul v-if="totalIndicators >= 0 && showIndicators" ref="indicatorContent" :class="[cx('indicatorList'), indicatorsContentClass]" @keydown="onIndicatorKeydown" v-bind="ptm('indicatorList')">
+                <li v-for="(indicator, i) of totalIndicators" :key="'p-carousel-indicator-' + i.toString()" :class="cx('indicator', { index: i })" v-bind="getIndicatorPTOptions('indicator', i)" :data-p-active="d_page === i">
+                    <button
+                        :class="cx('indicatorButton')"
+                        type="button"
+                        :tabindex="d_page === i ? '0' : '-1'"
+                        :aria-label="ariaPageLabel(i + 1)"
+                        :aria-current="d_page === i ? 'page' : undefined"
+                        @click="onIndicatorClick($event, i)"
+                        v-bind="getIndicatorPTOptions('indicatorButton', i)"
+                    />
+                </li>
+            </ul>
+        </div>
+        <slot v-else name="empty">
+            {{ emptyMessageText }}
+        </slot>
+        <div v-if="$slots.footer" :class="cx('footer')" v-bind="ptm('footer')">
+            <slot name="footer"></slot>
+        </div>
+    </div>
+</template>

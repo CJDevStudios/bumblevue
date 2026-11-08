@@ -1,3 +1,20 @@
+<script>
+    export default {
+        data() {
+            return {
+                code: {
+                    basic: `
+<span id="dd1"></span>Options</span>
+<MultiSelect aria-labelledby="dd1" />
+
+<MultiSelect aria-label="Options" />
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -219,20 +236,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code: {
-                    basic: `
-<span id="dd1"></span>Options</span>
-<MultiSelect aria-labelledby="dd1" />
-
-<MultiSelect aria-label="Options" />
-`
-                }
-            };
-        }
-    };
-</script>

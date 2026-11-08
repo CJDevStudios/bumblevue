@@ -1,48 +1,3 @@
-<template>
-    <template v-if="!disabled">
-        <div :ref="elementRef" :class="containerClass" :tabindex="tabindex" :style="style" @scroll="onScroll" v-bind="ptmi('root')">
-            <slot
-                name="content"
-                :styleClass="contentClass"
-                :items="loadedItems"
-                :getItemOptions="getOptions"
-                :loading="d_loading"
-                :getLoaderOptions="getLoaderOptions"
-                :itemSize="itemSize"
-                :rows="loadedRows"
-                :columns="loadedColumns"
-                :contentRef="contentRef"
-                :spacerStyle="spacerStyle"
-                :contentStyle="contentStyle"
-                :vertical="isVertical()"
-                :horizontal="isHorizontal()"
-                :both="isBoth()"
-            >
-                <div :ref="contentRef" :class="contentClass" :style="contentStyle" v-bind="ptm('content')">
-                    <template v-for="(item, index) of loadedItems" :key="index">
-                        <slot name="item" :item="item" :options="getOptions(index)"></slot>
-                    </template>
-                </div>
-            </slot>
-            <div v-if="showSpacer" class="p-virtualscroller-spacer" :style="spacerStyle" v-bind="ptm('spacer')"></div>
-            <div v-if="!loaderDisabled && showLoader && d_loading" :class="loaderClass" v-bind="ptm('loader')">
-                <template v-if="$slots && $slots.loader">
-                    <template v-for="(_, index) of loaderArr" :key="index">
-                        <slot name="loader" :options="getLoaderOptions(index, isBoth() && { numCols: d_numItemsInViewport.cols })"></slot>
-                    </template>
-                </template>
-                <slot name="loadingicon">
-                    <SpinnerIcon spin class="p-virtualscroller-loading-icon" v-bind="ptm('loadingIcon')" />
-                </slot>
-            </div>
-        </div>
-    </template>
-    <template v-else>
-        <slot></slot>
-        <slot name="content" :items="items" :rows="items" :columns="loadedColumns"></slot>
-    </template>
-</template>
-
 <script>
     import { findSingle, getHeight, getWidth, isVisible } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -804,3 +759,48 @@
         }
     };
 </script>
+
+<template>
+    <template v-if="!disabled">
+        <div :ref="elementRef" :class="containerClass" :tabindex="tabindex" :style="style" @scroll="onScroll" v-bind="ptmi('root')">
+            <slot
+                name="content"
+                :styleClass="contentClass"
+                :items="loadedItems"
+                :getItemOptions="getOptions"
+                :loading="d_loading"
+                :getLoaderOptions="getLoaderOptions"
+                :itemSize="itemSize"
+                :rows="loadedRows"
+                :columns="loadedColumns"
+                :contentRef="contentRef"
+                :spacerStyle="spacerStyle"
+                :contentStyle="contentStyle"
+                :vertical="isVertical()"
+                :horizontal="isHorizontal()"
+                :both="isBoth()"
+            >
+                <div :ref="contentRef" :class="contentClass" :style="contentStyle" v-bind="ptm('content')">
+                    <template v-for="(item, index) of loadedItems" :key="index">
+                        <slot name="item" :item="item" :options="getOptions(index)"></slot>
+                    </template>
+                </div>
+            </slot>
+            <div v-if="showSpacer" class="p-virtualscroller-spacer" :style="spacerStyle" v-bind="ptm('spacer')"></div>
+            <div v-if="!loaderDisabled && showLoader && d_loading" :class="loaderClass" v-bind="ptm('loader')">
+                <template v-if="$slots && $slots.loader">
+                    <template v-for="(_, index) of loaderArr" :key="index">
+                        <slot name="loader" :options="getLoaderOptions(index, isBoth() && { numCols: d_numItemsInViewport.cols })"></slot>
+                    </template>
+                </template>
+                <slot name="loadingicon">
+                    <SpinnerIcon spin class="p-virtualscroller-loading-icon" v-bind="ptm('loadingIcon')" />
+                </slot>
+            </div>
+        </div>
+    </template>
+    <template v-else>
+        <slot></slot>
+        <slot name="content" :items="items" :rows="items" :columns="loadedColumns"></slot>
+    </template>
+</template>

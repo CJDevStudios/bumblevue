@@ -1,9 +1,3 @@
-<template>
-    <span :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
-        <slot>{{ value }}</slot>
-    </span>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -46,3 +40,9 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('root')" :data-p="dataP" v-bind="ptmi('root')">
+        <slot>{{ value }}</slot>
+    </span>
+</template>

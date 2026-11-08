@@ -1,589 +1,3 @@
-<template>
-    <span ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
-        <InputText
-            v-if="!inline"
-            :ref="inputRef"
-            :id="inputId"
-            role="combobox"
-            :class="[inputClass, cx('pcInputText')]"
-            :style="inputStyle"
-            :defaultValue="inputFieldValue"
-            :placeholder="placeholder"
-            :name="name"
-            :size="size"
-            :invalid="invalid"
-            :variant="variant"
-            :fluid="fluid"
-            :required="required"
-            :unstyled="unstyled"
-            autocomplete="off"
-            aria-autocomplete="none"
-            aria-haspopup="dialog"
-            :aria-expanded="overlayVisible"
-            :aria-controls="overlayVisible ? panelId : undefined"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            inputmode="none"
-            :disabled="disabled"
-            :readonly="!manualInput || readonly"
-            :tabindex="0"
-            @input="onInput"
-            @click="onInputClick"
-            @focus="onFocus"
-            @blur="onBlur"
-            @keydown="onKeyDown"
-            :data-p-has-dropdown="showIcon && iconDisplay === 'button' && !inline"
-            :data-p-has-e-icon="showIcon && iconDisplay === 'input' && !inline"
-            :pt="ptm('pcInputText')"
-        />
-        <slot v-if="showClear && !inline" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <button ref="clearIcon" type="button" :class="cx('clearIcon')" :aria-label="$bumblevue.config.locale.clear" @click="onClearClick" v-bind="ptm('clearIcon')">
-                <TimesIcon aria-hidden="true" />
-            </button>
-        </slot>
-        <slot v-if="showIcon && iconDisplay === 'button' && !inline" name="dropdownbutton" :toggleCallback="onButtonClick">
-            <button
-                :class="cx('dropdown')"
-                :disabled="disabled"
-                @click="onButtonClick"
-                type="button"
-                :aria-label="$bumblevue.config.locale.chooseDate"
-                aria-haspopup="dialog"
-                :aria-expanded="overlayVisible"
-                :aria-controls="panelId"
-                v-bind="ptm('dropdown')"
-            >
-                <slot name="dropdownicon" :class="icon">
-                    <component :is="icon ? 'span' : 'CalendarIcon'" :class="icon" v-bind="ptm('dropdownIcon')" />
-                </slot>
-            </button>
-        </slot>
-        <template v-else-if="showIcon && iconDisplay === 'input' && !inline">
-            <button
-                v-if="$slots.inputicon || showIcon"
-                v-bind="ptm('inputIconContainer')"
-                :class="cx('inputIconContainer')"
-                :data-p="inputIconDataP"
-                type="button"
-                :disabled="disabled"
-                @click="onButtonClick"
-                :aria-label="$bumblevue.config.locale.chooseDate"
-                aria-haspopup="dialog"
-                :aria-expanded="overlayVisible"
-                :aria-controls="overlayVisible ? panelId : undefined"
-            >
-                <slot name="inputicon" :class="cx('inputIcon')" :clickCallback="onButtonClick">
-                    <component :is="icon ? 'i' : 'CalendarIcon'" :class="[icon, cx('inputIcon')]" v-bind="ptm('inputicon')" />
-                </slot>
-            </button>
-        </template>
-        <Portal :appendTo="appendTo" :disabled="inline">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter($event)" @after-enter="onOverlayEnterComplete" @after-leave="onOverlayAfterLeave" @leave="onOverlayLeave" v-bind="ptm('transition')">
-                <div
-                    v-if="inline || overlayVisible"
-                    :ref="overlayRef"
-                    :id="panelId"
-                    :class="[cx('panel'), panelClass]"
-                    :style="panelStyle"
-                    :role="inline ? null : 'dialog'"
-                    :aria-modal="inline ? null : 'true'"
-                    :aria-label="$bumblevue.config.locale.chooseDate"
-                    @click="onOverlayClick"
-                    @keydown="onOverlayKeyDown"
-                    @mouseup="onOverlayMouseUp"
-                    :data-p="panelDataP"
-                    v-bind="ptm('panel')"
-                >
-                    <template v-if="!timeOnly">
-                        <div :class="cx('calendarContainer')" v-bind="ptm('calendarContainer')">
-                            <div v-for="(month, groupIndex) of months" :key="month.month + month.year" :class="cx('calendar')" v-bind="ptm('calendar')">
-                                <div :class="cx('header')" v-bind="ptm('header')">
-                                    <slot name="header"></slot>
-                                    <slot name="prevbutton" :actionCallback="(event) => onPrevButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                        <Button
-                                            v-show="groupIndex === 0"
-                                            :ref="previousButtonRef"
-                                            :class="cx('pcPrevButton')"
-                                            :disabled="disabled"
-                                            :aria-label="currentView === 'year' ? $bumblevue.config.locale.prevDecade : currentView === 'month' ? $bumblevue.config.locale.prevYear : $bumblevue.config.locale.prevMonth"
-                                            :unstyled="unstyled"
-                                            @click="onPrevButtonClick"
-                                            @keydown="onContainerButtonKeydown"
-                                            v-bind="navigatorButtonProps"
-                                            :pt="ptm('pcPrevButton')"
-                                            data-pc-group-section="navigator"
-                                        >
-                                            <template #icon="slotProps">
-                                                <slot name="previcon">
-                                                    <component :is="prevIcon ? 'span' : 'ChevronLeftIcon'" :class="[prevIcon, slotProps.class]" v-bind="ptm('pcPrevButton')['icon']" />
-                                                </slot>
-                                            </template>
-                                        </Button>
-                                    </slot>
-                                    <div :class="cx('title')" v-bind="ptm('title')">
-                                        <template v-if="$bumblevue.config.locale.showMonthAfterYear">
-                                            <button
-                                                v-if="currentView !== 'year'"
-                                                type="button"
-                                                @click="switchToYearView"
-                                                @keydown="onContainerButtonKeydown"
-                                                :class="cx('selectYear')"
-                                                :disabled="switchViewButtonDisabled"
-                                                :aria-label="getYearButtonAriaLabel(month)"
-                                                v-bind="ptm('selectYear')"
-                                                data-pc-group-section="view"
-                                            >
-                                                {{ getYear(month) }}
-                                            </button>
-                                            <button
-                                                v-if="currentView === 'date'"
-                                                type="button"
-                                                @click="switchToMonthView"
-                                                @keydown="onContainerButtonKeydown"
-                                                :class="cx('selectMonth')"
-                                                :disabled="switchViewButtonDisabled"
-                                                :aria-label="getMonthButtonAriaLabel(month)"
-                                                v-bind="ptm('selectMonth')"
-                                                data-pc-group-section="view"
-                                            >
-                                                {{ getMonthName(month.month) }}
-                                            </button>
-                                        </template>
-                                        <template v-else>
-                                            <button
-                                                v-if="currentView === 'date'"
-                                                type="button"
-                                                @click="switchToMonthView"
-                                                @keydown="onContainerButtonKeydown"
-                                                :class="cx('selectMonth')"
-                                                :disabled="switchViewButtonDisabled"
-                                                :aria-label="getMonthButtonAriaLabel(month)"
-                                                v-bind="ptm('selectMonth')"
-                                                data-pc-group-section="view"
-                                            >
-                                                {{ getMonthName(month.month) }}
-                                            </button>
-                                            <button
-                                                v-if="currentView !== 'year'"
-                                                type="button"
-                                                @click="switchToYearView"
-                                                @keydown="onContainerButtonKeydown"
-                                                :class="cx('selectYear')"
-                                                :disabled="switchViewButtonDisabled"
-                                                :aria-label="getYearButtonAriaLabel(month)"
-                                                v-bind="ptm('selectYear')"
-                                                data-pc-group-section="view"
-                                            >
-                                                {{ getYear(month) }}
-                                            </button>
-                                        </template>
-                                        <span v-if="currentView === 'year'" :class="cx('decade')" v-bind="ptm('decade')">
-                                            <slot name="decade" :years="yearPickerValues"> {{ yearPickerValues[0].value }} - {{ yearPickerValues[yearPickerValues.length - 1].value }} </slot>
-                                        </span>
-                                    </div>
-                                    <slot name="nextbutton" :actionCallback="(event) => onNextButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                        <Button
-                                            v-show="numberOfMonths === 1 ? true : groupIndex === numberOfMonths - 1"
-                                            :ref="nextButtonRef"
-                                            :class="cx('pcNextButton')"
-                                            :disabled="disabled"
-                                            :aria-label="currentView === 'year' ? $bumblevue.config.locale.nextDecade : currentView === 'month' ? $bumblevue.config.locale.nextYear : $bumblevue.config.locale.nextMonth"
-                                            :unstyled="unstyled"
-                                            @click="onNextButtonClick"
-                                            @keydown="onContainerButtonKeydown"
-                                            v-bind="navigatorButtonProps"
-                                            :pt="ptm('pcNextButton')"
-                                            data-pc-group-section="navigator"
-                                        >
-                                            <template #icon="slotProps">
-                                                <slot name="nexticon">
-                                                    <component :is="nextIcon ? 'span' : 'ChevronRightIcon'" :class="[nextIcon, slotProps.class]" v-bind="ptm('pcNextButton')['icon']" />
-                                                </slot>
-                                            </template>
-                                        </Button>
-                                    </slot>
-                                </div>
-                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')" :aria-label="getCalendarAriaLabel(month)">
-                                    <thead v-bind="ptm('tableHeader')">
-                                        <tr v-bind="ptm('tableHeaderRow')">
-                                            <th v-if="showWeek" scope="col" :class="cx('weekHeader')" v-bind="ptm('weekHeader', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tableheadercell">
-                                                <slot name="weekheaderlabel">
-                                                    <span v-bind="ptm('weekHeaderLabel', { context: { disabled: showWeek } })" data-pc-group-section="tableheadercelllabel">
-                                                        {{ weekHeaderLabel }}
-                                                    </span>
-                                                </slot>
-                                            </th>
-                                            <th v-for="weekDay of weekDays" :key="weekDay" scope="col" :abbr="weekDay" v-bind="ptm('tableHeaderCell')" data-pc-group-section="tableheadercell" :class="cx('weekDayCell')">
-                                                <span :class="cx('weekDay')" v-bind="ptm('weekDay')" data-pc-group-section="tableheadercelllabel">{{ weekDay }}</span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody v-bind="ptm('tableBody')">
-                                        <tr v-for="(week, i) of month.dates" :key="week[0].day + '' + week[0].month" v-bind="ptm('tableBodyRow')">
-                                            <td v-if="showWeek" :class="cx('weekNumber')" v-bind="ptm('weekNumber')" data-pc-group-section="tablebodycell">
-                                                <span :class="cx('weekLabelContainer')" v-bind="ptm('weekLabelContainer', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tablebodycelllabel">
-                                                    <slot name="weeklabel" :weekNumber="month.weekNumbers[i]">
-                                                        <span v-if="month.weekNumbers[i] < 10" style="visibility: hidden" v-bind="ptm('weekLabel')">0</span>
-                                                        {{ month.weekNumbers[i] }}
-                                                    </slot>
-                                                </span>
-                                            </td>
-                                            <td
-                                                v-for="date of week"
-                                                :key="date.day + '' + date.month"
-                                                :aria-label="getDateAriaLabel(date)"
-                                                role="gridcell"
-                                                :class="cx('dayCell', { date })"
-                                                :aria-selected="isSelected(date)"
-                                                :aria-disabled="!date.selectable"
-                                                :data-p-disabled="!date.selectable"
-                                                :data-p-selected="isSelected(date)"
-                                                @click="onDateSelect($event, date)"
-                                                @keydown="onDateCellKeydown($event, date, groupIndex)"
-                                                v-bind="
-                                                    ptm('dayCell', {
-                                                        context: {
-                                                            date,
-                                                            today: date.today,
-                                                            otherMonth: date.otherMonth,
-                                                            selected: isSelected(date),
-                                                            disabled: !date.selectable
-                                                        }
-                                                    })
-                                                "
-                                                :data-p-today="date.today"
-                                                :data-p-other-month="date.otherMonth"
-                                                data-pc-group-section="tablebodycell"
-                                            >
-                                                <span
-                                                    v-if="showOtherMonths || !date.otherMonth"
-                                                    v-ripple
-                                                    :class="cx('day', { date })"
-                                                    draggable="false"
-                                                    v-bind="
-                                                        ptm('day', {
-                                                            context: {
-                                                                date,
-                                                                today: date.today,
-                                                                otherMonth: date.otherMonth,
-                                                                selected: isSelected(date),
-                                                                disabled: !date.selectable
-                                                            }
-                                                        })
-                                                    "
-                                                    :data-p="dayDataP(date)"
-                                                    data-pc-group-section="tablebodycelllabel"
-                                                >
-                                                    <slot name="date" :date="date">{{ date.day }}</slot>
-                                                </span>
-                                                <div v-if="isSelected(date)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenSelectedDay')" :data-p-hidden-accessible="true">
-                                                    {{ date.day }}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div v-if="currentView === 'month'" :class="cx('monthView')" v-bind="ptm('monthView')">
-                            <button
-                                v-for="(m, i) of monthPickerValues"
-                                :key="m"
-                                type="button"
-                                v-ripple
-                                @click="onMonthSelect($event, { month: m, index: i })"
-                                @keydown="onMonthCellKeydown($event, { month: m, index: i })"
-                                :class="cx('month', { month: m, index: i })"
-                                v-bind="
-                                    ptm('month', {
-                                        context: {
-                                            month: m,
-                                            monthIndex: i,
-                                            selected: isMonthSelected(i),
-                                            disabled: !m.selectable
-                                        }
-                                    })
-                                "
-                                :data-p-disabled="!m.selectable"
-                                :data-p-selected="isMonthSelected(i)"
-                            >
-                                {{ m.value }}
-                                <div v-if="isMonthSelected(i)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenMonth')" :data-p-hidden-accessible="true">
-                                    {{ m.value }}
-                                </div>
-                            </button>
-                        </div>
-                        <div v-if="currentView === 'year'" :class="cx('yearView')" v-bind="ptm('yearView')">
-                            <button
-                                v-for="y of yearPickerValues"
-                                :key="y.value"
-                                type="button"
-                                v-ripple
-                                @click="onYearSelect($event, y)"
-                                @keydown="onYearCellKeydown($event, y)"
-                                :class="cx('year', { year: y })"
-                                v-bind="
-                                    ptm('year', {
-                                        context: {
-                                            year: y,
-                                            selected: isYearSelected(y.value),
-                                            disabled: !y.selectable
-                                        }
-                                    })
-                                "
-                                :data-p-disabled="!y.selectable"
-                                :data-p-selected="isYearSelected(y.value)"
-                            >
-                                {{ y.value }}
-                                <div v-if="isYearSelected(y.value)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenYear')" :data-p-hidden-accessible="true">
-                                    {{ y.value }}
-                                </div>
-                            </button>
-                        </div>
-                    </template>
-                    <div v-if="(showTime || timeOnly) && currentView === 'date'" :class="cx('timePicker')" :data-p="timePickerDataP" v-bind="ptm('timePicker')">
-                        <div :class="cx('hourPicker')" v-bind="ptm('hourPicker')" data-pc-group-section="timepickerContainer">
-                            <slot name="hourincrementbutton" :callbacks="hourIncrementCallbacks">
-                                <Button
-                                    :class="cx('pcIncrementButton')"
-                                    :aria-label="$bumblevue.config.locale.nextHour"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 0, 1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 0, 1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 0, 1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcIncrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="incrementicon">
-                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                            <span v-bind="ptm('hour')" data-pc-group-section="timepickerlabel">{{ formattedCurrentHour }}</span>
-                            <slot name="hourdecrementbutton" :callbacks="hourDecrementCallbacks">
-                                <Button
-                                    :class="cx('pcDecrementButton')"
-                                    :aria-label="$bumblevue.config.locale.prevHour"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 0, -1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 0, -1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 0, -1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcDecrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="decrementicon">
-                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                        </div>
-                        <div v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
-                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-                        </div>
-                        <div :class="cx('minutePicker')" v-bind="ptm('minutePicker')" data-pc-group-section="timepickerContainer">
-                            <slot name="minuteincrementbutton" :callbacks="minuteIncrementCallbacks">
-                                <Button
-                                    :class="cx('pcIncrementButton')"
-                                    :aria-label="$bumblevue.config.locale.nextMinute"
-                                    :disabled="disabled"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 1, 1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 1, 1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 1, 1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcIncrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="incrementicon">
-                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                            <span v-bind="ptm('minute')" data-pc-group-section="timepickerlabel">{{ formattedCurrentMinute }}</span>
-                            <slot name="minutedecrementbutton" :callbacks="minuteDecrementCallbacks">
-                                <Button
-                                    :class="cx('pcDecrementButton')"
-                                    :aria-label="$bumblevue.config.locale.prevMinute"
-                                    :disabled="disabled"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 1, -1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 1, -1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 1, -1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcDecrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="decrementicon">
-                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                        </div>
-                        <div v-if="showSeconds" :class="cx('separatorContainer')" v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
-                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-                        </div>
-                        <div v-if="showSeconds" :class="cx('secondPicker')" v-bind="ptm('secondPicker')" data-pc-group-section="timepickerContainer">
-                            <slot name="secondincrementbutton" :callbacks="secondIncrementCallbacks">
-                                <Button
-                                    :class="cx('pcIncrementButton')"
-                                    :aria-label="$bumblevue.config.locale.nextSecond"
-                                    :disabled="disabled"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 2, 1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 2, 1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 2, 1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcIncrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="incrementicon">
-                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                            <span v-bind="ptm('second')" data-pc-group-section="timepickerlabel">{{ formattedCurrentSecond }}</span>
-                            <slot name="seconddecrementbutton" :callbacks="secondDecrementCallbacks">
-                                <Button
-                                    :class="cx('pcDecrementButton')"
-                                    :aria-label="$bumblevue.config.locale.prevSecond"
-                                    :disabled="disabled"
-                                    :unstyled="unstyled"
-                                    @mousedown="onTimePickerElementMouseDown($event, 2, -1)"
-                                    @mouseup="onTimePickerElementMouseUp($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    @mouseleave="onTimePickerElementMouseLeave()"
-                                    @keydown.enter="onTimePickerElementMouseDown($event, 2, -1)"
-                                    @keydown.space="onTimePickerElementMouseDown($event, 2, -1)"
-                                    @keyup.enter="onTimePickerElementMouseUp($event)"
-                                    @keyup.space="onTimePickerElementMouseUp($event)"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcDecrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="decrementicon">
-                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                        </div>
-                        <div v-if="hourFormat == '12'" :class="cx('separatorContainer')" v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
-                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
-                        </div>
-                        <div v-if="hourFormat == '12'" :class="cx('ampmPicker')" v-bind="ptm('ampmPicker')">
-                            <slot name="ampmincrementbutton" :toggleCallback="(event) => toggleAMPM(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                <Button
-                                    :class="cx('pcIncrementButton')"
-                                    :aria-label="$bumblevue.config.locale.am"
-                                    :disabled="disabled"
-                                    :unstyled="unstyled"
-                                    @click="toggleAMPM($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcIncrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="incrementicon" :class="cx('incrementIcon')">
-                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[cx('incrementIcon'), slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                            <span v-bind="ptm('ampm')" data-pc-group-section="timepickerlabel">{{ pm ? $bumblevue.config.locale.pm : $bumblevue.config.locale.am }}</span>
-                            <slot name="ampmdecrementbutton" :toggleCallback="(event) => toggleAMPM(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                <Button
-                                    :class="cx('pcDecrementButton')"
-                                    :aria-label="$bumblevue.config.locale.pm"
-                                    :disabled="disabled"
-                                    @click="toggleAMPM($event)"
-                                    @keydown="onContainerButtonKeydown"
-                                    v-bind="timepickerButtonProps"
-                                    :pt="ptm('pcDecrementButton')"
-                                    data-pc-group-section="timepickerbutton"
-                                >
-                                    <template #icon="slotProps">
-                                        <slot name="decrementicon" :class="cx('decrementIcon')">
-                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('decrementIcon'), slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
-                                        </slot>
-                                    </template>
-                                </Button>
-                            </slot>
-                        </div>
-                    </div>
-                    <div v-if="showButtonBar" :class="cx('buttonbar')" v-bind="ptm('buttonbar')">
-                        <slot name="buttonbar" :todayCallback="(event) => onTodayButtonClick(event)" :clearCallback="(event) => onClearButtonClick(event)">
-                            <slot name="todaybutton" :actionCallback="(event) => onTodayButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                <Button
-                                    :label="todayLabel"
-                                    @click="onTodayButtonClick($event)"
-                                    :class="cx('pcTodayButton')"
-                                    :unstyled="unstyled"
-                                    @keydown="onContainerButtonKeydown"
-                                    v-bind="todayButtonProps"
-                                    :pt="ptm('pcTodayButton')"
-                                    data-pc-group-section="button"
-                                />
-                            </slot>
-                            <slot name="clearbutton" :actionCallback="(event) => onClearButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
-                                <Button
-                                    :label="clearLabel"
-                                    @click="onClearButtonClick($event)"
-                                    :class="cx('pcClearButton')"
-                                    :unstyled="unstyled"
-                                    @keydown="onContainerButtonKeydown"
-                                    v-bind="clearButtonProps"
-                                    :pt="ptm('pcClearButton')"
-                                    data-pc-group-section="button"
-                                />
-                            </slot>
-                        </slot>
-                    </div>
-                    <slot name="footer"></slot>
-                </div>
-            </transition>
-        </Portal>
-    </span>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, find, findSingle, getAttribute, getFocusableElements, getIndex, getOuterWidth, isTouchDevice, relativePosition, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
@@ -3611,3 +3025,589 @@
         }
     };
 </script>
+
+<template>
+    <span ref="container" :id="$id" :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
+        <InputText
+            v-if="!inline"
+            :ref="inputRef"
+            :id="inputId"
+            role="combobox"
+            :class="[inputClass, cx('pcInputText')]"
+            :style="inputStyle"
+            :defaultValue="inputFieldValue"
+            :placeholder="placeholder"
+            :name="name"
+            :size="size"
+            :invalid="invalid"
+            :variant="variant"
+            :fluid="fluid"
+            :required="required"
+            :unstyled="unstyled"
+            autocomplete="off"
+            aria-autocomplete="none"
+            aria-haspopup="dialog"
+            :aria-expanded="overlayVisible"
+            :aria-controls="overlayVisible ? panelId : undefined"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            inputmode="none"
+            :disabled="disabled"
+            :readonly="!manualInput || readonly"
+            :tabindex="0"
+            @input="onInput"
+            @click="onInputClick"
+            @focus="onFocus"
+            @blur="onBlur"
+            @keydown="onKeyDown"
+            :data-p-has-dropdown="showIcon && iconDisplay === 'button' && !inline"
+            :data-p-has-e-icon="showIcon && iconDisplay === 'input' && !inline"
+            :pt="ptm('pcInputText')"
+        />
+        <slot v-if="showClear && !inline" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <button ref="clearIcon" type="button" :class="cx('clearIcon')" :aria-label="$bumblevue.config.locale.clear" @click="onClearClick" v-bind="ptm('clearIcon')">
+                <TimesIcon aria-hidden="true" />
+            </button>
+        </slot>
+        <slot v-if="showIcon && iconDisplay === 'button' && !inline" name="dropdownbutton" :toggleCallback="onButtonClick">
+            <button
+                :class="cx('dropdown')"
+                :disabled="disabled"
+                @click="onButtonClick"
+                type="button"
+                :aria-label="$bumblevue.config.locale.chooseDate"
+                aria-haspopup="dialog"
+                :aria-expanded="overlayVisible"
+                :aria-controls="panelId"
+                v-bind="ptm('dropdown')"
+            >
+                <slot name="dropdownicon" :class="icon">
+                    <component :is="icon ? 'span' : 'CalendarIcon'" :class="icon" v-bind="ptm('dropdownIcon')" />
+                </slot>
+            </button>
+        </slot>
+        <template v-else-if="showIcon && iconDisplay === 'input' && !inline">
+            <button
+                v-if="$slots.inputicon || showIcon"
+                v-bind="ptm('inputIconContainer')"
+                :class="cx('inputIconContainer')"
+                :data-p="inputIconDataP"
+                type="button"
+                :disabled="disabled"
+                @click="onButtonClick"
+                :aria-label="$bumblevue.config.locale.chooseDate"
+                aria-haspopup="dialog"
+                :aria-expanded="overlayVisible"
+                :aria-controls="overlayVisible ? panelId : undefined"
+            >
+                <slot name="inputicon" :class="cx('inputIcon')" :clickCallback="onButtonClick">
+                    <component :is="icon ? 'i' : 'CalendarIcon'" :class="[icon, cx('inputIcon')]" v-bind="ptm('inputicon')" />
+                </slot>
+            </button>
+        </template>
+        <Portal :appendTo="appendTo" :disabled="inline">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter($event)" @after-enter="onOverlayEnterComplete" @after-leave="onOverlayAfterLeave" @leave="onOverlayLeave" v-bind="ptm('transition')">
+                <div
+                    v-if="inline || overlayVisible"
+                    :ref="overlayRef"
+                    :id="panelId"
+                    :class="[cx('panel'), panelClass]"
+                    :style="panelStyle"
+                    :role="inline ? null : 'dialog'"
+                    :aria-modal="inline ? null : 'true'"
+                    :aria-label="$bumblevue.config.locale.chooseDate"
+                    @click="onOverlayClick"
+                    @keydown="onOverlayKeyDown"
+                    @mouseup="onOverlayMouseUp"
+                    :data-p="panelDataP"
+                    v-bind="ptm('panel')"
+                >
+                    <template v-if="!timeOnly">
+                        <div :class="cx('calendarContainer')" v-bind="ptm('calendarContainer')">
+                            <div v-for="(month, groupIndex) of months" :key="month.month + month.year" :class="cx('calendar')" v-bind="ptm('calendar')">
+                                <div :class="cx('header')" v-bind="ptm('header')">
+                                    <slot name="header"></slot>
+                                    <slot name="prevbutton" :actionCallback="(event) => onPrevButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                        <Button
+                                            v-show="groupIndex === 0"
+                                            :ref="previousButtonRef"
+                                            :class="cx('pcPrevButton')"
+                                            :disabled="disabled"
+                                            :aria-label="currentView === 'year' ? $bumblevue.config.locale.prevDecade : currentView === 'month' ? $bumblevue.config.locale.prevYear : $bumblevue.config.locale.prevMonth"
+                                            :unstyled="unstyled"
+                                            @click="onPrevButtonClick"
+                                            @keydown="onContainerButtonKeydown"
+                                            v-bind="navigatorButtonProps"
+                                            :pt="ptm('pcPrevButton')"
+                                            data-pc-group-section="navigator"
+                                        >
+                                            <template #icon="slotProps">
+                                                <slot name="previcon">
+                                                    <component :is="prevIcon ? 'span' : 'ChevronLeftIcon'" :class="[prevIcon, slotProps.class]" v-bind="ptm('pcPrevButton')['icon']" />
+                                                </slot>
+                                            </template>
+                                        </Button>
+                                    </slot>
+                                    <div :class="cx('title')" v-bind="ptm('title')">
+                                        <template v-if="$bumblevue.config.locale.showMonthAfterYear">
+                                            <button
+                                                v-if="currentView !== 'year'"
+                                                type="button"
+                                                @click="switchToYearView"
+                                                @keydown="onContainerButtonKeydown"
+                                                :class="cx('selectYear')"
+                                                :disabled="switchViewButtonDisabled"
+                                                :aria-label="getYearButtonAriaLabel(month)"
+                                                v-bind="ptm('selectYear')"
+                                                data-pc-group-section="view"
+                                            >
+                                                {{ getYear(month) }}
+                                            </button>
+                                            <button
+                                                v-if="currentView === 'date'"
+                                                type="button"
+                                                @click="switchToMonthView"
+                                                @keydown="onContainerButtonKeydown"
+                                                :class="cx('selectMonth')"
+                                                :disabled="switchViewButtonDisabled"
+                                                :aria-label="getMonthButtonAriaLabel(month)"
+                                                v-bind="ptm('selectMonth')"
+                                                data-pc-group-section="view"
+                                            >
+                                                {{ getMonthName(month.month) }}
+                                            </button>
+                                        </template>
+                                        <template v-else>
+                                            <button
+                                                v-if="currentView === 'date'"
+                                                type="button"
+                                                @click="switchToMonthView"
+                                                @keydown="onContainerButtonKeydown"
+                                                :class="cx('selectMonth')"
+                                                :disabled="switchViewButtonDisabled"
+                                                :aria-label="getMonthButtonAriaLabel(month)"
+                                                v-bind="ptm('selectMonth')"
+                                                data-pc-group-section="view"
+                                            >
+                                                {{ getMonthName(month.month) }}
+                                            </button>
+                                            <button
+                                                v-if="currentView !== 'year'"
+                                                type="button"
+                                                @click="switchToYearView"
+                                                @keydown="onContainerButtonKeydown"
+                                                :class="cx('selectYear')"
+                                                :disabled="switchViewButtonDisabled"
+                                                :aria-label="getYearButtonAriaLabel(month)"
+                                                v-bind="ptm('selectYear')"
+                                                data-pc-group-section="view"
+                                            >
+                                                {{ getYear(month) }}
+                                            </button>
+                                        </template>
+                                        <span v-if="currentView === 'year'" :class="cx('decade')" v-bind="ptm('decade')">
+                                            <slot name="decade" :years="yearPickerValues"> {{ yearPickerValues[0].value }} - {{ yearPickerValues[yearPickerValues.length - 1].value }} </slot>
+                                        </span>
+                                    </div>
+                                    <slot name="nextbutton" :actionCallback="(event) => onNextButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                        <Button
+                                            v-show="numberOfMonths === 1 ? true : groupIndex === numberOfMonths - 1"
+                                            :ref="nextButtonRef"
+                                            :class="cx('pcNextButton')"
+                                            :disabled="disabled"
+                                            :aria-label="currentView === 'year' ? $bumblevue.config.locale.nextDecade : currentView === 'month' ? $bumblevue.config.locale.nextYear : $bumblevue.config.locale.nextMonth"
+                                            :unstyled="unstyled"
+                                            @click="onNextButtonClick"
+                                            @keydown="onContainerButtonKeydown"
+                                            v-bind="navigatorButtonProps"
+                                            :pt="ptm('pcNextButton')"
+                                            data-pc-group-section="navigator"
+                                        >
+                                            <template #icon="slotProps">
+                                                <slot name="nexticon">
+                                                    <component :is="nextIcon ? 'span' : 'ChevronRightIcon'" :class="[nextIcon, slotProps.class]" v-bind="ptm('pcNextButton')['icon']" />
+                                                </slot>
+                                            </template>
+                                        </Button>
+                                    </slot>
+                                </div>
+                                <table v-if="currentView === 'date'" :class="cx('dayView')" role="grid" v-bind="ptm('dayView')" :aria-label="getCalendarAriaLabel(month)">
+                                    <thead v-bind="ptm('tableHeader')">
+                                        <tr v-bind="ptm('tableHeaderRow')">
+                                            <th v-if="showWeek" scope="col" :class="cx('weekHeader')" v-bind="ptm('weekHeader', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tableheadercell">
+                                                <slot name="weekheaderlabel">
+                                                    <span v-bind="ptm('weekHeaderLabel', { context: { disabled: showWeek } })" data-pc-group-section="tableheadercelllabel">
+                                                        {{ weekHeaderLabel }}
+                                                    </span>
+                                                </slot>
+                                            </th>
+                                            <th v-for="weekDay of weekDays" :key="weekDay" scope="col" :abbr="weekDay" v-bind="ptm('tableHeaderCell')" data-pc-group-section="tableheadercell" :class="cx('weekDayCell')">
+                                                <span :class="cx('weekDay')" v-bind="ptm('weekDay')" data-pc-group-section="tableheadercelllabel">{{ weekDay }}</span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-bind="ptm('tableBody')">
+                                        <tr v-for="(week, i) of month.dates" :key="week[0].day + '' + week[0].month" v-bind="ptm('tableBodyRow')">
+                                            <td v-if="showWeek" :class="cx('weekNumber')" v-bind="ptm('weekNumber')" data-pc-group-section="tablebodycell">
+                                                <span :class="cx('weekLabelContainer')" v-bind="ptm('weekLabelContainer', { context: { disabled: showWeek } })" :data-p-disabled="showWeek" data-pc-group-section="tablebodycelllabel">
+                                                    <slot name="weeklabel" :weekNumber="month.weekNumbers[i]">
+                                                        <span v-if="month.weekNumbers[i] < 10" style="visibility: hidden" v-bind="ptm('weekLabel')">0</span>
+                                                        {{ month.weekNumbers[i] }}
+                                                    </slot>
+                                                </span>
+                                            </td>
+                                            <td
+                                                v-for="date of week"
+                                                :key="date.day + '' + date.month"
+                                                :aria-label="getDateAriaLabel(date)"
+                                                role="gridcell"
+                                                :class="cx('dayCell', { date })"
+                                                :aria-selected="isSelected(date)"
+                                                :aria-disabled="!date.selectable"
+                                                :data-p-disabled="!date.selectable"
+                                                :data-p-selected="isSelected(date)"
+                                                @click="onDateSelect($event, date)"
+                                                @keydown="onDateCellKeydown($event, date, groupIndex)"
+                                                v-bind="
+                                                    ptm('dayCell', {
+                                                        context: {
+                                                            date,
+                                                            today: date.today,
+                                                            otherMonth: date.otherMonth,
+                                                            selected: isSelected(date),
+                                                            disabled: !date.selectable
+                                                        }
+                                                    })
+                                                "
+                                                :data-p-today="date.today"
+                                                :data-p-other-month="date.otherMonth"
+                                                data-pc-group-section="tablebodycell"
+                                            >
+                                                <span
+                                                    v-if="showOtherMonths || !date.otherMonth"
+                                                    v-ripple
+                                                    :class="cx('day', { date })"
+                                                    draggable="false"
+                                                    v-bind="
+                                                        ptm('day', {
+                                                            context: {
+                                                                date,
+                                                                today: date.today,
+                                                                otherMonth: date.otherMonth,
+                                                                selected: isSelected(date),
+                                                                disabled: !date.selectable
+                                                            }
+                                                        })
+                                                    "
+                                                    :data-p="dayDataP(date)"
+                                                    data-pc-group-section="tablebodycelllabel"
+                                                >
+                                                    <slot name="date" :date="date">{{ date.day }}</slot>
+                                                </span>
+                                                <div v-if="isSelected(date)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenSelectedDay')" :data-p-hidden-accessible="true">
+                                                    {{ date.day }}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div v-if="currentView === 'month'" :class="cx('monthView')" v-bind="ptm('monthView')">
+                            <button
+                                v-for="(m, i) of monthPickerValues"
+                                :key="m"
+                                type="button"
+                                v-ripple
+                                @click="onMonthSelect($event, { month: m, index: i })"
+                                @keydown="onMonthCellKeydown($event, { month: m, index: i })"
+                                :class="cx('month', { month: m, index: i })"
+                                v-bind="
+                                    ptm('month', {
+                                        context: {
+                                            month: m,
+                                            monthIndex: i,
+                                            selected: isMonthSelected(i),
+                                            disabled: !m.selectable
+                                        }
+                                    })
+                                "
+                                :data-p-disabled="!m.selectable"
+                                :data-p-selected="isMonthSelected(i)"
+                            >
+                                {{ m.value }}
+                                <div v-if="isMonthSelected(i)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenMonth')" :data-p-hidden-accessible="true">
+                                    {{ m.value }}
+                                </div>
+                            </button>
+                        </div>
+                        <div v-if="currentView === 'year'" :class="cx('yearView')" v-bind="ptm('yearView')">
+                            <button
+                                v-for="y of yearPickerValues"
+                                :key="y.value"
+                                type="button"
+                                v-ripple
+                                @click="onYearSelect($event, y)"
+                                @keydown="onYearCellKeydown($event, y)"
+                                :class="cx('year', { year: y })"
+                                v-bind="
+                                    ptm('year', {
+                                        context: {
+                                            year: y,
+                                            selected: isYearSelected(y.value),
+                                            disabled: !y.selectable
+                                        }
+                                    })
+                                "
+                                :data-p-disabled="!y.selectable"
+                                :data-p-selected="isYearSelected(y.value)"
+                            >
+                                {{ y.value }}
+                                <div v-if="isYearSelected(y.value)" class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenYear')" :data-p-hidden-accessible="true">
+                                    {{ y.value }}
+                                </div>
+                            </button>
+                        </div>
+                    </template>
+                    <div v-if="(showTime || timeOnly) && currentView === 'date'" :class="cx('timePicker')" :data-p="timePickerDataP" v-bind="ptm('timePicker')">
+                        <div :class="cx('hourPicker')" v-bind="ptm('hourPicker')" data-pc-group-section="timepickerContainer">
+                            <slot name="hourincrementbutton" :callbacks="hourIncrementCallbacks">
+                                <Button
+                                    :class="cx('pcIncrementButton')"
+                                    :aria-label="$bumblevue.config.locale.nextHour"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 0, 1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 0, 1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 0, 1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcIncrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="incrementicon">
+                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                            <span v-bind="ptm('hour')" data-pc-group-section="timepickerlabel">{{ formattedCurrentHour }}</span>
+                            <slot name="hourdecrementbutton" :callbacks="hourDecrementCallbacks">
+                                <Button
+                                    :class="cx('pcDecrementButton')"
+                                    :aria-label="$bumblevue.config.locale.prevHour"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 0, -1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 0, -1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 0, -1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcDecrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="decrementicon">
+                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                        </div>
+                        <div v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
+                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+                        </div>
+                        <div :class="cx('minutePicker')" v-bind="ptm('minutePicker')" data-pc-group-section="timepickerContainer">
+                            <slot name="minuteincrementbutton" :callbacks="minuteIncrementCallbacks">
+                                <Button
+                                    :class="cx('pcIncrementButton')"
+                                    :aria-label="$bumblevue.config.locale.nextMinute"
+                                    :disabled="disabled"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 1, 1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 1, 1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 1, 1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcIncrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="incrementicon">
+                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                            <span v-bind="ptm('minute')" data-pc-group-section="timepickerlabel">{{ formattedCurrentMinute }}</span>
+                            <slot name="minutedecrementbutton" :callbacks="minuteDecrementCallbacks">
+                                <Button
+                                    :class="cx('pcDecrementButton')"
+                                    :aria-label="$bumblevue.config.locale.prevMinute"
+                                    :disabled="disabled"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 1, -1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 1, -1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 1, -1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcDecrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="decrementicon">
+                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                        </div>
+                        <div v-if="showSeconds" :class="cx('separatorContainer')" v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
+                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+                        </div>
+                        <div v-if="showSeconds" :class="cx('secondPicker')" v-bind="ptm('secondPicker')" data-pc-group-section="timepickerContainer">
+                            <slot name="secondincrementbutton" :callbacks="secondIncrementCallbacks">
+                                <Button
+                                    :class="cx('pcIncrementButton')"
+                                    :aria-label="$bumblevue.config.locale.nextSecond"
+                                    :disabled="disabled"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 2, 1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 2, 1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 2, 1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcIncrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="incrementicon">
+                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[incrementIcon, slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                            <span v-bind="ptm('second')" data-pc-group-section="timepickerlabel">{{ formattedCurrentSecond }}</span>
+                            <slot name="seconddecrementbutton" :callbacks="secondDecrementCallbacks">
+                                <Button
+                                    :class="cx('pcDecrementButton')"
+                                    :aria-label="$bumblevue.config.locale.prevSecond"
+                                    :disabled="disabled"
+                                    :unstyled="unstyled"
+                                    @mousedown="onTimePickerElementMouseDown($event, 2, -1)"
+                                    @mouseup="onTimePickerElementMouseUp($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    @mouseleave="onTimePickerElementMouseLeave()"
+                                    @keydown.enter="onTimePickerElementMouseDown($event, 2, -1)"
+                                    @keydown.space="onTimePickerElementMouseDown($event, 2, -1)"
+                                    @keyup.enter="onTimePickerElementMouseUp($event)"
+                                    @keyup.space="onTimePickerElementMouseUp($event)"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcDecrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="decrementicon">
+                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[decrementIcon, slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                        </div>
+                        <div v-if="hourFormat == '12'" :class="cx('separatorContainer')" v-bind="ptm('separatorContainer')" data-pc-group-section="timepickerContainer">
+                            <span v-bind="ptm('separator')" data-pc-group-section="timepickerlabel">{{ timeSeparator }}</span>
+                        </div>
+                        <div v-if="hourFormat == '12'" :class="cx('ampmPicker')" v-bind="ptm('ampmPicker')">
+                            <slot name="ampmincrementbutton" :toggleCallback="(event) => toggleAMPM(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                <Button
+                                    :class="cx('pcIncrementButton')"
+                                    :aria-label="$bumblevue.config.locale.am"
+                                    :disabled="disabled"
+                                    :unstyled="unstyled"
+                                    @click="toggleAMPM($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcIncrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="incrementicon" :class="cx('incrementIcon')">
+                                            <component :is="incrementIcon ? 'span' : 'ChevronUpIcon'" :class="[cx('incrementIcon'), slotProps.class]" v-bind="ptm('pcIncrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                            <span v-bind="ptm('ampm')" data-pc-group-section="timepickerlabel">{{ pm ? $bumblevue.config.locale.pm : $bumblevue.config.locale.am }}</span>
+                            <slot name="ampmdecrementbutton" :toggleCallback="(event) => toggleAMPM(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                <Button
+                                    :class="cx('pcDecrementButton')"
+                                    :aria-label="$bumblevue.config.locale.pm"
+                                    :disabled="disabled"
+                                    @click="toggleAMPM($event)"
+                                    @keydown="onContainerButtonKeydown"
+                                    v-bind="timepickerButtonProps"
+                                    :pt="ptm('pcDecrementButton')"
+                                    data-pc-group-section="timepickerbutton"
+                                >
+                                    <template #icon="slotProps">
+                                        <slot name="decrementicon" :class="cx('decrementIcon')">
+                                            <component :is="decrementIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('decrementIcon'), slotProps.class]" v-bind="ptm('pcDecrementButton')['icon']" data-pc-group-section="timepickerlabel" />
+                                        </slot>
+                                    </template>
+                                </Button>
+                            </slot>
+                        </div>
+                    </div>
+                    <div v-if="showButtonBar" :class="cx('buttonbar')" v-bind="ptm('buttonbar')">
+                        <slot name="buttonbar" :todayCallback="(event) => onTodayButtonClick(event)" :clearCallback="(event) => onClearButtonClick(event)">
+                            <slot name="todaybutton" :actionCallback="(event) => onTodayButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                <Button
+                                    :label="todayLabel"
+                                    @click="onTodayButtonClick($event)"
+                                    :class="cx('pcTodayButton')"
+                                    :unstyled="unstyled"
+                                    @keydown="onContainerButtonKeydown"
+                                    v-bind="todayButtonProps"
+                                    :pt="ptm('pcTodayButton')"
+                                    data-pc-group-section="button"
+                                />
+                            </slot>
+                            <slot name="clearbutton" :actionCallback="(event) => onClearButtonClick(event)" :keydownCallback="(event) => onContainerButtonKeydown(event)">
+                                <Button
+                                    :label="clearLabel"
+                                    @click="onClearButtonClick($event)"
+                                    :class="cx('pcClearButton')"
+                                    :unstyled="unstyled"
+                                    @keydown="onContainerButtonKeydown"
+                                    v-bind="clearButtonProps"
+                                    :pt="ptm('pcClearButton')"
+                                    data-pc-group-section="button"
+                                />
+                            </slot>
+                        </slot>
+                    </div>
+                    <slot name="footer"></slot>
+                </div>
+            </transition>
+        </Portal>
+    </span>
+</template>

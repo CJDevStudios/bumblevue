@@ -1,15 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Adding <i>mask</i> property displays a modal layer behind the popup items.</p>
-    </DocSectionText>
-    <div class="card p-4">
-        <div :style="{ position: 'relative', height: '350px' }">
-            <SpeedDial :model="items" direction="up" mask :style="{ position: 'absolute', right: '1rem', bottom: '1rem' }" />
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -116,3 +104,15 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Adding <i>mask</i> property displays a modal layer behind the popup items.</p>
+    </DocSectionText>
+    <div class="card p-4">
+        <div :style="{ position: 'relative', height: '350px' }">
+            <SpeedDial :model="items" direction="up" mask :style="{ position: 'absolute', right: '1rem', bottom: '1rem' }" />
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

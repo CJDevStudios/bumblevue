@@ -1,89 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick($event)" v-bind="ptmi('root')">
-        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
-            <input
-                ref="focusInput"
-                :id="inputId"
-                type="text"
-                :class="inputClass"
-                :style="inputStyle"
-                readonly
-                :disabled="disabled"
-                :placeholder="placeholder"
-                :tabindex="!disabled ? tabindex : -1"
-                role="combobox"
-                :aria-label="ariaLabel"
-                :aria-labelledby="ariaLabelledby"
-                aria-haspopup="tree"
-                :aria-expanded="overlayVisible"
-                :aria-controls="overlayVisible ? $id + '_tree' : undefined"
-                :aria-activedescendant="focused ? focusedOptionId : undefined"
-                :aria-invalid="invalid || undefined"
-                @focus="onFocus"
-                @blur="onBlur"
-                @keydown="onKeyDown"
-                v-bind="{ ...inputProps, ...ptm('hiddenInput') }"
-            />
-        </div>
-        <span :class="cx('label')" v-bind="ptm('label')">
-            <slot name="value" :value="d_value" :placeholder="placeholder">
-                {{ label }}
-            </slot>
-        </span>
-        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
-        </slot>
-        <div :class="cx('dropdown')" role="button" tabindex="-1" v-bind="ptm('dropdown')">
-            <slot v-if="loading" name="loadingicon" :class="cx('loadingIcon')">
-                <span v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" aria-hidden="true" v-bind="ptm('loadingIcon')" />
-                <SpinnerIcon v-else :class="cx('loadingIcon')" spin aria-hidden="true" v-bind="ptm('loadingIcon')" />
-            </slot>
-            <slot v-else name="dropdownicon" :class="cx('dropdownIcon')">
-                <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('dropdownIcon'), dropdownIcon]" aria-hidden="true" v-bind="ptm('dropdownIcon')" />
-            </slot>
-        </div>
-        <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSearchResult')" :data-p-hidden-accessible="true">
-            {{ searchResultMessageText }}
-        </span>
-        <Portal :appendTo="appendTo">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div v-if="overlayVisible" :ref="overlayRef" :class="[cx('overlay'), overlayClass]" :style="overlayStyle" @click="onOverlayClick" @keydown="onOverlayKeyDown" v-bind="{ ...overlayProps, ...ptm('overlay') }">
-                    <slot name="header" :value="d_value" :options="options" />
-                    <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
-                        <CascadeSelectSub
-                            :id="$id + '_tree'"
-                            role="tree"
-                            aria-orientation="horizontal"
-                            :selectId="$id"
-                            :focusedOptionId="focused ? focusedOptionId : undefined"
-                            :options="processedOptions"
-                            :activeOptionPath="activeOptionPath"
-                            :level="0"
-                            :templates="$slots"
-                            :optionLabel="optionLabel"
-                            :optionValue="optionValue"
-                            :optionDisabled="optionDisabled"
-                            :optionGroupIcon="optionGroupIcon"
-                            :optionGroupLabel="optionGroupLabel"
-                            :optionGroupChildren="optionGroupChildren"
-                            :value="d_value"
-                            @option-change="onOptionClick"
-                            @option-focus-change="onOptionMouseMove"
-                            @option-focus-enter-change="onOptionMouseEnter"
-                            :pt="pt"
-                            :unstyled="unstyled"
-                        />
-                    </div>
-                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
-                        {{ selectedMessageText }}
-                    </span>
-                    <slot name="footer" :value="d_value" :options="options" />
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
     import { equals, findLastIndex, isEmpty, isNotEmpty, isPrintableCharacter, isString, resolveFieldData } from '@cjdevstudios/bumblevue/utils/object';
@@ -986,3 +900,89 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick($event)" v-bind="ptmi('root')">
+        <div class="p-hidden-accessible" v-bind="ptm('hiddenInputContainer')" :data-p-hidden-accessible="true">
+            <input
+                ref="focusInput"
+                :id="inputId"
+                type="text"
+                :class="inputClass"
+                :style="inputStyle"
+                readonly
+                :disabled="disabled"
+                :placeholder="placeholder"
+                :tabindex="!disabled ? tabindex : -1"
+                role="combobox"
+                :aria-label="ariaLabel"
+                :aria-labelledby="ariaLabelledby"
+                aria-haspopup="tree"
+                :aria-expanded="overlayVisible"
+                :aria-controls="overlayVisible ? $id + '_tree' : undefined"
+                :aria-activedescendant="focused ? focusedOptionId : undefined"
+                :aria-invalid="invalid || undefined"
+                @focus="onFocus"
+                @blur="onBlur"
+                @keydown="onKeyDown"
+                v-bind="{ ...inputProps, ...ptm('hiddenInput') }"
+            />
+        </div>
+        <span :class="cx('label')" v-bind="ptm('label')">
+            <slot name="value" :value="d_value" :placeholder="placeholder">
+                {{ label }}
+            </slot>
+        </span>
+        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <component :is="clearIcon ? 'i' : 'TimesIcon'" ref="clearIcon" :class="[cx('clearIcon'), clearIcon]" @click="onClearClick" v-bind="ptm('clearIcon')" data-pc-section="clearicon" />
+        </slot>
+        <div :class="cx('dropdown')" role="button" tabindex="-1" v-bind="ptm('dropdown')">
+            <slot v-if="loading" name="loadingicon" :class="cx('loadingIcon')">
+                <span v-if="loadingIcon" :class="[cx('loadingIcon'), 'p-icon-spin', loadingIcon]" aria-hidden="true" v-bind="ptm('loadingIcon')" />
+                <SpinnerIcon v-else :class="cx('loadingIcon')" spin aria-hidden="true" v-bind="ptm('loadingIcon')" />
+            </slot>
+            <slot v-else name="dropdownicon" :class="cx('dropdownIcon')">
+                <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[cx('dropdownIcon'), dropdownIcon]" aria-hidden="true" v-bind="ptm('dropdownIcon')" />
+            </slot>
+        </div>
+        <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSearchResult')" :data-p-hidden-accessible="true">
+            {{ searchResultMessageText }}
+        </span>
+        <Portal :appendTo="appendTo">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div v-if="overlayVisible" :ref="overlayRef" :class="[cx('overlay'), overlayClass]" :style="overlayStyle" @click="onOverlayClick" @keydown="onOverlayKeyDown" v-bind="{ ...overlayProps, ...ptm('overlay') }">
+                    <slot name="header" :value="d_value" :options="options" />
+                    <div :class="cx('listContainer')" v-bind="ptm('listContainer')">
+                        <CascadeSelectSub
+                            :id="$id + '_tree'"
+                            role="tree"
+                            aria-orientation="horizontal"
+                            :selectId="$id"
+                            :focusedOptionId="focused ? focusedOptionId : undefined"
+                            :options="processedOptions"
+                            :activeOptionPath="activeOptionPath"
+                            :level="0"
+                            :templates="$slots"
+                            :optionLabel="optionLabel"
+                            :optionValue="optionValue"
+                            :optionDisabled="optionDisabled"
+                            :optionGroupIcon="optionGroupIcon"
+                            :optionGroupLabel="optionGroupLabel"
+                            :optionGroupChildren="optionGroupChildren"
+                            :value="d_value"
+                            @option-change="onOptionClick"
+                            @option-focus-change="onOptionMouseMove"
+                            @option-focus-enter-change="onOptionMouseEnter"
+                            :pt="pt"
+                            :unstyled="unstyled"
+                        />
+                    </div>
+                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
+                        {{ selectedMessageText }}
+                    </span>
+                    <slot name="footer" :value="d_value" :options="options" />
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

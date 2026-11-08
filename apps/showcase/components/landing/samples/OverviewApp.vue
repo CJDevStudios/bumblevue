@@ -1,154 +1,3 @@
-<template>
-    <div class="flex-1 h-full overflow-y-auto pb-0.5">
-        <div class="flex flex-wrap gap-4 items-start justify-between p-1">
-            <div class="flex-1">
-                <div class="text-muted-color font-medium leading-normal">Overview</div>
-                <div class="text-color text-3xl font-semibold leading-normal">Welcome to BumbleVue</div>
-            </div>
-            <div class="flex gap-2 whitespace-nowrap flex-nowrap">
-                <IconField>
-                    <InputIcon class="pi pi-search"> </InputIcon>
-                    <InputText placeholder="Search" />
-                </IconField>
-                <Button severity="secondary" variant="outlined">
-                    <OverlayBadge
-                        severity="danger"
-                        :pt="{
-                            pcbadge: {
-                                root: {
-                                    class: 'min-w-0! w-2.5! h-2.5!'
-                                }
-                            }
-                        }"
-                    >
-                        <i class="pi pi-bell" />
-                    </OverlayBadge>
-                </Button>
-            </div>
-        </div>
-        <div class="mt-4 flex flex-wrap gap-6 items-center justify-between p-1">
-            <SelectButton v-model="selectedTime" :options="timeOptions" aria-labelledby="basic" :allowEmpty="false" @change="changeSelect" />
-            <div class="flex items-center gap-2">
-                <Button label="Download" icon="pi pi-download" iconPos="right" />
-                <DatePicker v-model="dates" selectionMode="range" :manualInput="false" showIcon iconDisplay="input" placeholder="06/11/2024 - 06/22/2024" />
-            </div>
-        </div>
-        <div class="flex flex-col gap-6 mt-6">
-            <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
-                <div class="flex items-center gap-6 mb-6">
-                    <div class="flex-1 text-color font-semibold leading-6">Crypto Analytics</div>
-                    <div class="flex items-center gap-5">
-                        <div v-for="(item, index) in chartData?.datasets" :key="index" class="flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: item.backgroundColor }"></div>
-                            <span class="font-medium text-color leading-6">{{ item.label }}</span>
-                        </div>
-                    </div>
-                </div>
-                <Chart type="bar" :data="chartData" :options="chartOptions" class="h-80" />
-            </div>
-            <div class="flex gap-6 xl:flex-row flex-col">
-                <div class="flex-1 border border-surface rounded-2xl py-5 px-7">
-                    <div class="flex items-center gap-6 mb-4">
-                        <div class="flex-1 text-color font-semibold leading-6">Transactions</div>
-                        <Button type="button" icon="pi pi-ellipsis-h" severity="secondary" text @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-                        <Menu ref="menu" id="overlay_menu" :model="menuItems" :popup="true" />
-                    </div>
-                    <DataTable
-                        :value="sampleAppsTableDatas"
-                        paginator
-                        :rows="5"
-                        dataKey="id"
-                        tableClass="overflow-x-auto dark:bg-surface-950"
-                        paginatorTemplate="PrevPageLink PageLinks NextPageLink  CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                        pt:pcpaginator:root="bg-transparent!"
-                        :dt="{
-                            header: {
-                                background: 'transparent'
-                            },
-                            headerCell: {
-                                background: 'transparent'
-                            },
-                            row: {
-                                background: 'transparent'
-                            }
-                        }"
-                    >
-                        <Column header="Id" class="w-1/12">
-                            <template #body="slotProps">
-                                <div class="text-muted-color">{{ slotProps.data.id }}</div>
-                            </template>
-                        </Column>
-                        <Column header="Name" class="w-1/4">
-                            <template #body="slotProps">
-                                <div class="flex items-center">
-                                    <Avatar :label="slotProps.data.name.label" class="mr-2 text-xs font-medium" :style="`background-color: ${slotProps.data.name.color}; color: #2a1261`" shape="circle" />
-                                    <div class="leading-6 text-muted-color flex-1">{{ slotProps.data.name.text }}</div>
-                                </div>
-                            </template>
-                        </Column>
-                        <Column header="Coin" class="w-1/6">
-                            <template #body="slotProps">
-                                <div class="flex items-center">
-                                    <i
-                                        :class="[
-                                            {
-                                                'pi pi-bitcoin text-yellow-500 text-3xl!': slotProps.data.coin !== 'btc',
-                                                'pi pi-ethereum bg-surface-950 text-surface-0 dark:bg-surface-0 dark:text-surface-950 w-7 h-7 rounded-full flex items-center justify-center': slotProps.data.coin !== 'eth'
-                                            }
-                                        ]"
-                                    ></i>
-                                </div>
-                            </template>
-                        </Column>
-                        <Column header="Date" class="w-1/6">
-                            <template #body="slotProps">
-                                <div class="text-muted-color">{{ slotProps.data.date }}</div>
-                            </template>
-                        </Column>
-                        <Column header="Process" class="w-1/6">
-                            <template #body="slotProps">
-                                <Tag :severity="slotProps.data.process.type" :value="slotProps.data.process.value" class="font-medium"></Tag>
-                            </template>
-                        </Column>
-                        <Column header="Amount" class="w-1/6">
-                            <template #body="slotProps">
-                                <div class="text-muted-color text-right">{{ slotProps.data.amount }}</div>
-                            </template>
-                        </Column>
-                    </DataTable>
-                </div>
-                <div class="xl:w-96 border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center gap-6 mb-6">
-                            <div class="flex-1 text-color font-semibold leading-6">My Wallet</div>
-                            <Button type="button" icon="pi pi-ellipsis-h" severity="secondary" text @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
-                            <Menu ref="menu" id="overlay_menu" :model="menuItems" :popup="true" />
-                        </div>
-                        <MeterGroup :value="metersData" labelPosition="end">
-                            <template #label="{ value }">
-                                <div class="flex flex-col gap-6 mt-4">
-                                    <template v-for="val of value" :key="val.label">
-                                        <div class="flex items-center gap-2">
-                                            <div class="w-2 h-2 rounded-full" :style="{ backgroundColor: val.color }"></div>
-                                            <div class="text-color uppercase font-medium leading-6 flex-1">
-                                                {{ val.label }}
-                                                <span class="text-muted-color">({{ val.value }}%)</span>
-                                            </div>
-                                            <div class="leading-6 font-medium text-color">{{ val.text }}</div>
-                                        </div>
-                                    </template>
-                                </div>
-                            </template>
-                        </MeterGroup>
-                    </div>
-                    <Button label="Show All" variant="outlined" />
-                </div>
-            </div>
-        </div>
-    </div>
-</template>
-
 <script>
     import EventBus from '@/app/AppEventBus';
     export default {
@@ -435,3 +284,154 @@
         components: {}
     };
 </script>
+
+<template>
+    <div class="flex-1 h-full overflow-y-auto pb-0.5">
+        <div class="flex flex-wrap gap-4 items-start justify-between p-1">
+            <div class="flex-1">
+                <div class="text-muted-color font-medium leading-normal">Overview</div>
+                <div class="text-color text-3xl font-semibold leading-normal">Welcome to BumbleVue</div>
+            </div>
+            <div class="flex gap-2 whitespace-nowrap flex-nowrap">
+                <IconField>
+                    <InputIcon class="pi pi-search"> </InputIcon>
+                    <InputText placeholder="Search" />
+                </IconField>
+                <Button severity="secondary" variant="outlined">
+                    <OverlayBadge
+                        severity="danger"
+                        :pt="{
+                            pcbadge: {
+                                root: {
+                                    class: 'min-w-0! w-2.5! h-2.5!'
+                                }
+                            }
+                        }"
+                    >
+                        <i class="pi pi-bell" />
+                    </OverlayBadge>
+                </Button>
+            </div>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-6 items-center justify-between p-1">
+            <SelectButton v-model="selectedTime" :options="timeOptions" aria-labelledby="basic" :allowEmpty="false" @change="changeSelect" />
+            <div class="flex items-center gap-2">
+                <Button label="Download" icon="pi pi-download" iconPos="right" />
+                <DatePicker v-model="dates" selectionMode="range" :manualInput="false" showIcon iconDisplay="input" placeholder="06/11/2024 - 06/22/2024" />
+            </div>
+        </div>
+        <div class="flex flex-col gap-6 mt-6">
+            <div class="w-full border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
+                <div class="flex items-center gap-6 mb-6">
+                    <div class="flex-1 text-color font-semibold leading-6">Crypto Analytics</div>
+                    <div class="flex items-center gap-5">
+                        <div v-for="(item, index) in chartData?.datasets" :key="index" class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full" :style="{ backgroundColor: item.backgroundColor }"></div>
+                            <span class="font-medium text-color leading-6">{{ item.label }}</span>
+                        </div>
+                    </div>
+                </div>
+                <Chart type="bar" :data="chartData" :options="chartOptions" class="h-80" />
+            </div>
+            <div class="flex gap-6 xl:flex-row flex-col">
+                <div class="flex-1 border border-surface rounded-2xl py-5 px-7">
+                    <div class="flex items-center gap-6 mb-4">
+                        <div class="flex-1 text-color font-semibold leading-6">Transactions</div>
+                        <Button type="button" icon="pi pi-ellipsis-h" severity="secondary" text @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+                        <Menu ref="menu" id="overlay_menu" :model="menuItems" :popup="true" />
+                    </div>
+                    <DataTable
+                        :value="sampleAppsTableDatas"
+                        paginator
+                        :rows="5"
+                        dataKey="id"
+                        tableClass="overflow-x-auto dark:bg-surface-950"
+                        paginatorTemplate="PrevPageLink PageLinks NextPageLink  CurrentPageReport RowsPerPageDropdown"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                        pt:pcpaginator:root="bg-transparent!"
+                        :dt="{
+                            header: {
+                                background: 'transparent'
+                            },
+                            headerCell: {
+                                background: 'transparent'
+                            },
+                            row: {
+                                background: 'transparent'
+                            }
+                        }"
+                    >
+                        <Column header="Id" class="w-1/12">
+                            <template #body="slotProps">
+                                <div class="text-muted-color">{{ slotProps.data.id }}</div>
+                            </template>
+                        </Column>
+                        <Column header="Name" class="w-1/4">
+                            <template #body="slotProps">
+                                <div class="flex items-center">
+                                    <Avatar :label="slotProps.data.name.label" class="mr-2 text-xs font-medium" :style="`background-color: ${slotProps.data.name.color}; color: #2a1261`" shape="circle" />
+                                    <div class="leading-6 text-muted-color flex-1">{{ slotProps.data.name.text }}</div>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column header="Coin" class="w-1/6">
+                            <template #body="slotProps">
+                                <div class="flex items-center">
+                                    <i
+                                        :class="[
+                                            {
+                                                'pi pi-bitcoin text-yellow-500 text-3xl!': slotProps.data.coin !== 'btc',
+                                                'pi pi-ethereum bg-surface-950 text-surface-0 dark:bg-surface-0 dark:text-surface-950 w-7 h-7 rounded-full flex items-center justify-center': slotProps.data.coin !== 'eth'
+                                            }
+                                        ]"
+                                    ></i>
+                                </div>
+                            </template>
+                        </Column>
+                        <Column header="Date" class="w-1/6">
+                            <template #body="slotProps">
+                                <div class="text-muted-color">{{ slotProps.data.date }}</div>
+                            </template>
+                        </Column>
+                        <Column header="Process" class="w-1/6">
+                            <template #body="slotProps">
+                                <Tag :severity="slotProps.data.process.type" :value="slotProps.data.process.value" class="font-medium"></Tag>
+                            </template>
+                        </Column>
+                        <Column header="Amount" class="w-1/6">
+                            <template #body="slotProps">
+                                <div class="text-muted-color text-right">{{ slotProps.data.amount }}</div>
+                            </template>
+                        </Column>
+                    </DataTable>
+                </div>
+                <div class="xl:w-96 border border-surface rounded-2xl py-5 px-7 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-6 mb-6">
+                            <div class="flex-1 text-color font-semibold leading-6">My Wallet</div>
+                            <Button type="button" icon="pi pi-ellipsis-h" severity="secondary" text @click="toggle" aria-haspopup="true" aria-controls="overlay_menu" />
+                            <Menu ref="menu" id="overlay_menu" :model="menuItems" :popup="true" />
+                        </div>
+                        <MeterGroup :value="metersData" labelPosition="end">
+                            <template #label="{ value }">
+                                <div class="flex flex-col gap-6 mt-4">
+                                    <template v-for="val of value" :key="val.label">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-2 h-2 rounded-full" :style="{ backgroundColor: val.color }"></div>
+                                            <div class="text-color uppercase font-medium leading-6 flex-1">
+                                                {{ val.label }}
+                                                <span class="text-muted-color">({{ val.value }}%)</span>
+                                            </div>
+                                            <div class="leading-6 font-medium text-color">{{ val.text }}</div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                        </MeterGroup>
+                    </div>
+                    <Button label="Show All" variant="outlined" />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

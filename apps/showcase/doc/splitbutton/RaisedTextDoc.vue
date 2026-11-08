@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Text buttons can be displayed as raised as well for elevation.</p>
-    </DocSectionText>
-    <div class="card flex justify-center flex-wrap gap-4">
-        <SplitButton label="Save" :model="items" @click="save" raised text></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="secondary"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="success"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="info"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="warn"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="help"></SplitButton>
-        <SplitButton label="Save" :model="items" @click="save" raised text severity="danger"></SplitButton>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -108,3 +92,19 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Text buttons can be displayed as raised as well for elevation.</p>
+    </DocSectionText>
+    <div class="card flex justify-center flex-wrap gap-4">
+        <SplitButton label="Save" :model="items" @click="save" raised text></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="secondary"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="success"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="info"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="warn"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="help"></SplitButton>
+        <SplitButton label="Save" :model="items" @click="save" raised text severity="danger"></SplitButton>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

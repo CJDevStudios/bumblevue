@@ -1,18 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>RadioButtons can be generated using a list of values.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <div class="flex flex-col gap-4">
-            <div v-for="category in categories" :key="category.key" class="flex items-center gap-2">
-                <RadioButton v-model="selectedCategory" :inputId="category.key" name="dynamic" :value="category.name" />
-                <label :for="category.key">{{ category.name }}</label>
-            </div>
-        </div>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -60,3 +45,18 @@ const categories = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>RadioButtons can be generated using a list of values.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <div class="flex flex-col gap-4">
+            <div v-for="category in categories" :key="category.key" class="flex items-center gap-2">
+                <RadioButton v-model="selectedCategory" :inputId="category.key" name="dynamic" :value="category.name" />
+                <label :for="category.key">{{ category.name }}</label>
+            </div>
+        </div>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

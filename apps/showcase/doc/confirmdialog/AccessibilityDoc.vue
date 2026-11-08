@@ -1,3 +1,40 @@
+<script>
+    export default {
+        data() {
+            return {
+                code1: {
+                    basic: `
+<ConfirmDialog id="confirm" />
+
+<Button @click="openDialog()" label="Confirm" :aria-expanded="visible" :aria-controls="visible ? 'confirm' : null"></Button>
+`
+                },
+                code2: {
+                    basic: `
+<script setup>
+const confirm = useConfirm();
+const isVisible = ref(false);
+
+const openDialog = () => {
+    confirm.require({
+        message: 'Are you sure you want to proceed?',
+        header: 'Confirmation',
+        onShow: () => {
+            isVisible.value = true;
+        },
+        onHide: () => {
+            isVisible.value = false;
+        }
+    });
+};
+<\/script>
+`
+                }
+            };
+        }
+    };
+</script>
+
 <template>
     <DocSectionText id="accessibility" label="Accessibility" v-bind="$attrs">
         <h3>Screen Reader</h3>
@@ -69,40 +106,3 @@
         </div>
     </DocSectionText>
 </template>
-
-<script>
-    export default {
-        data() {
-            return {
-                code1: {
-                    basic: `
-<ConfirmDialog id="confirm" />
-
-<Button @click="openDialog()" label="Confirm" :aria-expanded="visible" :aria-controls="visible ? 'confirm' : null"></Button>
-`
-                },
-                code2: {
-                    basic: `
-<script setup>
-const confirm = useConfirm();
-const isVisible = ref(false);
-
-const openDialog = () => {
-    confirm.require({
-        message: 'Are you sure you want to proceed?',
-        header: 'Confirmation',
-        onShow: () => {
-            isVisible.value = true;
-        },
-        onHide: () => {
-            isVisible.value = false;
-        }
-    });
-};
-<\/script>
-`
-                }
-            };
-        }
-    };
-</script>

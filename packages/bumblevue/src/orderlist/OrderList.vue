@@ -1,70 +1,3 @@
-<template>
-    <div :class="cx('root')" v-bind="ptmi('root')">
-        <div :class="cx('controls')" v-bind="ptm('controls')">
-            <slot name="controlsstart"></slot>
-            <Button @click="moveUp" :aria-label="moveUpAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveUpButtonProps }" :pt="ptm('pcMoveUpButton')" :unstyled="unstyled">
-                <template #icon>
-                    <slot name="moveupicon">
-                        <AngleUpIcon v-bind="ptm('pcMoveUpButton')['icon']" data-pc-section="moveupicon" />
-                    </slot>
-                </template>
-            </Button>
-            <Button @click="moveTop" :aria-label="moveTopAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveTopButtonProps }" :pt="ptm('pcMoveTopButton')" :unstyled="unstyled">
-                <template #icon>
-                    <slot name="movetopicon">
-                        <AngleDoubleUpIcon v-bind="ptm('pcMoveTopButton')['icon']" data-pc-section="movetopicon" />
-                    </slot>
-                </template>
-            </Button>
-            <Button @click="moveDown" :aria-label="moveDownAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveDownButtonProps }" :pt="ptm('pcMoveDownButton')" :unstyled="unstyled">
-                <template #icon>
-                    <slot name="movedownicon">
-                        <AngleDownIcon v-bind="ptm('pcMoveDownButton')['icon']" data-pc-section="movedownicon" />
-                    </slot>
-                </template>
-            </Button>
-            <Button @click="moveBottom" :aria-label="moveBottomAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveBottomButtonProps }" :pt="ptm('pcMoveBottomButton')" :unstyled="unstyled">
-                <template #icon>
-                    <slot name="movebottomicon">
-                        <AngleDoubleDownIcon v-bind="ptm('pcMoveBottomButton')['icon']" data-pc-section="movebottomicon" />
-                    </slot>
-                </template>
-            </Button>
-            <slot name="controlsend"></slot>
-        </div>
-        <Listbox
-            ref="listbox"
-            :id="$id"
-            :modelValue="d_selection"
-            :options="modelValue"
-            multiple
-            :metaKeySelection="metaKeySelection"
-            :listStyle="listStyle"
-            :scrollHeight="scrollHeight"
-            :tabindex="tabindex"
-            :dataKey="dataKey"
-            :autoOptionFocus="autoOptionFocus"
-            :focusOnHover="focusOnHover"
-            :striped="striped"
-            :disabled="disabled"
-            :ariaLabel="ariaLabel"
-            :ariaLabelledby="ariaLabelledby"
-            :pt="ptm('pcListbox')"
-            :unstyled="unstyled"
-            @focus="onListFocus"
-            @blur="onListBlur"
-            @change="onChangeSelection"
-        >
-            <template v-if="$slots.header" #header>
-                <slot name="header"></slot>
-            </template>
-            <template #option="{ option, selected, index }">
-                <slot name="option" :option="option" :selected="selected" :index="index" />
-            </template>
-        </Listbox>
-    </div>
-</template>
-
 <script>
     import { find, findSingle, scrollInView, setAttribute } from '@cjdevstudios/bumblevue/utils/dom';
     import { findIndexInList, isNotEmpty } from '@cjdevstudios/bumblevue/utils/object';
@@ -401,3 +334,70 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" v-bind="ptmi('root')">
+        <div :class="cx('controls')" v-bind="ptm('controls')">
+            <slot name="controlsstart"></slot>
+            <Button @click="moveUp" :aria-label="moveUpAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveUpButtonProps }" :pt="ptm('pcMoveUpButton')" :unstyled="unstyled">
+                <template #icon>
+                    <slot name="moveupicon">
+                        <AngleUpIcon v-bind="ptm('pcMoveUpButton')['icon']" data-pc-section="moveupicon" />
+                    </slot>
+                </template>
+            </Button>
+            <Button @click="moveTop" :aria-label="moveTopAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveTopButtonProps }" :pt="ptm('pcMoveTopButton')" :unstyled="unstyled">
+                <template #icon>
+                    <slot name="movetopicon">
+                        <AngleDoubleUpIcon v-bind="ptm('pcMoveTopButton')['icon']" data-pc-section="movetopicon" />
+                    </slot>
+                </template>
+            </Button>
+            <Button @click="moveDown" :aria-label="moveDownAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveDownButtonProps }" :pt="ptm('pcMoveDownButton')" :unstyled="unstyled">
+                <template #icon>
+                    <slot name="movedownicon">
+                        <AngleDownIcon v-bind="ptm('pcMoveDownButton')['icon']" data-pc-section="movedownicon" />
+                    </slot>
+                </template>
+            </Button>
+            <Button @click="moveBottom" :aria-label="moveBottomAriaLabel" :disabled="moveDisabled()" v-bind="{ ...buttonProps, ...moveBottomButtonProps }" :pt="ptm('pcMoveBottomButton')" :unstyled="unstyled">
+                <template #icon>
+                    <slot name="movebottomicon">
+                        <AngleDoubleDownIcon v-bind="ptm('pcMoveBottomButton')['icon']" data-pc-section="movebottomicon" />
+                    </slot>
+                </template>
+            </Button>
+            <slot name="controlsend"></slot>
+        </div>
+        <Listbox
+            ref="listbox"
+            :id="$id"
+            :modelValue="d_selection"
+            :options="modelValue"
+            multiple
+            :metaKeySelection="metaKeySelection"
+            :listStyle="listStyle"
+            :scrollHeight="scrollHeight"
+            :tabindex="tabindex"
+            :dataKey="dataKey"
+            :autoOptionFocus="autoOptionFocus"
+            :focusOnHover="focusOnHover"
+            :striped="striped"
+            :disabled="disabled"
+            :ariaLabel="ariaLabel"
+            :ariaLabelledby="ariaLabelledby"
+            :pt="ptm('pcListbox')"
+            :unstyled="unstyled"
+            @focus="onListFocus"
+            @blur="onListBlur"
+            @change="onChangeSelection"
+        >
+            <template v-if="$slots.header" #header>
+                <slot name="header"></slot>
+            </template>
+            <template #option="{ option, selected, index }">
+                <slot name="option" :option="option" :selected="selected" :index="index" />
+            </template>
+        </Listbox>
+    </div>
+</template>

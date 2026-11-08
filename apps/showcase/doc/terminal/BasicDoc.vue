@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            Commands are processed using an EventBus implementation called <i>TerminalService</i>. Import this service into your component and subscribe to the <i>command</i> event to process the commands by sending replies with the
-            <i>response</i> event.
-        </p>
-    </DocSectionText>
-    <div class="card">
-        <p>Enter "<strong>date</strong>" to display the current date, "<strong>greet {0}</strong>" for a message and "<strong>random</strong>" to get a random number.</p>
-        <Terminal welcomeMessage="Welcome to BumbleVue" prompt="primevue $" aria-label="BumbleVue Terminal Service" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     import TerminalService from '@cjdevstudios/bumblevue/terminalservice';
 
@@ -113,3 +99,17 @@ const commandHandler = (text) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            Commands are processed using an EventBus implementation called <i>TerminalService</i>. Import this service into your component and subscribe to the <i>command</i> event to process the commands by sending replies with the
+            <i>response</i> event.
+        </p>
+    </DocSectionText>
+    <div class="card">
+        <p>Enter "<strong>date</strong>" to display the current date, "<strong>greet {0}</strong>" for a message and "<strong>random</strong>" to get a random number.</p>
+        <Terminal welcomeMessage="Welcome to BumbleVue" prompt="primevue $" aria-label="BumbleVue Terminal Service" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

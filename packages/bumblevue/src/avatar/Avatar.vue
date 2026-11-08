@@ -1,14 +1,3 @@
-<template>
-    <div :class="cx('root')" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptmi('root')" :data-p="dataP">
-        <slot>
-            <span v-if="label" :class="cx('label')" v-bind="ptm('label')" :data-p="dataP">{{ label }}</span>
-            <component v-else-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
-            <span v-else-if="icon" :class="[cx('icon'), icon]" v-bind="ptm('icon')" :data-p="dataP" />
-            <img v-else-if="image" :src="image" :alt="ariaLabel" @error="onError" v-bind="ptm('image')" :data-p="dataP" />
-        </slot>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -71,3 +60,14 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :aria-labelledby="ariaLabelledby" :aria-label="ariaLabel" v-bind="ptmi('root')" :data-p="dataP">
+        <slot>
+            <span v-if="label" :class="cx('label')" v-bind="ptm('label')" :data-p="dataP">{{ label }}</span>
+            <component v-else-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
+            <span v-else-if="icon" :class="[cx('icon'), icon]" v-bind="ptm('icon')" :data-p="dataP" />
+            <img v-else-if="image" :src="image" :alt="ariaLabel" @error="onError" v-bind="ptm('image')" :data-p="dataP" />
+        </slot>
+    </div>
+</template>

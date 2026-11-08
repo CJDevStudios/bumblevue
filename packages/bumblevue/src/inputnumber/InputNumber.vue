@@ -1,93 +1,3 @@
-<template>
-    <span :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
-        <InputText
-            ref="input"
-            :id="inputId"
-            :name="$formName"
-            role="spinbutton"
-            :class="[cx('pcInputText'), inputClass]"
-            :style="inputStyle"
-            :defaultValue="formattedValue"
-            :aria-valuemin="min"
-            :aria-valuemax="max"
-            :aria-valuenow="d_value"
-            :inputmode="mode === 'decimal' && !minFractionDigits ? 'numeric' : 'decimal'"
-            :disabled="disabled"
-            :readonly="readonly"
-            :placeholder="placeholder"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :required="required"
-            :size="size"
-            :invalid="invalid"
-            :variant="variant"
-            @input="onUserInput"
-            @keydown="onInputKeyDown"
-            @keypress="onInputKeyPress"
-            @paste="onPaste"
-            @click="onInputClick"
-            @focus="onInputFocus"
-            @blur="onInputBlur"
-            :pt="ptm('pcInputText')"
-            :unstyled="unstyled"
-            :data-p="dataP"
-        />
-        <slot v-if="showClear && buttonLayout !== 'vertical'" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <TimesIcon ref="clearIcon" :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
-        </slot>
-        <span v-if="showButtons && buttonLayout === 'stacked'" :class="cx('buttonGroup')" v-bind="ptm('buttonGroup')" :data-p="dataP">
-            <slot name="incrementbutton" :listeners="upButtonListeners">
-                <button :class="[cx('incrementButton'), incrementButtonClass]" v-on="upButtonListeners" :disabled="disabled" :tabindex="-1" aria-hidden="true" type="button" v-bind="ptm('incrementButton')" :data-p="dataP">
-                    <slot name="incrementicon">
-                        <component :is="incrementIcon ? 'span' : 'AngleUpIcon'" :class="incrementIcon" v-bind="ptm('incrementIcon')" data-pc-section="incrementicon" />
-                    </slot>
-                </button>
-            </slot>
-            <slot name="decrementbutton" :listeners="downButtonListeners">
-                <button :class="[cx('decrementButton'), decrementButtonClass]" v-on="downButtonListeners" :disabled="disabled" :tabindex="-1" aria-hidden="true" type="button" v-bind="ptm('decrementButton')" :data-p="dataP">
-                    <slot name="decrementicon">
-                        <component :is="decrementIcon ? 'span' : 'AngleDownIcon'" :class="decrementIcon" v-bind="ptm('decrementIcon')" data-pc-section="decrementicon" />
-                    </slot>
-                </button>
-            </slot>
-        </span>
-        <slot name="incrementbutton" :listeners="upButtonListeners">
-            <button
-                v-if="showButtons && buttonLayout !== 'stacked'"
-                :class="[cx('incrementButton'), incrementButtonClass]"
-                v-on="upButtonListeners"
-                :disabled="disabled"
-                :tabindex="-1"
-                aria-hidden="true"
-                type="button"
-                v-bind="ptm('incrementButton')"
-                :data-p="dataP"
-            >
-                <slot name="incrementicon">
-                    <component :is="incrementIcon ? 'span' : 'AngleUpIcon'" :class="incrementIcon" v-bind="ptm('incrementIcon')" data-pc-section="incrementicon" />
-                </slot>
-            </button>
-        </slot>
-        <slot name="decrementbutton" :listeners="downButtonListeners">
-            <button
-                v-if="showButtons && buttonLayout !== 'stacked'"
-                :class="[cx('decrementButton'), decrementButtonClass]"
-                v-on="downButtonListeners"
-                :disabled="disabled"
-                :tabindex="-1"
-                aria-hidden="true"
-                type="button"
-                v-bind="ptm('decrementButton')"
-                :data-p="dataP"
-            >
-                <slot name="decrementicon">
-                    <component :is="decrementIcon ? 'span' : 'AngleDownIcon'" :class="decrementIcon" v-bind="ptm('decrementIcon')" data-pc-section="decrementicon" />
-                </slot>
-            </button>
-        </slot>
-    </span>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { clearSelection, getSelection } from '@cjdevstudios/bumblevue/utils/dom';
@@ -1254,3 +1164,93 @@
         }
     };
 </script>
+
+<template>
+    <span :class="cx('root')" v-bind="ptmi('root')" :data-p="dataP">
+        <InputText
+            ref="input"
+            :id="inputId"
+            :name="$formName"
+            role="spinbutton"
+            :class="[cx('pcInputText'), inputClass]"
+            :style="inputStyle"
+            :defaultValue="formattedValue"
+            :aria-valuemin="min"
+            :aria-valuemax="max"
+            :aria-valuenow="d_value"
+            :inputmode="mode === 'decimal' && !minFractionDigits ? 'numeric' : 'decimal'"
+            :disabled="disabled"
+            :readonly="readonly"
+            :placeholder="placeholder"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :required="required"
+            :size="size"
+            :invalid="invalid"
+            :variant="variant"
+            @input="onUserInput"
+            @keydown="onInputKeyDown"
+            @keypress="onInputKeyPress"
+            @paste="onPaste"
+            @click="onInputClick"
+            @focus="onInputFocus"
+            @blur="onInputBlur"
+            :pt="ptm('pcInputText')"
+            :unstyled="unstyled"
+            :data-p="dataP"
+        />
+        <slot v-if="showClear && buttonLayout !== 'vertical'" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <TimesIcon ref="clearIcon" :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
+        </slot>
+        <span v-if="showButtons && buttonLayout === 'stacked'" :class="cx('buttonGroup')" v-bind="ptm('buttonGroup')" :data-p="dataP">
+            <slot name="incrementbutton" :listeners="upButtonListeners">
+                <button :class="[cx('incrementButton'), incrementButtonClass]" v-on="upButtonListeners" :disabled="disabled" :tabindex="-1" aria-hidden="true" type="button" v-bind="ptm('incrementButton')" :data-p="dataP">
+                    <slot name="incrementicon">
+                        <component :is="incrementIcon ? 'span' : 'AngleUpIcon'" :class="incrementIcon" v-bind="ptm('incrementIcon')" data-pc-section="incrementicon" />
+                    </slot>
+                </button>
+            </slot>
+            <slot name="decrementbutton" :listeners="downButtonListeners">
+                <button :class="[cx('decrementButton'), decrementButtonClass]" v-on="downButtonListeners" :disabled="disabled" :tabindex="-1" aria-hidden="true" type="button" v-bind="ptm('decrementButton')" :data-p="dataP">
+                    <slot name="decrementicon">
+                        <component :is="decrementIcon ? 'span' : 'AngleDownIcon'" :class="decrementIcon" v-bind="ptm('decrementIcon')" data-pc-section="decrementicon" />
+                    </slot>
+                </button>
+            </slot>
+        </span>
+        <slot name="incrementbutton" :listeners="upButtonListeners">
+            <button
+                v-if="showButtons && buttonLayout !== 'stacked'"
+                :class="[cx('incrementButton'), incrementButtonClass]"
+                v-on="upButtonListeners"
+                :disabled="disabled"
+                :tabindex="-1"
+                aria-hidden="true"
+                type="button"
+                v-bind="ptm('incrementButton')"
+                :data-p="dataP"
+            >
+                <slot name="incrementicon">
+                    <component :is="incrementIcon ? 'span' : 'AngleUpIcon'" :class="incrementIcon" v-bind="ptm('incrementIcon')" data-pc-section="incrementicon" />
+                </slot>
+            </button>
+        </slot>
+        <slot name="decrementbutton" :listeners="downButtonListeners">
+            <button
+                v-if="showButtons && buttonLayout !== 'stacked'"
+                :class="[cx('decrementButton'), decrementButtonClass]"
+                v-on="downButtonListeners"
+                :disabled="disabled"
+                :tabindex="-1"
+                aria-hidden="true"
+                type="button"
+                v-bind="ptm('decrementButton')"
+                :data-p="dataP"
+            >
+                <slot name="decrementicon">
+                    <component :is="decrementIcon ? 'span' : 'AngleDownIcon'" :class="decrementIcon" v-bind="ptm('decrementIcon')" data-pc-section="decrementicon" />
+                </slot>
+            </button>
+        </slot>
+    </span>
+</template>

@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Timeline requires a <i>value</i> for the collection of events and <i>content</i> slot that receives an object as a parameter to return content.</p>
-    </DocSectionText>
-    <div class="card">
-        <Timeline :value="events">
-            <template #content="slotProps">
-                {{ slotProps.item.status }}
-            </template>
-        </Timeline>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -58,3 +44,17 @@ const events = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Timeline requires a <i>value</i> for the collection of events and <i>content</i> slot that receives an object as a parameter to return content.</p>
+    </DocSectionText>
+    <div class="card">
+        <Timeline :value="events">
+            <template #content="slotProps">
+                {{ slotProps.item.status }}
+            </template>
+        </Timeline>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

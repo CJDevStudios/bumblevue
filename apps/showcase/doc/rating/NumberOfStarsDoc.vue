@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Number of stars to display is defined with <i>stars</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Rating v-model="value" :stars="10" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const value = ref(5);
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Number of stars to display is defined with <i>stars</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Rating v-model="value" :stars="10" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,66 +1,3 @@
-<template>
-    <div :class="containerClass" :style="style" v-bind="ptmi('root')" :data-p-severity="severity">
-        <PVSButton
-            type="button"
-            :class="cx('pcButton')"
-            :label="label"
-            :disabled="disabled"
-            :severity="severity"
-            :text="text"
-            :icon="icon"
-            :outlined="outlined"
-            :size="size"
-            :fluid="fluid"
-            :aria-label="label"
-            @click="onDefaultButtonClick"
-            v-bind="buttonProps"
-            :pt="ptm('pcButton')"
-            :unstyled="unstyled"
-        >
-            <template v-if="$slots.icon" #icon="slotProps">
-                <slot name="icon" :class="slotProps.class">
-                    <span :class="[icon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="buttonicon" />
-                </slot>
-            </template>
-            <template #default>
-                <slot></slot>
-            </template>
-        </PVSButton>
-        <PVSButton
-            ref="button"
-            type="button"
-            :class="cx('pcDropdown')"
-            :disabled="disabled"
-            aria-haspopup="true"
-            :aria-expanded="isExpanded"
-            :aria-controls="isExpanded ? $id + '_overlay' : undefined"
-            @click="onDropdownButtonClick"
-            @keydown="onDropdownKeydown"
-            :severity="severity"
-            :text="text"
-            :outlined="outlined"
-            :size="size"
-            :unstyled="unstyled"
-            v-bind="menuButtonProps"
-            :pt="ptm('pcDropdown')"
-        >
-            <template #icon="slotProps">
-                <slot name="dropdownicon" :class="slotProps.class">
-                    <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[dropdownIcon, slotProps.class]" v-bind="ptm('pcDropdown')['icon']" data-pc-section="menubuttonicon" />
-                </slot>
-            </template>
-        </PVSButton>
-        <PVSMenu ref="menu" :id="$id + '_overlay'" :model="model" :popup="true" :autoZIndex="autoZIndex" :baseZIndex="baseZIndex" :appendTo="appendTo" :unstyled="unstyled" :pt="ptm('pcMenu')">
-            <template v-if="$slots.menuitemicon" #itemicon="slotProps">
-                <slot name="menuitemicon" :item="slotProps.item" :class="slotProps.class" />
-            </template>
-            <template v-if="$slots.item" #item="slotProps">
-                <slot name="item" :item="slotProps.item" :hasSubmenu="slotProps.hasSubmenu" :label="slotProps.label" :props="slotProps.props"></slot>
-            </template>
-        </PVSMenu>
-    </div>
-</template>
-
 <script>
     import { isEmpty } from '@cjdevstudios/bumblevue/utils/object';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -210,3 +147,66 @@
         }
     };
 </script>
+
+<template>
+    <div :class="containerClass" :style="style" v-bind="ptmi('root')" :data-p-severity="severity">
+        <PVSButton
+            type="button"
+            :class="cx('pcButton')"
+            :label="label"
+            :disabled="disabled"
+            :severity="severity"
+            :text="text"
+            :icon="icon"
+            :outlined="outlined"
+            :size="size"
+            :fluid="fluid"
+            :aria-label="label"
+            @click="onDefaultButtonClick"
+            v-bind="buttonProps"
+            :pt="ptm('pcButton')"
+            :unstyled="unstyled"
+        >
+            <template v-if="$slots.icon" #icon="slotProps">
+                <slot name="icon" :class="slotProps.class">
+                    <span :class="[icon, slotProps.class]" v-bind="ptm('pcButton')['icon']" data-pc-section="buttonicon" />
+                </slot>
+            </template>
+            <template #default>
+                <slot></slot>
+            </template>
+        </PVSButton>
+        <PVSButton
+            ref="button"
+            type="button"
+            :class="cx('pcDropdown')"
+            :disabled="disabled"
+            aria-haspopup="true"
+            :aria-expanded="isExpanded"
+            :aria-controls="isExpanded ? $id + '_overlay' : undefined"
+            @click="onDropdownButtonClick"
+            @keydown="onDropdownKeydown"
+            :severity="severity"
+            :text="text"
+            :outlined="outlined"
+            :size="size"
+            :unstyled="unstyled"
+            v-bind="menuButtonProps"
+            :pt="ptm('pcDropdown')"
+        >
+            <template #icon="slotProps">
+                <slot name="dropdownicon" :class="slotProps.class">
+                    <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="[dropdownIcon, slotProps.class]" v-bind="ptm('pcDropdown')['icon']" data-pc-section="menubuttonicon" />
+                </slot>
+            </template>
+        </PVSButton>
+        <PVSMenu ref="menu" :id="$id + '_overlay'" :model="model" :popup="true" :autoZIndex="autoZIndex" :baseZIndex="baseZIndex" :appendTo="appendTo" :unstyled="unstyled" :pt="ptm('pcMenu')">
+            <template v-if="$slots.menuitemicon" #itemicon="slotProps">
+                <slot name="menuitemicon" :item="slotProps.item" :class="slotProps.class" />
+            </template>
+            <template v-if="$slots.item" #item="slotProps">
+                <slot name="item" :item="slotProps.item" :hasSubmenu="slotProps.hasSubmenu" :label="slotProps.label" :props="slotProps.props"></slot>
+            </template>
+        </PVSMenu>
+    </div>
+</template>

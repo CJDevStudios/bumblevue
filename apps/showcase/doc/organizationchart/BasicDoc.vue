@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>OrganizationChart requires a collection of <i>TreeNode</i> instances as a <i>value</i>.</p>
-    </DocSectionText>
-    <div class="card overflow-x-auto">
-        <OrganizationChart :value="data">
-            <template #default="slotProps">
-                <span>{{ slotProps.node.label }}</span>
-            </template>
-        </OrganizationChart>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -99,3 +85,17 @@ const data = ref({
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>OrganizationChart requires a collection of <i>TreeNode</i> instances as a <i>value</i>.</p>
+    </DocSectionText>
+    <div class="card overflow-x-auto">
+        <OrganizationChart :value="data">
+            <template #default="slotProps">
+                <span>{{ slotProps.node.label }}</span>
+            </template>
+        </OrganizationChart>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

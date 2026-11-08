@@ -1,79 +1,3 @@
-<template>
-    <div :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
-        <InputText
-            ref="input"
-            :id="inputId"
-            :type="inputType"
-            :class="[cx('pcInputText'), inputClass]"
-            :style="inputStyle"
-            :defaultValue="d_value"
-            :name="$formName"
-            :aria-labelledby="ariaLabelledby"
-            :aria-label="ariaLabel"
-            :aria-expanded="overlayVisible"
-            :aria-controls="overlayVisible ? (overlayProps && overlayProps.id) || overlayId || (panelProps && panelProps.id) || panelId || overlayUniqueId : undefined"
-            :aria-haspopup="feedback"
-            :placeholder="placeholder"
-            :required="required"
-            :fluid="fluid"
-            :disabled="disabled"
-            :variant="variant"
-            :invalid="invalid"
-            :size="size"
-            :autofocus="autofocus"
-            @input="onInput"
-            @focus="onFocus"
-            @blur="onBlur"
-            @keyup="onKeyUp"
-            @invalid="onInvalid"
-            v-bind="inputProps"
-            :data-p-has-e-icon="toggleMask"
-            :pt="ptm('pcInputText')"
-            :unstyled="unstyled"
-        />
-        <!-- TODO: hideicon and showicon slots are deprecated since v4.0-->
-        <slot v-if="toggleMask && unmasked" :name="$slots.maskicon ? 'maskicon' : 'hideicon'" :toggleCallback="onMaskToggle" :class="[cx('maskIcon'), maskIcon]" v-bind="ptm('maskIcon')">
-            <component :is="maskIcon ? 'i' : 'EyeSlashIcon'" :class="[cx('maskIcon'), maskIcon]" @click="onMaskToggle" v-bind="ptm('maskIcon')" />
-        </slot>
-        <slot v-if="toggleMask && !unmasked" :name="$slots.unmaskicon ? 'unmaskicon' : 'showicon'" :toggleCallback="onMaskToggle" :class="[cx('unmaskIcon')]" v-bind="ptm('unmaskIcon')">
-            <component :is="unmaskIcon ? 'i' : 'EyeIcon'" :class="[cx('unmaskIcon'), unmaskIcon]" @click="onMaskToggle" v-bind="ptm('unmaskIcon')" />
-        </slot>
-        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick" v-bind="ptm('clearIcon')">
-            <TimesIcon :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
-        </slot>
-        <span class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenAccesible')" :data-p-hidden-accessible="true">
-            {{ infoText }}
-        </span>
-        <Portal :appendTo="appendTo">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div
-                    v-if="overlayVisible"
-                    :ref="overlayRef"
-                    :id="overlayId || panelId || overlayUniqueId"
-                    :class="[cx('overlay'), panelClass, overlayClass]"
-                    :style="[overlayStyle, panelStyle]"
-                    @click="onOverlayClick"
-                    :data-p="overlayDataP"
-                    role="dialog"
-                    aria-live="polite"
-                    v-bind="{ ...panelProps, ...overlayProps, ...ptm('overlay') }"
-                >
-                    <slot name="header"></slot>
-                    <slot name="content">
-                        <div :class="cx('content')" v-bind="ptm('content')">
-                            <div :class="cx('meter')" v-bind="ptm('meter')">
-                                <div :class="cx('meterLabel')" :style="{ width: meter ? meter.width : '' }" :data-p="meterDataP" v-bind="ptm('meterLabel')"></div>
-                            </div>
-                            <div :class="cx('meterText')" v-bind="ptm('meterText')">{{ infoText }}</div>
-                        </div>
-                    </slot>
-                    <slot name="footer"></slot>
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
@@ -497,3 +421,79 @@
         }
     };
 </script>
+
+<template>
+    <div :class="cx('root')" :style="sx('root')" :data-p="containerDataP" v-bind="ptmi('root')">
+        <InputText
+            ref="input"
+            :id="inputId"
+            :type="inputType"
+            :class="[cx('pcInputText'), inputClass]"
+            :style="inputStyle"
+            :defaultValue="d_value"
+            :name="$formName"
+            :aria-labelledby="ariaLabelledby"
+            :aria-label="ariaLabel"
+            :aria-expanded="overlayVisible"
+            :aria-controls="overlayVisible ? (overlayProps && overlayProps.id) || overlayId || (panelProps && panelProps.id) || panelId || overlayUniqueId : undefined"
+            :aria-haspopup="feedback"
+            :placeholder="placeholder"
+            :required="required"
+            :fluid="fluid"
+            :disabled="disabled"
+            :variant="variant"
+            :invalid="invalid"
+            :size="size"
+            :autofocus="autofocus"
+            @input="onInput"
+            @focus="onFocus"
+            @blur="onBlur"
+            @keyup="onKeyUp"
+            @invalid="onInvalid"
+            v-bind="inputProps"
+            :data-p-has-e-icon="toggleMask"
+            :pt="ptm('pcInputText')"
+            :unstyled="unstyled"
+        />
+        <!-- TODO: hideicon and showicon slots are deprecated since v4.0-->
+        <slot v-if="toggleMask && unmasked" :name="$slots.maskicon ? 'maskicon' : 'hideicon'" :toggleCallback="onMaskToggle" :class="[cx('maskIcon'), maskIcon]" v-bind="ptm('maskIcon')">
+            <component :is="maskIcon ? 'i' : 'EyeSlashIcon'" :class="[cx('maskIcon'), maskIcon]" @click="onMaskToggle" v-bind="ptm('maskIcon')" />
+        </slot>
+        <slot v-if="toggleMask && !unmasked" :name="$slots.unmaskicon ? 'unmaskicon' : 'showicon'" :toggleCallback="onMaskToggle" :class="[cx('unmaskIcon')]" v-bind="ptm('unmaskIcon')">
+            <component :is="unmaskIcon ? 'i' : 'EyeIcon'" :class="[cx('unmaskIcon'), unmaskIcon]" @click="onMaskToggle" v-bind="ptm('unmaskIcon')" />
+        </slot>
+        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick" v-bind="ptm('clearIcon')">
+            <TimesIcon :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
+        </slot>
+        <span class="p-hidden-accessible" aria-live="polite" v-bind="ptm('hiddenAccesible')" :data-p-hidden-accessible="true">
+            {{ infoText }}
+        </span>
+        <Portal :appendTo="appendTo">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div
+                    v-if="overlayVisible"
+                    :ref="overlayRef"
+                    :id="overlayId || panelId || overlayUniqueId"
+                    :class="[cx('overlay'), panelClass, overlayClass]"
+                    :style="[overlayStyle, panelStyle]"
+                    @click="onOverlayClick"
+                    :data-p="overlayDataP"
+                    role="dialog"
+                    aria-live="polite"
+                    v-bind="{ ...panelProps, ...overlayProps, ...ptm('overlay') }"
+                >
+                    <slot name="header"></slot>
+                    <slot name="content">
+                        <div :class="cx('content')" v-bind="ptm('content')">
+                            <div :class="cx('meter')" v-bind="ptm('meter')">
+                                <div :class="cx('meterLabel')" :style="{ width: meter ? meter.width : '' }" :data-p="meterDataP" v-bind="ptm('meterLabel')"></div>
+                            </div>
+                            <div :class="cx('meterText')" v-bind="ptm('meterText')">{{ infoText }}</div>
+                        </div>
+                    </slot>
+                    <slot name="footer"></slot>
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <IftaLabel class="w-full md:w-56">
-            <Select v-model="selectedCity" inputId="dd-city" :options="cities" optionLabel="name" class="w-full" variant="filled" />
-            <label for="dd-city">City</label>
-        </IftaLabel>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -58,3 +45,16 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>IftaLabel is used to create infield top aligned labels. Visit <BumbleVueNuxtLink to="/iftalabel">IftaLabel</BumbleVueNuxtLink> documentation for more information.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <IftaLabel class="w-full md:w-56">
+            <Select v-model="selectedCity" inputId="dd-city" :options="cities" optionLabel="name" class="w-full" variant="filled" />
+            <label for="dd-city">City</label>
+        </IftaLabel>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The buttons and menuitems have support to display icons.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <SplitButton label="Save" icon="pi pi-check" dropdownIcon="pi pi-cog" @click="save" :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -96,3 +86,13 @@ const save = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The buttons and menuitems have support to display icons.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <SplitButton label="Save" icon="pi pi-check" dropdownIcon="pi pi-cog" @click="save" :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

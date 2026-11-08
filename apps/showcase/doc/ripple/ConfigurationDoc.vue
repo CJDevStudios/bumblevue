@@ -1,10 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>To start with, Ripple needs to be enabled globally. See the <NuxtLink to="/configuration/#ripple">Configuration API</NuxtLink> for details.</p>
-    </DocSectionText>
-    <DocSectionCode :code="code" importCode hideStackBlitz />
-</template>
-
 <script>
     export default {
         data() {
@@ -27,3 +20,10 @@ BumbleVue.config.ripple = true;
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>To start with, Ripple needs to be enabled globally. See the <NuxtLink to="/configuration/#ripple">Configuration API</NuxtLink> for details.</p>
+    </DocSectionText>
+    <DocSectionCode :code="code" importCode hideStackBlitz />
+</template>

@@ -1,23 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>An event is provided for each type of user interaction such as expand, collapse and selection.</p>
-    </DocSectionText>
-    <div class="card">
-        <Tree
-            v-model:selectionKeys="selectedKey"
-            :value="nodes"
-            selectionMode="single"
-            :metaKeySelection="false"
-            @nodeSelect="onNodeSelect"
-            @nodeUnselect="onNodeUnselect"
-            @nodeExpand="onNodeExpand"
-            @nodeCollapse="onNodeCollapse"
-            class="w-full md:w-120"
-        ></Tree>
-    </div>
-    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
-</template>
-
 <script>
     import { NodeService } from '@/service/NodeService';
     export default {
@@ -118,3 +98,23 @@ const onNodeCollapse = (node) => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>An event is provided for each type of user interaction such as expand, collapse and selection.</p>
+    </DocSectionText>
+    <div class="card">
+        <Tree
+            v-model:selectionKeys="selectedKey"
+            :value="nodes"
+            selectionMode="single"
+            :metaKeySelection="false"
+            @nodeSelect="onNodeSelect"
+            @nodeUnselect="onNodeUnselect"
+            @nodeExpand="onNodeExpand"
+            @nodeCollapse="onNodeCollapse"
+            class="w-full md:w-120"
+        ></Tree>
+    </div>
+    <DocSectionCode :code="code" v-bind="$attrs" :service="['NodeService']" />
+</template>

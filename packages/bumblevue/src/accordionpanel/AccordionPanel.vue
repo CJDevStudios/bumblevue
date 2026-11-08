@@ -1,10 +1,3 @@
-<template>
-    <component v-if="!asChild" :is="as" :class="cx('root')" v-bind="attrs">
-        <slot></slot>
-    </component>
-    <slot v-else :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs"></slot>
-</template>
-
 <script>
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
     import AccordionPanelStyle from '@cjdevstudios/bumblevue/accordionpanel/style';
@@ -64,3 +57,10 @@
         }
     };
 </script>
+
+<template>
+    <component v-if="!asChild" :is="as" :class="cx('root')" v-bind="attrs">
+        <slot></slot>
+    </component>
+    <slot v-else :class="cx('root')" :active="active" :a11yAttrs="a11yAttrs"></slot>
+</template>

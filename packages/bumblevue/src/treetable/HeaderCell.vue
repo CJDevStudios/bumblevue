@@ -1,30 +1,3 @@
-<template>
-    <th
-        :class="containerClass"
-        :style="[containerStyle]"
-        @click="onClick"
-        @keydown="onKeyDown"
-        :tabindex="columnProp('sortable') ? '0' : null"
-        :aria-sort="ariaSort"
-        role="columnheader"
-        v-bind="{ ...getColumnPT('root'), ...getColumnPT('headerCell') }"
-        :data-p-sortable-column="columnProp('sortable')"
-        :data-p-resizable-column="resizableColumns"
-        :data-p-sorted="isColumnSorted()"
-        :data-p-frozen-column="columnProp('frozen')"
-    >
-        <span v-if="resizableColumns && !columnProp('frozen')" :class="cx('columnResizer')" @mousedown="onResizeStart" v-bind="getColumnPT('columnResizer')"></span>
-        <div :class="cx('columnHeaderContent')" v-bind="getColumnPT('columnHeaderContent')">
-            <component v-if="column.children && column.children.header" :is="column.children.header" :column="column" />
-            <span v-if="columnProp('header')" :class="cx('columnTitle')" v-bind="getColumnPT('columnTitle')">{{ columnProp('header') }}</span>
-            <span v-if="columnProp('sortable')" v-bind="getColumnPT('sort')">
-                <component :is="(column.children && column.children.sorticon) || sortableColumnIcon" :sorted="sortState.sorted" :sortOrder="sortState.sortOrder" :class="cx('sortIcon')" v-bind="getColumnPT('sortIcon')" />
-            </span>
-            <Badge v-if="isMultiSorted()" :class="cx('pcSortBadge')" v-bind="getColumnPT('pcSortBadge')" :value="getMultiSortMetaIndex() + 1" size="small" />
-        </div>
-    </th>
-</template>
-
 <script>
     import { getAttribute, getIndex, getNextElementSibling, getOuterWidth, getPreviousElementSibling } from '@cjdevstudios/bumblevue/utils/dom';
     import BaseComponent from '@cjdevstudios/bumblevue/core/basecomponent';
@@ -241,3 +214,30 @@
         }
     };
 </script>
+
+<template>
+    <th
+        :class="containerClass"
+        :style="[containerStyle]"
+        @click="onClick"
+        @keydown="onKeyDown"
+        :tabindex="columnProp('sortable') ? '0' : null"
+        :aria-sort="ariaSort"
+        role="columnheader"
+        v-bind="{ ...getColumnPT('root'), ...getColumnPT('headerCell') }"
+        :data-p-sortable-column="columnProp('sortable')"
+        :data-p-resizable-column="resizableColumns"
+        :data-p-sorted="isColumnSorted()"
+        :data-p-frozen-column="columnProp('frozen')"
+    >
+        <span v-if="resizableColumns && !columnProp('frozen')" :class="cx('columnResizer')" @mousedown="onResizeStart" v-bind="getColumnPT('columnResizer')"></span>
+        <div :class="cx('columnHeaderContent')" v-bind="getColumnPT('columnHeaderContent')">
+            <component v-if="column.children && column.children.header" :is="column.children.header" :column="column" />
+            <span v-if="columnProp('header')" :class="cx('columnTitle')" v-bind="getColumnPT('columnTitle')">{{ columnProp('header') }}</span>
+            <span v-if="columnProp('sortable')" v-bind="getColumnPT('sort')">
+                <component :is="(column.children && column.children.sorticon) || sortableColumnIcon" :sorted="sortState.sorted" :sortOrder="sortState.sortOrder" :class="cx('sortIcon')" v-bind="getColumnPT('sortIcon')" />
+            </span>
+            <Badge v-if="isMultiSorted()" :class="cx('pcSortBadge')" v-bind="getColumnPT('pcSortBadge')" :value="getMultiSortMetaIndex() + 1" size="small" />
+        </div>
+    </th>
+</template>

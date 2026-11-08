@@ -1,16 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>
-            CascadeSelect is used with the <i>v-model</i> property for two-way value binding along with the <i>options</i> collection. To define the label of a group <i>optionGroupLabel</i> property is needed and also <i>optionGroupChildren</i> is
-            required to define the property that refers to the children of a group. Note that order of the <i>optionGroupChildren</i> matters as it should correspond to the data hierarchy.
-        </p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <CascadeSelect v-model="selectedCity" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Select a City" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -188,3 +175,16 @@ const countries = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>
+            CascadeSelect is used with the <i>v-model</i> property for two-way value binding along with the <i>options</i> collection. To define the label of a group <i>optionGroupLabel</i> property is needed and also <i>optionGroupChildren</i> is
+            required to define the property that refers to the children of a group. Note that order of the <i>optionGroupChildren</i> matters as it should correspond to the data hierarchy.
+        </p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <CascadeSelect v-model="selectedCity" :options="countries" optionLabel="cname" optionGroupLabel="name" :optionGroupChildren="['states', 'cities']" class="w-56" placeholder="Select a City" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

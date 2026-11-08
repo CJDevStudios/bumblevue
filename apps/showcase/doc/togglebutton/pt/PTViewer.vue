@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <ToggleButton v-model="checked" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-40" />
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
 
@@ -21,3 +15,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <ToggleButton v-model="checked" onIcon="pi pi-check" offIcon="pi pi-times" class="w-full sm:w-40" />
+    </DocPTViewer>
+</template>

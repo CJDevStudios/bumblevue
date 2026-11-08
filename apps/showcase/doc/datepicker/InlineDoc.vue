@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>DatePicker is displayed as a popup by default, add <i>inline</i> property to customize this behavior.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -35,3 +25,13 @@ const date = ref();
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>DatePicker is displayed as a popup by default, add <i>inline</i> property to customize this behavior.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <DatePicker v-model="date" inline showWeek class="w-full sm:w-120" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>TieredMenu requires a collection of menuitems as its <i>model</i>.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <TieredMenu :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -171,3 +161,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>TieredMenu requires a collection of menuitems as its <i>model</i>.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <TieredMenu :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

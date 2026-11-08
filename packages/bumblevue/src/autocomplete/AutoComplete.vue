@@ -1,202 +1,3 @@
-<template>
-    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick" :data-p="containerDataP" v-bind="ptmi('root')">
-        <InputText
-            v-if="!multiple"
-            ref="focusInput"
-            :id="inputId"
-            type="text"
-            :name="$formName"
-            :class="[cx('pcInputText'), inputClass]"
-            :style="inputStyle"
-            :defaultValue="inputValue"
-            :placeholder="placeholder"
-            :tabindex="!disabled ? tabindex : -1"
-            :fluid="$fluid"
-            :disabled="disabled"
-            :size="size"
-            :invalid="invalid"
-            :variant="variant"
-            autocomplete="off"
-            role="combobox"
-            :aria-label="ariaLabel"
-            :aria-labelledby="ariaLabelledby"
-            aria-haspopup="listbox"
-            aria-autocomplete="list"
-            :aria-expanded="overlayVisible"
-            :aria-controls="overlayVisible ? panelId : undefined"
-            :aria-activedescendant="focused ? focusedOptionId : undefined"
-            @focus="onFocus"
-            @blur="onBlur"
-            @keydown="onKeyDown"
-            @input="onInput"
-            @change="onChange"
-            :unstyled="unstyled"
-            :data-p-has-dropdown="dropdown"
-            :pt="ptm('pcInputText')"
-        />
-        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
-            <TimesIcon :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
-        </slot>
-        <ul
-            v-if="multiple"
-            ref="multiContainer"
-            :class="cx('inputMultiple')"
-            tabindex="-1"
-            role="listbox"
-            aria-orientation="horizontal"
-            :aria-activedescendant="focused ? focusedMultipleOptionId : undefined"
-            @focus="onMultipleContainerFocus"
-            @blur="onMultipleContainerBlur"
-            @keydown="onMultipleContainerKeyDown"
-            :data-p-has-dropdown="dropdown"
-            :data-p="inputMultipleDataP"
-            v-bind="ptm('inputMultiple')"
-        >
-            <li
-                v-for="(option, i) of d_value"
-                :key="`${i}_${getOptionLabel(option)}`"
-                :id="$id + '_multiple_option_' + i"
-                :class="cx('chipItem', { i })"
-                role="option"
-                :aria-label="getOptionLabel(option)"
-                :aria-selected="true"
-                :aria-setsize="d_value.length"
-                :aria-posinset="i + 1"
-                v-bind="ptm('chipItem')"
-            >
-                <slot name="chip" :class="cx('pcChip')" :value="option" :index="i" :removeCallback="(event) => removeOption(event, i)" v-bind="ptm('pcChip')">
-                    <Chip :class="cx('pcChip')" :label="getOptionLabel(option)" :removeIcon="chipIcon" removable :unstyled="unstyled" @remove="removeOption($event, i)" :data-p-focused="focusedMultipleOptionIndex === i" :pt="ptm('pcChip')">
-                        <template #removeicon>
-                            <slot name="chipicon" :class="cx('chipIcon')" :index="i" :removeCallback="(event) => removeOption(event, i)" />
-                        </template>
-                    </Chip>
-                </slot>
-            </li>
-            <li :class="cx('inputChip')" role="option" v-bind="ptm('inputChip')">
-                <input
-                    ref="focusInput"
-                    :id="inputId"
-                    type="text"
-                    :style="inputStyle"
-                    :class="inputClass"
-                    :placeholder="placeholder"
-                    :tabindex="!disabled ? tabindex : -1"
-                    :disabled="disabled"
-                    autocomplete="off"
-                    role="combobox"
-                    :aria-label="ariaLabel"
-                    :aria-labelledby="ariaLabelledby"
-                    aria-haspopup="listbox"
-                    aria-autocomplete="list"
-                    :aria-expanded="overlayVisible"
-                    :aria-controls="$id + '_list'"
-                    :aria-activedescendant="focused ? focusedOptionId : undefined"
-                    :aria-invalid="invalid || undefined"
-                    @focus="onFocus"
-                    @blur="onBlur"
-                    @keydown="onKeyDown"
-                    @input="onInput"
-                    @change="onChange"
-                    v-bind="ptm('input')"
-                />
-            </li>
-        </ul>
-        <slot v-if="searching || loading" :class="cx('loader')" name="loader">
-            <i v-if="loader" :class="['p-icon-spin', cx('loader'), loader]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
-            <SpinnerIcon v-else-if="loading" :class="cx('loader')" spin aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
-        </slot>
-        <slot name="dropdown" :toggleCallback="(event) => onDropdownClick(event)">
-            <button
-                v-if="dropdown"
-                ref="dropdownButton"
-                type="button"
-                :class="[cx('dropdown'), dropdownClass]"
-                :disabled="disabled"
-                aria-haspopup="listbox"
-                :aria-expanded="overlayVisible"
-                :aria-controls="panelId"
-                @click="onDropdownClick"
-                v-bind="ptm('dropdown')"
-            >
-                <slot name="dropdownicon" :class="dropdownIcon">
-                    <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="dropdownIcon" v-bind="ptm('dropdownIcon')" />
-                </slot>
-            </button>
-        </slot>
-        <span v-if="typeahead" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSearchResult')" :data-p-hidden-accessible="true">
-            {{ searchResultMessageText }}
-        </span>
-        <Portal :appendTo="appendTo">
-            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
-                <div
-                    v-if="overlayVisible"
-                    :ref="overlayRef"
-                    :id="panelId"
-                    :class="[cx('overlay'), panelClass, overlayClass]"
-                    :style="{ ...panelStyle, ...overlayStyle }"
-                    @click="onOverlayClick"
-                    @keydown="onOverlayKeyDown"
-                    :data-p="overlayDataP"
-                    v-bind="ptm('overlay')"
-                >
-                    <slot name="header" :value="d_value" :suggestions="visibleOptions"></slot>
-                    <div :class="cx('listContainer')" :style="{ 'max-height': virtualScrollerDisabled ? scrollHeight : '' }" v-bind="ptm('listContainer')">
-                        <VirtualScroller :ref="virtualScrollerRef" v-bind="virtualScrollerOptions" :style="{ height: scrollHeight }" :items="visibleOptions" :tabindex="-1" :disabled="virtualScrollerDisabled" :pt="ptm('virtualScroller')">
-                            <template v-slot:content="{ styleClass, contentRef, items, getItemOptions, contentStyle, itemSize }">
-                                <ul :ref="(el) => listRef(el, contentRef)" :id="$id + '_list'" :class="[cx('list'), styleClass]" :style="contentStyle" role="listbox" :aria-label="listAriaLabel" v-bind="ptm('list')">
-                                    <template v-for="(option, i) of items" :key="getOptionRenderKey(option, getOptionIndex(i, getItemOptions))">
-                                        <li
-                                            v-if="isOptionGroup(option)"
-                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
-                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
-                                            :class="cx('optionGroup')"
-                                            role="option"
-                                            v-bind="ptm('optionGroup')"
-                                        >
-                                            <slot name="optiongroup" :option="option.optionGroup" :index="getOptionIndex(i, getItemOptions)">{{ getOptionGroupLabel(option.optionGroup) }}</slot>
-                                        </li>
-                                        <li
-                                            v-else
-                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
-                                            v-ripple
-                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
-                                            :class="cx('option', { option, i, getItemOptions })"
-                                            role="option"
-                                            :aria-label="getOptionLabel(option)"
-                                            :aria-selected="isSelected(option)"
-                                            :aria-disabled="isOptionDisabled(option)"
-                                            :aria-setsize="ariaSetSize"
-                                            :aria-posinset="getAriaPosInset(getOptionIndex(i, getItemOptions))"
-                                            @click="onOptionSelect($event, option)"
-                                            @mousemove="onOptionMouseMove($event, getOptionIndex(i, getItemOptions))"
-                                            :data-p-selected="isSelected(option)"
-                                            :data-p-focused="focusedOptionIndex === getOptionIndex(i, getItemOptions)"
-                                            :data-p-disabled="isOptionDisabled(option)"
-                                            v-bind="getPTOptions(option, getItemOptions, i, 'option')"
-                                        >
-                                            <slot name="option" :option="option" :index="getOptionIndex(i, getItemOptions)">{{ getOptionLabel(option) }}</slot>
-                                        </li>
-                                    </template>
-                                    <li v-if="showEmptyMessage && (!items || (items && items.length === 0))" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
-                                        <slot name="empty">{{ searchResultMessageText }}</slot>
-                                    </li>
-                                </ul>
-                            </template>
-                            <template v-if="$slots.loader" v-slot:loader="{ options }">
-                                <slot name="loader" :options="options"></slot>
-                            </template>
-                        </VirtualScroller>
-                    </div>
-                    <slot name="footer" :value="d_value" :suggestions="visibleOptions"></slot>
-                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
-                        {{ selectedMessageText }}
-                    </span>
-                </div>
-            </transition>
-        </Portal>
-    </div>
-</template>
-
 <script>
     import { cn } from '@cjdevstudios/bumblevue/utils';
     import { absolutePosition, addStyle, findSingle, focus, getOuterWidth, isTouchDevice, relativePosition } from '@cjdevstudios/bumblevue/utils/dom';
@@ -1302,3 +1103,202 @@
         }
     };
 </script>
+
+<template>
+    <div ref="container" :class="cx('root')" :style="sx('root')" @click="onContainerClick" :data-p="containerDataP" v-bind="ptmi('root')">
+        <InputText
+            v-if="!multiple"
+            ref="focusInput"
+            :id="inputId"
+            type="text"
+            :name="$formName"
+            :class="[cx('pcInputText'), inputClass]"
+            :style="inputStyle"
+            :defaultValue="inputValue"
+            :placeholder="placeholder"
+            :tabindex="!disabled ? tabindex : -1"
+            :fluid="$fluid"
+            :disabled="disabled"
+            :size="size"
+            :invalid="invalid"
+            :variant="variant"
+            autocomplete="off"
+            role="combobox"
+            :aria-label="ariaLabel"
+            :aria-labelledby="ariaLabelledby"
+            aria-haspopup="listbox"
+            aria-autocomplete="list"
+            :aria-expanded="overlayVisible"
+            :aria-controls="overlayVisible ? panelId : undefined"
+            :aria-activedescendant="focused ? focusedOptionId : undefined"
+            @focus="onFocus"
+            @blur="onBlur"
+            @keydown="onKeyDown"
+            @input="onInput"
+            @change="onChange"
+            :unstyled="unstyled"
+            :data-p-has-dropdown="dropdown"
+            :pt="ptm('pcInputText')"
+        />
+        <slot v-if="isClearIconVisible" name="clearicon" :class="cx('clearIcon')" :clearCallback="onClearClick">
+            <TimesIcon :class="[cx('clearIcon')]" @click="onClearClick" v-bind="ptm('clearIcon')" />
+        </slot>
+        <ul
+            v-if="multiple"
+            ref="multiContainer"
+            :class="cx('inputMultiple')"
+            tabindex="-1"
+            role="listbox"
+            aria-orientation="horizontal"
+            :aria-activedescendant="focused ? focusedMultipleOptionId : undefined"
+            @focus="onMultipleContainerFocus"
+            @blur="onMultipleContainerBlur"
+            @keydown="onMultipleContainerKeyDown"
+            :data-p-has-dropdown="dropdown"
+            :data-p="inputMultipleDataP"
+            v-bind="ptm('inputMultiple')"
+        >
+            <li
+                v-for="(option, i) of d_value"
+                :key="`${i}_${getOptionLabel(option)}`"
+                :id="$id + '_multiple_option_' + i"
+                :class="cx('chipItem', { i })"
+                role="option"
+                :aria-label="getOptionLabel(option)"
+                :aria-selected="true"
+                :aria-setsize="d_value.length"
+                :aria-posinset="i + 1"
+                v-bind="ptm('chipItem')"
+            >
+                <slot name="chip" :class="cx('pcChip')" :value="option" :index="i" :removeCallback="(event) => removeOption(event, i)" v-bind="ptm('pcChip')">
+                    <Chip :class="cx('pcChip')" :label="getOptionLabel(option)" :removeIcon="chipIcon" removable :unstyled="unstyled" @remove="removeOption($event, i)" :data-p-focused="focusedMultipleOptionIndex === i" :pt="ptm('pcChip')">
+                        <template #removeicon>
+                            <slot name="chipicon" :class="cx('chipIcon')" :index="i" :removeCallback="(event) => removeOption(event, i)" />
+                        </template>
+                    </Chip>
+                </slot>
+            </li>
+            <li :class="cx('inputChip')" role="option" v-bind="ptm('inputChip')">
+                <input
+                    ref="focusInput"
+                    :id="inputId"
+                    type="text"
+                    :style="inputStyle"
+                    :class="inputClass"
+                    :placeholder="placeholder"
+                    :tabindex="!disabled ? tabindex : -1"
+                    :disabled="disabled"
+                    autocomplete="off"
+                    role="combobox"
+                    :aria-label="ariaLabel"
+                    :aria-labelledby="ariaLabelledby"
+                    aria-haspopup="listbox"
+                    aria-autocomplete="list"
+                    :aria-expanded="overlayVisible"
+                    :aria-controls="$id + '_list'"
+                    :aria-activedescendant="focused ? focusedOptionId : undefined"
+                    :aria-invalid="invalid || undefined"
+                    @focus="onFocus"
+                    @blur="onBlur"
+                    @keydown="onKeyDown"
+                    @input="onInput"
+                    @change="onChange"
+                    v-bind="ptm('input')"
+                />
+            </li>
+        </ul>
+        <slot v-if="searching || loading" :class="cx('loader')" name="loader">
+            <i v-if="loader" :class="['p-icon-spin', cx('loader'), loader]" aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
+            <SpinnerIcon v-else-if="loading" :class="cx('loader')" spin aria-hidden="true" :data-p-has-dropdown="dropdown" v-bind="ptm('loader')" />
+        </slot>
+        <slot name="dropdown" :toggleCallback="(event) => onDropdownClick(event)">
+            <button
+                v-if="dropdown"
+                ref="dropdownButton"
+                type="button"
+                :class="[cx('dropdown'), dropdownClass]"
+                :disabled="disabled"
+                aria-haspopup="listbox"
+                :aria-expanded="overlayVisible"
+                :aria-controls="panelId"
+                @click="onDropdownClick"
+                v-bind="ptm('dropdown')"
+            >
+                <slot name="dropdownicon" :class="dropdownIcon">
+                    <component :is="dropdownIcon ? 'span' : 'ChevronDownIcon'" :class="dropdownIcon" v-bind="ptm('dropdownIcon')" />
+                </slot>
+            </button>
+        </slot>
+        <span v-if="typeahead" role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSearchResult')" :data-p-hidden-accessible="true">
+            {{ searchResultMessageText }}
+        </span>
+        <Portal :appendTo="appendTo">
+            <transition name="p-anchored-overlay" @enter="onOverlayEnter" @after-enter="onOverlayAfterEnter" @leave="onOverlayLeave" @after-leave="onOverlayAfterLeave" v-bind="ptm('transition')">
+                <div
+                    v-if="overlayVisible"
+                    :ref="overlayRef"
+                    :id="panelId"
+                    :class="[cx('overlay'), panelClass, overlayClass]"
+                    :style="{ ...panelStyle, ...overlayStyle }"
+                    @click="onOverlayClick"
+                    @keydown="onOverlayKeyDown"
+                    :data-p="overlayDataP"
+                    v-bind="ptm('overlay')"
+                >
+                    <slot name="header" :value="d_value" :suggestions="visibleOptions"></slot>
+                    <div :class="cx('listContainer')" :style="{ 'max-height': virtualScrollerDisabled ? scrollHeight : '' }" v-bind="ptm('listContainer')">
+                        <VirtualScroller :ref="virtualScrollerRef" v-bind="virtualScrollerOptions" :style="{ height: scrollHeight }" :items="visibleOptions" :tabindex="-1" :disabled="virtualScrollerDisabled" :pt="ptm('virtualScroller')">
+                            <template v-slot:content="{ styleClass, contentRef, items, getItemOptions, contentStyle, itemSize }">
+                                <ul :ref="(el) => listRef(el, contentRef)" :id="$id + '_list'" :class="[cx('list'), styleClass]" :style="contentStyle" role="listbox" :aria-label="listAriaLabel" v-bind="ptm('list')">
+                                    <template v-for="(option, i) of items" :key="getOptionRenderKey(option, getOptionIndex(i, getItemOptions))">
+                                        <li
+                                            v-if="isOptionGroup(option)"
+                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
+                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
+                                            :class="cx('optionGroup')"
+                                            role="option"
+                                            v-bind="ptm('optionGroup')"
+                                        >
+                                            <slot name="optiongroup" :option="option.optionGroup" :index="getOptionIndex(i, getItemOptions)">{{ getOptionGroupLabel(option.optionGroup) }}</slot>
+                                        </li>
+                                        <li
+                                            v-else
+                                            :id="$id + '_' + getOptionIndex(i, getItemOptions)"
+                                            v-ripple
+                                            :style="{ height: itemSize ? itemSize + 'px' : undefined }"
+                                            :class="cx('option', { option, i, getItemOptions })"
+                                            role="option"
+                                            :aria-label="getOptionLabel(option)"
+                                            :aria-selected="isSelected(option)"
+                                            :aria-disabled="isOptionDisabled(option)"
+                                            :aria-setsize="ariaSetSize"
+                                            :aria-posinset="getAriaPosInset(getOptionIndex(i, getItemOptions))"
+                                            @click="onOptionSelect($event, option)"
+                                            @mousemove="onOptionMouseMove($event, getOptionIndex(i, getItemOptions))"
+                                            :data-p-selected="isSelected(option)"
+                                            :data-p-focused="focusedOptionIndex === getOptionIndex(i, getItemOptions)"
+                                            :data-p-disabled="isOptionDisabled(option)"
+                                            v-bind="getPTOptions(option, getItemOptions, i, 'option')"
+                                        >
+                                            <slot name="option" :option="option" :index="getOptionIndex(i, getItemOptions)">{{ getOptionLabel(option) }}</slot>
+                                        </li>
+                                    </template>
+                                    <li v-if="showEmptyMessage && (!items || (items && items.length === 0))" :class="cx('emptyMessage')" role="option" v-bind="ptm('emptyMessage')">
+                                        <slot name="empty">{{ searchResultMessageText }}</slot>
+                                    </li>
+                                </ul>
+                            </template>
+                            <template v-if="$slots.loader" v-slot:loader="{ options }">
+                                <slot name="loader" :options="options"></slot>
+                            </template>
+                        </VirtualScroller>
+                    </div>
+                    <slot name="footer" :value="d_value" :suggestions="visibleOptions"></slot>
+                    <span role="status" aria-live="polite" class="p-hidden-accessible" v-bind="ptm('hiddenSelectedMessage')" :data-p-hidden-accessible="true">
+                        {{ selectedMessageText }}
+                    </span>
+                </div>
+            </transition>
+        </Portal>
+    </div>
+</template>

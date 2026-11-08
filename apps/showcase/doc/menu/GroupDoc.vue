@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Menu supports single level of grouping by defining children with the <i>items</i> property.</p>
-    </DocSectionText>
-    <div class="card flex justify-center">
-        <Menu :model="items" />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -89,3 +79,13 @@ const items = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Menu supports single level of grouping by defining children with the <i>items</i> property.</p>
+    </DocSectionText>
+    <div class="card flex justify-center">
+        <Menu :model="items" />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

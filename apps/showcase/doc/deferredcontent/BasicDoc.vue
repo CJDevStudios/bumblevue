@@ -1,17 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>DeferredContent is used by wrapping the target.</p>
-    </DocSectionText>
-    <div class="card">
-        <div style="height: 1000px">Scroll down to lazy load an image.</div>
-
-        <DeferredContent @load="onImageLoad">
-            <img src="https://primefaces.org/cdn/primevue/images/nature/nature4.jpg" alt="Nature" class="rounded-xl w-full md:w-96 block sm:mx-auto" />
-        </DeferredContent>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -52,3 +38,17 @@ const onImageLoad = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>DeferredContent is used by wrapping the target.</p>
+    </DocSectionText>
+    <div class="card">
+        <div style="height: 1000px">Scroll down to lazy load an image.</div>
+
+        <DeferredContent @load="onImageLoad">
+            <img src="https://primefaces.org/cdn/primevue/images/nature/nature4.jpg" alt="Nature" class="rounded-xl w-full md:w-96 block sm:mx-auto" />
+        </DeferredContent>
+    </div>
+    <DocSectionCode :code="code" />
+</template>

@@ -1,9 +1,3 @@
-<template>
-    <DocPTViewer :docs="docs">
-        <Tree v-model:selectionKeys="selectedKey" filter :value="nodes" selectionMode="checkbox" class="w-full md:w-120"></Tree>
-    </DocPTViewer>
-</template>
-
 <script>
     import { getPTOptions } from '@/components/doc/helpers';
     import { NodeService } from '@/service/NodeService';
@@ -26,3 +20,9 @@
         }
     };
 </script>
+
+<template>
+    <DocPTViewer :docs="docs">
+        <Tree v-model:selectionKeys="selectedKey" filter :value="nodes" selectionMode="checkbox" class="w-full md:w-120"></Tree>
+    </DocPTViewer>
+</template>

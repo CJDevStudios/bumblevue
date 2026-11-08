@@ -1,62 +1,3 @@
-<template>
-    <Portal>
-        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
-            <div v-if="visible" :ref="containerRef" v-focustrap role="alertdialog" :class="cx('root')" :aria-modal="visible" @click="onOverlayClick" @keydown="onOverlayKeydown" v-bind="ptmi('root')">
-                <slot v-if="$slots.container" name="container" :message="confirmation" :acceptCallback="accept" :rejectCallback="reject"></slot>
-                <template v-else>
-                    <template v-if="!$slots.message">
-                        <div :class="cx('content')" v-bind="ptm('content')">
-                            <slot name="icon">
-                                <component v-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
-                                <span v-else-if="confirmation.icon" :class="[confirmation.icon, cx('icon')]" v-bind="ptm('icon')" />
-                            </slot>
-                            <span :class="cx('message')" v-bind="ptm('message')">{{ confirmation.message }}</span>
-                        </div>
-                    </template>
-                    <component v-else :is="$slots.message" :message="confirmation"></component>
-                    <div :class="cx('footer')" v-bind="ptm('footer')">
-                        <Button
-                            :class="[cx('pcRejectButton'), confirmation.rejectClass]"
-                            :autofocus="autoFocusReject"
-                            :unstyled="unstyled"
-                            :size="confirmation.rejectProps?.size || 'small'"
-                            :text="confirmation.rejectProps?.text || false"
-                            @click="reject()"
-                            @keydown="onRejectKeydown"
-                            v-bind="confirmation.rejectProps"
-                            :label="rejectLabel"
-                            :pt="ptm('pcRejectButton')"
-                        >
-                            <template v-if="rejectIcon || $slots.rejecticon" #icon="iconProps">
-                                <slot name="rejecticon">
-                                    <span :class="[rejectIcon, iconProps.class]" v-bind="ptm('pcRejectButton')['icon']" data-pc-section="rejectbuttonicon" />
-                                </slot>
-                            </template>
-                        </Button>
-                        <Button
-                            :class="[cx('pcAcceptButton'), confirmation.acceptClass]"
-                            :autofocus="autoFocusAccept"
-                            :unstyled="unstyled"
-                            :size="confirmation.acceptProps?.size || 'small'"
-                            @click="accept()"
-                            @keydown="onAcceptKeydown"
-                            v-bind="confirmation.acceptProps"
-                            :label="acceptLabel"
-                            :pt="ptm('pcAcceptButton')"
-                        >
-                            <template v-if="acceptIcon || $slots.accepticon" #icon="iconProps">
-                                <slot name="accepticon">
-                                    <span :class="[acceptIcon, iconProps.class]" v-bind="ptm('pcAcceptButton')['icon']" data-pc-section="acceptbuttonicon" />
-                                </slot>
-                            </template>
-                        </Button>
-                    </div>
-                </template>
-            </div>
-        </transition>
-    </Portal>
-</template>
-
 <script>
     import { $dt } from '@cjdevstudios/bumblevue/styled';
     import { absolutePosition, addClass, focus, getOffset, isTouchDevice } from '@cjdevstudios/bumblevue/utils/dom';
@@ -350,3 +291,62 @@
         }
     };
 </script>
+
+<template>
+    <Portal>
+        <transition name="p-anchored-overlay" @enter="onEnter" @after-enter="onAfterEnter" @leave="onLeave" @after-leave="onAfterLeave" v-bind="ptm('transition')">
+            <div v-if="visible" :ref="containerRef" v-focustrap role="alertdialog" :class="cx('root')" :aria-modal="visible" @click="onOverlayClick" @keydown="onOverlayKeydown" v-bind="ptmi('root')">
+                <slot v-if="$slots.container" name="container" :message="confirmation" :acceptCallback="accept" :rejectCallback="reject"></slot>
+                <template v-else>
+                    <template v-if="!$slots.message">
+                        <div :class="cx('content')" v-bind="ptm('content')">
+                            <slot name="icon">
+                                <component v-if="$slots.icon" :is="$slots.icon" :class="cx('icon')" />
+                                <span v-else-if="confirmation.icon" :class="[confirmation.icon, cx('icon')]" v-bind="ptm('icon')" />
+                            </slot>
+                            <span :class="cx('message')" v-bind="ptm('message')">{{ confirmation.message }}</span>
+                        </div>
+                    </template>
+                    <component v-else :is="$slots.message" :message="confirmation"></component>
+                    <div :class="cx('footer')" v-bind="ptm('footer')">
+                        <Button
+                            :class="[cx('pcRejectButton'), confirmation.rejectClass]"
+                            :autofocus="autoFocusReject"
+                            :unstyled="unstyled"
+                            :size="confirmation.rejectProps?.size || 'small'"
+                            :text="confirmation.rejectProps?.text || false"
+                            @click="reject()"
+                            @keydown="onRejectKeydown"
+                            v-bind="confirmation.rejectProps"
+                            :label="rejectLabel"
+                            :pt="ptm('pcRejectButton')"
+                        >
+                            <template v-if="rejectIcon || $slots.rejecticon" #icon="iconProps">
+                                <slot name="rejecticon">
+                                    <span :class="[rejectIcon, iconProps.class]" v-bind="ptm('pcRejectButton')['icon']" data-pc-section="rejectbuttonicon" />
+                                </slot>
+                            </template>
+                        </Button>
+                        <Button
+                            :class="[cx('pcAcceptButton'), confirmation.acceptClass]"
+                            :autofocus="autoFocusAccept"
+                            :unstyled="unstyled"
+                            :size="confirmation.acceptProps?.size || 'small'"
+                            @click="accept()"
+                            @keydown="onAcceptKeydown"
+                            v-bind="confirmation.acceptProps"
+                            :label="acceptLabel"
+                            :pt="ptm('pcAcceptButton')"
+                        >
+                            <template v-if="acceptIcon || $slots.accepticon" #icon="iconProps">
+                                <slot name="accepticon">
+                                    <span :class="[acceptIcon, iconProps.class]" v-bind="ptm('pcAcceptButton')['icon']" data-pc-section="acceptbuttonicon" />
+                                </slot>
+                            </template>
+                        </Button>
+                    </div>
+                </template>
+            </div>
+        </transition>
+    </Portal>
+</template>

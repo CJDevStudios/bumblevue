@@ -1,13 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
-    </DocSectionText>
-    <div class="card">
-        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" fluid />
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -49,3 +39,13 @@ const cities = ref([
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>The <i>fluid</i> prop makes the component take up the full width of its container when set to true.</p>
+    </DocSectionText>
+    <div class="card">
+        <Select v-model="selectedCity" :options="cities" optionLabel="name" placeholder="Select a City" fluid />
+    </div>
+    <DocSectionCode :code="code" />
+</template>

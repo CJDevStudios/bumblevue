@@ -1,19 +1,3 @@
-<template>
-    <DocSectionText v-bind="$attrs">
-        <p>Multiple messages can be displayed using the standard v-for directive.</p>
-    </DocSectionText>
-    <div class="card flex flex-col items-center justify-center gap-4">
-        <div class="flex gap-2">
-            <Button label="Show" @click="addMessages()" />
-            <Button label="Clear" severity="secondary" @click="clearMessages()" />
-        </div>
-        <transition-group name="p-message" tag="div" class="flex flex-col">
-            <Message v-for="msg of messages" :key="msg.id" :severity="msg.severity" class="mt-4">{{ msg.content }}</Message>
-        </transition-group>
-    </div>
-    <DocSectionCode :code="code" />
-</template>
-
 <script>
     export default {
         data() {
@@ -77,3 +61,19 @@ const clearMessages = () => {
         }
     };
 </script>
+
+<template>
+    <DocSectionText v-bind="$attrs">
+        <p>Multiple messages can be displayed using the standard v-for directive.</p>
+    </DocSectionText>
+    <div class="card flex flex-col items-center justify-center gap-4">
+        <div class="flex gap-2">
+            <Button label="Show" @click="addMessages()" />
+            <Button label="Clear" severity="secondary" @click="clearMessages()" />
+        </div>
+        <transition-group name="p-message" tag="div" class="flex flex-col">
+            <Message v-for="msg of messages" :key="msg.id" :severity="msg.severity" class="mt-4">{{ msg.content }}</Message>
+        </transition-group>
+    </div>
+    <DocSectionCode :code="code" />
+</template>
